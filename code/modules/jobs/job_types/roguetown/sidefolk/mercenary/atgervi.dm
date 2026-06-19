@@ -89,7 +89,7 @@
 	cmode_music = 'sound/music/combat_shaman2.ogg'
 	class_select_category = CLASS_CAT_GRONN
 	category_tags = list(CTAG_MERCENARY)
-	traits_applied = list(TRAIT_STRONGBITE, TRAIT_CIVILIZEDBARBARIAN, TRAIT_IGNOREDAMAGESLOWDOWN, TRAIT_NOPAINSTUN, TRAIT_BLOOD_RESISTANCE)
+	traits_applied = list(TRAIT_STRONGBITE, TRAIT_CIVILIZEDBARBARIAN, TRAIT_NOPAINSTUN, TRAIT_BLOOD_RESISTANCE)
 	subclass_stats = list(
 		STATKEY_STR = 3,
 		STATKEY_CON = 2,

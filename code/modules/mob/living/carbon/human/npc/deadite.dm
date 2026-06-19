@@ -43,6 +43,8 @@
 	equipOutfit(new /datum/outfit/job/roguetown/deadite)
 	//Make sure deadite NPCs don't show up in the antag listings
 	GLOB.antagonists -= zombie_antag
+	ADD_TRAIT(src, TRAIT_TOUGH_ORGANS, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_FRAIL_BONES, TRAIT_GENERIC)
 	update_body()
 
 /datum/outfit/job/roguetown/deadite/pre_equip(mob/living/carbon/human/H)

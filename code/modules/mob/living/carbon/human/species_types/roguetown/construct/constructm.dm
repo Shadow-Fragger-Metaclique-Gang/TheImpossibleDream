@@ -23,11 +23,14 @@
 	inherent_traits = list(
 		TRAIT_IRONMAN,
 		TRAIT_LIMBATTACHMENT, // this interacts with trait_ironman, making this take a while to reattach
-		TRAIT_NOPAINSTUN, // look into this later, just remembered Ryan merged NoPainSlow (cur. TRAIT_IGNOREDAMAGESLOWDOWN) into NoPainStun, might be good to separate them again for situations where I want my character to collapse from total pain, but not flinch when being hit
+		TRAIT_NOPAINSTUN,
 		TRAIT_NOHUNGER,
-		TRAIT_NOBREATH, 
-		TRAIT_TOXIMMUNE, 
+		TRAIT_BLOODLOSS_IMMUNE,
+		TRAIT_NOBREATH,
+		TRAIT_DEATHLESS,
+		TRAIT_TOXIMMUNE,
 		TRAIT_ZOMBIE_IMMUNE,
+		TRAIT_TOUGH_BONES
 		)
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | SLIME_EXTRACT
 	limbs_icon_m = 'icons/roguetown/mob/bodies/m/mcom.dmi'
@@ -60,6 +63,7 @@
 		ORGAN_SLOT_LIVER = /obj/item/organ/liver/construct,
 		ORGAN_SLOT_STOMACH = /obj/item/organ/stomach/construct,
 		)
+	innate_organs = list()
 	customizers = list(
 		/datum/customizer/organ/eyes/humanoid,
 		/datum/customizer/bodypart_feature/hair/head/humanoid,

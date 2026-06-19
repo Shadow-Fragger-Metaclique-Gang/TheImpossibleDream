@@ -425,10 +425,6 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		minimum_distance = initial(minimum_distance)
 	if(HAS_TRAIT(src, TRAIT_RIGIDMOVEMENT))
 		return
-	if(HAS_TRAIT(src, TRAIT_IGNOREDAMAGESLOWDOWN))
-		var/base_delay = initial(move_to_delay)
-		move_to_delay = base_delay * barding_speed_mult
-		return
 	var/health_deficiency = getBruteLoss() + getFireLoss()
 	if(health_deficiency >= ( maxHealth - (maxHealth*0.50) ))
 		var/damaged_delay = initial(move_to_delay) + 2
