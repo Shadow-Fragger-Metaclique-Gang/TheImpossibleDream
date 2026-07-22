@@ -1311,6 +1311,7 @@
 	inhand_y_dimension = 64
 	bigboy = TRUE
 	gripsprite = TRUE
+	walking_stick = TRUE //that's just cool
 
 /obj/item/rogueweapon/contraption/linker/mace/big/getonmobprop(tag)
 	. = ..()
