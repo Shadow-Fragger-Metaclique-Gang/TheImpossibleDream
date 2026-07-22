@@ -215,6 +215,14 @@
 		qualified = TRUE
 		selfheal = TRUE
 
+	else
+		if(user.get_skill_level(/datum/skill/craft/armorsmithing) >= SKILL_LEVEL_JOURNEYMAN)
+			qualified = TRUE
+		if(user.get_skill_level(/datum/skill/craft/engineering) >= SKILL_LEVEL_JOURNEYMAN)
+			qualified = TRUE
+		if(user.get_skill_level(/datum/skill/craft/blacksmithing) >= SKILL_LEVEL_JOURNEYMAN)
+			qualified = TRUE
+
 	if(!ishuman(M))
 		return
 
@@ -223,15 +231,6 @@
 		if(selfheal)
 			to_chat(user, span_warning("Only constructs can properly tinker with themselves."))
 			return
-
-
-	else
-		if(user.get_skill_level(/datum/skill/craft/armorsmithing) >= SKILL_LEVEL_JOURNEYMAN)
-			qualified = TRUE
-		if(user.get_skill_level(/datum/skill/craft/engineering) >= SKILL_LEVEL_JOURNEYMAN)
-			qualified = TRUE
-		if(user.get_skill_level(/datum/skill/craft/blacksmithing) >= SKILL_LEVEL_JOURNEYMAN)
-			qualified = TRUE
 
 	var/mob/living/carbon/human/H = M
 

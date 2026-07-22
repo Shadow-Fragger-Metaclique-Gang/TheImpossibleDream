@@ -1260,7 +1260,7 @@
 /obj/item/rogueweapon/contraption/linker/mace //roughly equivalent to a blacksmith hammer in damage and carryability
 	name = "Bronze-Reinforced Wrench"
 	desc = "A wrench, reinforced with bronze. It'd hurt to get smacked with this."
-	icon_state = "bronze"
+	icon_state = "2hbronze"
 	wlength = WLENGTH_SHORT
 	w_class = WEIGHT_CLASS_NORMAL
 	grid_width = 32
@@ -1283,11 +1283,14 @@
 	swingsound = BLUNTWOOSH_MED
 	//special = /datum/special_intent/dissassemble
 
+/obj/item/rogueweapon/contraption/linker/mace/precharged
+	current_charge = 80
 
 /obj/item/rogueweapon/contraption/linker/mace/big
 	name = "Massive Bronze Wrench"
 	desc = "A wrench with a massive handle, for the toughest of bolts. Clumsy to handle, but weighted for breaking down structures with ease."
-	icon_state = "2hbronze"
+	icon_state = "bronzewrench"
+	icon = 'icons/roguetown/weapons/blunt64.dmi'
 	force = 13
 	force_wielded = 25
 	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/bash/ranged)
@@ -1302,38 +1305,46 @@
 	wbalance = WBALANCE_HEAVY
 	grid_width = null
 	grid_height = null
-	dropshrink = 0
+	pixel_y = -16
+	pixel_x = -16
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	bigboy = TRUE
+	gripsprite = TRUE
 
-/*/obj/item/rogueweapon/contraption/linker/mace/big/getonmobprop(tag)
+/obj/item/rogueweapon/contraption/linker/mace/big/getonmobprop(tag)
 	. = ..()
 	if(tag)
 		switch(tag)
 			if("gen")
-				return list(,"sx" = -7,"sy" = 2,"nx" = 7,"ny" = 3,"wx" = -2,"wy" = 1,"ex" = 1,"ey" = 1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -38,"sturn" = 37,"wturn" = 30,"eturn" = -30,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
+				return list("shrink" = 0.6, "sx" = -7,"sy" = 2,"nx" = 7,"ny" = 3,"wx" = -2,"wy" = 1,"ex" = 1,"ey" = 1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -38,"sturn" = 37,"wturn" = 30,"eturn" = -30,"nflip" = 0,"sflip" = 8,"wflip" = 8,"eflip" = 0)
 			if("wielded")
 				return list("shrink" = 0.6,"sx" = 5,"sy" = -3,"nx" = -5,"ny" = -2,"wx" = -5,"wy" = -1,"ex" = 3,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = 7,"sturn" = -7,"wturn" = 16,"eturn" = -22,"nflip" = 8,"sflip" = 0,"wflip" = 8,"eflip" = 0)
-*/
+
+/obj/item/rogueweapon/contraption/linker/mace/big/precharged
+	current_charge = 80
+
 /obj/item/rogueweapon/contraption/linker/mace/iron
 	name = "Iron-Reinforced Wrench"
 	desc = "A wrench, reinforced with iron. It'd hurt to get smacked with this."
-	icon_state = "iron"
+	icon_state = "2hiron"
 	smeltresult = /obj/item/ingot/iron
 
 /obj/item/rogueweapon/contraption/linker/mace/big/iron
 	name = "Massive Iron Wrench"
-	icon_state = "2hiron"
+	icon_state = "ironwrench"
 	smeltresult = /obj/item/ingot/iron
 
 /obj/item/rogueweapon/contraption/linker/mace/steel
 	name = "Steel-Reinforced Wrench"
 	desc = "A wrench, reinforced with steel. It'd hurt to get smacked with this."
-	icon_state = "steel"
+	icon_state = "2hsteel"
 	smeltresult = /obj/item/ingot/steel
 	force = 24
 
 /obj/item/rogueweapon/contraption/linker/mace/big/steel
 	name = "Massive Steel Wrench"
-	icon_state = "2hsteel"
+	icon_state = "steelwrench"
 	smeltresult = /obj/item/ingot/steel
 	force = 15
 	force_wielded = 28
@@ -1344,7 +1355,7 @@
 /obj/item/rogueweapon/contraption/linker/mace/silver
 	name = "Silver-Reinforced Wrench"
 	desc = "A wrench, reinforced with silver. Whilst the metal does the tool's integrity no favors, it serves as a charm of good luck for those who work under moonlight."
-	icon_state = "silver"
+	icon_state = "2hsilver"
 	max_integrity = 150
 	smeltresult = /obj/item/ingot/silver
 	is_silver = TRUE
@@ -1352,7 +1363,7 @@
 /obj/item/rogueweapon/contraption/linker/mace/big/silver
 	name = "Massive Silver Wrench"
 	desc = "A massive wrench, plated with silver. Well-weighted for smashing troublesome furniture and nite-creatures alike."
-	icon_state = "2hsilver"
+	icon_state = "silverwrench"
 	max_integrity = 200
 	smeltresult = /obj/item/ingot/silver
 	is_silver = TRUE
@@ -1360,7 +1371,7 @@
 /obj/item/rogueweapon/contraption/linker/mace/master
 	name = "Gold-Reinforced Wrench"
 	desc = "A wrench, adorned with gold. The badge of an accomplished guildmaster. Capable of advanced linkages, and marvelously heavy"
-	icon_state = "gold"
+	icon_state = "2hgold"
 	max_integrity = 100
 	max_stored_charge = 100
 	smeltresult = /obj/item/ingot/gold
@@ -1369,7 +1380,7 @@
 /obj/item/rogueweapon/contraption/linker/mace/big/master
 	name = "Massive Gold Wrench"
 	desc = "A massive wrench, plated and gold. The badge of an accomplished guildmaster. Capable of delightfully advanced linkages."
-	icon_state = "2hgold"
+	icon_state = "goldwrench"
 	smeltresult = /obj/item/ingot/gold
 	max_integrity = 200
 	force = 15
@@ -1378,7 +1389,7 @@
 /obj/item/rogueweapon/contraption/linker/mace/master/bsteel
 	name = "Blacksteel-Reinforced Wrench"
 	desc = "A wrench, reinforced with blacksteel. Capable of terrifyingly advanced linkage."
-	icon_state = "bsteel"
+	icon_state = "2hbsteel"
 	max_integrity = 350
 	smeltresult = /obj/item/ingot/blacksteel
 	force = 24
@@ -1386,7 +1397,7 @@
 /obj/item/rogueweapon/contraption/linker/mace/big/master/bsteel
 	name = "Massive Blacksteel Wrench"
 	desc = "A massive wrench of blacksteel. The durable alloy affords more complex machinations."
-	icon_state = "2hbsteel"
+	icon_state = "bsteelwrench"
 	smeltresult = /obj/item/ingot/blacksteel
 	max_integrity = 500
 	max_stored_charge = 100
@@ -1397,7 +1408,7 @@
 	name = "Decrepit Wrench"
 	desc = "An ancient wrench, reinforced with frayed bronze. Once a tool of progress, repurposed into little more than a cudgel"
 	max_integrity = 150
-	icon_state = "decrepit"
+	icon_state = "2hdecrepit"
 	smeltresult = /obj/item/ingot/aaslag
 	force = 18
 	max_stored_charge = 40
@@ -1410,7 +1421,7 @@
 	name = "Massive Decrepit Wrench"
 	desc = "A massive tool of ancient, frayed bronze. The teeth at its head have been stripped clean from countless years of pointless toil, maintaining a great construct of no clear purpose"
 	max_integrity = 200
-	icon_state = "2hdecrepit"
+	icon_state = "decrepitwrench"
 	smeltresult = /obj/item/ingot/aaslag
 	force = 12
 	force_wielded = 21
