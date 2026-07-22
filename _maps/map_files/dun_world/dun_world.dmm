@@ -4125,7 +4125,7 @@
 /obj/structure/rack/rogue/shelf/biggest{
 	pixel_y = 10
 	},
-/obj/item/contraption/folding_table_stored,
+/obj/item/rogueweapon/contraption/folding_table_stored,
 /obj/item/folding_alchstation_stored{
 	pixel_y = 8
 	},
@@ -31132,8 +31132,8 @@
 /area/rogue/indoors/town/physician)
 "fZD" = (
 /obj/structure/table/wood/poor,
-/obj/item/contraption/folding_table_stored,
-/obj/item/contraption/folding_table_stored{
+/obj/item/rogueweapon/contraption/folding_table_stored,
+/obj/item/rogueweapon/contraption/folding_table_stored{
 	pixel_y = 4
 	},
 /turf/open/floor/rogue/cobble,
@@ -125390,8 +125390,8 @@
 /obj/item/reagent_containers/glass/cup/ceramic,
 /obj/item/reagent_containers/glass/cup/ceramic,
 /obj/item/book/rogue/yeoldecookingmanual,
-/obj/item/contraption/folding_table_stored,
-/obj/item/contraption/folding_table_stored,
+/obj/item/rogueweapon/contraption/folding_table_stored,
+/obj/item/rogueweapon/contraption/folding_table_stored,
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/church/basement)
 "xQg" = (

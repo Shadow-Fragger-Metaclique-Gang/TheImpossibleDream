@@ -133,10 +133,11 @@
 	icon_state = "goggles"
 	break_sound = "glassbreak"
 	attacked_sound = 'sound/combat/hits/onglass/glasshit.ogg'
-	max_integrity = 35
+	max_integrity = 35 //this'll stop one or two good hits
 	integrity_failure = 0.5
 	resistance_flags = FIRE_PROOF
 	body_parts_covered = EYES
+	armor = ARMOR_PLATE_BSTEEL //however, it can stop some *very strong* piercing. Essentially, ablative armor
 	anvilrepair = /datum/skill/craft/armorsmithing
 	adjustable = CAN_CADJUST
 	var/active_item = FALSE
@@ -783,6 +784,7 @@
 	attacked_sound = 'sound/combat/hits/onglass/glasshit.ogg'
 	max_integrity = 30
 	integrity_failure = 0.5
+	armor = ARMOR_PLATE_BSTEEL
 	resistance_flags = FIRE_PROOF
 	body_parts_covered = EYES
 	adjustable = CAN_CADJUST
@@ -800,6 +802,7 @@
 	attacked_sound = 'sound/combat/hits/onglass/glasshit.ogg'
 	max_integrity = 30
 	integrity_failure = 0.5
+	armor = ARMOR_PLATE_BSTEEL
 	resistance_flags = FIRE_PROOF
 	body_parts_covered = EYES
 	adjustable = CAN_CADJUST
@@ -813,6 +816,7 @@
 	attacked_sound = 'sound/combat/hits/onglass/glasshit.ogg'
 	max_integrity = 40 // slightly more durable for the cqc nerds (stills 1 hit to break)
 	integrity_failure = 0.5
+	armor = ARMOR_PLATE_BSTEEL
 	resistance_flags = FIRE_PROOF
 	body_parts_covered = EYES
 	adjustable = CAN_CADJUST
