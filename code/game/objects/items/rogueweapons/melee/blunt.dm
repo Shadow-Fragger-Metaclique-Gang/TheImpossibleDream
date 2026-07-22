@@ -1281,7 +1281,7 @@
 	slot_flags = ITEM_SLOT_HIP | ITEM_SLOT_BACK
 	parrysound = list('sound/combat/parry/parrygen.ogg')
 	swingsound = BLUNTWOOSH_MED
-	special = /datum/special_intent/dissassemble
+	//special = /datum/special_intent/dissassemble
 
 
 /obj/item/rogueweapon/contraption/linker/mace/big
