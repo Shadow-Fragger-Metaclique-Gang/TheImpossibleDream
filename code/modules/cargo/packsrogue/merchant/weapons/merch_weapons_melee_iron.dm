@@ -161,7 +161,7 @@
 
 /datum/supply_pack/rogue/iron_weapons/ironshield
 	name = "Shield, Iron"
-	cost = 40 // 2 iron 
+	cost = 40 // 2 iron
 	contains = list(/obj/item/rogueweapon/shield/iron)
 
 /datum/supply_pack/rogue/iron_weapons/towershield
@@ -178,3 +178,30 @@
 	name = "Shield, Kite"
 	cost = 70 // 2 Steel Ingot
 	contains = list(/obj/item/rogueweapon/shield/tower/metal)
+
+/datum/supply_pack/rogue/iron_weapons/fightingclaws
+	name = "Fighting Claws"
+	cost = 25 // 1 Iron Ingot
+	contains = list(/obj/item/rogueweapon/handclaw/ironclaw)
+
+/datum/supply_pack/rogue/iron_weapons/fightinggripclub
+	name = "Fighting Grip Club"
+	cost = 25 // 1 Iron Ingot
+	contains = list(/obj/item/rogueweapon/handclaw/ironclaw/blunt)
+
+/datum/supply_pack/rogue/iron_weapons/knuckles
+	name = "Knuckles"
+	cost = 25 // 1 Iron Ingot
+	contains = list(/obj/item/clothing/gloves/roguetown/knuckles/iron)
+
+
+/datum/supply_pack/rogue/iron_weapons/ironchop
+	name = "Grip Axe"
+	cost = 50 // 2 Iron Ingots
+	contains = list(/obj/item/rogueweapon/katar/iron/ironchop)
+
+/datum/supply_pack/rogue/iron_weapons/katar
+	name = "Katar"
+	cost = 25 // 1 Iron Ingot
+	contains = list(/obj/item/rogueweapon/katar/iron)
+

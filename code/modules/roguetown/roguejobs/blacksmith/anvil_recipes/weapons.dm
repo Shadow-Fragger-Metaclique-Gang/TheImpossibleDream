@@ -17,7 +17,7 @@
 
 /datum/anvil_recipe/weapons/bronze
 	abstract_type = /datum/anvil_recipe/weapons/bronze
-	craftdiff = SKILL_LEVEL_NOVICE //Situationally better than iron, but far more limited in terms of recipes and availability. 
+	craftdiff = SKILL_LEVEL_NOVICE //Situationally better than iron, but far more limited in terms of recipes and availability.
 
 /datum/anvil_recipe/weapons/iron
 	abstract_type = /datum/anvil_recipe/weapons/iron
@@ -514,6 +514,19 @@
 	req_bar = /obj/item/ingot/iron
 	created_item = /obj/item/clothing/gloves/roguetown/knuckles/iron
 	display_category = ITEM_CAT_WEAPONS_MACES
+
+/datum/anvil_recipe/weapons/iron/katar
+	name = "Katar, Iron"
+	req_bar = /obj/item/ingot/iron
+	created_item = /obj/item/rogueweapon/katar/iron
+	display_category = ITEM_CAT_WEAPONS_SWORDS
+
+/datum/anvil_recipe/weapons/iron/cqcglove
+	name = "Gauntlet Axe, Iron (+1 Iron)"
+	req_bar = /obj/item/ingot/iron
+	additional_items = list(/obj/item/ingot/iron)
+	created_item = /obj/item/rogueweapon/katar/iron/ironchop
+	display_category = ITEM_CAT_WEAPONS_AXES
 
 /datum/anvil_recipe/weapons/iron/dagger
 	name = "Dagger, Iron"
@@ -1030,6 +1043,25 @@
 	req_bar = /obj/item/ingot/steel
 	additional_items = list(/obj/item/ingot/steel, /obj/item/ingot/steel)
 	created_item = /obj/item/rogueweapon/mace/maul/grand
+	display_category = ITEM_CAT_WEAPONS_MACES
+
+/datum/anvil_recipe/weapons/steel/cqcglove
+	name = "Gauntlet Axe, Steel (+1 Steel)"
+	req_bar = /obj/item/ingot/steel
+	additional_items = list(/obj/item/ingot/steel)
+	created_item = /obj/item/rogueweapon/katar/steelchop
+	display_category = ITEM_CAT_WEAPONS_AXES
+
+/datum/anvil_recipe/weapons/steel/cqcclaws
+	name = "Fighting Claws, Steel "
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/rogueweapon/handclaw/steel/craftable
+	display_category = ITEM_CAT_WEAPONS_SWORDS
+
+/datum/anvil_recipe/weapons/steel/cqcclub
+	name = "Fighting Grip Mace, Steel "
+	req_bar = /obj/item/ingot/steel
+	created_item = /obj/item/rogueweapon/handclaw/ironclaw/craftable/blunt
 	display_category = ITEM_CAT_WEAPONS_MACES
 
 // DECORATED

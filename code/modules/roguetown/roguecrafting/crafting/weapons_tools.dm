@@ -153,6 +153,16 @@
 		)
 	craftdiff = 2
 
+/datum/crafting_recipe/roguetown/survival/peasantry/warscythe_scytheblade
+	name = "militia gripscythe (scythe)"
+	result = /obj/item/rogueweapon/katar/iron/ironchop/militia
+	reqs = list(
+		/datum/crafting_recipe/roguetown/survival/peasantry/scythe = 1,
+		/obj/item/grown/log/tree/small = 1,
+		/obj/item/rope = 1,
+		)
+	craftdiff = 2
+
 /datum/crafting_recipe/roguetown/survival/peasantry/scythe
 	name = "scythe"
 	result = /obj/item/rogueweapon/scythe
@@ -474,7 +484,7 @@
 /datum/crafting_recipe/roguetown/survival/sharpenedstake
 	name = "stake, sharpened"
 	display_category = ITEM_CAT_WEAPONS_DAGGERS
-	category = "Tools" 
+	category = "Tools"
 	result = list(/obj/item/rogueweapon/huntingknife/idagger/stake)
 	reqs = list(
 		/obj/item/grown/log/tree/stake = 1,

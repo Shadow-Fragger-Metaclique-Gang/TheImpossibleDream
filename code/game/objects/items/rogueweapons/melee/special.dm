@@ -480,7 +480,7 @@
 	desc = "A pair of heavily curved claws, styled after beasts and used in combat by some of the more uncivilized warriors who try to mimic the fighting styles of the wild, or by anyone who thinks they can actually do that."
 	icon_state = "ironclaw"
 	icon = 'icons/roguetown/weapons/unarmed32.dmi'
-	wdefense = 3 // this is not a katar? 
+	wdefense = 3 // this is not a katar?
 	force = 20
 	possible_item_intents = list(/datum/intent/claw/cut/iron, /datum/intent/claw/lunge/iron, /datum/intent/claw/rend)
 	wbalance = WBALANCE_NORMAL
@@ -501,6 +501,7 @@
 	smeltresult = /obj/item/ingot/iron
 	grid_height = 96
 	grid_width = 32
+	special =/datum/special_intent/upper_cut
 
 /obj/item/rogueweapon/handclaw/ironclaw/blunt
 	name = "iron grip club"
@@ -509,9 +510,104 @@
 	icon = 'icons/roguetown/weapons/unarmed32.dmi'
 	wdefense = 3
 	force = 20
-	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash/lesser, /datum/intent/mace/rangedthrust/short)
+	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash/lesser, /datum/intent/mace/rangedthrust/short, /datum/intent/mace/strike/dislocate)
 	wbalance = WBALANCE_NORMAL
 	swingsound = BLUNTWOOSH_MED
+	special =/datum/special_intent/upper_cut
+
+/obj/item/rogueweapon/katar/iron
+	name = "iron katar"
+	desc = "A iron blade that sits above the user's fist. Commonly used by those proficient at unarmed fighting."
+	icon_state = "ironkatar"
+	smeltresult = /obj/item/ingot/iron
+	max_blade_int = 175
+	max_integrity = 75
+
+/obj/item/rogueweapon/katar/iron/ironpunch
+	name = "iron punching mace"
+	desc = "A iron mace that sits above the user's fist, covered in maille and a iron buckler to provide extra protection and weight, this weapon is designed for devastating strikes."
+	icon_state = "ironpunch"
+	smeltresult = /obj/item/ingot/iron
+	wdefense = 5 //Much higher than usual for most unarmed weapons..
+	max_integrity = 150 //..and tougher, too.
+	force = 26
+	sharpness = IS_BLUNT
+	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash/lesser, /datum/intent/mace/demolish, /datum/intent/mace/strike/dislocate)
+	parrysound = list('sound/combat/parry/shield/towershield (1).ogg','sound/combat/parry/shield/towershield (2).ogg','sound/combat/parry/shield/towershield (3).ogg')
+	wbalance = WBALANCE_HEAVY
+	swingsound = BLUNTWOOSH_MED
+	special = /datum/special_intent/upper_cut
+
+/obj/item/rogueweapon/katar/iron/ironchop
+	name = "iron chopping gauntlet"
+	desc = "A iron axehead that sits above the user's fist, covered in maille to provide extra protection and weight, this weapon is designed for devastating cuts."
+	icon_state = "ironchop"
+	smeltresult = /obj/item/ingot/iron
+	wdefense = 5 //Much higher than usual for most unarmed weapons..
+	max_integrity = 150 //..and tougher, too.
+	force = 24
+	possible_item_intents = list(/datum/intent/axe/chop/arbelos, /datum/intent/axe/cut/arbelos, /datum/intent/katar/thrust/arbelos)
+	thrown_bclass = BCLASS_CHOP
+	swingsound = BLUNTWOOSH_MED
+	special =/datum/special_intent/upper_cut
+
+// Steel Versions, slightly better and more durable
+
+/obj/item/rogueweapon/katar/steelpunch
+	name = "steel punching mace"
+	desc = "A steel mace that sits above the user's fist, covered in maille and a steel buckler to provide extra protection and weight, this weapon is designed for devastating strikes."
+	icon_state = "steelpunch"
+	smeltresult = /obj/item/ingot/steel
+	wdefense = 5
+	max_integrity = 200
+	force = 30
+	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash/lesser, /datum/intent/mace/demolish, /datum/intent/mace/strike/dislocate)
+	wbalance = WBALANCE_HEAVY
+	swingsound = BLUNTWOOSH_MED
+	special =/datum/special_intent/upper_cut
+	sharpness = IS_BLUNT
+	parrysound = list('sound/combat/parry/shield/towershield (1).ogg','sound/combat/parry/shield/towershield (2).ogg','sound/combat/parry/shield/towershield (3).ogg')
+	swingsound = BLUNTWOOSH_MED
+
+/obj/item/rogueweapon/handclaw/steel/craftable
+	name = "steel fighting claws"
+	desc = "A reinforced glove with sharpened steel claws, a weapon made for skilled fighters who really know how to use the barbaric violence against men at arms with common armaments."
+	icon_state = "steelclaw"
+	icon = 'icons/roguetown/weapons/unarmed32.dmi'
+	wdefense = 4
+	force = 30 // not the same as the gronn claws either, but still a bit more than the iron claws
+	possible_item_intents = list(/datum/intent/claw/cut/steel, /datum/intent/claw/lunge/steel, /datum/intent/claw/rend/steel)
+	wbalance = WBALANCE_HEAVY
+	max_blade_int = 150
+	max_integrity = 200
+	smeltresult = /obj/item/ingot/steel
+	sharpness_mod = 2
+	special = /datum/special_intent/upper_cut
+
+/obj/item/rogueweapon/handclaw/ironclaw/craftable/blunt
+	name = "Steel grip club"
+	desc = "A sturdy handle of Steel with a solid spiked bludgeon on the end. It is a simple weapon, alternative to a cudgel or mace for those who prefer to fight with a different grip."
+	icon_state = "steelblunt"
+	icon = 'icons/roguetown/weapons/unarmed32.dmi'
+	wdefense = 4
+	force = 30
+	possible_item_intents = list(/datum/intent/mace/strike, /datum/intent/mace/smash/lesser, /datum/intent/mace/rangedthrust/short, /datum/intent/mace/strike/dislocate)
+	wbalance = WBALANCE_NORMAL
+	swingsound = BLUNTWOOSH_MED
+	special = /datum/special_intent/upper_cut
+
+/obj/item/rogueweapon/katar/steelchop
+	name = "Steel chopping gauntlet"
+	desc = "A steel axehead that sits above the user's fist, covered in a plate gauntlet to provide extra protection and weight, this weapon is designed for devastating cuts."
+	icon_state = "steelchop"
+	smeltresult = /obj/item/ingot/steel
+	wdefense = 5 //same def as arbelos
+	max_integrity = 200
+	force = 30 //arbelos stronger cousin
+	possible_item_intents = list(/datum/intent/axe/chop/arbelos, /datum/intent/axe/cut/arbelos, /datum/intent/katar/thrust/arbelos)
+	thrown_bclass = BCLASS_CHOP
+	swingsound = BLUNTWOOSH_MED
+	special = /datum/special_intent/upper_cut
 
 
 ///Peasantry / Militia Weapon Pack///
@@ -673,7 +769,7 @@
 	use_light = FALSE
 	spread_flame = FALSE
 	icon_state_ignited = "sci_firetongue_on"
-	
+
 /datum/component/ignitable/fluff/sci_sand
 	use_light = FALSE
 	spread_flame = FALSE
@@ -682,7 +778,7 @@
 /datum/component/ignitable/Initialize(...)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
-	
+
 	RegisterSignal(parent, COMSIG_STRUCTURE_ATTACKBY, PROC_REF(item_afterattack))
 	RegisterSignal(parent, COMSIG_ITEM_AFTERATTACK, PROC_REF(item_afterattack))
 	RegisterSignal(parent, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
@@ -882,9 +978,9 @@
 	desc = "A hardy repurposed dwarven mining warpick. Made to handle the dwellers above and below, both clad in rock and forged rock."
 	icon_state = "dwarpick"
 	possible_item_intents = list(/datum/intent/pick/heavy, /datum/intent/mace/strike)
-	gripped_intents = list(/datum/intent/pick/heavy, /datum/intent/mace/strike, /datum/intent/stab/militia)	
+	gripped_intents = list(/datum/intent/pick/heavy, /datum/intent/mace/strike, /datum/intent/stab/militia)
 	max_blade_int = 200 //10% increase over the steel pick
-	max_integrity = 660 
+	max_integrity = 660
 
 /obj/item/rogueweapon/sword/falchion/militia
 	name = "maciejowski"
@@ -914,6 +1010,19 @@
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	smeltresult = /obj/item/ingot/bronze
 	wbalance = WBALANCE_HEAVY
+
+/obj/item/rogueweapon/katar/iron/ironchop/militia //im fucking crying i had this idea
+	name = "handheld scythe"
+	desc = "A iron scythe blade that sits above a rough improvised grip, whoever made this weapon clearly had a mind for the harvest, and a mind for the battlefield. The blade is sharpened to a fine edge designed to cut and chop."
+	icon_state = "choppingharvest"
+	smeltresult = /obj/item/ingot/iron
+	wdefense = 4
+	max_integrity = 125
+	force = 22
+	possible_item_intents = list(/datum/intent/axe/chop/arbelos, /datum/intent/axe/cut/arbelos, /datum/intent/katar/thrust/arbelos)
+	thrown_bclass = BCLASS_CHOP
+	swingsound = BLUNTWOOSH_MED
+	special = /datum/special_intent/upper_cut
 
 /obj/item/rogueweapon/handclaw
 	slot_flags = ITEM_SLOT_HIP
