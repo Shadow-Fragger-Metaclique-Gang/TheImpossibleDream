@@ -22,6 +22,7 @@
 	var/major_name
 	var/med_name
 	var/minor_name
+	var/herb_powder_type = null
 
 /obj/item/alch/Initialize()
 	. = ..()
@@ -85,6 +86,8 @@
 	med_pot = /datum/alch_cauldron_recipe/antidote
 	minor_pot = /datum/alch_cauldron_recipe/lck_potion
 
+	herb_powder_type = /obj/item/herb_powder/red
+
 /obj/item/alch/viscera/get_mechanics_examine(mob/user)
 	. = ..()
 	. += span_info("Viscera is chiefly obtained by butchering most animals. To butcher an animal, middle-click it with a knife without any miracles, spells, or special intents selected. The higher your Butchering skill, the more you'll carve.")
@@ -104,6 +107,8 @@
 	major_pot = /datum/alch_cauldron_recipe/mana_potion
 	med_pot = /datum/alch_cauldron_recipe/per_potion
 	minor_pot = /datum/alch_cauldron_recipe/antidote
+
+	herb_powder_type = /obj/item/herb_powder/white
 
 /obj/item/alch/seeddust
 	name = "seed dust"
@@ -354,6 +359,8 @@
 	med_pot = /datum/alch_cauldron_recipe/mana_potion
 	minor_pot = /datum/alch_cauldron_recipe/big_mana_potion
 
+	herb_powder_type = /obj/item/herb_powder/blue
+
 //BEGIN THE HERBS
 
 /obj/item/alch/atropa
@@ -364,6 +371,8 @@
 	major_pot = /datum/alch_cauldron_recipe/doompoison
 	med_pot = /datum/alch_cauldron_recipe/berrypoison
 	minor_pot = /datum/alch_cauldron_recipe/stam_poison
+
+	herb_powder_type = /obj/item/herb_powder/blue
 
 /obj/item/alch/matricaria
 	name = "matricaria"
@@ -379,6 +388,9 @@
 	med_pot = /datum/alch_cauldron_recipe/per_potion
 	minor_pot = /datum/alch_cauldron_recipe/doompoison
 
+	herb_powder_type = /obj/item/herb_powder/white
+
+
 /obj/item/alch/symphitum
 	name = "symphitum"
 	icon_state = "symphitum"
@@ -387,6 +399,8 @@
 	major_pot = /datum/alch_cauldron_recipe/health_potion
 	med_pot = /datum/alch_cauldron_recipe/stam_poison
 	minor_pot = /datum/alch_cauldron_recipe/antidote
+
+	herb_powder_type = /obj/item/herb_powder/green
 
 /obj/item/alch/taraxacum
 	name = "taraxacum"
@@ -397,6 +411,8 @@
 	med_pot = /datum/alch_cauldron_recipe/health_potion
 	minor_pot = /datum/alch_cauldron_recipe/antidote
 
+	herb_powder_type = /obj/item/herb_powder/yellow
+
 /obj/item/alch/euphrasia
 	name = "euphrasia"
 	icon_state = "euphrasia"
@@ -406,6 +422,8 @@
 	med_pot = /datum/alch_cauldron_recipe/stam_poison
 	minor_pot = /datum/alch_cauldron_recipe/int_potion
 
+	herb_powder_type = /obj/item/herb_powder/white
+
 /obj/item/alch/paris
 	name = "paris"
 	icon_state = "paris"
@@ -414,6 +432,8 @@
 	major_pot = /datum/alch_cauldron_recipe/big_stam_poison
 	med_pot = /datum/alch_cauldron_recipe/berrypoison
 	minor_pot = /datum/alch_cauldron_recipe/stam_poison
+
+	herb_powder_type = /obj/item/herb_powder/green
 
 /obj/item/alch/calendula
 	name = "calendula"
@@ -427,6 +447,8 @@
 	major_pot = /datum/alch_cauldron_recipe/big_health_potion
 	med_pot = /datum/alch_cauldron_recipe/end_potion
 	minor_pot = /datum/alch_cauldron_recipe/health_potion
+
+	herb_powder_type = /obj/item/herb_powder/yellow
 
 /obj/item/alch/calendula/Initialize()
 	. = ..()
@@ -447,6 +469,8 @@
 	major_pot = /datum/alch_cauldron_recipe/per_potion
 	med_pot = /datum/alch_cauldron_recipe/int_potion
 	minor_pot = /datum/alch_cauldron_recipe/stamina_potion
+
+	herb_powder_type = /obj/item/herb_powder/green
 
 /obj/item/alch/mentha/Initialize()
 	. = ..()
@@ -469,6 +493,8 @@
 	med_pot = /datum/alch_cauldron_recipe/spd_potion
 	minor_pot = /datum/alch_cauldron_recipe/stamina_potion
 
+	herb_powder_type = /obj/item/herb_powder/blue
+
 /obj/item/alch/salvia
 	name = "salvia"
 	icon_state = "salvia"
@@ -482,6 +508,8 @@
 	major_pot = /datum/alch_cauldron_recipe/con_potion
 	med_pot = /datum/alch_cauldron_recipe/str_potion
 	minor_pot = /datum/alch_cauldron_recipe/end_potion
+
+	herb_powder_type = /obj/item/herb_powder/blue
 
 /obj/item/alch/salvia/Initialize()
 	. = ..()
@@ -504,6 +532,8 @@
 	med_pot = /datum/alch_cauldron_recipe/big_mana_potion
 	minor_pot = /datum/alch_cauldron_recipe/antidote
 
+	herb_powder_type = /obj/item/herb_powder/red
+
 /obj/item/alch/hypericum/Initialize()
 	. = ..()
 	var/static/list/slapcraft_recipe_list = list(
@@ -524,6 +554,8 @@
 	med_pot = /datum/alch_cauldron_recipe/stamina_potion
 	minor_pot = /datum/alch_cauldron_recipe/int_potion
 
+	herb_powder_type = /obj/item/herb_powder/green
+
 /obj/item/alch/valeriana
 	name = "valeriana"
 	icon_state = "valeriana"
@@ -532,6 +564,8 @@
 	major_pot = /datum/alch_cauldron_recipe/health_potion
 	med_pot = /datum/alch_cauldron_recipe/spd_potion
 	minor_pot = /datum/alch_cauldron_recipe/stam_poison
+
+	herb_powder_type = /obj/item/herb_powder/white
 
 /obj/item/alch/valeriana/Initialize()
 	. = ..()
@@ -553,6 +587,8 @@
 	med_pot = /datum/alch_cauldron_recipe/spd_potion
 	minor_pot = /datum/alch_cauldron_recipe/health_potion
 
+	herb_powder_type = /obj/item/herb_powder/white
+
 /obj/item/alch/manabloompowder
 	name = "manabloom powder"
 	icon_state = "bluepowder"
@@ -561,6 +597,8 @@
 	major_pot = /datum/alch_cauldron_recipe/mana_potion
 	med_pot = /datum/alch_cauldron_recipe/int_potion
 	minor_pot = /datum/alch_cauldron_recipe/big_mana_potion
+
+	herb_powder_type = /obj/item/herb_powder/blue
 
 /obj/item/alch/rosa
 	name = "rosa"
@@ -580,6 +618,8 @@
 	major_pot = /datum/alch_cauldron_recipe/lck_potion
 	med_pot = /datum/alch_cauldron_recipe/antidote
 	minor_pot = /datum/alch_cauldron_recipe/restoration_potion
+
+	herb_powder_type = /obj/item/herb_powder/red
 
 /obj/item/alch/rosa/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
