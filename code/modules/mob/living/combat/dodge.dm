@@ -173,8 +173,6 @@
 					prob2defend = prob2defend + (H.get_skill_level(/datum/skill/combat/unarmed) * 10)
 					if(U.STASPD > L.STASPD) //unarmed is inherently swift
 						prob2defend = prob2defend - ((U.STASPD - L.STASPD) * 10)
-
-
 		
 		if(HAS_TRAIT(user, TRAIT_CURSE_RAVOX))
 			prob2defend -= 40
