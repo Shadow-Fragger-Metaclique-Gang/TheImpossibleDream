@@ -648,10 +648,33 @@
 			owner.balloon_alert(owner, "Can't focus on casting...")
 		return FALSE
 
+	if(HAS_TRAIT(owner, TRAIT_SPELL_VAMPIRE_BLOCK))
+		if(feedback)
+			owner.balloon_alert(owner, "My vitae drowns out the spell!")
+		return FALSE
+
 	if(HAS_TRAIT(owner, TRAIT_NOC_CURSE))
 		if(feedback)
 			owner.balloon_alert(owner, "My magicka has left me...")
 		return FALSE
+
+	if(owner.mind?.has_spellmiracle_block_antag())
+		if(primary_resource_type == SPELL_COST_DEVOTION || secondary_resource_type == SPELL_COST_DEVOTION)
+			if(feedback)
+				owner.balloon_alert(owner, "The gods reject what I am!")
+			return FALSE
+		if(source_aspect)
+			if(feedback)
+				owner.balloon_alert(owner, "The arcyne rejects what I am!")
+			return FALSE
+
+	// Vampires may only use T1 and lesser miracles, for self heal and disguise, more powerful miracles are denied - If you metacheck this I'll skrill you.
+	if(owner.mind?.has_antag_datum(/datum/antagonist/vampire))
+		var/vamp_miracle_tier = get_miracle_tier(type)
+		if(!isnull(vamp_miracle_tier) && vamp_miracle_tier > CLERIC_T1)
+			if(feedback)
+				owner.balloon_alert(owner, "I cannot disguise my nature to use such powers!")
+			return FALSE
 
 	var/mob/living/living_owner = owner
 	if(istype(living_owner) && living_owner.has_status_effect(/datum/status_effect/debuff/exposed))
