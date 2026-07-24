@@ -193,7 +193,7 @@
 	backr = /obj/item/storage/backpack/rogue/satchel
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
-	armor = /obj/item/clothing/suit/roguetown/armor/manual/pushups/leather
+	armor = /obj/item/clothing/suit/roguetown/armor/manual/pushups/barbarian
 	backpack_contents = list(
 				/obj/item/rogueweapon/huntingknife = 1,
 				/obj/item/recipe_book/survival = 1,
