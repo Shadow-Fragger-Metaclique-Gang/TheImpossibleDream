@@ -20,7 +20,7 @@
 	throw_range = 1
 	icon_state = "beartrap"
 	desc = "A crude and rusty spring trap, used to snare interlopers, or prey on a hunt. Looks almost like falling apart."
-	var/rusty = TRUE // Is it an old trap? Will most likely be destroyed if not handled right
+	var/rusty = FALSE // Is it an old trap? Will most likely be destroyed if not handled right
 	var/armed = FALSE // Is it armed?
 	var/trap_damage = 90 // How much brute damage the trap will do to its victim
 	var/used_time = 12 SECONDS // How many seconds it takes to disarm the trap
@@ -31,7 +31,7 @@
 
 /obj/item/restraints/legcuffs/beartrap/get_mechanics_examine(mob/user)
 	. = ..()
-	. += span_info("Activate in your hand to prime it. Depending on its age, this might take multiple attempts to successfully prepare.")
+	. += span_info("Place the trap on the ground and right-click it to arm it. A higher strength decreases the arming time while increasing the arming chance. Rusty traps will break upon re-arming.")
 	. += span_info("Beartraps can be safely disarmed by either left-clicking them with a open hand, or - at the cost of some durability - left-clicking them with a weapon.")
 
 /obj/item/restraints/legcuffs/beartrap/attack_hand(mob/user)
@@ -102,12 +102,22 @@
 	grid_width = 256
 	grid_height = 256
 
+
 /obj/item/restraints/legcuffs/beartrap/armed/camouflage
 	w_class = WEIGHT_CLASS_BULKY
 	armed = TRUE
 	alpha = 80
 	grid_width = 256
 	grid_height = 256
+
+// realistically, both of theses hould be rusty by default but im just subtyping them for now.
+/obj/item/restraints/legcuffs/beartrap/armed/rusty
+	name = "rusty mantrap"
+	rusty = TRUE
+
+/obj/item/restraints/legcuffs/beartrap/armed/camouflage/rusty
+	name = "rusty mantrap"
+	rusty = TRUE
 
 /obj/item/restraints/legcuffs/beartrap/Initialize()
 	. = ..()
@@ -122,25 +132,56 @@
 	playsound(loc, 'sound/blank.ogg', 50, TRUE, -1)
 	return (BRUTELOSS)
 
-/obj/item/restraints/legcuffs/beartrap/attack_self(mob/user)
-	..()
+/obj/item/restraints/legcuffs/beartrap/attack_right(mob/user)
+	. = ..()
 	if(ishuman(user) && !user.stat && !user.restrained())
-		var/mob/living/L = user
-		if(do_after(user, 50 - (L.STASTR*2), target = user))
-			if(prob(50))
-				armed = !armed
-				if(armed)
-					w_class = WEIGHT_CLASS_BULKY
-					grid_width = 256
-					grid_height = 256
-				else
-					w_class = WEIGHT_CLASS_NORMAL
-					grid_width = 64
-					grid_height = 64
-				update_icon()
-				to_chat(user, span_notice("[src] is now [armed ? "armed" : "disarmed"]"))
+		var/mob/living/carbon/human/H = user
+		if(!isturf(loc)) // comment so this compiles on git
+			to_chat(H, span_warning("I should place this on the ground before arming it..."))
+			return
+		if(armed)
+			to_chat(H, span_danger("[src] is already armed!"))
+			return
+		// no stacking
+		for(var/obj/item/restraints/legcuffs/beartrap/B in src.loc)
+			if(B.armed)
+				to_chat(H, span_warning("There is already an armed [src.name] here!"))
+				return
+		// init vars
+		var/str = H.STASTR
+		var/dur = 5 SECONDS
+		// dur lowers by str score
+		dur = (dur - str)
+		visible_message(span_warning("[H] begins arming [src]!"))
+		if(do_after(user, dur, TRUE, src, TRUE, null, TRUE))
+			if(prob(50 + str*2)) // for a max of ~86% in common situations
+				// GRIEF PROT
+				for(var/obj/structure/fluff/traveltile/TT in range(1, src))
+					log_combat(H, src, "attempted to arm [src] near travel tiles")
+					return
+				// PRE-MAPPED THINGS CAN BE RUSTY.
+				if(rusty)
+					visible_message(span_warning("[src] VIOLENTLY shuts, breaking its own pressure plate!"))
+					playsound(src.loc, 'sound/items/beartrap2.ogg', 100, TRUE, -1)
+					qdel(src)
+					return
+				// everything went well. arm it.
+				arm_trap(H)
+				visible_message(span_boldwarning("[H] arms [src]!"), null) // aahh big bold and scary
+				// logging
+				log_combat(H, src, "armed a mantrap")
 			else
-				user.visible_message(span_warning("You couldn't get the shoddy [src.name] [armed ? "shut close!" : "to open up!"]"))
+				to_chat(H, span_warning("You couldn't get the shoddy [src.name] to open up!"))
+
+/obj/item/restraints/legcuffs/beartrap/proc/arm_trap(play_sound = TRUE)
+	armed = TRUE
+	w_class = WEIGHT_CLASS_BULKY
+	grid_width = 256
+	grid_height = 256
+	update_icon()
+	// tentative. if it works keep it, if not, toss it. idgaf. i want u 2 feel like traper dead by daylight.
+	if(play_sound)
+		playsound(src.loc, 'sound/items/garroteshut.ogg', 70, TRUE, -3)
 
 /obj/item/restraints/legcuffs/beartrap/proc/close_trap(play_sound = TRUE)
 	armed = FALSE
@@ -211,8 +252,20 @@
 				I.take_damage(50, BRUTE, "stab")
 			visible_message(span_warning(msg))
 			close_trap()
-		
-	
+
+// hardens against carts
+/obj/item/restraints/legcuffs/beartrap/forceMove(atom/destination)
+	if(armed)
+		visible_message(span_warning("[src] suddenly snaps shut!"))
+		close_trap()
+	. = ..()
+
+// hardens against repel and fetch
+/obj/item/restraints/legcuffs/beartrap/throw_at(atom/target, range, speed, mob/thrower, spin, diagonals_first, datum/callback/callback)
+	if(armed)
+		visible_message(span_warning("[src] suddenly snaps shut!"))
+		close_trap()
+	. = ..()
 
 /obj/item/restraints/legcuffs/beartrap/dropped(mob/living/carbon/human/user)
 	..()
