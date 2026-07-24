@@ -78,7 +78,17 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	var/clothes_pref = CLOTHES_M
 	var/voice_pack = "Default"
 	var/voice_type = VOICE_TYPE_MASC	// LETHALSTONE EDIT: the type of soundpack the mob should use
-	var/datum/statpack/statpack	= new /datum/statpack/wildcard/fated // LETHALSTONE EDIT: the statpack we're giving our char instead of racial bonuses
+	/// Per-slot point-buy choices: assoc stat -> target value. Empty/absent = all 10. Only mutated by the Save button.
+	var/list/pointbuy_allocations = list()
+	/// In-progress allocation edits not yet saved. Null when no edits are pending; the panel re-inits from allocations on open.
+	var/list/pointbuy_draft
+	/// Per-slot "Virtuous" toggle: spends no stat points, grants virtue access (replaces the old virtuous statpack).
+	var/pointbuy_virtuous = FALSE
+	/// Per-slot "Fated" toggle: stats are randomly rolled at spawn (cached per ckey+slot for the session).
+	var/pointbuy_fated = FALSE
+	/// Legacy statpack record - not applied while point-buy is the active mechanic, but kept loaded/saved
+	/// so player savefiles stay backward-compatible if this PR is ever reverted.
+	var/datum/statpack/statpack = new /datum/statpack/wildcard/austere
 	var/datum/virtue/virtue = new /datum/virtue/none // LETHALSTONE EDIT: the virtue we get for not picking a statpack
 	var/datum/virtue/virtuetwo = new /datum/virtue/none
 	var/datum/virtue/virtue_origin = new /datum/virtue/none
@@ -327,6 +337,10 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 /datum/preferences/proc/set_new_race(datum/species/new_race, user)
 	pref_species = new_race
+	// Point-buy pool, costs, and favored stats are species-dependent, so a species switch
+	// invalidates the previous build - clear both the saved allocations and the in-progress draft.
+	pointbuy_allocations = list()
+	pointbuy_draft = null
 	real_name = pref_species.random_name(gender,1)
 	ResetJobs()
 	if(user)
@@ -499,8 +513,8 @@ GLOBAL_LIST_EMPTY(chosen_names)
 
 			dat += "["<b>Free Language: </b><a href='?_src_=prefs;preference=extra_language;task=input'>[lang_output]</a>"]<BR>"
 
-			// LETHALSTONE EDIT BEGIN: add statpack selection
-			dat += "<b>Statpack:</b> <a href='?_src_=prefs;preference=statpack;task=input'>[statpack.name]</a><BR>"
+			// Point-buy stat selection (replaces statpacks). Virtuous and Fated toggles live inside the Allocate panel.
+			dat += "<b>Stats:</b> <a href='?_src_=prefs;preference=pointbuy;task=input'>Allocate</a><BR>"
 			dat += "<BR>"
 //			dat += "<a href='?_src_=prefs;preference=species;task=random'>Random Species</A> "
 //			dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_SPECIES]'>Always Random Species: [(randomise[RANDOM_SPECIES]) ? "Yes" : "No"]</A><br>"
@@ -544,7 +558,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 					virtuetwo = GLOB.virtues[/datum/virtue/none]
 			if(istype(virtue, virtuetwo) && !virtue.stackable)
 				virtuetwo = GLOB.virtues[/datum/virtue/none]
-			if(virtue.virtuous_only && !statpack.virtuous)
+			if(virtue.virtuous_only && !grants_virtues())
 				virtue = GLOB.virtues[/datum/virtue/none]
 			var/tricost_virt = 0
 			if(length(virtue.extra_choices) && length(virtue.picked_choices))
@@ -563,7 +577,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 					virtue_html += "[dat_html][tooltip_html]"
 			if(length(virtue.picked_choices) < virtue.max_choices)
 				virtue_html += "   <a href='?_src_=prefs;preference=subvirtue;task=input'>[(virtue.choice_costs[(virtue.picked_choices.len + 1)] <= 0) ? "<font color = '#a08357'>" : ""]Pick Bonus[(virtue.choice_costs[(virtue.picked_choices.len + 1)] <= 0) ? "</font>" : ""] [(virtue.choice_costs[(virtue.picked_choices.len + 1)] > 0) ? "([virtue.choice_costs[(virtue.picked_choices.len + 1)]] TRI)" : ""] </a><br>"
-			if(statpack.virtuous)
+			if(grants_virtues())
 				tricost_virt = 0
 				if(length(virtuetwo.extra_choices) && length(virtuetwo.picked_choices))
 					for(var/i in 1 to length(virtuetwo.picked_choices))
@@ -584,7 +598,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 			else
 				virtuetwo = GLOB.virtues[/datum/virtue/none]
 			var/virtue_fieldset
-			if(statpack.virtuous)
+			if(grants_virtues())
 				virtue_fieldset += "<fieldset style='border: 1px solid ["#a08357"]; display: inline'>"
 				virtue_fieldset += "<legend align='center' style='font-weight: bold; color: ["#a08357"]'>Virtues</legend>"
 			dat += virtue_fieldset ? virtue_fieldset : ""
@@ -1813,33 +1827,48 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						ResetJobs()
 						to_chat(user, "<font color='red'>Classes reset.</font>")
 
-				// LETHALSTONE EDIT: add statpack selection
-				if ("statpack")
-					var/list/statpacks_available = list()
-					var/list/statpack_descriptions = list()
-					for (var/path as anything in GLOB.statpacks)
-						var/datum/statpack/statpack = GLOB.statpacks[path]
-						if (!statpack.name)
-							continue
-						var/index = statpack.name
-						if(length(statpack.stat_array))
-							var/modifier_string = statpack.generate_modifier_string()
-							index += " [modifier_string]"
-							statpack_descriptions[index] = modifier_string
-						statpacks_available[index] = statpack
-
-					statpacks_available = sort_list(statpacks_available)
-
-					var/statpack_input = tgui_input_list(user, "How shall your strengths manifest?", "STATPACK", statpacks_available, statpack, descriptions = statpack_descriptions)
-					if (statpack_input)
-						var/datum/statpack/statpack_chosen = statpacks_available[statpack_input]
-						statpack = statpack_chosen
-						to_chat(user, "<font color='purple'>[statpack.name]</font>")
-						to_chat(user, "<font color='purple'>[statpack.description_string()]</font>")
-						/* also, unset our virtue if we're not a virtuous statpack.
-						if (!istype(statpack, /datum/statpack/wildcard/virtuous) && virtue.type != /datum/virtue/none)
-							virtue = new /datum/virtue/none
-							to_chat(user, span_info("Your virtue has been removed due to taking a stat-altering statpack.")) */
+				if("pointbuy")
+					show_pointbuy(user)
+					return
+				if("pointbuy_adjust")
+					adjust_pointbuy(user, href_list["stat"], text2num(href_list["dir"]))
+					show_pointbuy(user)
+					return
+				if("pointbuy_reset")
+					pointbuy_draft = list()
+					show_pointbuy(user)
+					return
+				if("pointbuy_save")
+					if(isnull(pointbuy_draft))
+						pointbuy_draft = pointbuy_allocations.Copy()
+					var/datum/species/save_species = pref_species
+					var/draft_spent = pointbuy_spent(pointbuy_draft, save_species)
+					var/save_pool = pointbuy_maxpoints(save_species)
+					if(draft_spent != save_pool)
+						to_chat(user, span_warning("Point difference must be 0 to save."))
+						show_pointbuy(user)
+						return
+					pointbuy_allocations = pointbuy_draft.Copy()
+					pointbuy_draft = null
+					to_chat(user, span_notice("Stat allocation saved."))
+					show_pointbuy(user)
+					return
+				if("pointbuy_virtuous")
+					pointbuy_virtuous = !pointbuy_virtuous
+					if(pointbuy_virtuous)
+						// Mutually exclusive
+						pointbuy_fated = FALSE
+					ShowChoices(user)
+					show_pointbuy(user)
+					return
+				if("pointbuy_fated")
+					pointbuy_fated = !pointbuy_fated
+					if(pointbuy_fated)
+						// Same as above
+						pointbuy_virtuous = FALSE
+					ShowChoices(user)
+					show_pointbuy(user)
+					return
 				// LETHALSTONE EDIT: add pronouns
 				if ("pronouns")
 					var pronouns_input = tgui_input_list(user, "Choose your character's pronouns", "PRONOUNS", GLOB.pronouns_list)
@@ -2567,7 +2596,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 						if (V.restricted == TRUE)
 							if((pref_species.type in V.races))
 								continue
-						if(V.virtuous_only && !statpack.virtuous)
+						if(V.virtuous_only && !grants_virtues())
 							continue
 						virtue_choices[V.name] = V
 					virtue_choices = sort_list(virtue_choices)
@@ -2615,9 +2644,6 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 								skin_tone = new_tone
 								features["mcolor"] = sanitize_hexcolor(new_tone)
 								try_update_mutant_colors()
-					/*	if (statpack.type != /datum/statpack/wildcard/virtuous)
-							statpack = new /datum/statpack/wildcard/virtuous
-							to_chat(user, span_purple("Your statpack has been set to virtuous (no stats) due to selecting a virtue.")) */
 
 				if("origin")
 					var/list/virtue_choices = list()
@@ -3082,6 +3108,87 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 	return 1
 
 
+/datum/preferences/proc/show_pointbuy(mob/user)
+	if(!user)
+		return
+	var/datum/species/species = pref_species
+	if(isnull(pointbuy_draft))
+		pointbuy_draft = pointbuy_allocations.Copy()
+	var/list/display_alloc = pointbuy_draft
+	if(pointbuy_fated)
+		var/list/locked = GLOB.pointbuy_locks[pointbuy_fated_key(user, null)]
+		if(locked)
+			display_alloc = locked
+	var/disabled = pointbuy_virtuous || pointbuy_fated
+	var/pool = pointbuy_maxpoints(species)
+	var/spent = pointbuy_spent(display_alloc, species)
+	var/diff = spent - pool
+	var/list/dat = list()
+	if(pointbuy_virtuous)
+		dat += "<center><font color='red'>PSYDON does not care for you. You are adept, yet average. Uneven odds to a rigged game.</font></center><br>"
+	else if(pointbuy_fated)
+		dat += "<center><font color='red'>Xylix glares at you, and your stats will be randomised. Do you feel lucky, knave?</font></center><br>"
+	dat += "<center><b>Virtuous:</b> <a href='?_src_=prefs;preference=pointbuy_virtuous;task=input'>[pointbuy_virtuous ? "Yes" : "No"]</a>&nbsp;&nbsp;<b>Fated:</b> <a href='?_src_=prefs;preference=pointbuy_fated;task=input'>[pointbuy_fated ? "Yes" : "No"]</a></center>"
+	var/diff_color = (diff == 0) ? "#91cf68" : "#cf2a2a"
+	var/diff_str = (diff > 0) ? "+[diff]" : "[diff]"
+	dat += "<center><b>Point difference:</b> <font color='[diff_color]'><b>[diff_str]</b></font></center>"
+	if(!disabled)
+		dat += "<center><a href='?_src_=prefs;preference=pointbuy_reset;task=input'>\[ Reset \]</a>&nbsp;&nbsp;<a href='?_src_=prefs;preference=pointbuy_save;task=input'>\[ Save \]</a></center>"
+	dat += "<br><center><table cellpadding='5'>"
+	dat += "<tr><td><b>STAT</b></td><td align='center'><b>VALUE</b></td><td align='center'><b>COST</b></td></tr>"
+	for(var/stat in MOBSTATS)
+		var/datum/pointbuy_stat/PS = GLOB.pointbuy_stats[stat]
+		if(!PS)
+			continue
+		var/value = display_alloc[stat] || 10
+		var/cost = PS.total_cost(value, species)
+		var/base_cost = PS.total_cost(value, null)
+		var/cost_color = ""
+		if(cost < base_cost)
+			cost_color = " color='#91cf68'"
+		else if(cost > base_cost)
+			cost_color = " color='#cf2a2a'"
+		var/dec
+		if(disabled)
+			dec = "<font color='gray'> - </font>"
+		else if(value > PS.floor_value)
+			dec = "<a href='?_src_=prefs;preference=pointbuy_adjust;task=input;stat=[stat];dir=-1'> - </a>"
+		else
+			dec = "<font color='gray'>([PS.floor_value])</font>"
+		var/inc
+		if(disabled)
+			inc = "<font color='gray'> + </font>"
+		else if(value < PS.max_value)
+			inc = "<a href='?_src_=prefs;preference=pointbuy_adjust;task=input;stat=[stat];dir=1'> + </a>"
+		else
+			inc = "<font color='gray'>([PS.max_value])</font>"
+		dat += "<tr><td><font color='[PS.color]'><b>[PS.name]</b></font></td><td align='center'>[dec]<font size='4'><b>[value]</b></font>[inc]</td><td align='center'><font[cost_color]>[cost]</font></td></tr>"
+	dat += "</table></center>"
+	var/datum/browser/noclose/popup = new(user, "pointbuy", "<div align='center'>STAT ALLOCATION</div>", 520, 520)
+	popup.set_content(dat.Join())
+	popup.open(FALSE)
+
+
+/datum/preferences/proc/adjust_pointbuy(mob/user, stat, dir)
+	if(pointbuy_virtuous || pointbuy_fated || !stat)
+		return
+	if(dir != 1 && dir != -1)
+		return
+	var/datum/pointbuy_stat/PS = GLOB.pointbuy_stats[stat]
+	if(!PS)
+		return
+	if(isnull(pointbuy_draft))
+		pointbuy_draft = pointbuy_allocations.Copy()
+	var/current = pointbuy_draft[stat] || 10
+	var/target = current + dir
+	if(target < PS.floor_value || target > PS.max_value)
+		return
+	if(target == 10)
+		pointbuy_draft -= stat
+	else
+		pointbuy_draft[stat] = target
+
+
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, icon_updates = 1, roundstart_checks = TRUE, character_setup = FALSE, antagonist = FALSE)
 	if(randomise[RANDOM_SPECIES] && !character_setup)
 		random_species()
@@ -3180,7 +3287,9 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 
 	character.vampire_headshot_link = vampire_headshot_link
 
-	character.statpack = statpack
+	character.pointbuy_allocations = pointbuy_allocations?.Copy()
+	character.pointbuy_virtuous = pointbuy_virtuous
+	character.pointbuy_fated = pointbuy_fated
 
 	character.flavortext = flavortext
 	character.ooc_notes = ooc_notes

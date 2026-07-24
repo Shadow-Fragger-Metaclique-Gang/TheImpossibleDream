@@ -7,7 +7,7 @@
 	desc_title = "Orc"
 	desc = "This is made for events. You shouldn't be able to use this as a normal person, \
 	For courtesies sake however, I've tried to half-assedly balance it for use by players\
-	(+1 Strength, +1 Constitution, -1 Intelligence, -1 Speed)"
+	"
 
 	skin_tone_wording = "Clan"
 
@@ -36,7 +36,7 @@
 	OFFSET_FACE_F = list(0,1), OFFSET_BELT_F = list(0,1), OFFSET_BACK_F = list(0,1), \
 	OFFSET_NECK_F = list(0,1), OFFSET_MOUTH_F = list(0,1), OFFSET_PANTS_F = list(0,1), \
 	OFFSET_SHIRT_F = list(0,1), OFFSET_ARMOR_F = list(0,1), OFFSET_UNDIES_F = list(0,1))
-	race_bonus = list(STAT_STRENGTH = 1, STAT_CONSTITUTION = 1, STAT_INTELLIGENCE = -1, STAT_SPEED = -1)
+	statpoint_favor = list(STAT_STRENGTH = 1, STAT_CONSTITUTION = 1, STAT_INTELLIGENCE = -1, STAT_SPEED = -1)
 	enflamed_icon = "widefire"
 	organs = list(
 		ORGAN_SLOT_BRAIN = /obj/item/organ/brain,

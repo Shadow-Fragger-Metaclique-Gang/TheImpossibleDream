@@ -73,15 +73,18 @@
 	STALUC = 10
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
+		var/datum/species/species = H.dna?.species
 
-		if (H.statpack)
-			H.statpack.apply_to_human(H, new_player)
-		if (H.dna?.species) // LETHALSTONE EDIT: apply our race bonus, if we have one
-			var/datum/species/species = H.dna.species
-			if (species.race_bonus)
-				for (var/stat in species.race_bonus)
-					var/amt = species.race_bonus[stat]
-					H.change_stat(stat, amt)
+		if(H.pointbuy_fated)
+			var/list/rolled = pointbuy_roll_fated(H, new_player)
+			for(var/stat in rolled)
+				H.change_stat(stat, rolled[stat] - 10)
+			pointbuy_apply_favor(H, species)
+		else if(H.pointbuy_virtuous)
+			pointbuy_apply_favor(H, species)
+		else if(length(H.pointbuy_allocations))
+			for(var/stat in H.pointbuy_allocations)
+				H.change_stat(stat, H.pointbuy_allocations[stat] - 10)
 		switch(H.age)
 			if(AGE_MIDDLEAGED)
 				change_stat(STATKEY_SPD, -1)

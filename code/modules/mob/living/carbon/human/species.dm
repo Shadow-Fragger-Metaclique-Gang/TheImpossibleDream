@@ -157,8 +157,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		/datum/descriptor_choice/prominent_four,
 	)
 
-	// Associative list of stat (STAT_STRENGTH, etc) bonuses used to differentiate each race. They should ALWAYS be positive.
-	var/list/race_bonus = list()
+	/// Added to (or subtracted from) this species' point-buy pool (POINTBUY_BASE_POINTS + this).
+	var/extra_statpoints = 0
+	/// Assoc stat (STAT_STRENGTH, etc) -> favor tiers. Positive = cheaper to buy up, negative = pricier.
+	var/list/statpoint_favor = list()
+	var/construct = 0
 	var/gibs_on_shapeshift = FALSE
 
 	var/obj/item/mutanthands
@@ -2517,8 +2520,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		STAT_FORTUNE = "FOR"
 	)
 	var/list/bonuses = list()
-	for (var/stat in race_bonus)
-		var/amt = race_bonus[stat]
+	for (var/stat in statpoint_favor)
+		var/amt = statpoint_favor[stat]
 		var/abbrev = stats_to_abbreviations[stat]
 		bonuses.Add("[abbrev] [amt < 0 ? "-" : "+"][abs(amt)]")
 	if(length(bonuses))

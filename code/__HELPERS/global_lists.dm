@@ -55,7 +55,12 @@
 		if(patron.preference_accessible)
 			GLOB.preference_patrons[path] = patron
 
-	// Ported from Lethalstone
+	// Point-buy stat configs, keyed by stat_key
+	for (var/path in subtypesof(/datum/pointbuy_stat))
+		var/datum/pointbuy_stat/pointbuy_stat = new path()
+		GLOB.pointbuy_stats[pointbuy_stat.stat_key] = pointbuy_stat
+
+	// Lowkey just in case
 	for (var/path in subtypesof(/datum/statpack))
 		var/datum/statpack/statpack = new path()
 		GLOB.statpacks[path] = statpack

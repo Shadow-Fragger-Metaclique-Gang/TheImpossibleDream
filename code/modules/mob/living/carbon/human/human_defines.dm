@@ -165,7 +165,12 @@
 	rot_type = /datum/component/rot/corpse
 
 	var/voice_type = null // LETHALSTONE EDIT: defines what sound pack we use. keep this null so mobs resort to their typical gender typing - preferences set this
-	var/datum/statpack/statpack = null // Lethalstone Port - statpacks for greater customization
+	/// Point-buy choices carried from prefs: assoc stat -> target value.
+	var/list/pointbuy_allocations
+	/// Whether this character took the Virtuous (no stat points) option.
+	var/pointbuy_virtuous = FALSE
+	/// Whether this character took the Fated (random stat roll) option.
+	var/pointbuy_fated = FALSE
 	var/second_voice	// Virtue-specific. Can be swapped to / from and changed.
 	var/original_voice
 	//setting up vars for vampire color values

@@ -16,7 +16,7 @@
 	damage_overlay_type = ""
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | RACE_SWAP | SLIME_EXTRACT
 	var/raceicon = "hobgoblin"
-	race_bonus = list(STAT_FORTUNE = 1)
+	statpoint_favor = list(STAT_FORTUNE = 1)
 
 /datum/species/hobgoblin/regenerate_icons(mob/living/carbon/human/H)
 	H.icon_state = ""

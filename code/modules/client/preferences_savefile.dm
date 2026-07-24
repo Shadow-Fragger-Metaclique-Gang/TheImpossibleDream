@@ -436,15 +436,23 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	else
 		reset_culinary_preferences()
 
+/datum/preferences/proc/_load_pointbuy(S)
+	var/list/loaded_allocations
+	S["pointbuy_allocations"] >> loaded_allocations
+	pointbuy_allocations = pointbuy_validate(loaded_allocations, pref_species)
+	var/loaded_virtuous
+	S["pointbuy_virtuous"] >> loaded_virtuous
+	pointbuy_virtuous = loaded_virtuous ? TRUE : FALSE
+	var/loaded_fated
+	S["pointbuy_fated"] >> loaded_fated
+	pointbuy_fated = loaded_fated ? TRUE : FALSE
+
+// Hopefully, man
 /datum/preferences/proc/_load_statpack(S)
 	var/statpack_type
 	S["statpack"] >> statpack_type
-	if (statpack_type)
+	if(statpack_type)
 		statpack = new statpack_type()
-	else
-		statpack = pick(GLOB.statpacks)
-		statpack = GLOB.statpacks[statpack]
-		//statpack = new statpack
 
 /datum/preferences/proc/_load_virtue(S)
 	var/virtue_type
@@ -621,7 +629,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	_load_culinary_preferences(S)
 
-	// LETHALSTONE edit: jank-ass load our statpack choice
+	// New pointbuy
+	_load_pointbuy(S)
+	// Old statpack (incase, tho it doesn't work obviously)
 	_load_statpack(S)
 
 	_load_gear_list(S)
@@ -949,6 +959,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["pronouns"] , pronouns)
 	WRITE_FILE(S["titles_pref"] , titles_pref)
 	WRITE_FILE(S["clothes_pref"] , clothes_pref)
+	WRITE_FILE(S["pointbuy_allocations"] , pointbuy_allocations)
+	WRITE_FILE(S["pointbuy_virtuous"] , pointbuy_virtuous)
+	WRITE_FILE(S["pointbuy_fated"] , pointbuy_fated)
 	WRITE_FILE(S["statpack"] , statpack.type)
 	WRITE_FILE(S["virtue"] , virtue.type)
 	WRITE_FILE(S["virtuechoices"] , virtue.picked_choices)

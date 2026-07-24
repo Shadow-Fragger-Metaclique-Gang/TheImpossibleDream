@@ -34,7 +34,7 @@
 		OFFSET_NECK_F = list(0,-5), OFFSET_MOUTH_F = list(0,-5), OFFSET_PANTS_F = list(0,0), \
 		OFFSET_SHIRT_F = list(0,0), OFFSET_ARMOR_F = list(0,0), OFFSET_UNDIES = list(0,-4), OFFSET_UNDIES_F = list(0,-4), \
 		)
-	race_bonus = list(STAT_FORTUNE = 1)
+	statpoint_favor = list(STAT_FORTUNE = 1)
 
 	custom_selection = list(
 		"+1 FOR" = STATKEY_LCK,
