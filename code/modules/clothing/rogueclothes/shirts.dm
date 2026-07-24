@@ -77,6 +77,7 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/shirts.dmi'
 	break_sound = 'sound/foley/cloth_rip.ogg'
 	drop_sound = 'sound/foley/dropsound/cloth_drop.ogg'
+	material_category = ARMOR_MAT_LEATHER //So it doesn't make plate armor noises taking damage
 	sewrepair = TRUE
 	adjustable = CAN_CADJUST
 
