@@ -1369,6 +1369,14 @@
 /turf/open/floor/rogue/tile/brownbrick
 	icon_state = "brown"
 
+/turf/open/floor/rogue/tile/brownbrick/browner
+	icon_state = "browner"
+
+/turf/open/floor/rogue/tile/brownbrick/browner/Initialize()
+	. = ..()
+	icon_state = "browner"
+	dir = pick(GLOB.cardinals)
+
 /turf/open/floor/rogue/tile/harem
 	icon = 'icons/turf/roguefloor.dmi'
 	icon_state = "harem"
