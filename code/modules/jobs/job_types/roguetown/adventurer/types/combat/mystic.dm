@@ -20,7 +20,7 @@
 		/datum/skill/misc/athletics = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/reading = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/craft/alchemy = SKILL_LEVEL_APPRENTICE, 
+		/datum/skill/craft/alchemy = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/magic/arcane = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/magic/holy = SKILL_LEVEL_APPRENTICE,
@@ -52,7 +52,7 @@
 		)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_1)
-	
+
 	if(H.mind)
 		H.mind.RemoveSpell(/datum/action/cooldown/spell/miracle/heal)
 		H.mind.RemoveSpell(/datum/action/cooldown/spell/miracle/heal/undivided)
