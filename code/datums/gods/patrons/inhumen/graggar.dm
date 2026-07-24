@@ -8,7 +8,6 @@
 	miracles = list(/datum/action/cooldown/spell/touch/orison					= CLERIC_ORI,
 					/datum/action/cooldown/spell/graggar/rush					= CLERIC_T0,
 					/datum/action/cooldown/spell/miracle/heal 					= CLERIC_T1,
-					/datum/action/cooldown/spell/miracle/bloodmiracle			= CLERIC_T1,
 					/datum/action/cooldown/spell/graggar/hamstring				= CLERIC_T1,
 					/datum/action/cooldown/spell/projectile/graggar_net		 	= CLERIC_T2,
 					/datum/action/cooldown/spell/graggar/graggar_battlecry		= CLERIC_T2,
@@ -47,16 +46,16 @@
 
 	for(var/obj/effect/decal/cleanable/blood/blood in oview(5, target))
 		bonus = min(bonus + 0.1, 2.5)
-	
+
 	if(!bonus)
 		return
-		
+
 	*situational_bonus = bonus
 	*conditional_buff = TRUE
 
 /datum/patron/inhumen/graggar/on_gain(mob/living/living)
 	. = ..()
-	
+
 	RegisterSignal(living, COMSIG_LIVING_DRINKED_LIMB_BLOOD, PROC_REF(on_drink_blood))
 
 /datum/patron/inhumen/graggar/proc/on_drink_blood(mob/living/drinker, mob/living/target)
@@ -66,7 +65,7 @@
 
 /datum/patron/inhumen/graggar/on_loss(mob/living/living)
 	. = ..()
-	
+
 	UnregisterSignal(living, COMSIG_LIVING_DRINKED_LIMB_BLOOD)
 
 // When bleeding, near blood on ground, zchurch, bad-cross, or ritual chalk
