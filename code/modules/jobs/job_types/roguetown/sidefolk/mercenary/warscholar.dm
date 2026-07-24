@@ -6,7 +6,7 @@
 	outfit = /datum/outfit/job/roguetown/mercenary/warscholar
 	subclass_languages = list(/datum/language/celestial)
 	class_select_category = CLASS_CAT_NALEDI
-	category_tags = list(CTAG_MERCENARY)
+	category_tags = list(CTAG_MERCENARY, CTAG_MERCPARTY_WARMAGE)
 	cmode_music = 'sound/music/warscholar.ogg'
 	traits_applied = list(TRAIT_ARCYNE, TRAIT_ALCHEMY_EXPERT, TRAIT_NALEDI)
 	subclass_stats = list(
@@ -96,7 +96,7 @@
 	outfit = /datum/outfit/job/roguetown/mercenary/warscholar_pontifex
 	subclass_languages = list(/datum/language/celestial, /datum/language/thievescant)
 	class_select_category = CLASS_CAT_NALEDI
-	category_tags = list(CTAG_MERCENARY)
+	category_tags = list(CTAG_MERCENARY, CTAG_MERCPARTY_WARMAGE)
 	cmode_music = 'sound/music/warscholar.ogg'
 	traits_applied = list(TRAIT_CIVILIZEDBARBARIAN, TRAIT_ARCYNE, TRAIT_NALEDI)
 	subclass_stats = list(
@@ -213,7 +213,7 @@
 	outfit = /datum/outfit/job/roguetown/mercenary/warscholar_vizier
 	subclass_languages = list(/datum/language/celestial)
 	class_select_category = CLASS_CAT_NALEDI
-	category_tags = list(CTAG_MERCENARY)
+	category_tags = list(CTAG_MERCENARY, CTAG_MERCPARTY_WARMAGE)
 	cmode_music = 'sound/music/warscholar.ogg'
 	traits_applied = list(TRAIT_ARCYNE, TRAIT_ALCHEMY_EXPERT, TRAIT_MEDICINE_EXPERT, TRAIT_NALEDI)
 	subclass_stats = list(

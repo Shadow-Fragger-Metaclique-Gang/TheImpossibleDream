@@ -924,6 +924,7 @@
 #include "code\datums\migrants\migrant_pref.dm"
 #include "code\datums\migrants\migrant_role.dm"
 #include "code\datums\migrants\migrant_wave.dm"
+#include "code\datums\migrants\migrant_waves\mercenary_parties.dm"
 #include "code\datums\migrants\migrant_waves\fablefield roles.dm"
 #include "code\datums\migrants\migrant_waves\fablefield wave.dm"
 #include "code\datums\migrants\migrant_waves\grenzel_noble_roles.dm"
