@@ -18080,10 +18080,6 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/town/tavern)
-"dxS" = (
-/obj/structure/dungeon_entry/center,
-/turf/closed/mineral/rogue/bedrock,
-/area/rogue/indoors/cave)
 "dxT" = (
 /obj/structure/bars/passage/shutter{
 	max_integrity = 999999;
@@ -54594,7 +54590,7 @@
 /area/rogue/under/cave/goblinfort)
 "kpu" = (
 /obj/structure/roguemachine/mail{
-	mailtag = "Azurean Coast / Entrance to Alotheos"
+	mailtag = "Azurean Coast"
 	},
 /turf/open/floor/rogue/dirt,
 /area/rogue/outdoors/beach/forest/south)
@@ -435665,7 +435661,7 @@ tsB
 qPv
 ujm
 ujm
-dxS
+ujm
 fSI
 fSI
 fSI
