@@ -51,7 +51,8 @@
 		TRAIT_ARCYNE,
 		TRAIT_SELF_SUSTENANCE,
 		TRAIT_ALCHEMY_EXPERT,
-		TRAIT_SILVER_WEAK
+		TRAIT_SILVER_WEAK,
+		TRAIT_UNCONVERTIBLE
 		)
 
 /datum/antagonist/lich/get_antag_cap_weight()
