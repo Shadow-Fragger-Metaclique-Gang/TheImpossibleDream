@@ -2,7 +2,6 @@
 #define REGEX_STARTWORD 2
 #define REGEX_ENDWORD 3
 #define REGEX_ANY 4
-#define LOWER_TEXT(thing) lowertext(UNLINT("[thing]"))
 
 /datum/species/handle_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]
@@ -100,4 +99,3 @@
 #undef REGEX_STARTWORD
 #undef REGEX_ENDWORD
 #undef REGEX_ANY
-#undef LOWER_TEXT
