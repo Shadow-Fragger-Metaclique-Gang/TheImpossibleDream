@@ -131,10 +131,10 @@
 	for(var/client/C in GLOB.clients)
 		if(C.mob)
 			SSdroning.kill_droning(C)
-			if(prob(93))
-				C.mob.playsound_local(C.mob, 'sound/music/roundend.ogg', 100, FALSE) //Unknown. Original narration given by Leslie Nielsen in 'National Geographic: Dive To The Edge Of Creation', circa 1979.
+			if(prob(50))
+				C.mob.playsound_local(C.mob, 'sound/music/roundend.ogg', 100, FALSE) // - A cover of Stone in Focus (#19) by Benoit Pioulard, 2016. A remix, to end - the original, to begin.
 			else
-				C.mob.playsound_local(C.mob, 'sound/music/roundend_mirthful.ogg', 100, FALSE) //Hildegard Von Blingin and Whitney Avalon's transformative cover of 'Manchild' by Sabrina Carpenter, circa 2026.
+				C.mob.playsound_local(C.mob, 'sound/music/roundend2.ogg', 100, FALSE) // Ryan Karazija's Breathe In - 2014.
 		if(isliving(C.mob) && C.ckey)
 			key_list += C.ckey
 	var/favor_bonus = SSmerchant_trade ? SSmerchant_trade.favor_triumph_bonus() : 0
