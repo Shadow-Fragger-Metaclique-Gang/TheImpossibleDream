@@ -1,5 +1,5 @@
 {
-    "universal": {
+	"universal": {
 		"life": "lyfe",
 		"lantern": "lamptern",
 		"lucifer": "zizo",
@@ -9,7 +9,7 @@
 		"Asmodeus": "eora",
 		"satan": "zizo",
 		"ERP": "bush whacking",
-	    "day": "dae",
+		"day": "dae",
 		"days": "daes",
 		"dutchy": "duchy",
 		"dutchess": "duchess",
@@ -95,10 +95,25 @@
 		"lolth": "graggar",
 		"wolfpit": "volfpit",
 		"PQ": "reputation",
-		"sergant":  "sargent",
-		"zaelorian": "zizo",
+		"sergant": "sargent",
+		// [TIDI ADD] - The less 'ites', the better!
+		"nocite": "lunist",
+		"nocites": "lunists",
+		"graggarite": "graggaronn",
+		"graggarites": "graggaronns",
+		"malumite": "malan",
+		"malumites": "malists",
+		"abyssorite": "abyssan",
+		"abyssorites": "abyssals",
+		"dendorite": "dendric",
+		"dendorites": "dendruids",
+		"psydonite": "psydonian",
+		"psydonites": "psydonians",
+		"matthiosite": "matthiosan",
+		"matthiosites": "matthiosans",
+		// [/TIDI ADD]
 		"futa": "MY HUMORS ARE IMBALANCED.",
 		"futas": "MY HUMORS ARE IMBALANCED.",
 		"futanari": "I HAVE A PROBLEM TREPANNING WOULD FIX."
-    }
+	}
 }
