@@ -92,7 +92,7 @@
 
 // we love undivided and how much snowflake code it needs
 /proc/get_god_name(datum/patron/to_check)
-	return (istype(to_check, /datum/patron/divine/undivided) ? "the Ten" : to_check.name)
+	return (istype(to_check, /datum/patron/divine/undivided) ? "the Pentacle" : to_check.name)
 
 /obj/item/melee/new_touch_attack/orison/MiddleClick(mob/living/user, params)
 	. = ..()

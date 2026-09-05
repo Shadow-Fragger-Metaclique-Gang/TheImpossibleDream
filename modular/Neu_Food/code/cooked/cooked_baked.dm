@@ -280,8 +280,8 @@
 
 // Undivided variant
 /obj/item/reagent_containers/food/snacks/rogue/foodbase/decabun_raw
-	name = "raw decabun"
-	desc = "A piece of raw dough with the shape of the Undivided cross pressed onto it."
+	name = "raw pentabun"
+	desc = "A piece of raw dough with the shape of the Pantheonic wheel pressed onto it."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "decabun_raw"
 	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/decabun
@@ -381,8 +381,8 @@
 /obj/item/reagent_containers/food/snacks/rogue/decabun
 	cuisine = CUISINE_NORTH_IMPERIAL|CUISINE_SOUTH_IMPERIAL
 	dish_type = DISH_BREAD
-	name = "decabun"
-	desc = "A bun bearing the symbol of the Ten, undivided and ever whole. The only thing to possibly seperate them would be a \
+	name = "pentabun"
+	desc = "A bun bearing the symbol of the Pentacle, undivided and ever whole. The only thing to possibly seperate them would be a \
 	helping of jam or marmalade."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "decabun"

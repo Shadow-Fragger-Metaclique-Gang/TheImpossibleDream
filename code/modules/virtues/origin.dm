@@ -12,17 +12,17 @@ GLOBAL_LIST_EMPTY(origins) // alist: origin name = origin desc. so we don't have
 /datum/virtue/origin/azuria
 	name = "Pharovian"
 	origin_name = "Pharos"
-	desc = "I originate from the Scartouched fief of Pharos; a relatively prosperous County, recognized well for its both its mercantile prowess upon both sea and skies - and its proximity to a rare, stable wound of the Shattering-- the Scar. Here, the County is uniquely interconnected with the world at large - in past, in present, and in potentiality.<br>"
+	desc = "I originate from the Scartouched fief of Pharos, or its neighboring courts within the Kingdom. Coastally located, Pharos is a warmwater, mercantile port town best known for its proximity to a rare, stable wound of the Shattering-- a Scar. Here, the County is uniquely interconnected with the world at large- a bustling township, marked by aerostats above, the latest advancements of witch-engineering within, and the ever-present impossibilities seeping from the Scar.<br>"
 	restricted = FALSE
 	added_languages = list(/datum/language/oldazurian)
 	origin_desc = "Pharos is a region shaped entirely by its presence to the Scar - a rare breed of township found only in a handful of places across the Known World. \
-	Located within the Southerly frontier of - THE KINGDOM UNNAMED - Pharos has both benefitted and suffered from its proximity to this place of infinite potential. \
-	Built, fortuitously, in a confluence of currents - both skyward and oceanic; and of low enough ground to encourage easy trade between Otava, Etrusca, and the Grenz highlands, \
-	Pharos has been a well-protected gem of - THE KINGDOM'S - possession, and benefited massively from the influx of inventors, pilgrims, purveyors, and adventurers that come to \
+	Located within the Southerly frontier of THE KINGDOM UNNAMED - Pharos has both benefitted and suffered from its proximity to this place of infinite potential. \
+	<br><br>Built, fortuitously, in a confluence of currents - both skyward and oceanic; and of low enough ground to encourage easy trade between Otava, Etrusca, and the Grenz highlands, \
+	Pharos has been a well-protected gem of THE KINGDOM'S possession, and benefited massively from the influx of inventors, pilgrims, purveyors, and adventurers that come to \
 	learn its mysteries, harvest potential and chance from the Scar suffusing the town, or, perhaps, to capitalize on the existential chaos that a Scar inherently creates. \
-	</br> Aerostatics bearing many banners float overhead- tailed by smoke from chimneys and coal-burners below. Ships, wealthy, pass constant through its docks. Pilgrims, settlers, and pillagers from all across the World move in caravan and party both into and out of its gates - some to gain, some to lose. \
+	<br><br> Aerostatics bearing many banners float overhead- tailed by smoke from chimneys and coal-burners below. Ships, wealthy, pass constant through its docks. Pilgrims, settlers, and pillagers from all across the World move in caravan and party both into and out of its gates - some to gain, some to lose. \
 	It is a place at the forefront of witch-engineering; affected by the latest and greatest industries and artifice the world has to offer. Miracles and monsters are made manifest here; the Scar's touch rendering it far stronger than elsewhere in the world. \
-	Nobles vie for power over its Court; sometimes with honey, sometimes with steel. All of these souls seek to carve out a piece of what could yet be- to make it what will be.</br>"
+	Nobles vie for power over its Court; sometimes with honey, sometimes with steel. <br><br>All of these souls seek to carve out a piece of what could yet be- to make it what will be.</br>"
 
 /datum/virtue/origin/grenzelhoft
 	name = "Grenzelhoftan"
@@ -239,7 +239,7 @@ GLOBAL_LIST_EMPTY(origins) // alist: origin name = origin desc. so we don't have
 	\
 	Despite vast differences amongst these races, they all have things in common. Their forms over the generations have garnered darker or \
 	paler complexions, their bodies slightly shorter than their surface dwelling compatriots, dark elves being amongst the tallest species in \
-	the Underdark, despite on average being shorted than an average Hammerholdian humen. Despite this in most cases noticable lack of height, these \
+	the Underdark, despite on average being shorted than an average Hammerheldan humen. Despite this in most cases noticable lack of height, these \
 	races have also grown sturdier, more resilient and more cautious and keen, out of pure necessity. Survival in these depths demands one's all.	\
 	A fact those of the surface that delve deep into these cavers, tend to forget, resulting in their untimely demise. Or worse.\n<br><br>\
 	\

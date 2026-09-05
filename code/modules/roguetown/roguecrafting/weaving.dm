@@ -48,14 +48,14 @@
 	craftdiff = 1
 
 /datum/crafting_recipe/roguetown/weaving/undividedrobe
-	name = "undivided robes"
+	name = "pantheonic robes"
 	result = list(/obj/item/clothing/suit/roguetown/shirt/robe/undivided)
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/silk = 1)
 	craftdiff = 4
 
 /datum/crafting_recipe/roguetown/weaving/undividedclericrobe
-	name = "undivided devotee robes"
+	name = "pantheonic devotee robes"
 	result = list(/obj/item/clothing/suit/roguetown/shirt/robe/undividedcleric)
 	reqs = list(/obj/item/natural/cloth = 3,
 				/obj/item/natural/silk = 1)
@@ -83,14 +83,14 @@
 	craftdiff = 4
 
 /datum/crafting_recipe/roguetown/weaving/undividedclerichood
-	name = "undivided devotee hood"
+	name = "pantheonic devotee hood"
 	result = list(/obj/item/clothing/head/roguetown/roguehood/undividedcleric)
 	reqs = list(/obj/item/natural/cloth = 2,
 				/obj/item/natural/silk = 1)
 	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/weaving/undividedhood
-	name = "undivided hood"
+	name = "pantheonic hood"
 	result = list(/obj/item/clothing/head/roguetown/roguehood/undivided)
 	reqs = list(/obj/item/natural/cloth = 2,
 				/obj/item/natural/silk = 1)

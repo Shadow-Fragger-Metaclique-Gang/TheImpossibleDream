@@ -1,7 +1,7 @@
 /datum/advclass/crusader
 	name = "Crusader"
 	allowed_sexes = list(MALE, FEMALE)
-	
+
 	outfit = /datum/outfit/job/roguetown/adventurer/crusader
 	traits_applied = list(TRAIT_HEAVYARMOR, TRAIT_MEDIUMARMOR)
 
@@ -123,21 +123,21 @@
 /obj/item/clothing/cloak/tabard/stabard/crusader/undivided
 	name = "surcoat of the golden order"
 	desc = "A regal surcoat, inlined with golden threading. The stitchwork tethers it to the Golden Orders; a catch-all term for the various faith-militances that \
-	ward Psydonia from heathens, cultists, and the ever-looming threat of another calamity. This variant bears the unicruciform sigil of the Undivided and Erranteer \
+	ward Psydonia from heathens, cultists, and the ever-looming threat of another calamity. This variant bears the unicruciform sigil of the Pantheonic and Erranteer \
 	orders."
 	icon_state = "ucrusader_surcoat"
 
 /obj/item/clothing/cloak/tabard/stabard/crusader/t/undivided
 	name = "surcoat of the silver order"
 	desc = "A noble surcoat, inlined with silver threading. The stitchwork tethers it to the Silver Orders; a catch-all term for the various faith-militances that \
-	ward Psydonia from monsters, deadites, and the ever-looming threat of another calamity. This variant bears the unicruciform sigil of the Undivided and Erranteer \
+	ward Psydonia from monsters, deadites, and the ever-looming threat of another calamity. This variant bears the unicruciform sigil of the Pantheonic and Erranteer \
 	orders."
 	icon_state = "ucrusader_surcoatt2"
 
 /obj/item/clothing/cloak/tabard/stabard/crusader/bsteel
 	name = "surcoat of the blacksteel order"
 	desc = "A venerated surcoat, inlined with blacksteel threading. The stitchwork tethers it to the Blacksteel Order; an ancient faith-militance whose roots trace \
-	all the way back to Psydonia's first crusaders. Uniquely welcoming to both Psydonic and Undivided patroneers, and irreversably valorant against the dreaded \
+	all the way back to Psydonia's first crusaders. Uniquely welcoming to both Psydonic and Pantheonic patroneers, and irreversably valorant against the dreaded \
 	Avantyne Legion. </br>'Happiness must be fought for, lest all hope perish from the face of this world.'"
 	icon_state = "crusader_surcoatb3"
 

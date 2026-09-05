@@ -64,7 +64,7 @@
 
 // Wiener Egg with Bacon + Toast -> Hammerholdian Breakfast
 /datum/food_recipe/eggs/hammerholdian_breakfast
-	name = "hammerholdian breakfast"
+	name = "hammerheldan breakfast"
 	base_item = /obj/item/reagent_containers/food/snacks/rogue/friedegg/sausagebacon
 	ingredients = list(
 		/obj/item/reagent_containers/food/snacks/rogue/breadslice/toast

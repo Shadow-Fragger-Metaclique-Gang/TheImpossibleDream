@@ -512,7 +512,7 @@
 ///////////////////////////////////////////////////////////////////////////////////
 
 /datum/action/cooldown/spell/undivided/undivided_battlecry
-	name = "Ten United"
+	name = "Pantheon United"
 	desc = "Rally the faithful to fight by your side, providing a buff (CONSTITUTION 2, WILLPOWER 2, FORTUNE 4) to Divine worshippers. Inhumen and Psydonites are left out, deadites suffer Daze (PERCEPTION -1, INTELLIGENCE -2, SPEED -1) within the radius."
 	fluff_desc = "From one whole they were created, molded by eachother into the beings they are now, alone they would wither away and die by enroaching darkness."
 	button_icon_state = "united"

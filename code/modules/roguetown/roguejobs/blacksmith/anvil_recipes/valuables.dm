@@ -41,7 +41,7 @@
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 /datum/anvil_recipe/valuables/silver_amulet_ten
-	name = "Silver Amulet of Ten (+1 Any Tennite Amulet)"
+	name = "Silver Amulet of Ten (+1 Any Pantheonic Amulet)"
 	req_bar = /obj/item/ingot/silver
 	additional_items = list(/obj/item/clothing/neck/roguetown/psicross) // bandaid until someone makes proper silver amulet sprites for the other Ten
 	craftdiff = SKILL_LEVEL_EXPERT

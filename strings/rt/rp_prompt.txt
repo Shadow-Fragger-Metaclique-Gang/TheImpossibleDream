@@ -391,7 +391,6 @@ Mostly known for its exportation of the fogbeast: a prized hybrid of the saiga a
 Intermingleance with Otavan refugees and Ranesheni freemen, throughout the centuries, has given rise to a richly diverse culture - and more importantly, some of the finest cuisine in Psydonia's southern reaches. Pestra, Malum and Necra are worshipped with reverance in Lakkari; a facet only strengthened in the face of a recent outbreak, pitting the pious against hordes of uniquely virulent deadites.
 		<br>
 	</details>
-// TIDI EDIT: You know I had to do it. With love, from Scarlet Reach. With hate, to Kite.
 	<details>
 		<summary><strong> READTUN </strong></summary>
 		<br>
@@ -418,17 +417,16 @@ Intermingleance with Otavan refugees and Ranesheni freemen, throughout the centu
 	</details>
 	<br><br>
 </details>
-// TIDI EDIT END
 
 <details>
 	<summary><strong><span style="font-size:130%"> GLOSSARY OF PSYDONIA </span></strong></summary>
 	<details>
 	<strong><span style="font-size:115%"> NOTEWORTHY CONCEPTS </span></strong>
 	<br><br>
-		<p><strong> Psydonia </strong> - The world that the Impossible Dream takes place in. Named after its creator, Psydon. </p>
+		<p><strong> Psydonia </strong> - The world. Here, there is home for all broken hearts and impossible dreams. Named after its creator, Psydon. </p>
 		<p><strong> The Known World </strong> - A more agnostic term for Psydonia, preferred by the Holy See and Ascendants.
-		<p><strong> The Enigma </strong> - A term used for areas past the exploration and frontiers of the Known: whether that be past the oceans, mountains, or into otherworldly ontologies and planes. </p>
-		<p><strong> The Scar </strong> - A divine wound, carved when PSYDON vanished an aeon ago. Surreality and unreality leech from these breakages. Few still exist. Pharos is settled upon one of these sites. </p>
+		<p><strong> Enigma </strong> - A term used for areas past the exploration and frontiers of the Known: whether that be past the oceans, mountains, or into otherworldly ontologies and planes. </p>
+		<p><strong> The Scar </strong> - A divine wound, carved when PSYDON shattered an age ago. Surreality and unreality leech from these breakages. Few still exist - and even fewer are stable enough to live near. Pharos is settled upon one of these sites. </p>
 		<p><strong> Undermaiden </strong> - Death. The personification of Necra, who is said to ferry the deceased towards their chosen afterlife. </p>
 		<p><strong> Paradise </strong> - Heaven. Debatably created by either Psydon or Astrata, as a resting place for the faithful and virtuous. </p>
 		<p><strong> Underworld </strong> - Hell. A spiteful inversion of reality, created by the Archdevil. It is the home of devils, demons, and taxmen. </p>

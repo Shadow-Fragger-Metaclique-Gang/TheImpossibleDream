@@ -358,7 +358,7 @@
 	smeltresult = /obj/item/ingot/iron
 
 /obj/item/rogueweapon/shield/tower/holysee
-	name = "decablessed shield"
+	name = "pentablessed shield"
 	desc = "A blessed kite shield, said to bestow the Pantheon's protection upon the wielder. A final, staunch line against the darkness. For it's not what is before the shield-carrier that matters, but the home behind them."
 	icon_state = "gsshield"
 	force = 20

@@ -2338,7 +2338,7 @@ As Excaliber."
 // OLYMPUS7
 /obj/item/rogueweapon/greatsword/olygsword
 	name = "Gre'as'anto d'Shar"
-	desc = "A profoundly lavish, late 14th century royal Yuethindrynn kriegsmesser, reforged with Hammerholdian bluntness into a \
+	desc = "A profoundly lavish, late 14th century royal Yuethindrynn kriegsmesser, reforged with Hammerheldan bluntness into a \
 	greatsword impregnated with dark alloy threads	that knit together forming cracks.\
 	From the wielder’s perspective,<i>Dro'xun phor jal dkinoss.</i> is engraved as a reminder.\
 	The center piece of The crossguard features a clan emblem of a shattered symbol of progress held together by arcane energy, \

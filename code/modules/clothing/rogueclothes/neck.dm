@@ -751,22 +751,22 @@
 	salvage_amount = 1
 
 /obj/item/clothing/neck/roguetown/psicross/undivided
-	name = "amulet of Ten"
-	desc = "The Ten eternal, strength in unity. Stalwart for centuries against the darkness."
+	name = "amulet of the Pantheon"
+	desc = "The Wills eternal, strength in unity. Stalwart for centuries against the darkness."
 	icon_state = "undivided"
 
 /obj/item/clothing/neck/roguetown/psicross/silver/undivided
-	name = "silver amulet of Ten"
-	desc = "Ward of silver, sigil of eternity; by the Ten, I command thee back to Hell!"
+	name = "silver amulet of the Pantheon"
+	desc = "Ward of silver, sigil of eternity; by the Pentacle, I command thee back to Hell!"
 	icon_state = "undivided_s"
 
 /obj/item/clothing/neck/roguetown/psicross/undivided/g
-	name = "golden amulet of Ten"
-	desc = "The Ten eternal, unified in strength. For centuries, their glistening light has remained stalwart against the darkness."
+	name = "golden amulet of the Pantheon"
+	desc = "The Blessed Pentacle, crossing lines eternal, unified in strength. For centuries, their glistening light has remained stalwart against the darkness."
 	resistance_flags = FIRE_PROOF
 
 /obj/item/clothing/neck/roguetown/psicross/undivided/wood
-	name = "wooden amulet of Ten"
+	name = "wooden amulet of the Pantheon"
 	desc = "A talisman of the faithful, hewn from sticks and fibers."
 	icon_state = "undivided_w"
 	item_state = "undivided_w"

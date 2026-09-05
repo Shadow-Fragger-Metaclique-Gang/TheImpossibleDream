@@ -406,7 +406,7 @@
 
 /obj/item/reagent_containers/glass/bottle/clayvaseclassic/holy_water
 	list_reagents = list(/datum/reagent/water/holywater = 65)
-	desc = "A richly ornamented ceramic vase. The circular cross of the Ten Undivided \
+	desc = "A richly ornamented ceramic vase. The circular wheel of the Pantheon \
 	adorns its side; whatever is inside must be sacred."
 
 /obj/item/reagent_containers/glass/bottle/clayfancyvaseclassic/water

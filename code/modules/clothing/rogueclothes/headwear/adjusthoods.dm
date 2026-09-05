@@ -255,8 +255,8 @@
 	block2add = null
 
 /obj/item/clothing/head/roguetown/roguehood/undivided
-	name = "undivided hood"
-	desc = "A hood of those devoted to upholding the deca-divinity in their dae to dae duties."
+	name = "pantheonic hood"
+	desc = "A hood of those devoted to upholding the penta-divinity in their dae to dae duties."
 	color = null
 	icon_state = "undividedhood"
 	item_state = "undividedhood"
@@ -319,8 +319,8 @@
 	salvage_amount = 1
 
 /obj/item/clothing/head/roguetown/roguehood/undividedcleric
-	name = "undivided clerical hood"
-	desc = "A hood of those devoted to guiding those with deca-divinity across Psydonia."
+	name = "pantheonic clerical hood"
+	desc = "A hood of those devoted to guiding those with penta-divinity across Psydonia."
 	color = "#999999"
 	icon_state = "monkhood"
 	item_state = "monkhood"

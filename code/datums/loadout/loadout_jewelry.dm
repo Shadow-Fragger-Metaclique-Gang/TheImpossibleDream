@@ -67,7 +67,7 @@
 	sort_category = "Jewelry"
 
 /datum/loadout_item/psicross/undivided
-	name = "Amulet of Ten"
+	name = "Amulet of the True Pantheon"
 	path = /obj/item/clothing/neck/roguetown/psicross/undivided
 	sort_category = "Jewelry"
 

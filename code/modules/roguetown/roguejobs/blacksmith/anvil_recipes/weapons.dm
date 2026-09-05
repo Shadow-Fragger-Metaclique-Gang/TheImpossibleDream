@@ -1803,7 +1803,7 @@
 // HOLY STEEL
 
 /datum/anvil_recipe/weapons/holysteel/church_longsword
-	name = "Longsword, Templaric (+1 Amulet of Ten)"
+	name = "Longsword, Templaric (+1 Amulet of the Pantheon)"
 	req_bar = /obj/item/ingot/steelholy
 	additional_items = /obj/item/clothing/neck/roguetown/psicross/undivided
 	created_item = /obj/item/rogueweapon/sword/long/church
@@ -1811,7 +1811,7 @@
 	i_type = "Weapons"
 
 /datum/anvil_recipe/weapons/holysteel/church_spear
-	name = "Spear, Templaric (+1 Holy Steel, +1 Amulet of Ten)"
+	name = "Spear, Templaric (+1 Holy Steel, +1 Amulet of the Pantheon)"
 	req_bar = /obj/item/ingot/steelholy
 	additional_items = list(/obj/item/ingot/steelholy, /obj/item/clothing/neck/roguetown/psicross/undivided)
 	created_item = /obj/item/rogueweapon/spear/holysee
@@ -1819,7 +1819,7 @@
 	i_type = "Weapons"
 
 /datum/anvil_recipe/weapons/holysteel/decasword
-	name = "Longsword, Decablessed (+1 Holy Steel, +1 Amulet of Ten)"
+	name = "Longsword, Pentablessed (+1 Holy Steel, +1 Amulet of the Pantheon)"
 	req_bar = /obj/item/ingot/steelholy
 	additional_items = list(/obj/item/ingot/steelholy, /obj/item/clothing/neck/roguetown/psicross/undivided)
 	created_item = /obj/item/rogueweapon/sword/long/undivided
@@ -1827,7 +1827,7 @@
 	i_type = "Weapons"
 
 /datum/anvil_recipe/weapons/holysteel/decashield
-	name = "Shield, Decablessed (+1 Holy Steel, +1 Amulet of Ten)"
+	name = "Shield, Pentablessed (+1 Holy Steel, +1 Amulet of the Pantheon)"
 	req_bar = /obj/item/ingot/steelholy
 	additional_items = list(/obj/item/ingot/steelholy, /obj/item/clothing/neck/roguetown/psicross/undivided)
 	created_item = /obj/item/rogueweapon/shield/tower/holysee

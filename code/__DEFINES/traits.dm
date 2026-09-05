@@ -179,7 +179,7 @@
 //ONE PANTHEON AGAINST THE DARKNESS
 
 //Undivided
-#define TRAIT_UNDIVIDED "The Ten Undivided"
+#define TRAIT_UNDIVIDED "The Pantheon Undivided"
 //Astrata
 #define TRAIT_APRICITY	"Apricity" //Decreased stamina regen time during "day" and less so during night
 //Astrata (Sun Elf)
@@ -462,7 +462,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_ALDERMAN_CENSURED = span_warning("The Assembly has censured my name. No seat, no warrant shall be mine until the week ends."),
 	TRAIT_TECHNOPHOBE = span_info("I've principles against using some forms of artificed machinery, or perhaps I'm incapable of using them."),
 	TRAIT_LEPROSY = span_necrosis("I'm a disgusting leper..."),
-	TRAIT_UNDIVIDED = span_info("I have seen past petty squabbles, and am a true follower of the Ten Undivided. I feel most comfortable around churchmen."),
+	TRAIT_UNDIVIDED = span_info("I have seen past petty squabbles, and am a true follower of the Blessed Pentacle. I feel most comfortable around the clergy."),
 	TRAIT_TAVERN_FIGHTER = span_info("I am vigilant in my duties. The Tavern is my home, none shall dare oppose me or skip out on payment."),
 	TRAIT_GUARDSMAN = span_info("I am vigilant in my duties. In the town of Pharos, my abilities are sharper due to my routine and familiarity."),
 	TRAIT_GUARDSMAN_DISGRACED = span_warning("I have betrayed my oath. My vigilance falters in the town. I must beg forgiveness to restore my honor, or see my betrayal through to the end."),

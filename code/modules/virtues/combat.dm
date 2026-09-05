@@ -65,7 +65,7 @@
 			ADD_TRAIT(recipient, TRAIT_PSYDONITE, TRAIT_GENERIC)
 			recipient.mind?.special_items["Psycross"] = /obj/item/clothing/neck/roguetown/psicross
 		if(/datum/patron/divine/undivided)
-			recipient.mind?.special_items["Amulet of the Undivided"] = /obj/item/clothing/neck/roguetown/psicross/undivided
+			recipient.mind?.special_items["Amulet of the Pantheon"] = /obj/item/clothing/neck/roguetown/psicross/undivided
 		if(/datum/patron/inhumen/matthios)
 			recipient.mind?.special_items["Amulet of Matthios"] = /obj/item/clothing/neck/roguetown/psicross/inhumen/matthios
 		if(/datum/patron/inhumen/graggar)

@@ -232,11 +232,11 @@
 	icon_state = "Psybanner-RED"
 
 /obj/structure/fluff/walldeco/psybanner/tennite
-	name = "ten undivided banner"
+	name = " pantheonic banner"
 	icon_state = "unibanner_purple"
-	desc = "A banner depicting a circle over a cross; the symbolism of the Ten Undivided, the sphere of \
-	Tennite religious practice dedicated to the entirety of the pantheon without favour or preference. \
-	Particularly strongly associated with the Grenzelhoftian Holy See."
+	desc = "A banner depicting a circle over a cross; the symbolic wheel of of the Temple of the Pentacle, the sphere of \
+	Midderland religious practice dedicated to the entirety of the Greatest Divine Wills without favour or preference. \
+	Particularly strongly associated with the Grand Temple of Zybantium."
 
 /obj/structure/fluff/walldeco/psybanner/tennite/red
 	icon_state = "unibanner_red"

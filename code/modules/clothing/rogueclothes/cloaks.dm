@@ -442,16 +442,16 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/cloaks.dmi'
 	alternate_worn_layer = TABARD_LAYER
 	boobed = TRUE
-	name = "undivided tabard"
-	desc = "The refuge of the TEN upon my back. A Undivided House, standing eternal against the encroaching darkness."
+	name = "pantheonic tabard"
+	desc = "The refuge of the PENTACLE upon my back. A Undivided House, standing eternal against the encroaching darkness."
 	icon_state = "seetabard"
 
 /obj/item/clothing/cloak/templar/undividedcleric
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/cloaks.dmi'
 	alternate_worn_layer = TABARD_LAYER
 	boobed = TRUE
-	name = "undivided devotee tabard"
-	desc = "The refuge of the TEN upon my back. A Undivided Pantheon, to carry the light amongst the ever-present darkness that looms ahead."
+	name = "pantheonic devotee tabard"
+	desc = "The refuge of the GREATEST GODS upon my back. A Great Wheel, to carry the light amongst the ever-present darkness that looms ahead."
 	icon_state = "tenclerictabard"
 
 /obj/item/clothing/cloak/templar/undivided_alt
@@ -459,7 +459,7 @@
 	alternate_worn_layer = TABARD_LAYER
 	boobed = TRUE
 	name = "crusader tabard"
-	desc = "The refuge of the TEN upon my back. A Undivided House, standing eternal against the encroaching darkness."
+	desc = "The refuge of the DIVINE WILLS upon my back. An Almighty Temple, standing eternal against the encroaching darkness."
 	icon_state = "seetabardalt"
 
 /obj/item/clothing/cloak/tabard/devotee
@@ -1361,16 +1361,16 @@
 	nodismemsleeves = TRUE
 
 /obj/item/clothing/cloak/undivided
-	name = "undivided cloak"
-	desc = "The refuge of the TEN upon my back. A Undivided House, standing eternal against the encroaching darkness."
+	name = "pantheonic cloak"
+	desc = "The refuge of the PENTACLE upon my back. A Undivided House, standing eternal against the encroaching darkness."
 	icon_state = "seecloak"
 	sleeved = 'icons/roguetown/clothing/onmob/cloaks.dmi'
 	alternate_worn_layer = CLOAK_BEHIND_LAYER
 	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
 
 /obj/item/clothing/cloak/undividedcleric
-	desc = "The refuge of the TEN upon my back. A Undivided Pantheon, to carry the light amongst the ever-present darkness that looms ahead."
-	name = "undivided devotee cloak"
+	desc = "The refuge of the PENTACLE upon my back. A Undivided Pantheon, to carry the light amongst the ever-present darkness that looms ahead."
+	name = "pantheonic devotee cloak"
 	icon_state = "tenclericcloak"
 	sleeved = 'icons/roguetown/clothing/onmob/cloaks.dmi'
 	alternate_worn_layer = CLOAK_BEHIND_LAYER

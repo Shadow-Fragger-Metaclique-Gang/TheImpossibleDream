@@ -42,7 +42,7 @@
 	contains = list(/obj/item/clothing/neck/roguetown/psicross/silver/astrata)
 
 /datum/supply_pack/rogue/luxury/silvertencross
-	name = "Silver Amulet of Ten"
+	name = "Silver Amulet of the Pantheon"
 	cost = 250
 	contains = list(/obj/item/clothing/neck/roguetown/psicross/silver/undivided)
 

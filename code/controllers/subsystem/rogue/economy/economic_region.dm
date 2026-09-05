@@ -63,7 +63,7 @@ GLOBAL_LIST_INIT(economic_regions, init_economic_regions())
 	name = "Kingsfield"
 	subtitle = "The Royal Demesne, Heartland of the Kingdom"
 	blockade_replenish_eligible = FALSE
-	description = "The royal demesne of the His Majesty. A stretch of land a few day's ride from the edge of Pharos, home to dozens of agricultural settlements, hamlets, and smaller market towns. Its lands are rich, and its people aplenty. The agricultural heartland of the Kingdom, producing most of its grain, meat, and dairy, imported into Pharos daily and re-exported for profit. Many of the nobles across the kingdom keep one estate here or another - though its courts are best compared to a pit of snakes."
+	description = "The royal demesne of His Majesty. A stretch of land a few day's ride from the edge of Pharos, home to dozens of agricultural settlements, hamlets, and smaller market towns. Its lands are rich, and its people aplenty. The agricultural heartland of the Kingdom, producing most of its grain, meat, and dairy, imported into Pharos daily and re-exported for profit. Many of the nobles across the kingdom keep one estate here or another - though its courts are best compared to a pit of snakes."
 	threat_region_id = THREAT_REGION_AZURE_GROVE
 	produces = list(
 		TRADE_GOOD_GRAIN = TG_SUPPLY_LOCAL_GRAIN,
@@ -215,7 +215,7 @@ GLOBAL_LIST_INIT(economic_regions, init_economic_regions())
 	region_id = TRADE_REGION_SALTWICK
 	name = "Saltwick"
 	subtitle = "The Coastal Town, Fisheries of the Realm"
-	description = "A settlement southeast of Pharos, around a day's ride away, located on the coast of Kingsfield. It was settled first by immigrants from Hammerhold and later by settlers from southern Gronn. The town is divided starkly into two parts: The curing houses and salt farms owned mostly by the town's dwarven and Hammerholdian settlers, while those of Gronnic descent makes up most of the fishermen and sailors. The two groups marry eachother rarely and argue often - but coexists somewhat harmoniously in the same town either way. Of course, Hammerholdian and Gronnmen are not the only inhabitants - many people down on their luck or seeking work also reside. Salt is imported from Daftsmarch, used to preserve the fish caught by local fishermen, and then exported throughout the Kingdom and Psydonia."
+	description = "A settlement southeast of Pharos, around a day's ride away, located on the coast of Kingsfield. It was settled first by immigrants from Hammerhold and later by settlers from southern Gronn. The town is divided starkly into two parts: The curing houses and salt farms owned mostly by the town's dwarven and Hammerheldan settlers, while those of Gronnic descent makes up most of the fishermen and sailors. The two groups marry eachother rarely and argue often - but coexists somewhat harmoniously in the same town either way. Of course, Hammerheldan and Gronnmen are not the only inhabitants - many people down on their luck or seeking work also reside. Salt is imported from Daftsmarch, used to preserve the fish caught by local fishermen, and then exported throughout the Kingdom and Psydonia."
 	threat_region_id = THREAT_REGION_AZUREAN_COAST
 	produces = list(
 		TRADE_GOOD_FISH_FILET = TG_SUPPLY_FISH_BULK,

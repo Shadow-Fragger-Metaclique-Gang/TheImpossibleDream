@@ -67,9 +67,9 @@ SUBSYSTEM_DEF(ticker)
 	var/list/royals_readied = list()
 
 	/// Realm name, the location name of the current map
-	var/realm_name = "Pharos and the Scar"
+	var/realm_name = "Pharos and its Scar"
 	/// Formal realm type (e.g. "Grand Duchy", "Most Serene Republic"). Changed by usurpation rites.
-	var/realm_type = "Carved County"
+	var/realm_type = "County"
 	/// Short form for casual references (e.g. "Duchy", "Republic"). Changed by usurpation rites.
 	var/realm_type_short = "County"
 	/// Reports the current ruler's display name

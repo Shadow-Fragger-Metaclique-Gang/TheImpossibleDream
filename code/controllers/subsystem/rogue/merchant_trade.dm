@@ -573,7 +573,7 @@ SUBSYSTEM_DEF(merchant_trade)
 	picked.dock()
 	auto_hail_used_day = GLOB.dayspassed
 	hails_by_realm[picked.realm_id] = (hails_by_realm[picked.realm_id] || 0) + 1
-	scom_announce("The [picked.ship_type] [picked.ship_name] has sailed into the Pharovian Docks unbidden, hoping to find a buyer.")
+	scom_announce("The [picked.ship_type] [picked.ship_name] has sailed into the docks of Pharos unbidden, hoping to find a buyer.")
 	broadcast_market_change()
 	return "ok"
 
@@ -601,7 +601,7 @@ SUBSYSTEM_DEF(merchant_trade)
 	picked.dock()
 	auto_hail_used_day = GLOB.dayspassed
 	hails_by_realm[picked.realm_id] = (hails_by_realm[picked.realm_id] || 0) + 1
-	scom_announce("The [picked.ship_type] [picked.ship_name] has sailed into the Pharovian Docks unbidden, hoping to find a buyer.")
+	scom_announce("The [picked.ship_type] [picked.ship_name] has sailed into the docks of Pharos unbidden, hoping to find a buyer.")
 	broadcast_market_change()
 	schedule_auto_hail_tick()
 
@@ -656,4 +656,4 @@ SUBSYSTEM_DEF(merchant_trade)
 /datum/controller/subsystem/merchant_trade/proc/announce_dock(datum/trade_ship/ship)
 	var/datum/foreign_realm/realm = realms[ship.realm_id]
 	var/realm_name = realm ? realm.name : ship.realm_id
-	scom_announce("The [ship.ship_type] [ship.ship_name], flying the colors of [realm_name], has made port at the Pharovian Docks.")
+	scom_announce("The [ship.ship_type] [ship.ship_name], flying the colors of [realm_name], has made port at the docks upon the Scar.")
