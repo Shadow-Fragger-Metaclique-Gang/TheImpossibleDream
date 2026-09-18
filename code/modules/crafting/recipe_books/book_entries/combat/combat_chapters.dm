@@ -648,9 +648,9 @@
 			<li><b>T4</b> Miracles are what the Acolyte and most of the clergy roles get.</li>
 		</ul>
 
-		<p>The DIVINE PANTHEON (The TENS) - the primary gods worshipped in this settings, offer a unique toolkit based on the god you selected as your PRIMARY (not your sole, Tennites are not monotheistic) patron.</p>
+		<p>The DIVINE PANTHEON - the primary gods worshipped in this settings, offer a unique toolkit based on the god you selected as your PRIMARY (not your sole, Tennites are not monotheistic) patron.</p>
 
-		<p>The ASCENDANTS - the antagonistic gods that stand in opposition to the TENS, offer their own toolkit, often more powerful than the TENs, but always illegal to use in the open. You will bear all consequences including possible choosing to use it in Town or in front of people whose job is to root out heresies and heathens.</p>
+		<p>The ASCENDANTS - the antagonistic gods that stand in opposition to the PANTHEON, offer their own toolkit, often more powerful than the PANTHEON, but always illegal to use in the open. You will bear all consequences including possible choosing to use it in Town or in front of people whose job is to root out heresies and heathens.</p>
 
 		<p>GENEISISM, also known as PSYDONISM, is belief in the one true ontologically good god that created the setting, and whose status is uncertain and may or may not be dead, and certainly inactive and non-intervening. Their miracles generally rely on sheer willpower, and leave the status of whether Psydon is alive or not in doubt due to the ambiguity of its effects.</p>
 		</div>

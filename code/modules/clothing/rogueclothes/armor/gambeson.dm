@@ -320,14 +320,14 @@
 	loadoutize()
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/pontifex
-	name = "pontifex's kaftan"
+	name = "medjai's kaftan"
 	icon_state = "monkleather"
 	item_state = "monkleather"
 	desc = "Tight boiled leathers that stretch and fit to one's frame perfectly."
 	shiftable = FALSE
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/pontifex/loadout
-	name = "aesthetic pontifex's kaftan"
+	name = "aesthetic medjai's kaftan"
 	armor = ARMOR_CLOTHING
 	max_integrity = ARMOR_INT_CHEST_CIVILIAN
 	armor_class = ARMOR_CLASS_NONE

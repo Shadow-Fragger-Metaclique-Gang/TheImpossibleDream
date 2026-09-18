@@ -1133,7 +1133,7 @@
 
 /obj/structure/fluff/psycross
 	name = "stone pantheon wheel"
-	desc = "Symbol of the Divine Pantheon, the religion of ten - formerly eleven - deities which reigns throughout most of the known world. Their divine order must be maintained."
+	desc = "Symbol of the Divine Pantheon, the religion of five - once ten, and nevermore - deities which reigns throughout most of the known world. Their divine order must be maintained."
 	icon_state = "cross_undivided_r"
 	icon = 'icons/roguetown/misc/tallstructure.dmi'
 	break_sound = 'sound/combat/hits/onwood/destroyfurniture.ogg'

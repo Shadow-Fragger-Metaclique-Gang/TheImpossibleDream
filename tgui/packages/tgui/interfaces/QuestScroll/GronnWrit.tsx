@@ -74,7 +74,7 @@ export const GronnWrit = (props: {
       </p>
       <p style={writParagraph}>
         That {subject} hath been seen upon these shores, sworn to the false
-        Four, refusing the holy chrism of the Tens.
+        Four, refusing the holy chrism of the Gods.
       </p>
       {crimes.length > 0 && (
         <>

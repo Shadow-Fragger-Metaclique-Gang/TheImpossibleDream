@@ -41,7 +41,7 @@
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 /datum/anvil_recipe/valuables/silver_amulet_ten
-	name = "Silver Amulet of Ten (+1 Any Pantheonic Amulet)"
+	name = "Silver Amulet of the Pentacle (+1 Any Pantheonic Amulet)"
 	req_bar = /obj/item/ingot/silver
 	additional_items = list(/obj/item/clothing/neck/roguetown/psicross) // bandaid until someone makes proper silver amulet sprites for the other Ten
 	craftdiff = SKILL_LEVEL_EXPERT
@@ -292,7 +292,7 @@
 	craftdiff = 1
 
 /datum/anvil_recipe/valuables/undivided_cross
-	name = "Amulets of Ten (x2)"
+	name = "Amulets of the Pantheon (x2)"
 	req_bar = /obj/item/ingot/gold
 	created_item = /obj/item/clothing/neck/roguetown/psicross/undivided
 	display_category = ITEM_CAT_VALUABLES_HOLY
@@ -300,7 +300,7 @@
 	createditem_num = 2
 
 /datum/anvil_recipe/valuables/gold_undivided_cross
-	name = "Golden Amulet of Ten"
+	name = "Golden Amulet of the Pentacle"
 	req_bar = /obj/item/ingot/gold
 	created_item = /obj/item/clothing/neck/roguetown/psicross/undivided/g
 	display_category = ITEM_CAT_VALUABLES_HOLY

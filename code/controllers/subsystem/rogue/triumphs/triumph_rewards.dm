@@ -48,7 +48,7 @@
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/g/triumph
 	name = "ornate inverted psycross"
-	desc = "'Meet your lord, and know your place. Let progress be my chariot, and let my hands be the vessel that rips paradise free from its heavenly grasp. Let Psydonia's carcass not spell the death of Man, but the birth of Gods.'"
+	desc = "'Meet your lord, and know your place. Let my ambition never cease, and let my hands be the vessel that rips paradise free from its heavenly grasp. Let Psydonia's carcass not spell the death of Man, but the birth of Gods.'"
 	sellprice = 66
 
 /obj/item/clothing/neck/roguetown/psicross/astrata/g/triumph

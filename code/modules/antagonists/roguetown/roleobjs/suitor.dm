@@ -22,7 +22,7 @@
 	return ..()
 
 /datum/antagonist/suitor/greet()
-	to_chat(owner.current, span_userdanger("I've been sent here with a purpose. I must secure a marriage with the local duke in order to bolster my house's relations with Azuria, by any means necessary."))
+	to_chat(owner.current, span_userdanger("I've been sent here with a purpose. I must secure a marriage with the local lord in order to bolster my house's relations with Azuria, by any means necessary."))
 	owner.announce_objectives()
 	..()
 

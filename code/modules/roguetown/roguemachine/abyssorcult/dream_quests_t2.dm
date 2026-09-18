@@ -143,7 +143,7 @@
 	Dredges of a face peeking through bandages that desperately cling to skin. \
 	'I managed to turn away a scrap of bread offered by Thomas the other day.' A mouth between the rags piped up. \
 	'The fisher, nets full of bounty. Basket bustling... She was about to throw me a fish, but I hissed at her palm.' Above a pair of blistered mitts another voice spoke. \
-	'Compadres, are you doubting your king once more? The very duke themselves regarded me with pity. But I told him, the one who feeds me shall suffer terrible boils' Spoke the crown. \
+	'Compadres, are you doubting your king once more? The very Count themselves regarded me with pity. But I told him, the one who feeds me shall suffer terrible boils' Spoke the crown. \
 	Your presence is noticed, horrid eyes that look like they're clawing to stay above the wrinkles. \
 	'A guest. Are they reaching for their pouch?' \
 	'Do not feed us, you will end up just the same.' \

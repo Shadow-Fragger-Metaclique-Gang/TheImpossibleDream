@@ -385,12 +385,12 @@ a.choose-btn:hover {
 <p><em>Five hundred yils, unbowed!</em></p>
 <p><em>By blood and steel, five hundred more!</em></p>"}
 		if("zizite")
-			return {"<p><em>I am a blade of progress.</em></p>
-<p><em>The lady my patron, and knowledge my gift.</em></p>
+			return {"<p><em>I am a blade of ambition.</em></p>
+<p><em>The Demiurge my patron, and knowledge my gift.</em></p>
 <p><em>No knowledge forbidden, no truth unpursued.</em></p>
-<p><em>With a single cut I shall sever ignorance.</em></p>
-<p><em>Stagnation is death - and I refuse to die.</em></p>
-<p><em>Her word is progress, and I am her herald.</em></p>"}
+<p><em>With a single cut I shall rip through reality.</em></p>
+<p><em>The False halt ascension - and I refuse to allow them.</em></p>
+<p><em>IT makes the command, and I am to follow.</em></p>"}
 		if("noccite")
 			return {"<p><em>I, blade of Noc! Forever illuminated.</em></p>
 <p><em>Wisdom is my guide, and knowledge my weapon.</em></p>
@@ -430,12 +430,12 @@ a.choose-btn:hover {
 <p><em>Five hundred yils, unbowed!</em></p>
 <p><em>By blood and steel, five hundred more!</em></p>"}
 		if("zizite")
-			return {"<p><em>I am a shield of progress.</em></p>
-<p><em>The lady my patron, and knowledge my gift.</em></p>
+			return {"<p><em>I am a shield of ambition.</em></p>
+<p><em>The Demiurge my patron, and knowledge my gift.</em></p>
 <p><em>No knowledge forbidden, no truth unpursued.</em></p>
-<p><em>With a single thrust I shall pierce stagnation.</em></p>
-<p><em>Stagnation is death - and I refuse to die.</em></p>
-<p><em>Her word is progress, and I am her herald.</em></p>"}
+<p><em>With a thousand cuts, I shall rip divinity from the undeserving.</em></p>
+<p><em>The False halt ascension - and I refuse to allow them.</em></p>
+<p><em>IT makes the command, and I am to follow.</em></p>"}
 		if("noccite")
 			return {"<p><em>I, spear of Noc! Forever illuminated.</em></p>
 <p><em>Wisdom is my guide, and knowledge my weapon.</em></p>
@@ -475,12 +475,12 @@ a.choose-btn:hover {
 <p><em>Five hundred yils, unbowed!</em></p>
 <p><em>By blood and steel, five hundred more!</em></p>"}
 		if("zizite")
-			return {"<p><em>I am a mace of progress.</em></p>
-<p><em>The lady my patron, and knowledge my gift.</em></p>
+			return {"<p><em>I am a mace of ambition.</em></p>
+<p><em>The Demiurge my patron, and knowledge my gift.</em></p>
 <p><em>No wall unbroken, no barrier unshattered.</em></p>
-<p><em>With a single blow I shall crack open stagnation.</em></p>
-<p><em>Stagnation is death - and I refuse to die.</em></p>
-<p><em>Her word is progress, and I am her hammer.</em></p>"}
+<p><em>With a single blow, I shall break the walls of this hollow reality.</em></p>
+<p><em>The False halt ascension - and I refuse to allow them.</em></p>
+<p><em>IT makes the command, and I am to follow.</em></p>"}
 		if("noccite")
 			return {"<p><em>I, hammer of Noc! Forever illuminated.</em></p>
 <p><em>Wisdom is my guide, and knowledge my weapon.</em></p>
@@ -515,7 +515,7 @@ a.choose-btn:hover {
 		if("blackoak")
 			return "Hone the tradition of your people! Though the snow elves are gone, your heritage is not! As the most excellent, most long-lived of all races, it is up to you to carry on the legacy of a spellblade! Five hundred yils of martial and arcyne excellence, five hundred yils more!"
 		if("zizite")
-			return "Hone the knowledge of your patron! With her ascension, the ignorant cling to the old way, your goddess lies imprisoned. Her teachings are all that remains. Her followers — corrupted, seeking undeath and bones, forgetting that she, too, is the mistress of progress. With your very blade, you shall cut open the wound of the world, cauterize it, and let her light shine through! You are her herald."
+			return "Herald the return of the Demiurge. With their apotheosis, the ignorant cling to the old way, your Mortal-made-Divine lies imprisoned. Their teachings are all that remains. Their followers — corrupted, seeking undeath and bones; drawn to the ways of the Winnowing in single-minded foolishness. With your very blade, you shall cut open the Wounds and Scars - of this world, let them stain with the blood of the fundament, and let IT in."
 		if("noccite")
 			return "Hone the wisdom of your patron! With his gift, you have glimpsed the truth of the world. The old city is gone, his teachings are not. Noc has granted you the power to seize destiny into your own hands - miracles to heal the wounded, sight to see the unseen, and magicks to strike down your foes. With your blade, you shall carve a new path forward, and let his light guide the way! You are his chosen."
 		if("almah")

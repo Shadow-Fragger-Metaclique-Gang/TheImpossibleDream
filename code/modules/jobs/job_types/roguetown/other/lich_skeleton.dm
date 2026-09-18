@@ -800,8 +800,8 @@ LICH SKELETONS
 //Most importantly, unlike other lich skeletons, these ones really stand out amongst the many. You know who to target on-sight pretty much.
 //Yes the name is a bitter irony because Sectarian means a closed-minded us vs them, mindset. Aka limited or bigoted, but this fits the "slaughter the living so they may walk with her" mindset of skeletons.
 /datum/advclass/greater_skeleton/lich/sectarian
-	name = "Ancient Zizite Sectarian"
-	tutorial = "'Progress. Ascension. Destiny. A mandate, commanded by God, to be fufilled by Man.' - Amongst the many fallen, few not only take their place not only in reverence but through faith and channeling divinity. No matter how far you've fallen, your faith will be that which shall peirce the heavens - Let Progress be your chariot, let her will be your guide and let your master's vision become reality."
+	name = "Ancient Anathematic Sectarian"
+	tutorial = "Amongst the many fallen, few not only take their place not only in reverence but through faith and channeling the Demiurge's mortal divinity. No matter how far you've fallen, your faith will be that which shall carve the heavens and fundament - Let the Anathema aid in your ambition, let their Will be your guide and render your master's vision reality."
 	outfit = /datum/outfit/job/roguetown/greater_skeleton/lich/sectarian
 	maximum_possible_slots = 3 //don't want too many healers for skeletons in a round but we want leniency for when they die and get replaced
 
@@ -962,7 +962,7 @@ LICH SKELETONS
 
 /obj/item/clothing/gloves/roguetown/angle/grenzelgloves/blacksmith/lich
 	name = "decrepit forge gauntlets"
-	desc = "A shirt of rugged silks and leather from beyond your lyfetime, donned as a grasp 'pon the one thing that oft' outlasts through aeon the most; \"Artifice, Progress, Construction\"."
+	desc = "A wrap of rugged silks and leather from beyond your lyfetime; oft serving to physically hold together phalanges wrapped beneath. You can feel the dust and crumbs of bone of those before contained within its fingers."
 	//no color changes, it already looks good
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/hijab/lich

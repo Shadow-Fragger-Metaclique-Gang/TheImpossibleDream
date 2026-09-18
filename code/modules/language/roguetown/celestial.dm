@@ -1,6 +1,6 @@
 /datum/language/celestial
 	name = "Celestial"
-	desc = "The ancient tongue of the Celestial Empire spoken by Aasimar and amongst Naledi people. It is mutually intelligable with Sama'glos."
+	desc = "An ancient tongue, naturally spoken by Aasimari upon their emergence - and learned amongst the Naledi people. It is mutually intelligable with Sama'glos."
 	speech_verb = "says"
 	ask_verb = "asks"
 	exclaim_verb = "yells"

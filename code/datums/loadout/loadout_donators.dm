@@ -312,15 +312,15 @@
 // --- NALEDI / RANESHEN ---
 
 /datum/loadout_item/donator/universal/regional/naledipontigambeson
-	name = "Gift - Regional, Pontifex Outerwear"
+	name = "Gift - Regional, Medjai Outerwear"
 	path = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/pontifex/loadout
 
 /datum/loadout_item/donator/universal/regional/naledipontishirt
-	name = "Gift - Regional, Pontifex Innerwear"
+	name = "Gift - Regional, Medjai Innerwear"
 	path = /obj/item/clothing/suit/roguetown/shirt/robe/pointfex/loadout
 
 /datum/loadout_item/donator/universal/regional/naledipontipants
-	name = "Gift - Regional, Pontifex Pants"
+	name = "Gift - Regional, Medjai Pants"
 	path = /obj/item/clothing/under/roguetown/trou/leather/pontifex/loadout
 
 /datum/loadout_item/donator/universal/regional/naledihierogambeson

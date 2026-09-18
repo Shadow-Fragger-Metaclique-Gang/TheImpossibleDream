@@ -41,7 +41,7 @@ export const PetitionView = (props: { data: Data }) => {
   const cannotActReason = petition.is_alderman_acting
     ? "The Alderman's writ does not extend to petitioning the trade hall."
     : !petition.is_steward_role
-      ? 'Only the Steward, Clerk, or Grand Duke may petition the trade hall.'
+      ? 'Only the Steward, Clerk, or Count may petition the trade hall.'
       : '';
 
   return (

@@ -725,7 +725,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			SEND_SOUND(target, 'sound/misc/evilevent.ogg')
 		if("priest dead")
 			to_chat(target, "<h1 class='alert'>Bad Omen</h1>")
-			to_chat(target, "<br><br><span class='alert'>The High Priest is dead!</span><br><br>")
+			to_chat(target, "<br><br><span class='alert'>The Pontifex is dead!</span><br><br>")
 			SEND_SOUND(target, 'sound/misc/evilevent.ogg')
 		if("lich")
 			to_chat(target, "<h1 class='alert'>The Lich Decrees</h1>")

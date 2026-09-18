@@ -234,7 +234,7 @@
 
 /obj/item/clothing/wrists/roguetown/bracers/cloth/naledi
 	name = "sojourner's wrappings"
-	desc = "Sheared burlap and cloth, meticulously fashioned around the forearms. Naledian-trained monks rarely share the same fatalistic mindset as their Otavan cousins, and - consequency - tend to be averse with binding their wrists in jagged thorns. Unbloodied fingers tend to work far better with the arcyne, too. </br>'..And so, the great tears that they wept when it took its last breath, the rain of the Weeper, is what marked this era of silence. Fools would tell you that Psydon has died, that they splintered into ‘ten smaller fragments', but that does not make sense. They are everything within and without, they are beyond size and shape. How can everything become something? No, they have merely turned their ear from us. They mourn, for their greatest child and their worst..'"
+	desc = "Sheared burlap and cloth, meticulously fashioned around the forearms. Naledian-trained monks rarely share the same fatalistic mindset as their Otavan cousins, and - consequency - tend to be averse with binding their wrists in jagged thorns. Unbloodied fingers tend to work far better with the arcyne, too. </br>'..And so, the great tears that they wept when it took its last breath, the rain of the Weeping, is what marked this era of silence. Fools would tell you that Psydon has died, that they splintered into 'smaller fragments', but that does not make sense. They are everything within and without, they are beyond size and shape. How can everything become something? No, they have merely turned their ear from us. They mourn, for their greatest child and their worst..'"
 	color = "#48443B"
 
 /obj/item/clothing/wrists/roguetown/bracers/cloth/gladiator

@@ -47,7 +47,7 @@
 		return
 
 	if(user.patron in ALL_INHUMEN_PATRONS)
-		to_chat(user, span_warning("This whole anointing stuff seems like TEN nonsense. Why prevent the chaos? Besides, this paste burns my fingers."))
+		to_chat(user, span_warning("This whole anointing stuff seems like the PENTACLE'S nonsense. Why prevent the chaos? Besides, this paste burns my fingers."))
 		return
 
 	if(user == M)

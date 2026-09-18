@@ -154,7 +154,7 @@ NECRO SKELETONS
 // Ranged skeleton with either a bow or a sling.
 /datum/advclass/greater_skeleton/necro/ballistiare
 	name = "Hollow Ballistiare"
-	tutorial = "You're broken, cracked and risen anew. How do they expect a lesser rattler like you to shoot out the eyes of our enemies? The Dame of Progress smiles at you tonight. Make Her proud."
+	tutorial = "You're broken, cracked and risen anew. How do they expect a lesser rattler like you to shoot out the eyes of our enemies? The Demiurge smiles at you tonight. Make IT proud."
 	outfit = /datum/outfit/job/roguetown/greater_skeleton/necro/ballistiare
 
 	category_tags = list(CTAG_NSKELETON)

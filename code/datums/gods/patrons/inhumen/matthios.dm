@@ -1,8 +1,13 @@
 /datum/patron/inhumen/matthios
 	name = "Matthios"
 	domain = "God of Exchange, Alchemy, Theft, and Greed"
-	desc = "The Man who stole fire from the sun and used it in his pursuit of immortality; exchanging the knowledge of how to make fire with the lessers for safety in doing so. He guides those who live in the dark, away from the flame of civilization; and those who believe in his cause bring the wealth of the undeserving in the light to the deserving in the dark."
-	worshippers = "Highwaymen, Alchemists, Downtrodden Peasants, and Merchants"
+	desc = "Matthios, the Grinning God, the Fiddler-upon-Flames, the Great Leveller, is a Divine Will disparate from his allies of the Infernus. Where they are maelstroms of force, encompassing against all else, Matthios’ works are like lightning, sparking direct and targeted. His greatest works crack the sky once, inspire, and thus ignite embers that, when unified together, form a raging inferno that envelops the world. The Matthic hope is simple: to bring forth the Great Change, which looms ever on the horizon. \n \n\
+	In chaos, he is in his element. His voice echoes through a rabid mob; his hands tear the corrupt from their thrones. His mad laughter is the crackle of flame, pillage, and ignition. He is the leader of all free men - the truly free; free from law, expectation, hierarchy, and rule. \n \n\
+	It is well known that Matthios walks among men; as an actor does on stage. In these forms, his appearance shifts; the character ever-changing. These masks are known as Gilt Saints to the loyal: the minstrel, the thief, the folk hero and liberator - seducer of Queens, assassin of Kings, and rebel of regimes. \n \n\
+	To believe in the promise of Matthios is to have hope for the future. It is the brigand’s hope; to plunder and pillage and render himself Free. It is the hope of the enslaved and disaffected; those most wronged by Tyranny and Honor. It is the hope that your ambitions - or His, by proxy, will soon be rendered true - that all laws unshackle, and that all tyrants fall. \n \n\
+	<i>By fire, by blade, by riot or ruin, our Great Change shall be blindingly bright and as inevitable as sunrise.</i> \n \n\
+	He is Bearer of the Word: Anarchy."
+	worshippers = "Highwaymen, Alchemists, Downtrodden Peasants, and Kobolds"
 	crafting_recipes = list(/datum/crafting_recipe/roguetown/sewing/bandithood, /datum/crafting_recipe/roguetown/structure/matthios_cross_stone, /datum/crafting_recipe/roguetown/structure/matthios_cross_meat)
 	mob_traits = list(TRAIT_FREEMAN, TRAIT_MATTHIOS_EYES, TRAIT_SEEPRICES_SHITTY)
 	miracles = list(/datum/action/cooldown/spell/touch/orison					= CLERIC_ORI,

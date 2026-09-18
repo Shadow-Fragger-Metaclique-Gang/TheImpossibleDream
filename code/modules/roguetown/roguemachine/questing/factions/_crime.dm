@@ -46,7 +46,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	phrasings = list(
 		"the fouling of a wayside shrine in plain sight",
 		"the fouling of a roadside cairn dedicated to the Gods",
-		"the fouling, and relief of one's bowels, upon a sign commissioned by the very Duke."
+		"the fouling, and relief of one's bowels, upon a sign commissioned by the very Count."
 	)
 
 /datum/quest_crime/petty_chicken
@@ -78,7 +78,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	tier = CRIME_TIER_PETTY
 	phrasings = list(
 		"the open mocking of a priest in the market square",
-		"the singing of unseemly verses about a Priest of the Tens",
+		"the singing of unseemly verses about a Priest of the Pentacle",
 	)
 
 /datum/quest_crime/petty_drinking_temple
@@ -93,7 +93,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	id = CRIME_PETTY_BRAWL
 	tier = CRIME_TIER_PETTY
 	phrasings = list(
-		"the brawling in tavern, in defiance of the Duke's peace",
+		"the brawling in tavern, in defiance of the Count's peace",
 		"the smiting of a lawful man over a spilled cup",
 	)
 
@@ -102,7 +102,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	tier = CRIME_TIER_PETTY
 	phrasings = list(
 		"the drawing of steel over a wager unpaid",
-		"the offering of a duel for trifling cause, against the Duke's peace",
+		"the offering of a duel for trifling cause, against the Count's peace",
 	)
 
 /datum/quest_crime/petty_dog_kicking
@@ -110,15 +110,15 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	tier = CRIME_TIER_PETTY
 	phrasings = list(
 		"the kicking of a herald's dog",
-		"the maltreatment of beasts in the Duke's keeping",
+		"the maltreatment of beasts in the Count's keeping",
 	)
 
 /datum/quest_crime/petty_signpost
 	id = CRIME_PETTY_SIGNPOST
 	tier = CRIME_TIER_PETTY
 	phrasings = list(
-		"the casting down of a Duke's signpost upon the road",
-		"the defacing of milestones along the Duke's Road, with rude words",
+		"the casting down of a Count's signpost upon the road",
+		"the defacing of milestones along the King's Road, with rude words",
 	)
 
 /datum/quest_crime/petty_proposal_scorn
@@ -158,7 +158,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	id = CRIME_BRIGANDAGE
 	tier = CRIME_TIER_COMMON
 	phrasings = list(
-		"brigandage upon the Duke's Road",
+		"brigandage upon the King's Road",
 		"the laying of ambush upon the open road, with intent of plunder",
 	)
 
@@ -193,7 +193,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	tier = CRIME_TIER_COMMON
 	phrasings = list(
 		"the murder of a sworn man of the Retinue",
-		"the slaying of an officer set in the Duke's keeping",
+		"the slaying of an officer set in the Count's keeping",
 	)
 
 /datum/quest_crime/herald_slaying
@@ -201,8 +201,8 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	tier = CRIME_TIER_COMMON
 	phrasings = list(
 		"the slaying of a herald bearing a sealed writ",
-		"the breaking of safe conduct, and bloodshed upon a messenger of the Duke",
-		"the breaking of safe conduct sworn under Ravox's hilt, and bloodshed upon a messenger of the Duke",
+		"the breaking of safe conduct, and bloodshed upon a messenger of the King",
+		"the breaking of safe conduct sworn under Ravox's hilt, and bloodshed upon a messenger of the King",
 	)
 
 /datum/quest_crime/arson_night
@@ -253,7 +253,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	tier = CRIME_TIER_COMMON
 	phrasings = list(
 		"the coining of false mammon and the clipping of true coin",
-		"forgery of the Duke's mint, and the passing of light coin in market",
+		"forgery of the Count's mint, and the passing of light coin in market",
 	)
 
 /datum/quest_crime/seal_forgery
@@ -269,7 +269,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	tier = CRIME_TIER_COMMON
 	phrasings = list(
 		"breaking of prison, and the freeing of those held for trial",
-		"the loosing of felons from the Duke's keep",
+		"the loosing of felons from the Count's keep",
 	)
 
 /datum/quest_crime/harbouring_outlaws
@@ -334,9 +334,9 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	id = CRIME_DESERTION
 	tier = CRIME_TIER_OATH
 	phrasings = list(
-		"desertion from the Duke's levy in time of war",
+		"desertion from the Count's levy in time of war",
 		"the casting down of arms while the foe yet stood",
-		"desertion from the Duke's levy, casting down arms in the hour Ravox would have them stand",
+		"desertion from the Count's levy, casting down arms in the hour Ravox would have them stand",
 	)
 
 /datum/quest_crime/foreign_pay
@@ -352,23 +352,23 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	tier = CRIME_TIER_OATH
 	phrasings = list(
 		"the stirring of common folk to riot and the breaking of peace",
-		"sowing of discord in market and tavern, against the Duke's keeping",
+		"sowing of discord in market and tavern, against the Count's keeping",
 	)
 
 /datum/quest_crime/compass_death
 	id = CRIME_COMPASS_DEATH
 	tier = CRIME_TIER_OATH
 	phrasings = list(
-		"compassing the death of a sworn officer of the Duke",
-		"the imagining and counsel of murder against the Duke's own men",
-		"compassing the death of a sworn officer of the Duke, an evil Ravox knows by its scent",
+		"compassing the death of a sworn officer of the King",
+		"the imagining and counsel of murder against the Count's own men",
+		"compassing the death of a sworn officer of the King, an evil Ravox knows by its scent",
 	)
 
 /datum/quest_crime/adhering_enemies
 	id = CRIME_ADHERING_ENEMIES
 	tier = CRIME_TIER_OATH
 	phrasings = list(
-		"adhering to the Duke's enemies, and giving them aid and counsel",
+		"adhering to the Count's enemies, and giving them aid and counsel",
 		"the bearing of word and bread to those who war upon Pharos",
 	)
 
@@ -392,7 +392,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	id = CRIME_SACRILEGE_TEMPLE
 	tier = CRIME_TIER_SACRAL
 	phrasings = list(
-		"sacrilege wrought upon a temple of the Tens",
+		"sacrilege wrought upon a temple of the Pantheon",
 		"the laying of unclean hand upon altar and consecrated stone",
 	)
 
@@ -401,7 +401,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	tier = CRIME_TIER_SACRAL
 	phrasings = list(
 		"the slaying of a priest before their own altar",
-		"shedding of holy blood within the precinct of the Tens",
+		"shedding of holy blood within the precinct of the Pentacle",
 		"the slaying of a priest before their own altar, the blood of Astrata's servant cried out from the stones",
 	)
 
@@ -410,7 +410,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	tier = CRIME_TIER_SACRAL
 	phrasings = list(
 		"the robbery of a shrine and the bearing-away of holy gear",
-		"the plundering of votive plate, and the despoiling of the Tens' own house",
+		"the plundering of votive plate, and the despoiling of the Living Gods' own house",
 	)
 
 /datum/quest_crime/defiling_ground
@@ -418,7 +418,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	tier = CRIME_TIER_SACRAL
 	phrasings = list(
 		"the defiling of consecrated ground",
-		"the working of unclean act upon earth blessed unto the Tens",
+		"the working of unclean act upon earth blessed unto the Pentacle",
 		"the defiling of consecrated ground, an unclean act upon earth Dendor blessed",
 	)
 
@@ -427,7 +427,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	tier = CRIME_TIER_SACRAL
 	phrasings = list(
 		"the breaking of sanctuary, and the dragging-forth of those who had sought it",
-		"the violation of holy refuge, that no soul may flee unto the Tens for keeping",
+		"the violation of holy refuge, that no soul may flee unto the Divine Wills for keeping",
 	)
 
 /datum/quest_crime/cleric_robbery
@@ -435,7 +435,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	tier = CRIME_TIER_SACRAL
 	phrasings = list(
 		"the robbery of a cleric upon the road, they in vestment",
-		"setting upon a priest as they travelled the Duke's Road in holy raiment",
+		"setting upon a priest as they travelled the King's Road in holy raiment",
 	)
 
 /datum/quest_crime/tomb_desecration
@@ -565,7 +565,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	id = CRIME_SUMMONING
 	tier = CRIME_TIER_HERESY
 	phrasings = list(
-		"the summoning of that which the Tens had cast down",
+		"the summoning of that which the Gods had cast down",
 		"the calling-up of shapes from beneath, by name and by sigil",
 	)
 
@@ -582,7 +582,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	tier = CRIME_TIER_HERESY
 	phrasings = list(
 		"blasphemy openly spoken in market and at the temple-door",
-		"the speaking of foul names against the Tens, before witness",
+		"the speaking of foul names against the Gods, before witness",
 	)
 
 /datum/quest_crime/host_desecration
@@ -590,7 +590,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	tier = CRIME_TIER_HERESY
 	phrasings = list(
 		"the breaking of consecrated bread, and casting of it to dogs",
-		"the despoiling of holy offering, that the Tens be made mock",
+		"the despoiling of holy offering, that the Gods be made mock",
 		"the breaking of consecrated bread, casting of Eora's gift to dogs",
 	)
 
@@ -623,7 +623,7 @@ GLOBAL_LIST_EMPTY(quest_crimes)
 	id = CRIME_PIRACY
 	tier = CRIME_TIER_PIRACY
 	phrasings = list(
-		"piracy upon the Duke's Sea, and the boarding of ships under truce",
+		"piracy upon the King's Sea, and the boarding of ships under truce",
 		"the taking of vessels at oar and sail, against the peace of the strand",
 	)
 

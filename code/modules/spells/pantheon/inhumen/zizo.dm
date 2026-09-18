@@ -44,7 +44,7 @@
 /datum/action/cooldown/spell/zizo/snuff_lights
 	name = "Snuff Lights"
 	desc = "Extinguish most light sources within 2 range. For 5 seconds, you will also hone your Darksight. Both effects scale up from Miracle skill."
-	fluff_desc = "Flame, light, purity... all arrogant lies of the Living. Wretched falsehoods peddled by the Ten to keep mortals fearful of the dark. They are intrusions; frail comforts that convince men they are safe from what waits beyond their sight. Zizo's first revelation was simple: light is not needed to see. Truth does not shine. It festers in the dark, waiting for those willing to behold it."
+	fluff_desc = "Flame, light, purity... all arrogant lies of the Living. Wretched falsehoods peddled by the Gods to keep mortals fearful of the dark. They are intrusions; frail comforts that convince men they are safe from what waits beyond their sight. Zizo's first revelation was simple: light is not needed to see. Truth does not shine. It festers in the dark, waiting for those willing to behold it."
 	button_icon_state = "snufflight"
 	associated_stat = null
 	charge_required = FALSE
@@ -117,9 +117,9 @@
 /////////////////////////////////
 
 /datum/action/cooldown/spell/zizo/stripknowledgeorprofane
-	name = "Means of Progress"
+	name = "Tools of the Demiurge"
 	desc = "Choose between Zizo's Knowledge at the price of your sanity and perception (Insight), or Zizo's Power for offensively embedding bone lances into victims at range (Profane Bone)."
-	fluff_desc = "There is always a cost to Progress, if there's anything every follower of Zizo knows; 'Progress commands sacrifice'."
+	fluff_desc = "There is always a cost to your dreams. If there's anything every follower of Zizo knows, it is that 'Command demands sacrifice'."
 	button_icon_state = "firstspellpack"
 
 	click_to_activate = FALSE
@@ -149,7 +149,7 @@
 		var/choice = chosen_spell
 		choosingspell = TRUE
 		if(!chosen_spell)
-			choice = alert(owner, "What shalt you take from them? Knowledge or Lyfe", "PROGRESS COMMANDS SACRIFICE", "Knowledge - Strip Wisdom", "Lyfe - Profane Bone")
+			choice = alert(owner, "What shalt you take from them? Knowledge or Lyfe", "COMMAND DEMANDS SACRIFICE", "Knowledge - Strip Wisdom", "Lyfe - Profane Bone")
 			chosen_spell = choice
 		switch(choice)
 			if("Knowledge - Strip Wisdom")
@@ -169,7 +169,7 @@
 /datum/action/cooldown/spell/zizo/stripknowledge
 	name = "Strip Wisdom"
 	desc = "Invoke Zizo's will onto a target, stripping their unworthy knowledge and dulling their mynd."
-	fluff_desc = "Truth, Inzanity, Progress, the Absolute mandate of her Design. It is a difficult matter for the ignorant masses to even comprehend the means, but even Zizo knows not all are beyond the grasp of her ultimate truth, no matter how much they deny it."
+	fluff_desc = "Truth, Inzanity, Ambition, the divine mandate of its Design. It is a difficult matter for the ignorant masses to even comprehend the means, but even Zizo knows not all are beyond the grasp of its ultimate truth, no matter how much they deny it."
 	button_icon_state = "stripknowledge"
 	sound = 'sound/magic/baotha_blessdrink.ogg'
 	glow_intensity = GLOW_INTENSITY_LOW
@@ -346,7 +346,7 @@
 // RAISE LESSER SKELETON SWARM (T2)
 /datum/action/cooldown/spell/conjure_summon/zizo/skeleton_swarm
 	name = "Raise Lesser Skeletons"
-	desc = "Invoke raw Enochian magicka to bind loose bones into two simple skeletal thralls. Their crude physiology is held together purely by magic; unable to be incapacitated, they shall stand until they crumble into spare bones. Toggle their armaments with Shift+G: Sword and Shield, Spear, or Two Daggers. Each one killed gives a partial recoil."
+	desc = "Invoke the IS-NOT to bind loose bones into two simple skeletal thralls. Their crude physiology is held together purely by magic; unable to be incapacitated, they shall stand until they crumble into spare bones. Toggle their armaments with Shift+G: Sword and Shield, Spear, or Two Daggers. Each one killed gives a partial recoil."
 	fluff_desc = "The faithful of Zizo do not raise the dead, they mock life by proving how little of it is truly required. Flesh decays, thought falters, and souls flee screaming into the arms of Necra, yet bone remains obedient. Through the language of ancient Enochian words of power, scattered remains are lashed together into a parody of mortal form, animated not by purpose or memory, but by the simple joy of defying the natural order."
 
 	button_icon = 'icons/mob/actions/zizomiracles.dmi'
@@ -517,7 +517,7 @@
 
 /datum/action/cooldown/spell/zizo/rituos
 	name = "Rituos"
-	desc = "Enact one of the Lesser Work of Zizo - a single, agonizing ritual that tears open a path to power. Choose Progress to gain arcyne knowledge, or Unlife to embrace undeath."
+	desc = "Enact one of the Lesser Work of Zizo - a single, agonizing ritual that tears open a path to power. Choose Thaumics to gain arcyne knowledge, or Unlife to embrace undeath."
 	fluff_desc = "The holiest of Zizo's Lesser Works among the Cabal. A rite of surrendering weakness and mortality to embrace your purpose in Her design. Through agony, the faithful offer either mind or flesh, allowing Zizo to strip away mortal frailty and shape them into reflections of her ascension. Some surrender thought for forbidden understanding. Others surrender flesh for the stillness of unlife. Few endure enough to become what She envisioned. When the gifts fade, the faithful are taught only one truth: they have not sacrificed enough."
 	button_icon_state = "rituos"
 	charge_sound = 'sound/magic/chargingold.ogg'
@@ -550,7 +550,7 @@
 
 	exploit_this = TRUE
 
-	var/path_choice = tgui_alert(user, "What path of the Lesser Work do you seek?", "THE LESSER WORK", list("Progress", "Unlife", "Cancel"))
+	var/path_choice = tgui_alert(user, "What path of the Lesser Work do you seek?", "THE LESSER WORK", list("Thaumics", "Unlife", "Cancel"))
 
 	if(!path_choice || path_choice == "Cancel")
 		reset_spell_cooldown()
@@ -575,7 +575,7 @@
 		return TRUE
 
 	switch(path_choice)
-		if("Progress")
+		if("Thaumics")
 			src.apply_progress_path(user)
 		if("Unlife")
 			src.apply_unlife_path(user)

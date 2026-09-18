@@ -654,7 +654,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_EORAN_SERENE = span_greentext("Eora has blessed me with all-encompassing serenity. I feel no more stress."),
 	TRAIT_NECRAS_VOW = span_warning("I've pledged myself to Necra. If I fall, I am Hers."),
 	TRAIT_PESTRAS_BLESSING = span_infection("The sacred black rot of Pestra burns within me. Should intelligent foes try to harm me, they will feel her greatest plague."),
-	TRAIT_HERESIARCH = span_warning("I've been touched by the truth of Psydonia. Lyfe as we understand cannot persist under the Ten or the pretense of Psydon. Something must change."),
+	TRAIT_HERESIARCH = span_warning("I've been touched by the truth of Psydonia. Lyfe as we understand cannot persist under the Pentacle or the pretense of Psydon. Something must change."),
 	TRAIT_HALLOWED = span_notice("I'm closer to the gods than most. I can utilize my miracles, regardless of if I bear an amulet or not."),
 	TRAIT_ZURCH = span_warning("I know of sacred sites of worship where followers of the Ascendants convene, and the path to the nearest conclave is etched into my memory."),
 	TRAIT_CAVEDWELLER = span_info("The mountains are my home. I prefer to live beneath the surface away from the sun's gaze and know the caves of this land like the back of my hand."),

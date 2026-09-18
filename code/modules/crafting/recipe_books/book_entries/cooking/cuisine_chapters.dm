@@ -171,7 +171,7 @@
 	name = "North Imperial"
 	book_priority = 7
 	cuisine_flag = CUISINE_NORTH_IMPERIAL
-	blurb = "A broad category for the cuisine that originated from the old Celestial Empire's heartland, modern dae Grenzelhoft. It is hearty and delicious, full of breads, pies, sausage. Though seafood are eaten, it is not as prominent and does not feature in its dishes list. Ale and Beer are the main source of drinks, with occasional spirits added in. Famous dishes includes the Grenzelbun, Squire's Delight, Nitzel and Schnitzel."
+	blurb = "A broad category for the cuisine that originated from the heartland of the Known World - namely, modern dae Grenzelhoft. It is hearty and delicious, full of breads, pies, sausage. Though seafood are eaten, it is not as prominent and does not feature in its dishes list. Ale and Beer are the main source of drinks, with occasional spirits added in. Famous dishes includes the Grenzelbun, Squire's Delight, Nitzel and Schnitzel."
 
 /datum/book_entry/cuisine/south_imperial
 	name = "South Imperial"
@@ -183,7 +183,7 @@
 	name = "Otavais"
 	book_priority = 5
 	cuisine_flag = CUISINE_OTAVAIS
-	blurb = "Otava and its predecessor were never under the yoke of the Celestial Empire, and were boosted with a bountiful coastline and diverse climate. So their cuisine has a little bit of everything, and is known for its richness. A bit of signature pies, a bit of signature bread, cheesecake (though not honeycake, viewed as too decadent and Ranesheni), fruit cakes, and some but not all good seafood."
+	blurb = "Otava and its predecessor states, centrally located to trade as the Grenz, were boosted with a bountiful coastline and diverse climate. So their cuisine has a little bit of everything, and is known for its richness. A bit of signature pies, a bit of signature bread, cheesecake (though not honeycake, viewed as too decadent and Zybantine), fruit cakes, and some but not all good seafood."
 
 /datum/book_entry/cuisine/northern
 	name = "Northern"

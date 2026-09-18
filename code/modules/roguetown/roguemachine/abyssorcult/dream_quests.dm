@@ -36,7 +36,7 @@
 
 /datum/vision_quest/wounded_tennite
 	name = "Wounded Pilgrim"
-	description = "A faithful tennite limps. Abyssor's waters will close their wounds."
+	description = "A faithful acolyte of the Lune limps. Abyssor's waters will close their wounds."
 	required_tier = 1
 	possible_rewards = list(
 		/obj/item/dream_material/dream_spike = "effervescent spikes",
@@ -49,10 +49,10 @@
 		/obj/item/dream_material/dream_ring = "gleaming rings",
 		/obj/item/dream_material/dream_seed = "dream seeds"
 	)
-	target_description = "a Tennite"
+	target_description = "a Lunist"
 	summary = "A wounded lamb whom may require your aid."
 	vision_text = "The mists part to reveal a trail of blood. Crimson droplets staining the stone like a rosary of suffering. \
-	You follow it to its source. A Tennite pilgrim, collapsed against a weathered shrine too damaged to identify. Their leg is savaged, \
+	You follow it to its source. A pilgrim to the Moon, collapsed against a weathered shrine too damaged to identify. Their leg is savaged, \
 	the flesh torn by something with claws like fishhooks. They clutch a rusted icon of the Gods, whispering prayers \
 	between ragged breaths. Their eyes, clouded with pain, search the fog for salvation or death. \
 	\n\nAs you approach, the vision shifts. You stand at the edge of an endless sea, black and restless beneath a moonless sky. \
@@ -217,7 +217,7 @@
 	Hearts racing, eyes gazing. Everyone sees us, and we see them. \
 	The town elder is there to congratulate us. \
 	Oh, wait, the court magician is there too. \
-	Even the guildmaster, the steward, no, the very duke is here! \
+	Even the guildmaster, the steward, no, the count themselves are here! \
 	There's no one like us, no one dances so gracefully. With such... mesmerizing fervor! \
 	Even the very history recorded upon the ancient tomes will be just us. \
 	Just us dancing. Showing Psydonia, showing everyone how it's done. \
@@ -296,7 +296,7 @@
 	possible_phrases = list(
 		"the work of the gods surrounds us",
 		"doubt is the root of evil",
-		"the ten shaped these lands"
+		"the gods shaped these lands"
 	)
 
 /datum/vision_quest/wandering_doubter/is_valid_target(mob/living/carbon/human/target, mob/living/carbon/human/seeker)

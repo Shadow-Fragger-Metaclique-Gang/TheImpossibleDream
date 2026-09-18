@@ -1387,7 +1387,7 @@
 // Standard of the keep.
 // Big ol' flag that they keep to give bonuses, used by the manorguard standard bearer.
 /obj/item/rogueweapon/spear/keep_standard
-	name = "ducal standard"
+	name = "count's banner"
 	desc = "The local lord's banner, fashioned to a blacksteel pike and turned into a deadly instrument of war. \
 	The man who wields this is said to bring great fortune to his house, and those who keep him safe. \
 	<small>Runes glow near the head of the pike. A sure sign of the arcyne.</small>"

@@ -19,12 +19,14 @@
 	new_ruler_title_f = "Archmagos"
 	new_realm_type = "Magocracy"
 	new_realm_type_short = "Magocracy"
-	roundend_epilogue = "For the first time in centuries, " + \
+	roundend_epilogue = "As in Azuria, as across Naledi, here, before the Scar, " + \
 		"an Archmagos rules openly without the assent of Astrata or the pretensions of wealth. " + \
-		"They say their rule is enlightened, but foreign rulers only see the vestige of the Celestial Empire. " + \
-		"Hubris, heresy. " + \
+		"They say their rule is enlightened. " + \
+		"They say that their learned techniques shall bring forth greater marvels of witch-engineering than ever before: that Pharos will be a herald of learning, modernity, and the era-to-come. " + \
+		"It is even claimed, joyously, that their thaumaturgic mastery shall discover even deeper secrets about the Scar and its state." + \
+		"Can it be so? Could a Scar be wielded truly, or will they wound too deep - and render a hideous stain upon the realm?" + \
 		"Will the rule of mages bring about a new golden age, " + \
-		"or will it be a brief, shining moment before the realm burns in arcane fire?"
+		"or will it be a brief, shining moment before the realm burns in impossible flame?"
 
 /// Any mage with arcyne training can invoke — no noble blood required.
 /datum/usurpation_rite/lunar_ascension/can_invoke(mob/living/carbon/human/user)

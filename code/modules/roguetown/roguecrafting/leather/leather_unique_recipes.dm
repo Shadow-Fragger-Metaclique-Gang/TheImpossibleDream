@@ -13,7 +13,7 @@
 	craftdiff = 3
 
 /datum/crafting_recipe/roguetown/leather/unique/baggyleatherpants
-	name = "pontifex's chaqchur"
+	name = "medjai's chaqchur"
 	display_category = ITEM_CAT_ARMOR_LEGS
 	result = list(/obj/item/clothing/under/roguetown/trou/leather/pontifex)
 	reqs = list(/obj/item/natural/cloth = 1,
@@ -107,7 +107,7 @@
 	craftdiff = 6
 
 /datum/crafting_recipe/roguetown/leather/unique/monkleather
-	name = "pontifex's kaftan"
+	name = "medjai's kaftan"
 	result = list(/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/pontifex)
 	reqs = list(/obj/item/natural/hide/cured = 4,
 				/obj/item/natural/cloth = 1,

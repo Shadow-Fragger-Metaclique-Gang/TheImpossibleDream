@@ -190,7 +190,7 @@
 	droning_sound_dusk = null
 	droning_sound_night = null
 	droning_sound_dawn = 'sound/music/area/churchdawn.ogg'
-	deathsight_message = "a hallowed place, sworn to the Ten"
+	deathsight_message = "a hallowed place, sworn to the Gods"
 
 /area/rogue/indoors/town/church/chapel
 	icon_state = "chapel"

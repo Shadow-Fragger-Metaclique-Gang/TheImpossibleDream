@@ -734,7 +734,7 @@
 
 /atom/movable/screen/alert/status_effect/debuff/excomm
 	name = "Excommunicated!"
-	desc = "The Ten have forsaken me!"
+	desc = "The Gods have forsaken me!"
 	icon_state = "excommunication"
 
 /datum/status_effect/debuff/apostasy

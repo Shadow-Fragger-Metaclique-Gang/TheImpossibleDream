@@ -49,12 +49,12 @@
 
 /obj/item/clothing/suit/roguetown/shirt/robe/unholy/lich
 	name = "ominous robes"
-	desc = "An otherworldly veil, whispering a hundred paradoxical answers to the ultimate question. Her hand guides your grandest missive; to bring forth progress, no matter the cost."
+	desc = "An otherworldly veil, whispering a hundred paradoxical answers to the ultimate question. Her hand guides your grandest missive; to become as Gods, to break this flawed world, to make yours greater - no matter the cost."
 	max_integrity = ARMOR_INT_CHEST_PLATE_ANTAG
 
 /obj/item/clothing/suit/roguetown/shirt/robe/unholy/enchanted
 	name = "ominously enchanted robes"
-	desc = "An otherworldly veil, amythortz-woven and crackling with the constant ponderance of a runic enigma. Her hand guides your grandest missive; to bring forth progress, no matter the cost."
+	desc = "An otherworldly veil, amythortz-woven and crackling with the constant ponderance of a runic enigma. Her hand guides your grandest missive; to become as Gods, to break this flawed world, to make yours greater - no matter the cost."
 	armor = ARMOR_LEATHER
 	allowed_race = ALL_RACES_TYPES
 	item_state = "ewarlock"
@@ -424,7 +424,7 @@
 	loadoutize()
 
 /obj/item/clothing/suit/roguetown/shirt/robe/pointfex
-	name = "pontifex's qaba"
+	name = "medjai's qaba"
 	desc = "A slimmed down, tighter fitting robe made of fine silks and fabrics. Somehow you feel more mobile in it than in the nude. Despite the light fabric, it offers decent protection."
 	armor = ARMOR_PADDED
 	icon_state = "monkcloth"
@@ -451,7 +451,7 @@
 		add_overlay(pic)
 
 /obj/item/clothing/suit/roguetown/shirt/robe/pointfex/loadout
-	name = "aesthetic pontifex's qaba"
+	name = "aesthetic medjai's qaba"
 
 /obj/item/clothing/suit/roguetown/shirt/robe/pointfex/loadout/Initialize(mapload)
 	. = ..()

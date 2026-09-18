@@ -151,7 +151,7 @@
 /obj/item/rogueweapon/sword/zizo
 	name = "avantyne arming sword"
 	desc = "The cardinal sin, coalesced into a crystalline crucifix. In Her name, your will shall be projected unto the worshippers of lesser gods; and by your \
-	hand, they shall bend the knee to progress."
+	hand, they shall bend the knee to their Anathema."
 	icon_state = "zizoarming"
 	sheathe_icon = "zizoarming"
 	force = 25
@@ -405,7 +405,7 @@
 	max_integrity = 180
 
 /obj/item/rogueweapon/sword/long/undivided
-	name = "decablade"
+	name = "pentablade"
 	desc = "A blessed longsword, held by the warriors of the Temple in their stalwart defense against evil. The golden crossguard bears the winged motif of an Aasimari, and \
 	psalms from the Pantheon's holy tome have been meticulously carved along the blade's edge. </br>'With a drop of holy Eclipsum, doth the blade rise..' </br>'..gilded, \
 	gleaming, radiant heat, warm my soul, immolate my enemies..' </br>'..and let me vanquish all those who would dare to Divide us, once more.'"
@@ -417,7 +417,7 @@
 
 /obj/item/rogueweapon/sword/long/ravox_spirit
 	name = "\"Adjudicator\""
-	desc = "A blessed longsword of Ravox, held by the devout crusaders in service to the Divine Ten against the encroaching darkness. The crossguard \
+	desc = "A blessed longsword of Ravox, held by the devout crusaders in service to the Divine Wills against the encroaching darkness. The crossguard \
 	bears motif of the Justicar, and psalms from the Pantheon's holy tome have been meticulously carved along the blade's edge. </br>'...And upon the \
 	Lands came the DIVINE. In PSYDON's absence, so came the TRUE GODS from their rest. So were THEIR gifts spread across the breadth of the \
 	world.' </br>'...It was the Justicar's hand that stayed the blade, for He objected to the execution, and demanded that Justice overcome where \
@@ -530,7 +530,7 @@
 
 /obj/item/rogueweapon/sword/long/avantyne
 	name = "avantyne-threaded longsword"
-	desc = "A parasitic mandate to progress, born through the cultivation of crystalline metastasis. This otherworldly blade is stronger and sharper than any \
+	desc = "A blade weaved from the manchmal, born through the cultivation of crystalline metastasis. This otherworldly blade is stronger and sharper than any \
 	mortal-made masterwork, yet comes at a cost that has yet to be realized."
 	icon_state = "zizolongsword"
 	sheathe_icon = "zizolongsword"
@@ -1167,7 +1167,7 @@
 
 /obj/item/rogueweapon/sword/short/gladius/agladius
 	name = "decrepit gladius"
-	desc = "A hefty shortsword, wrought from frayed bronze. Once, the sidearm of a proud legionnaire; now, a consequence of progress and sacrifice."
+	desc = "A hefty shortsword, wrought from frayed bronze. Once, the sidearm of a proud legionnaire; now, stained by the tears of the Winnowing."
 	force = 18
 	max_integrity = 150
 	icon_state = "agladius"

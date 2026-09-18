@@ -1451,7 +1451,7 @@
 
 /obj/item/clothing/cloak/half/shadowcloak
 	name = "stalker cloak"
-	desc = "A heavy leather cloak held together by a gilded pin, depicting the Grand Duke's house. The sign of a faithful servant."
+	desc = "A heavy leather cloak held together by a gilded pin, depicting the Count's court. The sign of a faithful servant."
 	icon_state = "shadowcloak"
 	color = null
 

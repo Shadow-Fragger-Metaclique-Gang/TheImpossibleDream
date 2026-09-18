@@ -1,7 +1,11 @@
 /datum/patron/inhumen/baotha
 	name = "Baotha"
-	domain = "Goddess of Comfort, Passion, Addiction, and Heartbreak"
-	desc = "Belladoth was the Eleventh of the Pantheon, In taboo rituo, she took on the pain of the uncomforted and outcast, those that had been rejected by her siblings; and together, their pain became Baotha. A saccharine truth that the hurts of the world need not be shouldered alone, no matter who you are. She offers succor to those that cannot find it elsewhere. Baothans range from the Heartbroken and Damaged to those that have simply turned to Nihilism in the face of the death of Psydonia."
+	domain = "Goddess of Comfort, Passion, Addiction, Adoration"
+	desc = "Baotha, The Sutra, the Ur-Weaver, l’Opus-Opia, is the progenitor of pleasure and delights most primal. It is Her voice and curves that call you deeper into desire; Her hands that lift and twist the soul through imbibements abound. And, in overdose of intoxicants – when one’s own heart arrests in its rhythm, it is Her numbing, pleasurable hold that envelops their every sense– and maximizes it, in death. \n \n\
+	She, He, It, or They - the title is fluid and ever-flowing, always acclimating to the faithful’s personal perspective - has grown outwards: expanding with desire and the libido of the Living– the drive to exist; to persist; to celebrate and cherish every facet of Life in its virtues and vices. Her providence is one of Divine, all-encompassing empathy– the pleasures, joys, and agonies of the mortal are shared, ultimately. \n \n\
+	To hold love for Baotha is to hold an intoxicant love for life – an addiction, ruinous in its strength. Every experience, adored or atrocious, must be savored; for the Sutra has, have, and will do the same. It is to be comforted in Her many, many hands; enveloped within them as She, through Life, presents pleasures, pains, and experiences untold. \n \n\
+	<i>We are beautiful. We are Loved. We are one. Please, please, please- won’t you join us?</i> \n \n\
+	She is the Bearer of the Word: Unity."
 	worshippers = "The Anguished, the Hollow, the Heartbroken, the Addicted"
 	mob_traits = list(TRAIT_DEPRAVED, TRAIT_CICERONE)
 	miracles = list(/datum/action/cooldown/spell/touch/orison						= CLERIC_ORI,
@@ -28,7 +32,9 @@
 	crafting_recipes = list(/datum/crafting_recipe/roguetown/structure/baotha_cross_stone, /datum/crafting_recipe/roguetown/structure/baotha_cross_meat)
 
 	titles = list(
-		"Lady of Heartbreak",
+		"L'Opus-Opia",
+		"Sutra",
+		"Ur-Weaver",
 		"Scarlet Lady",
 		"Baosumi",
 		"Thorns", // Queen of thorns, Lady of thorns, etc etc.

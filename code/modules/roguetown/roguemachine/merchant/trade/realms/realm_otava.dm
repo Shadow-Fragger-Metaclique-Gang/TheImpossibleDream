@@ -121,7 +121,7 @@
 	hail_lines = list(
 		"Salutations, factor. Saint-Astrata watch over honest weights, Sainte-Necra over dishonest ones - I leave the choice to you.",
 		"Notre Dieu qui es aux cieux - sauvez-les, s'il vous plaitez. The crossing was kind, the wind devout, and the chaplain less seasick than usual. Ayat.",
-		"In the name of the Ten, by writ of the High Council at Esperance-Capitale, I come to barter. My wine is from the País-Occitanie - do not insult it with a low offer.",
+		"In the name of the Fragments, in the name of the Father, by writ of the High Council at Esperance-Capitale, I come to barter. My wine is from the País-Occitanie - do not insult it with a low offer.",
 		"I am no pirate, monsieur. I have papers, a chaplain, and a spouse in Verquent - that last being the most expensive of the three.",
 		"Cheese from Falaises-Rouges, wines from Val-du-Lac, smoked fish from Vallouise-sur-Mer. The Accords entitles me to fair price on all three. Pay accordingly.",
 		"Bring out your iron and your hides. My hold has room and my purse has coin, and the tide does not wait on civility.",

@@ -19,10 +19,10 @@
 	var/list/assenters
 	var/phase_timer_id
 	var/started_at = 0
-	var/new_ruler_title = "Grand Duke"
-	var/new_ruler_title_f = "Grand Duchess"
-	var/new_realm_type = "Grand Duchy"
-	var/new_realm_type_short = "Duchy"
+	var/new_ruler_title = "Count"
+	var/new_ruler_title_f = "Countess"
+	var/new_realm_type = "County"
+	var/new_realm_type_short = "County"
 	var/mob/living/carbon/human/contester
 	var/contester_timer_id
 	var/contest_time_remaining = 0

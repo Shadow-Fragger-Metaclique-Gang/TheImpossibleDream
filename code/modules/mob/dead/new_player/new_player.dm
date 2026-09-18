@@ -235,7 +235,7 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 /mob/dead/new_player/verb/do_rp_prompt()
 	set name = "Lore Primer"
 	set category = "IC.Memory"
-	var/datum/browser/popup = new(src, "Primer", "HEARTBREAK", 460, 550)
+	var/datum/browser/popup = new(src, "Primer", "HEARTBREAK", 700, 800)
 	popup.set_content(build_lore_primer_content())
 	popup.open()
 
@@ -541,7 +541,7 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 			var/cat_name = ""
 			switch (SSjob.name_occupations[category[1]].department_flag)
 				if (NOBLEMEN)
-					cat_name = "Ducal Family"
+					cat_name = "Noble Family"
 				if (COURTIERS)
 					cat_name = "Courtiers"
 				if (RETINUE)

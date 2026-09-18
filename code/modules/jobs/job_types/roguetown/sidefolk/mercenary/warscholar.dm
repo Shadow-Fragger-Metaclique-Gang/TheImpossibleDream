@@ -84,9 +84,9 @@
 
 
 /datum/advclass/mercenary/warscholar_pontifex
-	name = "Naledi Pontifex"
+	name = "Naledi Medjai"
 	age_mod = /datum/class_age_mod/pontifex
-	tutorial = "A Naledi Pontifex, trained in the discipline of Automagic - enhancement of one's own body through Arcyne Magick. \
+	tutorial = "A Naledi Medjai, trained in the discipline of Automagic - enhancement of one's own body through Arcyne Magick. \
 		Your fists and your will are the one thing that cannot be deprived from you, handy tools when your homeland is rife with treacherous djinns and humens alike. \
 		Where your fists fall short, your wits prevail. Where your magyck falters, your fists answer. \
 		And when both are found wanting, the Naledian art of blade conjuration will lend you a Katar to cut demons and humens alike to ribbons."

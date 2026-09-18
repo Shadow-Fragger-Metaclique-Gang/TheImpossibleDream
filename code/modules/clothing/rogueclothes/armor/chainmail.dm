@@ -181,7 +181,7 @@
 /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/heavy
 	name = "plate-and-maille"
 	desc = "A maille-aketon of steel, comfortably fitted beneath a matching cuirass. Best paired with a padded arming jacket \
-	and a lovely goblet of wine, sourced straight from the Duke's private reserves."
+	and a lovely goblet of wine, sourced straight from the Count's private reserves."
 	slot_flags = ITEM_SLOT_ARMOR
 	icon_state = "cuirasshauberk"
 	item_state = "cuirasshauberk"

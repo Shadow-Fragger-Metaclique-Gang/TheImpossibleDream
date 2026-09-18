@@ -68,7 +68,7 @@
 
 /obj/structure/fluff/psycross/necra
 	name = "necran cross"
-	desc = "Not all of the ten bear crosses, but as they oft mark the grave, so do Necrans raise these in honor of the dead. The undermaiden watches."
+	desc = "Not all of the faithful carry the wheel, but as they oft mark the grave, so do Necrans raise these in honor of the dead. The undermaiden watches."
 	icon_state = "cross_necra"
 	icon = 'icons/roguetown/misc/tallstructure.dmi'
 	max_integrity = 300

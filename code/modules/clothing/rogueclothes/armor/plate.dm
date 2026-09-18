@@ -146,7 +146,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/paalloy
 	name = "ancient half-plate"
-	desc = "Polished gilbronze layers, artificed into plate armor. Let none impede the march of progress, and let Her champions bring \
+	desc = "Polished gilbronze layers, artificed into plate armor. Let none impede the march of the deathrisen, and let Her champions bring \
 	the unenlightened masses to kneel."
 	icon_state = "ancientplate"
 	item_state = "ancientplate"
@@ -805,7 +805,7 @@
 	name = "templar's cuirass"
 	desc = "A blessed steel cuirass, fitted with tassets for additional coverage. Noc's holy silver, and Astratan gold are woven into the fluting. \
 			When the world was ending, and hunger of the nite ravenous, Templars one and all remember the radiance of the blessed metals, \
-			and the warmth of home. Then and forever, the Ten have not forgotten their faithful."
+			and the warmth of home. Then and forever, the Gods have not forgotten their faithful."
 	icon_state = "seecuirass"
 	item_state = "seecuirass"
 
@@ -877,7 +877,7 @@
 	slot_flags = ITEM_SLOT_ARMOR
 	name = "templar's half-plate"
 	desc = "Noc's holy silver, one fifth. Steel, three fifths. Chosen Material, one fifth. The armor of the Templar, protector and \
-	warrior of the Ten's Faithful."
+	warrior of the Godly Faithful."
 	body_parts_covered = COVERAGE_TORSO
 	icon_state = "silverhalfplate"
 	item_state = "silverhalfplate"
@@ -1066,5 +1066,5 @@
 	name = "decorated plate armor"
 	icon_state = "gildedplate"
 	smeltresult = /obj/item/ingot/gold
-	desc = "An ornate set of steel plate armor, decorated with golden fluting. For when you need to do something with all of that precious, precious wealth gathering dust in a fief's ducal treasury."
+	desc = "An ornate set of steel plate armor, decorated with golden fluting. For when you need to do something with all of that precious, precious wealth gathering dust in a fief's treasury."
 	smelt_bar_num = 1

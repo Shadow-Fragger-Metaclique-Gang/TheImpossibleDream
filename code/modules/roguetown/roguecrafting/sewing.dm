@@ -2240,7 +2240,7 @@
 	craftdiff = 4
 
 /datum/crafting_recipe/roguetown/sewing/tailor/monkrobe
-	name = "pontifex's qaba"
+	name = "medjai's qaba"
 	category = "Robes"
 	result = list(/obj/item/clothing/suit/roguetown/shirt/robe/pointfex)
 	reqs = list(/obj/item/natural/cloth = 6,

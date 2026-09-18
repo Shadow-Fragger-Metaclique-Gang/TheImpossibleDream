@@ -1,5 +1,6 @@
+<div style="text-align:center">
 <p><strong><em><span style="font-size:115%"> Welcome to Heartbreak! </span></em></strong></p>
-<p> This lore primer serves as an introduction to the setting of the Impossible Dream writ large.
+<br><p> This lore primer serves as an introduction to the setting of the Impossible Dream writ large.
 <br>
 As always, note that this lore primer shouldn't be treated as gospel. Don't stress too much about trying to "get it all right" - it's far more fun to spark conflict through contradiction, and to explore the many unique interpretations that characters can have.
 <br>
@@ -7,7 +8,7 @@ Only the broadest strokes have been applied onto this canvas. There's plenty of 
 <br>
 Don't be afraid to check out Azure Peak's Wiki - https://azurepeak.miraheze.org/ - for more information regarding their lore, mechanics, and more.</p>
 
-<details>
+<details style="max-width:800px; margin:0 auto;">
 	<summary><strong><span style="font-size:130%"> THE DREAM, IMPOSSIBLE </span></strong></summary>
 <br>
 <strong><span style="font-size:120%"><b>OUR WORLD WAS SHATTERED.</b></span></strong>
@@ -72,145 +73,158 @@ Here, in the Pharos, what is impossible becomes possible.
 <br><br>
 <i>Make it so, my dreamers.</i>
 </details>
-<br><br>
-</details>
-
 
 <p><strong><em><span style="font-size:115%"> ... </span></em></strong></p>
 
-
-<details>
+<details style="max-width:800px; margin:0 auto;">
 	<summary><strong><span style="font-size:130%"> MYTHOS OF PSYDONIA </span></strong></summary>
 
 	<strong><span style="font-size:115%"> OVERVIEW OF THE DIVINE </span></strong>
 	<br><br>
-	<details>
+	<details style="max-width:800px; margin:0 auto;">
 		<summary><strong> THE FATHER </strong></summary>
 		<br>
 		<span style="display:block; color:#007fff; font-size:115%"> "..." </span>
 		<br>
-		Psydon is worshipped as the creator of ontological reality, and the only true force of goodness that Psydonia ever knew. It was He who gifted man-and-mer with not only existence, but the capacity to emote like Him. When the Archdevil tore open reality and threatened to destroy Psydonia, it was Him who undertook the ultimate sacrifice to save the world He had come to love.
-<br><br>
-Nowadays, most believe that Psydon is gone: yet, an ardent minority continues to remain loyal in the hopes that He may yet return to save His world once more. His children might be bereft of miracles and answers, but they continue to endure - even at the end of the world.
-<br><br>
-		Psydonic worshippers are in the minority, and are generally ostracized by most kingdoms. The Orthodoxy teaches the most widespread form of Psydonic worship, though there are countless other forms practiced throughout the world.
-<br><br>
-Pharos, like many courts across the Midderland and Southerland currently houses a cohort of the His Majesty's Holy Inquisition, a tradition adopted from Otavais courts, and appeasing the Psydonian section of the populace. In addition, Pharos - due to its proximity to a Scar - is considered a 'holy site' by many across the world. Such has made it common for pilgrims throughout all of Psydonia to visit the coastal Court, in the hopes that their fortunes may turn by way of What-Might-Be.
+		Psydon is worshipped as the creator of reality - of that which IS, and the only true force of goodness that Psydonia ever knew. It was He who gifted man-and-mer-and-beast with not only existence, but the capacity to express and enact like Him. When the Ascendant and Anathema united and threatened to destroy Psydonia, it was Him who undertook the ultimate sacrifice to save the world He had come to love.
+		<br><br>
+		Nowadays, many believe that Psydon is gone: yet, an ardent populace continues to remain loyal in the hopes that He may yet return to save His world once more. His children might be bereft of miracles and answers, but they continue to endure. They continue to suffer. They continue to burn.
+		<br><br>
+		Though once the minority by far - not even two hundred years ago - the Psydonic populations of the world have swelled. Conversions, by the end of both a pen and a sword - have given rise to countless cults, courts, and denominations across the Known World. As the Pantheon's power wanes - especially in the wake of the Deceus - the Cross may yet match the Wheel.
+		<br><br>
+		Three major branches of the Faith now exist across the world. There exists the Orthodoxy, of course - well known by all as the faith of majority within Otava and Naledi. Twisting off, like the prongs of the Cross, come the schools of the Body and the Soul - ag Cruucis and ag Igniculus.
+		<br><br>
+		Whereas the Orthodox maintains outwardly stable relations with the Temple, these reformists discard it doctrinally, and have often clashed - bloodily - upon and against the Pantheonic faithful. Deceptively popular among the lower classes, these faiths have begun to threaten the balance of this world. This is by intent. Their preachers claim that Psydon is returning. Psydon is healing. They claim that his faithful have even begun to manifest miracles of their own.
+		<br><br>
+		Pharos, like many courts across the Midderland and Southerland, currently houses a cohort of the His Majesty's Holy Inquisition, a tradition adopted from Otavais. They, while directly agents of the King, serve to appease and preach to the Psydonian section of the populace. In addition, Pharos - due to its proximity to a Scar - is considered a 'holy site' by many across the world. Stains and Scars are wounds to the Body of God, after all.
 		<br>
 	</details>
 
-	<details>
+	<details style="max-width:800px; margin:0 auto;">
 		<summary><strong> THE PANTHEON </strong></summary>
 		<br>
 		<span style="display:block; color:#ffd700; font-size:115%"> "WITH ORDER, WE REIGN; AND WITH FAITH, WE PROSPER." </span>
 		<br>
-		The Pantheon are the successors to Psydon: five deities who have taken up the mantle of guiding His children along. After the Comet Syon had seemingly destroyed both Psydon and the Archdevil, the ruined world's survivors wept for guidence.
-<br><br>
-Though most of His angels had left Psydonia in search of answers only woven into the stars, there remained a cohort of ten who - whether through guilt or newfound purpose - remained behind to pick up the pieces. Adopting more heavenly forms to ensure His children would not be afraid, Astrata and Her nine siblings finally descended from the reignited skies to answer their prayers: and from there, the rest was history.
+		The Shattering had seemingly destroyed Psydon. Only the Demiurge, ZIZO, remained. As IT attempted to bring ruination upon those left untouched, this shattered world's survivors wept for guidance. They called for God to save them. The Gods answered, in turn.
 		<br><br>
-		Pantheonic worshippers are in the majority, and have remained as such for over a millenium's time. Almost every kingdom in Psydonia houses a church that preaches the Pantheon's teachings, taken directly from the Holy See's tomes.
-<br><br>
-Azuria is no different, with its duchal patrons being Astrata, Dendor, and Abyssor. While Astrata is traditionally worshipped as the Pantheon's supreme deity, the Holy See oft-emphasizes that all ten deities should be given equal reverance. Hence, it isn't uncommon to see an Astratan praying to Ravox for courage in the midst of battle, nor to witness a Malumite cursing out Dendor for overmuddying a carriage's intended pathway.
+		The Pantheon are the successors to Psydon: five deities who have taken up the mantle of guiding and shaping His wayward children.
+		<br><br>
+		Pantheonic worshippers are in the majority, and have remained as such for over a millenium's time. Almost every kingdom in Psydonia houses a temple that preaches the Pantheon's teachings, taken directly from the old Imperate's tomes. They, organizationally, have formed the bedrock of society for nearly two thousand years - for their miracles are manifest, their Gods directly act, and Divine might cannot be denied.
+		<br><br>
+		Pharos has been struck by this internal division. While the majority of the Kingdom's people remain steadfastly pantheonic,  While Astrata is traditionally worshipped as the Pantheon's supreme deity, the Pentacle's teachings oft-emphasizes that all five should be given equal reverance. Hence, it isn't uncommon to see an Astratan praying to Ravox for courage in the midst of battle, nor to witness a Malumite cursing out Dendor for overmuddying a carriage's intended pathway.
 		<br>
 	</details>
 
-	<details>
-		<summary><strong> THE ASCENDANTS </strong></summary>
+	<details style="max-width:800px; margin:0 auto;">
+		<summary><strong> THE ASCENDANT </strong></summary>
 		<br>
-		<span style="display:block; color:#800080; font-size:115%"> "WHAT IS A GOD, IF NOT A MAN WHO HAS RECOGNIZED THE FOLLY OF MORTALITY?" </span>
+		<b><i><span style="display:block; color:#222b35; font-size:115%"> "Divinity can be devoured and made one’s own." </span>
+		<span style="display:block; color:#643619; font-size:115%"> "The Divines can be usurped; upended; excised." </span>
+		<span style="display:block; color:#3F263F; font-size:115%"> "Through unity, the Mortal can become Divine." </span></b></i>
 		<br>
-		The Ascendants are the youngest of all deities, and - as alleged by its worshippers - the true heirs to Psydon's mantle. Unlike the Pantheon, these four deities were never divine to begin with: instead, they were mortals who had managed to achieve godhood through mythical exploits.
-<br><br>
-Zizo offers progress, Baotha offers bliss, Graggar offers freedom, and Matthios offers wealth - yet, their worshippers seldom know the price that must be paid to obtain such luxuries. While the Holy See has desperately tried to cover up the truth being the Ascendants, a recent schism has led to many of His children embracing the concept of apotheosis.
+		The Ascendants are among the oldest of all Wills - and those born from the implicit, implacable facets of life shared by all mortality. They had existed in the times of PSYDON - or before, perhaps - and have lingered across the boundaries of the civilized for millenia. It is not hard to see how their beliefs have persisted throughout the eras: their powers are manifest multiplicitous than that of the Pantheon, living.
 		<br><br>
-		Ascendant worshippers vary from region-to-region. Most inner kingdoms revile the concept of Ascendanism, and - thanks to its demonization by the Holy See - oft-hunt down those who openly praise the four-who-ascended.
-<br><br>
-The outermost kingdoms are much different, however: Gronn, Fjall, Raneshen, and Lirvas happen to welcome the Ascendants, albeit in forms that might be considered 'esoteric' and 'unusual' by more-recent convertees. Owing to the individualistic nature of Ascendanism, most worshippers - save for those who've completely embraced the concept of 'obtaining godhood' - tend to secularly worship one deity in particular.
-		<br>
+		Baotha cherishes bliss, Graggar demands domination, and Matthios declares freedom: come what may to those that counter you along the way.
+		<br><br>
+		Ascendant worshippers vary from region-to-region. Most every kingdom across South, West, North or East will violently revile the Anathemae, as they are called by both Temple and Church. It is for good reason - in the wake of the Winnowing, and rampage of the Demiurge after, their atrocities were well known: the sky clotted black, the sarcomantic Loved all-consuming, and the gilt Saints striking deep. It was a period of despair, anarchy, and very nearly destroyed the world itself.
+		<br><br>
+		The outermost kingdoms are much different, however: across Gronn and the Fjall, worship is normalized and expected. Certain isolated states, like Lirvas or upon Marina, happen to welcome the Ascendants- as they do anyone else. Owing to the individualistic nature of the practice, most worshippers - save for those who've completely embraced the concept of 'obtaining godhood' - tend to secularly worship one deity in particular.
+		<br><br>
+		The name 'Ascendant' is an endonym - taken after the fact that, across the Known World, the miracles of the Ascendant, when ritualistically cultivated, are far more present and dangerous than that of the other Divine Wills.
+		<br><br>
+		They need no place of power or Scar to bend reality in their favor. Neither does...
 	</details>
-
-	<details>
-		<summary><strong> THE ARCHDEVIL </strong></summary>
+	<br>
+		<details style="max-width:800px; margin:0 auto;">
+		<summary><strong> THE DEMIURGE </strong></summary>
 		<br>
-		<span style="display:block; color:#ff0000; font-size:115%"> "FROM THE ASHES, WE ROSE! AND TO THE ASHES, WE WILL ALL RETURN!" </span>
+		<span style="display:block; color:#800080; font-size:115%"><b><i>"Zaios Dei."</b></i></span>
 		<br>
-		Vheslyn. The primordial essence, the manifestation of ontological evil, and - for the longest time - the lone inhabitant of ur-existence. Psydon had created reality within the void: an act of unforeseen interlopage that drove Vheslyn into a blithering rage.
 <br><br>
-It was Vheslyn who introduced sin into the hearts of His children, who formed an army of darkness to march upon Psydonia, and created Hell to forever-torment those who were slain in the ensuing rampage. Before His world could be destroyed, however, Psydon undertook the ultimate sacrifice to stop Vheslyn's rampage: a final blow that sundered both body-and-spirit. In the Comet Syon's explosion, both had vanished.
 		<br><br>
-		Yet, Vheslyn's influence did not fully leave Psydonia. The few devils who had survived the Comet Syon's impact, now left powerless and tethered to Psydonia, would eventually learn to embrace goodness: and by communing with His children, the first Tieflings would be made.
 <br><br>
-More recently, unsettling rumors have arose of an ancient cult, nestled deep within the Fjallic wastes - one that seeks to resurrect Vheslyn, in order to finally destroy Psydonia and return everything to nothingness. Most believe such rumors to be nothing more than that: a rumor. Even so, one must wonder why Psydonia's northern skies have taken on such vivid auroras, lately.
 		<br>
 	</details>
 	<br><br>
 </details>
 
 
-<details>
+<details style="max-width:800px; margin:0 auto;">
 	<summary><strong><span style="font-size:130%"> TIMELINE OF PSYDONIA </span></strong></summary>
 
 	<strong><span style="font-size:115%"> NOTEWORTHY EVENTS </span></strong>
 	<br><br>
-	<details>
-		<summary><strong> Calamity - -66 PR to -1 PR  </strong></summary>
+	<details style="max-width:800px; margin:0 auto;">
+		<summary><strong> The Age of Miracle - ?? HR to ?? HR  </strong></summary>
 		<br>
-		The Archdevil, a force beyond reality, invades the still-nurtured world of Psydonia. Though shaken by the newfound concepts of sin and murder, Psydon's children nevertheless rally to defend their home. Bronze-armored legionnaires clash against devils and deadites alike, while Psydon struggles to keep His world from falling apart. His angels take up the mantle as the first kings: divine commanders.
+		No-one knows, truly, this era: when it began, or how long it lasted. Only through belief and artifact, passed down through millenia, does anyone recall what PSYDON's Miracle had gift upon the world.
 		<br><br>
-		Psydon's intervention is minimal, due to a terrible ploy enacted by the Archdevil: Vheslyn's entryway - a rift in the worldly filament - sucks in the souls of those slain, condemning them to eternal suffering. Psydon focuses most of His energy to try and seal the rift from growing any larger, leaving Him unable to directly assist His children in battle.
+		Presumably, it was the era of creation - a time in which the Divine Will, alone, had manifested mortality: gifting them pieces of his infinite might. Fables claim it was a period of golden grace - of legend, of heroism, of delight and sublimity beyond compare.
 		<br><br>
-		Within a generation, the Archdevil destroys most of Psydonia. Raging cyclones and thunderstorms blot out the starless skies, as many settlements are swallowed whole by the Archdevil's fatigueless march. The remnants of His children - reduced to the paltry thousands - are evacuated to the highest mountains by His angels, in preparation for their final stand.
+		Psydonic doctrine believes that the One had made himself mortal, seated upon a tower-crowning-throne - the garden paradise of Ur-SYON. Here, alive, he guide and reigned in a state of divine humility honored eternally.
+		<br><br>
+		Life was better. Life was right. We can always go back.
 		<br>
-	</details>
-
-	<details>
-		<summary><strong> Sacrifice - -1 PR  </strong></summary>
-		<br>
-		Psydon, moved by the desperate prayers of His children and angels, weeps. His attention finally turns away from the rift, which - without any force to oppose it - begins to consume the world itself. Vheslyn, personally leading the army of darkness, confronts His children. Before the last of men-and-mer can be culled, however, a blinding light pierces the storm-clouded skies.
-		<br><br>
-		The Archdevil's haughtiness turns into petrification, as the mere presence of Psydon-upon-the-world evaporates every summited devil within a heartbeat. The deities take to the skies, and the ensuing clash is felt throughout all of Psydonia. Though Vheslyn eventually gains the advantage, even It could not foresee Psydon's willingness to save His world.
-		<br><br>
-		Empowered by the hopes and dreams of His children, Psydon channels all of His divine might into a singular missile: the Comet Syon. The impact engulfs both Psydon and Vheslyn in a massive explosion: one that not only destroys the Archdevil's world-consuming rift, but also drowns most of the ruined world. From the mountaintops, His children are left with nothing but deathly silence.
+		<i>Can't we?</i>
 		<br>
 	</details>
 
-	<details>
-		<summary><strong> Providence - 0 AP to 351 AP </strong></summary>
+	<details style="max-width:800px; margin:0 auto;">
+		<summary><strong> The Winnowing - ?? HR  </strong></summary>
 		<br>
-		Though Psydonia was saved, it had come at a grave cost. Both Psydon and Vheslyn had vanished, and most of the world had been rendered uninhabitable by the Calamity. Knowing the importance of discovering Psydon's fate above all else, most of His angels leave Psydonia to begin their search: the starless skies, at last, finally reignite.
+		At the height of Psydonia's prosperity, an archmage - one of the scant snow-elves from beyond the furthest North - comes to a grand, terrible, and ambitious ideal. Defiant of all Law, she gathered an army, unimaginable, against the Progenitus and their people. She manipulated thanergy on scales never before seen - seeking to cease the divide between the living and the dead.
 		<br><br>
-		Shortly afterwards, the Pantheon makes itself known to Psydonia's survivors: Abyssor recedes the floodwaters back into the ocean, Dendor rekindles growth amongst the ruined ecosystems, and Necra shepherds Psydonia's lingering souls to rest. Blinding light envelops the sky, so that Astrata can guide His children down from the mountaintops.
+		Just as she would cross the boundary between Mortal and Divine. At the peak of this crusade - one which rallied the Infernus, and sought to right the endless wrongs against her benighted people - the Winnowing began. In an instant, millions of lives ceased to be: the entirety of her species, sentenced to death. So many more would follow.
 		<br><br>
-		With the Pantheon's nurturing, Psydonia gradually recovers from its nigh-apocalyptic state. Noc shepherds in the gentle night, halving Astrata's burden of reigning over His world - and in the dreams of His children, Noc whispers knowledge for them to seize. Ravox, Eora, Pestra, Malum, and Xylix intermingle with men-and-mer alike, spawning many fables and legends.
+		Within a single night, an entire race had been erased from the face of the planet. The fractured fundament delved a cataclysmic wound to Psydonia itself, causing the very forces of nature to turn on itself. Those, killed in the ensuing chaos, are resurrected as gibbering shamblers - and like a plague, mania spreads throughout the kingdom of Psydon.
 		<br><br>
-		Baotha, Graggar, and Matthios briefly gain widespread traction through their exploits against the divine. In retaliation, the Pantheon attempts to completely damn their presence from the world's memory. This suppression-of-knowledge keeps the innermost kingdoms blissfully unaware for several centuries, up until Zizo's ascension.
-		<br>
-	</details>
-
-	<details>
-		<summary><strong> Enlightenment - 352 AP to ??? AP </strong></summary>
-		<br>
-		Kingdoms arise, with the Holy Celestial Empire - a communion of both Man and God - reigning above them all. The snow-elves, though cursed with infertility, were nevertheless blessed the most with Noc's wisdom. By their hands, many mechanical marvels are developed: some still exist today, such as the SCOM and MEISTERS.
-		<br><br>
-		Gradually, the Pantheon's presence in day-to-day life recedes, so that man-and-mer could continue to grow on their own. Clashes between kingdoms are infrequent, but present: most tend to end with mediation by the Holy Celestial Empire. Beyond that, Psydonia is otherwise uncontested - and for centuries to come, His children live in prosperity.
-		<br><br>
-		At this point, almost all of Psydonia now worships the Pantheon. Unlike today, however, the Psydonic minority isn't ostracized: instead, they're still treated as spiritual equals. The resting place of the Comet Syon is rediscovered, and a lesser kingdom is erected upon its coast: the Grand Duchy of Azure Peak. Azuria becomes a holy site for Psydonic worshippers.
+		Even still- she was not a Divine. Not yet. There remained but one power greater. She would become as God, by killing Him.
 		<br>
 	</details>
 
-	<details>
-		<summary><strong> Sundering - ???, between 923 and 1313 AP </strong></summary>
-		<br>
-		At the height of Psydonia's prosperity, a snow-elven archmage discovers a way to dispel the curse that has led to their race's endangerment. A great machine is constructed, yet its activation results in a cataclysm beyond compare. Explosions ripple throughout Psydonia's leylines, and every single snow-elve simultaneously evaporates into piles of gore and ash.
+	<details style="max-width:800px; margin:0 auto;">
+		<summary><strong> APOTHEOSIS </strong></summary>
+		Chaos.
 		<br><br>
-		Within a single night, an entire race had been erased from the face of the earth. The fractured leylines delved a mortal wound to Psydonia itself, causing the very forces of nature to turn on itself. Those, killed in the ensuing chaos, are resurrected as gibbering deadites - and like a plague, mania spreads throughout the Holy Celestial Empire.
+		Her legions marched. Before the throne, she met PSYDON.
 		<br><br>
-		Under the Psydonic churches, a crusade - ill-informed yet yearning for vengeance - descends upon Celestia, sealing the capital's fate. The Pantheon's own churches, believing the sudden calamity to've been caused by the raiding Psydonians, react with violence. It is only through Astrata's direct intervention that both sides didn't destroy one-another.
+		Thus came -
+	</details>
+
+<strong><span style="font-size:140%">// THE SHATTERING. //</span></strong>
+<br>
+	<details style="max-width:800px; margin:0 auto;">
+		<summary><strong> DEMIURGOS </strong></summary>
+		Reign.
+		<br><br>
+		God became what God was Not, and Not became what God once claimed.
+		<br><br>
+		IT took the name ZIZO.
 		<br>
 	</details>
 
-	<details>
-		<summary><strong> Decay - ??? to 1512 AP </strong></summary>
+	<details style="max-width:800px; margin:0 auto;">
+		<summary><strong> Resurrection - ~126 HR to 1 HR </strong></summary>
+		<br>
+		The Demiurge's reign could not last forever. So many more divinities had been birthed by the Shattering, after all. As Wounds and Stains across the world finally began to scab over and seal, five Divine Wills made themselves manifest across the living.
+		<br><br>
+		In those places still yet withstanding the assault from the Anathema Anatheme, there came five great Gods; manifesting readily, blessing mortality's defenders with miracles anew, and establishing Divine Law and bringing new Order. These Great Gods organized themselves into the Pentacle - a Pantheon, mighty.
+		<br><br>
+		Guided by the Gods, victory after victory was struck against the legions of the dead and ab-dead: Kouncils cast down, towers shattered again - the Demiurge's legions broken by light, might, and tides of brave crusaders. It was, for a time, a period of wonder comparable only to the era before the Shattering.
+		<br>
+	</details>
+
+	<details style="max-width:800px; margin:0 auto;">
+		<summary><strong> Imperator - 1 BR to 734 BR </strong></summary>
+		<br>
+		With victory assured, the Acropoli, within Zybantium, became seat of a great and mighty empire, reaching as far as the eye could see. It was the Eternal Imperate, and its reign - at least, to the Pantheonic - was unquestionable.
+		<br><br>
+		<br><br>
+		<br>
+	</details>
+
+	<details style="max-width:800px; margin:0 auto;">
+		<summary><strong> Decay - ~900 BR to 1332 BR </strong></summary>
 		<br>
 		In the ashes of Celestia, a new deity arose - Zizo. She is followed by Baotha, Graggar, and Matthios, who have now fully resurfaced. Their presence gave way to the birth of Ascendanism, for they gifted His children with a revelation: they were all but mortals, once, who had discovered how to obtain divinity for themselves. A schism forms in the churches, and the Ecclesial is born.
 		<br><br>
@@ -220,160 +234,186 @@ More recently, unsettling rumors have arose of an ancient cult, nestled deep wit
 		<br>
 	</details>
 
-	<details>
-		<summary><strong> That was the Before. Welcome to the Now. It is the year 1643. </strong></summary>
+	<details style="max-width:800px; margin:0 auto;">
+		<summary><strong> The Now - 1643 BR </strong></summary>
+		That was the Before. Welcome to the Now. It is the year 1643.
 		<br>
-		The world is dying, yet it is not like the Calamity or Sundering. It is slow, prolonged, and creeping: like rot upon wood. Starvation and strife aren't the norm, but signs of a struggle have become clear. The wheat is less bountiful, the stars glimmer less in the night sky, and - more concerningly - more villains have crept out to prowl once more.
+		The great weave of the world is coming undone.
 		<br><br>
-		Yet, His children persist. Some might not even know of the world's circumstance: much less so in Azuria, which has since flourished. It's believed that its connection - both physical and spiritual - to the Comet Syon has granted it some clemency from more worldly hardships: a thought that has driven many refugees and pilgrims to its harbors.
+		The Known World finds itself within a time of great upheaval. Nobility finds itself weakened compared to the increasingly learned burgher class. Exemplary pieces of arts, culture, sciences, and witch-technologies explode across the continents; changing the way we live, generation by generation. The Psydonian population grows greater, and chafes sharply against their Pantheonic once-bretheren. Classical institutions of Empire expand explosively - or fragment, as the Imperate did before them.
 		<br><br>
-		Churchbells chime throughout Azuria, christening the start of a new week. Some lament about strange-and-prophetic dreams from the nights prior, though they oft-brush it off as nothing more than that: something spawned from a crumb of spoiled mustard, rather than anything divine. Others simply groan, rise from their cots, and prepare for the labors-to-come.
+		The Temple, at large, finds itself more dissolute than ever. The Pentacle's protection continues to wane, outside their chosen homes; decade by decade, the power of the Divine finds itself less effective. Pair this with the failure of the Deceus Reformation: a failed attempt to assimilate embodied spirits and primal divinities into the Pantheon - and now, more than ever, the Pentacle must adapt, or be rent asunder.
 		<br><br>
-		What about you?
+		The Kingdom, that which lays claim to Pharos, has been subject to every upheaval and instability recent. The King, his Majesty, finds himself inept and burdened by countless debts unpayable- weakening the highest office and opening windows for power to seep through - or be stolen. The Psydonians within the realm's populace sweep wider- part of a Great Resurrection affecting the north strongest.
+		<br><br>
+		Pharos' political enemies - and allies - are not blind: they will attempt to capitalize on the Throne-before-the-Scar, and lay claim to what marvels its Wound can bring them.
+		<br><br>
+		And yet - despite all the turmoil roiling beneath the surface, the temple's bells chime throughout this town, suffused by the Scar, christening the start of a new week. Some lament about strange-and-prophetic dreams from the nights prior, though they oft-brush it off as nothing more than that: something spawned from the wayward wills of the Scar, rather than anything divine. Others simply groan, rise from their cots, and prepare for the labors-to-come.
+		<br><br>
+		For some, it will be the last sunrise they will ever see.
+		<br>
+		For others, it heralds a new, fascinating fold in the story of their lives.
+		<br><br>
+		Here, and every elsewhere across the world, there carry dreams, abundant. They seek to capitalize upon the future, for its course changes every day. These dreamers work to bend or rip or break and destroy the old, and then build something grander. Even when the world splits apart, know that there is no final ruination, never to heal.
+		<br><br>
+		Just as a forest burns, so that new growth may emerge. Just as a city is pillaged, and the survivors build anew. Just as a Scar shatters, and shapes the world enigmatic.
+		<br><br>
+		There is no end.
+		<br>
+		There is only reformation.
+		<br>
+		How will you reweave this fraying world?
 	</details>
 	<br><br>
 </details>
 
 
-<details>
+<details style="max-width:800px; margin:0 auto;">
 	<summary><strong><span style="font-size:130%"> POWERS OF PSYDONIA </span></strong></summary>
 
 	<strong><span style="font-size:115%"> NOTEWORTHY KINGDOMS, FIEFS, AND RUINS </span></strong>
 	<br><br>
-	<details>
-		<summary><strong> AZURIA </strong></summary>
-		<br>
-		<em>The Grand Duchy of Azure Peak</em>
-		<br><br>
-		Azuria is a lesser demense, burrowed halfway into the ancient elvish mountainscapes that stand vigil between the Grenz and Otava. Due to its central location between much of the Midderland, Northerland, and Easterland, Azuria's population - both residential and temporary - happens to be unusually diverse.
-		<br>
-	</details>
-
-	<details>
+	<details style="max-width:800px; margin:0 auto;">
 		<summary><strong> GRENZELHOFT </strong></summary>
 		<br>
-		<em>The Empire, Seat of the Pantheon's Holy See</em>
+		<em>// Heart of the Midderland //</em>
 		<br><br>
-		Grenzelhoft has been around since the dawn of Psydonia, in one form or another, as its strongest kingdom. It is ruled both by an Emperor and, to a more spiritual extent, the Pope of the Holy See. Courtesy of its nigh-limitless might, Grenzelhoft has succeeded at proliferating the Pantheon's worship throughout most of Psydonia: a fact that has fueled the rivalry with its sister-kingdom, Otava, for the past millennium.
-<br><br>
-Beyond its fabulously-dressed mercenaries and preference for bun-cradled sausages, Grenzelhoft is also praised for its hand in creating blacksteel - an alloy of near-mythical repute, coveted by all. Most recently, Grenzelhoft has taken the step to completely dismantle the practice of non-punitive slavery within its territories: a moral victory that had spurred threats of an embargo by Raneshen's slave-trading guilds.
+		Grenzelhoft has been around since the dawn of the Imperate, in one form or another, as its strongest kingdom. One of the first domains to break free from the old Imperate, the Grenz has
+		<br><br>
+		Beyond its fabulously-dressed mercenaries and preference for bun-cradled sausages, Grenzelhoft is also praised for its hand in creating blacksteel - an alloy of near-mythical repute, coveted by all. Within the past eighty years, Grenz witch-engineers have devised a vessel that changed the world - the aerostatic: a ballooned, flying galleon, coasting upon aetherium and arcanum. These ships now decorate the skies of every major city: fleets in abundance possessed by every nation.
+		<br><br>
+		As fantastically wealthy as this craft has made the Empire, all is not well within its border. East, within the lowlands of the Empire - where the VOC, or 'Vangedijk Oosten Compagnie' - have paired with the local nobility in increasingly anti-Imperial discontent. Given the region's wealth, power, and central connection to the Khazen continent, this disloyalty renders the Grenz a powderkeg, threatening to erupt at any moment.
 		<br>
 	</details>
 
-	<details>
+	<details style="max-width:800px; margin:0 auto;">
 		<summary><strong> OTAVA </strong></summary>
 		<br>
-		<em>The Cathedral, Worshippers of the Weeping God</em>
+		<em>// Worshippers of the Weeping God and Wine //</em>
 		<br><br>
 		Otava had broken off from Grenzelhoft, long ago, after the Comet Syon's impact had invoked a schism amongst the faithful. While Grenzelhoft embraced the Pantheon as heirs of Psydon's divine authority, Otava stubbornly clung to the notion that their now-absent God would yet return: and over a millennium later, they still believe it.
-<br><br>
-It is the only kingdom of notable size that still worships Psydon, and - as a theocracy - is solely ruled by the Archbishop of its Orthodoxy. Despite its apostasy, Otava still exports enough value to warrant the begrudging respect of its neighbors: be it through silver, stone, or slayers. The latent paranoia amongst its faithful inhabitants has recently exploded into full-on hysteria, following their witnessing of the 'blue sun' phenomena: a purported sign that Psydon's return is nigh.
-		<br>
-	</details>
-
-	<details>
-		<summary><strong> NALEDI </strong></summary>
-		<br>
-		<em>The Caliphate, Apostates of Magicked Renown</em>
 		<br><br>
-		Naledi is a nation dominated by southern dunes, northern mountains that border Grenzelhoft, and lush savannas that cling to the coast. Governed by a Shah, who delegates the functions of their cities to politico-philosopher Caliphs and theocratic Cariye. With an emphasis on both academia and piety, Naledi is renowned for it’s warscholars, magickal institutions, and belief in Old Psydonic - a monotheistic denomination of Psydonians that believe He is the only God, and the Pantheon are different names of Him.
-<br><br>
-Decades of invasion from Djinn, destabilized trade routes leaving towneships starved, and the exodus of warscholars in search for more opportunities has put Naledi in a gradual state of decline. More troubling, however, is the revelation that its star-speckled skies have abruptly turned into a colorless void.
+		It is the only kingdom of notable size that still worships Psydon, and - as a theocracy - is solely ruled by His Majesty - a God-King, sworn to PSYDON, aided by the Arch Lector of the Inquisition. Despite its apostasy, Otava still exports enough value to warrant the begrudging respect of its neighbors: be it through silver, stone, or slayers. The latent paranoia amongst its faithful inhabitants has recently exploded into full-on hysteria, following their witnessing of the 'blue sun' phenomena: a purported sign that Psydon's return is nigh.
 		<br>
 	</details>
 
-	<details>
-		<summary><strong> AAVNR </strong></summary>
-		<br>
-		<em>The Steppes, Nomadic Masters of Martiality</em>
-		<br><br>
-		Aavnr is an atypical nation, owing to its vast expanse of flatlands. In lieu of being ruled by a singular kingdom - similar to the bordering nations of Grenzelhoft and Otava, Aavnr instead holds host to a wide array of smaller villages, nomadic tribes, and orcish warbands. Most of Psydonia's saigas can trace their ancestry from these steppes.
-<br><br>
-The most prominent lesser kingdom within Aavnr's boundries is the Potentate: a coalition of nomadic tribes, which have since settled down along the coast in order to create a naval-reliant nexus for tradesmen of all varieties. Owing to the constant struggles faced by most who live within the steppes, Aavnr has also cultivated some of the finest martialists in all of Psydonia: a trait that has led to many foreign warriors visiting the steppes in search of greater tutelage.
-		<br>
-	</details>
-
-	<details>
-		<summary><strong> HAMMERHOLD </strong></summary>
-		<br>
-		<em>The Fortress, Craftsmen of the Mountainscapes</em>
-		<br><br>
-		Hammerhold, similarly to Azuria, is perched within the northern mountainscapes. While Azuria resides near the northeastwardly coast, however, Hammerhold has firmly rooted itself within the northwestern peaks - those that make Mount Golgatha look diminutive in comparison. Beneath its snowy castles is a massive dwarven fortress, renowned for its legendary artificers and alchemists.
-<br><br>
-They are believed to've been the first to successfully alchemize blastpowder: a highly expensive yet volatile ingredient for the rarely-seen handbombs and handgonnes. Alongside Azuria, Hammerhold holds one of the only known paths to the Underdark - a world-spanning labyrinth of subterranean caves and fae-nests, rumored to house both unimaginable horrors and yet-to-be-discovered treasures. Out of the many who've embarked into these depths, only a few've returned.
-		<br>
-	</details>
-
-	<details>
-		<summary><strong> GRONN </strong></summary>
-		<br>
-		<em>The Tundra, Raiders of the Frigid Pines</em>
-		<br><br>
-		Gronn reaches as far north as civilization dares to tread, though most would dare to contest whether such a nation could even be described as 'civil' in the first place. Similarly to the Aavnric steppes, Gronn lacks a singular kingdom to rule over the mountainous tundras - most signs of traditional civilization line the southern border, peppered with villages that oft-host foreign beasthunters.
-<br><br>
-Fiercer warbands often venture outside of Gronn in order to raid neighboring lands and caravans for their riches: yet whenever a kingdom attempts to retaliate with an invasion of their own, they're usually stopped dead in their tracks by Gronn's inhospitably-violent blizzards. Some believe that they're the descendants of those who dared to venture beyond the Fjall - the northernmost deadlands of Psydonia.
-		<br>
-	</details>
-
-	<details>
-		<summary><strong> RANESHEN </strong></summary>
-		<br>
-		<em>The Autarchy, Merchants of Shifting Sands</em>
-		<br><br>
-		Raneshen - better known by its ancestral title, 'Zybantia' - resides across the ocean as Grenzelhoft's economic rival: a greater kingdom, founded long ago by ancient Naledian exiles. While topologically similar to Naledi, the Ranesheni people had built their nation upon a far different thought: since Psydon had created the world, it was only right that divine reverence shouldn't solely manifest in prayer, but through indulgence as well.
-<br><br>
-Such has led Raneshen to becoming Psydonia's wealthiest nation, with a stranglehold over the exportation of exotic spices, silks, and slaves. Yet, the one thing Raneshen takes pride in above all else is music - its composers are unmatched in skill, and have been the premiere choice for catering to extravagant ceremonies: the latest of which being the coronation of Grenzelhoft's newest Emperor.
-		<br>
-	</details>
-
-	<details>
-		<summary><strong> LIRVAS </strong></summary>
-		<br>
-		<em>The Plutocracy, Fiefdom of Sinners-And-Slaves</em>
-		<br><br>
-		Lirvas, nestled within a small isle just off of Raneshen's coast, is notorious for its guiltless worship of the Ascendants. The social strata of Livras is carved into the stone itself: a five-ringed kingdom, built around a temple of gold. Only those within the innermost rings can indulge in sin-and-excess, for the rest are all indebted - be it through coinage or slavery - to the wealthiest few.
-<br><br>
-It is ruled not by a man, but a dragon: an ancient megabeast who's power has allowed Lirvas to remain unthreatened by foreign kingdoms. Yet, for as powerful as its draconic tyrant might be, even it can't stop the will of the people. A massive rebellion, spurred through a long-planned strike by the freedmen of the 'Forlorn Hope', threatens to tear Lirvas apart from the inside-out.
-		<br>
-	</details>
-
-	<details>
-		<summary><strong> KAZENGUN & LINGYUE </strong></summary>
-		<br>
-		<em>The Dynasty, Sister-Kingdoms of Mystique</em>
-		<br><br>
-		Kazengun and Lingyue reside upon the same halved continent as Raneshen, yet have remained isolated from most worldly affairs until recently. While little is known about these mysterious nations, scholars have been able to piece together a rough idea of what lies beyond Psydonia's central oceans: courtesy of the Kazengunese-and-Lingyuese mercenaries that've taken up residence in the Midderland.
-<br><br>
-They speak of a beautiful landscape, peppered with subtropical isles and accustomed to the fiercest storms imaginable. Such peace cannot be savored, however, as Kazengun and Lingyue are now locked within a brutal civil war - the consequence of long-standing territorial disputes and clashing beliefs in the esoteric. In order to better fund their militaries, both kingdoms have started to indulge far more in foreign economics.
-		<br>
-	</details>
-
-	<details>
+	<details style="max-width:800px; margin:0 auto;">
 		<summary><strong> ETRUSCA </strong></summary>
 		<br>
-		<em>The Isle, Devotees of Gods-And-Country Alike</em>
+		<em>// Devotees of Heart, of Trade, of Art, of Home //</em>
 		<br><br>
 		Etrusca rests as the sole isle between Psydonia's halved continents: the intermediate point between the coasts of the Kingdom, Zybantium, and the northern coasts of Naledi. It's said that no other kingdom is as beloved by its own people: a sense of national pride, so potent, that it can rival even the Pantheon's most zealous worshippers. Besides their love for pastas and romantic fables, Etrusca also happens to house Psydonia's strongest naval fleet.
-<br><br>
-Most recently, it had been invaded by the full might of Zybantium's military: yet despite the numerical disadvantage, Etrusca's armada - and the efforts of the 'Vaquero', folkheroic guerilla fighters - was able to ultimately repel the Zybantine aggressors. While still recovering from the invasion's damages, Etrusca is nevertheless basking in the afterflow of their triumph.
+		<br><br>
+		Most recently, it had been invaded by the full might of Zybantium's military: yet despite the numerical disadvantage, Etrusca's armada - and the efforts of the 'Vaquero', folkheroic guerilla fighters - was able to ultimately repel the Zybantine aggressors. While still recovering from the invasion's damages, Etrusca is nevertheless basking in the afterflow of their triumph.
 		<br>
 	</details>
 
-	<details>
-		<summary><strong> FJALL </strong></summary>
+	<details style="max-width:800px; margin:0 auto;">
+		<summary><strong> AAVNR </strong></summary>
 		<br>
-		<em>The Arctic, Ruins of Vheslyn-And-Celestia</em>
+		<em>// Nomadic Masters of Martiality //</em>
+		<br><br>
+		Aavnr is an atypical nation, owing to its vast expanse of flatlands. In lieu of being ruled by a singular kingdom - similar to the bordering nations of Grenzelhoft and Otava, Aavnr instead holds host to a wide array of smaller villages, nomadic tribes, and orcish warbands. Most of Psydonia's saigas can trace their ancestry from these steppes.
+		<br><br>
+		The most prominent lesser kingdom within Aavnr's boundries is the Potentate: a coalition of nomadic tribes, which have since settled down along the coast in order to create a naval-reliant nexus for tradesmen of all varieties. Owing to the constant struggles faced by most who live within the steppes, Aavnr has also cultivated some of the finest martialists in all of Psydonia: a trait that has led to many foreign warriors visiting the steppes in search of greater tutelage.
+		<br>
+	</details>
+
+	<details style="max-width:800px; margin:0 auto;">
+		<summary><strong> HAMMERHOLD </strong></summary>
+		<br>
+		<em>// Craftsmen of the Mountainscapes //</em>
+		<br><br>
+		Hammerhold, similarly to Avar, is perched within the northern mountainscapes, separated from the mainland by frigid ocean. Hammerhold has firmly rooted itself within the northwestern peaks - those that make the Golgathan Range look diminutive in comparison. Beneath its snowy castles is a massive dwarven fortress, renowned for its legendary artificers and alchemists.
+		<br><br>
+		They are believed to've been the first to successfully alchemize blastpowder: a highly expensive yet volatile ingredient for the rarely-seen handbombs and handgonnes. Alongside the Ros, its neighbor, Hammerhold holds one of the only known paths to the Underdark - a world-spanning labyrinth of subterranean caves and fae-nests, rumored to house both unimaginable horrors and yet-to-be-discovered treasures. Out of the many who've embarked into these depths, only a few've returned.
+		<br>
+	</details>
+
+	<details style="max-width:800px; margin:0 auto;">
+		<summary><strong> GRONN </strong></summary>
+		<br>
+		<em>// Raiders of the Frigid Pines //</em>
+		<br><br>
+		Gronn reaches as far north as civilization dares to tread, though most would dare to contest whether such a nation could even be described as 'civil' in the first place. Similarly to the Aavnric steppes, Gronn lacks a singular kingdom to rule over the mountainous tundras - most signs of traditional civilization line the southern border, peppered with villages that oft-host foreign beasthunters.
+		<br><br>
+		Fiercer warbands often venture outside of Gronn in order to raid neighboring lands and caravans for their riches: yet whenever a kingdom attempts to retaliate with an invasion of their own, they're usually stopped dead in their tracks by Gronn's inhospitably-violent blizzards. Some believe that they're the descendants of those who dared to venture beyond the Fjall - the northernmost deadlands of Psydonia.
+		<br>
+	</details>
+
+	<details style="max-width:800px; margin:0 auto;">
+		<summary><strong> ZYBANTIUM </strong></summary>
+		<br>
+		<em>// Former Seat of the Eternal Imperate //</em>
+		<br><br>
+		The Empire of Zybantium resides across the ocean as Grenzelhoft's economic rival: a greater kingdom, founded long ago by ancient Naledian exiles. While topologically similar to Naledi, the Zybantine people had built their nation upon a far different thought: since Psydon had created the world, it was only right that divine reverence shouldn't solely manifest in prayer, but through indulgence as well.
+		<br><br>
+		Such has led to Zybantium becoming Psydonia's wealthiest nation, with a stranglehold over the exportation of exotic spices, silks, and slaves. Yet, the one thing Zybantium takes pride in above all else is music - its composers are unmatched in skill, and have been the premiere choice for catering to extravagant ceremonies: the latest of which being the coronation of Grenzelhoft's newest Emperor.
+		<br>
+	</details>
+
+	<details style="max-width:800px; margin:0 auto;">
+		<summary><strong> RANESHAN </strong></summary>
+		<br>
+		<em>// Merchants of Shifting Sands //</em>
+		<br><br>
+		Raneshan resides easterly as Zybantium's economic ally: a great kingdom, founded long ago by ancient Naledian exiles. While topologically similar to Naledi, the Ranesheni people had built their nation upon a far different thought: since Psydon had created the world, it was only right that divine reverence shouldn't solely manifest in prayer, but through indulgence as well.
+		<br><br>
+		Such has led Raneshan to becoming Psydonia's wealthiest nation, with a stranglehold over the exportation of exotic spices, silks, and slaves. Yet, the one thing Raneshen takes pride in above all else is music - its composers are unmatched in skill, and have been the premiere choice for catering to extravagant ceremonies: the latest of which being the coronation of Grenzelhoft's newest Emperor.
+		<br>
+	</details>
+	<details style="max-width:800px; margin:0 auto;">
+		<summary><strong> NALEDI </strong></summary>
+		<br>
+		<em>// Apostates of Magicked Renown //</em>
+		<br><br>
+		Naledi is a nation dominated by southern dunes, easterly mountains that divide it from Zybantium and Raneshan, and lush savannas that cling to the coast upon the Midderland's seas. Governed by a Shah, who delegates the functions of their cities to politico-philosopher Caliphs and theocratic Cariye. With an emphasis on both academia and piety, Naledi is renowned for it’s warscholars, magickal institutions, and belief in Old Psydonic - a monotheistic denomination of Psydonians that believe He is the only God, and the Pantheon are different names of Him.
+		<br><br>
+		Decades of invasion from Djinn, destabilized trade routes leaving townships starved, and the exodus of warscholars in search for more opportunities has put Naledi in a gradual state of decline. More troubling, however, is the revelation that its star-speckled skies have abruptly turned into a colorless void.
+		<br>
+	</details>
+
+	<details style="max-width:800px; margin:0 auto;">
+		<summary><strong> LIRVAS </strong></summary>
+		<br>
+		<em>// Fiefdom of Sinners-And-Slaves //</em>
+		<br><br>
+		Lirvas, a craggy promonitory just off of the Westerland's coast, is notorious for its guiltless tolerance of almost all faiths and peoples that come here: in so far as they pay. The social strata of Livras is carved into the stone itself: a five-ringed kingdom, built around a temple of gold. Only those within the innermost rings can indulge in sin-and-excess, for the rest are all indebted - be it through coinage or slavery - to the wealthiest few.
+		<br><br>
+		It is ruled not by a man, but a dragon: an ancient megabeast who's power has allowed Lirvas to remain unthreatened by foreign kingdoms.
+		<br><br>
+		Predominantly, their native population is of the Eskallian and Kobold - whereas lesser Dragons and Drakians populate the higher classes. Kobolds populate the lowest rung, naturally; vast swathes of slaves buried beneath the island's dangerous mines, never to see the sun. Outside of valuable metals and gemstones, their most well-known export is that of the Sarcomorphal: a unique form of flesh-magic that refits and reshapes the body of any living being. Remorphal slaves or beests have to be seen to be believed.
+		<br><br>
+		Yet, for as powerful as its draconic tyrant might be, even it cannot be threatened by the will of the many. Rumors persist wild about a rising rebellion in the underhives beneath, aided by Matthiosan anathemae.
+		<br>
+	</details>
+
+	<details style="max-width:800px; margin:0 auto;">
+		<summary><strong> KAZENGUN & LINGYUE </strong></summary>
+		<br>
+		<em>// Sister-Kingdoms of Mystique //</em>
+		<br><br>
+		Kazengun and Lingyue reside upon the same halved continent as Raneshen, yet have remained isolated from most worldly affairs until recently. While little is known about these mysterious nations, scholars have been able to piece together a rough idea of what lies beyond Psydonia's central oceans: courtesy of the Kazengunese-and-Lingyuese mercenaries that've taken up residence in the Midderland.
+		<br><br>
+		They speak of a beautiful landscape, peppered with subtropical isles and accustomed to the fiercest storms imaginable. Such peace cannot be savored, however, as Kazengun and Lingyue are now locked within a brutal civil war - the consequence of long-standing territorial disputes and clashing beliefs in the esoteric. In order to better fund their militaries, both kingdoms have started to indulge far more in foreign economics.
+		<br>
+	</details>
+
+	<details style="max-width:800px; margin:0 auto;">
+		<summary><strong> THE FJALL </strong></summary>
+		<br>
+		<em>// Border of the Enigma //</em>
 		<br><br>
 		Fjall may not be a nation, but its relevance supersedes even the greatest kingdoms of today. In Psydonia's infancy, it was the staging ground for the Archdevil's invasion: a violation of reality that turned its savannahs into a volcanic mountainscape. Once the Archdevil fell and the magma cooled, civilization crept back in to reclaim it - a grandiose kingdom, erected upon the Archdevil's proverbial grave, as a proclamation of their triumph over evil.
-<br><br>
-Yet, not a millennium later, there came Zizo's ascension: a calamity so profound that everything further north than Gronn's forests was irreversibly destroyed. Now, all that remains are twisting mountains, and the few who still live within its valleys. Even through Fjall's harshest blizzards, the winds of these fjords sing a haunting tune: one that foretells Psydonia's end.
+		<br><br>
+		Yet, not a millennium later, there came Zizo's ascension: a calamity so profound that everything further north than Gronn's forests was irreversibly destroyed. Now, all that remains are twisting mountains, and the few who still live within its valleys. Even through Fjall's harshest blizzards, the winds of these fjords sing a haunting tune: one that foretells Psydonia's end.
 		<br>
 	</details>
 
 	<br>
 	<strong><span style="font-size:115%"> MISCELLANIOUS KINGDOMS, FIEFS, AND RUINS </span></strong>
 	<br><br>
-	<details>
+	<details style="max-width:800px; margin:0 auto;">
 		<summary><strong> VALORIA </strong></summary>
 		<br>
 		<em>The Republic, Cultivators of the Weeping God's Order</em>
@@ -384,7 +424,7 @@ Residing within Valoria's walls is the Order of the Silver Psycross: a faith-mil
 		<br>
 	</details>
 
-	<details>
+	<details style="max-width:800px; margin:0 auto;">
 		<summary><strong> ZYNDVHARTIA </strong></summary>
 		<br>
 		<em>The Port, Receiver of Psydonia's Merchant-Fleets</em>
@@ -395,7 +435,16 @@ Fried salmoncakes, jellied eels, and pints of Fjall-iced liquor keep Zyndvhartia
 		<br>
 	</details>
 
-	<details>
+	<details style="max-width:800px; margin:0 auto;">
+		<summary><strong> AZURIA </strong></summary>
+		<br>
+		<em>The Grand Duchy of Azure Peak</em>
+		<br><br>
+		Azuria is a lesser demense, burrowed halfway into the ancient elvish mountainscapes that stand vigil between the Grenz and Otava. Due to its central location between much of the Midderland, Northerland, and Easterland, Azuria's population - both residential and temporary - happens to be unusually diverse.
+		<br>
+	</details>
+
+	<details style="max-width:800px; margin:0 auto;">
 		<summary><strong> BLASTENGHYLL </strong></summary>
 		<br>
 		<em>The Lost, Remains of a Martyred Farmtown</em>
@@ -406,7 +455,7 @@ Though a force of Psydonic crusaders had managed to stop the ritual before its c
 		<br>
 	</details>
 
-	<details>
+	<details style="max-width:800px; margin:0 auto;">
 		<summary><strong> KAIZOKU </strong></summary>
 		<br>
 		<em>The Farlands, Kingdom of Fogged Legend</em>
@@ -417,7 +466,7 @@ Mostly known for its exportation of the fogbeast: a prized hybrid of the saiga a
 		<br>
 	</details>
 
-	<details>
+	<details style="max-width:800px; margin:0 auto;">
 		<summary><strong> LAKKARI </strong></summary>
 		<br>
 		<em>The Parish, Bayou of Innovation</em>
@@ -427,7 +476,7 @@ Mostly known for its exportation of the fogbeast: a prized hybrid of the saiga a
 Intermingleance with Otavan refugees and Ranesheni freemen, throughout the centuries, has given rise to a richly diverse culture - and more importantly, some of the finest cuisine in Psydonia's southern reaches. Pestra, Malum and Necra are worshipped with reverance in Lakkari; a facet only strengthened in the face of a recent outbreak, pitting the pious against hordes of uniquely virulent deadites.
 		<br>
 	</details>
-	<details>
+	<details style="max-width:800px; margin:0 auto;">
 		<summary><strong> READTUN </strong></summary>
 		<br>
 		<em>The Reach, Fallen Kingdom of Crimson Fields</em>
@@ -454,35 +503,32 @@ Intermingleance with Otavan refugees and Ranesheni freemen, throughout the centu
 	<br><br>
 </details>
 
-<details>
+<details style="max-width:800px; margin:0 auto;">
 	<summary><strong><span style="font-size:130%"> GLOSSARY OF PSYDONIA </span></strong></summary>
-	<details>
 	<strong><span style="font-size:115%"> NOTEWORTHY CONCEPTS </span></strong>
 	<br><br>
 		<p><strong> Psydonia </strong> - The world. Here, there is home for all broken hearts and impossible dreams. Named after its creator, the Progenitus Psydon. </p>
-		<p><strong> The Known World </strong> - A more agnostic term for Psydonia, preferred by the Pantheonic and Ascendants.
+		<p><strong> The Known World </strong> - A more agnostic term for Psydonia, preferred by the Pantheonic, Ascendant, and others. </p>
 		<p><strong> Enigma </strong> - A term used for areas past the exploration and frontiers of the Known: whether that be past the oceans, mountains, or into otherworldly ontologies and planes. </p>
 		<p><strong> The Scar </strong> - A divine wound, carved when PSYDON shattered an age ago. Surreality and unreality leech from these breakages. Few still exist - and even fewer are stable enough to live near. Pharos is settled upon one of these sites. </p>
 		<p><strong> Undermaiden </strong> - Death. The personification of Necra, who is said to ferry the deceased towards their chosen afterlife. </p>
 		<p><strong> Paradise </strong> - Heaven. Debatably created by either Psydon or Astrata, as a resting place for the faithful and virtuous. </p>
 		<p><strong> Infernus </strong> - Hell. A spiteful inversion of reality, created by the Ascendant. It is the home of demons, the Ascended, and taxmen. </p>
-		<p><strong> Acropoli </strong> - The premiere worshippers of the Pantheon, and the governing body of the Temple - its five grand columns anointing the highest hill of Zybantium. Ruled by a <i>'Pontifex Maxiumus.'</i></p>
-		<p><strong> Orthodoxy </strong> - The largest branch of Psydonian worship, even to this day. Sweeping across the sea from Naledi southward to Otava north, the Orthodoxy, centralized, finds itself increasingly at odds with the Temple and its Pantheon. Reigned by <i>'His Majesty.</i></p>
+		<p><strong> Acropoli </strong> - The premiere worshippers of the Pantheon, and the governing body of the Temple - its five grand columns anointing the highest hill of Zybantium. Ruled by a <i>'Progenitus Pontifexus.'</i></p>
+		<p><strong> Orthodoxy </strong> - The largest branch of Psydonian worship, even to this day. Sweeping across the sea from Naledi southward to Otava north, the Orthodoxy, centralized, finds itself increasingly at odds with the Temple and its Pantheon. Reigned by <i>'His Majesty.'</i></p>
 		<p><strong> Inquisition </strong> - Once merely the militant arm of the Church of Otava, their effectiveness - and notoriety - has made them an increasingly common organization copied across the world. Traditionally, they remain Psydonian - and take upon the title of <i>His Majesty's Holy Inquisition.</i></p>
-		<p><strong> Thaumaturgy </strong> - Magicka. While previously recognized as 'Arcyne' in previous centuries, as the Arts have expanded into schooling proper: all interacting with the fundament of the Known World- and often toying with the Enigma. </p>
+		<p><strong> Thaumaturgy </strong> - Magicka. While previously recognized as 'Arcyne' in previous centuries, the name has been codified scholastically as another science of the world. All schools of thaumics, no matter how exotic- interact with the fundament of the Known World- and often toying with the Enigma. </p>
 		<p><strong> Witch-Engineering </strong> - A combination of the thaumaturgic and sciences, it is the product of witch-engineering that most of the miracles of the modern day present themselves. Architectural marvels, ever-burning lampterns, flying machines, charmed rodents to copy speech and transmit it across distances...</p>
-		<p><strong> Leyline </strong> - Channels of pure magicka, running across Psydonia like the arteries in a body. Most thaumaturgies draw from these veins - or from the Scars that birth them. </p>
+		<p><strong> Leyline </strong> - Channels of pure magicka, running across Psydonia like the arteries in a body. Most thaumaturgies draw from these veins - or from the Scars and Stains that birth them. </p>
+		<p><strong> Manchmal </strong> - A universal concept, given a Grenzelhoftan name - the 'sometimes IS, sometimes IS-NOT.' Most spirits, Daeva, and divine lie within this ephemeral state. They do not exist, until they do. They act, and can perform the impossible - because they do not exist.</p>
 		<p><strong> Phlogiston </strong> - The star-speckled space that cradles the Sun, the Moon, Psydonia, and all the various astralities surrounding them. </p>
 		<p><strong> Murderwood </strong> - The Pharos' northern forests, better known in the current dae as the 'Grove'. Temperate, but teeming with brigandry.</p>
 		<p><strong> Terrorbog </strong> - The western swamps of the Pharos, notoriously difficult to traverse and hazardous to even the most well-seasoned Adventurers.</p>
 		<p><strong> Scarred Coast </strong> - The Pharos' eastern coastline. It usually refers to its most popular point of entry, sandwiched between the Grove and Hamlet.</p>
-		<p><strong> Hamlet </strong> - The northernmost point of Pharos' reach; a former settlement that has recently fallen to ducal neglect.</p>
-		<p><strong> Keep </strong> - The seat of power, located to the east of Pharos' town square. It is inhabited by the Duchy's royal family, court, and guardsmen.</p>
+		<p><strong> Hamlet </strong> - The northernmost point of Pharos' reach; a former settlement that has recently fallen to noble neglect.</p>
+		<p><strong> Keep </strong> - The seat of power, located to the east of Pharos' town square. It is inhabited by the County's noble family, court, and guardsmen.</p>
 		<p><strong> Temple </strong> - The seat of faith, located to the west of Pharos' town square. It preaches the glory of the Pantheon and the Pentacle to its faithful.</p>
 		<br>
-	</details>
-
-	<details>
 	<strong><span style="font-size:115%"> NOTEWORTHY TERMS </span></strong>
 	<br><br>
 		<p><strong> Miracle </strong> - Holy magicka. Unlike the arcyne, miracles are powered by one's faith and devotion to their chosen deity. </p>
@@ -514,7 +560,6 @@ Intermingleance with Otavan refugees and Ranesheni freemen, throughout the centu
 		<p><strong> Blastpowder </strong> - An alchemic enigma, capable of erupting with tremendous power at the lightest spark. Additionally known as 'blastsand,' or 'Raneshi sugar'. Not quite as sweet as actual Raneshan sugar.</p>
 		<p><strong> HR </strong> - The previous calender-era, beginning with the Shattering itself and extending to the dark days of the Demiurge. Concludes with the officiation of the Pantheon of the Pentacle - and the formation of its Imperate. </p>
 		<p><strong> BR </strong> - The current calender-era, made law by the formation of the Eternal Imperate, and remaining even after its collapse. The current date, as mentioned, is 1643 BR. </p>
-		<br>
-	</details>
-	<br><br>
+	<br>
 </details>
+</div>

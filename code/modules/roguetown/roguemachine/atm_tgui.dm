@@ -241,7 +241,7 @@
 	if(!istype(H))
 		return
 	if(H.job != "Bishop" && H.job != "Bathmaster")
-		to_chat(H, span_warning("Only the Priest or the Bathmaster may set the terms of the Ordinance of the Baths."))
+		to_chat(H, span_warning("Only the Pontifex or the Bathmaster may set the terms of the Ordinance of the Baths."))
 		return
 	if(world.time < SStreasury.bathhouse_ordinance_next_toggle_time)
 		var/remaining_minutes = CEILING((SStreasury.bathhouse_ordinance_next_toggle_time - world.time) / (1 MINUTES), 1)
@@ -254,12 +254,12 @@
 	var/msg
 	if(now_active)
 		if(H.job == "Bishop")
-			msg = "By Eora's grace, the Priest, [H.real_name], hath set anew the seal upon the Ordinance of the Baths. The Pentacle extends its sanction over the stews once more, and the tithe shall render unto the Temple."
+			msg = "By Eora's grace, the Pontifex, [H.real_name], hath set anew the seal upon the Ordinance of the Baths. The Pentacle extends its sanction over the stews once more, and the tithe shall render unto the Temple."
 		else
 			msg = "By Eora's grace, the Bathmaster, [H.real_name], hath knelt beneath the Ordinance of the Baths. The stews accept the Temple's sanction anew, and the tithe shall render unto the Temple."
 	else
 		if(H.job == "Bishop")
-			msg = "The Priest, [H.real_name], hath broken the seal upon the Ordinance of the Baths. The Pentacle renounces its sanction; the stews fall again beneath the Crown's tariff."
+			msg = "The Pontifex, [H.real_name], hath broken the seal upon the Ordinance of the Baths. The Pentacle renounces its sanction; the stews fall again beneath the Crown's tariff."
 		else
 			msg = "The Bathmaster, [H.real_name], hath broken the seal upon the Ordinance of the Baths. The stews cast off the Temple's sanction; their farm returns unto the Crown."
 	priority_announce(msg, title, pick('sound/misc/royal_decree.ogg', 'sound/misc/royal_decree2.ogg'), "Captain", strip_html = FALSE)

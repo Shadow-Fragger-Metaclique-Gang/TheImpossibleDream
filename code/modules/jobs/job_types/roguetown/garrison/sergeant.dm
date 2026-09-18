@@ -58,7 +58,7 @@
 //Rare-ish anti-armor two hander sword. Kinda alternative of a bastard sword type. Could be cool.
 /datum/advclass/sergeant/sergeant
 	name = "Sergeant-at-Arms"
-	tutorial = "You are a not just anybody but the Sergeant-at-Arms of the Duchy's garrison. While you may have started as some peasant or mercenary, you have advanced through the ranks to that of someone who commands respect and wields it. Take up arms, sergeant!"
+	tutorial = "You are a not just anybody but the Sergeant-at-Arms of the County's garrison. While you may have started as some peasant or mercenary, you have advanced through the ranks to that of someone who commands respect and wields it. Take up arms, sergeant!"
 	outfit = /datum/outfit/job/roguetown/sergeant/sergeant
 
 	category_tags = list(CTAG_SERGEANT)

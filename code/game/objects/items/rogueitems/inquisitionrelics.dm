@@ -337,7 +337,10 @@ Inquisitorial armory down here
 
 /obj/item/flashlight/flare/torch/lantern/psycenser
 	name = "Golgatha"
-	desc = "A masterfully-crafted thurible that, when opened, emits a ghastly perfume that reinvigorates the flesh-and-steel of Psydonites. It is said to contain a volatile fragment of the Comet Syon, which - if mishandled - can lead to unforeseen consequences."
+	desc = "Encased within this hardshell censer of silver and steel is one of the miracles of this world - a scarshard, plucked from the Golgathan Stain. It is a stable, solidified slice of potentiality: mighty in what-might, ontologically perilous to collect, and a treasure to anyone that carries its cage. \
+	In this elegant censer, it is contained by His Majesty's Holy Inquisition- and believed to be a living piece of the God-that-Was: a fraction of His power contained within this fractional Scar upon His corpus. <br><br>\
+	It radiates a cool, cerulean effervescence from within. Prayers spoken and unspoken spill from it, ever so gently; the voices multitudinous and unfamiliar- carrying them through every possibility from both past and present. <br><br>\
+	<i>Sooner or later, you’ll recognize one of them.</i>"
 	icon_state = "psycenser"
 	item_state = "psycenser"
 	light_outer_range = 8
@@ -503,7 +506,7 @@ Inquisitorial armory down here
 	alert_type = /atom/movable/screen/alert/status_effect/syonchurn
 	duration = -1
 	tick_interval = 2 SECONDS
-	examine_text = "<font color='#00fff2'><b>SUBJECTPRONOUN is seared in body and soul by motes of lingering comet dust!</b></font>"
+	examine_text = "<font color='#00fff2'><b>SUBJECTPRONOUN is seared in body and soul by motes of lingering divinity!</b></font>"
 	status_type = STATUS_EFFECT_REFRESH
 	effectedstats = list(STATKEY_LCK = -2, STATKEY_SPD = -2)
 	var/datum/weakref/debuffer
@@ -524,7 +527,7 @@ Inquisitorial armory down here
 	var/filter = owner.get_filter(SYONCHURN_FILTER)
 	if(!filter)
 		owner.add_filter(SYONCHURN_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 200, "size" = 1))
-	to_chat(owner, span_warning("Brilliant fragments of comet-light burst around me, repelling my violent intent!"))
+	to_chat(owner, span_warning("Brilliant fragments of prismatic scar-light burst around me, repelling my violent intent!"))
 	return TRUE
 
 /datum/status_effect/syonchurn/refresh()
@@ -1713,19 +1716,19 @@ GLOBAL_LIST_INIT(inquisition_used_ids, list())
 	report_html += "<b>LYFEBLOOD-LUX RESONATOR RESULTS</b><br><br>"
 	if(HAS_TRAIT(H, TRAIT_ANCIENT_HAG))
 		report_html += "<font color='#1e8b61'><b><u>Anomalous Lux</b></u></font><br><br>"
-		report_html += "<i>No measurable corruption or hallowed overresonance could be detected through our devices, the nature of this sample cannot be traced to anything within our Grand Archives. It does not seem to be neither Divine nor Inhumen, yet it is not Pure either.</i><br><br>"
+		report_html += "<i>No measurable corruption or hallowed overresonance could be detected through our devices, the nature of this sample cannot be traced to anything within our Grand Archives. It does not seem to be neither Divine nor Anatheme, yet it is not Pure either.</i><br><br>"
 	else if(H.patron?.type in ALL_DIVINE_PATRONS)
 		report_html += "<font color='#e8da5a'><b><u>Blessed Lux</b></u></font><br><br>"
-		report_html += "<i>Minor hallowed resonance permeates the subject's Lux. The sample bears evidence of covenant with saintly energies consistent with apostate worship and prolonged participation in rites associated with the <b>Ten Saints</b>.</i><br><br>"
+		report_html += "<i>Minor hallowed resonance permeates the subject's Lux. The sample bears evidence of covenant with saintly energies consistent with apostate worship and prolonged participation in rites associated with the <b>Fragmentary Faithful.</b></i><br><br>"
 	else if(H.patron?.type in ALL_INHUMEN_PATRONS)
 		report_html += "<font color='#8B1E1E'><b><u>Tainted Lux</b></u></font><br><br>"
-		report_html += "<i>The Lux has suffered measurable spiritual degradation. The sample carries contamination consistent with apostate worship and prolonged participation in rites associated with the <b>Inhumen</b>.</i><br><br>"
+		report_html += "<i>The Lux has suffered measurable spiritual degradation. The sample carries contamination consistent with apostate worship and prolonged participation in rites associated with the <b>Anathema</b>.</i><br><br>"
 	else if(H.patron?.type in OLD_GOD_PATRON)
 		report_html += "<font color='#00b7ff'><b><u>Pure Lux</b></u></font><br><br>"
 		report_html += "<i>No measurable corruption or hallowed overresonance could be detected through our devices. The subject's Lux is devoid of external influence.</i><br><br>"
 	else
 		report_html += "<font color='#1e8b61'><b><u>Anomalous Lux</b></u></font><br><br>"
-		report_html += "<i>No measurable corruption or hallowed overresonance could be detected through our devices, the nature of this sample cannot be traced to anything within our Grand Archives. It does not seem to be neither Divine nor Inhumen, yet it is not Pure either.</i><br><br>"
+		report_html += "<i>No measurable corruption or hallowed overresonance could be detected through our devices, the nature of this sample cannot be traced to anything within our Grand Archives. It does not seem to be neither Divine nor Anatheme, yet it is not Pure either.</i><br><br>"
 
 	report_html += "<b>CROSS-REFERENCED PUBLIC RECORDS</b><br><br>"
 	var/list/crimes = list()

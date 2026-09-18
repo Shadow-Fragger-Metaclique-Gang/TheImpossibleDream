@@ -791,7 +791,7 @@ GLOBAL_LIST_INIT(da_bubbles, list('sound/foley/bubb (1).ogg','sound/foley/bubb (
 	to_chat(user, span_notice("You begin channeling your greed into the mixture..."))
 
 	var/list/options = list(
-		"Ducal Peppersteak" = /obj/item/reagent_containers/food/snacks/rogue/peppersteak/ducal,
+		"Noble Peppersteak" = /obj/item/reagent_containers/food/snacks/rogue/peppersteak/ducal,
 		"Lobster Meal" = /obj/item/reagent_containers/food/snacks/rogue/fryfish/lobster/meal,
 		"Crabcake" = /obj/item/reagent_containers/food/snacks/rogue/crabcake,
 		"Chocolate" = /obj/item/reagent_containers/food/snacks/chocolate,

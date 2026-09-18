@@ -243,7 +243,7 @@ GLOBAL_LIST_INIT(economic_regions, init_economic_regions())
 	region_id = TRADE_REGION_BLEAKCOAST
 	name = "Bleakcoast"
 	subtitle = "The Bleakisles Seamarch, Pirate Archipelago"
-	description = "Also known as the Bleakisles Seamarch. A series of rocky outcrops said to have been created when Comet Syon impacted near the Terrorbog, radiating outward and hurling the islands from the sea itself. The archipelago numbers in the hundreds and makes navigation along all but a narrow stretch of the Kingdom's coast treacherous. What it lacks in fertile land it makes up for in the bounty of its seas. Schools of fish swarm in the shallow, rocky bottoms and swim as far as the Kingdom's coast, feeding thousands. But that bounty is not for Bleakisles inhabitants to enjoy. The isles are infested with pirates, the notorious Bleakisles Reavers, who prey on any merchant or fisherman that strays too far from shore. The Duchy maintains several garrisons to keep them in check, and has, once every two generations, undertaken a harrying of the isles, burning every non-military settlement and salting it. To no avail. Within a generation, the pirates always return, for trade is lucrative, and piracy even more so."
+	description = "Also known as the Bleakisles Seamarch. A series of rocky outcrops said to have been created in the tumultuous reign of the Demiurge; when the Scar was still yet a Wound. Violently shaping and unshaping the seas and coasts around it, a cacaphonous eruption radiated outward and hurling the islands from the sea itself. The archipelago numbers in the hundreds and makes navigation along all but a narrow stretch of the Kingdom's coast treacherous. What it lacks in fertile land it makes up for in the bounty of its seas. Schools of fish swarm in the shallow, rocky bottoms and swim as far as the Kingdom's coast, feeding thousands. But that bounty is not for Bleakisles inhabitants to enjoy. The isles are infested with pirates, the notorious Bleakisles Reavers, who prey on any merchant or fisherman that strays too far from shore. The King maintains several garrisons to keep them in check, and has, once every two generations, undertaken a harrying of the isles, burning every non-military settlement and salting it. To no avail. Within a generation, the pirates always return, for trade is lucrative, and piracy even more so."
 	threat_region_id = THREAT_REGION_AZUREAN_COAST
 	produces = list()
 	demands = list(
@@ -379,7 +379,8 @@ GLOBAL_LIST_INIT(economic_regions, init_economic_regions())
 /// so steward UI prose and primer prose stay in sync from a single source.
 /proc/build_regions_primer_html()
 	var/list/parts = list()
-	parts += "<details>"
+	parts += "<div style='text-align:center'>"
+	parts += "<details style='max-width:800px; margin:0 auto;'>"
 	parts += "<summary><strong><span style='font-size:130%'> REGIONS OF THE REALM </span></strong></summary>"
 	parts += "<strong><span style='font-size:115%'> THE INTERNAL VASSALS AND DEMESNES </span></strong>"
 	parts += "<br><br>"
@@ -387,7 +388,7 @@ GLOBAL_LIST_INIT(economic_regions, init_economic_regions())
 		var/datum/economic_region/region = GLOB.economic_regions[region_id]
 		if(!region)
 			continue
-		parts += "<details>"
+		parts += "<details style='max-width:800px; margin:0 auto;'>"
 		parts += "<summary><strong> [uppertext(region.name)] </strong></summary>"
 		parts += "<br>"
 		if(region.subtitle)
@@ -398,4 +399,5 @@ GLOBAL_LIST_INIT(economic_regions, init_economic_regions())
 		parts += "</details>"
 	parts += "<br><br>"
 	parts += "</details>"
+	parts += "</div>"
 	return jointext(parts, "\n")

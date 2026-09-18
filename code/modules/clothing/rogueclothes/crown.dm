@@ -50,7 +50,7 @@
 /obj/item/clothing/head/roguetown/crown/serpcrown/attack_right(mob/living/carbon/human/user)
 	user.changeNext_move(CLICK_CD_MELEE)
 	visible_message(span_notice ("[user] presses [user.p_their()] hands against the [src]."))
-	var/input_text = input(user, "Enter your ducal message:", "Crown SCOM")
+	var/input_text = input(user, "Enter your noble message:", "Crown SCOM")
 	if(input_text)
 		var/usedcolor = user.voice_color
 		if(user.voicecolor_override)

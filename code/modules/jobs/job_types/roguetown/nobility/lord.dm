@@ -60,7 +60,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	var/HTML = {"
 		<i>You can choose a favorite subclass here. You'll automatically select this subclass on roundstart if possible.</i><br/><br/>
 		<b>Selected class:</b> <a href="?src=[REF(src)];class=1">[favorite_name]</a><br/>
-		<i>You can choose your ducal colors here; this will only take effect if both are set.</i><br/>
+		<i>You can choose your courtly colors here; this will only take effect if both are set.</i><br/>
 		<b>Primary color:</b> <a href="?src=[REF(src)];primcolor=1">[roleprefs["primcolor"] || "Choose"]</a><br/>
 		<b>Secondary color:</b> <a href="?src=[REF(src)];seccolor=1">[roleprefs["seccolor"] || "Choose"]</a><br/>
 		<center><a href="?src=[REF(src)];subprefsexit=1">EXIT</a>\t\t<a href="?src=[REF(src)];subprefsreset=1">RESET</a></center>

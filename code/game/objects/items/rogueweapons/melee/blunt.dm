@@ -1457,7 +1457,7 @@
 
 /obj/item/rogueweapon/contraption/linker/mace/decrepit
 	name = "Decrepit Wrench"
-	desc = "An ancient wrench, reinforced with frayed bronze. Once a tool of progress, repurposed into little more than a cudgel"
+	desc = "An ancient wrench, reinforced with frayed bronze. Once a tool of the Demiurge's reign, repurposed into little more than a cudgel"
 	max_integrity = 150
 	icon_state = "2hdecrepit"
 	smeltresult = /obj/item/ingot/aaslag

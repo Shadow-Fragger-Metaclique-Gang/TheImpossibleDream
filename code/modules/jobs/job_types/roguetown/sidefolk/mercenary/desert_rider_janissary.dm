@@ -2,7 +2,7 @@
 	name = "Desert Rider Janissary"
 	tutorial = "Janissaries are often ex-soldiers, recruited from one of the many city-states of Raneshen. Defection or a completed tour?; it hardly matters. With a shield, stout armor, and disciplined stance, they stand tall. Their Momentum gives them Strength."
 	allowed_sexes = list(MALE, FEMALE)
-	
+
 	outfit = /datum/outfit/job/roguetown/mercenary/desert_rider
 	class_select_category = CLASS_CAT_RANESHENI
 	category_tags = list(CTAG_MERCENARY, CTAG_MERCPARTY_BULWARK)
@@ -34,7 +34,7 @@
 	..()
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/zeybek_momentum/janissary)
-	to_chat(H, span_warning("The Desert Riders are a slightly-infamous band of mercenaries, as old and prestigious as Grenzelhoft's own. They have fought on both sides of nearly every conflict since the fall of the Celestial Empire."))
+	to_chat(H, span_warning("The Desert Riders are a slightly-infamous band of mercenaries, as old and prestigious as Grenzelhoft's own. They have fought on both sides of nearly every conflict since the fall of the Eternal Impirate."))
 	head = /obj/item/clothing/head/roguetown/helmet/sallet/raneshen
 	mask = /obj/item/clothing/mask/rogue/facemask/steel
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/full

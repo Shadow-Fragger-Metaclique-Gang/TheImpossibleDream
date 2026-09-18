@@ -22,7 +22,7 @@
 /obj/item/reagent_containers/food/snacks/rogue/peppersteak/ducal
 	cuisine = CUISINE_SOUTH_IMPERIAL
 	tastes = list("steak" = 1, "pepper" = 1, "garlick" = 1)
-	name = "ducal steak"
+	name = "noble steak"
 	desc = "Roasted meat flanked with a generous coating of ground pepper for intense flavor and scribbled in with garlick. Said to have been favorite meal of the Mad Duke."
 	faretype = FARE_LAVISH
 	icon_state = "ducalsteak"
@@ -162,7 +162,7 @@
 /*	.................	Ducal Spiced Baked Poultry	................... */
 /obj/item/reagent_containers/food/snacks/rogue/meat/poultry/baked/spiced/ducal
 	cuisine = CUISINE_SOUTH_IMPERIAL
-	name = "ducal bird-roast"
+	name = "noble bird-roast"
 	desc = "A plump bird, roasted perfection, spiced to taste divine with touch of garlick to top it all off. Perfect to feast on while your son is dying in battle..."
 	faretype = FARE_LAVISH
 	icon_state = "ducalchicken"

@@ -541,7 +541,7 @@
 		playsound(user.loc, 'sound/combat/shieldraise.ogg', 100, FALSE, -1)
 		if(.)
 			// gives them a rallying message, but doesn't reveal a location. gives antags some leeway
-			var/input_text = "<big><span style='color: [CLOTHING_WOAD_BLUE]'>THE DUCAL STANDARD CALLS FOR ALL GUARDSMEN TO RALLY AT [uppertext(get_area_name(user))]!</span></big>" // non-specific rallying call
+			var/input_text = "<big><span style='color: [CLOTHING_WOAD_BLUE]'>THE CROWN'S STANDARD CALLS FOR ALL GUARDSMEN TO RALLY AT [uppertext(get_area_name(user))]!</span></big>" // non-specific rallying call
 			for(var/obj/item/scomstone/bad/garrison/S in SSroguemachine.scomm_machines)
 				S.repeat_message(input_text, src, CLOTHING_WOAD_BLUE)
 			for(var/obj/item/scomstone/garrison/S in SSroguemachine.scomm_machines)

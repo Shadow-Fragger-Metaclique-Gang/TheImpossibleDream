@@ -85,7 +85,7 @@ export const BathhouseOrdinanceSection = ({
           >
             <p style={{ margin: '0 0 6px 0' }}>
               {
-                "By ancient prerogative granted of the Crown, the Baths of Pharos stand within the Priest's liberty. The Bathmaster oweth no farm nor fee unto the Crown's coffers; rather, of all sales of herbs and unguents, the Bathmaster shall render one part in ten, and of the regular income arising from the rendering of services, one part in five, unto the Temple. The Baths shall stand as a hearth unto Eora's flames, to render comfort and solace unto the lonely and the weary who enters, to give those who freely love and renders it unto others a safe place of working such that they may make their keep, and count the Baths labor amongst the goddess's own works, pleasing to her sight. And thus the Temple doth take the Baths into its protection, by blade and by law. So long as the Ordinance holds, the Crown shall have no claim upon the Baths, whose most holy works is within the Temple's sole jurisdiction."
+                "By ancient prerogative granted of the Crown, the Baths of Pharos stand within the Pontiff's liberty. The Bathmaster oweth no farm nor fee unto the Crown's coffers; rather, of all sales of herbs and unguents, the Bathmaster shall render one part in ten, and of the regular income arising from the rendering of services, one part in five, unto the Temple. The Baths shall stand as a hearth unto Eora's flames, to render comfort and solace unto the lonely and the weary who enters, to give those who freely love and renders it unto others a safe place of working such that they may make their keep, and count the Baths labor amongst the goddess's own works, pleasing to her sight. And thus the Temple doth take the Baths into its protection, by blade and by law. So long as the Ordinance holds, the Crown shall have no claim upon the Baths, whose most holy works is within the Temple's sole jurisdiction."
               }
             </p>
             <p style={{ margin: '0 0 4px 0' }}>
@@ -127,7 +127,7 @@ export const BathhouseOrdinanceSection = ({
             </p>
             <p style={{ margin: 0, color: INK_FAINT }}>
               {
-                'The Priest and the Bathmaster each hold the seal. Either may break or restore the Ordinance; neither may do so twice in quick succession.'
+                'The Pontifex and the Bathmaster each hold the seal. Either may break or restore the Ordinance; neither may do so twice in quick succession.'
               }
             </p>
           </div>

@@ -1383,7 +1383,7 @@ tile_coordinates = list(list(1,1), list(-1,1), list(-1,-1), list(1,-1),list(0,0)
 
 /datum/special_intent/martyr_blazing_trident
 	name = "Blazing Trident Strike"
-	desc = "A powerful blow with the trident forward, releasing arcs of fire from its teeth, which form the cross of Ten and burn the heretics standing in front. Always targets the chest."
+	desc = "A powerful blow with the trident forward, releasing arcs of fire from its teeth, which form the cross of the Pantheon and burn the heretics standing in front. Always targets the chest."
 	tile_coordinates = list(
 
 						list(0,0),

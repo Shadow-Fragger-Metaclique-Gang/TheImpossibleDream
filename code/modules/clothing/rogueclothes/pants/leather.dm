@@ -63,7 +63,7 @@
 	salvage_result = /obj/item/natural/hide/cured
 
 /obj/item/clothing/under/roguetown/trou/leather/pontifex
-	name = "pontifex's chaqchur"
+	name = "medjai's chaqchur"
 	desc = "A handmade pair of baggy, thin leather pants. They end in a tight stocking around the calf, ballooning out around the thigh."
 	icon_state = "monkpants"
 	item_state = "monkpants"
@@ -71,7 +71,7 @@
 	salvage_result = /obj/item/natural/hide/cured
 
 /obj/item/clothing/under/roguetown/trou/leather/pontifex/loadout
-	name = "aesthetic pontifex's chaqchur"
+	name = "aesthetic medjai's chaqchur"
 
 /obj/item/clothing/under/roguetown/trou/leather/pontifex/loadout/Initialize(mapload)
 	. = ..()

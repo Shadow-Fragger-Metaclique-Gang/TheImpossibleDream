@@ -345,7 +345,7 @@
 
 /datum/stressevent/syoncalamity
 	stressadd = 15
-	desc = span_boldred("By Psydon, the great comet's shard is no more! What will we do now!?")
+	desc = span_boldred("By Psydon, the scarshard is no more! What will we do now!?")
 	timer = 15 MINUTES
 
 /datum/stressevent/hithead
@@ -360,7 +360,7 @@
 
 /datum/stressevent/excommunicated
 	stressadd = 5
-	desc = span_boldred("The Ten have forsaken me!")
+	desc = span_boldred("The Gods have forsaken me!")
 	timer = 999 MINUTES
 
 /datum/stressevent/apostasy

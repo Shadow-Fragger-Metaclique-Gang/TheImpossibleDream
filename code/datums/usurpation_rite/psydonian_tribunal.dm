@@ -20,27 +20,22 @@
 <p><b>How it works:</b> Followers of Psydon must gather near the throne and speak the words 'I assent' to support your claim.</p>\
 <p><b>Completion condition:</b> Only <b>4</b> followers of Psydon may speak their assent. Once the threshold is reached, the realm is alerted and a contestation period begins — survive it and stay conscious while remaining near the throne, and it is yours.</p>\
 <p><b>Restrictions:</b> Only followers of Psydon may invoke or assent. The undead are excluded, but not outlaws.</p>\
-<p><b>Realm type if successful:</b> Ordinate, ruled by a Grand Inquisitor.</p>"}
-	new_ruler_title = "Grand Inquisitor"
-	new_ruler_title_f = "Grand Inquisitor"
+<p><b>Realm type if successful:</b> Ordinate, ruled by a Superior.</p>"}
+	new_ruler_title = "Superior"
+	new_ruler_title_f = "Superior"
 	new_realm_type = "Ordinate"
 	new_realm_type_short = "Ordinate"
 	roundend_epilogue = \
-		"The Inquisition has seized power in the name of Psydon. " + \
-		"An oddity that no one saw coming. " + \
+		"His Majesty's Holy Inquisition has seized power in the name of His Majesty - be it Psydon, or the King. " + \
+		"An oddity repeated rarely, and almost never with stable assent. " + \
 		"The Inquisition - fanatics, criminals, assassins, the best and the dregs of His faithful - " + \
-		"now rule in His name, over a realm of Tennites who have long since abandoned Psydon " + \
-		"for His children that will listen to their prayers. " + \
+		"now rule in His name, over a realm waylaid by the Pentacle, who have long since abandoned Psydon " + \
+		"for those Gods that will listen to their prayers. " + \
 		"How long can this rule last?" + \
 		"\n\n" + \
-		"To the north, the smoke of a signal fire rises. " + \
-		"Through this takeover, the Inquisition has broken the balance of power that kept the realm sovereign. " + \
-		"How can a wretched sect of Psydonian fanatics rule a realm of Tennites, " + \
-		"once the proud heart of the very Celestial Empire, the very place of Comet Syon, " + \
-		"where it is said that the very gods were created, from the shard of His divinity? " + \
-		"Grenzelhoft will not stand idle while Otavan fanatics rule the heart of the realm, " + \
-		"and neither will the many Tennite nobles of the land, eager to reclaim the throne for themselves. " + \
-		"War is coming." + \
+		"How long will the neighboring fiefdoms tolerate this overextension of royal power? How long will the Pantheonic populace withstand the inevitable? " + \
+		"Few have not feared the insurrection of the Psydonian. Few do not fear their pogroms, their inquisition, or their crusades - both peasant or noble. " + \
+		"Otava will be pleased, of course. Perhaps they had planned this from the very beginning. " + \
 		"\n\n" + \
 		"But just as Psydon stirs and endures for His return, " + \
 		"so does the Inquisition endure to re-establish His rule upon Psydonia."

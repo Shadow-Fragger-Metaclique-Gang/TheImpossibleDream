@@ -8,7 +8,7 @@
 	<b>Light</b>: Issue a prayer for illumination, causing you or another living creature to begin glowing with light for five minutes - this stacks each time you cast it, with no upper limit. Using thaumaturgy on a person will remove this blessing from them, and MMB on your praying hand will remove any light blessings from yourself.\n \
 	<b>Fill</b>: Beseech your Divine to create a small quantity of water in a container that you touch for some devotion.\n \
 	<b>Voice</b>: Direct a sliver of divine thaumaturgy into your being, causing your voice to become LOUD when you next speak. Known to sometimes scare the rats inside the SCOMlines. Can be used on light sources at range, and it will cause them flicker.\n \
-	<b>Bless</b>: Utter a prayer for redemption to your Divine to bring a repentant soul into their flock. The close bonds of the Ten uniquely allow an initiate to choose whichever they feel closest to. THIS IS ONLY TO BE USED AFTER A CONVERSION IN ROLEPLAY. DO NOT USE THIS WITHOUT A ROLEPLAY BASIS OR THERE WILL BE DIRE CONSEQUENCES."
+	<b>Bless</b>: Utter a prayer for redemption to your Divine to bring a repentant soul into their flock. The close bonds of the Divine uniquely allow an initiate to choose whichever they feel closest to. THIS IS ONLY TO BE USED AFTER A CONVERSION IN ROLEPLAY. DO NOT USE THIS WITHOUT A ROLEPLAY BASIS OR THERE WILL BE DIRE CONSEQUENCES."
 
 	background_icon = 'icons/mob/actions/genericmiracles.dmi'
 	button_icon = 'icons/mob/actions/genericmiracles.dmi'
@@ -166,7 +166,7 @@
 		to_chat(caster, span_notice("Only living creachers can bear the blessing of [caster.patron.name]'s light."))
 		return
 
-	var/god_title = istype(caster.patron, /datum/patron/divine/undivided) ? "Ten Undivided" : "Blessed [caster.patron.name]"
+	var/god_title = istype(caster.patron, /datum/patron/divine/undivided) ? "Gods Undivided" : "Blessed [caster.patron.name]"
 
 	if(victim != caster)
 		caster.visible_message(span_notice("[caster] reaches gently towards [victim], beads of light glimmering at [caster.p_their()] fingertips..."), span_notice("[god_title], I ask but for a light to guide the way..."))
@@ -434,7 +434,7 @@
 		to_chat(caster, span_info("I'll need to find a container that can hold water."))
 
 GLOBAL_LIST_INIT(convert_incantations, list(
-		/datum/patron/divine/undivided = "Ten above, bring this wayward soul into thy embrace!!",
+		/datum/patron/divine/undivided = "Gods above, bring this wayward soul into thy embrace!!",
 		/datum/patron/divine/astrata = "O great Overtyrant, grant order to this wayward soul!!",
 		/datum/patron/divine/noc = "O wise Moonbrother, grant wisdom to this wayward soul!!",
 		/datum/patron/divine/dendor = "O great Treefather, grant this wayward soul the nature of the wyld!!",
@@ -446,7 +446,7 @@ GLOBAL_LIST_INIT(convert_incantations, list(
 		/datum/patron/divine/malum = "O great Forgefather, bring diligence to this wayward soul!!",
 		/datum/patron/divine/eora = "Great Mother, show mercy to this wayward soul!!", // because just "love" is too tacky
 		/datum/patron/old_god = "Embrace the truth; PSYDON lyves!!", // psydon doesn't hear you, so you're talking to the other person here
-		/datum/patron/inhumen/zizo = "Dame of Progress, show this one the truth of the world!", // culty, progressive, quieter than tennite invocations. all the Four are, except Graggar, because there's more of a usecase for being subtle
+		/datum/patron/inhumen/zizo = "O, Demiurge! Show this one the truth of the world!", // culty, progressive, quieter than tennite invocations. all the Four are, except Graggar, because there's more of a usecase for being subtle
 		/datum/patron/inhumen/graggar = "SHATTER THE BINDS OF MIND AND SOUL! SMASH THE CAGE OF LIES! GRAGGAR GRAGGAR GRAGGAR!!", // the ten's order is a cage. shatter the bars, claw free to the truth. in other words: they're larping. also, loud.
 		/datum/patron/inhumen/matthios = "O Lorde, grant camaraderie to this wayward soul!", // similar to astrata's on purpose. and linked to matthios's free-men/comrades/siblings-in-arms thing. yes the title portion IS based entirely on how avarice refers to matthios why do you ask
 		/datum/patron/inhumen/baotha = "Lady of Heartbreak, grant mercy to this wounded soul!" // once more, similar to eora's. emphasizes the "mercy" baotha grants to the broken
@@ -465,7 +465,7 @@ GLOBAL_LIST_INIT(convert_incantations, list(
 	if(!ishuman(caster))
 		return FALSE
 	if(!ishuman(new_convert))
-		to_chat(caster, span_info("I can only convert people; anything simpler cannot properly worship [is_tennite ? "the Ten" : get_god_name(caster.patron)]."))
+		to_chat(caster, span_info("I can only convert people; anything simpler cannot properly worship [is_tennite ? "the Gods" : get_god_name(caster.patron)]."))
 		return FALSE
 
 	if (!victim.Adjacent(caster))
@@ -506,7 +506,7 @@ GLOBAL_LIST_INIT(convert_incantations, list(
 	if(istype(caster.patron, /datum/patron/old_god))
 		convert_message = "[caster.real_name] is trying to guide you onto PSYDON's path. Will you embrace Him, and forswear any lesser 'gods'?"
 	else if(is_tennite)
-		convert_message = "[caster.real_name] is trying to bring you into the Ten's embrace. Will you bask in Their light?"
+		convert_message = "[caster.real_name] is trying to bring you into the Divine embrace. Will you bask in Their light?"
 	else
 		switch(caster.patron.type)
 			if(/datum/patron/inhumen/zizo)
@@ -548,7 +548,7 @@ GLOBAL_LIST_INIT(convert_incantations, list(
 			if(istype(patron, old_patron.type))
 				continue // no converting astratans to astrata
 			patrons_named[patron.name] = patron.type
-		new_patron = patrons_named[input(new_convert, "Which of the Ten calls to you most?", "THE GODS SMILE") as anything in patrons_named]
+		new_patron = patrons_named[input(new_convert, "Which of the Gods calls to you most?", "THE GODS SMILE") as anything in patrons_named]
 
 	if(ispath(new_patron, /datum/patron/divine/xylix))
 		caster.say(pick_assoc(GLOB.convert_incantations)) // just like torturing a xylixian has random lines from all the other gods, converting someone TO xylix will troll you as well

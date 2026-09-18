@@ -273,7 +273,7 @@
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/gronn
 	name = "carved talisman" //plotting talisman
-	desc = "'The hunt, the studying of your prey, the learning of its routes, the knowledge our ancestors passed down, the empowerment of your people and yourself. Learn of the world, or fade away.'	</br>	</br>The Plotting Wolf embodies the virtues of progress and knowledge, so that no obstacle nor threat to the homeland remains insurmountable. To understand the truths of beast-and-bronze is to lighten the future's hardships. Do not humor magicka, however, for playing with fire shall always end in someone being burned."
+	desc = "'The hunt, the studying of your prey, the learning of its routes, the knowledge our ancestors passed down, the empowerment of your people and yourself. Learn of the world, or fade away.'	</br>	</br>The Plotting Wolf embodies the virtues of cunning, cruelty, and knowledge, so that no obstacle nor threat to the homeland remains insurmountable. To understand the truths of beast-and-bronze is to lighten the future's hardships. Do not humor magicka, however, for playing with fire shall always end in someone being burned."
 	icon_state = "gronnzizo"
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/gronn/get_examine_highlight_status()

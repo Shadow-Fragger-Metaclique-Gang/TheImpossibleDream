@@ -62,7 +62,7 @@
 		var/obj/item/I = parent
 		playsound(I, 'sound/magic/holyshield.ogg', 100)
 		if(silver_type == SILVER_PSYDONIAN) //Courtesy of @UntoldTactics, from PR #1354 on Scarlet Reach.
-			I.visible_message(span_notice("[I] glistens with power as dust of COMET SYON lands upon it!"))
+			I.visible_message(span_notice("[I] glistens with power as effervescence of PSYDON's possibilities drifts across it!"))
 		else
 			I.visible_message(span_notice("[I] glistens with power as a divine blessing is infused within!"))
 

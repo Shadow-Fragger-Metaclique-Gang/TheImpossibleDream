@@ -175,7 +175,7 @@
 	if(!do_after(user, 25, target = user))
 		in_use = FALSE
 		return
-	user.say(",g Before the Holy Ten, I reaffirm the sacred vows laid upon my soul.")
+	user.say(",g Before the Greatest Gods, I reaffirm the sacred vows laid upon my soul.")
 	if(!do_after(user, 25, target = user))
 		in_use = FALSE
 		return

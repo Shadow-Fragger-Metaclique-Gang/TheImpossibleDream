@@ -30,13 +30,13 @@
 	// these are shown to people of a given pantheon (the first index) when a given pantheon (the second index) ascends
 	var/list/reign_messages = list(
 		/datum/faith/divine = list(
-			/datum/faith/divine = "$patron shines bright in your Lux! The Ten are in their rightful place.",
-			/datum/faith/inhumen = "The firmament feels thick. The Ten's influence wanes; the Inhumen rise.",
+			/datum/faith/divine = "$patron shines bright in your Lux! The Pantheon are in their rightful place.",
+			/datum/faith/inhumen = "The firmament feels thick. The Pantheon's influence wanes; the Inhumen rise.",
 			/datum/faith/old_god = "The world is quiet. A soft wind blows. The divines rest, for now.",
 		),
 		/datum/faith/inhumen = list(
-			/datum/faith/inhumen = "$patron outshines the mendacity of The Ten! Mortalkind ascend!",
-			/datum/faith/divine = "The firmanent feels thick. The Ten's influence is overpowering!",
+			/datum/faith/inhumen = "$patron outshines the mendacity of the Pentacle! Mortalkind ascend!",
+			/datum/faith/divine = "The firmanent feels thick. The Pentacle's influence is overpowering!",
 			/datum/faith/old_god = "The world is quiet. A soft wind blows. The divines rest, for now.",
 		),
 		/datum/faith/old_god = list( // psydonites can only tell whether they're dominant or not, here

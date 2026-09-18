@@ -221,14 +221,14 @@
 /obj/item/clothing/ring/signet
 	name = "gold signet ring"
 	icon_state = "signet"
-	desc = "A ring of opulent gold, bearing the Lord's symbol. Its face is cut to seal writs of ducal importance, and a fresh bead of tallow rests in the underside."
+	desc = "A ring of opulent gold, bearing the Lord's symbol. Its face is cut to seal writs of courtly importance, and a fresh bead of tallow rests in the underside."
 	var/tallowed = FALSE
 	var/tallow_color = "red"
 
 /obj/item/clothing/ring/signet/get_mechanics_examine(mob/user)
 	. = ..()
 	. += span_info("Certain letters can be folded and stamped with the ring, which proves minor financial benefits.")
-	. += span_info("Pressed upon a quest scroll by a Steward, Clerk, or Grand Duke, the ring stamps it LEVY EXEMPT - waiving the Crown's Contract Levy on its reward.")
+	. += span_info("Pressed upon a quest scroll by a Steward, Clerk, or the Count, the ring stamps it LEVY EXEMPT - waiving the Crown's Contract Levy on its reward.")
 
 /obj/item/clothing/ring/signet/attack_right(mob/user)
 	. = ..()
@@ -247,7 +247,7 @@
 /obj/item/clothing/ring/signet/silver
 	name = "silver signet ring"
 	icon_state = "signet_silver"
-	desc = "A ring of glistening silver, bearing the Lord's symbol. Its face is cut to seal writs of ducal importance, a bead of tallow nested in the underside."
+	desc = "A ring of glistening silver, bearing the Lord's symbol. Its face is cut to seal writs of courtly importance, a bead of tallow nested in the underside."
 	is_silver = TRUE
 	is_lesser_silver = TRUE
 

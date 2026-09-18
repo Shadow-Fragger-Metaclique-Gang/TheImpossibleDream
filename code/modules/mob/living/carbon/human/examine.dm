@@ -1248,11 +1248,11 @@
 	if(HAS_TRAIT(src, TRAIT_CLERGY) && HAS_TRAIT(examiner, TRAIT_CLERGY))
 		clergy_text = "A fellow member of the Pharovian Temple of the Pentacle."
 	if(HAS_TRAIT(src, TRAIT_CHOSEN) && HAS_TRAIT(examiner, TRAIT_CLERGY))
-		clergy_text = "The Priest, the leader of my Temple and Chosen of the Star."
+		clergy_text = "The Pontifex, the leader of my Temple and Chosen of the Star."
 	if(HAS_TRAIT(src, TRAIT_CLERGY) && HAS_TRAIT(examiner, TRAIT_CHOSEN))
 		clergy_text = "A member of the clergy under my leadership, as willed by the Five."
 	if(HAS_TRAIT(src, TRAIT_CHOSEN) && HAS_TRAIT(examiner, TRAIT_CHOSEN))
-		clergy_text = "Myself. I am the Priest of Pharos, voice of the Gods in these lands."
+		clergy_text = "Myself. I am the Pontifex of Pharos, voice of the Gods in these lands."
 
 	return clergy_text
 

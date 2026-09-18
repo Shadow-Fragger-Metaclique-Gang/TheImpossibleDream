@@ -72,7 +72,7 @@
 	H.grant_language(/datum/language/undead)
 
 	// Armor choice: Discretion (lighter robes, subtle similar to rogue mage) vs Progress (open armored necromancer robes) with better protection potental and unique drip
-	var/armor_style = list("Discretion (Mage Disguise)", "Progress (Open Necromancer Robes)")
+	var/armor_style = list("Discretion (Mage Disguise)", "Ambition (Open Necromancer Robes)")
 	var/armor_choice = input(H, "Choose your scholarship route.", "NO COST TOO GREAT") as anything in armor_style
 	switch(armor_choice)
 		if("Discretion (Mage Disguise)")
@@ -83,7 +83,7 @@
 			belt = /obj/item/storage/belt/rogue/leather
 			beltr = /obj/item/reagent_containers/glass/bottle/rogue/manapot //Hacky solution so you don't lose em.
 			beltl = /obj/item/rogueweapon/huntingknife
-		if("Progress (Open Necromancer Robes)") //Good light armored potental, at a price of being super obvious with unique robes.
+		if("Ambition (Open Necromancer Robes)") //Good light armored potental, at a price of being super obvious with unique robes.
 			head = /obj/item/clothing/head/roguetown/roguehood/unholy/enchanted
 			neck = /obj/item/clothing/neck/roguetown/leather //Lesser gorget for more armor elsewhere, have to aquire one in the round.
 			belt = /obj/item/storage/belt/rogue/leather/black

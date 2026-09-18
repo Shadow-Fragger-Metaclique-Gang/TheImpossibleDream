@@ -21987,7 +21987,7 @@
 /area/rogue/indoors/town)
 "ehU" = (
 /obj/structure/roguemachine/scomm/l{
-	scom_tag = "Manor - Duke's Apartment"
+	scom_tag = "Manor - Count's Apartment"
 	},
 /turf/open/floor/rogue/metal{
 	dir = 4
@@ -48947,7 +48947,7 @@
 /obj/effect/decal/cleanable/sigil/N,
 /obj/structure/fluff/statue/femalestatue/zizo{
 	pixel_y = 21;
-	desc = "A intrepetation of Zizo in statue form. The base reads 'Let the Lady of Progress guide us forth, out of this ever rotting world.' ";
+	desc = "A intrepetation of Zizo in statue form. The base reads 'Let She-Made-Divine guide us forth, out of this ever rotting world.' ";
 	name = "Statue of Zizo"
 	},
 /turf/open/floor/rogue/hexstone,
@@ -68306,7 +68306,7 @@
 /area/rogue/indoors/inq/basement)
 "mHM" = (
 /obj/structure/roguemachine/scomm{
-	scom_tag = "Manor - Duke's Office";
+	scom_tag = "Manor - Count's Office";
 	pixel_y = -32
 	},
 /turf/open/floor/rogue/metal{
@@ -76055,7 +76055,7 @@
 /area/rogue/outdoors/beach/north)
 "oiq" = (
 /obj/structure/roguemachine/mail{
-	mailtag = "Duke's Quarters";
+	mailtag = "Count's Quarters";
 	pixel_x = -32;
 	pixel_y = 0
 	},
@@ -95062,7 +95062,7 @@
 /area/rogue/indoors/town/tavern)
 "rIA" = (
 /obj/structure/winch{
-	name = "Ducal Crypt Entrance";
+	name = "Noble Crypt Entrance";
 	redstone_id = "ducalcrypt";
 	gid = "ducalcrypt"
 	},
@@ -112268,7 +112268,7 @@
 /area/rogue/indoors/town/magician)
 "uSD" = (
 /obj/structure/gate{
-	name = "Ducal Crypt";
+	name = "Noble Crypt";
 	redstone_id = "ducalcrypt";
 	gid = "ducalcrypt"
 	},
@@ -116108,7 +116108,7 @@
 /obj/structure/fluff/railing/corner/south_east,
 /obj/machinery/light/rogue/candle,
 /obj/structure/fluff/sign{
-	desc = "This is a finely carved sign informing the reader that, be they Xylixian and see fit not to utilise the shrine of another of the Holy Ten, this space has been set out for them. No further graffiti will be tolerated.";
+	desc = "This is a finely carved sign informing the reader that, be they Xylixian and see fit not to utilise the shrine of one of the Greatest Gods, this space has been set out for them. No further graffiti will be tolerated.";
 	name = "XYLIXIANS, HEAR!"
 	},
 /turf/open/floor/rogue/concrete,

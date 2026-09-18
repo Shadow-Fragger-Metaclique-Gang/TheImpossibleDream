@@ -158,8 +158,8 @@ GLOBAL_LIST_EMPTY(tennite_schisms)
 
 	// Promote the selected priest if we found one
 	if(selected_priest)
-		selected_priest.job = "Vice Bishop"
-		selected_priest.advjob = "Vice Bishop"
+		selected_priest.job = "Priest Superior"
+		selected_priest.advjob = "Priest Superior"
 		selected_priest.migrant_type = null
 		var/datum/devotion/D = selected_priest.devotion
 		if(D)
@@ -172,7 +172,7 @@ GLOBAL_LIST_EMPTY(tennite_schisms)
 		//selected_priest.verbs |= /mob/living/carbon/human/proc/churchcurse	- Add this back seperate later in a seperate PR. Good feature, PR too big tho.
 		add_verb(selected_priest, /mob/living/carbon/human/proc/churchannouncement)
 
-		priority_announce("[challenger.name] has selected [selected_priest.real_name] as a new Pontifex! Power sharing begins!", "Priest rises", 'sound/magic/inspire_02.ogg')
+		priority_announce("[challenger.name] has selected [selected_priest.real_name] as a new priest! Power sharing begins!", "Priest rises", 'sound/magic/inspire_02.ogg')
 
 		if(was_supporter)
 			to_chat(selected_priest, span_green("[challenger.name] smiles upon you! Your faithful support during the schism has been rewarded with the position of a Priest!"))
@@ -292,7 +292,7 @@ GLOBAL_LIST_EMPTY(tennite_schisms)
 	return TRUE
 
 /datum/round_event_control/schism_within_ten
-	name = "Schism within the Ten"
+	name = "Schism within the Pantheon"
 	track = EVENT_TRACK_INTERVENTION
 	typepath = /datum/round_event/schism_within_ten
 	weight = 0.25

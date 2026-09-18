@@ -340,7 +340,7 @@
 	color = CLOTHING_RED
 
 /obj/item/clothing/head/roguetown/priesthat
-	name = "priest's hat"
+	name = "pontifex's hat"
 	desc = ""
 	icon_state = "priest"
 	//dropshrink = 0

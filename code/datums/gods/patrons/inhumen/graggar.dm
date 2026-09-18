@@ -4,12 +4,10 @@
 	desc = "The Devourer. The Many-Headed Beast. <b>HE</b> is the wicked voice in your head that delights in inflicting suffering upon another, and always demands more. \
 	<b>HE</b> is the part of you - no matter how small - that savors in the sickening crunch of a crushed skull. <b>HIS</b> voice is bellowed through Orcish war cries. <b>HIS</b> visage is seen through the Eclipse; a wicked grin; a cruel twist of the brow. \
 	<b>HIS</b> perfection is in pillage; in the blind destruction of arts, culture, and the creations of man. With <b>HIM,</b> corpses are butchered. Eaten. Sacrificed and scattered; bodies impaled upon every branch of a blood-soaked tree; one of many within a grove of the devoured dead. \
-	It is <b>HIS</b> Will manifest that works of high art and ancient culture are pillaged or burned; <b>HIS</b> glee at the annihilation of the works of the weak. \
-	<br><br> \
-	Only the strong may survive. Only the strong should survive. It is a pleasure to burn.<br> \
-	To kill. <br> \
-	To eat. <br> \
-	<i>Man is no greater than beast; beast is no greater than man.</i>"
+	It is <b>HIS</b> Will manifest that works of high art and ancient culture are pillaged or burned; <b>HIS</b> glee at the annihilation of the works of the weak. \n \n\
+	To kneel before Graggar is to kneel before no other. It is to believe in strength and domination above all else: typically, your own, but there is no shame in recognizing another of greater strength and power - so long as their power holds true. It is to believe in the closeness of the tribe; in its rituals and customs - no matter how brutal. Savagery is strength; the weak are unworthy. It is to take and claim and own what your heart and body desire– or to die gloriously in the process. \n \n\
+	<i>Man is no greater than beast; beast is no greater than man.</i> \n \n\
+	<b>HE</b> is Bearer of the Word: Conquest."
 
 	worshippers = "Conquerers, Militants, and the Cruel"
 	mob_traits = list(TRAIT_HORDE, TRAIT_ORGAN_EATER)

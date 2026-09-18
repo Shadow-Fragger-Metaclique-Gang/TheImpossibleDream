@@ -558,7 +558,7 @@
 //SUGARCRAFTING!!!
 /datum/crafting_recipe/roguetown/cooking/sugarshapedmarkd
 	category = FOOD_CAT_SUGARWORK
-	name = "sugarshape, ducal mark"
+	name = "sugarshape, noble mark"
 	display_category = ITEM_CAT_FOODSTUFF_PRESERVED
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/sugar = 1)
@@ -649,7 +649,7 @@
 
 /datum/crafting_recipe/roguetown/cooking/sugarshapedstatuer
 	category = FOOD_CAT_SUGARWORK
-	name = "sugarshape, ducal statue"
+	name = "sugarshape, noble statue"
 	display_category = ITEM_CAT_FOODSTUFF_PRESERVED
 	reqs = list(
 		/obj/item/reagent_containers/food/snacks/sugar = 1)

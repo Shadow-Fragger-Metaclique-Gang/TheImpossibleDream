@@ -2,7 +2,7 @@
 	name = "Desert Rider Zeybek"
 	tutorial = "The Desert Riders are a band of mercenaries known for their loose morals and high effectiveness. From an evil, ignoble beginning as an infamous company meant to track down runaway slaves, they grew into a considerable force. Their skill with long and short blades are famed and feared the world over."
 	allowed_sexes = list(MALE, FEMALE)
-	
+
 	outfit = /datum/outfit/job/roguetown/mercenary/desert_rider_zeybek
 	class_select_category = CLASS_CAT_RANESHENI
 	category_tags = list(CTAG_MERCENARY, CTAG_MERCPARTY_MARKSMAN)
@@ -38,7 +38,7 @@
 	..()
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/zeybek_momentum/zeybek)
-	to_chat(H, span_warning("The Desert Riders are a slightly-infamous band of mercenaries, as old and prestigious as Grenzelhoft's own. They have fought on both sides of nearly every conflict since the fall of the Celestial Empire."))
+	to_chat(H, span_warning("The Desert Riders are a slightly-infamous band of mercenaries, as old and prestigious as Grenzelhoft's own. They have fought on both sides of nearly every conflict since the fall of the Imperate."))
 	head = /obj/item/clothing/head/roguetown/roguehood/shalal/hijab/raneshen
 	neck = /obj/item/clothing/neck/roguetown/leather
 	mask = /obj/item/clothing/mask/rogue/facemask/steel/paalloy

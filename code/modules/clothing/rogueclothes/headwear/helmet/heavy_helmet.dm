@@ -189,7 +189,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/paalloy
 	name = "ancient barbute"
-	desc = "Polished gilbranze plates, pounded to form a visored helmet. Zizo commands progress, and progress commands sacrifice; let these \
+	desc = "Polished gilbranze plates, pounded to form a visored helmet. Zizo cradles ambition, and apotheosis commands sacrifice; let these \
 	sundered legionnaires rise again, to spill the blood of unenlightened fools. A coiled pocket is perched atop the rim, awaiting to be plumed."
 	icon_state = "ancientbarbute"
 	smeltresult = /obj/item/ingot/aaslag
@@ -987,13 +987,13 @@
 	name = "psydonic conical greathelm" //Vanilla version of the Greathelm, like before.
 	desc = "'In my dreams, I heard your footsteps coming closer.' \
 	</br>'In my dreams I tried to talk to you and introduce myself.' \
-	</br>'Guardian of the Comet and the Comet's banner.' \
+	</br>'Guardian of the Sufferer, and the Sufferer's banner.' \
 	</br>'With great pain, I carry the emblem of the All-Father.' \
-	</br>'I am the hands of bloodied skin, I am the eyes from which our Saints gaze.' \
+	</br>'I am the hands of bloodied skin, I am the eyes from which our God gazes.' \
 	</br>'But nothing I know of you, except your cold and forgotten visage.' \
 	</br>'Apart from your calloused and wounded hands.' \
 	</br>'Apart from the mourning of your ultimate sacrifice.' \
-	</br>'No, I know nothing of you, for only the Comet knows.' \
+	</br>'No, I know nothing of you, for only He, in Agony, knows.' \
 	</br>'Now may your sword full of guilt and mine of silver, collide.' \
 	</br>'Let them hurt and march in procession.' </br>'I curse you forever in name, I bless you forever in death..'"
 	armor_class = ARMOR_CLASS_MEDIUM
@@ -1478,7 +1478,7 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/zizo/volfhelm
 	name = "avantyne volf-face bascinet"
 	desc = "A terminal prognosis, a lethal parasite; unholy strands of avantyne, worming their way through the steel to make something \
-	greater. Progress is an agonising process, both unto flesh and metal."
+	greater. Your ambition is an agonising process, both unto flesh and metal."
 	icon_state = "volfplate_avantyne"
 	item_state = "volfplate_avantyne"
 	smeltresult = /obj/item/ingot/component/zizo

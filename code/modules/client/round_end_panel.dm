@@ -115,7 +115,7 @@
 	// Centered container with left-aligned content
 	data += "<div style='text-align: center;'>"
 	data += "<div style='display: inline-block; text-align: left; margin-left: auto; margin-right: auto;'>"
-	
+
 	var/stat_is_object = GLOB.featured_stats[current_featured]["object_stat"]
 	var/stat_is_admin_only = GLOB.featured_stats[current_featured]["admin_only"]
 	var/has_entries = length(GLOB.featured_stats[current_featured]["entries"])
@@ -264,7 +264,7 @@
 	data += "<div style='margin: 35px;'>"
 	switch(tab)
 		if("Gods")
-		
+
 			// Gods' Interventions Section
 			data += "<div>"
 			data += "<div style='text-align: center; color: #e0e0f0; font-size: 1.2em; margin-bottom: 10px;'>GODS' INTERVENTIONS</div>"
@@ -362,7 +362,7 @@
 
 				data += "</div>"
 
-		
+
 		if("Messages")
 			data += "<div style='display: table; width: 100%; table-layout: fixed;'>"
 			data += "<div style='display: table-row;'>"
@@ -878,7 +878,7 @@
 	var/list/faith_color = list(/datum/faith/divine = "#28908C", /datum/faith/inhumen = "#46254a", /datum/faith/old_god = "#47636d")
 	var/text_color = ((GLOB.dominant_faith_tracker.dominant_faith == /datum/faith/divine) ? "#E1C562" : "#d0d0d0")
 	var/border_color = ((GLOB.dominant_faith_tracker.dominant_faith == /datum/faith/divine) ? "#E1C562" : "#99b2b1")
-	
+
 	data += "<div style='width: 42.5%; margin: 0 auto 30px; border: 2px solid [border_color]; background: [faith_color[GLOB.dominant_faith_tracker.dominant_faith]]; color: [text_color]; max-height: 420px;'>"
 	data += "<div style='text-align: center; font-size: 1.3em; padding: 12px;'><b>DOMINANT FAITH: [GLOB.faithlist[GLOB.dominant_faith_tracker.dominant_faith]]</b></div>"
 	data += "<div style='padding: 0 15px 15px 15px;'>"
@@ -886,21 +886,21 @@
 	data += "<div style='display: flex;'>"
 
 	data += "<div style='flex: 1; border: 1px solid #99b2b1; padding: 4px; background: #1d6b69; color: #d0d0d0; margin-left: 2px; margin-right: 2px; border-radius: 4px;'>"
-	data += "Tennite influence: [GLOB.dominant_faith_tracker.totals[/datum/faith/divine]]<br>"
+	data += "Pantheonic influence: [GLOB.dominant_faith_tracker.totals[/datum/faith/divine]]<br>"
 	data += "Total followers: [GLOB.dominant_faith_tracker.influence_followers[/datum/faith/divine] / GLOB.dominant_faith_tracker.weights[/datum/faith/divine]] ([get_colored_influence_value(GLOB.dominant_faith_tracker.influence_followers[/datum/faith/divine])])<br>"
 	data += "New converts: [GLOB.dominant_faith_tracker.influence_conversion[/datum/faith/divine] / GLOB.dominant_faith_tracker.conversion_bonus] ([get_colored_influence_value(GLOB.dominant_faith_tracker.influence_conversion[/datum/faith/divine])])<br>"
 	data += "Followers lost to PSYDON: [GLOB.dominant_faith_tracker.influence_conversion_neg[/datum/faith/divine] / GLOB.dominant_faith_tracker.conversion_penalty] ([get_colored_influence_value(GLOB.dominant_faith_tracker.influence_conversion_neg[/datum/faith/divine])])<br>"
 	data += "</div>"
 
 	data += "<div style='flex: 1; border: 1px solid #99b2b1; padding: 4px; background: #46254a; color: #d0d0d0; margin-left: 2px; margin-right: 2px; border-radius: 4px;'>"
-	data += "Inhumen influence: [GLOB.dominant_faith_tracker.totals[/datum/faith/inhumen]]<br>"
+	data += "Ascendant influence: [GLOB.dominant_faith_tracker.totals[/datum/faith/inhumen]]<br>"
 	data += "Total followers: [GLOB.dominant_faith_tracker.influence_followers[/datum/faith/inhumen] / GLOB.dominant_faith_tracker.weights[/datum/faith/inhumen]] ([get_colored_influence_value(GLOB.dominant_faith_tracker.influence_followers[/datum/faith/inhumen])])<br>"
 	data += "New converts: [GLOB.dominant_faith_tracker.influence_conversion[/datum/faith/inhumen] / GLOB.dominant_faith_tracker.conversion_bonus] ([get_colored_influence_value(GLOB.dominant_faith_tracker.influence_conversion[/datum/faith/inhumen])])<br>"
 	data += "Followers lost to PSYDON: [GLOB.dominant_faith_tracker.influence_conversion_neg[/datum/faith/inhumen] / GLOB.dominant_faith_tracker.conversion_penalty] ([get_colored_influence_value(GLOB.dominant_faith_tracker.influence_conversion_neg[/datum/faith/inhumen])])<br>"
 	data += "</div>"
 
 	data += "<div style='flex: 1; border: 1px solid #99b2b1; padding: 4px; background: #47636d; color: #d0d0d0; margin-left: 2px; margin-right: 2px; border-radius: 4px;'>"
-	data += "Psydonite influence: [GLOB.dominant_faith_tracker.totals[/datum/faith/old_god]]<br>"
+	data += "Psydonian influence: [GLOB.dominant_faith_tracker.totals[/datum/faith/old_god]]<br>"
 	data += "Total followers: [GLOB.dominant_faith_tracker.influence_followers[/datum/faith/old_god] / GLOB.dominant_faith_tracker.weights[/datum/faith/old_god]] ([get_colored_influence_value(GLOB.dominant_faith_tracker.influence_followers[/datum/faith/old_god])])<br>"
 	data += "</div>"
 
@@ -958,7 +958,7 @@
 
 	// The Ten Section
 
-	data += "<div style='text-align: center; font-size: 1.3em; color: #c0a828; margin: 20px 0 10px 0;'><b>THE TEN</b></div>"
+	data += "<div style='text-align: center; font-size: 1.3em; color: #c0a828; margin: 20px 0 10px 0;'><b>THE GODS</b></div>"
 	data += "<div style='border-top: 3px solid #404040; margin: 0 auto 30px; width: 91.5%;'></div>"
 
 	data += "<div style='width: 91.5%; margin: 0 auto 40px;'>"

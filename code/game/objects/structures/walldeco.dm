@@ -224,8 +224,8 @@
 
 /obj/structure/fluff/walldeco/psybanner
 	name = "psydonic banner"
-	desc = "A banner of fine fabric bearing the symbol of Psydon, the Weeping God, creator of the world. \
-	Flown frequently by both Psydonite and Tennite authorities. </br>By toggling the 'Mechanics' tab, I can learn much more about this poster's given topic."
+	desc = "A banner of fine fabric bearing the symbol of Psydon, the Shattered God, creator of the world. \
+	Flown frequently by both Psydonian and Pantheonic authorities - though the latter far less.</br>By toggling the 'Mechanics' tab, I can learn much more about this poster's given topic."
 	icon_state = "Psybanner-PURPLE"
 
 /obj/structure/fluff/walldeco/psybanner/red
@@ -254,7 +254,7 @@
 /obj/structure/fluff/walldeco/psybanner/zizo
 	name = "zizite banner"
 	icon_state = "zizobanner_purple"
-	desc = "A carefully made banner bearing the inverted cross of Zizo, Dame of Progress. Banners such \
+	desc = "A carefully made banner bearing the inverted cross of Zizo, the Anathema Anatheme. Banners such \
 	as this one are wildly dangerous to fly in any Tennite or Psydonite nation, in which the worship \
 	of the progenitor of undeath is harshly criminalised, but may be commonly found in more remote \
 	areas of the world."
@@ -352,7 +352,7 @@
 
 /obj/structure/fluff/walldeco/customflag
 	name = "Flag of the Pharos"
-	desc = "A banner flutters in the breeze in the proud heraldic colors of the Duchy."
+	desc = "A banner flutters in the breeze in the proud heraldic colors of the County."
 	icon_state = "wallflag"
 
 /obj/structure/fluff/walldeco/customflag/Initialize(mapload)

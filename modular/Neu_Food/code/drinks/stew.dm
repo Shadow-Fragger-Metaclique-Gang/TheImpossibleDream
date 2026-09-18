@@ -583,7 +583,7 @@
 /datum/reagent/consumable/soup/stew/evilfryfish
 	name = "evil fish stew"
 	color = "#FF3200"
-	taste_description = "an overwhelming sense of dread, whispers of progress, and a surprisingly rich aftertaste"
+	taste_description = "an overwhelming sense of dread, anathematic whispers, and a surprisingly rich aftertaste"
 	nutriment_factor = 66
 	metabolization_rate = 6
 

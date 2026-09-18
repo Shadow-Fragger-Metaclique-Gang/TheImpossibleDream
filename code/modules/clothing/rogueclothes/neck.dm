@@ -161,7 +161,7 @@
 
 /obj/item/clothing/neck/roguetown/chaincoif/paalloy
 	name = "ancient coif"
-	desc = "Polished gilbranze rings, linked together to form a billowing hood. Let it not be a crown of thorns that saves this dying world, but a crown of progress; of fettered metal and stained bone, rejuvenated by Zizo's will to herald Her greatest works yet."
+	desc = "Polished gilbranze rings, linked together to form a billowing hood. Let it not be a crown of thorns that saves this dying world, but a crown of change, ultimate; of fettered metal and stained bone, rejuvenated by Zizo's will to herald its greatest works yet."
 	icon_state = "achaincoif"
 	smeltresult = /obj/item/ingot/aaslag
 
@@ -586,7 +586,7 @@
 
 /obj/item/clothing/neck/roguetown/psicross/g
 	name = "golden psycross"
-	desc = "'Purity afloat, for paradise awaits!'"
+	desc = "'Paradise awaits.'"
 	icon_state = "psycross_g"
 	item_state = "psycross_g"
 	//dropshrink = 0.75
@@ -594,7 +594,7 @@
 
 /obj/item/clothing/neck/roguetown/psicross/silver/naledi
 	name = "golden psycross"
-	desc = "'Purity afloat, for paradise awaits!' </br>The surface is meticulously lined with Naledian glyphs, said to ward off the possessive allure of djinns."
+	desc = "'Paradise awaits!' </br>The surface is meticulously lined with Naledian glyphs, said to ward off the possessive allure of djinns."
 	icon_state = "psycross_g"
 	item_state = "psycross_g"
 	//dropshrink = 0.75
@@ -603,7 +603,7 @@
 
 /obj/item/clothing/neck/roguetown/psicross/aalloy
 	name = "decrepit psycross"
-	desc = "'A comet capable of rending all the enemies of humanity apart; oh, how graceful His power was! And His sacrifice, ever so noble! Yet now He slumbers, unaware of the fruits His efforts came to give. And He sighs. And He weeps.'"
+	desc = "'The greatest of sacrifice - the greatest of loss. The Shattering was divine suicide, surely - ripping his infinite power away and casting it across the world: keeping Anathema from harvesting Him whole. It still yet sundered our world-- cracking the skies, staining what IS with what IS-NOT. We weep. We suffer. We burn - for HIM.'"
 	icon_state = "psycross_a"
 	color = "#bb9696"
 	chunkcolor = "#532e25"
@@ -611,14 +611,14 @@
 
 /obj/item/clothing/neck/roguetown/psicross/paalloy
 	name = "ancient psycross"
-	desc = "'A comet capable of rending all the enemies of humanity apart; oh, how graceful His power was! And His sacrifice, ever so noble! Yet now He slumbers, unaware of the fruits His efforts came to give. And He sighs. And He weeps.'"
+	desc = "'The greatest of sacrifice - the greatest of loss. The Shattering was divine suicide, surely - ripping his infinite power away and casting it across the world: keeping Anathema from harvesting Him whole. It still yet sundered our world-- cracking the skies, staining what IS with what IS-NOT. We weep. We suffer. We burn - for HIM.'"
 	icon_state = "psycross_a"
 	chunkcolor = "#532e25"
 	material_category = ARMOR_MAT_PLATE
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy
 	name = "decrepit zcross"
-	desc = "A symbol of progress from an era that had reason to believe in it."
+	desc = "A symbol of power from an era soon shattered."
 	icon_state = "zcross_a"
 	color = "#bb9696"
 	chunkcolor = "#532e25"
@@ -630,7 +630,7 @@
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/paalloy
 	name = "ancient zcross"
-	desc = "'Progress. Ascension. Destiny. A mandate, commanded by God, to be fufilled by Man. She called us forth from the edge of reality - and with Her dying breath, rasped out the final truth; the fire is gone, and the world will soon follow.'"
+	desc = "'Ascension. Destiny. Reign. A mandate, commanded by the Demiurge, to be fufilled by the dead and ab-dead. IT called us forth from the edge of reality - and with their dying breath, rasped out the final truth; the fire is gone, and the world will soon follow.'"
 	icon_state = "zcross_a"
 	chunkcolor = "#532e25"
 	material_category = ARMOR_MAT_PLATE
@@ -653,7 +653,7 @@
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/iron
 	name = "inverted psycross"
-	desc = "'Progress commands sacrifice!'"
+	desc = "'Zaios Dei.'"
 	icon_state = "zcross_iron"
 	resistance_flags = FIRE_PROOF
 
@@ -699,7 +699,7 @@
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/matthios/g
 	name = "golden amulet of Matthios"
-	desc = "He was but one flame in the dark. Together, His flock shall outblaze the Tyrant-Sun, and shall live deliciously atop the highest throne."
+	desc = "He was but one flame in the dark. Together, His flock shall outblaze the Tyrant-Sun, and shall dance, together, without shackles to bind or Law to restrain them. Any law."
 	icon_state = "matthios"
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar
@@ -714,12 +714,12 @@
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar/g
 	name = "golden amulet of Graggar"
-	desc = "Might makes right."
+	desc = "Reach heaven through Violence."
 	icon_state = "graggar_g"
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar/wood
 	name = "wooden amulet of Graggar"
-	desc = "When all you have is a hammer, every problem tends to look like a nail."
+	desc = "When all you have is a hammer, every problem tends to look like a skull."
 	icon_state = "graggar_w"
 	item_state = "graggar_w"
 	sellprice = 0
@@ -728,7 +728,7 @@
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/baotha
 	name = "amulet of Baotha"
-	desc = "A hollow promise rendered in gold. It weighs heavy with the memory of sweet wine turned to poison, and the comfort of a sorrow that refuses to fade."
+	desc = "A modest promise rendered in manchmal gilt. It is soft, and warm to the touch; hard to part from, when held - wishing to drink deeper of you and your life, if only for a moment."
 	icon_state = "baotha"
 	resistance_flags = FIRE_PROOF
 	smeltresult = null
@@ -738,12 +738,12 @@
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/baotha/g
 	name = "golden amulet of Baotha"
-	desc = "A hollow promise, rendered in gold and glistening with value. It weighs heavy with the memory of sweet wine turned to poison, and the comfort of a sorrow that refuses to fade."
+	desc = "A cherished relic, rendered in gold and glistening with value. How you love this life; how you cherish its every second! O, may us merge in Heaven, l'Opus-Opia!"
 	icon_state = "baotha"
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/baotha/wood
 	name = "wooden amulet of Baotha"
-	desc = "Drown in the past, live in the present, and forget the future."
+	desc = "Drown the past, cherish the present, and perfect the future."
 	icon_state = "baotha_w"
 	item_state = "baotha_w"
 	sellprice = 0

@@ -175,7 +175,7 @@
 
 /obj/item/rogueweapon/flail/sflail/paflail
 	name = "ancient flail"
-	desc = "A spiked ball of polished gilbranze, chained to a reinforced handle. They say that His children worshipped the flail above all else, for its twirls replicated the Comet Syon's blazing flights."
+	desc = "A spiked ball of polished gilbranze, chained to a reinforced handle. They say that His children worshipped the flail above all else, for He, embodied mortal, carried such a bludgeon made of cometsteel."
 	icon_state = "aflail"
 	smeltresult = /obj/item/ingot/aaslag
 

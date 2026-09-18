@@ -480,7 +480,7 @@
 	salvage_amount = 1
 
 /obj/item/clothing/head/roguetown/roguehood/pontifex
-	name = "pontifex's pashmina"
+	name = "medjai's pashmina"
 	desc = "A slim hood with thin, yet dense fabric. Stretchy and malleable, allowing for full flexibility and mobility. Made with spell-laced fabric to provide some protection against daemons and mortals alike."
 	max_integrity = ARMOR_INT_HELMET_LEATHER
 	armor = ARMOR_LEATHER

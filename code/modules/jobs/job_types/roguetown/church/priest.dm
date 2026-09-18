@@ -21,7 +21,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	forbidden_races = list(RACES_CONSTRUCT RACES_DESPISED RACES_OOZE)		//Too recent arrivals to ascend to priesthood.
 	allowed_patrons = ALL_DIVINE_PATRONS
 	allowed_sexes = list(MALE, FEMALE)
-	tutorial = "The Divine is all that matters in a world of the immoral. The Weeping God abandoned us, and in his stead the TEN rule over us mortals--and you will preach their wisdom to any who still heed their will. The faithless are growing in number. It is up to you to shepherd them toward a Gods-fearing future; for you are a Bishop of the Holy See."
+	tutorial = "The Divine is all that matters in a world of the immoral. The Shattered God abandoned us, and in his stead the PENTACLE rules over us mortals--and you will preach their wisdom to any who still heed their will. The faithless are growing in number. It is up to you to shepherd them toward a Gods-fearing future, o bridge-builder."
 	whitelist_req = FALSE
 	cmode_music = 'sound/music/cmode/church/combat_astrata.ogg'
 
@@ -52,8 +52,8 @@ GLOBAL_LIST_EMPTY(heretical_players)
 /datum/advclass/bishop
 	name = "Bishop"
 	tutorial = "The Divine is all that matters in a world of the immoral. \
-	The Weeping God abandoned us, and in his stead the TEN rule over us mortals--and you will preach their wisdom to any who still heed their will. The faithless are growing in number. \
-	It is up to you to shepherd them toward a Gods-fearing future; for you are a Bishop of the Holy See."
+	The Shattered God abandoned us, and in his stead the PENTACLE rules over us mortals--and you will preach their wisdom to any who still heed their will. The faithless are growing in number. \
+	It is up to you to shepherd them toward a Gods-fearing future, o bridge-builder."
 	outfit = /datum/outfit/job/roguetown/priest/basic
 	subclass_languages = list(/datum/language/grenzelhoftian)
 	category_tags = list(CTAG_BISHOP)
@@ -284,8 +284,8 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	new_role = "Templar"
 	overlay_state = "recruit_templar"
 	recruitment_faction = "Templars"
-	recruitment_message = "Serve the ten, %RECRUIT!"
-	accept_message = "FOR THE TEN!"
+	recruitment_message = "Serve the Gods, %RECRUIT!"
+	accept_message = "FOR THE PENTACLE!"
 	refuse_message = "I refuse."
 
 /obj/effect/proc_holder/spell/self/convertrole/monk
@@ -344,7 +344,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 
 /mob/living/carbon/human/proc/churchecancurse(mob/living/carbon/human/H, apostasy = FALSE)
 	if (!H.devotion && apostasy)
-		to_chat(src, span_warning("This one's connection to the ten is too shallow."))
+		to_chat(src, span_warning("This one's connection to the Divine is too shallow."))
 		return FALSE
 
 	//Flavor messages for cursing certain god's faithful.
@@ -356,7 +356,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 
 	//Abyssor's clergy are gripped by his dream.
 	if (istype(H.patron, /datum/patron/divine/abyssor))
-		to_chat(src, span_warning("The Dreamer, Abyssor has his clutches grasped firmly around this one. The light of the ten only barely penetrates the depths."))
+		to_chat(src, span_warning("The Dreaming Abhorrency, Abyssor, has his clutches grasped firmly around this one. The light of the Divine only barely penetrates the depths."))
 		ADD_TRAIT(H, TRAIT_CURSE_RESIST, TRAIT_GENERIC)
 
 	//Let's not curse heretical antags.
@@ -380,7 +380,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		return
 
 	if (!istype(get_area(src), /area/rogue/indoors/town/church/chapel))
-		to_chat(src, span_warning("I need to do this from the House of the Ten."))
+		to_chat(src, span_warning("I need to do this from the House of the Gods."))
 		return FALSE
 
 	if(!src.key)
@@ -446,13 +446,13 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		return
 
 	var/found = FALSE
-	var/inputty = input(src, "Excommunicate someone, away from the Ten...	(excommunicate them again to remove it)", "Sinner Name") as text|null
+	var/inputty = input(src, "Excommunicate someone, away from the Pentacle...	(excommunicate them again to remove it)", "Sinner Name") as text|null
 
 	if (!inputty)
 		return
 
 	if (!istype(get_area(src), /area/rogue/indoors/town/church/chapel))
-		to_chat(src, span_warning("I need to do this from the House of the Ten."))
+		to_chat(src, span_warning("I need to do this from the House of the Gods."))
 		return FALSE
 
 	if(!src.key)
@@ -464,7 +464,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 
 	if (inputty in GLOB.excommunicated_players)
 		GLOB.excommunicated_players -= inputty
-		priority_announce("[real_name] has reconciled [inputty] with the Church. They are once again part of the flock!", title = "RECONCILIATION", sound = 'sound/misc/bell.ogg')
+		priority_announce("[real_name] has reconciled [inputty] with the Temple. They are once again part of the flock!", title = "RECONCILIATION", sound = 'sound/misc/bell.ogg')
 		message_admins("EXCOMMUNICATION: [real_name] ([ckey]) has reconciled [H.real_name] ([H.ckey])")
 		log_game("EXCOMMUNICATION: [real_name] ([ckey]) has reconciled [H.real_name] ([H.ckey])")
 
@@ -524,7 +524,7 @@ code\modules\admin\verbs\divinewrath.dm has a variant with all the gods so keep 
 		return
 
 	if (!istype(get_area(src), /area/rogue/indoors/town/church/chapel))
-		to_chat(src, span_warning("I need to do this from the House of the Ten."))
+		to_chat(src, span_warning("I need to do this from the House of the Gods."))
 		return FALSE
 
 	if(!src.key)

@@ -217,7 +217,7 @@
 	eat_effect = /datum/status_effect/buff/sweet
 
 /obj/item/reagent_containers/food/snacks/grown/sugarshape/dmark
-	name = "sugarshape of ducal mark"
+	name = "sugarshape of noble mark"
 	desc = "A mound of sugar, shaped into a decorative mark with Pharos' sigil. It yearns to be completed beneath an oven's heat, or to be milled back down into sugarpowder."
 	cooked_type = /obj/item/reagent_containers/food/snacks/sugarstatue/dmark
 
@@ -247,7 +247,7 @@
 	cooked_type = /obj/item/reagent_containers/food/snacks/sugarstatue/hmark
 
 /obj/item/reagent_containers/food/snacks/grown/sugarshape/statuer
-	name = "sugarshape of ducal statue"
+	name = "sugarshape of noble statue"
 	desc = "A mound of sugar, shaped into a decorative royaltere. It yearns to be completed beneath an oven's heat, or to be milled back down into sugarpowder."
 	cooked_type = /obj/item/reagent_containers/food/snacks/sugarstatue/statuer
 
@@ -326,7 +326,7 @@
 	eat_effect = /datum/status_effect/buff/sweet
 
 /obj/item/reagent_containers/food/snacks/sugarstatue/dmark
-	name = "ducal sugarglass mark"
+	name = "noble sugarglass mark"
 	desc = "A decorative piece of sugarglass, meticulously fashioned to mimic a sigil of Pharos' reigning house. Deliciously noble!"
 	icon_state = "sugarstatuemarkd"
 	bitesize = 2

@@ -8059,7 +8059,7 @@
 /area/rogue/under/underdark/north)
 "ctx" = (
 /obj/structure/roguemachine/mail{
-	mailtag = "Duke's Quarters";
+	mailtag = "Count's Quarters";
 	pixel_x = -32;
 	pixel_y = 0
 	},

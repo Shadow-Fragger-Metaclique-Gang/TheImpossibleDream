@@ -5,7 +5,7 @@
 	flag = TEMPLAR
 	department_flag = CHURCHMEN
 	faction = "Station"
-	tutorial = "Templars are warriors who have forsaken wealth and title in lieu of service to the Great Gods, due to either zealotry or a past shame. They guard the temple and its priest while keeping a watchful eye against heresy and nite-creechers. Within troubled dreams, they wonder if the blood they shed makes them holy or stained."
+	tutorial = "Templars are warriors who have forsaken wealth and title in lieu of service to the Great Gods, due to either zealotry or a past shame. They guard the temple and its inhabitants while keeping a watchful eye against heresy and nite-creechers. Within troubled dreams, they wonder if the blood they shed makes them holy or stained."
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_DESPISED)
 	allowed_patrons = ALL_DIVINE_PATRONS

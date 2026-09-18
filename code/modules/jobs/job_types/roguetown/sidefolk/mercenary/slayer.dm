@@ -6,7 +6,7 @@
 	category_tags = list(CTAG_MERCENARY, CTAG_MERCPARTY_BULWARK)
 	class_select_category = CLASS_CAT_RACIAL
 	cmode_music = 'sound/music/combat_dwarf.ogg'
-	extra_context = "Only the dwarves who swore an Oath to the ten may become Trollslayers." // dwarf exclusive and will force Ravox
+	extra_context = "Only the dwarves who swore an Oath to the Bull may become Trollslayers." // dwarf exclusive and will force Ravox
 
 	traits_applied = list(TRAIT_CRITICAL_RESISTANCE, TRAIT_SHIRTLESS, TRAIT_NOPAINSTUN) //TRAIT_SHIRTLESS blocks equip in armor, shirt, and head slots.
 	subclass_stats = list(
@@ -36,7 +36,7 @@
 /datum/outfit/job/roguetown/mercenary/trollslayer/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
-		to_chat(H, span_warning("You are a Slayer - an elite hunter of monsters, hailing from the windy peaks of the dwarven Mountainhomes. Your devotion is matched only by your unbridled fury. You forgo defense, entrusting your life to the Ten and make a living by selling your trophies."))
+		to_chat(H, span_warning("You are a Slayer - an elite hunter of monsters, hailing from the windy peaks of the dwarven Mountainhomes. Your devotion is matched only by your unbridled fury. You forgo defense, entrusting your life to the Scale and make a living by selling your trophies."))
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/axedance)
 		armor = /obj/item/clothing/suit/roguetown/armor/manual/pushups/slayer //light iron maille
 		pants = /obj/item/clothing/under/roguetown/heavy_leather_pants

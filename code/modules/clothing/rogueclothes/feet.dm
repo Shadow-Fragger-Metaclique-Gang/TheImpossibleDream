@@ -461,7 +461,7 @@
 /obj/item/clothing/shoes/roguetown/boots/maille/bronze
 	name = "bronze maille boots"
 	desc = "A pair of leather boots, reinforced with smaller bronze plates along the feet and ankles. A thick layer of chainmail has been woven across \
-	the cuffs of each boot, and tastefully stitched into place. Between the glory of Ur-Syon's collapse and the rise of the Celestial Empire, these soles \
+	the cuffs of each boot, and tastefully stitched into place. Between the glory of Ur-Syon's collapse and the rise of the Pentacle Divine, these soles \
 	carried the steps of armies-a-plenty across the yet-supple steppes."
 	icon_state = "bsoldierboots"
 	item_state = "bsoldierboots"

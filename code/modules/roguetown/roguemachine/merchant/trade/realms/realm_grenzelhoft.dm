@@ -104,7 +104,7 @@
 	)
 	hail_lines = list(
 		"Factor! Have my dues counted in silver, not promises. I sail at the first ebb whether you are ready or not.",
-		"Grain from Apfelweinheim, ingots from the foundries of New Celestia. Bring buyers, not browsers.",
+		"Grain from Apfelweinheim, ingots from the low foundries of Vvaastricht. Bring buyers, not browsers.",
 		"By the Eleven Cathedrals, my ledgers are honest. See that yours match - the faithful take a dim view of cheats and Xylixians, and so do I.",
 		"My crew has held mass on every sunsdae of the crossing. We are devout, well-fed, and patient. Two of these three I have brought with me. The third I do not promise.",
 		"I want clay, silk, and tangerines. Send anyone who has them to the gangway. Send no one else.",

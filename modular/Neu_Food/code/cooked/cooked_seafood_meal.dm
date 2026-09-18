@@ -167,7 +167,7 @@
 	cuisine = CUISINE_SOUTH_IMPERIAL
 	dish_type = DISH_SEAFOOD
 	name = "jellied eel"
-	desc = "Jellied eel! Eel in jelly made of eel! By the ten!"
+	desc = "Jellied eel! Eel in jelly made of eel! By the Pentacle!"
 	icon = 'modular/Neu_Food/icons/cooked/cooked_seafood_meal.dmi'
 	icon_state = "jellied_eel"
 	tastes = list("slimy, slippery fish" = 1)

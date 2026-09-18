@@ -156,7 +156,7 @@
 	ship_qty_max = 4
 
 /datum/supply_pack/rogue/raneshen/pontifex_trou
-	name = "Pontifex Trousers"
+	name = "Medjai Trousers"
 	cost = 40
 	contains = list(/obj/item/clothing/under/roguetown/trou/leather/pontifex/raneshen)
 	ship_qty_min = 2

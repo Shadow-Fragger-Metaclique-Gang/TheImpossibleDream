@@ -6,8 +6,8 @@
 	profane_words = list("cock","dick","fuck","shit","pussy","cuck","cunt","asshole", "pintle", "vheslyn")	//Same as master but inhuman names are allowed now.
 	confess_lines = list(
 		"PSYDON IS THE DEMIURGE!",
-		"THE TEN ARE WORTHLESS COWARDS!",
-		"THE TEN ARE DECEIVERS!",
+		"THE PENTACLE SHALL BE SHATTERED!",
+		"THE GODS ARE DECEIVERS!",
 	)
 
 /datum/patron/inhumen/post_equip(mob/living/pious)

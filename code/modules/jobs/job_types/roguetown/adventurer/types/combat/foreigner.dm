@@ -173,7 +173,7 @@
 
 /datum/advclass/foreigner/refugee
 	name = "Naledi Refugee"
-	tutorial = "An asylum-seeker from the war-torn deserts of Naledi. Once destined for a seminary, war and displacement robbed you of your future. Though no Hierophant, Vizier, or Pontifex, fragments of your training remain."
+	tutorial = "An asylum-seeker from the war-torn deserts of Naledi. Once destined for a seminary, war and displacement robbed you of your future. Though no Hierophant, Vizier, or Medjai, fragments of your training remain."
 
 	outfit = /datum/outfit/job/roguetown/adventurer/refugee
 	subclass_languages = list(/datum/language/celestial)

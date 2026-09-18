@@ -94,7 +94,7 @@ GLOBAL_LIST_EMPTY(origins) // alist: origin name = origin desc. so we don't have
 	origin_name = "Naledi"
 	added_languages = list(/datum/language/celestial)
 	desc = "I originate from the sandy dunes of Naledi, known for its mages and scholars. Its people keep to the traditions of the Old God, even in the empire's dying age.<br>"
-	origin_desc = "When the Tennite faith first swept through the world many centuries ago, the people of Naledi were left entirely untouched.<br> Though knowledge of PSYDON \
+	origin_desc = "When the Pantheonic faith first swept through the world many centuries ago, the people of Naledi were left entirely untouched.<br> Though knowledge of PSYDON \
 	had faded under Astrata's eye, for the Naledi people, the traditions of the Old God have remained alive and well since the dawn of time - a fact that their libraries \
 	have carefully recorded. The Naledi are poorly known to the West, and most travelers from the region come as traders or scholars. What is known is that the region is \
 	rich in gold, and that its people look to the stars for divine knowledge of our world.<br> It is rumored that the Naledi Emir is over five hundred years old, owing his \
@@ -128,7 +128,7 @@ GLOBAL_LIST_EMPTY(origins) // alist: origin name = origin desc. so we don't have
 	\
 	<br>The islands of Kazengun are the seat of power of the Shogunate, a land of \
 	Astratan Order and divine fervour and reverence often compared to that seen in Otava. This Pantheon is larger than that of the Holy See, \
-	but its tenants are all but heretical in the domain of the See.	All of Kazengun reveres Order, as ordained by Astrata, the mother goddess, \
+	but its tenants are all but heretical in the domain of the Temple.	All of Kazengun reveres Order, as ordained by Astrata, the mother goddess, \
 	and by extension, the social stratification and aristocracy entwined within it, but the Pantheon also openly embraces ‘heretical’ beliefs and Ascendant gods as a simple facet of divinity.\
 	\
 	<br>A land divided, the Kazengun Shogunate also encompasses the lands of Lingyue- the former Empire across the mainland of Kazengun, \
