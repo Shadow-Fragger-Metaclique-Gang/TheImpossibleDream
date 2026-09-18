@@ -361,7 +361,7 @@
 		if(istype(M.patron, /datum/patron/inhumen))
 			var/turf/T = get_step(get_step(M, NORTH), NORTH)
 			T.Beam(M, icon_state="lightning[rand(1,12)]", time = 5)
-			M.visible_message(span_warning("[M] gets struck down by the Ten!"), span_warning("The Ten curse you! You stood too close to one of their devout!"))
+			M.visible_message(span_warning("[M] gets struck down by the Gods!"), span_warning("The Gods curse you! You stood too close to one of their devout!"))
 			M.electrocution_animation(20)
 			mob_ignite(M)
 			playsound(M, 'sound/magic/lightning.ogg', 100, FALSE)
@@ -494,7 +494,7 @@
 	tutorial = "Martyrs are hand-picked among the most devout of the Temple's chosen. They are given one of the Star's cherished relics to protect the Temple, and to inspire hope and lead by example of grace, kindness and vicious intolerance to any who do not carry the weight of the Wheel. They have sworn an Oath in the sight of the gods, and will fulfill it to the bitter end."
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_CONSTRUCT RACES_DESPISED RACES_OOZE)
-	allowed_patrons = list(/datum/patron/divine/astrata)
+	allowed_patrons = list(/datum/patron/divine/undivided)
 	outfit = /datum/outfit/job/roguetown/martyr
 	min_pq = 10 //Cus it's a Martyr of the Ten. Get it.
 	max_pq = null
@@ -993,7 +993,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/holysee
 	name = "holy silver plate"
-	desc = "Silver-clad plate for the guardians and the warriors, for the spears and shields of the Ten."
+	desc = "Silver-clad plate for the guardians and the warriors, for the spears and shields of the Temple."
 	icon = 'icons/roguetown/clothing/special/martyr.dmi'
 	icon_state = "silverarmor"
 	item_state = "silverarmor"
@@ -1036,7 +1036,7 @@
 
 /obj/item/clothing/gloves/roguetown/plate/holysee
 	name = "holy silver plate gauntlets"
-	desc = "Silver-clad plate for the guardians and the warriors, for the spears and shields of the Ten."
+	desc = "Silver-clad plate for the guardians and the warriors, for the spears and shields of the Temple."
 	icon = 'icons/roguetown/clothing/special/martyr.dmi'
 	icon_state = "silvergloves"
 	item_state = "silvergloves"
@@ -1078,7 +1078,7 @@
 
 /obj/item/clothing/shoes/roguetown/boots/armor/holysee
 	name = "holy silver plated boots"
-	desc = "Silver-clad plate for the guardians and the warriors, for the spears and shields of the Ten."
+	desc = "Silver-clad plate for the guardians and the warriors, for the spears and shields of the Temple."
 	icon = 'icons/roguetown/clothing/special/martyr.dmi'
 	icon_state = "silverboots"
 	item_state = "silverboots"
