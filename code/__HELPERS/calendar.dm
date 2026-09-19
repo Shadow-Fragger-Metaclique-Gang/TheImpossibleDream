@@ -6,7 +6,7 @@
 	Each week = 1 round IC (regardless of how much time actually passed in game)
 	The first month of a year begins in Spring - Gregorian March, like most sane agricultural calendars that begins in February / March.
 
-	HEARTBREAK NOTE:
+	SURREALIS NOTE:
 	Hey! So! This is a solid calendar, and it's a piece of absolute brilliance. Incredible work, fella! With all credit to the author--
 	We'll be making some edits throughout the process. Y'know, for flavor's sake - and readability.
 	With more Gods than the Pantheon staged in the world of the Dream, we'll be renaming the months to more secular terms.
@@ -74,7 +74,7 @@
 		if(3)
 			return "Maius" // May
 		if(4)
-		// HEARTBREAK NOTE: Strangely, this month has a lot of old men and women jumping off cliffs.
+		// SURREALIS NOTE: Strangely, this month has a lot of old men and women jumping off cliffs.
 			return "Midsommar" // June
 		if(5)
 			return "Jul" // July

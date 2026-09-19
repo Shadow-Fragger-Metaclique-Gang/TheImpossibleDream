@@ -184,7 +184,7 @@ export class Changelog extends Component {
 
     const header = (
       <Section>
-        <h1>Heartbreak</h1>
+        <h1>Surrealis</h1>
         <p>
           <b>Thanks to: </b>
           TGStation, Baystation 12, /vg/station, NTstation, CDK Station devs,
@@ -286,7 +286,7 @@ export class Changelog extends Component {
           {' for the MIT license.'}
         </p>
         <p>
-          {'Roguetown / Azure Peak / Heartbreak was originally forked from '}
+          {'Roguetown / Azure Peak / Surrealis was originally forked from '}
           <a href="https://github.com/tgstation/tgstation/commit/c28b351807bad950d2b323ada048190844bbda32">
             TG station commit c28b351807bad950d2b323ada048190844bbda32 on
             2019/17/11
