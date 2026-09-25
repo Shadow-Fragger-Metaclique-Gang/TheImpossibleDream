@@ -56,8 +56,9 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/client/proc/hide_most_verbs,		/*hides all our hideable adminverbs*/
 	/client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
 	/client/proc/secrets,				/* Almost entirely non-functional after Azure Peak Debloatening. Final few are redundant, but keeping just in case */
-	/client/proc/toggle_hear_radio,		/*allows admins to hide all radio output*/
 	/client/proc/reload_admins,
+	/client/proc/recalc_pq_bulk,
+	/client/proc/recalc_pq_single,
 	/client/proc/reload_whitelist,
 	/client/proc/reestablish_db_connection, /*reattempt a connection to the database*/
 	/client/proc/cmd_admin_pm_context,	/*right-click adminPM interface*/
@@ -77,6 +78,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/datum/admins/proc/toggleguests,	/*toggles whether guests can join the current game*/
 	/datum/admins/proc/announce,		/*priority announce something to all clients.*/
 	/datum/admins/proc/set_admin_notice, /*announcement all clients see when joining the server.*/
+	/client/proc/toggle_game_master,	/*opens the game master panel*/
 	/client/proc/toggle_aghost_invis, /* lets us choose whether our in-game mob goes visible when we aghost (off by default) */
 	/client/proc/admin_ghost,			/*allows us to ghost/reenter body at will*/
 	/client/proc/hearallasghost,
@@ -174,7 +176,6 @@ GLOBAL_PROTECT(admin_verbs_server)
 	/client/proc/cmd_debug_del_all,
 	/client/proc/cmd_controller_view_ui,
 	/client/proc/toggle_random_events,
-	/client/proc/forcerandomrotate,
 	/client/proc/adminchangemap,
 	/client/proc/panicbunker,
 	/datum/admins/proc/BC_WhitelistKeyVerb,
@@ -493,7 +494,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 
 /client/proc/check_antagonists()
 	set name = "Check Antags"
-	set category = "Game Master"
+	set category = "Game Master.Misc"
 	if(holder)
 		holder.check_antagonists()
 		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
@@ -646,7 +647,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Stealth Mode") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/drop_bomb()
-	set category = "Game Master"
+	set category = "Game Master.Misc"
 	set name = "Bomb..."
 	set desc = ""
 
@@ -688,7 +689,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Drop Bomb") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/drop_dynex_bomb()
-	set category = "Game Master"
+	set category = "Game Master.Misc"
 	set name = "Bomb - DynEx..."
 	set desc = ""
 
@@ -735,7 +736,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	message_admins("[key_name_admin(usr)] has	modified Dynamic Explosion Scale: [ex_scale]")
 
 /client/proc/give_spell(mob/T in GLOB.mob_list)
-	set category = "Game Master"
+	set category = "Game Master.Misc"
 	set name = "Give Spell"
 	set desc = ""
 
@@ -744,7 +745,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 		SSblackbox.record_feedback("tally", "admin_verb", 1, "Give Spell") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/remove_spell(mob/T in GLOB.mob_list)
-	set category = "Game Master"
+	set category = "Game Master.Misc"
 	set name = "Remove Spell"
 	set desc = ""
 
@@ -757,7 +758,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 			SSblackbox.record_feedback("tally", "admin_verb", 1, "Remove Spell") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/object_say(obj/O in world)
-	set category = "Admin.Special"
+	set category = "Game Master.Narration"
 	set name = "OSay"
 	set desc = ""
 	var/message = input(usr, "What do you want the message to be?", "Make Sound") as text | null
@@ -769,7 +770,7 @@ GLOBAL_PROTECT(admin_verbs_hideable)
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Object Say") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/force_say(mob/living/L in GLOB.mob_list)
-	set category = "Admin.Special"
+	set category = "Game Master.Narration"
 	set name = "Force Speech"
 	set desc = ""
 

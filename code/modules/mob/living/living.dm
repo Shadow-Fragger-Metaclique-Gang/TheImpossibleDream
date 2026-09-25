@@ -195,6 +195,7 @@
 		if(isliving(M))
 			var/sprint_distance = sprinted_tiles
 			var/instafail = FALSE
+			var/fail_reason
 			toggle_rogmove_intent(MOVE_INTENT_WALK, TRUE)
 			if(HAS_TRAIT(src, TRAIT_PACIFISM)) // No Con-Checking if you're a pacifist. You aren't MEAN!!!
 				return FALSE
@@ -208,6 +209,7 @@
 				if(0 to 1)
 					self_points -= 99
 					instafail = TRUE
+					fail_reason = "no headstart"
 				// One to two tile between the people
 				if(2 to 3)
 					self_points -= 2
@@ -236,10 +238,12 @@
 			if(src.dir != src.sprint_dir)
 				self_points -= 99
 				instafail = TRUE
+				fail_reason = "changed direction too late"
 				to_chat(src, span_warning("I changed direction too late!"))
 			if(lying)
 				self_points -= 99
 				instafail = TRUE
+				fail_reason = "charging while prone"
 				to_chat(src, span_warning("I can't charge anyone from the ground!"))
 			var/clash_blocked
 			if(L.has_status_effect(/datum/status_effect/buff/clash) && !instafail)
@@ -251,6 +255,7 @@
 				else
 					playsound(src, 'sound/combat/clash_charge.ogg', 100)
 				clash_blocked = TRUE
+				fail_reason = "target was clashing"
 			if(self_points > target_points)
 				L.Knockdown(1)
 			if(self_points < target_points)
@@ -274,6 +279,15 @@
 					visible_message(span_warning("[src] gets tripped by [L]!"), span_warning("I get tripped by [L]!"))
 			else
 				visible_message(span_warning("[src] charges into [L]!"), span_warning("I charge into [L]!"))
+			var/charge_outcome
+			if(self_points > target_points)
+				charge_outcome = "SUCCESS"
+			else if(self_points == target_points)
+				charge_outcome = "DRAW"
+			else
+				charge_outcome = "FAILED[fail_reason ? ", [fail_reason]" : ""]"
+			var/turf/charge_end = get_turf(src)
+			log_combat(src, L, "charged into", addition = "([charge_outcome]) (HEADSTART: [sprint_distance]) (START: [sprint_start_coord || "unknown"]) (END: [COORD(charge_end)]) (POINTS: [self_points] vs [target_points])", zone = BODY_ZONE_CHEST, damtype = BRUTE)
 			return TRUE
 
 	//okay, so we didn't switch. but should we push?
@@ -740,6 +754,12 @@
 /mob/living/restrained(ignore_grab)
 	return ..() || istype(loc, /obj/item/mob_item)
 
+/mob/living/proc/is_carried()
+	return ismob(buckled) && buckled.buckle_lying > 0
+
+/mob/living/proc/is_legbound()
+	return FALSE
+
 /mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = TRUE, check_immobilized = FALSE, ignore_stasis = FALSE)
 	if(stat || IsUnconscious() || IsStun() || IsParalyzed() || (!ignore_restraints && restrained(ignore_grab)))
 		return TRUE
@@ -1061,6 +1081,9 @@
 	var/turf/T = loc
 
 	if(m_intent == MOVE_INTENT_RUN)
+		if(!sprinted_tiles)
+			var/turf/sprint_origin = get_turf(src)
+			sprint_start_coord = COORD(sprint_origin)
 		sprinted_tiles++
 		sprint_dir = dir
 
@@ -1268,6 +1291,7 @@
 
 
 /mob/proc/stop_attack(message = FALSE)
+	used_intent?.on_charge_cancel()
 	if(atkswinging)
 		atkswinging = FALSE
 		if(message)
@@ -1319,6 +1343,25 @@
 	var/combat_modifier = 1
 	var/agg_grab = FALSE
 
+	if(HAS_TRAIT(L, TRAIT_PACIFISM) && !restrained())
+		// Pacifist grips cannot restrain anyone by themselves, unless the target is already restrained of course.
+		// Always break free; skip all resistance calculations.
+		if(L.cmode)
+			visible_message(span_warning("[src] roughly breaks free, slamming [L] down!"), \
+				span_warning("I roughly break free, slamming [L] down!"), null, null, L)
+			log_combat(src, L, "broke pacifist grab & combat punished")
+			playsound(src.loc, 'sound/combat/tf2crit.ogg', 50, TRUE, -1) // free dopamine shot for ruining a grappler pacifist's day
+			L.Knockdown(20)
+		else
+			visible_message(span_warning("[src] easily slips free from [L]'s careful grip!"), \
+				span_warning("I easily slip free from [L]'s careful grip!"), null, null, L)
+			log_combat(src, L, "broke pacifist grab")
+
+		L.changeNext_move(CLICK_CD_GRABBING)
+		playsound(src.loc, 'sound/combat/grabbreak.ogg', 50, TRUE, -1)
+		L.stop_pulling()
+		return TRUE
+
 	if(mind)
 		wrestling_diff += (get_skill_level(/datum/skill/combat/wrestling)) //NPCs don't use this
 	if(L.mind)
@@ -1353,6 +1396,10 @@
 		resist_chance += (STACON - L.STASPD) * 5
 	else
 		resist_chance += (STACON - (agg_grab ? L.STASTR : L.STAWIL)) * 5
+
+	if(HAS_TRAIT(src, TRAIT_PACIFISM)) // pacifists can't bait nor feint anymore, so this is necessary to make them not total pushovers
+		resist_chance = max(resist_chance, 25) // 25% base chance to slip free from grapples, number can be jakked freely based on how it feels
+
 	resist_chance *= combat_modifier
 	resist_chance = clamp(resist_chance, 5, 95)
 
@@ -2149,7 +2196,7 @@ GLOBAL_LIST_INIT(sight_trait_signals, build_sight_trait_signals())
 
 /proc/build_sight_trait_signals()
 	. = list()
-	for(var/trait in list(TRAIT_DARKVISION, TRAIT_NITEVISION, TRAIT_NOCSHADES, TRAIT_GILDED_SIGHT, TRAIT_THERMAL_VISION, TRAIT_XRAY_VISION, TRAIT_ZIZOSIGHT))
+	for(var/trait in list(TRAIT_DARKVISION, TRAIT_NITEVISION, TRAIT_NOCSHADES, TRAIT_GILDED_SIGHT, TRAIT_THERMAL_VISION, TRAIT_XRAY_VISION, TRAIT_ZIZOSIGHT, TRAIT_BLIND))
 		. += SIGNAL_ADDTRAIT(trait)
 		. += SIGNAL_REMOVETRAIT(trait)
 
@@ -2241,12 +2288,12 @@ GLOBAL_LIST_INIT(sight_trait_signals, build_sight_trait_signals())
 		return
 	if(!can_look_up())
 		return
-	changeNext_move(HAS_TRAIT(src, TRAIT_SLEUTH) ? CLICK_CD_SLEUTH : CLICK_CD_TRACKING)
+	changeNext_move(HAS_TRAIT(src, TRAIT_PERFECT_TRACKER) ? CLICK_CD_SLEUTH : CLICK_CD_TRACKING)
 	if(m_intent != MOVE_INTENT_SNEAK)
 		visible_message(span_info("[src] begins looking around."))
 	var/looktime = 50 - (STAPER * 2) - (get_skill_level(/datum/skill/misc/tracking) * 5)
 	looktime = clamp(looktime, 7, 50)
-	if(HAS_TRAIT(src, TRAIT_SLEUTH) ? move_after(src, looktime, target = src) : do_after(src, looktime, target = src))
+	if(HAS_TRAIT(src, TRAIT_PERFECT_TRACKER) ? move_after(src, looktime, target = src) : do_after(src, looktime, target = src))
 		for(var/mob/living/M in view(7,src))
 			var/marked = FALSE
 			if(M == src)
@@ -2285,7 +2332,7 @@ GLOBAL_LIST_INIT(sight_trait_signals, build_sight_trait_signals())
 			if(marked)
 				if(ishuman(src))
 					var/mob/living/carbon/human/H = src
-					if(H.current_mark == M && HAS_TRAIT(H, TRAIT_SLEUTH))
+					if(H.current_mark == M && HAS_TRAIT(H, TRAIT_PERFECT_TRACKER))
 						found_ping(get_turf(M), client, "trap")
 					else
 						found_ping(get_turf(M), client, "hidden")
@@ -2359,17 +2406,17 @@ GLOBAL_LIST_INIT(sight_trait_signals, build_sight_trait_signals())
 			to_chat(src, span_notice("You spot a faint trail [dist_text] to the [dir_text]."))
 
 		var/trackskill = get_skill_level(/datum/skill/misc/tracking)
-		var/has_sleuth = HAS_TRAIT(src, TRAIT_SLEUTH)
+		var/has_tracking_perk = HAS_TRAIT(src, TRAIT_PERFECT_TRACKER)
 
-		if(trackskill >= SKILL_LEVEL_EXPERT || has_sleuth)
-			var/search_range = has_sleuth ? 7 : (trackskill + 1) // Up to 7 (full screen) w/ Legendary
+		if(trackskill >= SKILL_LEVEL_EXPERT || has_tracking_perk)
+			var/search_range = has_tracking_perk ? 7 : (trackskill + 1) // Up to 7 (full screen) w/ Legendary
 			var/turf_origin = get_turf(src)
 			var/turf_up_one	= get_step_multiz(turf_origin, UP)
 			var/turf_up_two
-			if(turf_up_one && (trackskill >= SKILL_LEVEL_MASTER || has_sleuth))
+			if(turf_up_one && (trackskill >= SKILL_LEVEL_MASTER || has_tracking_perk))
 				turf_up_two = get_step_multiz(turf_up_one, UP)
 			var/turf_up_three
-			if(turf_up_two && (trackskill >= SKILL_LEVEL_LEGENDARY || has_sleuth))
+			if(turf_up_two && (trackskill >= SKILL_LEVEL_LEGENDARY || has_tracking_perk))
 				turf_up_three = get_step_multiz(turf_up_two, UP)	// We physically cannot go higher on dun world, so we don't. This is very niche already.
 
 			var/list/z_highlights
@@ -2382,7 +2429,7 @@ GLOBAL_LIST_INIT(sight_trait_signals, build_sight_trait_signals())
 
 			if(turf_up_one)
 				for(var/mob/living/L in get_hearers_in_range(search_range, turf_up_one, RECURSIVE_CONTENTS_CLIENT_MOBS))
-					if((L.m_intent == MOVE_INTENT_SNEAK || HAS_TRAIT(src, TRAIT_LIGHT_STEP)) && !has_sleuth)
+					if((L.m_intent == MOVE_INTENT_SNEAK || HAS_TRAIT(src, TRAIT_LIGHT_STEP)) && !has_tracking_perk)
 						continue
 					var/turf/T = locate(L.x, L.y, src.z) // We'll want to highlight the turf on -our- z-level.
 					var/val = "[ZTAG_ONE]"
@@ -2392,7 +2439,7 @@ GLOBAL_LIST_INIT(sight_trait_signals, build_sight_trait_signals())
 
 			if(turf_up_two)
 				for(var/mob/living/L in get_hearers_in_range(search_range, turf_up_two, RECURSIVE_CONTENTS_CLIENT_MOBS))
-					if((L.m_intent == MOVE_INTENT_SNEAK || HAS_TRAIT(src, TRAIT_LIGHT_STEP)) && !has_sleuth)
+					if((L.m_intent == MOVE_INTENT_SNEAK || HAS_TRAIT(src, TRAIT_LIGHT_STEP)) && !has_tracking_perk)
 						continue
 					var/turf/T = locate(L.x, L.y, src.z) // We'll want to highlight the turf on -our- z-level.
 					var/val = "[ZTAG_TWO]"
@@ -2402,7 +2449,7 @@ GLOBAL_LIST_INIT(sight_trait_signals, build_sight_trait_signals())
 
 			if(turf_up_three)
 				for(var/mob/living/L in get_hearers_in_range(search_range, turf_up_three, RECURSIVE_CONTENTS_CLIENT_MOBS))
-					if((L.m_intent == MOVE_INTENT_SNEAK || HAS_TRAIT(src, TRAIT_LIGHT_STEP)) && !has_sleuth)
+					if((L.m_intent == MOVE_INTENT_SNEAK || HAS_TRAIT(src, TRAIT_LIGHT_STEP)) && !has_tracking_perk)
 						continue
 					var/turf/T = locate(L.x, L.y, src.z) // We'll want to highlight the turf on -our- z-level.
 					var/val = "[ZTAG_THREE]"
@@ -2749,8 +2796,17 @@ GLOBAL_LIST_INIT(sight_trait_signals, build_sight_trait_signals())
 	return TRUE
 
 /mob/living/proc/accept_offered_item(mob/living/offerer, obj/offered_item, stealthy)
-	transferItemToLoc(offered_item, src)
+	transferItemToLoc(offered_item, src.loc)
 	put_in_active_hand(offered_item)
+
+	// Safety check
+	if(!offered_item || offered_item.loc != src)
+		transferItemToLoc(offered_item, offerer.loc, TRUE)
+		offerer.put_in_active_hand(offered_item)
+		to_chat(src, span_warning("I couldn't accept the item! I let go!"))
+		offerer.stop_offering_item()
+		return FALSE
+
 	if(stealthy)
 		to_chat(offerer, span_notice("[src] takes the secretly offered [offered_item]."))
 		to_chat(src, span_notice("I take the secretly offered [offered_item] from [offerer]."))
@@ -2764,15 +2820,18 @@ GLOBAL_LIST_INIT(sight_trait_signals, build_sight_trait_signals())
 		)
 	SEND_SIGNAL(offered_item, COMSIG_OBJ_HANDED_OVER, src, offerer)
 	offerer.stop_offering_item()
+	return TRUE
 
 /// Marks a freshly-spawned mob as belonging to a contract/quest: strips its head bounty so it
 /// can't be farmed at a HEADEATER, and arranges for the corpse to dust shortly after death.
-/mob/living/proc/mark_contract_spawned()
+/mob/living/proc/mark_contract_spawned(dust_corpse = TRUE)
 	no_head_bounty = TRUE
 	contract_spawned = TRUE
-	RegisterSignal(src, COMSIG_LIVING_DEATH, PROC_REF(on_contract_death))
+	ADD_TRAIT(src, TRAIT_ZOMBIE_IMMUNE, CONTRACT_SPAWN_TRAIT)
+	if(dust_corpse)
+		RegisterSignal(src, COMSIG_LIVING_DEATH, PROC_REF(on_contract_death))
 
-/mob/living/carbon/mark_contract_spawned()
+/mob/living/carbon/mark_contract_spawned(dust_corpse = TRUE)
 	. = ..()
 	var/obj/item/bodypart/head/head = get_bodypart(BODY_ZONE_HEAD)
 	if(istype(head))

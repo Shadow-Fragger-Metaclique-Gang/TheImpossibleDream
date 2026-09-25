@@ -8,6 +8,7 @@
 	subclass_languages = list(/datum/language/kazengunese)
 	class_select_category = CLASS_CAT_WARRIOR
 	category_tags = list(CTAG_WRETCH)
+	virtue_limits = list(/datum/virtue/combat/second_chance)
 	traits_applied = list(TRAIT_NOPAINSTUN, TRAIT_BLOOD_RESISTANCE, TRAIT_JOURNEYS_END) //no armour, literally made to bleed
 	maximum_possible_slots = 2 //you probably don't want many of these - edit: let them bring a friend/rival
 
@@ -35,6 +36,7 @@
 	)
 	subclass_stashed_items = list(
 		"Sewing Kit" =	/obj/item/repair_kit, //I am sure you'll find a way to repair your bracers
+		"Stashed Funds" = /obj/item/roguecoin/silver/pile/wretchpile,
 	)
 	extra_context = "This subclass gains addition stat points from weapon selection, and is race-limited from: Constructs."
 	adv_stat_ceiling = list(STAT_STRENGTH = 14, STAT_CONSTITUTION = 14, STAT_WILLPOWER = 14) //no thank you to stat stacking

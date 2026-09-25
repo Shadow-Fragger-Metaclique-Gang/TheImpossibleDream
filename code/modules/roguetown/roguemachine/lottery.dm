@@ -147,8 +147,9 @@
 			mod = 10
 		if(selection == "SILVER")
 			mod = 5
-		var/coin_amt = input(user, "Sayyid, you have [src.gamblingprice] mammon in tithes. You may withdraw [floor(gamblingprice/mod)] [selection] COINS.", src) as null|num
-		coin_amt = round(coin_amt)
+		var/maxwithdraw = min(floor(gamblingprice/mod), 20)
+		var/coin_amt = input(user, "Sayyid, you have [src.gamblingprice] mammon in tithes. You may withdraw [maxwithdraw] [selection] COINS.", src) as null|num
+		coin_amt = min(round(coin_amt), 20)
 		if(coin_amt < 1)
 			return
 		if(!Adjacent(user))

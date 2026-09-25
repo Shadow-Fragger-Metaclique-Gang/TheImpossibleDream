@@ -35,21 +35,21 @@
 	increased. Most healing Miracles cannot affect devoted Psydonians.\
 	<br><br><b>Patron Conditions:</b>\
 	<ul>\
-	<li><b>Abyssor:</b> +60% healing when the target is standing in water.</li>\
-	<li><b>Astrata:</b> +80% healing during daytime. Up to +100% if the target has the Noble trait (does not stack with daytime).</li>\
-	<li><b>Dendor:</b> Up to +80% from nearby natural objects (grass, trees, mushrooms, soil). Each wise tree grants an additional +60%.</li>\
-	<li><b>Eora:</b> +100% if the target is a pacifist. +60% if the caster is also a pacifist. Up to +160% total.</li>\
-	<li><b>Malum:</b> Up to +100% scaling with nearby fire sources (torches, campfires, hearths, candles, forges).</li>\
-	<li><b>Necra:</b> +100% when the target is below 25% health. +50% if the caster has Necran Mists active. Up to +150% total.</li>\
-	<li><b>Noc:</b> +40% healing during nighttime.</li>\
-	<li><b>Pestra:</b> +40% when the target is laying down (not buckled). Also restores blood and heals toxin damage.</li>\
-	<li><b>Ravox:</b> +40% if the target is using a strong attack intent. +20% if holding a weapon. +80% with blood restoration if cast on self while at low blood (30s cooldown). Up to +140% total.</li>\
-	<li><b>Xylix:</b> 50% chance of a random +40% to +100% bonus.</li>\
-	<li><b>Undivided:</b> Always +80% with no conditions.</li>\
-	<li><b>Baotha:</b> +20% if the target is drunk or on drugs. +20% if experiencing withdrawal. Up to +80% additional from wound pain and bleeding. Up to +120% total.</li>\
-	<li><b>Graggar:</b> Up to +100% scaling with nearby blood decals.</li>\
-	<li><b>Matthios:</b> +100% if the target has the Freeman trait.</li>\
-	<li><b>Zizo:</b> Up to +200% scaling with nearby bones and bone bundles.</li>\
+	<li><b>Abyssor:</b> +16.67% healing when the target is standing in water.</li>\
+	<li><b>Astrata:</b> +16.67% healing during daytime. Up to +16.67% if the target has the Noble trait (bonuses do not stack)</li>\
+	<li><b>Dendor:</b> Up to +16.67% from nearby natural objects (grass, trees, mushrooms, soil).</li>\
+	<li><b>Eora:</b> +16.67% if the target is a pacifist. Up to +16.67% if the caster is also a pacifist. (bonuses do not stack)</li>\
+	<li><b>Malum:</b> Up to +16.67% scaling with nearby fire sources (torches, campfires, hearths, candles, forges).</li>\
+	<li><b>Necra:</b> +16.67% when the target is below 25% health. Up to +16.67% if the caster has Necran Mists active. (bonuses do not stack)</li>\
+	<li><b>Noc:</b> +16.67% healing during nighttime.</li>\
+	<li><b>Pestra:</b> +16.67% when the target is laying down (not buckled). Also restores blood and heals toxin damage.</li>\
+	<li><b>Ravox:</b> +16.67% if the target is using a strong attack intent. Up to +16.67% if holding a weapon. An infusion of blood if cast on self while at low blood (30s cooldown). (bonuses do not stack)</li>\
+	<li><b>Xylix:</b> 50% chance of a +16.67% bonus.</li>\
+	<li><b>Undivided:</b> Always +16.67% with no conditions.</li>\
+	<li><b>Baotha:</b> +16.67% if the target is drunk or on drugs. Up to +16.67% if experiencing withdrawal. Up to +16.67% from wound pain and bleeding. (bonuses do not stack)</li>\
+	<li><b>Graggar:</b> Up to +16.67% scaling with nearby blood decals.</li>\
+	<li><b>Matthios:</b> +16.67% if the target has the Freeman trait.</li>\
+	<li><b>Zizo:</b> Up to +16.67% scaling with nearby bones and bone bundles.</li>\
 	</ul>"
 	fluff_desc = "The lyfeline of any devotee, channeling restorative energies of their worshipped diety within mortal realm."
 	button_icon_state = "heal"
@@ -82,13 +82,13 @@
 		return FALSE
 
 	if(HAS_TRAIT(spelltarget, TRAIT_PSYDONITE))
-		spelltarget.visible_message(span_artery("[spelltarget] stirs for a moment, the miracle dissipates."), span_artery("A dull warmth swells in your heart, only to fade as quickly as it arrived."))
+		spelltarget.visible_message(span_info("[spelltarget] stirs for a moment, the miracle dissipates."), span_blue("A dull warmth swells in your heart, only to fade as quickly as it arrived."))
 		owner.playsound_local(owner, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 		playsound(spelltarget, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 		return FALSE
 
 	if(HAS_TRAIT(spelltarget, TRAIT_UNFORGIVABLE))
-		spelltarget.visible_message(span_artery("[spelltarget] stirs for a moment, the miracle dissipates."), span_artery("A dull warmth passes through your hollow husk of a body, only to fade as quickly as it arrived."))
+		spelltarget.visible_message(span_info("[spelltarget] stirs for a moment, the miracle dissipates."), span_blue("A dull warmth passes through your hollow husk of a body, only to fade as quickly as it arrived."))
 		playsound(target, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 		owner.playsound_local(owner, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 		return FALSE
@@ -99,7 +99,7 @@
 		spelltarget.emote("pain")
 
 	if(HAS_TRAIT(spelltarget, TRAIT_IRONMAN))
-		spelltarget.visible_message(span_artery("[target] doesn't seem to be organic, the miracle dissipates."), span_artery("A dull warmth never meets your non-existent heart, it fades as quickly as it arrives."))
+		spelltarget.visible_message(span_info("[spelltarget] doesn't seem to be organic, the miracle dissipates."), span_blue("A dull warmth never meets your non-existent heart, it fades as quickly as it arrives."))
 		owner.playsound_local(owner, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 		playsound(spelltarget, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 		return FALSE
@@ -208,7 +208,7 @@
 		return FALSE
 
 	if(HAS_TRAIT(spelltarget, TRAIT_PSYDONITE))
-		spelltarget.visible_message(span_artery("[spelltarget] stirs for a moment, the miracle dissipates."), span_artery("A dull warmth swells in your heart, only to fade as quickly as it arrived."))
+		spelltarget.visible_message(span_info("[spelltarget] stirs for a moment, the miracle dissipates."), span_notice("A dull warmth swells in your heart, only to fade as quickly as it arrived."))
 		owner.playsound_local(owner, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 		playsound(spelltarget, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 		return FALSE
@@ -219,7 +219,7 @@
 		spelltarget.emote("pain")
 
 	if(HAS_TRAIT(spelltarget, TRAIT_IRONMAN))
-		spelltarget.visible_message(span_artery("[target] doesn't seem to be organic, the miracle dissipates."), span_artery("A dull warmth never meets your non-existent heart, it fades as quickly as it arrives."))
+		spelltarget.visible_message(span_info("[spelltarget] doesn't seem to be organic, the miracle dissipates."), span_notice("A dull warmth never meets your non-existent heart, it fades as quickly as it arrives."))
 		owner.playsound_local(owner, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 		playsound(spelltarget, 'sound/magic/PSY.ogg', 100, FALSE, -1)
 		return FALSE
@@ -354,7 +354,6 @@
 	spell_requirements = SPELL_REQUIRES_HUMAN | SPELL_REQUIRES_SAME_Z | SPELL_REQUIRES_NO_MOVE
 
 	var/blood_price = 5
-	var/blood_vol_restore = 7.5 //30 every 2 seconds.
 	var/vol_per_skill = 1	//54 with legendary
 	var/delay = 0.5 SECONDS
 
@@ -386,17 +385,18 @@
 		playsound(UH, 'sound/magic/bloodheal_start.ogg', 100, TRUE)
 		var/user_skill = UH.get_skill_level(associated_skill)
 		var/user_informed = FALSE
+		var/blood_vol_restore = 7
 		switch(user_skill)	//Bleeding happens every life(), which is every 2 seconds. Multiply these numbers by 4 to get the "bleedrate" equivalent values.
 			if(SKILL_LEVEL_APPRENTICE)
-				blood_price = 3.75
+				blood_price = 3.75 // We pay 15 to restore 9
 			if(SKILL_LEVEL_JOURNEYMAN)
-				blood_price = 2.5
+				blood_price = 2.5 //10:10
 			if(SKILL_LEVEL_EXPERT)
-				blood_price = 2
+				blood_price = 2 //8:11
 			if(SKILL_LEVEL_MASTER)
-				blood_price = 1.625
+				blood_price = 1.625 //6.5:12
 			if(SKILL_LEVEL_LEGENDARY)
-				blood_price = 1.25
+				blood_price = 1.25 //5:13
 		if(user_skill > SKILL_LEVEL_NOVICE)
 			blood_vol_restore += vol_per_skill * user_skill
 		var/max_loops = round(UH.blood_volume / blood_price, 1) * 2	// x2 just in case the user is trying to fill themselves up while using it.
@@ -430,16 +430,15 @@
 
 /datum/action/cooldown/spell/miracle/ignition
 	name = "Ignition"
-	desc = "Ignites target, living or object."
+	desc = "Ignite an object."
 	fluff_desc = "The first gift to men, a sliver of Her radiance at fingertips of those devoted to Her wae of lyfe. Some sae it was Matthios who forced Astrata's hand in relinquishing such force to lowly mortals."
 	button_icon_state = "ignite"
 	sound = 'sound/items/firelight.ogg'
 	glow_intensity = GLOW_INTENSITY_LOW
-	sparks_amt = 2
+	sparks_amt = 1
 
 	click_to_activate = TRUE
-	cast_range = SPELL_RANGE_AURA
-	self_cast_possible = FALSE //Why are you trying to set YOURSELF on fire.
+	cast_range = 4
 
 	primary_resource_cost = SPELLCOST_MIRACLE_MINOR
 
@@ -448,10 +447,9 @@
 	invocation_type = INVOCATION_NONE //It has seperate message ON USE
 
 	charge_required = FALSE
-	cooldown_time = 10 SECONDS
+	cooldown_time = 2 SECONDS
 
-	spell_flags = SPELL_PSYDON
-	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_HUMAN | SPELL_REQUIRES_SAME_Z
+	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_SAME_Z
 
 /datum/action/cooldown/spell/miracle/ignition/cast(atom/cast_on)
 	. = ..()
@@ -470,20 +468,7 @@
 			to_chat(owner, span_warning("You attempt to ignite [spelltarget], but it fails to catch fire."))
 			return FALSE
 	else
-		owner.visible_message("<font color='yellow'>[owner] engulfs [spelltarget] in sacred flame!</font>")
-		if(spelltarget.anti_magic_check(TRUE, TRUE))
-			return FALSE
-		if(spell_guard_check(spelltarget, TRUE))
-			spelltarget.visible_message(span_warning("[spelltarget] shields against the divine flame!"))
-			return TRUE
-		if(spelltarget.fire_stacks < 1)
-			spelltarget.adjust_fire_stacks(2)
-			spelltarget.ignite_mob()
-			log_combat(owner, spelltarget, "ignited", addition="with the miracle [name]", zone=owner.zone_selected)
-			return TRUE
-		else
-			spelltarget.visible_message(span_warning("[spelltarget] is already engulfed in flames!"))
-			return TRUE
+		return FALSE
 
 /////////////////////////////////
 // MIRACLE - SACRED ASCENDANCE //
@@ -513,11 +498,11 @@
 		/obj/effect/proc_holder/spell/invoked/immolation::name				= /obj/effect/proc_holder/spell/invoked/immolation,
 		/obj/effect/proc_holder/spell/self/howl/call_of_the_moon::name		= /obj/effect/proc_holder/spell/self/howl/call_of_the_moon,
 		/obj/effect/proc_holder/spell/invoked/pomegranate::name				= /obj/effect/proc_holder/spell/invoked/pomegranate,
-		//Malum lacks one for the time being.
+		/datum/action/cooldown/spell/malum/fortress::name					= /datum/action/cooldown/spell/malum/fortress,
 		/obj/effect/proc_holder/spell/invoked/deaths_door::name				= /obj/effect/proc_holder/spell/invoked/deaths_door,
-		//Noc gets one after the rework passes.
+		/datum/action/cooldown/spell/noc/moonlight::name					= /datum/action/cooldown/spell/noc/moonlight,
 		//Pestra has actually nothing, son 😢
-		//Ravox will get something else.
+		/datum/action/cooldown/spell/ravox/challenge::name					= /datum/action/cooldown/spell/ravox/challenge,
 		/datum/action/cooldown/spell/undivided/undivided_battlecry::name	= /datum/action/cooldown/spell/undivided/undivided_battlecry,
 		/obj/effect/proc_holder/spell/invoked/abscond::name					= /obj/effect/proc_holder/spell/invoked/abscond
 	)

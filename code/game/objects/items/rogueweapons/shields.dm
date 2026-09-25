@@ -509,7 +509,7 @@
 
 /obj/item/rogueweapon/shield/tower/metal/alloy
 	name = "decrepit shield"
-	desc = "A hefty tower shield, wrought from frayed bronze. Looped with dried kelp and reeking of saltwater, you'd assume that this had been fished \
+	desc = "A hefty tower shield, wrought from rotted metal. Looped with dried kelp and reeking of saltwater, you'd assume that this had been fished \
 	out from the remains of a long-sunken warship.. alongside its former legionnaire."
 	max_integrity = 120
 	wdefense = 9
@@ -681,6 +681,7 @@
 	desc = "If they couldn't protect their previous owners, how confident are you in these bones protecting you?"
 	icon_state = "boneshield"
 	smeltresult = null
+	materia = list(/datum/materia_aspect/defense, /datum/materia_aspect/death)
 
 /obj/item/rogueweapon/shield/iron/graggar
 	name = "vicious targe"

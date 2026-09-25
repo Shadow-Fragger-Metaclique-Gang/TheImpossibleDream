@@ -1,5 +1,5 @@
 /client/proc/play_sound(S as sound)
-	set category = "Game Master"
+	set category = "Game Master.Narration"
 	set name = "Sound - Global"
 	if(!check_rights(R_SOUND))
 		return
@@ -44,15 +44,6 @@
 	set name = "ChangeMusicPower"
 
 	if(prefs)
-/*		if(blacklisted() == 1)
-			var/vol = input(usr, "Current music power: [prefs.musicvol]",, 100) as null|num
-			vol = 100
-			prefs.musicvol = vol
-			prefs.save_preferences()
-			mob.update_music_volume(CHANNEL_MUSIC, prefs.musicvol)
-			mob.update_music_volume(CHANNEL_LOBBYMUSIC, prefs.musicvol)
-			mob.update_music_volume(CHANNEL_ADMIN, prefs.musicvol)
-		else*/
 		var/vol = input(usr, "Current music power: [prefs.musicvol]",, 100) as null|num
 		if(!vol)
 			if(vol != 0)
@@ -138,7 +129,7 @@
 */
 
 /client/proc/play_local_sound(S as sound)
-	set category = "Game Master"
+	set category = "Game Master.Narration"
 	set name = "Sound - Local"
 	if(!check_rights(R_SOUND))
 		return
@@ -149,7 +140,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Local Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/play_local_sound_variable(S as sound)
-	set category = "Game Master"
+	set category = "Game Master.Narration"
 	set name = "Sound - Variable Dist"
 	if(!check_rights(R_SOUND))
 		return
@@ -165,7 +156,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Local Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/play_web_sound()
-	set category = "Game Master"
+	set category = "Game Master.Narration"
 	set name = "Sound - Internet"
 	if(!check_rights(R_SOUND))
 		return
@@ -250,7 +241,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Play Internet Sound")
 
 /client/proc/set_round_end_sound(S as sound)
-	set category = "Game Master"
+	set category = "Game Master.Narration"
 	set name = "Sound - Round End"
 	if(!check_rights(R_SOUND))
 		return
@@ -262,7 +253,7 @@
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Set Round End Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/stop_sounds()
-	set category = "Game Master"
+	set category = "Game Master.Narration"
 	set name = "Sound - Stop All Playing"
 	if(!src.holder)
 		return

@@ -1,5 +1,5 @@
 /datum/round_event_control/antagonist/migrant_wave/assassins
-	name = "Assassin Migration"
+	name = "Death Cult Rising -- Assassin Slots"
 	typepath = /datum/round_event/migrant_wave/assassins
 	wave_type = /datum/migrant_wave/assassin
 	max_occurrences = 2

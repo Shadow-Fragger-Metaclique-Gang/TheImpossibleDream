@@ -104,6 +104,8 @@
 
 /datum/intent/mace/rangedthrust/short
 	reach = 1
+	swingdelay = 8
+	damfactor = 0.5
 
 /datum/intent/mace/bash
 	name = "bash"
@@ -148,6 +150,9 @@
 	chargetime = 10
 	desc = "A titanic blow that delivers Strength-scaling knockback and slowdown to the target. The amount of inflicted knockback scales off your Strength, ranging from X (1 tile) to XV (5 tiles). </br>Actively drains stamina while being charged up. </br>Cannot inflict any knockback or slowdown if your Strength is below X. </br>Cannot be used consecutively more than every 5 seconds on the same target. </br>Prone targets halve the knockback distance. </br>Not fully charging the attack limits knockback to 1 tile."
 	maxrange = 5
+
+/datum/intent/mace/strike/poleaxe
+	damfactor = 1.2
 
 //blunt objs ฅ^•ﻌ•^ฅ
 
@@ -202,7 +207,7 @@
 
 /obj/item/rogueweapon/mace/alloy
 	name = "decrepit mace"
-	desc = "Frayed bronze, perched atop a rotwooden shaft. His sacrifice had drowned Old Syon, and - in its wake - left Man bereft of all it had accomplished. With all other prayers falling upon deaf ears, Man had crafted this idol in tribute to its new God; violence."
+	desc = "Rotted metal, perched atop a rotwooden shaft. His sacrifice had drowned Old Syon, and - in its wake - left Man bereft of all it had accomplished. With all other prayers falling upon deaf ears, Man had crafted this idol in tribute to its new God; violence."
 	icon_state = "amace"
 	force = 17
 	force_wielded = 21
@@ -383,7 +388,7 @@
 	icon_state = "deprived"
 
 /datum/intent/mace/smash/wood/ranged
-	reach = 2
+	reach = 1
 
 /obj/item/rogueweapon/mace/cudgel
 	name = "cudgel"
@@ -869,7 +874,7 @@
 
 /obj/item/rogueweapon/mace/warhammer/alloy
 	name = "decrepit warhammer"
-	desc = "A macehead of frayed bronze, spiked and perched atop a thin shaft. To see such a knightly implement abandoned to decay and neglect; that wounds the heart greater than any well-poised strike."
+	desc = "A macehead of rotted metal, spiked and perched atop a thin shaft. To see such a knightly implement abandoned to decay and neglect; that wounds the heart greater than any well-poised strike."
 	icon_state = "awarhammer"
 	force = 17
 	max_integrity = 150
@@ -1281,6 +1286,9 @@
 	if(L.stat == DEAD)
 		return
 
+	if(HAS_TRAIT(L, TRAIT_NOBREATH))
+		return
+
 	to_chat(L, span_danger("You breathe in the spiky spores!"))
 	L.apply_damage(damage_amount, BRUTE)
 
@@ -1470,7 +1478,7 @@
 
 /obj/item/rogueweapon/contraption/linker/mace/big/decrepit
 	name = "Massive Decrepit Wrench"
-	desc = "A massive tool of ancient, frayed bronze. The teeth at its head have been stripped clean from countless years of pointless toil, maintaining a great construct of no clear purpose"
+	desc = "A massive tool of ancient, rotted metal. The teeth at its head have been stripped clean from countless years of pointless toil, maintaining a great construct of no clear purpose"
 	max_integrity = 200
 	icon_state = "decrepitwrench"
 	smeltresult = /obj/item/ingot/aaslag

@@ -4,20 +4,18 @@
 	desc = "Baotha, The Sutra, the Ur-Weaver, l’Opus-Opia, is the progenitor of pleasure and delights most primal. It is Her voice and curves that call you deeper into desire; Her hands that lift and twist the soul through imbibements abound. And, in overdose of intoxicants – when one’s own heart arrests in its rhythm, it is Her numbing, pleasurable hold that envelops their every sense– and maximizes it, in death. \n \n\
 	She, He, It, or They - the title is fluid and ever-flowing, always acclimating to the faithful’s personal perspective - has grown outwards: expanding with desire and the libido of the Living– the drive to exist; to persist; to celebrate and cherish every facet of Life in its virtues and vices. Her providence is one of Divine, all-encompassing empathy– the pleasures, joys, and agonies of the mortal are shared, ultimately. \n \n\
 	To hold love for Baotha is to hold an intoxicant love for life – an addiction, ruinous in its strength. Every experience, adored or atrocious, must be savored; for the Sutra has, have, and will do the same. It is to be comforted in Her many, many hands; enveloped within them as She, through Life, presents pleasures, pains, and experiences untold. \n \n\
-	<i>We are beautiful. We are Loved. We are one. Please, please, please- won’t you join us?</i> \n \n\
-	She is the Bearer of the Word: Unity."
+	<i>We are beautiful. We are Loved. We are one. Please, please, please- won’t you join us?</i> \n She is the Bearer of the Word: Unity."
 	worshippers = "The Anguished, the Hollow, the Heartbroken, the Addicted"
 	mob_traits = list(TRAIT_DEPRAVED, TRAIT_CICERONE)
 	miracles = list(/datum/action/cooldown/spell/touch/orison						= CLERIC_ORI,
+					/datum/action/cooldown/spell/baotha/emotional_sway			= CLERIC_T0,
 					/obj/effect/proc_holder/spell/invoked/baothavice				= CLERIC_T0,
-					/obj/effect/proc_holder/spell/invoked/baothablessings			= CLERIC_T0,
+					/obj/effect/proc_holder/spell/invoked/lasthigh					= CLERIC_T0,
 					/datum/action/cooldown/spell/miracle/heal						= CLERIC_T1,
 					/datum/action/cooldown/spell/miracle/bloodmiracle				= CLERIC_T1,
-					/obj/effect/proc_holder/spell/self/insufflation					= CLERIC_T1,
-					/obj/effect/proc_holder/spell/targeted/touch/loversruin			= CLERIC_T1,
+					/obj/effect/proc_holder/spell/invoked/heart_on_sleeve			= CLERIC_T1,
 					/obj/effect/proc_holder/spell/invoked/griefflower				= CLERIC_T1,
 					/obj/effect/proc_holder/spell/invoked/projectile/blowingdust	= CLERIC_T2,
-					/obj/effect/proc_holder/spell/invoked/lasthigh					= CLERIC_T2,
 					/obj/effect/proc_holder/spell/invoked/joyride					= CLERIC_T3,
 					/obj/effect/proc_holder/spell/invoked/painkiller				= CLERIC_T3,
 					/obj/effect/proc_holder/spell/invoked/resurrect/baotha			= CLERIC_T4,
@@ -28,7 +26,7 @@
 		"BAOTHA IS MY JOY!",
 	)
 	storyteller = /datum/storyteller/baotha
-	traits_tier = list(TRAIT_CRACKHEAD = CLERIC_T1)
+	traits_tier = list(TRAIT_CRACKHEAD = CLERIC_T1) //lacks a t0, i may come up with a satisfying one at some point, idk
 	crafting_recipes = list(/datum/crafting_recipe/roguetown/structure/baotha_cross_stone, /datum/crafting_recipe/roguetown/structure/baotha_cross_meat)
 
 	titles = list(
@@ -41,7 +39,7 @@
 		"Belladoth",
 		"Beladoth", //SOMEONE WILL MISPELL IT, I JUST KNOW IT.
 		"Leopard", // fjall
-		"Solace", // bigger part of her new lore, i.e. lady of solace
+		"Solace", // i have no idea why this is here but i'll keep it along with the old names ig
 	)
 
 /datum/patron/inhumen/baotha/can_pray(mob/living/follower)

@@ -53,7 +53,7 @@
 /datum/loadout_item/flimsy_visor
 	name = "Helmetless Visor"
 	path = /obj/item/clothing/mask/rogue/facemask/steel/visor/flimsy
-	sort_category = "Acccessories"
+	sort_category = "Accessories"
 
 /datum/loadout_item/halfmask
 	name = "Halfmask"
@@ -229,4 +229,9 @@
 /datum/loadout_item/weatheredmask
 	name = "Weathered Xylixian Mask"
 	path = /obj/item/clothing/mask/rogue/xylixmask/weathered
+	sort_category = "Accessories"
+
+/datum/loadout_item/belthooks
+	name = "Belt Hooks"
+	path = /obj/item/storage/belt/rogue/leather/belthooks
 	sort_category = "Accessories"

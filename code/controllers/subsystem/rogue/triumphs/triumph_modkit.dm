@@ -44,6 +44,15 @@
 		)
 	result_item = null
 
+/obj/item/enchantingkit/triumph_armorkit_heavybrig
+	name = "'Brigandine with Plate' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specific item. It can alter the appearance of a set of a Steel Coat of Plates."
+	target_items = list(
+		/obj/item/clothing/suit/roguetown/armor/brigandine/heavy = /obj/item/clothing/suit/roguetown/armor/brigandine/heavy/triumph
+	)
+	result_item = null
+	exact_type = TRUE
+
 /obj/item/enchantingkit/triumph_armorkit_drow
 	name = "'Drowcraft Armor' morphing elixir"
 	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of a set of Hardened Leather Armor, or a set of Studded Leather Armor."
@@ -366,7 +375,6 @@
 	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of an Iron Sabre, a Steel Sabre, a Falx, or a Falchion."
 	target_items = list(
 		/obj/item/rogueweapon/sword/short/falchion,
-		/obj/item/rogueweapon/sword/saber/iron,
 		/obj/item/rogueweapon/sword/sabre,
 		/obj/item/rogueweapon/sword/falx
 		)
@@ -377,7 +385,6 @@
 	desc = "A small container of special morphing dust, perfect to make a specific item. It can be used to alter the appearance of an Iron Sabre, a Steel Sabre, a Falx, or a Falchion."
 	target_items = list(
 		/obj/item/rogueweapon/sword/short/falchion,
-		/obj/item/rogueweapon/sword/saber/iron,
 		/obj/item/rogueweapon/sword/sabre,
 		/obj/item/rogueweapon/sword/falx
 		)
@@ -1166,3 +1173,9 @@
 
 /obj/item/rogueweapon/mace/cudgel/psy/old/triumph_classic
 	icon_state = "opsyflangedmacelegacy"
+
+/obj/item/clothing/suit/roguetown/armor/brigandine/heavy/triumph
+	name = "brigandine with plate"
+	desc = "A brigandine cuirass covered with an additional layer of plate armor. </br><i>'Henry's \
+	come to see us!'</i>"
+	icon_state = "heavybrig"
