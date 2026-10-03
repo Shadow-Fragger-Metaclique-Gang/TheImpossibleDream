@@ -1,3 +1,4 @@
+/* SURREALIS REMOVAL BEGIN - see modular_tidi/code/modules/admin/verbs/toggle_command_bar.dm
 /client/verb/toggle_command_bar_button()
 	set name = "toggle-command-bar-button"
 	set hidden = TRUE
@@ -38,3 +39,4 @@
 	if(isnull(address) || (address in localhost_addresses))
 		set_command_bar_mode(FALSE)
 		to_chat(src, span_notice("Localhost detected — command bar set to <b>COMMAND</b> mode automatically."))
+SURREALIS REMOVAL END */
