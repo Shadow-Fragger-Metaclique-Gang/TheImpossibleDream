@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/holy/orison_anal.dm)
+/*
 /datum/sex_action/masturbate/other/godjob_anal
 	name = "Finger their butt with godhand"
 	check_same_tile = FALSE
@@ -151,3 +153,5 @@
 	)
 
 	sex_session.handle_passive_ejaculation(target)
+*/
+// [/SURREALIS-REMOVE]

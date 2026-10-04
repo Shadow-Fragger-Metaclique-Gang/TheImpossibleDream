@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/oral/blowjob.dm)
+/*
 /datum/sex_action/oral/blowjob
 	name = "Suck their pintle off"
 	check_same_tile = FALSE
@@ -76,3 +78,5 @@
 		do_thrust_animate(user, target)
 
 	sex_session.perform_sex_action(target, 2, 0, TRUE, sex_session.speed, sex_session.force)
+*/
+// [/SURREALIS-REMOVE]

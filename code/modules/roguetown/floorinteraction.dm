@@ -17,6 +17,9 @@
 				playsound(user, pick('sound/misc/mat/mouthend (1).ogg','sound/misc/mat/mouthend (2).ogg'), 100, FALSE, ignore_walls = FALSE)
 				user.visible_message("<span class='love'>[user] cleaned [src] dilligently.</span>")
 				qdel(C)
+				// [SURREALIS-ADD] - SEXCON - (New proc in modular_tidi/sexcon/code/overrides/floor_licking.dm)
+				L.on_floor_cum_licked()
+				// [/SURREALIS-ADD]
 			return
 		return
 	..()

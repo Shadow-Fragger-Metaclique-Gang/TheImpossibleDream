@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/masturbate/masturbate_penis_over.dm)
+/*
 /datum/sex_action/masturbate/penis_over
 	name = "Stroke pintle over them"
 	check_same_tile = FALSE
@@ -64,3 +66,5 @@
 /datum/sex_action/masturbate/penis_over/handle_climax_message(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	user.visible_message(span_love("[user] cums over [target]'s body!"))
 	return "onto"
+*/
+// [/SURREALIS-REMOVE]

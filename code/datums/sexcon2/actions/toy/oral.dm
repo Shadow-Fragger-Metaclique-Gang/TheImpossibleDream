@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/toy/toy_oral.dm)
+/*
 /datum/sex_action/toy/oral
 	name = "Suck off toy"
 	stamina_cost = 1.0
@@ -58,3 +60,5 @@
 	user.make_sucking_noise(do_subtle)
 	var/obj/item/dildo/used_item = user.get_active_held_item()
 	sex_session.perform_sex_action(user, 0, used_item.pleasure, TRUE, sex_session.speed, sex_session.force)
+*/
+// [/SURREALIS-REMOVE]

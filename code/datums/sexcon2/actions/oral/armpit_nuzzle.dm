@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/oral/nuzzle_armpit.dm)
+/*
 /datum/sex_action/oral/armpit_nuzzle
 	name = "Nuzzle their armpit"
 	intensity = 2
@@ -50,3 +52,5 @@
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
 	var/do_subtle = sex_session.doing_subtly
 	user.visible_message(sex_session.spanify_force("[user] [sex_session.get_generic_force_adjective(do_subtle)] nuzzles [target]'s armpit..."), vision_distance = (do_subtle ? 1 : DEFAULT_MESSAGE_RANGE))
+*/
+// [/SURREALIS-REMOVE]

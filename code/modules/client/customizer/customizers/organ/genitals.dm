@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/organs/genital_customizers.dm)
+/*
 /datum/customizer/organ/penis
 	abstract_type = /datum/customizer/organ/penis
 	name = "Penis"
@@ -479,3 +481,5 @@
 		/datum/sprite_accessory/vagina/furred,
 		/datum/sprite_accessory/vagina/cloaca,
 		)
+*/
+// [/SURREALIS-REMOVE]

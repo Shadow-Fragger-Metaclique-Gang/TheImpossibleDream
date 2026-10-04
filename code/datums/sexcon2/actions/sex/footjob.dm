@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/force/force_footjob.dm)
+/*
 /datum/sex_action/sex/footjob
 	name = "Use their feet to get off"
 	intensity = 3
@@ -60,3 +62,5 @@
 
 	sex_session.perform_sex_action(user, 2, 4, TRUE, sex_session.speed, sex_session.force)
 	sex_session.handle_passive_ejaculation(target)
+*/
+// [/SURREALIS-REMOVE]

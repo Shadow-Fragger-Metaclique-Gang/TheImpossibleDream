@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/magic/prestidigitation_anal.dm)
+/*
 /datum/sex_action/masturbate/other/magejob_anal
 	name = "Finger their butt with magehand"
 	check_same_tile = FALSE
@@ -61,3 +63,5 @@
 	sex_session.perform_sex_action(target, (2*skill_level), 0, TRUE, sex_session.speed, sex_session.force)
 
 	sex_session.handle_passive_ejaculation(target)
+*/
+// [/SURREALIS-REMOVE]

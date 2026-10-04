@@ -17,6 +17,8 @@
 	else
 		return "adult"
 
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/organs/genital_descriptors.dm)
+/*
 /datum/mob_descriptor/penis
 	name = "penis"
 	slot = MOB_DESCRIPTOR_SLOT_PENIS
@@ -193,3 +195,5 @@
 		if(5)
 			adjective = "an enormous"
 	return "[adjective] pair of breasts"
+*/
+// [/SURREALIS-REMOVE]

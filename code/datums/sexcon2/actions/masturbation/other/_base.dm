@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/controller/sex_action.dm)
+/*
 /datum/sex_action/masturbate/other
 	abstract_type = /datum/sex_action/masturbate/other
 	flipped = TRUE
@@ -22,3 +24,5 @@
 	if(sex_session.finished_check())
 		return TRUE
 	return FALSE
+*/
+// [/SURREALIS-REMOVE]

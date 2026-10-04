@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/sex/double_penetration.dm)
+/*
 /datum/sex_action/sex/double_penetration
 	name = "Fuck both their holes"
 	stamina_cost = 1.0
@@ -87,3 +89,5 @@
 
 /datum/sex_action/sex/double_penetration/get_knot_count()
 	return 2
+*/
+// [/SURREALIS-REMOVE]

@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/oral/crotch_nuzzle.dm)
+/*
 /datum/sex_action/oral/crotch_nuzzle
 	name = "Nuzzle their crotch"
 	intensity = 2
@@ -62,3 +64,5 @@
 
 	sex_session.perform_sex_action(target, 0.5, 0, TRUE, sex_session.speed, sex_session.force)
 	sex_session.handle_passive_ejaculation(target)
+*/
+// [/SURREALIS-REMOVE]

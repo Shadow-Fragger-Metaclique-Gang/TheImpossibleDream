@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/oral/foot_lick.dm)
+/*
 /datum/sex_action/oral/foot_lick
 	name = "Lick their feet"
 	check_same_tile = FALSE
@@ -61,3 +63,5 @@
 	var/datum/sex_session/sex_session = get_sex_session(user, target)
 	var/do_subtle = sex_session.doing_subtly
 	user.make_sucking_noise(do_subtle)
+*/
+// [/SURREALIS-REMOVE]

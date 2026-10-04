@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/sex/vaginal_sex.dm)
+/*
 /datum/sex_action/sex/vaginal
 	name = "Fuck their cunt"
 	stamina_cost = 1.0
@@ -139,3 +141,5 @@
 
 /datum/sex_action/sex/vaginal/double/get_knot_count()
 	return 2
+*/
+// [/SURREALIS-REMOVE]

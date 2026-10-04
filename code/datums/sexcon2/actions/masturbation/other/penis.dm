@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/masturbate/masturbate_other_penis.dm)
+/*
 /datum/sex_action/masturbate/other/penis
 	name = "Jerk their pintle off"
 	check_same_tile = FALSE
@@ -67,3 +69,5 @@
 	sex_session.perform_sex_action(target, 2, 0, TRUE, sex_session.speed, sex_session.force)
 
 	sex_session.handle_passive_ejaculation(target)
+*/
+// [/SURREALIS-REMOVE]

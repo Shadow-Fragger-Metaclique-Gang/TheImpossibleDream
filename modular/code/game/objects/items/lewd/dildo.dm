@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/toys/dildo.dm)
+/*
 /obj/item/dildo
 	name = "unfinished dildo"
 	desc = "You have to finish it first."
@@ -75,3 +77,5 @@
 /obj/item/dildo/gold
 	color = "#A0A075"
 	dildo_material = "golden"
+*/
+// [/SURREALIS-REMOVE]

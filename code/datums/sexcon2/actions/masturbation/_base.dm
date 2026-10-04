@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/controller/sex_action.dm)
+/*
 /datum/sex_action/masturbate
 	abstract_type = /datum/sex_action/masturbate
 	intensity = 1 //You're just masturbating
@@ -16,3 +18,5 @@
 /datum/sex_action/masturbate/lock_sex_object(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/locked = user.get_active_precise_hand()
 	sex_locks |= new /datum/sex_session_lock(user, locked)
+*/
+// [/SURREALIS-REMOVE]

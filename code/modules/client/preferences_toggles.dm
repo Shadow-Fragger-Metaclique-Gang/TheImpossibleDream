@@ -97,7 +97,10 @@
 			to_chat(src, "You will no longer try to repeatedly consume/feed food/drinks")
 
 /client/verb/toggle_ERP() // Alters if other people can use the ERP panel ON you.
-	set category = "Preferences.Options"
+	// [SURREALIS-EDIT] - SEXCON
+	// set category = "Preferences.Options" // SURREALIS-EDIT - ORIGINAL
+	set category = "Preferences.Sensual"
+	// [/SURREALIS-EDIT]
 	set name = "Toggle ERP Panel"
 	if(prefs)
 		prefs.sexable = !prefs.sexable
@@ -436,6 +439,8 @@
 	prefs.save_preferences()
 	to_chat(src, "You will [prefs.admin_chat_toggles & CHAT_ADMINSPAWN ? "see" : "not see any"] spawn logs.")
 
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/overrides/descriptors.dm)
+/*
 /client/verb/full_examine()
 	set category = "Preferences.Options"
 	set name = "Toggle Full Examine"
@@ -447,4 +452,6 @@
 		else
 			to_chat(src, "Examines will have some information behind dropdowns.")
 
+*/
+// [/SURREALIS-REMOVE]
 #undef TOGGLE_CHECKBOX

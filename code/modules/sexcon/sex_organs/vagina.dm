@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON
+/*
 /obj/item/organ/vagina
 	name = "vagina"
 	icon_state = "severedtail" //placeholder
@@ -20,3 +22,5 @@
 		return
 	to_chat(owner, span_love("I feel a surge of warmth in my belly, I’m definitely pregnant!"))
 	pregnant = TRUE
+*/
+// [/SURREALIS-REMOVE]

@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON
+/*
 /datum/collective_message
 	/// Unique ID for this collective
 	var/collective_id = ""
@@ -84,3 +86,5 @@
 // /datum/chatOutput/proc/removeCollectiveTab(collective_id)
 //	var/list/params = list(collective_id)
 //	owner << output(list2params(params), "browseroutput:removeCollectiveTab")
+*/
+// [/SURREALIS-REMOVE]

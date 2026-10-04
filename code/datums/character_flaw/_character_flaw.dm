@@ -108,6 +108,10 @@ GLOBAL_LIST_INIT(averse_factions, list(
 			cf_list -= cf_path
 		if(cf.needs_extra_vice) // difficulty flaws require a deliberate extra vice - never resolve into one at random
 			cf_list -= cf_path
+		// [SURREALIS-ADD] - SEXCON
+		if(cf.no_random)
+			cf_list -= cf_path
+		// [/SURREALIS-ADD]
 
 	var/datum/job/mob_job = null
 	if(target.mind?.assigned_role)

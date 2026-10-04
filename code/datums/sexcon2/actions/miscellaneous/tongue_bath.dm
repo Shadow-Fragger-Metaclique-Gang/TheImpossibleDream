@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/deviant/tonguebath.dm)
+/*
 /datum/sex_action/miscellaneous/tonguebath
 	name = "Bathe with tongue"
 	intensity = 3
@@ -75,3 +77,5 @@
 
 	sex_session.perform_sex_action(target, arousal_amt, 0, TRUE, sex_session.speed, sex_session.force)
 	sex_session.handle_passive_ejaculation(target)
+*/
+// [/SURREALIS-REMOVE]

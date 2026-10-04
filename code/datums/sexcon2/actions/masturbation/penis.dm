@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/masturbate/masturbate_penis.dm)
+/*
 /datum/sex_action/masturbate/penis
 	name = "Stroke pintle"
 	debug_erp_panel_verb = FALSE
@@ -62,3 +64,5 @@
 	sex_session.perform_sex_action(user, 2, 0, TRUE, sex_session.speed, sex_session.force)
 
 	sex_session.handle_passive_ejaculation()
+*/
+// [/SURREALIS-REMOVE]

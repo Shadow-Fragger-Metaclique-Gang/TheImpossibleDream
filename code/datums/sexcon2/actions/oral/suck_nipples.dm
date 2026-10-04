@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/oral/suck_nipples.dm)
+/*
 /datum/sex_action/oral/suck_nipples
 	name = "Suck their nipples"
 	check_same_tile = FALSE
@@ -67,3 +69,5 @@
 	sex_session.handle_passive_ejaculation(target)
 
 //No we really don't need remnants of milking code in here.
+*/
+// [/SURREALIS-REMOVE]

@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/masturbate/masturbate_anus.dm)
+/*
 /datum/sex_action/masturbate/anus
 	name = "Finger butt"
 	debug_erp_panel_verb = FALSE
@@ -58,3 +60,5 @@
 
 	sex_session.perform_sex_action(user, 2, 6, TRUE, sex_session.speed, sex_session.force)
 	sex_session.handle_passive_ejaculation()
+*/
+// [/SURREALIS-REMOVE]

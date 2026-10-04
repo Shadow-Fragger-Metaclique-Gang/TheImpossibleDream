@@ -408,9 +408,15 @@
 		pintle.functional = TRUE
 		had_disfunctional_pintle = TRUE
 
+	// [SURREALIS-EDIT] - SEXCON - (New procs in modular_tidi/sexcon/code/controller/sexcon.dm)
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	var/datum/component/arousal/arousal_comp = owner?.GetComponent(/datum/component/arousal)
 	if(arousal_comp)
 		arousal_comp.set_charge(SEX_MAX_CHARGE)	// Fully restore charge
+	*/
+	owner?.sexcon?.set_charge(owner?.sexcon?.get_max_charge())
+	// [/SURREALIS-EDIT]
 
 /datum/status_effect/buff/fermented_crab/on_remove()
 	. = ..()

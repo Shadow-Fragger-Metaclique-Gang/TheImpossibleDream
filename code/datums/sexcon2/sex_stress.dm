@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON
+/*
 /datum/stressevent/cumself
 	timer = 10 MINUTES
 	stressadd = -1
@@ -52,3 +54,5 @@
 	timer = 1 MINUTES
 	stressadd = 2
 	desc = span_red("My loins ache!")
+*/
+// [/SURREALIS-REMOVE]

@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/deviant/scissoring.dm)
+/*
 /datum/sex_action/scissoring
 	name = "Scissor them"
 	intensity = 4
@@ -73,3 +75,5 @@
 
 	sex_session.perform_sex_action(target, 1, 4, TRUE, sex_session.speed, sex_session.force)
 	sex_session.handle_passive_ejaculation(target)
+*/
+// [/SURREALIS-REMOVE]

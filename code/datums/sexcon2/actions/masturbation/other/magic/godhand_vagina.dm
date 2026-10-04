@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/holy/orison_vagina.dm)
+/*
 /datum/sex_action/masturbate/other/godjob_vagina
 	name = "Finger their cunt with godhand"
 	check_same_tile = FALSE
@@ -159,3 +161,5 @@
 	)
 
 	sex_session.handle_passive_ejaculation(target)
+*/
+// [/SURREALIS-REMOVE]

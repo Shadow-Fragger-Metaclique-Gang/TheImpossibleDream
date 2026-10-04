@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/controller/sex_action.dm)
+/*
 /datum/sex_action/sex/other
 	abstract_type = /datum/sex_action/sex/other
 	target_priority = 100
@@ -14,3 +16,5 @@
 	if(!session)
 		return FALSE
 	return SEND_SIGNAL(target, COMSIG_SEX_TRY_KNOT, user, session.force)
+*/
+// [/SURREALIS-REMOVE]

@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/oral/rimming.dm)
+/*
 /datum/sex_action/oral/rimming
 	name = "Rim them"
 	intensity = 3
@@ -63,3 +65,5 @@
 
 	sex_session.perform_sex_action(target, 2, 0, TRUE, sex_session.speed, sex_session.force)
 	sex_session.handle_passive_ejaculation(target)
+*/
+// [/SURREALIS-REMOVE]

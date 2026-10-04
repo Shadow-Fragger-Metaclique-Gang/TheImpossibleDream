@@ -1,0 +1,21 @@
+/datum/sex_action/crotch_nuzzle
+	name = "Nuzzle their crotch"
+	user_sex_part = SEX_PART_JAWS
+	target_sex_part = SEX_PART_COCK|SEX_PART_CUNT
+
+/datum/sex_action/crotch_nuzzle/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	user.visible_message(span_warning("[user] moves [user.p_their()] head against [target]'s crotch..."))
+
+/datum/sex_action/crotch_nuzzle/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	user.sexcon_action_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] nuzzles [target]'s crotch..."))
+
+	user.sexcon.perform_sex_action(target, 0.5, 0, TRUE)
+	target.sexcon.handle_passive_ejaculation(user)
+
+/datum/sex_action/crotch_nuzzle/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	user.visible_message(span_warning("[user] stops nuzzling [target]'s crotch..."))
+
+/datum/sex_action/crotch_nuzzle/is_finished(mob/living/carbon/human/user, mob/living/carbon/human/target)
+	if(target.sexcon.finished_check())
+		return TRUE
+	return FALSE

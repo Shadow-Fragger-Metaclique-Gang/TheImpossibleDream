@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/toy/toy_vaginal.dm)
+/*
 /datum/sex_action/toy/vagina
 	name = "Ride toy"
 	stamina_cost = 1.0
@@ -65,3 +67,5 @@
 
 	sex_session.perform_sex_action(user, 2, used_item.pleasure, TRUE, sex_session.speed, sex_session.force)
 	sex_session.handle_passive_ejaculation()
+*/
+// [/SURREALIS-REMOVE]

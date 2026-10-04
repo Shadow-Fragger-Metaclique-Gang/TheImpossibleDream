@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/deviant/frotting.dm)
+/*
 /datum/sex_action/miscellaneous/frotting
 	name = "Frot them"
 	intensity = 3
@@ -73,3 +75,5 @@
 
 	sex_session.perform_sex_action(target, 1, 4, TRUE, sex_session.speed, sex_session.force)
 	sex_session.handle_passive_ejaculation(target)
+*/
+// [/SURREALIS-REMOVE]

@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/sex/slit_sex.dm)
+/*
 /datum/sex_action/sex/slit
 	name = "Fuck their slit"
 	stamina_cost = 1.0
@@ -139,3 +141,5 @@
 
 /datum/sex_action/sex/slit/double/get_knot_count()
 	return 2
+*/
+// [/SURREALIS-REMOVE]

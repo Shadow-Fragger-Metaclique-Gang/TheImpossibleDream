@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/deviant/tailpegging_anal.dm)
+/*
 /datum/sex_action/masturbate/other/tailjob_anal
 	name = "Prod their butt with a tail"
 	check_same_tile = FALSE
@@ -58,3 +60,5 @@
 
 	sex_session.perform_sex_action(target, 2.4, 7, TRUE, sex_session.speed, sex_session.force)
 	sex_session.handle_passive_ejaculation(target)
+*/
+// [/SURREALIS-REMOVE]

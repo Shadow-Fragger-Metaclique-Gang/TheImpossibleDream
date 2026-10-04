@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/oral/kissing.dm)
+/*
 /datum/sex_action/oral/kissing
 	name = "Make out with them"
 	check_same_tile = FALSE
@@ -64,3 +66,5 @@
 
 	sex_session.perform_sex_action(target, 1, 2, TRUE, sex_session.speed, sex_session.force)
 	sex_session.handle_passive_ejaculation(target)
+*/
+// [/SURREALIS-REMOVE]

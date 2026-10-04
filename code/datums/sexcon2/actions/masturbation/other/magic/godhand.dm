@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/holy/orison_penis.dm)
+/*
 /datum/sex_action/masturbate/other/godjob
 	name = "Jerk them off with godhand"
 	check_same_tile = FALSE
@@ -155,3 +157,5 @@
 	)
 
 	sex_session.handle_passive_ejaculation(target)
+*/
+// [/SURREALIS-REMOVE]

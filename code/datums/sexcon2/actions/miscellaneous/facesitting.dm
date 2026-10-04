@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/deviant/facesitting_vaginal.dm)
+/*
 /datum/sex_action/miscellaneous/facesitting
 	name = "Sit on their face"
 	intensity = 3
@@ -76,3 +78,5 @@
 
 	sex_session.perform_sex_action(target, 0, 2, FALSE, sex_session.speed, sex_session.force)
 	sex_session.handle_passive_ejaculation(target)
+*/
+// [/SURREALIS-REMOVE]

@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - SEXCON - (Moved to modular_tidi/sexcon/code/sex_actions/deviant/titjob.dm)
+/*
 /datum/sex_action/sex/boobjob
 	name = "Use their tits to get off"
 	intensity = 3
@@ -69,3 +71,5 @@
 	var/do_subtle = sex_session.doing_subtly
 	user.visible_message(span_love("[user] [do_subtle ? "subtly " : ""]cums over [target]'s tits!"), vision_distance = (do_subtle ? 1 : DEFAULT_MESSAGE_RANGE))
 	return "onto"
+*/
+// [/SURREALIS-REMOVE]
