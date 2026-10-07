@@ -4,7 +4,10 @@
 	for(var/X in GLOB.character_list)
 		dat += "[GLOB.character_list[X]]"
 
-	var/datum/browser/popup = new(src, "actors", "<center>Inhabitants of Pharos</center>", 387, 420)
+	// [SURREALIS-EDIT] - LORE
+	// var/datum/browser/popup = new(src, "actors", "<center>Inhabitants of Azure Peak</center>", 500, 600) // SURREALIS-EDIT - ORIGINAL
+	var/datum/browser/popup = new(src, "actors", "<center>Inhabitants of Pharos</center>", 500, 600)
+	// [/SURREALIS-EDIT]
 	popup.set_content(dat)
 	popup.open(FALSE)
 

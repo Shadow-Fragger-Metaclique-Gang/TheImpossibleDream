@@ -909,10 +909,16 @@
 		. += human_sex_status_examine_lines(user, observer_privilege, m1, m2, m3)
 		// [/SURREALIS-ADD]
 		if(HAS_TRAIT(src, TRAIT_RESIDENT))
+			// [SURREALIS-EDIT] - LORE
+			// . += span_notice("A chartered resident of Azuria.") // SURREALIS-EDIT - ORIGINAL
 			. += span_notice("A chartered resident of Pharos.")
+			// [/SURREALIS-EDIT]
 
 		if(HAS_TRAIT(src, TRAIT_AGENT_MERCHANT))
+			// [SURREALIS-EDIT] - LORE
+			// . += span_notice("An agent of the Azurian Trading Company.") // SURREALIS-EDIT - ORIGINAL
 			. += span_notice("An agent of the Pharovian Trading Company.")
+			// [/SURREALIS-EDIT]
 		if(HAS_TRAIT(src, TRAIT_AGENT_BATHHOUSE))
 			. += span_notice("An agent of the Bathhouse.")
 		if(HAS_TRAIT(src, TRAIT_ARMOR_BREAK))
@@ -923,7 +929,10 @@
 				var/mob/living/carbon/human/viewer = user
 				var/saw_specific = FALSE
 				if(HAS_TRAIT(src, TRAIT_DEBTOR_CHURCH) && (viewer.job in GLOB.church_positions))
+					// [SURREALIS-EDIT] - LORE
+					// . += span_userdanger("DEFAULT DEBTOR OF THE CHURCH!") // SURREALIS-EDIT - ORIGINAL
 					. += span_userdanger("DEFAULT DEBTOR OF THE TEMPLE!")
+					// [/SURREALIS-EDIT]
 					saw_specific = TRUE
 				if(HAS_TRAIT(src, TRAIT_DEBTOR_MERCHANT) && (viewer.job == "Merchant" || viewer.job == "Shophand" || HAS_TRAIT(viewer, TRAIT_AGENT_MERCHANT)))
 					. += span_userdanger("DEFAULT DEBTOR OF THE TRADING COMPANY!")
@@ -944,6 +953,17 @@
 				if((viewer.job in GLOB.garrison_positions) || (viewer.job in GLOB.retinue_positions) || (viewer.job in GLOB.courtier_positions) || (viewer.job in GLOB.noble_positions))
 					. += span_smallred("Destitute..")
 
+		// [SURREALIS-EDIT] - LORE
+		// SURREALIS-EDIT - ORIGINAL
+		/*
+		if(src.job in GLOB.church_positions)
+			. += span_notice("A member of the Church of Azuria.")
+		else if(HAS_TRAIT(src, TRAIT_AGENT_CHURCH))
+			. += span_notice("A benefactor of the Church of Azuria.")
+
+		if(src.job in GLOB.inquisition_positions)
+			. += span_notice("An adherent of the Holy Otavan Inquisition.")
+		*/
 		if(src.job in GLOB.church_positions)
 			. += span_notice("A member of the Temple of Pharos.")
 		else if(HAS_TRAIT(src, TRAIT_AGENT_CHURCH))
@@ -951,6 +971,7 @@
 
 		if(src.job in GLOB.inquisition_positions)
 			. += span_notice("An adherent of the His Majesty's Holy Inquisition.")
+		// [/SURREALIS-EDIT]
 
 		if((HAS_TRAIT(user, TRAIT_BLACKOAK) && !(src.dna.species.name == "Elf" || src.dna.species.name == "Dark Elf" || src.dna.species.name == "Half-Elf")))
 			. += span_phobia("An invader...")
@@ -1296,6 +1317,18 @@
 	var/clergy_text
 	if(!HAS_TRAIT(examiner, TRAIT_CLERGY)) //If the person doing the examining doesn't have the trait, we don't need to do the other four ifs
 		return null
+	// [SURREALIS-EDIT] - LORE
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	if(HAS_TRAIT(src, TRAIT_CLERGY) && HAS_TRAIT(examiner, TRAIT_CLERGY))
+		clergy_text = "A fellow member of the Azurian Church of the Ten."
+	if(HAS_TRAIT(src, TRAIT_CHOSEN) && HAS_TRAIT(examiner, TRAIT_CLERGY))
+		clergy_text = "The Bishop, the leader of my Church and Chosen of the Ten."
+	if(HAS_TRAIT(src, TRAIT_CLERGY) && HAS_TRAIT(examiner, TRAIT_CHOSEN))
+		clergy_text = "A member of the clergy under my leadership, as willed by the Ten."
+	if(HAS_TRAIT(src, TRAIT_CHOSEN) && HAS_TRAIT(examiner, TRAIT_CHOSEN))
+		clergy_text = "Myself. I am the Bishop of Azuria, voice of the Ten in these lands."
+	*/
 	if(HAS_TRAIT(src, TRAIT_CLERGY) && HAS_TRAIT(examiner, TRAIT_CLERGY))
 		clergy_text = "A fellow member of the Pharovian Temple of the Pentacle."
 	if(HAS_TRAIT(src, TRAIT_CHOSEN) && HAS_TRAIT(examiner, TRAIT_CLERGY))
@@ -1304,6 +1337,7 @@
 		clergy_text = "A member of the clergy under my leadership, as willed by the Five."
 	if(HAS_TRAIT(src, TRAIT_CHOSEN) && HAS_TRAIT(examiner, TRAIT_CHOSEN))
 		clergy_text = "Myself. I am the Pontifex of Pharos, voice of the Gods in these lands."
+	// [/SURREALIS-EDIT]
 
 	return clergy_text
 

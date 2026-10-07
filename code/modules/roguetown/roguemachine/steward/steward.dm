@@ -7,7 +7,7 @@
 
 /obj/structure/roguemachine/steward
 	name = "nerve master"
-	desc = "A witch-engineered device connected to the arteries of Pharos' treasury. When unlocked with the proper key, it can sway the fate of an entire kingdom's \
+	desc = "A magitech device connected to the arteries of Azuria's royal treasury. When unlocked with the proper key, it can sway the fate of an entire kingdom's \
 	finances. Stewards traditionally use these machines to export stockpiled goods for coinage, to pay-and-tax all accounts registered through the MEISTER, and to \
 	import supplies for taskings-a-plenty."
 	icon = 'icons/roguetown/misc/machines.dmi'
@@ -489,7 +489,10 @@
 	if(spent > 0)
 		if(is_alderman_acting)
 			SScity_assembly.consume_trade(spent, user, "import [quantity] [tg.name] from [region.name]")
+		// [SURREALIS-EDIT] - LORE
+		// say("Azure Peak imports [quantity] [tg.name] from [region.name] for [spent] mammon.") // SURREALIS-EDIT - ORIGINAL
 		say("The Throne imports [quantity] [tg.name] from [region.name] for [spent] mammon.")
+		// [/SURREALIS-EDIT]
 		playsound(src, 'sound/misc/coininsert.ogg', 100, FALSE, -1)
 	SStgui.update_uis(src)
 
@@ -526,7 +529,10 @@
 	if(gained > 0)
 		if(is_alderman_acting)
 			SScity_assembly.consume_trade(gained, user, "export [quantity] [tg.name] to [region.name]")
+		// [SURREALIS-EDIT] - LORE
+		// say("Azure Peak exports [quantity] [tg.name] to [region.name] for [gained] mammon.") // SURREALIS-EDIT - ORIGINAL
 		say("The Throne exports [quantity] [tg.name] to [region.name] for [gained] mammon.")
+		// [/SURREALIS-EDIT]
 		playsound(src, 'sound/misc/coindispense.ogg', 60, FALSE, -1)
 	SStgui.update_uis(src)
 

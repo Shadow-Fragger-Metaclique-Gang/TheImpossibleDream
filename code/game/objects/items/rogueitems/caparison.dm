@@ -108,8 +108,8 @@
 	female_caparison_state = "eora_caparison-f"
 
 /obj/item/caparison/azure
-	name = "county caparison"
-	desc = "A decorative piece of cloth meant to be used as a saddle decoration. It's adorned with the ruler's colours. This one fits on a Saiga."
+	name = "azurean caparison"
+	desc = "A decorative piece of cloth meant to be used as a saddle decoration. It's adorned with ducal colours. This one fits on a Saiga."
 	caparison_state = "azure_caparison"
 	female_caparison_state = "azure_caparison-f"
 

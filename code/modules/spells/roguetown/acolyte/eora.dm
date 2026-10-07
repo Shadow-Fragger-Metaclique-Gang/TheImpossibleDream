@@ -1046,14 +1046,23 @@
 			icon_state = "rotten"
 		if(2)
 			name = "blemished pomegranate"
+			// [SURREALIS-EDIT] - LORE
+			// desc = "A blemished pomegranate, it's blue like azure." // SURREALIS-EDIT - ORIGINAL
 			desc = "A blemished pomegranate, it's blue and bruised."
+			// [/SURREALIS-EDIT]
 			icon_state = "blemished"
 		if(3)
+			// [SURREALIS-EDIT] - LORE
+			// desc = "A vibrant pomegranate pulsing with inner light. It radiates warmth." // SURREALIS-EDIT - ORIGINAL
 			desc = "A vibrant pomegranate pulsing with inner light. It radiates warmth. It reminds you of the Scar."
+			// [/SURREALIS-EDIT]
 			icon_state = "pom"
 		if(4)
 			name = "golden pomegranate"
+			// [SURREALIS-EDIT] - LORE
+			// desc = "A flawless golden pomegranate blazing with divine light. It feels alive, thumping like a beating heart." // SURREALIS-EDIT - ORIGINAL
 			desc = "A flawless golden pomegranate blazing with divine light. It feels alive, thumping like a beating heart. You feel a sympathetic vibration, deep beneath the soil..."
+			// [/SURREALIS-EDIT]
 			icon_state = "golden"
 
 /obj/item/fruit_of_eora/proc/generate_arils()

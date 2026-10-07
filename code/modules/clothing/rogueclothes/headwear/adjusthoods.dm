@@ -263,8 +263,8 @@
 	block2add = null
 
 /obj/item/clothing/head/roguetown/roguehood/undivided
-	name = "pantheonic hood"
-	desc = "A hood of those devoted to upholding the penta-divinity in their dae to dae duties."
+	name = "undivided hood"
+	desc = "A hood of those devoted to upholding the deca-divinity in their dae to dae duties."
 	color = null
 	icon_state = "undividedhood"
 	item_state = "undividedhood"
@@ -327,8 +327,8 @@
 	salvage_amount = 1
 
 /obj/item/clothing/head/roguetown/roguehood/undividedcleric
-	name = "pantheonic clerical hood"
-	desc = "A hood of those devoted to guiding those with penta-divinity across Psydonia."
+	name = "undivided clerical hood"
+	desc = "A hood of those devoted to guiding those with deca-divinity across Psydonia."
 	color = "#999999"
 	icon_state = "monkhood"
 	item_state = "monkhood"
@@ -488,7 +488,7 @@
 	salvage_amount = 1
 
 /obj/item/clothing/head/roguetown/roguehood/pontifex
-	name = "medjai's pashmina"
+	name = "pontifex's pashmina"
 	desc = "A slim hood with thin, yet dense fabric. Stretchy and malleable, allowing for full flexibility and mobility. Made with spell-laced fabric to provide some protection against daemons and mortals alike."
 	max_integrity = ARMOR_INT_HELMET_LEATHER
 	armor = ARMOR_LEATHER

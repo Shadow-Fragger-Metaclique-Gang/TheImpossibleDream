@@ -1,6 +1,6 @@
 /obj/structure/boatbell
 	name = "bell"
-	desc = "This is the doomspeller of the Pharos."
+	desc = "This is the doomspeller of Azure Peak."
 	icon = 'icons/roguetown/misc/structure.dmi'
 	icon_state = "bell"
 	density = FALSE
@@ -30,9 +30,9 @@
 
 /obj/structure/standingbell
 	name = "service bell"
-	desc = "A bronze thimble, interlaced with a morsel of witch-engineering. The bell's ring can be heard all across the \
-	kingdom, only to those who're familiar with its unique chime. Such makes it an ideal choice among temples, churches, and \
-	and guilds, so that no abbey-nor-smithy is left empty for long."
+	desc = "A bronze thimble, interlaced with a morsel of magitech. The bell's ring can be heard all across the \
+	kingdom, only to those who're familiar with its unique chime. Such makes it an ideal choice among the Churches \
+	and Guilds, so that no abbey-nor-smithy is left empty for long."
 	icon = 'icons/roguetown/misc/tallstructure.dmi'
 	icon_state = "standingbell"
 	density = FALSE

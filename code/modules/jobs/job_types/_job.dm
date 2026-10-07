@@ -326,7 +326,10 @@
 		var/used_title = display_title || title
 		if((H.titles_pref == TITLES_F) && f_title)
 			used_title = f_title
+		// [SURREALIS-EDIT] - LORE
+		// scom_announce("[H.real_name] the [used_title] arrives to Azure Peak.") // SURREALIS-EDIT - ORIGINAL
 		scom_announce("[H.real_name] the [used_title] arrives to Pharos.")
+		// [/SURREALIS-EDIT]
 
 	if(give_bank_account)
 		if(give_bank_account > TRUE)

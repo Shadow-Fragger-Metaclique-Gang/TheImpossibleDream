@@ -1436,10 +1436,10 @@ Uniquely has rituals that are either traits to PROGRESS (hehe) faster, or buffs 
 More uniquely, her rites always cut out the light in the room, then proc. 10 seconds is good enough.
 */
 /obj/structure/ritualcircle/zizo
-	name = "Rune of the Demiurge"
-	desc = "A holy rune of <font color='ff0000'>ZIZO.</font> </br> <i>Zaios Dei.</i>"
+	name = "Rune of Progress"
+	desc = "A holy rune of <font color='ff0000'>Zizo.</font> </br> <i>Progress at any cost.</i>"
 	icon_state = "zizo_chalky"
-	var/zizorites = list("Rite of Armaments","Chant of Insight","Dance of Demiurge")
+	var/zizorites = list("Rite of Armaments","Chant of Insight","Progressive Trance")
 
 /obj/structure/ritualcircle/zizo/attack_hand(mob/living/user)
 	if(!..())
@@ -1453,7 +1453,10 @@ More uniquely, her rites always cut out the light in the room, then proc. 10 sec
 	if(user.has_status_effect(/datum/status_effect/debuff/ritesexpended))
 		to_chat(user,span_warning("I have performed enough rituals for the day... I must rest before communing more."))
 		return
+	// [SURREALIS-EDIT] - LORE
+	// var/riteselection = input(user, "Rituals of Progress", src) as null|anything in zizorites // SURREALIS-EDIT - ORIGINAL
 	var/riteselection = input(user, "Rituals of Ambition", src) as null|anything in zizorites
+	// [/SURREALIS-EDIT]
 	switch(riteselection)
 		if("Rite of Armaments")
 			if(user.has_status_effect(/datum/status_effect/debuff/armamentrites))
@@ -1489,15 +1492,24 @@ More uniquely, her rites always cut out the light in the room, then proc. 10 sec
 			if(!armor_choice)
 				armor_choice = "Avantyne Full-Plate"
 
+			// [SURREALIS-EDIT] - LORE
+			// user.say("ZIZO! ZIZO! DAME OF PROGRESS!!") // SURREALIS-EDIT - ORIGINAL
 			user.say("ZIZO! ZIZO! GODSLAYER TRUE, BRINGER OF THE SHATTERING - O, WINNOWER!")
+			// [/SURREALIS-EDIT]
 			playsound(user, 'sound/misc/carriage4.ogg', 100, FALSE, -1)
 			if(!do_after(user, 5 SECONDS))
 				return
+			// [SURREALIS-EDIT] - LORE
+			// user.say("ZIZO! ZIZO! HEED MY CALL!!") // SURREALIS-EDIT - ORIGINAL
 			user.say("ZIZO! ZIZO! HEED MY CALL!")
+			// [/SURREALIS-EDIT]
 			playsound(user, 'sound/misc/carriage2.ogg', 100, FALSE, -1)
 			if(!do_after(user, 5 SECONDS))
 				return
+			// [SURREALIS-EDIT] - LORE
+			// user.say("ZIZO! ZIZO! ARMS TO SLAY THE IGNORAAAAANT!!") // SURREALIS-EDIT - ORIGINAL
 			user.say("ZIZO! ZIZO! ARMS AND ARMOR; FORGED BY THE IS-NOT - MANIFEST TO REND REALITY!")
+			// [/SURREALIS-EDIT]
 			if(!do_after(user, 5 SECONDS))
 				return
 			icon_state = "zizo_active"
@@ -1516,15 +1528,24 @@ More uniquely, her rites always cut out the light in the room, then proc. 10 sec
 		if("Chant of Insight") //+2 int and perfect nitevision, at the price of sunlight sensitivity
 			if(!do_after(user, 5 SECONDS))
 				return
+			// [SURREALIS-EDIT] - LORE
+			// user.say("ZIZO! ZIZO! DAME OF PROGRESS!!") // SURREALIS-EDIT - ORIGINAL
 			user.say("ZIZO! ZIZO! BRINGER OF NITE, REAPER OF DAY!")
+			// [/SURREALIS-EDIT]
 			playsound(user, 'sound/misc/carriage4.ogg', 100, FALSE, -1)
 			if(!do_after(user, 5 SECONDS))
 				return
+			// [SURREALIS-EDIT] - LORE
+			// user.say("ZIZO! ZIZO! HEED MY CALL!!") // SURREALIS-EDIT - ORIGINAL
 			user.say("ZIZO! ZIZO! HEED MY CALL!")
+			// [/SURREALIS-EDIT]
 			playsound(user, 'sound/misc/carriage2.ogg', 100, FALSE, -1)
 			if(!do_after(user, 5 SECONDS))
 				return
+			// [SURREALIS-EDIT] - LORE
+			// user.say("ZIZO! ZIZO! TRUTH TO A WORLD OF IGNORAANCE!!") // SURREALIS-EDIT - ORIGINAL
 			user.say("ZIZO! ZIZO! EYES ATTUNED TO DARK, WISDOM BEYOND THE MOON!")
+			// [/SURREALIS-EDIT]
 			icon_state = "zizo_active"
 			to_chat(user,span_cultsmall("Her Inzanity although incomprehendable to the ignorant, is invaluable to the enlightened. Her darkness now guides you, for the light now spurns you."))
 			user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
@@ -1535,20 +1556,37 @@ More uniquely, her rites always cut out the light in the room, then proc. 10 sec
 				spawn(110) //-10 seconds for ritual to proc post lightsnuff
 				icon_state = "zizo_chalky"
 
+		// [SURREALIS-EDIT] - LORE
+		// if("Progressive Trance") //Jack of all trades // SURREALIS-EDIT - ORIGINAL
 		if("Dance of the Demiurge") //Jack of all trades
+		// [/SURREALIS-EDIT]
 			if(!do_after(user, 5 SECONDS))
 				return
+			// [SURREALIS-EDIT] - LORE
+			// user.say("ZIZO! ZIZO! DAME OF PROGRESS!!") // SURREALIS-EDIT - ORIGINAL
 			user.say("O, ZIZO - O, DEMIURGE, O, SHE-MADE-DIVINE!")
+			// [/SURREALIS-EDIT]
 			playsound(user, 'sound/misc/carriage4.ogg', 100, FALSE, -1)
 			if(!do_after(user, 5 SECONDS))
 				return
+			// [SURREALIS-EDIT] - LORE
+			// user.say("ZIZO! ZIZO! HEED MY CALL!!") // SURREALIS-EDIT - ORIGINAL
 			user.say("ZIZO! ZIZO! HEED MY CALL!")
+			// [/SURREALIS-EDIT]
 			playsound(user, 'sound/misc/carriage2.ogg', 100, FALSE, -1)
 			if(!do_after(user, 5 SECONDS))
 				return
+			// [SURREALIS-EDIT] - LORE
+			// SURREALIS-EDIT - ORIGINAL
+			/*
+			user.say("ZIZO! ZIZO! PROGRESS AT AAANY COST!!")
+			icon_state = "zizo_active"
+			to_chat(user,span_cultsmall("Her Inzanity although incomprehendable to the ignorant, is invaluable to the enlightened. Her hands guide your mynd and dreamed talent to rapidly Progress."))
+			*/
 			user.say("ZIZO! ZIZO! RENDER MY AMBITIONS REAL!")
 			icon_state = "zizo_active"
 			to_chat(user,span_cultsmall("Her Inzanity although incomprehendable to the ignorant, is invaluable to the enlightened. Their hands guide your mynd and dreamed talent to rapidly enact change."))
+			// [/SURREALIS-EDIT]
 			user.apply_status_effect(/datum/status_effect/debuff/ritesexpended)
 			zizolightsnuff(src)
 			spawn(10)
@@ -1569,7 +1607,10 @@ More uniquely, her rites always cut out the light in the room, then proc. 10 sec
 	for(var/mob/living/carbon/human/target in ritualtargets)
 		target.apply_status_effect(/datum/status_effect/buff/knowledgerituos)
 		new /obj/effect/temp_visual/zizorite(get_turf(target)) //aurafarming
+		// [SURREALIS-EDIT] - LORE
+		// to_chat(target, span_purple("<br>There are many wrong paths walked to ignorant falsehoods and lesser truths. You. You walk towards the right one.<br>")) // SURREALIS-EDIT - ORIGINAL
 		to_chat(target, span_purple("<br>There are many wrong paths walked to ignorant falsehoods and lesser truths. You. You walk towards yours. Ours. The truest.<br>"))
+		// [/SURREALIS-EDIT]
 
 /obj/structure/ritualcircle/zizo/proc/zizolightsnuff(src) //10 tile lightsnuff, use with all rituals of Zizo that aren't armaments. Aurafarming.
 	for(var/obj/O in range(10, loc))
@@ -1717,7 +1758,10 @@ More uniquely, her rites always cut out the light in the room, then proc. 10 sec
 			user.say("Gold and Silver, He feeds!")
 			if(!do_after(user, 5 SECONDS))
 				return
+			// [SURREALIS-EDIT] - LORE
+			// user.say("Pieces o' tens, hundreds, thousands; o', the Transactor feeds 'pon them all!") // SURREALIS-EDIT - ORIGINAL
 			user.say("Pieces o' tens, hundreds, thousands; o', the Flame feeds 'pon them all!")
+			// [/SURREALIS-EDIT]
 			if(!do_after(user, 5 SECONDS))
 				return
 			user.say("Arms to claim, Arms to TAAAAAAAKE!!")
@@ -1734,6 +1778,17 @@ More uniquely, her rites always cut out the light in the room, then proc. 10 sec
 		if("Defenestration")
 			if(!do_after(user, 5 SECONDS))
 				return
+			// [SURREALIS-EDIT] - LORE
+			// SURREALIS-EDIT - ORIGINAL
+			/*
+			user.say("The window is open, the transaction is made!")
+			if(!do_after(user, 5 SECONDS))
+				return
+			user.say("Pieces o' tens, hundreds, thousands; o', the Transactor feeds 'pon them all!")
+			if(!do_after(user, 5 SECONDS))
+				return
+			user.say("Accept my transaction o' unmatched value, and FEAST upon this gluttonous PIIIIG!!")
+			*/
 			user.say("The window is open, the sacrifice is made!")
 			if(!do_after(user, 5 SECONDS))
 				return
@@ -1741,6 +1796,7 @@ More uniquely, her rites always cut out the light in the room, then proc. 10 sec
 			if(!do_after(user, 5 SECONDS))
 				return
 			user.say("Accept my gift o' unmatched value, and let me wield your heat, your hate, and burn all that remains!")
+			// [/SURREALIS-EDIT]
 			if(!do_after(user, 5 SECONDS))
 				return
 			icon_state = "matthios_active"
@@ -1754,7 +1810,10 @@ More uniquely, her rites always cut out the light in the room, then proc. 10 sec
 
 /obj/structure/ritualcircle/matthios/proc/matthiosarmaments(mob/living/carbon/human/target)
 	if(!HAS_TRAIT(target, TRAIT_FREEMAN))
+		// [SURREALIS-EDIT] - LORE
+		// loc.visible_message(span_cult("THE RITE REJECTS ONE WITHOUT GREED IN THEIR HEART!!")) // SURREALIS-EDIT - ORIGINAL
 		loc.visible_message(span_cult("THE RITE REJECTS ONE WITHOUT THE SAINTS IN THEIR HEART!!"))
+		// [/SURREALIS-EDIT]
 		return
 	target.Stun(60)
 	target.Knockdown(60)
@@ -1778,7 +1837,10 @@ More uniquely, her rites always cut out the light in the room, then proc. 10 sec
 		), list("armor", "shirt", "pants", "shoes", "wrists", "gloves", "head", "neck", "backr"))
 		target.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_EXPERT, TRUE)
 		spawn(40)
+			// [SURREALIS-EDIT] - LORE
+			// to_chat(target, span_cult("More to the maw, this shall help feed our greed.")) // SURREALIS-EDIT - ORIGINAL
 			to_chat(target, span_cult("More to the maw, this shall help feed our cause."))
+			// [/SURREALIS-EDIT]
 
 /// Performs the de-noblification ritual, which requires a noble character in the center of the circle. TRUE on success, FALSE on failure.
 /obj/structure/ritualcircle/matthios/proc/defenestration()
@@ -1943,7 +2005,10 @@ More uniquely, her rites always cut out the light in the room, then proc. 10 sec
 			if(perform_warritual())
 				user.apply_status_effect(/datum/status_effect/debuff/ritesexpended_heavy)
 			else
+				// [SURREALIS-EDIT] - LORE
+				// to_chat(user, span_warning("The ritual fails. A noble, a member of the Inquisition or a Tennite clergy member must be in the center of the circle!")) // SURREALIS-EDIT - ORIGINAL
 				to_chat(user, span_warning("The ritual fails. A noble, a member of the Inquisition or a Pantheonic clergy member must be in the center of the circle!"))
+				// [/SURREALIS-EDIT]
 			spawn(120)
 				icon_state = "graggar_chalky"
 
@@ -2097,7 +2162,10 @@ More uniquely, her rites always cut out the light in the room, then proc. 10 sec
 	if(user.has_status_effect(/datum/status_effect/debuff/ritesexpended))
 		to_chat(user,span_warning("I have performed enough rituals for the day... I must rest before communing more."))
 		return
+	// [SURREALIS-EDIT] - LORE
+	// var/riteselection = input(user, "Rituals of Indulgence", src) as null|anything in baotharites // SURREALIS-EDIT - ORIGINAL
 	var/riteselection = input(user, "Rituals of Unity", src) as null|anything in baotharites
+	// [/SURREALIS-EDIT]
 	switch(riteselection) // put ur rite selection here
 		// [SURREALIS-ADD] - SEXCON - (New proc in modular_tidi/sexcon/code/overrides/ritual_circles.dm)
 		if("Unholy Boon of Fertility")
@@ -2117,6 +2185,17 @@ More uniquely, her rites always cut out the light in the room, then proc. 10 sec
 				return
 			if(!do_after(user, 5 SECONDS))
 				return
+			// [SURREALIS-EDIT] - LORE
+			// SURREALIS-EDIT - ORIGINAL
+			/*
+			user.say("O' BLESSED SPIDER, SCORNED AND SORROWFUL, HEED MY PLEA OF SUCCOR!!")
+			if(!do_after(user, 5 SECONDS))
+				return
+			user.say("TAKE THIS CUP FROM ME, OVERFILLING WITH ANGUISH AND HEARTBREAK..")
+			if(!do_after(user, 5 SECONDS))
+				return
+			user.say("..AND IN ITS STEAD, BESTOW UPON ME.. EEEEVEEERRRYTHIIIIIIING!!")
+			*/
 			user.say("OPUS-OPIA, BLESSED WEAVER, ORGASMIC AND EVER-LOVED, HEED MY PLEA OF SUCCOR!")
 			if(!do_after(user, 5 SECONDS))
 				return
@@ -2124,6 +2203,7 @@ More uniquely, her rites always cut out the light in the room, then proc. 10 sec
 			if(!do_after(user, 5 SECONDS))
 				return
 			user.say("...AND IN ITS STEAD, BESTOW UPON ME... EEEEVEEERRRYTHIIIIIIING!!")
+			// [/SURREALIS-EDIT]
 			if(!do_after(user, 5 SECONDS))
 				return
 			icon_state = "baotha_active"
@@ -2158,7 +2238,10 @@ More uniquely, her rites always cut out the light in the room, then proc. 10 sec
 
 /obj/structure/ritualcircle/baotha/proc/baothaarmaments(mob/living/carbon/human/target)
 	if(!HAS_TRAIT(target, TRAIT_DEPRAVED))
+		// [SURREALIS-EDIT] - LORE
+		// loc.visible_message(span_cult("THE RITE REJECTS ONE WITHOUT REGRET IN THEIR HEART!!")) // SURREALIS-EDIT - ORIGINAL
 		loc.visible_message(span_cult("THE RITE REJECTS ONE WITHOUT PERFECTION IN THEIR HEART!!"))
+		// [/SURREALIS-EDIT]
 		return
 	target.Stun(60)
 	target.Knockdown(60)

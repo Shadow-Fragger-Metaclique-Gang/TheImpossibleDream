@@ -169,13 +169,13 @@
 
 //Tennite Bible
 /obj/item/book/rogue/bibble
-	name = "The Verses and Acts of the Pantheon"
-	desc = "The collected verses and acts of the DIVINE PANTHEON; written during the days of the Deceus Reformation. Its doctrines are old - and difficult to find value and comfort in. Split into three parts. </br>VISAGE - The OLD, THE FIRST ACTS \
-	OF THE TEN UPON PSYDONIA </br>DECANOMICON - THE ERA OF GLEAM, THE ETERNAL IMPERATE - </br>NEW DAWN \
-	- Modern Era, the Ten Divine Wills"
+	name = "The Verses and Acts of the Ten"
+	desc = "The collected verses and acts of the DIVINE PANTHEON. Split into three parts. </br>VISAGE - The OLD, THE FIRST ACTS \
+	OF THE TEN UPON PSYDONIA, BEFORE THE COMET SYON </br>DECANOMICON - THE ERA OF GLEAM, THE HOLY CELESTIAL EMPIRE - </br>NEW DAWN \
+	- Modern Era, the foundation of the HOLY SEE and ONWARDS."
 	icon_state = "bibble_0"
 	base_icon_state = "bibble"
-	title = "The Verses and Acts of the Pantheon"
+	title = "The Verses and Acts of the Ten"
 	dat = "gott.json"
 	possible_item_intents = list(
 		/datum/intent/use,
@@ -202,7 +202,10 @@
 			if("Visage")
 				chosentxt = 'strings/visage.txt'
 			if("Decanomicon")
-				chosentxt = 'strings/decanomicon.txt'
+				// [SURREALIS-EDIT] - LORE
+				// chosentxt = 'strings/decanomicon.txt' // SURREALIS-EDIT - ORIGINAL
+				chosentxt = 'modular_tidi/lore/strings/decanomicon.txt'
+				// [/SURREALIS-EDIT]
 			if("New Dawn")
 				chosentxt = 'strings/newdawn.txt'
 		var/m
@@ -324,7 +327,10 @@
 		user.changeNext_move(CLICK_CD_MELEE)
 		var/m
 		if(sect)
-			var/list/verses = world.file2list("strings/psy[sect].txt")
+			// [SURREALIS-EDIT] - LORE
+			// var/list/verses = world.file2list("strings/psy[sect].txt") // SURREALIS-EDIT - ORIGINAL
+			var/list/verses = world.file2list("modular_tidi/lore/strings/psy[sect].txt")
+			// [/SURREALIS-EDIT]
 			m = pick(verses)
 			if(m)
 				if(prob(1) && sect == "sect1")
@@ -354,14 +360,14 @@
 //Zizonic Bible
 /obj/item/book/rogue/bibble/zizo
 	name = "The Verses and Chants of Zizo"
-	desc = "<font color='ff0000'>'Zaios Dei.'</font> \
+	desc = "<font color='ff0000'>'She called us forth from the edge of reality - and with Her dying breath, rasped out the final truth; the fire is gone, and the world will soon follow.'</font> \
 	</br>An old, dusty leatherbound tome; a strip of velvet silk threaded into the leather resembling a zcross made out of avantyne upon the cover. \
 	chronicling the beliefs held throughout the collective of the Cabal which could mutually agree on the same matters; \
 	such tomes are often considered major contraband in most of Psydonia and oft burned, even by followers of Noc. \
 	Even to this dae its unknown how such tomes keep circulating, presumably from some unknown printing press or two somewhere; \
 	but they are seldom found outside of the black market. Inside are two seperate testaments. </br> \
-	</br>APOTHEOSIS - TESTAMENTS OF HER TRUTH, HER RISE, HIS SHATTERING. \
-	</br>DEMIURGOS - TESTAMENTS OF ITS REIGN, THE PLACE OF DEATHRISING, AND PROMISES TO THE FUTURE."
+	</br>PROGRESS - TESTAMENTS OF PROGRESS, HER TRUTH, FAITH. \
+	</br>SACRIFICE - TESTAMENTS OF UNDEATH, NECROMANCY, ASCENSION."
 	icon_state = "zible_0"
 	base_icon_state = "zible"
 	title = "ziyble"
@@ -385,13 +391,27 @@
 		user.changeNext_move(CLICK_CD_MELEE)
 		var/m
 		if(sect)
-			var/list/verses = world.file2list("strings/zizo[sect].txt")
+			// [SURREALIS-EDIT] - LORE
+			// var/list/verses = world.file2list("strings/zizo[sect].txt") // SURREALIS-EDIT - ORIGINAL
+			var/list/verses = world.file2list("modular_tidi/lore/strings/zizo[sect].txt")
+			// [/SURREALIS-EDIT]
 			m = pick(verses)
 			if(m)
 				user.say(m)
 
 /obj/item/book/rogue/bibble/zizo/MiddleClick(mob/user, params)
 	. = ..()
+	// [SURREALIS-EDIT] - LORE
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	var/sects = list("PROGRESS", "SACRIFICE")
+	var/sect_choice = input(user, "SELECT YOUR TESTAMENT", "PROGRESS COMMANDS SACRIFICE.") as anything in sects
+	switch(sect_choice)
+		if("PROGRESS")
+			sect = "sect1"
+		if("SACRIFICE")
+			sect = "sect2"
+	*/
 	var/sects = list("APOTHEOSIS", "DEMIURGOS")
 	var/sect_choice = input(user, "SELECT YOUR TESTAMENT", "CHANGE COMMANDS SACRIFICE.") as anything in sects
 	switch(sect_choice)
@@ -399,6 +419,7 @@
 			sect = "sect1"
 		if("DEMIURGOS")
 			sect = "sect2"
+	// [/SURREALIS-EDIT]
 
 /obj/item/book/rogue/bibble/zizo/get_mechanics_examine(mob/user)
 	. = ..()
@@ -426,7 +447,7 @@
 
 /obj/item/book/rogue/law
 	name = "Tome of Justice"
-	desc = "The Tome of Laws, as passed from the Grand Temple of Zybantium to the many communities under the protection of the Pentacle."
+	desc = "The Tome of Laws, as passed from the Holy See to its many Ten-worshipping communities."
 	icon_state ="lawtome_0"
 	base_icon_state = "lawtome"
 	bookfile = "law_2.json"

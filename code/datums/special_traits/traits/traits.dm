@@ -374,7 +374,7 @@
 
 /datum/special_trait/hussite
 	name = "Known Heretic"
-	greet_text = span_boldwarning("I've been denounced by the clergy for either reasons legitimate or not!")
+	greet_text = span_boldwarning("I've been denounced by the church for either reasons legitimate or not!")
 	req_text = "Non-church role"
 	weight = 20
 

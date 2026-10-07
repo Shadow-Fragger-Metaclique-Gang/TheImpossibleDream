@@ -29,4 +29,7 @@
 			if(!player.client)
 				continue
 
+			// [SURREALIS-EDIT] - LORE
+			// to_chat(player, span_danger("Graggar demands blood, gnolls flock to Azuria.")) // SURREALIS-EDIT - ORIGINAL
 			to_chat(player, span_danger("Graggar demands blood, gnolls flock to the Scar."))
+			// [/SURREALIS-EDIT]

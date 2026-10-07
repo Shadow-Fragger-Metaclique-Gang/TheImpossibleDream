@@ -636,7 +636,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 	var/bt = world.time
 	SEND_SOUND(src, sound('sound/misc/notice (2).ogg'))
+	// [SURREALIS-EDIT] - LORE
+	// if(alert(src, "You have been summoned you to destroy Azuria!", "Join the Horde", "Yes", "No") == "Yes") // SURREALIS-EDIT - ORIGINAL
 	if(alert(src, "You have been summoned you to destroy the foul Pharos!", "Join the Horde", "Yes", "No") == "Yes")
+	// [/SURREALIS-EDIT]
 		if(world.time > bt + 5 MINUTES)
 			to_chat(src, span_warning("Too late."))
 			return FALSE

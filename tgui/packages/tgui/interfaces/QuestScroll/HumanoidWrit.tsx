@@ -76,9 +76,17 @@ export const IndictmentList = (props: { crimes: string[] }) => {
 
 export const SacralPlea = (props: { rulerTitle: string }) => (
   <p style={sacralPlea}>
+    {/* [SURREALIS-EDIT] - LORE */}
+    {/* SURREALIS-EDIT - ORIGINAL */}
+    {/*
+    Wherefore the temples of the Tens have made plea unto the {props.rulerTitle}
+    , that this work be done with haste, lest further blasphemy compound the
+    wrong.
+    */}
     Wherefore the temples of the Gods have made plea unto the {props.rulerTitle}
     , that this work be done with haste, lest further blasphemy compound the
     wrong.
+    {/* [/SURREALIS-EDIT] */}
   </p>
 );
 

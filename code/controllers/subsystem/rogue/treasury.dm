@@ -132,7 +132,10 @@ SUBSYSTEM_DEF(treasury)
 	royal_custom_threshold = ROYAL_CUSTOM_VOLUME_BASE + (roundstart_pop * ROYAL_CUSTOM_VOLUME_PER_POP)
 	discretionary_fund = new("Crown's Purse", null, seed, CURRENCY_MAMMON)
 	burgher_pledge_fund = new("Burgher Pledge", null, BURGHER_PLEDGE_BASE_REFILL * BURGHER_PLEDGE_ROUNDSTART_MULTIPLIER, CURRENCY_BURGHER_PLEDGE)
+	// [SURREALIS-EDIT] - LORE
+	// church_fund = new("Church Fund", null, CHURCH_FUND_SEED, CURRENCY_MAMMON) // SURREALIS-EDIT - ORIGINAL
 	church_fund = new("Temple's Fund", null, CHURCH_FUND_SEED, CURRENCY_MAMMON)
+	// [/SURREALIS-EDIT]
 	merchant_fund = new("Merchant Fund", null, MERCHANT_FUND_SEED, CURRENCY_MAMMON)
 	bathhouse_fund = new("Bathhouse Fund", null, BATHHOUSE_FUND_SEED, CURRENCY_MAMMON)
 	innkeeper_fund = new("Tavern Earnings", null, INNKEEPER_FUND_SEED, CURRENCY_MAMMON)
@@ -419,7 +422,10 @@ SUBSYSTEM_DEF(treasury)
 		account = get_account(recipient)
 	if(!account)
 		return FALSE
+	// [SURREALIS-EDIT] - LORE
+	// var/source = recipient.job == "Merchant" ? "Azurian Trading Company" : "Noble Estate" // SURREALIS-EDIT - ORIGINAL
 	var/source = recipient.job == "Merchant" ? "Pharovian Trading Company" : "Noble Estate"
+	// [/SURREALIS-EDIT]
 	var/payout = is_starter ? amount + ESTATE_STARTER_BONUS : amount
 	if(!mint(account, payout, source))
 		return FALSE
@@ -626,7 +632,10 @@ SUBSYSTEM_DEF(treasury)
 		lines += "[pretty] [verb] from [old_pct]% to [new_pct]%."
 
 	if(rejected_concordat)
+		// [SURREALIS-EDIT] - LORE
+		// to_chat(usr, span_warning("The Concordat of Zenitstadt forbids any levy below [round(CONCORDAT_TITHE_RATE * 100)]% while in force - the Church's tithe must be honoured.")) // SURREALIS-EDIT - ORIGINAL
 		to_chat(usr, span_warning("The Concordat of Zybantium forbids any levy below [round(CONCORDAT_TITHE_RATE * 100)]% while in force - the Temple's tithe must be honoured."))
+		// [/SURREALIS-EDIT]
 
 	if(!length(lines))
 		return
@@ -634,7 +643,10 @@ SUBSYSTEM_DEF(treasury)
 	levy_rates_changed_day = GLOB.dayspassed
 	var/final_text = jointext(lines, "<br>")
 	if(concordat_active)
+		// [SURREALIS-EDIT] - LORE
+		// final_text += "<br><i>By the Concordat of Zenitstadt, [round(CONCORDAT_TITHE_RATE * 100)]% of every taxed transaction is tithed to the Church of Azuria, drawn from the Crown's share.</i>" // SURREALIS-EDIT - ORIGINAL
 		final_text += "<br><i>By the Concordat of Zybantium, [round(CONCORDAT_TITHE_RATE * 100)]% of every taxed transaction is tithed to the Temple of Pharos, drawn from the Crown's share.</i>"
+		// [/SURREALIS-EDIT]
 	var/final_announcement_text = bad_guy ? bad_announcement_text : good_announcement_text
 	priority_announce(final_text, final_announcement_text, pick('sound/misc/royal_decree.ogg', 'sound/misc/royal_decree2.ogg'), "Captain", strip_html = FALSE)
 	log_game("TAX RATES: [usr ? key_name(usr) : "system"] changed levy rates - [jointext(lines, " | ")]")

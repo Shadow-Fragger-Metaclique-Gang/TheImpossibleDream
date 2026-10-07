@@ -61,7 +61,10 @@
 		<p>The Steward also starts with an infinite-use signet ring. Any holder of Crown authority (see <i>Budgets, Warrants & Authority</i>) can stamp a contract (click it) to make it Levy Exempt after the fact - useful for retroactive bribes.</p>
 
 		<h3>Region and Reward</h3>
+		<!-- \[SURREALIS-EDIT\] - LORE -->
+		<!-- <p>Defense commissions pay out in proportion to the threat they spawn. Each threat region carries a <b>reward multiplier</b> (surfaced in the commission UI beside the region name): Azure Basin at x0.75, Azure Grove at x1.0, Azurean Coast at x1.2, Terrorbog / Mount Decapitation / Underdark at x1.5. A Bounty in Terrorbog costs the same draft as a Bounty in Azure Basin - but the Terrorbog commission pays the bearer roughly twice as much. The Steward can use this to steer adventurers toward regions the realm most needs cleared.</p> SURREALIS-EDIT - ORIGINAL -->
 		<p>Defense commissions pay out in proportion to the threat they spawn. Each threat region carries a <b>reward multiplier</b> (surfaced in the commission UI beside the region name): Basin at x0.75, Pharovian Grove at x1.0, Scarred Coast at x1.2, Terrorbog / Mount Decapitation / Underdark at x1.5. A Bounty in Terrorbog costs the same draft as a Bounty in the Basin - but the Terrorbog commission pays the bearer roughly twice as much. The Steward can use this to steer adventurers toward regions the realm most needs cleared.</p>
+		<!-- \[/SURREALIS-EDIT\] -->
 
 		<p><b>Blockade Writs</b> draw the same flat [BLOCKADE_SCROLL_PLEDGE_COST]m draft regardless of region. The writ pays a base of [BLOCKADE_SCROLL_REWARD]m, plus a flat travel stipend based on distance. The waves are the same strength everywhere, though the actual threat varies with regional faction composition. Each additional person beyond the 3rd in range of the blockade, up to the 6th, increases the wave's strength and the payout.</p>
 

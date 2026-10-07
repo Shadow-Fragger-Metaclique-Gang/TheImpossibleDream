@@ -73,7 +73,7 @@
 
 /obj/item/rogueweapon/woodstaff/aries/icarus // more boisterous with aura
 	name = "staff of the guide"
-	desc = "A radiant staff crowned by a lavish, pure gold-forged sun whose rays stretch in every direction. It embodies the sacred duty to bring light where darkness lingers, offering wisdom to the faithful and hope to the despairing. More than a mark of rank, it stands as a beacon that calls others to walk the righteous path beneath the ever-watchful eyes of the Fivefold Divines."
+	desc = "A radiant staff crowned by a lavish, pure gold-forged sun whose rays stretch in every direction. It embodies the sacred duty to bring light where darkness lingers, offering wisdom to the faithful and hope to the despairing. More than a mark of rank, it stands as a beacon that calls others to walk the righteous path beneath the ever-watchful eyes of the Ten."
 	icon_state = "icarus"
 	aura_color = "#ffed9f"
 
@@ -103,13 +103,22 @@
 			return
 
 		if(H.patron?.type in ALL_INHUMEN_PATRONS)
+			// [SURREALIS-EDIT] - LORE
+			// to_chat(H, span_boldred("You feel the Ten's blessings weigh upon your soul.")) // SURREALIS-EDIT - ORIGINAL
 			to_chat(H, span_boldred("You feel the blessings of the Gods weigh upon your soul."))
+			// [/SURREALIS-EDIT]
 			H.add_stress(/datum/stressevent/blessed_evil)
 		else if(H.patron?.type in OLD_GOD_PATRON)
+			// [SURREALIS-EDIT] - LORE
+			// to_chat(H, span_hypnophrase("You feel the Ten's blessings reluctantly settle upon your soul.")) // SURREALIS-EDIT - ORIGINAL
 			to_chat(H, span_hypnophrase("You feel the blessings of the Gods reluctantly settle upon your soul."))
+			// [/SURREALIS-EDIT]
 			H.add_stress(/datum/stressevent/blessed_neutral)
 		else
+			// [SURREALIS-EDIT] - LORE
+			// to_chat(H, span_hypnophrase("You feel the Ten's blessings settle upon your soul.")) // SURREALIS-EDIT - ORIGINAL
 			to_chat(H, span_hypnophrase("You feel the blessings of the Gods settle upon your soul."))
+			// [/SURREALIS-EDIT]
 			H.apply_status_effect(/datum/status_effect/buff/blessed)
 			H.add_stress(/datum/stressevent/blessed)
 
@@ -199,8 +208,8 @@
 
 
 /obj/item/churcharticles/litany
-	name = "litany of the Divine Wills"
-	desc = "A finely illuminated parchment of litany bearing the sacred verses of the Pantheon of the Pentacle. Penned upon blessed parchment and sealed with crimson wax, it contains the Rite of Endorsement, a solemn invocation entrusted only to ordained priests. Once the final verse is spoken, the parchment burns to ash, and one of the Gods' sacred croziers is called forth. Don't lose it."
+	name = "litany of the Ten"
+	desc = "A finely illuminated parchment of litany bearing the sacred verses of the Holy See. Penned upon blessed parchment and sealed with crimson wax, it contains the Rite of Endorsement, a solemn invocation entrusted only to ordained bishops. Once the final verse is spoken, the parchment burns to ash, and one of the Ten's sacred croziers is called forth. Don't lose it."
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "litany"
 	item_state = "litany"
@@ -219,7 +228,10 @@
 	if(!do_after(user, 25, target = user))
 		in_use = FALSE
 		return
+	// [SURREALIS-EDIT] - LORE
+	// user.say(",g Before the Holy Ten, I reaffirm the sacred vows laid upon my soul.") // SURREALIS-EDIT - ORIGINAL
 	user.say(",g Before the Greatest Gods, I reaffirm the sacred vows laid upon my soul.")
+	// [/SURREALIS-EDIT]
 	if(!do_after(user, 25, target = user))
 		in_use = FALSE
 		return
@@ -235,12 +247,19 @@
 	if(!do_after(user, 25, target = user))
 		in_use = FALSE
 		return
+	// [SURREALIS-EDIT] - LORE
+	// user.say(",g Let my office stand as testament to the covenant between the Holy See and the faithful.") // SURREALIS-EDIT - ORIGINAL
 	user.say(",g Let my office stand as testament to the covenant between the True Gods and the faithful.")
+	// [/SURREALIS-EDIT]
 	if(!do_after(user, 25, target = user))
 		in_use = FALSE
 		return
+	// [SURREALIS-EDIT] - LORE
+	// user.say(",g Should I yet prove worthy in Your sight, grant unto me a sacred staff, wrought by the grace of the Holy Ten, that I may bear it as the symbol of the authority entrusted to me.") // SURREALIS-EDIT - ORIGINAL
+	// var/choice = tgui_alert(user, "Which of the Ten's staves do you invoke?", "RITE OF THE TEN", list("Staff of the Shepherd", "Staff of the Guide", "Cancel")) // SURREALIS-EDIT - ORIGINAL
 	user.say(",g Should I yet prove worthy in Your sight, grant unto me a sacred staff, wrought by the grace of the Greatest Gods, that I may bear it as the symbol of the authority entrusted to me.")
 	var/choice = tgui_alert(user, "Which of the Pantheon's staves do you invoke?", "RITE OF THE GODS", list("Staff of the Shepherd", "Staff of the Guide", "Cancel"))
+	// [/SURREALIS-EDIT]
 	if(!choice || choice == "Cancel")
 		in_use = FALSE
 		return

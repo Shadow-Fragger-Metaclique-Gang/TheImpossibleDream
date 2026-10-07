@@ -37,7 +37,7 @@ plus talkstatue_tgui.dm (TGUI surface shared across all three roles).
 	var/static/response_id_counter = 0
 
 /obj/structure/roguemachine/talkstatue/church
-	name = "temple statue"
+	name = "church statue"
 	desc = "A blessed stone statue radiating divine presence."
 	icon_state = "goldvendor" //TODO: Get proper sprite
 

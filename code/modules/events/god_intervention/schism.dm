@@ -24,7 +24,10 @@ GLOBAL_LIST_EMPTY(tennite_schisms)
 	if(!challenger)
 		return
 
+	// [SURREALIS-EDIT] - LORE
+	// priority_announce("[challenger.name] challenges Astrata's leadership! The outcome of this conflict will be decided in less than 2 daes by a sheer number of their alive supporters. [challenger.name] promises great rewards to the faithful if victorious, while Astrata swears revenge to any who dare to defy her. Choose your side, or stand aside...", "Schism within the Ten", 'sound/magic/marked.ogg') // SURREALIS-EDIT - ORIGINAL
 	priority_announce("[challenger.name] challenges Astrata's leadership! The outcome of this conflict will be decided in less than 2 daes by a sheer number of their alive supporters. [challenger.name] promises great rewards to the faithful if victorious, while Astrata swears revenge to any who dare to defy her. Choose your side, or stand aside...", "Schism within the Pantheon", 'sound/magic/marked.ogg')
+	// [/SURREALIS-EDIT]
 	for(var/mob/living/carbon/human/H in GLOB.human_list)
 		setup_mob(H)
 
@@ -40,7 +43,10 @@ GLOBAL_LIST_EMPTY(tennite_schisms)
 	if(!challenger || !H)
 		return
 
+	// [SURREALIS-EDIT] - LORE
+	// to_chat(H, span_notice("There is an active schism within the Ten! [challenger.name] has challenged Astrata's leadership!")) // SURREALIS-EDIT - ORIGINAL
 	to_chat(H, span_notice("There is an active schism within the Pantheon! [challenger.name] has challenged Astrata's leadership!"))
+	// [/SURREALIS-EDIT]
 	setup_mob(H)
 
 /datum/tennite_schism/proc/setup_mob(mob/living/carbon/human/H)
@@ -49,7 +55,10 @@ GLOBAL_LIST_EMPTY(tennite_schisms)
 
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/choose_schism_side)
 	if(!is_tennite(H))
+		// [SURREALIS-EDIT] - LORE
+		// to_chat(H, span_notice("Even though you are not a tennite and won't matter in the ultimate resolution of this conflict, you may pretend to be one and use the schism to further your own goals...")) // SURREALIS-EDIT - ORIGINAL
 		to_chat(H, span_notice("Even though you are not part of the Temple and won't matter in the ultimate resolution of this conflict, you may pretend to be one and use the schism to further your own goals..."))
+		// [/SURREALIS-EDIT]
 
 /datum/tennite_schism/proc/process_winner()
 	var/datum/patron/challenger = challenger_god.resolve()
@@ -158,8 +167,12 @@ GLOBAL_LIST_EMPTY(tennite_schisms)
 
 	// Promote the selected priest if we found one
 	if(selected_priest)
+		// [SURREALIS-EDIT] - LORE
+		// selected_priest.job = "Vice Bishop" // SURREALIS-EDIT - ORIGINAL
+		// selected_priest.advjob = "Vice Bishop" // SURREALIS-EDIT - ORIGINAL
 		selected_priest.job = "Priest Superior"
 		selected_priest.advjob = "Priest Superior"
+		// [/SURREALIS-EDIT]
 		selected_priest.migrant_type = null
 		var/datum/devotion/D = selected_priest.devotion
 		if(D)
@@ -172,12 +185,23 @@ GLOBAL_LIST_EMPTY(tennite_schisms)
 		//selected_priest.verbs |= /mob/living/carbon/human/proc/churchcurse	- Add this back seperate later in a seperate PR. Good feature, PR too big tho.
 		add_verb(selected_priest, /mob/living/carbon/human/proc/churchannouncement)
 
+		// [SURREALIS-EDIT] - LORE
+		// SURREALIS-EDIT - ORIGINAL
+		/*
+		priority_announce("[challenger.name] has selected [selected_priest.real_name] as a new Bishop! Power sharing begins!", "Bishop rises", 'sound/magic/inspire_02.ogg')
+
+		if(was_supporter)
+			to_chat(selected_priest, span_green("[challenger.name] smiles upon you! Your faithful support during the schism has been rewarded with the position of a Vice Bishop!"))
+		else
+			to_chat(selected_priest, span_green("Though you did not openly support [challenger.name] during the schism, you have been chosen to serve as a Vice Bishop!"))
+		*/
 		priority_announce("[challenger.name] has selected [selected_priest.real_name] as a new priest! Power sharing begins!", "Priest rises", 'sound/magic/inspire_02.ogg')
 
 		if(was_supporter)
 			to_chat(selected_priest, span_green("[challenger.name] smiles upon you! Your faithful support during the schism has been rewarded with the position of a Priest!"))
 		else
 			to_chat(selected_priest, span_green("Though you did not openly support [challenger.name] during the schism, you have been chosen to serve as a Priest!"))
+		// [/SURREALIS-EDIT]
 
 		if(D)
 			to_chat(selected_priest, span_notice("You have gained a passive devotion gain and powers to announce, excommunicate or curse!"))
@@ -292,7 +316,7 @@ GLOBAL_LIST_EMPTY(tennite_schisms)
 	return TRUE
 
 /datum/round_event_control/schism_within_ten
-	name = "Schism within the Pantheon"
+	name = "Schism within the Ten"
 	track = EVENT_TRACK_INTERVENTION
 	typepath = /datum/round_event/schism_within_ten
 	weight = 0.25

@@ -139,7 +139,10 @@
 	. += span_info("Lifeblood, otherwise known as 'red' or 'health', heals most injuries. Needles, cloth, and bandages can stop bleeding. Water can restore lost blood. Bedrest and sleeping can fix most things with time.")
 	. += span_info("Examining someone can show how much blood loss they've suffered; from being pale, to very pale, to extremely pale and sickly. If someone is barely conscious, this means they're critically wounded and will die without assistance.")
 	. += span_info("Target someone's mouth and left-click them with an open hand on the 'WEAK' intent to manually breathe into them. This counteracts the onset of suffocation that comes with critical blood loss and other fatal wounds.")
+	// [SURREALIS-EDIT] - LORE
+	// . += span_info("With that being said, members of the Church and Apothecarium are the most well-equipped for healing most wounds. Miracles and surgery can often be the only way to save your character from critical injuries and death.") // SURREALIS-EDIT - ORIGINAL
 	. += span_info("With that being said, members of the Temple and Apothecarium are the most well-equipped for healing most wounds. Miracles and surgery can often be the only way to save your character from critical injuries and death.")
+	// [/SURREALIS-EDIT]
 
 /obj/structure/fluff/walldeco/barbersignreverse
 	name = "barberpole"
@@ -157,7 +160,10 @@
 	. += span_info("Lifeblood, otherwise known as 'red' or 'health', heals most injuries. Needles, cloth, and bandages can stop bleeding. Water can restore lost blood. Bedrest and sleeping can fix most things with time.")
 	. += span_info("Examining someone can show how much blood loss they've suffered; from being pale, to very pale, to extremely pale and sickly. If someone is barely conscious, this means they're critically wounded and will die without assistance.")
 	. += span_info("Target someone's mouth and left-click them with an open hand on the 'WEAK' intent to manually breathe into them. This counteracts the onset of suffocation that comes with critical blood loss and other fatal wounds.")
+	// [SURREALIS-EDIT] - LORE
+	// . += span_info("With that being said, members of the Church and Apothecarium are the most well-equipped for healing most wounds. Miracles and surgery can often be the only way to save your character from critical injuries and death.") // SURREALIS-EDIT - ORIGINAL
 	. += span_info("With that being said, members of the Temple and Apothecarium are the most well-equipped for healing most wounds. Miracles and surgery can often be the only way to save your character from critical injuries and death.")
+	// [/SURREALIS-EDIT]
 
 /obj/structure/fluff/walldeco/sparrowflag
 	name = "sparrow flag"
@@ -245,18 +251,19 @@
 
 /obj/structure/fluff/walldeco/psybanner
 	name = "psydonic banner"
-	desc = "A banner of fine fabric bearing the symbol of Psydon, the Shattered God, creator of the world. \
-	Flown frequently by both Psydonian and Pantheonic authorities - though the latter far less.</br>By toggling the 'Mechanics' tab, I can learn much more about this poster's given topic."
+	desc = "A banner of fine fabric bearing the symbol of Psydon, the Weeping God, creator of the world. \
+	Flown frequently by both Psydonite and Tennite authorities. </br>By toggling the 'Mechanics' tab, I can learn much more about this poster's given topic."
 	icon_state = "Psybanner-PURPLE"
 
 /obj/structure/fluff/walldeco/psybanner/red
 	icon_state = "Psybanner-RED"
 
 /obj/structure/fluff/walldeco/psybanner/tennite
-	name = " pantheonic banner"
+	name = "ten undivided banner"
 	icon_state = "unibanner_purple"
-	desc = "A banner depicting a circle over a cross; the symbolic wheel of of the Temple of the Pentacle, the sphere of \
-	Midderland religious practice dedicated to the entirety of the Greatest Divine Wills without favour or preference."
+	desc = "A banner depicting a circle over a cross; the symbolism of the Ten Undivided, the sphere of \
+	Tennite religious practice dedicated to the entirety of the pantheon without favour or preference. \
+	Particularly strongly associated with the Grenzelhoftian Holy See."
 
 /obj/structure/fluff/walldeco/psybanner/tennite/red
 	icon_state = "unibanner_red"
@@ -267,7 +274,7 @@
 	desc = "The six-pronged cross of Astrata, embroidered upon fine fabric. It is Her will that \
 	suspends the heavens and the earth, and it is Her light that maintains life upon the abandoned \
 	surface of Psydonia. An image associated with the nobility of all lands, and with the \
-	highest echelons of temple leadership."
+	highest echelons of church leadership."
 
 /obj/structure/fluff/walldeco/psybanner/astrata/red
 	icon_state = "astratabanner_red"
@@ -275,7 +282,7 @@
 /obj/structure/fluff/walldeco/psybanner/zizo
 	name = "zizite banner"
 	icon_state = "zizobanner_purple"
-	desc = "A carefully made banner bearing the inverted cross of Zizo, the Anathema Anatheme. Banners such \
+	desc = "A carefully made banner bearing the inverted cross of Zizo, Dame of Progress. Banners such \
 	as this one are wildly dangerous to fly in any Tennite or Psydonite nation, in which the worship \
 	of the progenitor of undeath is harshly criminalised, but may be commonly found in more remote \
 	areas of the world."
@@ -286,12 +293,21 @@
 /obj/structure/fluff/walldeco/psybanner/get_mechanics_examine(mob/user)
 	. = ..()
 	. += span_info("Faith is the most important aspect of lyfe, no matter if you're a peasant or a lord. Those with differing faiths oft-clash, both metaphorically and very literally.")
+	// [SURREALIS-EDIT] - LORE
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	. += span_info("Your character can choose from a wide variety of patrons to worship. The three most relevant groups, as of todae, are the PANTHEON, the ASCENDANTS, and GENESISM.")
+	. += span_info("The PANTHEON, as the Church's official religion, is considered the 'status quo' within Azuria. They worship ONE of TEN GODS, all embodying certain aspects and virtues of humenity.")
+	. += span_info("The ASCENDANTS are considered 'heathens' by the PANTHEON, and are actively hunted if made apparent within Azuria. They worship ONE of FOUR MORTALS-TURNED-GODS, who seek to usurp the 'status quo'.")
+	. += span_info("At last, GENESISM is considered 'archaic' by both the PANTHEON and ASCENDANTS. They worship PSYDON; the SAVIOR of this world who's presence is all-but-gone. They are, for lack of a better term, a 'wild card'.")
+	*/
 	. += span_info("Your character can choose from a wide variety of patrons to worship. The five most relevant groups, as of todae, are the PANTHEON, the EMBODIED WILLS, the PRIMAL DIVINES, the ASCENDANTS, and GENESISM.")
 	. += span_info("The PANTHEON, as the Temple's official religion, is considered the 'status quo' within Pharos. They worship ONE of FIVE GODS, all embodying certain aspects and virtues of humenity.")
 	. += span_info("The PRIMAL DIVINES are powerful, potent Divines worshipped all across the world. They take many names - but both are venerated by outlanders, wildmen, and those past the limits of society.")
 	. += span_info("The EMBODIED WILLS are 'relatively' minor deities, specifically focused on certain aspects of life: the heat of the forge, the curing of ails, and all the whims whims of the world.")
 	. += span_info("The ASCENDANTS are considered 'heathens' by the PANTHEON, and are actively hunted if made apparent within Pharos. They worship ONE of FOUR GODS-OF-MORTALITY, who seek to usurp the 'status quo'.")
 	. += span_info("At last, GENESISM is considered 'archaic' by both the PANTHEON and ASCENDANTS. They worship PSYDON; the SAVIOR of this world whose presence is all-but-gone. They are, for lack of a better term, a 'wild card'.")
+	// [/SURREALIS-EDIT]
 	. += span_info("Irregardless of the chosen patron, your character is free - within reason - to interpret and worship their GOD in whatever way they see fit. After all, who's to say they aren't the only one that knows the TRUTH?")
 
 /obj/structure/fluff/walldeco/stone
@@ -372,8 +388,8 @@
 	..()
 
 /obj/structure/fluff/walldeco/customflag
-	name = "Flag of the Pharos"
-	desc = "A banner flutters in the breeze in the proud heraldic colors of the County."
+	name = "Azure Peak flag"
+	desc = "A banner flutters in the breeze in the proud heraldic colors of the Duchy."
 	icon_state = "wallflag"
 
 /obj/structure/fluff/walldeco/customflag/Initialize(mapload)
@@ -429,7 +445,10 @@
 	. += span_info("Lifeblood, otherwise known as 'red' or 'health', heals most injuries. Needles, cloth, and bandages can stop bleeding. Water can restore lost blood. Bedrest and sleeping can fix most things with time.")
 	. += span_info("Examining someone can show how much blood loss they've suffered; from being pale, to very pale, to extremely pale and sickly. If someone is barely conscious, this means they're critically wounded and will die without assistance.")
 	. += span_info("Target someone's mouth and left-click them with an open hand on the 'WEAK' intent to manually breathe into them. This counteracts the onset of suffocation that comes with critical blood loss and other fatal wounds.")
+	// [SURREALIS-EDIT] - LORE
+	// . += span_info("With that being said, members of the Church and Apothecarium are the most well-equipped for healing most wounds. Miracles and surgery can often be the only way to save your character from critical injuries and death.") // SURREALIS-EDIT - ORIGINAL
 	. += span_info("With that being said, members of the Temple and Apothecarium are the most well-equipped for healing most wounds. Miracles and surgery can often be the only way to save your character from critical injuries and death.")
+	// [/SURREALIS-EDIT]
 
 /obj/structure/fluff/walldeco/med2
 	name = "diagram"
@@ -445,7 +464,10 @@
 	. += span_info("Lifeblood, otherwise known as 'red' or 'health', heals most injuries. Needles, cloth, and bandages can stop bleeding. Water can restore lost blood. Bedrest and sleeping can fix most things with time.")
 	. += span_info("Examining someone can show how much blood loss they've suffered; from being pale, to very pale, to extremely pale and sickly. If someone is barely conscious, this means they're critically wounded and will die without assistance.")
 	. += span_info("Target someone's mouth and left-click them with an open hand on the 'WEAK' intent to manually breathe into them. This counteracts the onset of suffocation that comes with critical blood loss and other fatal wounds.")
+	// [SURREALIS-EDIT] - LORE
+	// . += span_info("With that being said, members of the Church and Apothecarium are the most well-equipped for healing most wounds. Miracles and surgery can often be the only way to save your character from critical injuries and death.") // SURREALIS-EDIT - ORIGINAL
 	. += span_info("With that being said, members of the Temple and Apothecarium are the most well-equipped for healing most wounds. Miracles and surgery can often be the only way to save your character from critical injuries and death.")
+	// [/SURREALIS-EDIT]
 
 /obj/structure/fluff/walldeco/med3
 	name = "diagram"
@@ -461,7 +483,10 @@
 	. += span_info("Lifeblood, otherwise known as 'red' or 'health', heals most injuries. Needles, cloth, and bandages can stop bleeding. Water can restore lost blood. Bedrest and sleeping can fix most things with time.")
 	. += span_info("Examining someone can show how much blood loss they've suffered; from being pale, to very pale, to extremely pale and sickly. If someone is barely conscious, this means they're critically wounded and will die without assistance.")
 	. += span_info("Target someone's mouth and left-click them with an open hand on the 'WEAK' intent to manually breathe into them. This counteracts the onset of suffocation that comes with critical blood loss and other fatal wounds.")
+	// [SURREALIS-EDIT] - LORE
+	// . += span_info("With that being said, members of the Church and Apothecarium are the most well-equipped for healing most wounds. Miracles and surgery can often be the only way to save your character from critical injuries and death.") // SURREALIS-EDIT - ORIGINAL
 	. += span_info("With that being said, members of the Temple and Apothecarium are the most well-equipped for healing most wounds. Miracles and surgery can often be the only way to save your character from critical injuries and death.")
+	// [/SURREALIS-EDIT]
 
 /obj/structure/fluff/walldeco/med4
 	name = "diagram"
@@ -472,7 +497,10 @@
 	. = ..()
 	. += span_info("Sometimes, all the medicine and miracles in the world might just not be enough to save your character from dying.")
 	. += span_info("Death, though unpleasant, will nevertheless be encountered - in one form or another, personal or external - during the course of a round. With that being said, death is rarely the end.")
+	// [SURREALIS-EDIT] - LORE
+	// . += span_info("Those who've died beyond Azuria's walls will eventually become deadites; the lyving dead. Shambling back to the Town might offer them a second chance at lyfe, if they aren't laid to rest first.") // SURREALIS-EDIT - ORIGINAL
 	. += span_info("Those who've died beyond the walls of Pharos will eventually become deadites; the lyving dead. Shambling back to the Town might offer them a second chance at lyfe, if they aren't laid to rest first.")
+	// [/SURREALIS-EDIT]
 	. += span_info("Likewise, your head is the tether to your soul. So long as it is attached to a body of any sort, it can be resurrected through many means; the rites of Anastasis, the implantation of Lux, the ZRONKMACHINE, and much more.")
 	. += span_info("If you prefer to stay dead, however, clicking the 'Leave Body' verb in the 'Spirit' tab will allow you to persist as a boundless spirit. Left-clicking the massive skull on your left will allow you to respawn as a new character.")
 	. += span_info("While death can spell the end of one's story, it can also kindle the beginning of another one. Courtesy in both killing and being killed leads to a more pleasant experience for all.")
@@ -486,7 +514,10 @@
 	. = ..()
 	. += span_info("Sometimes, all the medicine and miracles in the world might just not be enough to save your character from dying.")
 	. += span_info("Death, though unpleasant, will nevertheless be encountered - in one form or another, personal or external - during the course of a round. With that being said, death is rarely the end.")
+	// [SURREALIS-EDIT] - LORE
+	// . += span_info("Those who've died beyond Azuria's walls will eventually become deadites; the lyving dead. Shambling back to the Town might offer them a second chance at lyfe, if they aren't laid to rest first.") // SURREALIS-EDIT - ORIGINAL
 	. += span_info("Those who've died beyond the walls of Pharos will eventually become deadites; the lyving dead. Shambling back to the Town might offer them a second chance at lyfe, if they aren't laid to rest first.")
+	// [/SURREALIS-EDIT]
 	. += span_info("Likewise, your head is the tether to your soul. So long as it is attached to a body of any sort, it can be resurrected through many means; the rites of Anastasis, the implantation of Lux, the ZRONKMACHINE, and much more.")
 	. += span_info("If you prefer to stay dead, however, clicking the 'Leave Body' verb in the 'Spirit' tab will allow you to persist as a boundless spirit. Left-clicking the massive skull on your left will allow you to respawn as a new character.")
 	. += span_info("While death can spell the end of one's story, it can also kindle the beginning of another one. Courtesy in both killing and being killed leads to a more pleasant experience for all.")
@@ -500,7 +531,10 @@
 	. = ..()
 	. += span_info("Sometimes, all the medicine and miracles in the world might just not be enough to save your character from dying.")
 	. += span_info("Death, though unpleasant, will nevertheless be encountered - in one form or another, personal or external - during the course of a round. With that being said, death is rarely the end.")
+	// [SURREALIS-EDIT] - LORE
+	// . += span_info("Those who've died beyond Azuria's walls will eventually become deadites; the lyving dead. Shambling back to the Town might offer them a second chance at lyfe, if they aren't laid to rest first.") // SURREALIS-EDIT - ORIGINAL
 	. += span_info("Those who've died beyond the walls of Pharos will eventually become deadites; the lyving dead. Shambling back to the Town might offer them a second chance at lyfe, if they aren't laid to rest first.")
+	// [/SURREALIS-EDIT]
 	. += span_info("Likewise, your head is the tether to your soul. So long as it is attached to a body of any sort, it can be resurrected through many means; the rites of Anastasis, the implantation of Lux, the ZRONKMACHINE, and much more.")
 	. += span_info("If you prefer to stay dead, however, clicking the 'Leave Body' verb in the 'Spirit' tab will allow you to persist as a boundless spirit. Left-clicking the massive skull on your left will allow you to respawn as a new character.")
 	. += span_info("While death can spell the end of one's story, it can also kindle the beginning of another one. Courtesy in both killing and being killed leads to a more pleasant experience for all.")

@@ -257,7 +257,10 @@ export const CityAssembly = () => {
         <div style={pageStyle}>
           <div style={titleStyle}>The City Assembly</div>
           <div style={subtitleStyle}>
+            {/* [SURREALIS-EDIT] - LORE */}
+            {/* Voice of the respectable citizenry of Azuria SURREALIS-EDIT - ORIGINAL */}
             Voice of the respectable citizenry of Pharos
+            {/* [/SURREALIS-EDIT] */}
           </div>
           <hr style={rulerStyle} />
 

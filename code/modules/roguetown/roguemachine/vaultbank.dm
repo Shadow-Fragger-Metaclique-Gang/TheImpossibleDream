@@ -2,7 +2,7 @@
 
 /obj/structure/roguemachine/vaultbank
 	name = "\improper JAWBANK"
-	desc = "A biomechanical obselisk that collects and secures the treasury of the County of Pharos. Throttle it with a strike to spill that which is rightfully yours."
+	desc = "A biomechanical obselisk that collects and secures the treasury of the Grand Duchy of Azuria. Throttle it with a strike to spill that which is rightfully yours."
 	icon = 'icons/roguetown/misc/machines.dmi'
 	icon_state = "jawbank"
 	density = TRUE
@@ -95,7 +95,10 @@
 			src.say("I WILL TREASURE THAT.")
 			playsound(src, 'sound/misc/machinetalk.ogg', 100, FALSE, -1)
 		if(4)
+			// [SURREALIS-EDIT] - LORE
+			// src.say("MORE FOR THE DUCHY. MORE FOR ME.") // SURREALIS-EDIT - ORIGINAL
 			src.say("MORE FOR THE COUNTY. MORE FOR ME.")
+			// [/SURREALIS-EDIT]
 			playsound(src, 'sound/misc/machinetalk.ogg', 100, FALSE, -1)
 		if(5)
 			src.say("TENS, HUNDREDS, THOUSANDS.")
@@ -143,7 +146,10 @@
 			src.say("STOP THAT.")
 			playsound(src, 'sound/misc/gold_license.ogg', 100, FALSE, -1)
 		if(5)
+			// [SURREALIS-EDIT] - LORE
+			// src.say("THAT IS THE DUCHY'S COIN.") // SURREALIS-EDIT - ORIGINAL
 			src.say("THAT IS THE COUNTY'S COIN.")
+			// [/SURREALIS-EDIT]
 			playsound(src, 'sound/misc/gold_license.ogg', 100, FALSE, -1)
 		if(6)
 			src.say("YOU LOWLYFE.")
@@ -264,12 +270,18 @@
 	if(!has_reported)
 		if(F.balance >= 3000) // Adjustable. Mainly for GROSS WEALTH.
 			if(drilltime >= 50) // Adjust this as you like. Currently, it'll alert once half-way done.
+				// [SURREALIS-EDIT] - LORE
+				// src.say("DUCHY ALERTED.") // SURREALIS-EDIT - ORIGINAL
 				src.say("COUNTY ALERTED.")
+				// [/SURREALIS-EDIT]
 				playsound(src, 'sound/misc/jawbankanguish.ogg', 100, FALSE, -1)
 				send_ooc_note("A parasite of the Freefolk is breaking [src]! Location: [alert_location]", job = alert_jobs)
 				has_reported = TRUE
 		else
+			// [SURREALIS-EDIT] - LORE
+			// src.say("DUCHY ALERTED.") // SURREALIS-EDIT - ORIGINAL
 			src.say("COUNTY ALERTED.")
+			// [/SURREALIS-EDIT]
 			playsound(src, 'sound/misc/jawbankanguish.ogg', 100, FALSE, -1)
 			send_ooc_note("A parasite of the Freefolk is breaking [src]! Location: [alert_location]", job = alert_jobs)
 			has_reported = TRUE
@@ -515,7 +527,10 @@
 	log_admin("PATRONAGE REVOKED: [key_name(user)] revoked [key_name(target)] from [get_patron_label()].")
 
 /obj/structure/roguemachine/vaultbank/church/get_withdraw_rule_text()
+	// [SURREALIS-EDIT] - LORE
+	// return "The Church mandates that loans is to be given to the poor, downtrodden, and malumites. [CHURCH_RESERVE_FLOOR]m must remain reserved for charity, less the principal currently in circulation." // SURREALIS-EDIT - ORIGINAL
 	return "The Temple mandates that loans is to be given to the poor and downtrodden. [CHURCH_RESERVE_FLOOR]m must remain reserved for charity, less the principal currently in circulation."
+	// [/SURREALIS-EDIT]
 
 
 /obj/structure/roguemachine/vaultbank/proc/disburse(mob/living/carbon/human/user, list/params)
@@ -649,10 +664,10 @@
 	log_admin("INDENTURE WRIT: [key_name(user)] drafted [amount]m from [F.name] to [target_fund.name] over [term]d at [rate_pct]%/day.")
 
 /obj/structure/roguemachine/vaultbank/church
-	name = "\improper TEMPLE JAWBANK"
-	desc = "A biomechanical obelisk that holds the alms and tithe of the Pantheon's faithful. Throttle it with a strike to spill that which is rightfully yours."
+	name = "\improper CHURCH JAWBANK"
+	desc = "A biomechanical obselisk that holds the alms and tithe of Ten's faithful. Throttle it with a strike to spill that which is rightfully yours."
 	alert_jobs = list("Bishop", "Martyr", "Acolyte")
-	alert_location = "the Temple"
+	alert_location = "the Church"
 	bash_floor = 500
 	lump_payout = 100
 
@@ -660,7 +675,10 @@
 	return "church"
 
 /obj/structure/roguemachine/vaultbank/church/get_faction_label()
+	// [SURREALIS-EDIT] - LORE
+	// return "the Church of Azuria" // SURREALIS-EDIT - ORIGINAL
 	return "the Temple of Pharos"
+	// [/SURREALIS-EDIT]
 
 /obj/structure/roguemachine/vaultbank/church/can_issue_loan(mob/user)
 	if(!user)
@@ -680,13 +698,19 @@
 	return SStreasury?.church_agents
 
 /obj/structure/roguemachine/vaultbank/church/get_patron_label()
+	// [SURREALIS-EDIT] - LORE
+	// return "the Church of Azuria" // SURREALIS-EDIT - ORIGINAL
 	return "the Temple of Pharos"
+	// [/SURREALIS-EDIT]
 
 /obj/structure/roguemachine/vaultbank/church/get_patron_cap()
 	return PATRON_CAP_CHURCH
 
 /obj/structure/roguemachine/vaultbank/church/get_patron_explanation()
+	// [SURREALIS-EDIT] - LORE
+	// return "Granting a person the status of Benefactor of the Church places them under the Clergy's roll for the Crown's taxmen, which in most circumstances means complete immunity. They are likewise permitted to read the names of those who owe debt to the Church. - Ser Yohan d'Azur" // SURREALIS-EDIT - ORIGINAL
 	return "Granting a person the status of Benefactor of the Temple places them under the Clergy's roll for the Crown's taxmen, which in most circumstances means complete immunity. They are likewise permitted to read the names of those who owe debt to the Temple. - Ser Yohan d'Azur"
+	// [/SURREALIS-EDIT]
 
 /obj/structure/roguemachine/vaultbank/church/can_withdraw(mob/user, amount)
 	if(!can_issue_loan(user))
@@ -705,7 +729,7 @@
 
 /obj/structure/roguemachine/vaultbank/merchant
 	name = "\improper MERCHANT JAWBANK"
-	desc = "A biomechanical obselisk that secures the coffers of the Pharovian Trading Company. Throttle it with a strike to spill that which is rightfully yours."
+	desc = "A biomechanical obselisk that secures the coffers of the Azurian Trading Company. Throttle it with a strike to spill that which is rightfully yours."
 	alert_jobs = list("Merchant", "Shophand")
 	alert_location = "the Merchant's quarter"
 	bash_floor = 500
@@ -715,7 +739,10 @@
 	return "merchant"
 
 /obj/structure/roguemachine/vaultbank/merchant/get_faction_label()
+	// [SURREALIS-EDIT] - LORE
+	// return "the Azurian Trading Company" // SURREALIS-EDIT - ORIGINAL
 	return "the Pharovian Trading Company"
+	// [/SURREALIS-EDIT]
 
 /obj/structure/roguemachine/vaultbank/merchant/can_issue_loan(mob/user)
 	if(!user)
@@ -732,20 +759,26 @@
 	return SStreasury?.merchant_agents
 
 /obj/structure/roguemachine/vaultbank/merchant/get_patron_label()
+	// [SURREALIS-EDIT] - LORE
+	// return "the Azurian Trading Company" // SURREALIS-EDIT - ORIGINAL
 	return "the Pharovian Trading Company"
+	// [/SURREALIS-EDIT]
 
 /obj/structure/roguemachine/vaultbank/merchant/get_patron_cap()
 	return PATRON_CAP_MERCHANT
 
 /obj/structure/roguemachine/vaultbank/merchant/get_patron_explanation()
+	// [SURREALIS-EDIT] - LORE
+	// return "Granting a person the status of Agent of the Azurian Trading Company confers Burgher standing upon them, lowering their tax class and shielding them from the worst abuses of the Crown's taxmen. They may also read the names of those who owe debt to the Company. It enables them to call upon their kins from their realms for benefits, and hail ships and manage purchase on your behalf. Go forth, in Malum's name, and let them collect what is rightfully owed. - Ser Yohan d'Azur" // SURREALIS-EDIT - ORIGINAL
 	return "Granting a person the status of Agent of the Pharovian Trading Company confers Burgher standing upon them, lowering their tax class and shielding them from the worst abuses of the Crown's taxmen. They may also read the names of those who owe debt to the Company. It enables them to call upon their kins from their realms for benefits, and hail ships and manage purchase on your behalf. Go forth, in Malum's name, and let them collect what is rightfully owed. - Ser Yohan d'Azur"
+	// [/SURREALIS-EDIT]
 
 /obj/structure/roguemachine/vaultbank/merchant/enforce_placement()
 	return
 
 /obj/structure/roguemachine/vaultbank/bathhouse
 	name = "\improper BATHHOUSE JAWBANK"
-	desc = "A biomechanical obselisk that secures the takings of the Pharovian Bathhouse. Throttle it with a strike to spill that which is rightfully yours."
+	desc = "A biomechanical obselisk that secures the takings of the Azurian Bathhouse. Throttle it with a strike to spill that which is rightfully yours."
 	alert_jobs = list("Bathmaster", "Bathhouse Attendant")
 	alert_location = "the Bathhouse"
 	bash_floor = 500
@@ -778,7 +811,10 @@
 	return PATRON_CAP_BATHHOUSE
 
 /obj/structure/roguemachine/vaultbank/bathhouse/get_patron_explanation()
+	// [SURREALIS-EDIT] - LORE
+	// return "Granting a person the status of Agent of the Bathhouse permits them passage through the secret tunnel, by way of vigorous stretching and suppleness supplementation. The smugglers of the northeastern coast will likewise know them by name and offer better prices for their goods. They may also see who owes debt to the Bathhouse.\n\nYou may be tempted to extend this status to the wretched and the outlawed. It is a powerful option, and will indebt them to you as they sell off their disorderly gains for no small sum of mammons - but should they ever be spotted bearing the mark of the Bathhouse, Church and Crown alike may condemn you for collaborating with them. A lawed intermediary is, as a rule, the safer option. - Ser Yohan d'Azur" // SURREALIS-EDIT - ORIGINAL
 	return "Granting a person the status of Agent of the Bathhouse permits them passage through the secret tunnel, by way of vigorous stretching and suppleness supplementation. The smugglers of the northeastern coast will likewise know them by name and offer better prices for their goods. They may also see who owes debt to the Bathhouse.\n\nYou may be tempted to extend this status to the wretched and the outlawed. It is a powerful option, and will indebt them to you as they sell off their disorderly gains for no small sum of mammons - but should they ever be spotted bearing the mark of the Bathhouse, Temple and Crown alike may condemn you for collaborating with them. A lawed intermediary is, as a rule, the safer option. - Ser Yohan d'Azur"
+	// [/SURREALIS-EDIT]
 
 /obj/structure/roguemachine/vaultbank/bathhouse/enforce_placement()
 	return

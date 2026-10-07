@@ -126,7 +126,10 @@
 		<ul>
 			<li><b>Mask</b>: Used to cover your mouth and often used to put on additional armor for your face.</li>
 			<li><b>Helmet</b>: Used to put on a helmet. Most helmets have an Aesthetic Storage accessible by right click that allows you to put on masks and hats with no armor value to customize your look.</li>
+			<!-- \[SURREALIS-EDIT\] - LORE -->
+			<!-- <li><b>Mouth</b>: Used for cigarettes or putting a Rosa in your mouth, to charm the dashing denizens of Azurea. You can also hold a knife or a coin in there.</li> SURREALIS-EDIT - ORIGINAL -->
 			<li><b>Mouth</b>: Used for cigarettes or putting a Rosa in your mouth, to charm the dashing denizens of the Pharos. You can also hold a knife or a coin in there.</li>
+			<!-- \[/SURREALIS-EDIT\] -->
 			<li><b>Back Right and Back Left</b>: On the row below. These are used to hold satchels (Can be accessed with left click while moving), backpacks (Which need to be taken off before being accessible but hold much more), certain weapons, shields, quivers, bows, and greatweapon strap, which can store large polearms at the cost of needing a lot of time to take it on and off.</li>
 			<li><b>Cloak</b>: Used for an aesthetic cloak that can also store a small amount of small items. Commonly used for tabard, jupons etc. to signify your allegiance. Cloaks with customization options like the tabard can be customized with right click with a heraldry of your choice.</li>
 			<li><b>Neck</b>: Used for neck armor like Bevor, Gorget etc, can also be used to hang on a pouch.</li>
@@ -652,14 +655,26 @@
 
 		<ul>
 			<li><b>T1</b> Miracles are usually not dramatically effective, and are granted to Adventuring Paladins and certain classes.</li>
+			<!-- \[SURREALIS-EDIT\] - LORE -->
+			<!-- <li><b>T2</b> Miracles are usually where the more effective miracles start to show up. They are granted to Church Templars and certain holy roles with town or with an antagonistic nature.</li> SURREALIS-EDIT - ORIGINAL -->
 			<li><b>T2</b> Miracles are usually where the more effective miracles start to show up. They are granted to Templars and certain holy roles with town or with an antagonistic nature.</li>
+			<!-- \[/SURREALIS-EDIT\] -->
 			<li><b>T3</b> Miracles are reserved for the Adventurer Missionary, and are often the most effective part of the caster's toolkit.</li>
+			<!-- \[SURREALIS-EDIT\] - LORE -->
+			<!-- <li><b>T4</b> Miracles are what the Acolyte and most of the church roles get.</li> SURREALIS-EDIT - ORIGINAL -->
 			<li><b>T4</b> Miracles are what the Acolyte and most of the clergy roles get.</li>
+			<!-- \[/SURREALIS-EDIT\] -->
 		</ul>
 
+		<!-- \[SURREALIS-EDIT\] - LORE -->
+		<!-- <p>The DIVINE PANTHEON (The TENS) - the primary gods worshipped in this settings, offer a unique toolkit based on the god you selected as your PRIMARY (not your sole, Tennites are not monotheistic) patron.</p> SURREALIS-EDIT - ORIGINAL -->
 		<p>The DIVINE PANTHEON - the primary gods worshipped in this settings, offer a unique toolkit based on the god you selected as your PRIMARY (not your sole, Tennites are not monotheistic) patron.</p>
+		<!-- \[/SURREALIS-EDIT\] -->
 
+		<!-- \[SURREALIS-EDIT\] - LORE -->
+		<!-- <p>The ASCENDANTS - the antagonistic gods that stand in opposition to the TENS, offer their own toolkit, often more powerful than the TENs, but always illegal to use in the open. You will bear all consequences including possible choosing to use it in Town or in front of people whose job is to root out heresies and heathens.</p> SURREALIS-EDIT - ORIGINAL -->
 		<p>The ASCENDANTS - the antagonistic gods that stand in opposition to the PANTHEON, offer their own toolkit, often more powerful than the PANTHEON, but always illegal to use in the open. You will bear all consequences including possible choosing to use it in Town or in front of people whose job is to root out heresies and heathens.</p>
+		<!-- \[/SURREALIS-EDIT\] -->
 
 		<p>GENEISISM, also known as PSYDONISM, is belief in the one true ontologically good god that created the setting, and whose status is uncertain and may or may not be dead, and certainly inactive and non-intervening. Their miracles generally rely on sheer willpower, and leave the status of whether Psydon is alive or not in doubt due to the ambiguity of its effects.</p>
 		</div>
@@ -694,7 +709,10 @@
 		<ul>
 			<li><b>Lux Tranfusion</b>: Lux extracted from someone and then purified can be transplanted into someone and then used to revive them.</li>
 			<li><b>FULMENOR Chair</b>: The Fulmenor Chair is exclusively accessed by the Clinic and some wretches, and can revive someone with lux with better efficiency and without any penalty.</li>
+			<!-- \[SURREALIS-EDIT\] - LORE -->
+			<!-- <li><b>Revival Rituals</b>: The Church, with access to certain materials can also revive someone from the death, though they take a normal penalty.</li> SURREALIS-EDIT - ORIGINAL -->
 			<li><b>Revival Rituals</b>: The Temple, with access to certain materials can also revive someone from the death, though they take a normal penalty.</li>
+			<!-- \[/SURREALIS-EDIT\] -->
 		</ul>
 
 		<p>After non-chair revival, you gain Revival Sickness - [REVIVED_DEBUFF_DURATION / 600] minutes of -1 to every single stat you have. It stacks with the rot debuff if your body had begun to turn, so naturally rotting instead of becoming revived, followed by a ritual revival will hit you with a significant amount of debuff. You are encouraged to take it easy for a while and seek non combat roleplay after.</p>

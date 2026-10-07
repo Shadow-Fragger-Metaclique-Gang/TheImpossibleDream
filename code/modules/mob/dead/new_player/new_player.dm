@@ -207,7 +207,10 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 /mob/dead/new_player/verb/do_rp_prompt()
 	set name = "Lore Primer"
 	set category = "IC.Memory"
+	// [SURREALIS-EDIT] - LORE
+	// var/datum/browser/popup = new(src, "Primer", "AZURE PEAK", 460, 550) // SURREALIS-EDIT - ORIGINAL
 	var/datum/browser/popup = new(src, "Primer", "SURREALIS", 700, 800)
+	// [/SURREALIS-EDIT]
 	popup.set_content(build_lore_primer_content())
 	popup.open()
 
@@ -459,7 +462,10 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 			var/cat_name = ""
 			switch (SSjob.name_occupations[category[1]].department_flag)
 				if (NOBLEMEN)
+					// [SURREALIS-EDIT] - LORE
+					// cat_name = "Ducal Family" // SURREALIS-EDIT - ORIGINAL
 					cat_name = "Noble Family"
+					// [/SURREALIS-EDIT]
 				if (COURTIERS)
 					cat_name = "Courtiers"
 				if (RETINUE)
@@ -467,11 +473,17 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 				if (GARRISON)
 					cat_name = "Garrison"
 				if (CHURCHMEN)
+					// [SURREALIS-EDIT] - LORE
+					// cat_name = "Churchmen" // SURREALIS-EDIT - ORIGINAL
 					cat_name = "Clergy"
+					// [/SURREALIS-EDIT]
 				if (BURGHERS)
 					cat_name = "Burghers"
 				if (ATC)
+					// [SURREALIS-EDIT] - LORE
+					// cat_name = "Azurian Trading Company" // SURREALIS-EDIT - ORIGINAL
 					cat_name = "Guilders"
+					// [/SURREALIS-EDIT]
 				if (PEASANTS)
 					cat_name = "Peasants"
 				if (SIDEFOLK)

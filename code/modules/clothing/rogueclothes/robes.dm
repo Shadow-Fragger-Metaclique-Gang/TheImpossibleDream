@@ -49,12 +49,12 @@
 
 /obj/item/clothing/suit/roguetown/shirt/robe/unholy/lich
 	name = "ominous robes"
-	desc = "An otherworldly veil, whispering a hundred paradoxical answers to the ultimate question. Her hand guides your grandest missive; to become as Gods, to break this flawed world, to make yours greater - no matter the cost."
+	desc = "An otherworldly veil, whispering a hundred paradoxical answers to the ultimate question. Her hand guides your grandest missive; to bring forth progress, no matter the cost."
 	max_integrity = ARMOR_INT_CHEST_PLATE_ANTAG
 
 /obj/item/clothing/suit/roguetown/shirt/robe/unholy/enchanted
 	name = "ominously enchanted robes"
-	desc = "An otherworldly veil, amythortz-woven and crackling with the constant ponderance of a runic enigma. Her hand guides your grandest missive; to become as Gods, to break this flawed world, to make yours greater - no matter the cost."
+	desc = "An otherworldly veil, amythortz-woven and crackling with the constant ponderance of a runic enigma. Her hand guides your grandest missive; to bring forth progress, no matter the cost."
 	armor = ARMOR_LEATHER
 	allowed_race = ALL_RACES_TYPES
 	item_state = "ewarlock"
@@ -78,8 +78,8 @@
 
 /obj/item/clothing/suit/roguetown/shirt/robe/undivided
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT|ITEM_SLOT_CLOAK
-	name = "pantheonic robe"
-	desc = "Undivided, we stand - a Pantheon of the Five Greatest Wills, shepherding Psydonia's flock towards providence."
+	name = "undivided robe"
+	desc = "Undivided, we stand - a Pantheon of Ten, shepherding Psydonia's flock towards providence."
 	body_parts_covered = CHEST|GROIN|LEGS|VITALS
 	icon_state = "undividedrobe"
 	icon = 'icons/roguetown/clothing/armor.dmi'
@@ -92,8 +92,8 @@
 
 /obj/item/clothing/suit/roguetown/shirt/robe/undividedcleric
 	slot_flags = ITEM_SLOT_ARMOR|ITEM_SLOT_SHIRT|ITEM_SLOT_CLOAK
-	name = "pantheonic clerical robe"
-	desc = "Undivided, we walk - a Pentagrammatic Pantheon, guiding Psydonia's wanderers towards providence."
+	name = "undivided clerical robe"
+	desc = "Undivided, we walk - a Pantheon of Ten, guiding Psydonia's wanderers towards providence."
 	body_parts_covered = CHEST|GROIN|LEGS|VITALS
 	icon_state = "tenclericrobe"
 	icon = 'icons/roguetown/clothing/armor.dmi'
@@ -356,7 +356,7 @@
 
 /obj/item/clothing/suit/roguetown/shirt/robe/eora/alt
 	name = "open eoran robe"
-	desc = "Used by more radical followers of Eora"
+	desc = "Used by more radical followers of the Eoran Church"
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/armor.dmi'
 	body_parts_covered = null // Keyhole should show boob size and the outfit is too open to get in the way of sex
 	icon_state = "eorastraps"
@@ -368,7 +368,10 @@
 	switch(fanatic_wear)
 		if(FALSE)
 			name = "open eoran robe"
+			// [SURREALIS-EDIT] - LORE
+			// desc = "Used by more radical followers of the Eoran Church" // SURREALIS-EDIT - ORIGINAL
 			desc = "Used by more radical followers of the Will of Warmth."
+			// [/SURREALIS-EDIT]
 			body_parts_covered = null
 			icon_state = "eorastraps"
 			item_state = "eorastraps"
@@ -424,7 +427,7 @@
 	loadoutize()
 
 /obj/item/clothing/suit/roguetown/shirt/robe/pointfex
-	name = "medjai's qaba"
+	name = "pontifex's qaba"
 	desc = "A slimmed down, tighter fitting robe made of fine silks and fabrics. Somehow you feel more mobile in it than in the nude. Despite the light fabric, it offers decent protection."
 	armor = ARMOR_PADDED
 	icon_state = "monkcloth"
@@ -451,7 +454,7 @@
 		add_overlay(pic)
 
 /obj/item/clothing/suit/roguetown/shirt/robe/pointfex/loadout
-	name = "aesthetic medjai's qaba"
+	name = "aesthetic pontifex's qaba"
 
 /obj/item/clothing/suit/roguetown/shirt/robe/pointfex/loadout/Initialize(mapload)
 	. = ..()

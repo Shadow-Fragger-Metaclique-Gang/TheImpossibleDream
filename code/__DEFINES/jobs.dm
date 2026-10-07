@@ -147,7 +147,10 @@
 	"Courtiers" = JCOLOR_COURTIER,\
 	"Retinue" = JCOLOR_RETINUE,\
 	"Garrison" = JCOLOR_GARRISON,\
+	/* [SURREALIS-EDIT] - LORE */\
+	/* "Church" = JCOLOR_CHURCH, SURREALIS-EDIT - ORIGINAL */\
 	"Clergy" = JCOLOR_CHURCH,\
+	/* [/SURREALIS-EDIT] */\
 	"Inquisition" = JCOLOR_INQUISITION,\
 	"Burghers" = JCOLOR_BURGHER,\
 	"Guildsmen" = JCOLOR_GUILD,\

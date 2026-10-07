@@ -420,8 +420,15 @@ export const QuestScroll = () => {
                   fontSize: '0.92em',
                 }}
               >
+                {/* [SURREALIS-EDIT] - LORE */}
+                {/* SURREALIS-EDIT - ORIGINAL */}
+                {/*
+                By Royal Seal and Ducal Prerogative, the bearer of this writ is
+                held exempt from the Crown&apos;s Levy upon its reward.
+                */}
                 By Royal Seal and the Count's Prerogative, the bearer of this
                 writ is held exempt from the Crown&apos;s Levy upon its reward.
+                {/* [/SURREALIS-EDIT] */}
               </div>
             </>
           )}

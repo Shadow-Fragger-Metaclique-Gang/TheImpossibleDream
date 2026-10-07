@@ -199,7 +199,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/paalloy
 	name = "ancient barbute"
-	desc = "Polished gilbranze plates, pounded to form a visored helmet. Zizo cradles ambition, and apotheosis commands sacrifice; let these \
+	desc = "Polished gilbranze plates, pounded to form a visored helmet. Zizo commands progress, and progress commands sacrifice; let these \
 	sundered legionnaires rise again, to spill the blood of unenlightened fools. A coiled pocket is perched atop the rim, awaiting to be plumed."
 	icon_state = "ancientbarbute"
 	smeltresult = /obj/item/ingot/aaslag
@@ -253,8 +253,8 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/guard/paalloy
 	name = "ancient savoyard"
-	desc = "Polished gilbranze plates, molded into a bulwark's greathelm. A mote of prismatic glare has been forever burnt into the alloy; a \
-	decayed glimpse into the world that was, before Psydon's shattering and Zizo's awakening."
+	desc = "Polished gilbranze plates, molded into a bulwark's greathelm. The Comet Syon's glare has been forever burnt into the alloy; a \
+	decayed glimpse into the world that was, before Psydon's slumber and Zizo's awakening."
 	icon_state = "ancientsavoyard"
 	smeltresult = /obj/item/ingot/aaslag
 
@@ -997,13 +997,13 @@
 	name = "psydonic conical greathelm" //Vanilla version of the Greathelm, like before.
 	desc = "'In my dreams, I heard your footsteps coming closer.' \
 	</br>'In my dreams I tried to talk to you and introduce myself.' \
-	</br>'Guardian of the Sufferer, and the Sufferer's banner.' \
+	</br>'Guardian of the Comet and the Comet's banner.' \
 	</br>'With great pain, I carry the emblem of the All-Father.' \
-	</br>'I am the hands of bloodied skin, I am the eyes from which our God gazes.' \
+	</br>'I am the hands of bloodied skin, I am the eyes from which our Saints gaze.' \
 	</br>'But nothing I know of you, except your cold and forgotten visage.' \
 	</br>'Apart from your calloused and wounded hands.' \
 	</br>'Apart from the mourning of your ultimate sacrifice.' \
-	</br>'No, I know nothing of you, for only He, in Agony, knows.' \
+	</br>'No, I know nothing of you, for only the Comet knows.' \
 	</br>'Now may your sword full of guilt and mine of silver, collide.' \
 	</br>'Let them hurt and march in procession.' </br>'I curse you forever in name, I bless you forever in death..'"
 	armor_class = ARMOR_CLASS_MEDIUM
@@ -1283,7 +1283,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/frogmouth
 	name = "froggemund helmet"
-	desc = "A tall and imposing frogmouth-style helm popular in the highest plateaus of the Grenzelhoft highlands. It covers not only the \
+	desc = "A tall and imposing frogmouth-style helm popular in the highest plateaus of the Azure Peak. It covers not only the \
 	entire head and face, but the neck as well. Add some cloth to show the colors of your family or allegiance, or a nurse's \
 	veil to ward off the chilliness of a winterborn tournament."
 	icon_state = "frogmouth"
@@ -1338,7 +1338,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/frogmouth/greatplume
 	name = "froggemund helmet with greatplume"
-	desc = "A tall and imposing frogmouth-style helm popular in the highest plateaus of the Grenzelhoft highlands. It covers not only the \
+	desc = "A tall and imposing frogmouth-style helm popular in the highest plateaus of the Azure Peak. It covers not only the \
 	entire head and face, but the neck as well. Mounted on the back is a larger couplet, capable of mounting a feathered greatplume; a \
 	blessing for the flamboyant-hearted."
 	icon_state = "frogmouthgreatplume"
@@ -1488,7 +1488,7 @@
 /obj/item/clothing/head/roguetown/helmet/heavy/zizo/volfhelm
 	name = "avantyne volf-face bascinet"
 	desc = "A terminal prognosis, a lethal parasite; unholy strands of avantyne, worming their way through the steel to make something \
-	greater. Your ambition is an agonising process, both unto flesh and metal."
+	greater. Progress is an agonising process, both unto flesh and metal."
 	icon_state = "volfplate_avantyne"
 	item_state = "volfplate_avantyne"
 	smeltresult = /obj/item/ingot/component/zizo
@@ -1562,8 +1562,8 @@
 	icon_state = "capbascinet_s"
 
 /obj/item/clothing/head/roguetown/helmet/heavy/holyseebarbute
-	name = "blessed barbute"
-	desc = "A polished plate of sheer silver curtains the barbute's front, its mirror-like sheen reflecting that which the Gods make of His Creation. \
+	name = "holy see barbute"
+	desc = "A polished plate of sheer silver curtains the barbute's front, its mirror-like sheen reflecting that which the Ten make of His Creation. \
 			\n\n'Look upon their works, ye mighty, and despair.'"
 	icon_state = "seebascinet"
 	item_state = "seebascinet"
@@ -1661,7 +1661,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/guard/bogman/iron
 	name = "bogman's helmet"
-	desc = "An iron helmet featuring the face of a snarling goblin. Once worn by the Bogmen, now a relic of old Pharos."
+	desc = "An iron helmet featuring the face of a snarling goblin. Once worn by the Bogmen, now a relic of old Azuria."
 	icon_state = "iguardhelm"
 	smeltresult = /obj/item/ingot/iron
 	max_integrity = ARMOR_INT_HELMET_HEAVY_IRON

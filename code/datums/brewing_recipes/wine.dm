@@ -95,7 +95,7 @@
 /datum/brewing_recipe/whipwine
 	name = "Wine, Whip"
 	category = "Other"
-	bottle_name = "pharovian whip-wine" // knockoff divine whip wine (magical penis wine)
+	bottle_name = "azurian whip-wine" // knockoff divine whip wine (magical penis wine)
 	bottle_desc = "A bottle of locally-brewed Whipwine. Said to be based off a Kazengun recipe. It has a particularly... leathery flavor."
 	reagent_to_brew = /datum/reagent/consumable/ethanol/whipwine
 	output_bottle_type = /obj/item/reagent_containers/glass/bottle/brewing_bottle/whipwine

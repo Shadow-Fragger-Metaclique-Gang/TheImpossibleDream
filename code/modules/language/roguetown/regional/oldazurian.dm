@@ -1,6 +1,6 @@
 /datum/language/oldazurian
-	name = "Old Imperial"
-	desc = "The archaic tongue of the Midderland's old nations, still remembered by most natives of Pharos and the independent groups living in the outskirts of the Scarlands. It is marked by elongated syllables, as if the speaker is reminiscing of a time that has passed."
+	name = "Old Azurian"
+	desc = "The olden tongue of Azuria's Enclave, still remembered by most natives and the independent groups living in the outskirts of the lands. It is marked by elongated syllables, as if the speaker is reminiscing of a time that has passed."
 	speech_verb = "remarks"
 	ask_verb = "inquires"
 	exclaim_verb = "asserts"

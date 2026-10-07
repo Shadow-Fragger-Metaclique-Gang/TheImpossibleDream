@@ -9,8 +9,8 @@
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_DESPISED)
 	allowed_ages = list(AGE_ADULT, AGE_MIDDLEAGED, AGE_OLD)
-	tutorial = "You are a volunteer with the Wardens; a fraternity of rangers who keep a vigil over the untamed wilderness near the Scar. \
-				While you may not be a professional soldier, you nevertheless serve the County as the first line of defense against outside threats. \
+	tutorial = "You are a volunteer with the Wardens; a fraternity of rangers who keep a vigil over Azuria's untamed wilderness. \
+				While you may not be a professional soldier, you nevertheless serve the Duchy as the first line of defense against outside threats. \
 				Obey your Sergeant-at-Arms, the Marshal, and the Crown. Serve their will, and you will receive that which a Warden covets most - freedom and safety."
 
 	display_order = JDO_WARDEN
@@ -45,8 +45,8 @@
 
 /datum/advclass/warden/warden
 	name = "Warden"
-	tutorial = "You are a Warden; a guerilla beneath the Crown's command, a ranger of these Scar-touched, sparsely populated woods, and the first line of defense against whatever foulness befalls this fief."
-	extra_context = "Wardens receive a boost to Perception, Willpower, and Speed when traveling within the 'Pharovian Grove' biome. When outside this biome, their statblock - compared to the Man-at-Arms - is slightly reduced."
+	tutorial = "You are a Warden; a guerilla beneath the Crown's command, a ranger of Azuria's sparsely populated woods, and the first line of defense against whatever foulness befalls this fief."
+	extra_context = "Wardens receive a boost to Perception, Willpower, and Speed when traveling within the 'Azurian Grove' biome. When outside this biome, their statblock - compared to the Man-at-Arms - is slightly reduced."
 	outfit = /datum/outfit/job/roguetown/warden/warden
 	category_tags = list(CTAG_WARDEN)
 	subclass_stats = list(

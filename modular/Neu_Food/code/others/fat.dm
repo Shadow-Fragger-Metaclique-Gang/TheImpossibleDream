@@ -86,7 +86,10 @@
 
 /obj/item/reagent_containers/food/snacks/tallow/get_mechanics_examine(mob/user)
 	. = ..()
+	// [SURREALIS-EDIT] - LORE
+	// . += span_info("Mixing tallow with a filled glass of wine can make 'redtallow', a crimson-tinged wax that's popular for sealing folded letters of ducal- and religious importance.") // SURREALIS-EDIT - ORIGINAL
 	. += span_info("Mixing tallow with a filled glass of wine can make 'redtallow', a crimson-tinged wax that's popular for sealing folded letters of noble- and religious importance.")
+	// [/SURREALIS-EDIT]
 	. += span_info("Mixing tallow with ground tea leaves can make 'greentallow', a sickly green wax that's popular for sealing folded letters of mercantile- and bureaucratic importance.")
 	. += span_info("For more grizzly alternatives, one can substitute the wine with blood, or - in the hands of a trained Inquisitorial agent - a filled INDEXER.")
 

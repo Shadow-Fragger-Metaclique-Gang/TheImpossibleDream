@@ -926,7 +926,10 @@ SUBSYSTEM_DEF(job)
 		if(RETINUE)
 			key = "Retinue"
 		if(CHURCHMEN)
+			// [SURREALIS-EDIT] - LORE
+			// key = "Church" // SURREALIS-EDIT - ORIGINAL
 			key = "Clergy"
+			// [/SURREALIS-EDIT]
 		if(INQUISITION)
 			key = "Inquisition"
 		if(BURGHERS)

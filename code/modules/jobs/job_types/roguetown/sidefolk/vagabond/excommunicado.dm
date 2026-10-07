@@ -1,6 +1,6 @@
 /datum/advclass/vagabond_excommunicated
 	name = "Excommunicated"
-	tutorial = "The Temple has found you bereft of mercy, and you walk these Scarred lands with nothing but the tattered shreds of the faith you cling to."
+	tutorial = "The Church has found you bereft of mercy, and you walk the lands of Azuria with nothing but the tattered shreds of the faith you cling to."
 	allowed_sexes = list(MALE, FEMALE)
 
 	outfit = /datum/outfit/job/roguetown/vagabond/excommunicated

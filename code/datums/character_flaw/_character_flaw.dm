@@ -12,10 +12,19 @@ GLOBAL_LIST_INIT(averse_factions, list(
 	"Courtiers & Nobility" = (COURTIERS | NOBLEMEN),
 	"Inquisition" = INQUISITION,
 	"Burghers" = BURGHERS,
+	// [SURREALIS-EDIT] - LORE
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	"Azurian Trading Company" = ATC,
+	"Retinue" = RETINUE,
+	"Garrison" = GARRISON,
+	"Churchmen" = CHURCHMEN,
+	*/
 	"Pharovian Trading Company" = ATC,
 	"Retinue" = RETINUE,
 	"Garrison" = GARRISON,
 	"Clergy" = CHURCHMEN,
+	// [/SURREALIS-EDIT]
 	"Peasants" = PEASANTS,
 	"Wanderers" = WANDERERS,
 	"Everyone" = (COURTIERS | NOBLEMEN | INQUISITION | BURGHERS | ATC | RETINUE | GARRISON | CHURCHMEN | PEASANTS | WANDERERS | SIDEFOLK | ANTAGONIST)
@@ -736,7 +745,10 @@ GLOBAL_LIST_INIT(averse_factions, list(
 				var/height = build_coalesce_description_nofluff(d_list, H, list(MOB_DESCRIPTOR_SLOT_HEIGHT), "%DESC1%")
 				var/body = build_coalesce_description_nofluff(d_list, H, list(MOB_DESCRIPTOR_SLOT_BODY), "%DESC1%")
 				var/voice = build_coalesce_description_nofluff(d_list, H, list(MOB_DESCRIPTOR_SLOT_VOICE), "%DESC1%")
+				// [SURREALIS-EDIT] - LORE
+				// add_bounty(H.real_name, H.dna.species, H.gender, height, body, voice, rand(100, 200), FALSE, "Failure to pay outstanding debts.", "The Justiciary of Azuria") // SURREALIS-EDIT - ORIGINAL
 				add_bounty(H.real_name, H.dna.species, H.gender, height, body, voice, rand(100, 200), FALSE, "Failure to pay outstanding debts.", "The Pharovian Justiciary")
+				// [/SURREALIS-EDIT]
 			bounty_added = TRUE
 
 /datum/charflaw/averse

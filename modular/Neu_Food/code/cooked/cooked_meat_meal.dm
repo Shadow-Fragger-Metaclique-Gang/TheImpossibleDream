@@ -22,7 +22,7 @@
 /obj/item/reagent_containers/food/snacks/rogue/peppersteak/ducal
 	cuisine = CUISINE_SOUTH_IMPERIAL
 	tastes = list("steak" = 1, "pepper" = 1, "garlick" = 1)
-	name = "noble steak"
+	name = "ducal steak"
 	desc = "Roasted meat flanked with a generous coating of ground pepper for intense flavor and scribbled in with garlick. Said to have been favorite meal of the Mad Duke."
 	faretype = FARE_LAVISH
 	icon_state = "ducalsteak"
@@ -162,7 +162,7 @@
 /*	.................	Ducal Spiced Baked Poultry	................... */
 /obj/item/reagent_containers/food/snacks/rogue/meat/poultry/baked/spiced/ducal
 	cuisine = CUISINE_SOUTH_IMPERIAL
-	name = "noble bird-roast"
+	name = "ducal bird-roast"
 	desc = "A plump bird, roasted perfection, spiced to taste divine with touch of garlick to top it all off. Perfect to feast on while your son is dying in battle..."
 	faretype = FARE_LAVISH
 	icon_state = "ducalchicken"
@@ -213,7 +213,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = NUTRITION_MEAL_AND_QUARTER*3)
 	tastes = list("frybird" = 1)
 	name = "frybird bucket"
-	desc = "Deep-fried in oil, and thrown into a bucket to stew in their own grease, these wings are the best kind of slop set to trough."
+	desc = "Hearty, comforting, and rich - Azurean Frybirds are the best on the entire continent and now even in a convinient bucket!"
 	faretype = FARE_FINE
 	portable = FALSE
 	icon = 'modular/Neu_Food/icons/cooked/cooked_meat_meal.dmi'

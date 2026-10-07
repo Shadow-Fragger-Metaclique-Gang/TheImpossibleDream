@@ -24,7 +24,10 @@
 			return REALM_LINGYUE
 		if("Naledi")
 			return REALM_NALEDI
+		// [SURREALIS-EDIT] - LORE
+		// if("Azuria") // SURREALIS-EDIT - ORIGINAL
 		if("Pharos")
+		// [/SURREALIS-EDIT]
 			return REALM_AZURIA
 		if("the Underdark")
 			return REALM_UNDERDARK

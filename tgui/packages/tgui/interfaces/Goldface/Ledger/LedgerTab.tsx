@@ -217,12 +217,22 @@ export const LedgerTab = (props: { harbor?: HarborData }) => {
         {harbor.favor.gnome_unlocked ? (
           <>
             <div style={{ ...noteStyle, marginBottom: '4px' }}>
+              {/* [SURREALIS-EDIT] - LORE */}
+              {/* SURREALIS-EDIT - ORIGINAL */}
+              {/*
+              By writ of the Azurean Guild of Gnomes Porters, the public stalls
+              now run under their hand. They take their cost in labour and remit
+              the margin of <b>+{ledger.silverface_margin_percent}%</b> on every
+              sale unto the Merchant Fund. Adjust the rate from the Management
+              tab as you see fit.
+              */}
               By writ of the Pharovian Guild of Gnomes Porters, the public
               stalls now run under their hand. They take their cost in labour
               and remit the margin of{' '}
               <b>+{ledger.silverface_margin_percent}%</b> on every sale unto the
               Merchant Fund. Adjust the rate from the Management tab as you see
               fit.
+              {/* [/SURREALIS-EDIT] */}
             </div>
             <div
               style={{
@@ -237,11 +247,21 @@ export const LedgerTab = (props: { harbor?: HarborData }) => {
           </>
         ) : (
           <div style={noteStyle}>
+            {/* [SURREALIS-EDIT] - LORE */}
+            {/* SURREALIS-EDIT - ORIGINAL */}
+            {/*
+            By standing pact, the Azurean Guild of Porters and Stevedores hold
+            the margin upon a fixed measure of trade each week. Should you push
+            enough goods through the Company&apos;s books, your standing shall
+            earn the right to call in their Gnomes - who will take their wage in
+            labour alone and remit the margin to your Fund.
+            */}
             By standing pact, the Pharovian Guild of Porters and Stevedores hold
             the margin upon a fixed measure of trade each week. Should you push
             enough goods through the Company&apos;s books, your standing shall
             earn the right to call in their Gnomes - who will take their wage in
             labour alone and remit the margin to your Fund.
+            {/* [/SURREALIS-EDIT] */}
           </div>
         )}
       </div>

@@ -1557,13 +1557,22 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 /proc/get_sorted_actors_list()
 	var/list/sorted_ckey_to_actor_data = list()
 	var/list/categories = list(
+		// [SURREALIS-EDIT] - LORE
+		// "Ducal Family" = GLOB.noble_positions, // SURREALIS-EDIT - ORIGINAL
 		"Noble Family" = GLOB.noble_positions,
+		// [/SURREALIS-EDIT]
 		"Courtiers" = GLOB.courtier_positions,
 		"Retinue" = GLOB.retinue_positions,
 		"Garrison" = GLOB.garrison_positions,
+		// [SURREALIS-EDIT] - LORE
+		// "Church" = GLOB.church_positions, // SURREALIS-EDIT - ORIGINAL
 		"Clergy" = GLOB.church_positions,
+		// [/SURREALIS-EDIT]
 		"Burgher" = GLOB.burgher_positions,
+		// [SURREALIS-EDIT] - LORE
+		// "Azurian Trading Company" = GLOB.atc_positions, // SURREALIS-EDIT - ORIGINAL
 		"Pharovian Trading Company" = GLOB.atc_positions,
+		// [/SURREALIS-EDIT]
 		"Peasant" = GLOB.peasant_positions,
 		"Sidefolk" = GLOB.sidefolk_positions,
 		"Inquisition" = GLOB.inquisition_positions,

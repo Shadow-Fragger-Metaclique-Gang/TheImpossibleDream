@@ -3,7 +3,7 @@
 	tutorial = "You are the Hand of Heartfelt, burdened by the perception in protecting your Lord's domain. \
 	However, with the increase in banditry, necromancy, deadite risings, and increasing sea raider raids, there are rumors abound that Heartfelt is not what it used to be. \
 	Travellers often warn of Heartfelt having fallen already, and words of secretive cultists isn't unheard of. \
-	Despite doubts from others, your loyalty remains steadfast as you journey to the Scar, determined to fulfill your duties."
+	Despite doubts from others, your loyalty remains steadfast as you journey to the Peaks, determined to fulfill your duties."
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_DESPISED)
 	outfit = /datum/outfit/job/roguetown/heartfelt/hand
@@ -38,7 +38,7 @@
 /datum/advclass/heartfelt/hand/marshal
 	name = "Marshal of Heartfelt"
 	tutorial = "Renowned for your command of war, you laid down your blade in peaceful years, but peace died with Heartfelt. \
-	Pressed once more into service by tragedy, you climb towards the Scar."
+	Pressed once more into service by tragedy, you climb towards the Peaks."
 	outfit = /datum/outfit/job/roguetown/heartfelt/hand/marshal
 	category_tags = list(CTAG_HFT_HAND)
 	traits_applied = list(TRAIT_HEAVYARMOR, TRAIT_NOBLE, TRAIT_HEARTFELT, TRAIT_STEELHEARTED)
@@ -113,7 +113,7 @@
 	name = "Steward of Heartfelt"
 	tutorial = "You are the Steward of Heartfelt, once the quiet architect behind the barony's \
 	order—keeper of ledgers, harvests, and the lifeblood that sustained your people. \
-	Pressed once more into service by tragedy, you climb towards the Scar."
+	Pressed once more into service by tragedy, you climb towards the Peaks."
 	outfit = /datum/outfit/job/roguetown/heartfelt/hand/steward
 	category_tags = list(CTAG_HFT_HAND)
 	traits_applied = list(TRAIT_SEEPRICES, TRAIT_HEARTFELT)
@@ -171,7 +171,7 @@
 /datum/advclass/heartfelt/hand/advisor
 	name = "Advisor of Heartfelt"
 	tutorial = "You are the Advisor of Heartfelt, trusted for your measured counsel and keen insight into matters of state. \
-	Bound once more to serve in the wake of ruin, you climb towards the Scar."
+	Bound once more to serve in the wake of ruin, you climb towards the Peaks."
 	outfit = /datum/outfit/job/roguetown/heartfelt/hand/advisor
 	category_tags = list(CTAG_HFT_HAND)
 	traits_applied = list(TRAIT_ARCYNE, TRAIT_INTELLECTUAL, TRAIT_SEEPRICES_SHITTY, TRAIT_HEARTFELT, TRAIT_ALCHEMY_EXPERT)

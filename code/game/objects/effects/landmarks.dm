@@ -272,7 +272,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/prisonerr //DELETE - UNUSED
-	name = "Prisoner (Keep)"
+	name = "Prisoner (Azure Keep)"
 	icon_state = "arrow"
 
 /obj/effect/landmark/start/hostage //DELETE - UNUSED

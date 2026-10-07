@@ -1,6 +1,6 @@
 /obj/structure/roguemachine/atm
 	name = "MEISTER"
-	desc = "A witch-engineered apparatus with a mouth that stores and withdraws currency for accounts managed by the Vault of Pharos."
+	desc = "A magitech apparatus with a mouth that stores and withdraws currency for accounts managed by the Grand Duchy of Azuria."
 	icon = 'icons/roguetown/misc/machines.dmi'
 	icon_state = "atm"
 	density = FALSE
@@ -71,11 +71,11 @@
 
 /obj/structure/roguemachine/atm/attackby(obj/item/P, mob/user, params)
 	if(ishuman(user))
-		if(istype(P, /obj/item/roguecoin/aalloy))
-			return
-
+		if(istype(P, /obj/item/roguecoin/aalloy))	
+			return	
+		
 		if(istype(P, /obj/item/roguecoin/inqcoin))
-			return
+			return		
 
 		if(istype(P, /obj/item/roguecoin))
 			var/mob/living/carbon/human/H = user
@@ -127,7 +127,10 @@
 	. += span_smallnotice("Crown levies - Contract: [round(SStreasury.get_tax_rate(TAX_CATEGORY_CONTRACT_LEVY) * 100)]%, Headeater: [round(SStreasury.get_tax_rate(TAX_CATEGORY_HEADEATER_LEVY) * 100)]%, Import: [round(SStreasury.get_tax_rate(TAX_CATEGORY_IMPORT_TARIFF) * 100)]%, Export: [round(SStreasury.get_tax_rate(TAX_CATEGORY_EXPORT_DUTY) * 100)]%")
 	var/datum/decree/concordat = SStreasury.get_decree(DECREE_ZENITSTADT_CONCORDAT)
 	if(concordat?.active)
+		// [SURREALIS-EDIT] - LORE
+		// . += span_smallnotice("Concordat of Zenitstadt: [round(CONCORDAT_TITHE_RATE * 100)]% of every taxed transaction is tithed to the Church of Azuria, drawn from the Crown's share.") // SURREALIS-EDIT - ORIGINAL
 		. += span_smallnotice("Concordat of Zybantium: [round(CONCORDAT_TITHE_RATE * 100)]% of every taxed transaction is tithed to the Temple of Pharos, drawn from the Crown's share.")
+		// [/SURREALIS-EDIT]
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/poll_category = SStreasury.get_poll_tax_category(H)
@@ -156,7 +159,7 @@
 		drilling = FALSE
 		has_reported = FALSE
 		return
-	if(mammonsiphoned >199) // The cap variable for siphoning.
+	if(mammonsiphoned >199) // The cap variable for siphoning. 
 		new /obj/item/coveter(loc)
 		loc.visible_message(span_warning("Maximum withdrawal reached! The meister weeps."))
 		playsound(src, 'sound/misc/DrillDone.ogg', 70, TRUE)

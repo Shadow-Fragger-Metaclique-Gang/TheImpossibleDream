@@ -4,7 +4,7 @@
 	anatomy_type = /datum/anatomy/quadruped/trash
 	icon = 'icons/roguetown/mob/monster/bobcat.dmi'
 	name = "lynx"
-	desc = "An adorable, albeit hated creacher of the Midderland's northern coasts, hunting livestock and the vulernable alike."
+	desc = "An adorable albiet hated creacher of Azuria's northern coast, hunting livestock and vulnerable people alike."
 	icon_state = "bobcat"
 	icon_living = "bobcat"
 	icon_dead = "bobcat_dead"

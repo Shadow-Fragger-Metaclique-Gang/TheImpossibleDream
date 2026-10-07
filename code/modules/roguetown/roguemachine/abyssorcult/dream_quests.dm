@@ -18,7 +18,7 @@
 	vision_text = "The feeling surrounding me is familiar as I awaken. \
 	Ammonia in the air, warped walls like dripping paint. \
 	The Deepfather's realm. Oddly tranquil this time. No nightmares in sight. \
-	Just more of those trusted images. The town of Pharos... The distant broiling of a full inn. \
+	Just more of those trusted images. The town of Azure... The distant broiling of a full inn. \
 	Yet something is off. The darkened night sky seems to be crawling. \
 	Like a maggot burrowed under the skin, a facade for something else. \
 	Building shrink and wane at the edges of my sight, as the sky swells, the edges rippling like a puddle of water. \
@@ -157,7 +157,7 @@
 	Hearts racing, eyes gazing. Everyone sees us, and we see them. \
 	The town elder is there to congratulate us. \
 	Oh, wait, the court magician is there too. \
-	Even the guildmaster, the steward, no, the count themselves are here! \
+	Even the guildmaster, the steward, no, the very duke is here! \
 	There's no one like us, no one dances so gracefully. With such... mesmerizing fervor! \
 	Even the very history recorded upon the ancient tomes will be just us. \
 	Just us dancing. Showing Psydonia, showing everyone how it's done. \
@@ -211,7 +211,7 @@
 	possible_phrases = list(
 		"the work of the gods surrounds us",
 		"doubt is the root of evil",
-		"the gods shaped these lands"
+		"the ten shaped these lands"
 	)
 
 /datum/vision_quest/tier_1/wandering_doubter/is_valid_target(mob/living/carbon/human/target, mob/living/carbon/human/seeker)

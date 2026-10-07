@@ -56,7 +56,10 @@ export const Header = (props: Props) => {
       >
         {ordinanceActive ? (
           <span style={{ color: SEAL_GREEN }}>
+            {/* [SURREALIS-EDIT] - LORE */}
+            {/* <b>Ordinance:</b> in force - {titheRatePct}% tithed unto the Church SURREALIS-EDIT - ORIGINAL */}
             <b>Ordinance:</b> in force - {titheRatePct}% tithed unto the Temple
+            {/* [/SURREALIS-EDIT] */}
           </span>
         ) : (
           <span style={{ color: SEAL_RED }}>
@@ -66,7 +69,10 @@ export const Header = (props: Props) => {
         {isProprietor && (
           <>
             <span style={{ color: INK_SOFT }}>
+              {/* [SURREALIS-EDIT] - LORE */}
+              {/* <b>Church tithed here:</b>{' '} SURREALIS-EDIT - ORIGINAL */}
               <b>Temple tithed here:</b>{' '}
+              {/* [/SURREALIS-EDIT] */}
               <span style={{ color: SEAL_AMBER }}>{churchTithePaid}m</span>
             </span>
             <span style={{ color: INK_SOFT }}>

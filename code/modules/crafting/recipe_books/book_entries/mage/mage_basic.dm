@@ -36,19 +36,22 @@
 	<h3>Veil Attunement</h3>
 	<p>
 		Each mage can perform a limited number of rituals per week. Your body will become
-		fatally weakened should you do too much. On average, a Magos can perform one
+		fatally weakened should you do too much. On average, a Magos can perform one 
 		ritual per day safely, though many stretches it to eight a week once they gain experience.
-		The leylines are the strongest on after Feast's Dae and on the weekends and
-		become the weakest on Moon's dae. In the earlier daes of the week, it is best to
-		focus on lower circles rituals or to attune yourself at your discretion. On the
-		fifth day of the week, that is when the leylines reaches their peaks and the
+		The leylines are the strongest on after Feast's Dae and on the weekends and 
+		become the weakest on Moon's dae. In the earlier daes of the week, it is best to 
+		focus on lower circles rituals or to attune yourself at your discretion. On the 
+		fifth day of the week, that is when the leylines reaches their peaks and the 
 		most powerful rituals can be performed.
 	</p>
 	<h3>Alignment</h3>
 	<p>
 		Matching a ritual's realm to the leyline's alignment gives the full number of creatures.
 		Using a mismatched leyline results in fewer creatures spawning. Choose your leylines wisely.
+		<!-- \[SURREALIS-EDIT\] - LORE -->
+		<!-- The Terrorbog, where Comet SYON has landed - is known for its powerful leylines where one can draw out SURREALIS-EDIT - ORIGINAL -->
 		The Terrorbog, where the Scar's touch is harshest - is known for its powerful leylines where one can draw out\
+		<!-- \[/SURREALIS-EDIT\] -->
 		leyline lycans and void creechurs alike. A summoning of the wrong alignment would still draw the normal amount\
 		of creechurs out - thanks to the leylines power.
 	</p>
@@ -67,7 +70,7 @@
 		Slain creatures drop realm-aligned materials. Each realm has four circles of materials:
 	</p>
 	<ul>
-		<li><b>Infernal:</b>Infernal Ash, Hellhound Fang, Infernal Core, Abyssal Flame</li>
+		<li><b>Infernal:</b>Infernal Ash, Hellhound Fang, Infernal Core, Abyssal Flame</li>	
 		<li><b>Fae:</b> Fairy Dust, Iridescent Scale, Heartwood Core, Sylvan Essence</li>
 		<li><b>Elemental:</b> Elemental Mote, Elemental Shard, Elemental Fragment, Elemental Relic</li>
 	</ul>

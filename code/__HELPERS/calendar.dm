@@ -6,6 +6,7 @@
 	Each week = 1 round IC (regardless of how much time actually passed in game)
 	The first month of a year begins in Spring - Gregorian March, like most sane agricultural calendars that begins in February / March.
 
+	// [SURREALIS-ADD] - LORE
 	SURREALIS NOTE:
 	Hey! So! This is a solid calendar, and it's a piece of absolute brilliance. Incredible work, fella! With all credit to the author--
 	We'll be making some edits throughout the process. Y'know, for flavor's sake - and readability.
@@ -13,6 +14,7 @@
 	Once I have the chance, I'll likely push for returning to a more traditional Julian/Gregorian start of the Year,
 	The only holdover being in the listed month of holidays. May also be renaming the AP metric to... hmn. Something Zybantine, perhaps.
 	The Calendar will measure from the formation of the original Temple of the Pentacle, after all.
+	// [/SURREALIS-ADD]
 */
 
 
@@ -48,12 +50,18 @@
 	var/month_name = get_month_number_to_text(month_number)
 	var/season = get_season_from_month(month_number)
 	var/season_phase = get_season_phase(month_number)
+	// [SURREALIS-EDIT] - LORE
+	// return "[day_of_month] [month_name] [year_number] AP (Month [month_number] [season_phase] [season]), Cycle [current_cycle]" // SURREALIS-EDIT - ORIGINAL
 	return "[day_of_month] [month_name] [year_number] BR (Month [month_number] [season_phase] [season]), Cycle [current_cycle]"
+	// [/SURREALIS-EDIT]
 
 /// Compact IC date - what players say in-character. e.g. "3 Eora 1513 AP".
 /proc/get_ic_date_short_as_string(day_number)
 	var/list/parts = resolve_ic_date_parts(day_number)
+	// [SURREALIS-EDIT] - LORE
+	// return "[parts[1]] [get_month_number_to_text(parts[2])] [parts[3]] AP" // SURREALIS-EDIT - ORIGINAL
 	return "[parts[1]] [get_month_number_to_text(parts[2])] [parts[3]] BR"
+	// [/SURREALIS-EDIT]
 
 /proc/get_current_ic_tod_as_string()
 	if(GLOB.tod == "night")
@@ -77,6 +85,41 @@
 	switch(month_number)
 		if(1)
 			return "Psyrise" // March - The first month of a year is dedicated to the original god that created the world
+		// [SURREALIS-EDIT] - LORE
+		// SURREALIS-EDIT - ORIGINAL
+		/*
+		if(2)
+			return "Eora" // April
+		if(3)
+			return "Dendor" // May
+		if(4)
+		// June, the hottest month is the month of the god of the SUN, because this is when they come into prominence
+		// Historically, the winter solstice was celebrated as the rebirth of the sun / sun god, so it makes sense for the hottest month to be dedicated to the night god
+			return "Astrata" // June
+		if(5)
+			return "Xylix" // July
+		if(6)
+			return "Malum" // August
+		if(7)
+			// This neatly split the year into two half of rise and fall of Psydon.
+			// It also happens to be the start of "Fall" / Autumn.
+			// And it matches the "Psydonia is a minecraft world" joke quite well with Psydon going back to school
+			return "Syonfall"
+		if(8)
+			// Middle / End of harvesting seasons for some crops. It make sense that the goddess of rot / decay follows
+			// And after Syonfall comes the gradual move to winter
+			return "Pestra" // October
+		if(9)
+			// A month dedicated to the goddess of death, before the sun's rebirth and after the goddess of rot
+			return "Necra" // November
+		if(10)
+			// And on winter solstice and the longest night of the year, we have the month dedicated to the god of night
+			return "Noc" // December
+		if(11)
+			return "Abyssor" // January
+		if(12)
+			return "Ravox" // February
+		*/
 		if(2)
 			return "Aprilis" // April
 		if(3)
@@ -102,6 +145,7 @@
 			return "Ianuarius" // January
 		if(12)
 			return "Psybreak" // February
+		// [/SURREALIS-EDIT]
 		else
 			return "Unknown Month ([month_number])"
 

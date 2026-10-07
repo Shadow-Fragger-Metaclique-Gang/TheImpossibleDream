@@ -65,13 +65,13 @@ SUBSYSTEM_DEF(ticker)
 	var/list/royals_readied = list()
 
 	/// Realm name, the location name of the current map
-	var/realm_name = "Pharos and its Scar"
+	var/realm_name = "Azure Peak"
 	/// Formal realm type (e.g. "Grand Duchy", "Most Serene Republic"). Changed by usurpation rites.
-	var/realm_type = "County"
+	var/realm_type = "Grand Duchy"
 	/// Short form for casual references (e.g. "Duchy", "Republic"). Changed by usurpation rites.
-	var/realm_type_short = "County"
+	var/realm_type_short = "Duchy"
 	/// Reports the current ruler's display name
-	var/rulertype = "Count"
+	var/rulertype = "Grand Duke"
 	/// The current ruling mob
 	var/rulermob = null
 	/// Current regent mob
@@ -447,10 +447,16 @@ SUBSYSTEM_DEF(ticker)
 	for(var/i in GLOB.new_player_list)
 		var/mob/dead/new_player/player = i
 		if(!player)
+			// [SURREALIS-EDIT] - LORE
+			// message_admins("THERES A FUCKING NULL IN THE NEW_PLAYER_LIST, REPORT IT TO AZURE DEVELOPMENT STAFF NOW!") // SURREALIS-EDIT - ORIGINAL
 			message_admins("THERES A FUCKING NULL IN THE NEW_PLAYER_LIST, REPORT IT TO SURREALIS DEVELOPMENT STAFF NOW!")
+			// [/SURREALIS-EDIT]
 			continue
 		if(!player.mind)
+			// [SURREALIS-EDIT] - LORE
+			// message_admins("THERES A MIND LACKING PLAYER IN THE NEW_PLAYER_LIST, REPORT IT TO AZURE DEVELOPMENT STAFF NOW!") // SURREALIS-EDIT - ORIGINAL
 			message_admins("THERES A MIND LACKING PLAYER IN THE NEW_PLAYER_LIST, REPORT IT TO SURREALIS DEVELOPMENT STAFF NOW!")
+			// [/SURREALIS-EDIT]
 			continue
 		if(player.ready == PLAYER_READY_TO_PLAY)
 			GLOB.joined_player_list += player.ckey

@@ -261,7 +261,7 @@
 	tutorial = "You are a professional soldier of the realm, specializing in the steady beat of hoof falls. Lighter and more expendable then the knights, you charge with lance in hand."
 	outfit = /datum/outfit/job/roguetown/manorguard/cavalry
 	subclass_stashed_items = list("Ducal Caparison" = /obj/item/caparison/azure)
-	extra_context = "This subclass recieves County Caparison in its stash."
+	extra_context = "This subclass recieves Azurean Caparison in its stash."
 
 	category_tags = list(CTAG_MENATARMS)
 	traits_applied = list(TRAIT_MEDIUMARMOR)
@@ -541,7 +541,10 @@
 		playsound(user.loc, 'sound/combat/shieldraise.ogg', 100, FALSE, -1)
 		if(.)
 			// gives them a rallying message, but doesn't reveal a location. gives antags some leeway
+			// [SURREALIS-EDIT] - LORE
+			// var/input_text = "<big><span style='color: [CLOTHING_WOAD_BLUE]'>THE DUCAL STANDARD CALLS FOR ALL GUARDSMEN TO RALLY AT [uppertext(get_area_name(user))]!</span></big>" // non-specific rallying call // SURREALIS-EDIT - ORIGINAL
 			var/input_text = "<big><span style='color: [CLOTHING_WOAD_BLUE]'>THE CROWN'S STANDARD CALLS FOR ALL GUARDSMEN TO RALLY AT [uppertext(get_area_name(user))]!</span></big>" // non-specific rallying call
+			// [/SURREALIS-EDIT]
 			for(var/obj/item/scomstone/bad/garrison/S in SSroguemachine.scomm_machines)
 				S.repeat_message(input_text, src, CLOTHING_WOAD_BLUE)
 			for(var/obj/item/scomstone/garrison/S in SSroguemachine.scomm_machines)

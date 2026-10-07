@@ -46,7 +46,10 @@
 	// Allows prayer near any knight statue and its subtypes.
 	for(var/obj/structure/fluff/statue/knight/K in view(4, get_turf(follower)))
 		return TRUE
+	// [SURREALIS-EDIT] - LORE
+	// to_chat(follower, span_danger("For Ravox to hear my prayer I must either pray within the church, near a psycross, or near a knighly statue in memorium of the fallen..")) // SURREALIS-EDIT - ORIGINAL
 	to_chat(follower, span_danger("For Ravox to hear my prayer I must either pray within the temple, near a psycross, or near a knighly statue in memorium of the fallen.."))
+	// [/SURREALIS-EDIT]
 	return FALSE
 
 /datum/patron/divine/ravox/on_lesser_heal(

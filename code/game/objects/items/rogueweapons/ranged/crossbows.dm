@@ -309,7 +309,7 @@
 //
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/slurbow
-	name = "flatbow"
+	name = "slurbow"
 	desc = "A lighter weight crossbow with a distinct barrel shroud holding the bolt in place. While its reduced draw-weight \
 	does hamper the power of its bolts, it's consequently much easier to rearm and aim than the common crossbow; doubly-so, \
 	while on the move. </br>They're popular among among highwaymen and the patrolling lamplighters of Otava."
@@ -343,7 +343,7 @@
 	desc = "A heavier weight crossbow - the basis of a mounted ballista, made fit for handheld usage. Integrated just \
 	beneath the stock is a windlass mechanism, necessary to surmount the siegebow's titanic draw-strength. It loads \
 	heavier, full-length bolts; purpose-made to pulverize. </br>Assembled in Grenzelhoft, championed by Valoria, and \
-	rare in these lands touched by the Scar."
+	unfamiliar to the highlands of Azure Peak."
 	icon = 'icons/roguetown/weapons/misc32.dmi'
 	icon_state = "heavybow0"
 	item_state = "heavybow"

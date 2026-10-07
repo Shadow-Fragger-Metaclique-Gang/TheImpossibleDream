@@ -152,7 +152,7 @@
 /obj/item/rogueweapon/sword/zizo
 	name = "avantyne arming sword"
 	desc = "The cardinal sin, coalesced into a crystalline crucifix. In Her name, your will shall be projected unto the worshippers of lesser gods; and by your \
-	hand, they shall bend the knee to their Anathema."
+	hand, they shall bend the knee to progress."
 	icon_state = "zizoarming"
 	sheathe_icon = "zizoarming"
 	force = 25
@@ -362,8 +362,8 @@
 
 /obj/item/rogueweapon/sword/long/ap
 	name = "stecher"
-	desc = "A unique longsword from the Grenz highlands, sacrificing its cutting edge for a piercing tip that can easily penetrate maille. Tracing its roots to the \
-	late fourteenth century, this noble sidearm was born from Grenzelhoftan adaptations of the Otavan estoc."
+	desc = "A unique longsword from the highest plateaus of the Azure Peak, sacrificing its cutting edge for a piercing tip that can easily penetrate maille. Tracing its roots to the \
+	late fourteenth century, this noble sidearm - born from Grenzelhoftian imitations of the Otavan estoc - is proudly displayed on Azuria's official coat-of-arms."
 	icon_state = "aplongsword"
 	sheathe_icon = "aplongsword"
 	force = 20
@@ -489,17 +489,17 @@
 	is_even_lesser_silver = TRUE // adv paladin exclusive weapon, works like unblessed silver but only in pve
 
 /obj/item/rogueweapon/sword/long/church
-	name = "templar's longsword"
-	desc = "A blessed longsword, wielded by the warriors of the Temple in their stalwart defense against evil. Engravings in Sama'glos and Old Imperial doctrine texture its blade; a glossy sheen set across the blade, \
-	slow to mar, by combined blessing of the Justiciar and Lune. When cutting down the wicked - when defending the Gods' Own - and when facing off against Atavists or Anatheme - Templars wield this weapon not out of hate, but out of love. \
-	</br>'I am the \
-	holder of light, in the dark abyss..' </br>'..I am the holder of order and ward against vileness..' </br>'..let the Gods guide my hand, and let the false cower before me.'"
+	name = "see longsword"
+	desc = "A blessed longsword, wielded by the Holy See's templars in their stalwart defense against evil. Originating in the wake of the Celestial Empire's \
+	collapse, legends say that it is the grandfather to longswords all across Psydonia: the triumph of an ancient Malumite priest, stricken with divine \
+	inspiration in humenity's darkest hour. Centuries later, it still remains the ideal choice for skewering infidels and monsters alike. </br>'I am the \
+	holder of light, in the dark abyss..' </br>'..I am the holder of order and ward against vileness..' </br>'..let the Gods guide my hand, and let the Inhumen cower before me.'"
 	icon_state = "churchsword"
 	max_integrity = 180
 
 /obj/item/rogueweapon/sword/long/undivided
-	name = "pentablade"
-	desc = "A blessed longsword, held by the warriors of the Temple in their stalwart defense against evil. The golden crossguard bears the winged motif of an Aasimari, and \
+	name = "decablade"
+	desc = "A blessed longsword, held by the Holy See's templars in their stalwart defense against evil. The golden crossguard bears the winged motif of an angel, and \
 	psalms from the Pantheon's holy tome have been meticulously carved along the blade's edge. </br>'With a drop of holy Eclipsum, doth the blade rise..' </br>'..gilded, \
 	gleaming, radiant heat, warm my soul, immolate my enemies..' </br>'..and let me vanquish all those who would dare to Divide us, once more.'"
 	icon_state = "seeblade"
@@ -510,7 +510,7 @@
 
 /obj/item/rogueweapon/sword/long/ravox_spirit
 	name = "\"Adjudicator\""
-	desc = "A blessed longsword of Ravox, held by the devout crusaders in service to the Divine Wills against the encroaching darkness. The crossguard \
+	desc = "A blessed longsword of Ravox, held by the devout crusaders in service to the Divine Ten against the encroaching darkness. The crossguard \
 	bears motif of the Justicar, and psalms from the Pantheon's holy tome have been meticulously carved along the blade's edge. </br>'...And upon the \
 	Lands came the DIVINE. In PSYDON's absence, so came the TRUE GODS from their rest. So were THEIR gifts spread across the breadth of the \
 	world.' </br>'...It was the Justicar's hand that stayed the blade, for He objected to the execution, and demanded that Justice overcome where \
@@ -619,7 +619,7 @@
 
 /obj/item/rogueweapon/sword/long/avantyne
 	name = "avantyne-threaded longsword"
-	desc = "A blade weaved from the manchmal, born through the cultivation of crystalline metastasis. This otherworldly blade is stronger and sharper than any \
+	desc = "A parasitic mandate to progress, born through the cultivation of crystalline metastasis. This otherworldly blade is stronger and sharper than any \
 	mortal-made masterwork, yet comes at a cost that has yet to be realized."
 	icon_state = "zizolongsword"
 	sheathe_icon = "zizolongsword"
@@ -656,7 +656,7 @@
 
 /obj/item/rogueweapon/sword/long/judgement
 	name = "\"Judgement\""
-	desc = "A noble longsword, and the cherished heirloom of the Pharos' noble bloodline. Its blade is made from Aavnr's finest Vyšvou steel - held \
+	desc = "A noble longsword, and the cherished heirloom of Azuria's royal bloodline. Its blade is made from Aavnr's finest Vyšvou steel - held \
 	from an ornate carved ivory grip from the region's \"Mamük\" megafauna, and decorated with heraldric engravings of silver. ‎</br>‎‎ </br>'When \
 	you stand before thine lord, you cannot say, '..but I was told by others to do thus..', or that, '..virtue was not convenient at the time.' This \
 	will not suffice. Remember that.'"
@@ -1224,7 +1224,7 @@
 /obj/item/rogueweapon/sword/short/gladius
 	name = "gladius"
 	desc = "A hefty blade of bronze, sharp enough to disembowel and decapitate with-but a lone hand's force. Psydonia's ancient champions drove back the \
-	Anathematic hordes with these shortswords, millenia ago; yet now, the end has crept forth to threaten lyfe once more. Move with the grace of \
+	Archdevil's hordes with these shortswords, a thousand years ago; yet now, the end has crept forth to threaten lyfe once more. Move with the grace of \
 	your ancestors - spread your feet, brace your grasp, and make them bleed for every step they take."
 	icon_state = "gladius"
 	sheathe_icon = "gladius"
@@ -1236,7 +1236,7 @@
 /obj/item/rogueweapon/sword/short/gladius/decorated
 	name = "decorated gladius"
 	desc = "A beautiful depiction of justice, beflowered and besilked. The crimson engravings along its blade pay tribute to the ancient epics of Ravox's \
-	arrival after the Shattering - for it was His wounding of the Sinistar's tentacled heart that forced the Domineme to pause - first in disbelief, then in fascination."
+	ascent to godlihood; for it was His wounding of the Sinistar's tentacled heart that forced the Archdevil to pause - first in disbelief, then in fascination."
 	icon_state = "gladiusdec"
 	sheathe_icon = "decgladius"
 	max_integrity = 300
@@ -1257,7 +1257,7 @@
 
 /obj/item/rogueweapon/sword/short/gladius/agladius
 	name = "decrepit gladius"
-	desc = "A hefty shortsword, wrought from frayed bronze. Once, the sidearm of a proud legionnaire; now, stained by the tears of the Winnowing."
+	desc = "A hefty shortsword, wrought from rotted metal. Once, the sidearm of a proud legionnaire; now, a consequence of progress and sacrifice."
 	force = 18
 	max_integrity = 150
 	icon_state = "agladius"
@@ -1588,7 +1588,7 @@
 
 /obj/item/rogueweapon/sword/sabre/palloy
 	name = "ancient khopesh"
-	desc = "A polished hook-sword, forged from gilbronze. The stained-glass glare of the Shattering once graced this blade; now, it's wielded by those who can't even \
+	desc = "A polished hook-sword, forged from gilbranze. The Comet Syon's glare once graced this blade; now, it's wielded by those who can't even \
 	remember what came before His sacrifice."
 	smeltresult = /obj/item/ingot/aaslag
 	icon_state = "akhopesh"
@@ -2169,7 +2169,7 @@
 				return list("shrink" = 0.45,"sx" = 2,"sy" = 3,"nx" = -7,"ny" = 1,"wx" = -8,"wy" = 0,"ex" = 8,"ey" = -1,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0,"nturn" = -135,"sturn" = -35,"wturn" = 45,"eturn" = 145,"nflip" = 8,"sflip" = 8,"wflip" = 1,"eflip" = 0)
 
 /obj/item/rogueweapon/sword/long/hand
-	name = "\"Index\""
+	name = "\"Azurefyre\""
 	desc = "The Blade fit for the Hand, wielded in service to the crown and never mistaken for another."
 	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/thrust, /datum/intent/sword/strike)
 	icon = 'icons/roguetown/weapons/special/hand64.dmi'
@@ -2179,7 +2179,7 @@
 
 /obj/item/rogueweapon/sword/long/holysee
 	name = "eclipsum sword"
-	desc = "A masterworked longsword, forged from the same divine alloy that decorates the Pontiff's hip. As your fingers curl around the shaft, a blessed \
+	desc = "A masterworked longsword, forged from the same divine alloy that decorates the Bishop's hip. As your fingers curl around the shaft, a blessed \
 	sensation rolls through your very soul: the resolve to stand against evil, and the determination to see it vanquished from this world. </br>'..blessed \
 	to hold strength and bring hope, whether it be during the dae or the nite..'"
 	icon_state = "eclipsum"

@@ -581,10 +581,19 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		var/obj/item/storage/equipped_backpack = other.get_item_by_slot(SLOT_BACK_L)
 		if(istype(equipped_backpack))
 			for(var/i in 1 to 5) //increase the odds
+				// [SURREALIS-EDIT] - LORE
+				// SURREALIS-EDIT - ORIGINAL
+				/*
+				message_pool.Add("<span class='notice'>[other] puts the [pick(\
+					"killersice","crimson fang","severed head","crown of Azure Peak","master's rod",\
+					"master key","vault key", "steward's key", "ritual dagger","spellbook",\
+					)] into [equipped_backpack].</span>")
+				*/
 				message_pool.Add("<span class='notice'>[other] puts the [pick(\
 					"killersice","crimson fang","severed head","crown of Pharos","master's rod",\
 					"master key","vault key", "steward's key", "ritual dagger","spellbook",\
 					)] into [equipped_backpack].</span>")
+				// [/SURREALIS-EDIT]
 
 		message_pool.Add("<B>[other]</B> [pick("laughs at [target.first_name()]'s ugly outfit","stares at [target.first_name()]","charges aggressively towards [target.first_name()]","is wondering why [target.first_name()] isn't wearing any pants...")].")
 
@@ -712,7 +721,10 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	switch(message)
 		if("heretic")
 			to_chat(target, "<h1 class='alert'>SHAME</h1>") //Only uses first name, as a clue it's not real...and I suck at coding too much to figure out getting the full name.
+			// [SURREALIS-EDIT] - LORE
+			// to_chat(target, "<br><br><span class='alert'>The church has put Xylix's curse of woe on [target.first_name()] for offending the church!</span><br><br>") // SURREALIS-EDIT - ORIGINAL
 			to_chat(target, "<br><br><span class='alert'>The temple has put Xylix's curse of woe on [target.first_name()] for offending the righteous!</span><br><br>")
+			// [/SURREALIS-EDIT]
 			SEND_SOUND(target, 'sound/misc/excomm.ogg')
 		if("outlaw")
 			to_chat(target, "<h1 class='alert'>The [SSticker.rulertype] Decrees</h1>")
@@ -724,7 +736,10 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			SEND_SOUND(target, 'sound/misc/evilevent.ogg')
 		if("priest dead")
 			to_chat(target, "<h1 class='alert'>Bad Omen</h1>")
+			// [SURREALIS-EDIT] - LORE
+			// to_chat(target, "<br><br><span class='alert'>The High Priest is dead!</span><br><br>") // SURREALIS-EDIT - ORIGINAL
 			to_chat(target, "<br><br><span class='alert'>The Pontifex is dead!</span><br><br>")
+			// [/SURREALIS-EDIT]
 			SEND_SOUND(target, 'sound/misc/evilevent.ogg')
 		if("lich")
 			to_chat(target, "<h1 class='alert'>The Lich Decrees</h1>")
@@ -839,7 +854,10 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 				if(3) //crown
 					target.halitem.icon = 'icons/roguetown/clothing/head.dmi'
 					target.halitem.icon_state = "serpcrown"
+					// [SURREALIS-EDIT] - LORE
+					// target.halitem.name = "Crown of Azure Peak" // SURREALIS-EDIT - ORIGINAL
 					target.halitem.name = "Crown of Pharos"
+					// [/SURREALIS-EDIT]
 				if(4) //clawl
 					target.halitem.icon = 'icons/roguetown/weapons/unarmed32.dmi'
 					target.halitem.icon_state = "claw_l"

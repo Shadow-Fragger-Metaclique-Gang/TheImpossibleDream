@@ -320,7 +320,10 @@ GLOBAL_DATUM(recipe_wiki, /datum/recipe_wiki)
 /client/verb/ooc_wiki()
 	set name = "Encyclopedia"
 	set category = "OOC"
+	// [SURREALIS-EDIT] - LORE
+	// set desc = "Browse the Encyclopaedia Azurea - all recipe books and guidebook entries." // SURREALIS-EDIT - ORIGINAL
 	set desc = "Browse the Encyclopaedia Pharovia - all recipe books and guidebook entries."
+	// [/SURREALIS-EDIT]
 
 	var/datum/recipe_wiki/wiki = get_recipe_wiki()
 	wiki.show_library(mob)

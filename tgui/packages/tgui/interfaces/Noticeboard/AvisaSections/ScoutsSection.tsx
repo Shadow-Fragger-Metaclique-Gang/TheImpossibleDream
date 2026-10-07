@@ -196,10 +196,19 @@ const HelpPanel = () => (
       <b>Moderate</b> to <b>Dangerous</b> to <b>Bleak</b>.
     </p>
     <p style={{ margin: '0 0 6px 0' }}>
+      {/* [SURREALIS-EDIT] - LORE */}
+      {/* SURREALIS-EDIT - ORIGINAL */}
+      {/*
+      A safe region is unlikely to spawn ambushes from common creechurs and
+      brigands. A low-threat region may yield lone foes. Only Azure Basin, Azure
+      Grove, and the Terrorbog can be rendered fully safe; regions not listed
+      are beyond the wardens' charge and remain dangerous.
+      */}
       A safe region is unlikely to spawn ambushes from common creechurs and
       brigands. A low-threat region may yield lone foes. Only the Basin of the
       Pharos, the Pharovian Grove, and the Terrorbog can be rendered fully safe;
       regions not listed are beyond the wardens' charge and remain dangerous.
+      {/* [/SURREALIS-EDIT] */}
     </p>
     <p style={{ margin: '0 0 6px 0' }}>
       Danger is reduced by luring villains and creechurs and killing them when

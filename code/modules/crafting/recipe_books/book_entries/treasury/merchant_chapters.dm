@@ -7,7 +7,10 @@
 	wiki.show_to_user(
 		user,
 		list(/datum/book_entry/treasury_general, /datum/book_entry/treasury_realm, /datum/book_entry/treasury_merchant, /datum/book_entry/treasury_underground),
+		// [SURREALIS-EDIT] - LORE
+		// "The Comprehensive Guide to the Azvrian Economy", // SURREALIS-EDIT - ORIGINAL
 		"The Comprehensive Guide to the Great Game - the Economy",
+		// [/SURREALIS-EDIT]
 		/obj/item/recipe_book/treasury_primer,
 		category,
 		entry,
@@ -19,8 +22,12 @@
 /datum/book_entry/treasury_merchant/navigator/inner_book_html(mob/user)
 	return {"
 		<div>
+		<!-- \[SURREALIS-EDIT\] - LORE -->
+		<!-- <p><b>NAVIGATOR:</b> The heart of commerce of Azuria. This ancient machine lifts goods up by balloons to ships at the dock and the ATC's warehouse. The mechanisms are a trade secret of SURREALIS-EDIT - ORIGINAL -->
+		<!-- Azurian Trading Company. There's three variants: Public Navigator, Navigator and Smuggler's Navigator</p> SURREALIS-EDIT - ORIGINAL -->
 		<p><b>NAVIGATOR:</b> The heart of commerce of Pharos. This ancient machine lifts goods up by balloons to ships at the dock, or caught by aerostatics above. The mechanisms are a trade secret of
 		Pharovian Trading Company. There's three variants: Public Navigator, Navigator and Smuggler's Navigator</p>
+		<!-- \[/SURREALIS-EDIT\] -->
 
 		<h3>How it works</h3>
 		<ul>
@@ -54,7 +61,10 @@
 
 		<h3>Tax Collection</h3>
 		<ul>
+			<!-- \[SURREALIS-EDIT\] - LORE -->
+			<!-- <li>Crown duty remits to Crown's Purse, with a portion given unto the Church for the Concordat tithe if it is in force.</li> SURREALIS-EDIT - ORIGINAL -->
 			<li>Crown duty remits to Crown's Purse, with a portion given unto the Temple for the Concordat tithe if it is in force.</li>
+			<!-- \[/SURREALIS-EDIT\] -->
 			<li>Merchant's levy remits to the Merchant's Fund, held in a secure Jawbank.</li>
 		</ul>
 		</div>
@@ -214,7 +224,10 @@
 
 		<h3>How it gets set</h3>
 		<ul>
+			<!-- \[SURREALIS-EDIT\] - LORE -->
+			<!-- <li>The bonus follows the active Merchant's character origin (Lirvan, Gronnic, Otavan, etc.). Azurian and Elsewhere Merchants confer no Kinship.</li> SURREALIS-EDIT - ORIGINAL -->
 			<li>The bonus follows the active Merchant's character origin (Lirvan, Gronnic, Otavan, etc.). Pharovian and Elsewhere Merchants confer no Kinship.</li>
+			<!-- \[/SURREALIS-EDIT\] -->
 			<li>It <b>persists</b> through Merchant death or FT until a new Merchant of a different realm takes the role. If no Merchant has joined yet this round, there is no Kinship.</li>
 			<li>A Merchant of the same realm replacing the previous one does not flip the bonus.</li>
 			<li>When a new kin realm is claimed mid-round, the available ship pool is checked - if no kin ship is already waiting, one is swapped in immediately so the Merchant has a kin vessel to hail without waiting for tomorrow's roll.</li>
@@ -222,7 +235,10 @@
 
 		<h3>Shophand and Agent variant</h3>
 		<ul>
+			<!-- \[SURREALIS-EDIT\] - LORE -->
+			<!-- <li>A <b>Shophand</b> or holder of the Azurian Trading Company's Writ of Charter gets a personal <b>-[round((1 - KINSHIP_BUY_MULT) * 100)]% on Goldface buys</b> from ships of <b>their own</b> origin.</li> SURREALIS-EDIT - ORIGINAL -->
 			<li>A <b>Shophand</b> or holder of the Pharovian Trading Company's Writ of Charter gets a personal <b>-[round((1 - KINSHIP_BUY_MULT) * 100)]% on Goldface buys</b> from ships of <b>their own</b> origin.</li>
+			<!-- \[/SURREALIS-EDIT\] -->
 			<li>This does <b>not stack</b> with the global Kinship. If the global Kinship already covers the same ship, the agent's personal discount does not add - the buy is -[round((1 - KINSHIP_BUY_MULT) * 100)]%, never -[round((1 - (KINSHIP_BUY_MULT * KINSHIP_BUY_MULT)) * 100)]%.</li>
 			<li>It only fires on Goldface purchase actions; the Shophand doesn't extend the +[round((KINSHIP_SELL_MULT - 1) * 100)]% sell side.</li>
 		</ul>
@@ -248,12 +264,15 @@
 
 
 /datum/book_entry/treasury_merchant/avisa_market
-	name = "06. The Promontory Market Tab"
+	name = "06. The Avisa Market Tab"
 
 /datum/book_entry/treasury_merchant/avisa_market/inner_book_html(mob/user)
 	return {"
 		<div>
+		<!-- \[SURREALIS-EDIT\] - LORE -->
+		<!-- <p><b>AVISA:</b>The Avisa, Azuria's longest running newspaper, for the discerning and intellectual!</p> SURREALIS-EDIT - ORIGINAL -->
 		<p><b>PROMONTORY:</b>The Promontory, Pharos' longest running newspaper, for the discerning and intellectual!</p>
+		<!-- \[/SURREALIS-EDIT\] -->
 
 		<h3>What it shows</h3>
 		<p>

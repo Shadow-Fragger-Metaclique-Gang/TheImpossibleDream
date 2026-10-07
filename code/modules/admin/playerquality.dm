@@ -33,15 +33,18 @@
 		if(the_pq >= 130)
 			return "<span style='color: #00E6BF;'>PROVEN</span>"
 		if(the_pq >= 100)
-			return "<span style='color: #74cde0;'>IMPOSSIBLE DREAMER</span>"
-		if(the_pq >= 70)
-			return "<span style='color: #00ff00;'>Magnificent!</span>"
-		if(the_pq >= 50)
-			return "<span style='color: #00ff00;'>Exceptional!</span>"
-		if(the_pq >= 30)
-			return "<span style='color: #47b899;'>Great!</span>"
-		if(the_pq >= 10)
-			return "<span style='color: #69c975;'>Good!</span>"
+			// [SURREALIS-EDIT] - LORE
+			// return "<span style='color: #00CC88;'>AZURIAN</span>" // SURREALIS-EDIT - ORIGINAL
+			return "<span style='color: #00CC88;'>IMPOSSIBLE DREAMER</span>"
+			// [/SURREALIS-EDIT]
+		if(the_pq >= 80)
+			return "<span style='color: #00B359;'>Magnificent!</span>"
+		if(the_pq >= 60)
+			return "<span style='color: #00B33C;'>Exceptional!</span>"
+		if(the_pq >= 40)
+			return "<span style='color: #009933;'>Great!</span>"
+		if(the_pq >= 20)
+			return "<span style='color: #009919;'>Nice!</span>"
 		if(the_pq >= 5)
 			return "<span style='color: #116600;'>OK</span>"
 		if(the_pq >= -4)

@@ -70,7 +70,10 @@ export const DrowWrit = (props: {
   return (
     <>
       <p style={writParagraph}>
+        {/* [SURREALIS-EDIT] - LORE */}
+        {/* <i>By writ of the {rulerTitle} and the Holy See:</i> SURREALIS-EDIT - ORIGINAL */}
         <i>By writ of the {rulerTitle} and Pantheonic law:</i>
+        {/* [/SURREALIS-EDIT] */}
       </p>
       <p style={writParagraph}>
         That {subject} hath emerged from the deep dark into the lands of {realm}
@@ -93,11 +96,20 @@ export const DrowWrit = (props: {
         </>
       )}
       <p style={writParagraph}>
+        {/* [SURREALIS-EDIT] - LORE */}
+        {/* SURREALIS-EDIT - ORIGINAL */}
+        {/*
+        Let no man parley, let no man trade, let no priest hear their plea. By
+        writ of the {rulerTitle} and the counsel of the Holy See, {subject} be
+        declared <span style={caputLupinum}>ANATHEMA SIT</span>: accursed before
+        the Tens, sundered from sun and grain, owed neither truce nor ransom.
+        */}
         Let no man parley, let no man trade, let no priest hear their plea. By
         writ of the {rulerTitle} and the counsel of the priesthood of the
         Temple, {subject} be declared{' '}
         <span style={caputLupinum}>ANATHEMA SIT</span>: accursed before the
         Gods, sundered from sun and grain, owed neither truce nor ransom.
+        {/* [/SURREALIS-EDIT] */}
       </p>
       <p style={writParagraph}>
         Slay them where they walk and burn what they bear, lest the blight upon

@@ -816,7 +816,7 @@
 
 /obj/item/carvedgem/amber/sun
 	name = "amber sun carving"
-	desc = "A shining sun carved out of amber. This would look nice on any temple's altar."
+	desc = "A shining sun carved out of amber. This would look nice on a church altar."
 	icon_state = "sun_amber"
 	grid_height = 32
 	grid_width = 32

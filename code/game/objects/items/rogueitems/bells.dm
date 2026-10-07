@@ -1,7 +1,7 @@
 //////////////Church stuff
 
 /obj/item/handheld_bell
-	name = "temple bell"
+	name = "church bell"
 	desc = "A small bell that rings loudly when used."
 	icon = 'icons/roguetown/items/misc.dmi'
 	icon_state = "churchbell"
@@ -55,7 +55,7 @@
 	invisibility = INVISIBILITY_MAXIMUM
 
 /obj/structure/stationary_bell
-	name = "temple bell"
+	name = "church bell"
 	desc = "A large bell that rings out for all to hear."
 	icon = 'icons/roguetown/misc/96x96.dmi'
 	icon_state = "churchbell"
@@ -104,6 +104,19 @@
 			continue
 
 		var/distance = get_dist(player, origin_turf)
+		// [SURREALIS-EDIT] - LORE
+		// SURREALIS-EDIT - ORIGINAL
+		/*
+		if(distance <= 7)
+			to_chat(player, span_notice("The church bell rings, echoing solemnly through the area."))
+			continue
+		if(distance <= 150)
+			to_chat(player, span_notice("The church bell rings, echoing solemnly through the area."))
+			player.playsound_local(get_turf(player), 'sound/misc/bell.ogg', 35, FALSE, pressure_affected = FALSE)
+			continue
+
+		to_chat(player, span_notice("The church bell rings, echoing distantly from afar."))
+		*/
 		if(distance <= 7)
 			to_chat(player, span_notice("The temple bell rings, echoing solemnly through the area."))
 			continue
@@ -113,6 +126,7 @@
 			continue
 
 		to_chat(player, span_notice("The temple bell rings, echoing distantly from afar."))
+		// [/SURREALIS-EDIT]
 		player.playsound_local(get_turf(player), 'sound/misc/bell.ogg', 35, FALSE, pressure_affected = FALSE)
 
 /obj/item/jingle_bells

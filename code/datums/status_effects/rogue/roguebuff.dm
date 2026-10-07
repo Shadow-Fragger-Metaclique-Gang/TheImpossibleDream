@@ -1093,7 +1093,7 @@
 
 /atom/movable/screen/alert/status_effect/buff/censerbuff
 	name = "Syon's Blessings"
-	desc = "I have been anointed in His eternal radiance; let no evil befall me!"
+	desc = "I have been anointed in His comet's radiance; let no evil befall me!"
 	icon_state = "censerbuff"
 
 /datum/status_effect/buff/fortify //Increases all healing while it lasts.

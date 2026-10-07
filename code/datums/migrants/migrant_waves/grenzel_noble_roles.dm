@@ -153,7 +153,7 @@
 
 /datum/migrant_role/grenzel/priest
 	name = "Envoy Priest"
-	greet_text = "Nominally the envoy's spiritual advisor, your real power extends beyond religious matters. Protect the interests of the True Faith in this scar-carved snake's pit."
+	greet_text = "Nominally the envoy's spiritual advisor, your real power extends beyond religious matters. Protect interests of the Holy See of the Ten."
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_CONSTRUCT RACES_DESPISED)
 	advclass_cat_rolls = list(CTAG_GRENZEL_PRIEST = 20)

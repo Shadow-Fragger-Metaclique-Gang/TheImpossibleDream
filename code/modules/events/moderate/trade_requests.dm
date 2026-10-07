@@ -84,7 +84,10 @@
 
 	info += "<br/></font>"
 
+	// [SURREALIS-EDIT] - LORE
+	// info += "<font size=\"2\" face=\"[FOUNTAIN_PEN_FONT]\" color=#27293f>[writers_name] Shipwright of [pick("Azure Peak", "Grenzelhoft", "Raneshen", "Etrusca", "Otava")]</font>" // SURREALIS-EDIT - ORIGINAL
 	info += "<font size=\"2\" face=\"[FOUNTAIN_PEN_FONT]\" color=#27293f>[writers_name] Shipwright of [pick("Pharos", "Grenzelhoft", "Raneshen", "Etrusca", "Otava")]</font>"
+	// [/SURREALIS-EDIT]
 
 	info += "</div>"
 

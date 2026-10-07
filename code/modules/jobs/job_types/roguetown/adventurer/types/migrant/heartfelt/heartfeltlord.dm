@@ -1,7 +1,7 @@
 
 /datum/job/roguetown/heartfelt/lord
 	title = "Lord of Heartfelt"
-	tutorial = "You are the Lord of Heartfelt, ruler of a prosperous borderlands neighboring Pharos. \
+	tutorial = "You are the Lord of Heartfelt, ruler of a prosperous borderlands now in Azuria. \
 	However, with the increase in banditry, necromancy, deadite risings, and increasing sea raider raids, there are rumors abound that Heartfelt is not what it used to be. \
 	Travellers often warn of Heartfelt having fallen already, and words of secretive cultists isn't unheard of."
 	allowed_sexes = list(MALE, FEMALE)
@@ -22,7 +22,7 @@
 
 /datum/advclass/heartfelt/lord/lord
 	name = "Lord of Heartfelt"
-	tutorial = "You are the Lord of Heartfelt, ruler of a prosperous borderlands neighboring Pharos. \
+	tutorial = "You are the Lord of Heartfelt, ruler of a prosperous borderlands now in Azuria. \
 	However, with the increase in banditry, necromancy, deadite risings, and increasing sea raider raids, there are rumors abound that Heartfelt is not what it used to be. \
 	Travellers often warn of Heartfelt having fallen already, and words of secretive cultists isn't unheard of."
 	category_tags = list(CTAG_HFT_LORD)
@@ -93,7 +93,7 @@
 
 /datum/advclass/heartfelt/lord/archmage
 	name = "Archmagos of Heartfelt"
-	tutorial = "You are the Archmagos of Heartfelt, ruler of a acryne-borderlands situated near Pharos. \
+	tutorial = "You are the Archmagos of Heartfelt, ruler of a acryne-borderlands in Azuria. \
 	However, with the increase in banditry, necromancy, deadite risings, and increasing sea raider raids, there are rumors abound that Heartfelt is not what it used to be. \
 	Travellers often warn of Heartfelt having fallen already, and words of secretive cultists isn't unheard of."
 	category_tags = list(CTAG_HFT_LORD)
@@ -174,7 +174,7 @@
 
 /datum/advclass/heartfelt/lord/chief
 	name = "Chieftain of Heartfelt"
-	tutorial = "You are the Chieftain of Heartfelt, Chieftain of a once tribal lands neighboring the Pharos. Now, you rule it by the strength of your Name and your Axe. \
+	tutorial = "You are the Chieftain of Heartfelt, Chieftain of a once tribal lands over Azuria. Now, you rule it under the watchful gaze of the Grand Duchy. \
 	However, with the increase in banditry, necromancy, deadite risings, and increasing sea raider raids, there are rumors abound that Heartfelt is not what it used to be. \
 	Travellers often warn of Heartfelt having fallen already, and words of secretive cultists isn't unheard of."
 	category_tags = list(CTAG_HFT_LORD)
@@ -280,14 +280,20 @@
 		to_chat(recruiter, span_warning("They're already part of our cause!"))
 		return FALSE
 	if(HAS_TRAIT(recruit, TRAIT_GUARDSMAN))
+		// [SURREALIS-EDIT] - LORE
+		// to_chat(recruiter, span_warning("They're already part of the Peak's guard! They can't join our cause!")) // SURREALIS-EDIT - ORIGINAL
 		to_chat(recruiter, span_warning("They're already part of the Scar's guard! They can't join our cause!"))
+		// [/SURREALIS-EDIT]
 		return FALSE
 	if(HAS_TRAIT(recruit, TRAIT_INQUISITION))
 		to_chat(recruiter, span_warning("Their loyalty is to Psydon alone! They can't join our cause!"))
 		return FALSE
 	//If you're reading this, please refactor this once we have TRAIT_CLERGY thanks
 	if(HAS_TRAIT(recruit, TRAIT_CLERGY))
+		// [SURREALIS-EDIT] - LORE
+		// to_chat(recruiter, span_warning("Clergy cannot join our cause! Their loyalty is to the Ten!")) // SURREALIS-EDIT - ORIGINAL
 		to_chat(recruiter, span_warning("Clergy cannot join our cause! Their loyalty is to the Pantheon!"))
+		// [/SURREALIS-EDIT]
 		return FALSE
 	..()
 

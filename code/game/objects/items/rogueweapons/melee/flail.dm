@@ -175,7 +175,7 @@
 
 /obj/item/rogueweapon/flail/sflail/paflail
 	name = "ancient flail"
-	desc = "A spiked ball of polished gilbranze, chained to a reinforced handle. They say that His children worshipped the flail above all else, for He, embodied mortal, carried such a bludgeon made of cometsteel."
+	desc = "A spiked ball of polished gilbranze, chained to a reinforced handle. They say that His children worshipped the flail above all else, for its twirls replicated the Comet Syon's blazing flights."
 	icon_state = "aflail"
 	smeltresult = /obj/item/ingot/aaslag
 
@@ -361,10 +361,11 @@
 	wbalance = WBALANCE_HEAVY
 
 /obj/item/rogueweapon/flail/sflail/holysee
-	name = "lunar flail"
-	desc = "Wielded most commonly by those sworn to the Moon, this flail's end was forged in the Lune's likeness: \
-	manyfaced and reflectively gleaming. It instills unforgettable lessons upon those it strikes. </br><i>'May you never feel His Scorn, waxing.' 'May you never feel Her Scorch, waning.' \
-	'May you bask, blessed, in Their light, full.'</i>"
+	name = "holy see flail"
+	desc = "A blessed flail, oft conflicts arise betwixt the Otavian Orthodoxy and Holy See on the origins \
+			being betwixt Psydon and Noc being the origin of such weapon, regardless against the forces of evil, \
+			it serves one absolute truth - smashing through plate and skull of Heathen and Heretic alike. Often favored \
+			by Xylix's following for theatrics but also curiously Noc's following as a ceremonial tool of war."
 	icon_state = "churchflail"
 	wlength = WLENGTH_LONG
 

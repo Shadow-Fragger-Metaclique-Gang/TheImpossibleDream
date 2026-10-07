@@ -90,7 +90,10 @@ export const AvisaTab = ({ data, act }: TabProps) => {
           marginTop: 6,
         }}
       >
+        {/* [SURREALIS-EDIT] - LORE */}
+        {/* The Azurian Avisa SURREALIS-EDIT - ORIGINAL */}
         The Promontory of Pharos
+        {/* [/SURREALIS-EDIT] */}
       </div>
       <div style={subtitleStyle}>Tidings, edicts, and trade of the realm</div>
       <hr style={rulerStyle} />

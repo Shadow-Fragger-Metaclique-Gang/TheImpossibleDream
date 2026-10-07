@@ -171,19 +171,19 @@
 	name = "North Imperial"
 	book_priority = 7
 	cuisine_flag = CUISINE_NORTH_IMPERIAL
-	blurb = "A broad category for the cuisine that originated from the heartland of the Known World - namely, modern dae Grenzelhoft. It is hearty and delicious, full of breads, pies, sausage. Though seafood are eaten, it is not as prominent and does not feature in its dishes list. Ale and Beer are the main source of drinks, with occasional spirits added in. Famous dishes includes the Grenzelbun, Squire's Delight, Nitzel and Schnitzel."
+	blurb = "A broad category for the cuisine that originated from the old Celestial Empire's heartland, modern dae Grenzelhoft. It is hearty and delicious, full of breads, pies, sausage. Though seafood are eaten, it is not as prominent and does not feature in its dishes list. Ale and Beer are the main source of drinks, with occasional spirits added in. Famous dishes includes the Grenzelbun, Squire's Delight, Nitzel and Schnitzel."
 
 /datum/book_entry/cuisine/south_imperial
 	name = "South Imperial"
 	book_priority = 6
 	cuisine_flag = CUISINE_SOUTH_IMPERIAL
-	blurb = "An imposition for the varied diet that developed in the Pharos and its various neighboring courts within the Kingdom. It incorporates elements of North Imperial food - namely the hearty staple of breads and pastries; that which oft and regularly fills its kitchens with their rich and pleasant airs. Compared to its northern counterpart, it includes practically all seafood dishes- pies, poached, smoked, Scarred, or even raw- so long as their physiology can handle it. Etruscan cuisine, courtesy of its proximity to the Kingdom, oft find themselves warmly regarded and well-cooked as well, bringing pomomensa platters and Etruscan spices to wealthier tables. Turf meats are treated mixed- Heartland lamb and pork are held in particularly high regard, whereas beef is comparatively rare."
+	blurb = "A grandiose name for the cuisine that developed in Azuria during its heyday, when snow elves still ruled from the mountain valley of Tarichea. It incorporated elements of North Imperial food - namely the hearty staple of breads, tomatoplate and bookbreads - and deliberately excludes pies (excluding crab and fish pies), which are viewed as food suitable for campaigning but not for a noble tongue. Compared to its northern counterpart, it includes practically all seafood dishes, specifically fish pies (and no other pies) and anything with fish as originally Azurean. It includes elements of wood elven cuisine, incorporated as a native and uniquely Azurian aspect, and Tarichean and Azurian lords made sure to dine on them conspicuously to show that they are both capable of imitation and innovation - honey, mead, slow roasted fishes, game, rosa tea - all elements of the Rosawoodian diet that the nobles and burghers of this land eat with pride."
 
 /datum/book_entry/cuisine/otavais
 	name = "Otavais"
 	book_priority = 5
 	cuisine_flag = CUISINE_OTAVAIS
-	blurb = "Otava and its predecessor states, centrally located to trade as the Grenz, were boosted with a bountiful coastline and diverse climate. So their cuisine has a little bit of everything, and is known for its richness. A bit of signature pies, a bit of signature bread, cheesecake (though not honeycake, viewed as too decadent and Zybantine), fruit cakes, and some but not all good seafood."
+	blurb = "Otava and its predecessor were never under the yoke of the Celestial Empire, and were boosted with a bountiful coastline and diverse climate. So their cuisine has a little bit of everything, and is known for its richness. A bit of signature pies, a bit of signature bread, cheesecake (though not honeycake, viewed as too decadent and Ranesheni), fruit cakes, and some but not all good seafood."
 
 /datum/book_entry/cuisine/northern
 	name = "Northern"

@@ -1,6 +1,6 @@
 /datum/advclass/wretch/profane_champion
 	name = "Profane Champion"
-	tutorial = "You are a champion of the Ascendant Divines, bearing boons of your Patron into battle. By quill or sword their word shall be heard."
+	tutorial = "You are a champion of the Ecclesial, bearing boons of your Patron into battle. By quill or sword their word shall be heard."
 	allowed_sexes = list(MALE, FEMALE)
 
 	outfit = /datum/outfit/job/roguetown/wretch/profane_champion

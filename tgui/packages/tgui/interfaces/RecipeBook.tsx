@@ -139,7 +139,10 @@ const LibraryPage = () => {
   return (
     <Section fill scrollable>
       <Box style={{ padding: '20px 36px 28px 36px' }}>
+        {/* [SURREALIS-EDIT] - LORE */}
+        {/* <Box style={titleStyle}>Encyclop&aelig;dia Azurea</Box> SURREALIS-EDIT - ORIGINAL */}
         <Box style={titleStyle}>Encyclop&aelig;dia Pharovia</Box>
+        {/* [/SURREALIS-EDIT] */}
         <hr style={rulerStyle} />
         {guides.length > 0 && (
           <>

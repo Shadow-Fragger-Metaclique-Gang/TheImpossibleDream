@@ -795,7 +795,7 @@
 	id = "rebel_uprising"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/rebel_uprising
 	effectedstats = list(STATKEY_LCK = 2, STATKEY_STR = 1, STATKEY_WIL = 1, STATKEY_CON = 1, STATKEY_INT = 2)
-	active_msg = "Pharos is where I make my stand. We'll make it."
+	active_msg = "Azure Peak is where I make my stand. We'll make it."
 	deactive_msg = "I'm straying too far from the city's bounds.."
 
 /atom/movable/screen/alert/status_effect/buff/rebel_uprising
@@ -919,7 +919,7 @@
 
 /datum/objective/prebel
 	name = "Rebellion"
-	explanation_text = "Righteous rebellion has come to Pharos. It's our tyme now, Lady Tyrant."
+	explanation_text = "Rebellion has come to Azure Peak. It's our tyme now, Lady Tyrant."
 	team_explanation_text = "Claim the throne through the Rite of Popular Acclaim. Nothing else matters."
 
 /datum/objective/prebel/check_completion()

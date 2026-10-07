@@ -48,6 +48,18 @@ GLOBAL_VAR(command_name)
 /proc/set_station_name(newname)
 	GLOB.station_name = newname
 
+// [SURREALIS-EDIT] - LORE
+// SURREALIS-EDIT - ORIGINAL
+/*
+#ifdef ROGUEWORLD
+	world.name = "AZURE PEAK"
+#else
+	world.name = "AZURE PEAK"
+#endif
+#ifdef TESTSERVER
+	world.name = "AZURE PEAK (TESTING)"
+#endif
+*/
 #ifdef ROGUEWORLD
 	world.name = "SURREALIS"
 #else
@@ -56,6 +68,7 @@ GLOBAL_VAR(command_name)
 #ifdef TESTSERVER
 	world.name = "SURREALIS (TESTING)"
 #endif
+// [/SURREALIS-EDIT]
 
 
 /proc/new_station_name()

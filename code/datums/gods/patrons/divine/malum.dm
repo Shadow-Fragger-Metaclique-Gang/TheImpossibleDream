@@ -52,7 +52,10 @@
 	// Allows prayer near smelters.
 	for(var/obj/machinery/light/rogue/smelter/H in view(4, get_turf(follower)))
 		return TRUE
+	// [SURREALIS-EDIT] - LORE
+	// to_chat(follower, span_danger("For Malum to hear my prayer I must either pray within the church, the smithy's workshop, near a psycross, near a smelter, or hearth to bask in Malum's glory..")) // SURREALIS-EDIT - ORIGINAL
 	to_chat(follower, span_danger("For Malum to hear my prayer I must either pray within the temple, the smithy's workshop, near a psycross, near a smelter, or hearth to bask in Malum's glory.."))
+	// [/SURREALIS-EDIT]
 	return FALSE
 
 /datum/patron/divine/malum/on_lesser_heal(

@@ -50,7 +50,10 @@ export const ATCLoanBanner = (props: { atc_loan: AtcLoanState }) => {
           color: accent,
         }}
       >
+        {/* [SURREALIS-EDIT] - LORE */}
+        {/* Azurian Trading Company - Company Clerk's Bench SURREALIS-EDIT - ORIGINAL */}
         Pharovian Trading Company - Company Clerk's Bench
+        {/* [/SURREALIS-EDIT] */}
       </div>
       <div style={{ color: INK, marginBottom: '6px' }}>
         {atc_loan.available ? (

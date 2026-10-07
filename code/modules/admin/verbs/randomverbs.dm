@@ -827,7 +827,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			humie.add_stress(/datum/stressevent/maniac_woke_up)
 			to_chat(humie, span_deadsay("<span class='reallybig'>... WHERE AM I? ...</span>"))
 			var/static/list/slop_lore = list(
+				// [SURREALIS-EDIT] - LORE
+				// span_deadsay("... Azure Peak? No ... It doesn't exist ..."), // SURREALIS-EDIT - ORIGINAL
 				span_deadsay("... Pharos? The Scar? No ... It doesn't exist ..."),
+				// [/SURREALIS-EDIT]
 				span_deadsay("... My name is Trey. Trey Liam, Liamtific Troverseer ..."),
 				span_deadsay("... I'm on NT Liam, a self Treystaining ship, used to Treyserve what Liamains of roguemanity ..."),
 				span_deadsay("... Launched into the Grim Darkness, War and Grim Darkness preserves their grimness ... Their edge ..."),

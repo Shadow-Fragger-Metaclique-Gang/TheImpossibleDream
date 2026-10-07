@@ -11,7 +11,7 @@
 
 /obj/item/storage/belt/rogue/pouch/azurosa_seeds
 	name = "pouch of azurosa seeds"
-	desc = "A pouch that's been filled with seeds of the Azurosa flower, freshly harvested from the highest plateaus of the distant Azure Peak."
+	desc = "A pouch that's been filled with seeds of the Azurosa flower, freshly harvested from the highest plateaus of the Azure Peak."
 	populate_contents = list(
 	/obj/item/herbseed/rosa/azure,
 	/obj/item/herbseed/rosa/azure,
@@ -22,8 +22,8 @@
 /obj/structure/flora/roguegrass/herb/rosa/azure
 	name = "azurosa"
 	desc = "A prickly, blueish mutation of the common Rosa found uniquely in the plains of \
-	central Azuria, this flower rarely grows upon the Azurian highlands. Its sight here means only \
-	one thing: a donation from the inlands."
+	central Azuria, this flower rarely grows upon the Azurian coast. Its sight here means only \
+	one thing: a donation from the inner lands."
 	icon_state = "azurosa_plant"
 	icon = 'icons/obj/items/donor_objects.dmi'
 
@@ -59,7 +59,7 @@
 
 /obj/item/flowercrown/rosa/azure
 	name = "crown of azurosa"
-	desc = "A crown formed of azurosas, freshly plucked from the plains of centrally-located Azuria. Often worn during \
+	desc = "A crown formed of azurosas, freshly plucked from the plains of central Azuria. Often worn during \
 	the many festivals and holidaes that're celebrated throughout the yil, as a sign of pride and propserity."
 	icon = 'icons/obj/items/donor_objects.dmi'
 	mob_overlay_icon = 'icons/clothing/onmob/donor_clothes.dmi'
@@ -2752,10 +2752,10 @@ As Excaliber."
 // OLYMPUS7
 /obj/item/rogueweapon/greatsword/olygsword
 	name = "Gre'as'anto d'Shar"
-	desc = "A profoundly lavish, late 14th century royal Yuethindrynn kriegsmesser, reforged with Hammerheldan bluntness into a \
+	desc = "A profoundly lavish, late 14th century royal Yuethindrynn kriegsmesser, reforged with Hammerholdian bluntness into a \
 	greatsword impregnated with dark alloy threads	that knit together forming cracks.\
 	From the wielder’s perspective,<i>Dro'xun phor jal dkinoss.</i> is engraved as a reminder.\
-	The center piece of The crossguard features a clan emblem of a shattered symbol of the Demiurge held together by arcane energy, \
+	The center piece of The crossguard features a clan emblem of a shattered symbol of progress held together by arcane energy, \
 	in place of the intersection of the cross is a slited eye within a halo, the arms of the cross are triangular.\
 	This is not a blade of faith or morals, it is a tool with a purpose to it's user."
 	icon = 'icons/obj/items/donor_weapons_64.dmi'
@@ -2937,7 +2937,7 @@ As Excaliber."
 /obj/item/rogueweapon/sword/long/cobb
 	name = "\improper Conviction"
 	desc = "This longsword appears at first glance to be a replica of the silver-alloyed Psydonic Longsword of the Orthodoxy's many soldiers, though it is clearly made of steel and by a foreign smith imitating the design. \
-	The cross-guard is gilded in gold, and etched with tiny, abstract emblems to resemble the Gods; what passes to resembling a sun, a flower, a moon and so on. \
+	The cross-guard is gilded in gold, and etched with tiny, abstract emblems to resemble the Ten; what passes to resembling a sun, a flower, a moon and so on. \
 	The hilt, wrapped in a blackened leather strap, was fashioned out of chestnut and whittled for a central waistline. \
 	The pommel itself, a steel disc, was embedded with a large blue gem, faceted such that on a close look, one could be able to just see through it.<br><br>\
 	Perhaps most notably about this sword is that it was never bereft of the silver psycross that was wrapped around the base of the blade and hilt both, tightly woven like an imprisoning chain."

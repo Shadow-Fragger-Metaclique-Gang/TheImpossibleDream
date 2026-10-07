@@ -184,6 +184,18 @@ export class Changelog extends Component {
 
     const header = (
       <Section>
+        {/* [SURREALIS-EDIT] - LORE */}
+        {/* SURREALIS-EDIT - ORIGINAL */}
+        {/*
+        <h1>Azure Peak</h1>
+        <p>
+          <b>Thanks to: </b>
+          TGStation, Baystation 12, /vg/station, NTstation, CDK Station devs,
+          FacepunchStation, GoonStation devs, the original Space Station 13
+          developers, Zydras for the title image and the countless others who
+          have contributed to the game, issue tracker or wiki over the years.
+        </p>
+        */}
         <h1>Surrealis</h1>
         <p>
           <b>Thanks to: </b>
@@ -194,6 +206,7 @@ export class Changelog extends Component {
           others who have contributed to the game, issue tracker or wiki over
           the years.
         </p>
+        {/* [/SURREALIS-EDIT] */}
         <p>
           {'Current organization members can be found '}
           <a href="https://github.com/orgs/Azure-Peak/people">here</a>
@@ -202,7 +215,10 @@ export class Changelog extends Component {
         </p>
         <p>
           {'You can also join our discord '}
+          {/* [SURREALIS-EDIT] - LORE */}
+          {/* <a href="https://discord.gg/NCFXUAgCPT">here</a>. SURREALIS-EDIT - ORIGINAL */}
           <a href="https://discord.gg/ttNTr2S62C">here</a>.
+          {/* [/SURREALIS-EDIT] */}
         </p>
         {dateDropdown}
       </Section>
@@ -286,7 +302,10 @@ export class Changelog extends Component {
           {' for the MIT license.'}
         </p>
         <p>
+          {/* [SURREALIS-EDIT] - LORE */}
+          {/* {'Roguetown / Azure Peak was originally forked from '} SURREALIS-EDIT - ORIGINAL */}
           {'Roguetown / Azure Peak / Surrealis was originally forked from '}
+          {/* [/SURREALIS-EDIT] */}
           <a href="https://github.com/tgstation/tgstation/commit/c28b351807bad950d2b323ada048190844bbda32">
             TG station commit c28b351807bad950d2b323ada048190844bbda32 on
             2019/17/11

@@ -6,13 +6,13 @@
 	faction = "Station"
 	total_positions = 0
 	spawn_positions = 0 //disables round-start spawn of pilgrims but allows migrant waves
-
-	tutorial = "Fleeing misfortune, you've headed your way towards the Pharos; drawn by its Scar. You're not a soldier or an explorer, but a humble migrant trying to look for a better life; for potential infinite, so long as you get lucky. Survive the trip, find your fortune, and carve yourself a new fate."
+	
+	tutorial = "Fleeing misfortune you head your way towards Azure Peak, you're not a soldier or an explorer, but a humble migrant trying to look for a better life, if you get to survive the trip that is."
 
 	outfit = null
 	outfit_female = null
 	bypass_jobban = FALSE
-
+	
 
 	advclass_cat_rolls = list(CTAG_PILGRIM = 20)
 	PQ_boost_divider = 10

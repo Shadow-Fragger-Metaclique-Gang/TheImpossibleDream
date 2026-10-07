@@ -1,7 +1,7 @@
 /datum/patron/divine/astrata
 	name = "Astrata"
 	domain = "Goddess of the Sun, Dae, and Order"
-	desc = "The Tyrant of the Gods, sister and rival to Noc - and the eldest of them all. Her radiance keeps the evils at bay during the dae. Nite, however, is a different tale."
+	desc = "The Tyrant of the Ten, sister and rival to Noc - and the eldest of them all. Her radiance keeps the evils at bay during the dae. Nite, however, is a different tale."
 	worshippers = "Zealots, Farmers, and the Noble-Hearted"
 	mob_traits = list(TRAIT_APRICITY)
 	miracles = list(/datum/action/cooldown/spell/touch/orison					= CLERIC_ORI,
@@ -45,7 +45,10 @@
 	// Allows prayer during daytime if outside.
 	if(istype(get_area(follower), /area/rogue/outdoors) && (GLOB.tod == "day" || GLOB.tod == "dawn"))
 		return TRUE
+	// [SURREALIS-EDIT] - LORE
+	// to_chat(follower, span_danger("For Astrata to hear my prayer I must either be in her blessed daylight, within the church, or near a psycross..")) // SURREALIS-EDIT - ORIGINAL
 	to_chat(follower, span_danger("For Astrata to hear my prayer I must either be in her blessed daylight, within her Temple, or near a psycross.."))
+	// [/SURREALIS-EDIT]
 	return FALSE
 
 /datum/patron/divine/astrata/on_lesser_heal(

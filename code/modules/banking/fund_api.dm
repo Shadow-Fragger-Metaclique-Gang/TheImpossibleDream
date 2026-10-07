@@ -111,9 +111,15 @@
 	record_round_statistic(STATS_TREASURY_DEBT_REPAID, skim)
 	var/reason
 	if(treasury_state == TREASURY_BANKRUPTCY)
+		// [SURREALIS-EDIT] - LORE
+		// reason = "Sequestration debt - Azurian Trading Company" // SURREALIS-EDIT - ORIGINAL
 		reason = "Sequestration debt - Pharovian Trading Company"
+		// [/SURREALIS-EDIT]
 	else if(treasury_state == TREASURY_IN_ARREARS)
+		// [SURREALIS-EDIT] - LORE
+		// reason = "Arrears repayment - Burghers of Azuria" // SURREALIS-EDIT - ORIGINAL
 		reason = "Arrears repayment - Burghers of Pharos"
+		// [/SURREALIS-EDIT]
 	else
 		reason = "ATC loan repayment"
 	log_fund_entry(new /datum/treasury_entry("burn", to_fund, null, skim, reason))

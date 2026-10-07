@@ -241,7 +241,10 @@
 	if(!istype(H))
 		return
 	if(H.job != "Bishop" && H.job != "Bathmaster")
+		// [SURREALIS-EDIT] - LORE
+		// to_chat(H, span_warning("Only the Bishop or the Bathmaster may set the terms of the Ordinance of the Baths.")) // SURREALIS-EDIT - ORIGINAL
 		to_chat(H, span_warning("Only the Pontifex or the Bathmaster may set the terms of the Ordinance of the Baths."))
+		// [/SURREALIS-EDIT]
 		return
 	if(world.time < SStreasury.bathhouse_ordinance_next_toggle_time)
 		var/remaining_minutes = CEILING((SStreasury.bathhouse_ordinance_next_toggle_time - world.time) / (1 MINUTES), 1)
@@ -252,6 +255,20 @@
 	var/now_active = SStreasury.bathhouse_ordinance_active
 	var/title = now_active ? "Ordinance of the Baths Restored" : "Ordinance of the Baths Broken"
 	var/msg
+	// [SURREALIS-EDIT] - LORE
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	if(now_active)
+		if(H.job == "Bishop")
+			msg = "By Eora's grace, the Bishop, [H.real_name], hath set anew the seal upon the Ordinance of the Baths. The See extends its sanction over the stews once more, and the tithe shall render unto the Church."
+		else
+			msg = "By Eora's grace, the Bathmaster, [H.real_name], hath knelt beneath the Ordinance of the Baths. The stews accept the Church's sanction anew, and the tithe shall render unto the Church."
+	else
+		if(H.job == "Bishop")
+			msg = "The Bishop, [H.real_name], hath broken the seal upon the Ordinance of the Baths. The See renounces its sanction; the stews fall again beneath the Crown's tariff."
+		else
+			msg = "The Bathmaster, [H.real_name], hath broken the seal upon the Ordinance of the Baths. The stews cast off the Church's sanction; their farm returns unto the Crown."
+	*/
 	if(now_active)
 		if(H.job == "Bishop")
 			msg = "By Eora's grace, the Pontifex, [H.real_name], hath set anew the seal upon the Ordinance of the Baths. The Pentacle extends its sanction over the stews once more, and the tithe shall render unto the Temple."
@@ -262,6 +279,7 @@
 			msg = "The Pontifex, [H.real_name], hath broken the seal upon the Ordinance of the Baths. The Pentacle renounces its sanction; the stews fall again beneath the Crown's tariff."
 		else
 			msg = "The Bathmaster, [H.real_name], hath broken the seal upon the Ordinance of the Baths. The stews cast off the Temple's sanction; their farm returns unto the Crown."
+	// [/SURREALIS-EDIT]
 	priority_announce(msg, title, pick('sound/misc/royal_decree.ogg', 'sound/misc/royal_decree2.ogg'), "Captain", strip_html = FALSE)
 	log_admin("ORDINANCE OF THE BATHS: [key_name(H)] toggled to [now_active ? "IN FORCE" : "BROKEN"].")
 	message_admins("[key_name_admin(H)] toggled the Ordinance of the Baths to [now_active ? "IN FORCE" : "BROKEN"].")

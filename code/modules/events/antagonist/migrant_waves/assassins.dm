@@ -28,4 +28,7 @@
 			if(!player.client)
 				continue
 
+			// [SURREALIS-EDIT] - LORE
+			// to_chat(player, span_danger("GRAGGAR DEMANDS BLOOD! A curse descends upon Azuria, an ASSASSIN slot has been OPENED!")) // SURREALIS-EDIT - ORIGINAL
 			to_chat(player, span_danger("Blood is demanded. Debts must be paid. Death comes cloaked, ready to carve new wounds before the Scar. An assassin slot has been opened."))
+			// [/SURREALIS-EDIT]
