@@ -17,7 +17,7 @@
 	job_traits = list(TRAIT_NOBLE, TRAIT_STEELHEARTED, TRAIT_GUARDSMAN, TRAIT_EXPERT_HUNTER)
 	give_bank_account = TRUE
 	noble_income = 15
-	min_pq = 8
+	min_pq = 0
 	max_pq = null
 	round_contrib_points = 2
 

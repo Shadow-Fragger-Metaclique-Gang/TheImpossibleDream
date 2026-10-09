@@ -13,7 +13,7 @@
 	display_order = JDO_HAG
 	show_in_credits = TRUE
 	// Difficult role to play right without failRP / LRP
-	min_pq = 50
+	min_pq = 0
 	max_pq = null
 
 	obfuscated_job = TRUE

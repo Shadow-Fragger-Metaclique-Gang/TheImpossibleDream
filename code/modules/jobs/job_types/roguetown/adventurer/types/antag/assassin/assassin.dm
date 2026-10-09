@@ -6,7 +6,7 @@
 	faction = "Station"
 	total_positions = 0
 	spawn_positions = 0
-	min_pq = 10
+	min_pq = 0
 	max_pq = null
 	antag_job = TRUE
 
