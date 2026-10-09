@@ -1,6 +1,6 @@
 ### Related PRs
 
-https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/8
+https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/34
 
 ### Title: Removes PQ Requirements
 
