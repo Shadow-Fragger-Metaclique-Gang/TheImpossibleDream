@@ -140,7 +140,7 @@ GLOBAL_LIST_EMPTY(active_economic_events)
 
 /datum/economic_event/wheat_blight
 	name = "Wheat Blight"
-	description = "A black rot has crept through the grain stores of the Kingsfield farmsteads."
+	description = "A black rot has crept through the grain stores of the Sovereign's farmsteads."
 	announcement = "<font color='#c44'>WHEAT BLIGHT: Grain and oats rot in the silos. Bread prices soar.</font>"
 	affected_goods = list(TRADE_GOOD_GRAIN, TRADE_GOOD_OATS, TRADE_GOOD_RICE, TRADE_GOOD_MAIZE)
 	price_mod = ECON_SHORTAGE_SEVERE
@@ -185,7 +185,7 @@ GLOBAL_LIST_EMPTY(active_economic_events)
 
 /datum/economic_event/bumper_harvest
 	name = "Bumper Harvest"
-	description = "Kingsfield reports its finest grain harvest - granaries overflow."
+	description = "Sovereznor reports its finest grain harvest - granaries overflow."
 	announcement = "<font color='#5cb85c'>BUMPER HARVEST: Grain and oats flood the markets. Prices collapse.</font>"
 	affected_goods = list(TRADE_GOOD_GRAIN, TRADE_GOOD_OATS, TRADE_GOOD_RICE, TRADE_GOOD_MAIZE)
 	price_mod = ECON_OVERSUPPLY_SEVERE
@@ -230,7 +230,7 @@ GLOBAL_LIST_EMPTY(active_economic_events)
 
 /datum/economic_event/murrain
 	name = "Cattle Murrain"
-	description = "A wasting sickness has swept the herds of the Kingsfield pastures. Meat, dairy, and cured sausage turn scarce."
+	description = "A wasting sickness has swept the herds of the Sovereznor pastures. Meat, dairy, and cured sausage turn scarce."
 	announcement = "<font color='#c44'>CATTLE MURRAIN: Herds sicken across the pastures. Meat, dairy, and cured sausage all grow dear.</font>"
 	affected_goods = list(TRADE_GOOD_MEAT, TRADE_GOOD_BUTTER, TRADE_GOOD_CHEESE, TRADE_GOOD_SAUSAGE)
 	price_mod = ECON_SHORTAGE_MAJOR
@@ -299,7 +299,7 @@ GLOBAL_LIST_EMPTY(active_economic_events)
 
 /datum/economic_event/dairy_surplus
 	name = "Dairy Surplus"
-	description = "A mild season has flooded the Kingsfield dairies with butter and cheese."
+	description = "A mild season has flooded the Sovereznor dairies with butter and cheese."
 	announcement = "<font color='#5cb85c'>DAIRY SURPLUS: Butter and cheese overflow the churns. Prices slump.</font>"
 	affected_goods = list(TRADE_GOOD_BUTTER, TRADE_GOOD_CHEESE)
 	price_mod = ECON_OVERSUPPLY_MAJOR

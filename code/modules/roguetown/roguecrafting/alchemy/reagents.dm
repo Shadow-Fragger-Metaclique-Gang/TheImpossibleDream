@@ -561,7 +561,7 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 
 /datum/reagent/infection/major
 	name = "excess melancholic humour"
-	description = "Kingsfield's Bane. Excess melancholic has killed thousands, and even Pestra's greatest struggle against its insidious advance."
+	description = "King's Bane. Excess melancholic has killed thousands, and even Pestra's greatest struggle against its insidious advance."
 	damage_tick = 1
 	lethal_fever = TRUE
 	fever_multiplier = 3

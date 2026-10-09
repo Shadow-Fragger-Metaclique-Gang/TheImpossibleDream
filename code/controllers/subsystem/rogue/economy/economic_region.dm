@@ -60,10 +60,10 @@ GLOBAL_LIST_INIT(economic_regions, init_economic_regions())
 
 /datum/economic_region/kingsfield
 	region_id = TRADE_REGION_KINGSFIELD
-	name = "Kingsfield"
+	name = "Sovereznor"
 	subtitle = "The Royal Demesne, Heartland of the Kingdom"
 	blockade_replenish_eligible = FALSE
-	description = "The royal demesne of His Majesty. A stretch of land a few day's ride from the edge of Pharos, home to dozens of agricultural settlements, hamlets, and smaller market towns. Its lands are rich, and its people aplenty. The agricultural heartland of the Kingdom, producing most of its grain, meat, and dairy, imported into Pharos daily and re-exported for profit. Many of the nobles across the kingdom keep one estate here or another - though its courts are best compared to a pit of snakes."
+	description = "The royal demesne of His Majesty, the King. A week or so's ride inland from the Pharos, this fertile valley of land bridges broad across an intersection of the two vast rivers feeding the soil of the nation. This city is the centerpoint of all politics, trading, banking, and learning within - and while the palace's district is awash with courtly intrigue, its farms and fields remain ripe near year round, and feeds much of the nation yet still. Many of the nobles across the kingdom keep one estate here or another - though its courts are best compared to a pit of snakes."
 	threat_region_id = THREAT_REGION_AZURE_GROVE
 	produces = list(
 		TRADE_GOOD_GRAIN = TG_SUPPLY_LOCAL_GRAIN,

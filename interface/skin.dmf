@@ -13,7 +13,7 @@ window "mainwindow"
 		saved-params = "pos;size;is-maximized;titlebar;can-resize;menu"
 		statusbar = false
 		is-maximized = true
-		icon = 'icons\\tg_32.png'
+		icon = 'icons\\surrealisicon.png'
 		macro = "default"
 		menu = "menu"
 	elem "split"
@@ -234,4 +234,4 @@ window "popupwindow"
 		is-visible = false
 		statusbar = false
 		can-resize = false
-		icon = 'icons\\tg_32.png'
+		icon = 'icons\\surrealisicon.png'

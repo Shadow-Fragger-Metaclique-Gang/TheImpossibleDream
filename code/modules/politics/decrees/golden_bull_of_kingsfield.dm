@@ -1,9 +1,9 @@
 /datum/decree/golden_bull
 	id = DECREE_GOLDEN_BULL
-	name = "The Golden Bull of Kingsfield"
+	name = "The Golden Bull of Sovereznor"
 	category = DECREE_CATEGORY_ANCIENT
 	mechanical_text = "Burghers and residents are capped at 25% balance-rate on taxes/fines, with daily fine ceiling 50m and a poll-tax cap."
-	flavor_text = {"This Golden Bull of Kingsfield, sealed under Astrata's Sun and with Ravox as witness, witnesseth the ancient compact between the Crown of Pharos and the makers of her wealth.
+	flavor_text = {"This Golden Bull of Sovereznor, sealed under Astrata's Sun and with Ravox as witness, witnesseth the ancient compact between the Crown of Pharos and the makers of her wealth.
 
 It is attested, by name of the Count of Pharos, and by the Councils of the Notables and Burghers of Pharos and the Scar duly assembled to set this seal, that the said Councils do hereby assent, in this yil and in perpetuity, that the Crown shall levy upon the Burghers no greater portion than one quarter part of their meister account, and shall exact in fine no more than fifty mammon by the day, nor poll-tax beyond twenty mammon by the day; such being the limits deemed meet in time of peace, of war, and of necessite alike. Beyond these bounds no Burgher shall be taxed, nor deprived of their wealth, save by the law of the land.
 
@@ -12,8 +12,8 @@ In return, the Burghers of the Pharos shall undertake to furnish, for the common
 And should the Crown exceed these ratified bounds, or otherwise violate this Charter, the Burghers are absolved of their obligation, that the Realm may know the cost of breaking faith with its makers of wealth.
 
 Yeven under the seal of the Crown."}
-	revoke_text = "The %RULER% has suspended the Golden Bull of Kingsfield. The burghers stand exposed to the Crown's full levy, and the outraged merchants shall contribute no more to the common defense of the Realm."
-	restore_text = "The %RULER% has restored the Golden Bull of Kingsfield. The compact stands renewed, and the burghers resume their tribute to the common defense."
+	revoke_text = "The %RULER% has suspended the Golden Bull of Sovereznor. The burghers stand exposed to the Crown's full levy, and the outraged merchants shall contribute no more to the common defense of the Realm."
+	restore_text = "The %RULER% has restored the Golden Bull of Sovereznor. The compact stands renewed, and the burghers resume their tribute to the common defense."
 
 /datum/decree/golden_bull/roll_initial_year()
 	return CALENDAR_EPOCH_YEAR - rand(40, 100)

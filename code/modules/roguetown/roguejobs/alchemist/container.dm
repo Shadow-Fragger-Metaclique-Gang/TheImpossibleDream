@@ -395,7 +395,7 @@
 
 /obj/item/reagent_containers/glass/bottle/claybottleclassic/water
 	list_reagents = list(/datum/reagent/water = 75)
-	desc = "A clay bottle bearing the cork-seal of Kingsfield Abbey, an institution known to \
+	desc = "A clay bottle bearing the cork-seal of Aconnal Abbey, an institution known to \
 	bottle and sell water drawn from natural springs under its ownership. While the water inside \
 	these is said to carry particular health benefits, most agree that all water is quite alike."
 

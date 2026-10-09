@@ -15,7 +15,7 @@
 	. = ..()
 	var/signature = issuer_name || "the Nerve Master"
 	var/year = issuer_year || CALENDAR_EPOCH_YEAR
-	. += span_info("The letter reads: <i>\"Be it known to all who read this writ, that the bearer, upon claiming this letter, is enrolled as a Citizen of Pharos and raised to the station of Burgher, bearing the protections and obligations attending that rank under the Golden Bull of Kingsfield.\"</i>")
+	. += span_info("The letter reads: <i>\"Be it known to all who read this writ, that the bearer, upon claiming this letter, is enrolled as a Citizen of Pharos and raised to the station of Burgher, bearing the protections and obligations attending that rank under the Golden Bull of Sovereznor.\"</i>")
 	. += span_info("<i>Signed in the year [year], [signature].</i>")
 	. += span_notice("Left-click in hand to claim its rights.")
 

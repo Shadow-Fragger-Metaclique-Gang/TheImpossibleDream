@@ -240,7 +240,7 @@ GLOBAL_LIST_INIT(atc_seizure_inventory, list(
 	"the great clock of the Crown, dismantled in three carts",
 	"twelve hundred yards of Naledian silk, the Crown's spare livery",
 	"the Crown's reserve of Saltwick anchovies, packed in oil",
-	"the Crown's emergency Kingsfield cheese reserve",
+	"the Crown's emergency cheese reserve",
 	"two white stag heads, taxidermied from the last royal hunt",
 	"a crate of unknown white liquid of uncertain provenance, labeled 'CROWN ONLY - Not for Consumption'",
 	"a sealed crate marked PROPERTY OF THE LATE STEWARD",

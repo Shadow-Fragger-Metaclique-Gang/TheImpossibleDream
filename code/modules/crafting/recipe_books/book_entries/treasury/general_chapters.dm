@@ -16,7 +16,7 @@
 			<li><b>The Great Writ of Pharos</b> - Nobility pays no tax and levy, and cannot be fined.</li>
 			<li><b>The Concordat of Zybantium</b> - The Temple, and any declared benefactors of the Temple (Whom the Pontifex can grant the status to up to [PATRONAGE_CAP_BENEFACTOR] of), pays no taxation and levy.</li>
 			<li><b>The Otavan Accords</b> - The Inquisition pays no tax and no levy.</li>
-			<li><b>The Golden Bull of Kingsfield</b> - burghers are capped at [GOLDEN_BULL_BURGHER_CAP * 100]% of balance per levy or fine, with a [GOLDEN_BULL_DAILY_FINE_CAP]-mammon ceiling on each fine.</li>
+			<li><b>The Golden Bull of Sovereznor</b> - burghers are capped at [GOLDEN_BULL_BURGHER_CAP * 100]% of balance per levy or fine, with a [GOLDEN_BULL_DAILY_FINE_CAP]-mammon ceiling on each fine.</li>
 			<li><b>The Covenant of Noc and Pestra</b> - University members, Apothecary and Head Physician are limited to the lightest poll tax of [NOC_PESTRA_POLL_CAP]m, and a minimum wage from the Crown's payroll.</li>
 			<li><b>The Guild Charter of Arms</b> - Guild mercenaries are capped at [GUILD_CHARTER_OF_ARMS_POLL_CAP]m of poll tax per day, and remit [GUILD_CHARTER_OF_ARMS_PLEDGE_BONUS]m daily to the Burgher's Pledge while in force.</li>
 			<li><b>The Indenture of War</b> - The Retinue and Garrison members are subject to a minimum salary floor while this is in effect.</li>

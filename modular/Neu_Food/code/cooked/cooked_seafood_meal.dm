@@ -22,7 +22,7 @@
 /obj/item/reagent_containers/food/snacks/rogue/dendorsalmon
 	cuisine = CUISINE_SOUTH_IMPERIAL|CUISINE_OTAVAIS
 	dish_type = DISH_SEAFOOD
-	name = "saint dendor's salmon"
+	name = "Wildwill's salmon"
 	desc = "A dish invented in Otava, of a green sauce of fat and herbs atop salmon."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_seafood_meal.dmi'
 	icon_state = "salmon_st_columbia"

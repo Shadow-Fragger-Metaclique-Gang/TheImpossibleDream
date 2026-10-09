@@ -207,7 +207,7 @@
 //OTAVAN MARQUE - WORTHLESS TO ANYONE BUT INQ.
 /obj/item/roguecoin/inqcoin
 	name = "otavan marque"
-	desc = "A blessed silver coin finished with a unique wash of black dye, bearing the post-kingdom Psycross. Kingsfield has denied the existence of such a coin when queried, as such coinage is rumoured to be used internally by Otava's inquisitorial sects."
+	desc = "A blessed silver coin finished with a unique wash of black dye, bearing the post-kingdom Psycross. Such coinage is typically used as a kind of internal, inter-national currency shared only between offices of the Inquisition. No wise trader would market this for fear of black masks in the night."
 	icon_state = "i1"
 	sellprice = 0
 	base_type = CTYPE_ICOIN
