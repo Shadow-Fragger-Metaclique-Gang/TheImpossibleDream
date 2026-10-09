@@ -2,3 +2,4 @@
 #include "commandbar\_commandbar.dme"
 #include "phrase_highlights\_phrase_highlights.dme"
 #include "sexcon\_sexcon.dme"
+#include "pq-remover\_pq-remover.dme"
