@@ -10,7 +10,9 @@
 	forbidden_races = list(RACES_DESPISED)
 	allowed_patrons = ALL_DIVINE_PATRONS
 	outfit = /datum/outfit/job/roguetown/templar
-	min_pq = 3 //Deus vult, but only according to the proper escalation rules
+	// [SURREALIS-EDIT] - PQ-Obliterator
+	min_pq = 0 // SURREALIS-EDIT
+	// [/SURREALIS-EDIT]
 	max_pq = null
 	round_contrib_points = 2
 	total_positions = 4

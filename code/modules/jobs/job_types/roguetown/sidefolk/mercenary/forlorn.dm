@@ -5,7 +5,9 @@
 
 	outfit = /datum/outfit/job/roguetown/mercenary/forlorn
 	class_select_category = CLASS_CAT_RANESHENI
-	min_pq = 2
+	// [SURREALIS-EDIT] - PQ-Obliterator
+	min_pq = 0 // SURREALIS-EDIT
+	// [/SURREALIS-EDIT]
 	cmode_music = 'sound/music/combat_blackstar.ogg'
 	subclass_languages = list(/datum/language/raneshi)
 	category_tags = list(CTAG_MERCENARY, CTAG_MERCPARTY_BULWARK)

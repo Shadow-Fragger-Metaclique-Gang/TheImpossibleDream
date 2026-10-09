@@ -24,7 +24,9 @@
 	advclass_cat_rolls = list(CTAG_COURTPHYS = 2)
 
 	give_bank_account = TRUE
-	min_pq = 3 //Please don't kill the duke by operating on strong intent. Play apothecary until you're deserving of the great white beak of doom
+	// [SURREALIS-EDIT] - PQ-Obliterator
+	min_pq = 0 // SURREALIS-EDIT
+	// [/SURREALIS-EDIT]
 	max_pq = null
 	round_contrib_points = 5
 

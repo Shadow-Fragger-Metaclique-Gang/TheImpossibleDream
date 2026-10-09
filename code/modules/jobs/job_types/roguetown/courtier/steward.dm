@@ -14,7 +14,9 @@
 	give_bank_account = TRUE
 	noble_income = 16
 	quest_claim_barred = TRUE
-	min_pq = 3 //Please don't give the vault keys to somebody that's going to lock themselves in on accident
+	// [SURREALIS-EDIT] - PQ-Obliterator
+	min_pq = 0 // SURREALIS-EDIT
+	// [/SURREALIS-EDIT]
 	max_pq = null
 	round_contrib_points = 3
 	cmode_music = 'sound/music/combat_noble.ogg'

@@ -12,7 +12,9 @@
 	outfit_female = null
 	display_order = JDO_GNOLL
 	show_in_credits = TRUE
-	min_pq = 10
+	// [SURREALIS-EDIT] - PQ-Obliterator
+	min_pq = 0 // SURREALIS-EDIT
+	// [/SURREALIS-EDIT]
 	max_pq = null
 	allowed_patrons = list(/datum/patron/inhumen/graggar)
 

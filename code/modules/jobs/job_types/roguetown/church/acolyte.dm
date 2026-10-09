@@ -14,7 +14,9 @@
 
 	display_order = JDO_ACOLYTE
 	give_bank_account = TRUE
-	min_pq = 1 //A step above sexton, should funnel new players to the sexton role to learn miracles at a more sedate pace
+	// [SURREALIS-EDIT] - PQ-Obliterator
+	min_pq = 0 // SURREALIS-EDIT
+	// [/SURREALIS-EDIT]
 	max_pq = null
 	round_contrib_points = 5
 

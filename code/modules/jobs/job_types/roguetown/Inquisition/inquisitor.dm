@@ -19,7 +19,9 @@
 	display_order = JDO_INQUISITOR
 	advclass_cat_rolls = list(CTAG_INQUSITOR = 20)
 	give_bank_account = 30
-	min_pq = 10
+	// [SURREALIS-EDIT] - PQ-Obliterator
+	min_pq = 0 // SURREALIS-EDIT
+	// [/SURREALIS-EDIT]
 	max_pq = null
 	round_contrib_points = 2
 	vice_restrictions = list(/datum/charflaw/silverweakness)

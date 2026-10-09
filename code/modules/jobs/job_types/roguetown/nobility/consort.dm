@@ -17,7 +17,9 @@
 	display_order = JDO_LADY
 	give_bank_account = TRUE
 	noble_income = 22
-	min_pq = 10 //should probably be higher with duchess at 50
+	// [SURREALIS-EDIT] - PQ-Obliterator
+	min_pq = 0 // SURREALIS-EDIT
+	// [/SURREALIS-EDIT]
 	max_pq = null
 	round_contrib_points = 3
 	vice_restrictions = list(/datum/charflaw/mute, /datum/charflaw/unintelligible) //Needs to use the throat - sometimes

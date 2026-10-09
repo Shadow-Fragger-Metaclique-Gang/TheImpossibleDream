@@ -6,7 +6,9 @@
 	faction = "Station"
 	total_positions = 0
 	spawn_positions = 0
-	min_pq = 10
+	// [SURREALIS-EDIT] - PQ-Obliterator
+	min_pq = 0 // SURREALIS-EDIT
+	// [/SURREALIS-EDIT]
 	max_pq = null
 	antag_job = TRUE
 

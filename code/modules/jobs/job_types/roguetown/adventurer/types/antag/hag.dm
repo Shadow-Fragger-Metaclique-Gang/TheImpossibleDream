@@ -13,7 +13,9 @@
 	display_order = JDO_HAG
 	show_in_credits = TRUE
 	// Difficult role to play right without failRP / LRP
-	min_pq = 50
+	// [SURREALIS-EDIT] - PQ-Obliterator
+	min_pq = 0 // SURREALIS-EDIT
+	// [/SURREALIS-EDIT]
 	max_pq = null
 
 	obfuscated_job = TRUE

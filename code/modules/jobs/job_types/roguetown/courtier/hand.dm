@@ -15,7 +15,9 @@
 	whitelist_req = TRUE
 	give_bank_account = TRUE
 	noble_income = 22
-	min_pq = 9 //The second most powerful person in the realm...
+	// [SURREALIS-EDIT] - PQ-Obliterator
+	min_pq = 0 // SURREALIS-EDIT
+	// [/SURREALIS-EDIT]
 	max_pq = null
 	round_contrib_points = 3
 	cmode_music = 'sound/music/cmode/nobility/combat_spymaster.ogg'

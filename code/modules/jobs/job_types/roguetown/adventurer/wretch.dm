@@ -12,7 +12,9 @@
 	outfit_female = null
 	display_order = JDO_WRETCH
 	show_in_credits = FALSE
-	min_pq = 10
+	// [SURREALIS-EDIT] - PQ-Obliterator
+	min_pq = 0 // SURREALIS-EDIT
+	// [/SURREALIS-EDIT]
 	max_pq = null
 
 	obfuscated_job = TRUE
