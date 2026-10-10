@@ -88,7 +88,7 @@
 /datum/realm_condition/etrusca_harvest_festival
 	id = "etrusca_harvest_festival"
 	name = "Harvest Festival"
-	description = "A harvest festival held in honor of Astrata and Eora is underway. Abundant fruits and alcohol are being exported, while silk and fur are in high demand for festival garments, costumes, and customary gifts."
+	description = "A harvest festival held in honor of Astrata, Dendor and Eora is underway. Abundant fruits and alcohol are being exported, while silk and fur are in high demand for festival garments, costumes, and customary gifts."
 	weight = 10
 	affected_realms = list(REALM_ETRUSCA)
 	supply_modifiers = list(
@@ -109,14 +109,14 @@
 /datum/realm_condition/grenzelhoft_mage_purge
 	id = "grenzelhoft_mage_purge"
 	name = "Mage Purge"
-	description = "In the wake of another arcanist incident, the Emperor's Magi have called for a sweep of the unregistered. There is to be a purge. Confiscated staves and magos mantles flood the markets while the court trims its silk to look less ornate. Leather is in short supply and dear demand."
+	description = "The Emperor's Magi have called for a sweep of the unregistered, and the Holy See has answered with fire. Confiscated staves and magos mantles flood the markets while the court trims its silk to look less ornate. Leather is in short supply and dear demand."
 	weight = 8
 	affected_realms = list(REALM_GRENZELHOFT)
 	cultural_modifiers = list(
 		list("op" = CONDITION_OP_MODIFY_CULTURAL, "typepath" = /datum/supply_pack/rogue/merc_weapons/grenzelstaff, "price_mod" = CONDITION_PRICE_VERY_CHEAP, "qty_mod" = CONDITION_QTY_HEAVY),
 		list("op" = CONDITION_OP_MODIFY_CULTURAL, "typepath" = /datum/supply_pack/rogue/grenzelhoft/magos_mantle, "price_mod" = CONDITION_PRICE_VERY_CHEAP, "qty_mod" = CONDITION_QTY_HEAVY),
 		list("op" = CONDITION_OP_MODIFY_CULTURAL, "typepath" = /datum/supply_pack/rogue/grenzelhoft/blacksteel_cuirass, "price_mod" = CONDITION_PRICE_CHEAP, "qty_mod" = CONDITION_QTY_MODERATE),
-	)
+	) 
 	demand_modifiers = list(
 		list("op" = CONDITION_OP_MODIFY, "good" = TRADE_GOOD_SILK, "price_mod" = CONDITION_PRICE_VERY_CHEAP, "qty_mod" = CONDITION_QTY_LOW),
 		list("op" = CONDITION_OP_ADD, "good" = TRADE_GOOD_CURED_LEATHER, "qty_min" = BULK_QTY_MEDIUM_MIN, "qty_max" = BULK_QTY_MEDIUM_MAX, "price_mod" = BULK_PRICE_EAGER_PREMIUM),
@@ -139,7 +139,7 @@
 /datum/realm_condition/grenzelhoft_holy_pilgrimage
 	id = "grenzelhoft_holy_pilgrimage"
 	name = "Holy Pilgrimage"
-	description = "A grand procession from the Ten Temples winds through the inner provinces. Pilgrims demand tangerines and sugar for offerings, and Saffira for the reliquaries the clergy are gilding for the occasion."
+	description = "A grand procession from the Eleven Cathedrals winds through the inner provinces. Pilgrims demand tangerines and sugar for offerings, and Saffira for the reliquaries the Holy See is gilding for the occasion."
 	weight = 6
 	affected_realms = list(REALM_GRENZELHOFT)
 	demand_modifiers = list(

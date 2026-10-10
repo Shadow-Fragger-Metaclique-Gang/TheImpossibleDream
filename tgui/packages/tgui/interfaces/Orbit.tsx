@@ -73,7 +73,10 @@ const ALIVE_NORMAL_GROUP_ORDER = [
   'Noblemen',
   'Courtiers',
   'Garrison',
-  'Temple',
+  // [SURREALIS-EDIT] - LORE
+  // 'Church', // SURREALIS-EDIT - ORIGINAL
+  'Clergy',
+  // [/SURREALIS-EDIT]
   'Inquisition',
   'Yeomen',
   'Peasants',

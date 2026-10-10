@@ -10,7 +10,7 @@
 	spells = list()
 	advclass_cat_rolls = list(CTAG_WAPPRENTICE = 20)
 
-	tutorial = "Yils of study have led you to the University-Under-the-Scar. The Divine heals and protects. \
+	tutorial = "Yils of study have led you to the University of Azuria. The Divine heals and protects. \
 	The arcyne arts, though useful, are far more suited to death and destruction. The Crown knows this, \
 	and provides a stipend to fund your studies and just as much your complacency, to not turn your \
 	magicks against the Crown. A comfortable tenure, a stipend, and a place to undergo your study. \
@@ -121,50 +121,12 @@
 /datum/advclass/wapprentice/associate/apprentice // this has been maid less impactful on purpose - you lose a lot of combat power, but not skills/stats, so that you can actually be trained in the new gameplay loops
 	name = "Magician's Apprentice"
 	tutorial = "The road to arcyne mastery is long and treacherous. Books, scrolls, gems, studies, \
-	singed hair, and summoning gone wrong. Expenses and death alike, it is not a path for the pauper \
-	or the coward. You, however, were given a place as an apprentice in the University-Under-the-Scar. \
-	Under the watchful gaze of the Court Magician, and their fellow associates, you may yet live \
-	to become a master of the arcyne arts."
-	outfit = /datum/outfit/job/roguetown/wapprentice/apprentice
-
-	category_tags = list(CTAG_WAPPRENTICE)
+	singed hair, and summoning gone wrong. Expenses and death abound; it is not a path for the pauper \
+	or the coward. You, however, were given a place as an apprentice in the University of Azuria. \
+	Under the watchful gaze of the Court Magician and their associates, you may yet live \
+	to become a master of the arcyne arts. And even in the most rote of chores, there is knowledge to be found..."
+	subclass_mage_aspects = list("mastery" = FALSE, "major" = 1, "minor" = 1, "utilities" = 6, "ward" = TRUE) // lose arcyne power...
 	traits_applied = list(TRAIT_ARCYNE, TRAIT_SELF_RELIANCE) // ...but the rote tasks you've been doing add to your mundane skills, or at least your potential
-	subclass_stats = list(
-		STATKEY_INT = 4,
-		STATKEY_WIL = 1,
-		STATKEY_SPD = 1,
-		STATKEY_LCK = 1 // this is just a carrot for the folk who are mad enough to take this role...
-	)
-	age_mod = /datum/class_age_mod/apprentice_apprentice
-	subclass_mage_aspects = list("mastery" = FALSE, "major" = 1, "minor" = 1, "utilities" = 6, "ward" = TRUE)
-	subclass_skills = list(
-		/datum/skill/misc/reading = SKILL_LEVEL_MASTER,
-		/datum/skill/magic/arcane = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/craft/alchemy = SKILL_LEVEL_APPRENTICE,
-		/datum/skill/combat/polearms = SKILL_LEVEL_NOVICE,
-		/datum/skill/combat/staves = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/combat/arcyne = SKILL_LEVEL_JOURNEYMAN,
-	)
-
-/datum/outfit/job/roguetown/wapprentice/apprentice/pre_equip(mob/living/carbon/human/H)
-	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
-	pants = /obj/item/clothing/under/roguetown/tights/random
-	belt = /obj/item/storage/belt/rogue/leather
-	beltl = /obj/item/storage/magebag/associate
-	beltr = /obj/item/storage/keyring/apprentice
-	backl = /obj/item/storage/backpack/rogue/satchel
-	shoes = /obj/item/clothing/shoes/roguetown/gladiator
-	backpack_contents = list(
-		/obj/item/rogueweapon/spellbook = 1,
-		/obj/item/chalk = 1,
-		)
-	switch(H.patron?.type)
-		if(/datum/patron/inhumen/zizo)
-			H.cmode_music = 'sound/music/combat_heretic.ogg'
-	if(H.mind)
-		backr = choose_implement(H, "lesser")
-		SStreasury.grant_savings(ECONOMIC_LOWER_MIDDLE_CLASS, H)
 
 // Here lies the grave of Azurcaephon Associate, removed because a good portion of mage players are using it as a validhunting class
 // And unlike adventurer, the University being technically keep aligned means they can jump in and gank antags and there's less admins can do about it.

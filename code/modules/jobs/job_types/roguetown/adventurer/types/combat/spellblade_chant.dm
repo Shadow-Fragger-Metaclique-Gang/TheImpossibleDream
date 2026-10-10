@@ -359,10 +359,16 @@ a.choose-btn:hover {
 </div>
 <div class="preamble">
 <p>O! Blade of Tarichea!</p>
+<!-- \[SURREALIS-EDIT\] - LORE -->
+<!-- <p>There was once a great city. On the foot of this very mountain, over the Azure Sea.</p> SURREALIS-EDIT - ORIGINAL -->
 <p>There was once a great city. On the Peak of the highest mountain mountain, over the Circle of the Seas.</p>
+<!-- \[/SURREALIS-EDIT\] -->
 <p>It prospered, and in its midst, our warriors practiced their art, combining the arcyne with blades.</p>
 <p>We were masters! Our skills, unmatched! Our techniques, unparalleled! Envy of the world!</p>
+<!-- \[SURREALIS-EDIT\] - LORE -->
+<!-- <p>No Ranesheni bladedancers, or Kazengunese bladesmen, or Grenzelhoftian mercenaries, could match our prowess!</p> SURREALIS-EDIT - ORIGINAL -->
 <p>No Ranesheni bladedancers, or Khazen bladesmen, or mercenaries of the Grenz could match our prowess!</p>
+<!-- \[/SURREALIS-EDIT\] -->
 <p>Mages! Knights! Demons! All fell before our blade.</p>
 <p class="loud">THEN — SHE ASCENDED, ALL WAS LOST.</p>
 <p class="loud">OR WAS IT?</p>
@@ -385,12 +391,23 @@ a.choose-btn:hover {
 <p><em>Five hundred yils, unbowed!</em></p>
 <p><em>By blood and steel, five hundred more!</em></p>"}
 		if("zizite")
+			// [SURREALIS-EDIT] - LORE
+			// SURREALIS-EDIT - ORIGINAL
+			/*
+			return {"<p><em>I am a blade of progress.</em></p>
+<p><em>The lady my patron, and knowledge my gift.</em></p>
+<p><em>No knowledge forbidden, no truth unpursued.</em></p>
+<p><em>With a single cut I shall sever ignorance.</em></p>
+<p><em>Stagnation is death - and I refuse to die.</em></p>
+<p><em>Her word is progress, and I am her herald.</em></p>"}
+			*/
 			return {"<p><em>I am a blade of ambition.</em></p>
 <p><em>The Demiurge my patron, and knowledge my gift.</em></p>
 <p><em>No knowledge forbidden, no truth unpursued.</em></p>
 <p><em>With a single cut I shall rip through reality.</em></p>
 <p><em>The False halt ascension - and I refuse to allow them.</em></p>
 <p><em>IT makes the command, and I am to follow.</em></p>"}
+			// [/SURREALIS-EDIT]
 		if("noccite")
 			return {"<p><em>I, blade of Noc! Forever illuminated.</em></p>
 <p><em>Wisdom is my guide, and knowledge my weapon.</em></p>
@@ -430,12 +447,23 @@ a.choose-btn:hover {
 <p><em>Five hundred yils, unbowed!</em></p>
 <p><em>By blood and steel, five hundred more!</em></p>"}
 		if("zizite")
+			// [SURREALIS-EDIT] - LORE
+			// SURREALIS-EDIT - ORIGINAL
+			/*
+			return {"<p><em>I am a shield of progress.</em></p>
+<p><em>The lady my patron, and knowledge my gift.</em></p>
+<p><em>No knowledge forbidden, no truth unpursued.</em></p>
+<p><em>With a single thrust I shall pierce stagnation.</em></p>
+<p><em>Stagnation is death - and I refuse to die.</em></p>
+<p><em>Her word is progress, and I am her herald.</em></p>"}
+			*/
 			return {"<p><em>I am a shield of ambition.</em></p>
 <p><em>The Demiurge my patron, and knowledge my gift.</em></p>
 <p><em>No knowledge forbidden, no truth unpursued.</em></p>
 <p><em>With a thousand cuts, I shall rip divinity from the undeserving.</em></p>
 <p><em>The False halt ascension - and I refuse to allow them.</em></p>
 <p><em>IT makes the command, and I am to follow.</em></p>"}
+			// [/SURREALIS-EDIT]
 		if("noccite")
 			return {"<p><em>I, spear of Noc! Forever illuminated.</em></p>
 <p><em>Wisdom is my guide, and knowledge my weapon.</em></p>
@@ -475,12 +503,23 @@ a.choose-btn:hover {
 <p><em>Five hundred yils, unbowed!</em></p>
 <p><em>By blood and steel, five hundred more!</em></p>"}
 		if("zizite")
+			// [SURREALIS-EDIT] - LORE
+			// SURREALIS-EDIT - ORIGINAL
+			/*
+			return {"<p><em>I am a mace of progress.</em></p>
+<p><em>The lady my patron, and knowledge my gift.</em></p>
+<p><em>No wall unbroken, no barrier unshattered.</em></p>
+<p><em>With a single blow I shall crack open stagnation.</em></p>
+<p><em>Stagnation is death - and I refuse to die.</em></p>
+<p><em>Her word is progress, and I am her hammer.</em></p>"}
+			*/
 			return {"<p><em>I am a mace of ambition.</em></p>
 <p><em>The Demiurge my patron, and knowledge my gift.</em></p>
 <p><em>No wall unbroken, no barrier unshattered.</em></p>
 <p><em>With a single blow, I shall break the walls of this hollow reality.</em></p>
 <p><em>The False halt ascension - and I refuse to allow them.</em></p>
 <p><em>IT makes the command, and I am to follow.</em></p>"}
+			// [/SURREALIS-EDIT]
 		if("noccite")
 			return {"<p><em>I, hammer of Noc! Forever illuminated.</em></p>
 <p><em>Wisdom is my guide, and knowledge my weapon.</em></p>
@@ -515,11 +554,17 @@ a.choose-btn:hover {
 		if("blackoak")
 			return "Hone the tradition of your people! Though the snow elves are gone, your heritage is not! As the most excellent, most long-lived of all races, it is up to you to carry on the legacy of a spellblade! Five hundred yils of martial and arcyne excellence, five hundred yils more!"
 		if("zizite")
+			// [SURREALIS-EDIT] - LORE
+			// return "Hone the knowledge of your patron! With her ascension, the ignorant cling to the old way, your goddess lies imprisoned. Her teachings are all that remains. Her followers — corrupted, seeking undeath and bones, forgetting that she, too, is the mistress of progress. With your very blade, you shall cut open the wound of the world, cauterize it, and let her light shine through! You are her herald." // SURREALIS-EDIT - ORIGINAL
 			return "Herald the return of the Demiurge. With their apotheosis, the ignorant cling to the old way, your Mortal-made-Divine lies imprisoned. Their teachings are all that remains. Their followers — corrupted, seeking undeath and bones; drawn to the ways of the Winnowing in single-minded foolishness. With your very blade, you shall cut open the Wounds and Scars - of this world, let them stain with the blood of the fundament, and let IT in."
+			// [/SURREALIS-EDIT]
 		if("noccite")
 			return "Hone the wisdom of your patron! With his gift, you have glimpsed the truth of the world. The old city is gone, his teachings are not. Noc has granted you the power to seize destiny into your own hands - miracles to heal the wounded, sight to see the unseen, and magicks to strike down your foes. With your blade, you shall carve a new path forward, and let his light guide the way! You are his chosen."
 		if("almah")
 			return "Hone the art of your people! Show the locals the fearsome reputation of the Almah. Wield your blade for coins or mastery. The end goals need not matter, only that you enjoy every bit of your dance and your foes lay dead in the end."
 		if("undead")
+			// [SURREALIS-EDIT] - LORE
+			// return "You were a blade of Tarichea. You awaken to... what? There is no archdevil, no Celestial Empire. What do you fight for? Why do you wield the blade? Every move, every cut, every thrust. Ingrained into those old bones of yours. Hands that once wielded weapons, now naught but bare bone. Why do you fight? Have you been awakened by an ancient evyl, or did you just wake up, lost, dead, yet somehow retaining your will? Why do you fight? Why do you fight? Why do you fight?" // SURREALIS-EDIT - ORIGINAL
 			return "You were a blade of Tarichea. You awaken to... what? What do you fight for? Why do you wield the blade? Every move, every cut, every thrust. Ingrained into those old bones of yours. Hands that once wielded weapons, now naught but bare bone. Why do you fight? Have you been awakened by an ancient evyl, or did you just wake up, lost, dead, yet somehow retaining your will? Why do you fight? Why do you fight? Why do you fight?"
+			// [/SURREALIS-EDIT]
 	return "Hone the tradition of five centuries! Let not the art die with the fall of the old city! Wield your blade for justice, for profit, or for mastery! There is no wrong path, except to stray into heresy!"

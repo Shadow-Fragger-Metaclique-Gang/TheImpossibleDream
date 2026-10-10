@@ -30,5 +30,8 @@
 
 		human_mob.add_stress(/datum/stressevent/astrata_grandeur)
 
+		// [SURREALIS-EDIT] - LORE
+		// to_chat(human_mob, span_notice("Astrata shines brightly todae - and just as she leads the Ten, so must you guide others with a firm hand. The Sun Queen demands no less from those who bask in her glory.")) // SURREALIS-EDIT - ORIGINAL
 		to_chat(human_mob, span_notice("Astrata shines brightly todae - and just as she leads the Pantheon, so must you guide others with a firm hand. The Sun Queen demands no less from those who bask in her glory."))
+		// [/SURREALIS-EDIT]
 		human_mob.playsound_local(human_mob, 'sound/magic/bless.ogg', 100)

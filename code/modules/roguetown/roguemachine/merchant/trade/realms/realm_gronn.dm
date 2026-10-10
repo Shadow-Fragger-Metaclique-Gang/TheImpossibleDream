@@ -107,9 +107,9 @@
 		"These antlers will fetch a fine price south, I am told. Your priests have a particular name for the beast they came from. We do not use that name. Pay or do not, but do not preach.",
 		"An Iskarn shaman rides with us out of the snows. He speaks to none, eats nothing. Do not approach him - what he watches over does not care for southern eyes.",
 		"The clouds parted over the Fjall this season. The straits opened early. Buy quickly. When they close again, the next ship from us will not be a trader.",
-		"There is a totem under my sailcloth that is not for sale and not for your priest to see. If your magistrate calls it idolatry, your magistrate has not seen real winter.",
-		"The aurora followed us south. The crew calls that a witness. Your Gods have nothing to do with it; do not bring your priests to argue otherwise.",
+		"There is a totem under my sailcloth that is not for sale and not for your church to see. If your magistrate calls it idolatry, your magistrate has not seen real winter.",
+		"The aurora followed us south. The crew calls that a witness. Your Ten have nothing to do with it; do not bring your priests to argue otherwise.",
 		"We do not raid this season. The compact holds. Pray the next captain you meet from our shore says the same.",
 		"I bring mead enough to drown the winter. Drink it as men, not as your southern fashion of sipping it like broth.",
-		"My people dream of plaice in butter, herbed with mentha. You people call it the Wildman's Salmon, an Otavais dish I heard. Sell me the southern butter, the mentha, and the plaices in ice. We pay well."
+		"My people dream of plaice in butter, herbed with mentha. You people call it Saint Dendor's Salmon, an Otavais dish I heard. Sell me the southern butter, the mentha, and the plaices in ice. We pays well"
 	)

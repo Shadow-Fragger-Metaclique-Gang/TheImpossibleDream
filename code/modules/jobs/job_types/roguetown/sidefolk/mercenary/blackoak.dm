@@ -1,7 +1,7 @@
 // Elven unique mercenary type; should be scary in a way solo but easy to kill with a group or bow.
 /datum/advclass/mercenary/blackoak
 	name = "Black Oaken Guardian"
-	tutorial = "A shady guardian of the Black Oaks. Half mercenary band, half irregular militia fighting in the name of their ancestral elven causes. Thankfully, you are not here today to shed the blood of the Count's men — unless someone pays you to..."
+	tutorial = "A shady guardian of the Black Oaks. Half mercenary band, half irregular militia fighting for control of their ancestral elven homeland of the Peaks. Thankfully, you are not here today to shed the blood of the Duke's men — unless someone pays you to..."
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_BLACKOAK)
 	outfit = /datum/outfit/job/roguetown/mercenary/blackoak
@@ -79,7 +79,7 @@
 
 /datum/advclass/mercenary/blackoak_ranger
 	name = "Black Oaken Ranger"
-	tutorial = "A shady ranger of the Black Oaks. Half mercenary band, half irregular militia fighting fighting in the name of ancestral elven causes. Thankfully, you are not here today to shed the blood of the Count's men — unless someone pays you to..."
+	tutorial = "A shady ranger of the Black Oaks. Half mercenary band, half irregular militia fighting for control of their ancestral elven homeland of the Peaks. Thankfully, you are not here today to shed the blood of the Duke's men — unless someone pays you to..."
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_BLACKOAK)
 	outfit = /datum/outfit/job/roguetown/mercenary/blackoak_ranger
@@ -171,7 +171,7 @@
 
 /datum/advclass/mercenary/blackoak_adept
 	name = "Black Oaken Adept"
-	tutorial = "A spellblade of the Black Oaks. Half mercenary band, half irregular militia fighting in the name of ancestral elven causes. You have honed the ancient Azurean art of spellbladery - an art that is yours and your people's alone. Thankfully, you are not here today to shed the blood of the Count's men - unless someone pays you to..."
+	tutorial = "A spellblade of the Black Oaks. Half mercenary band, half irregular militia fighting for control of their ancestral elven homeland of the Peaks. You have honed the ancient Azurean art of spellbladery - an art that is yours and your people's alone. Thankfully, you are not here today to shed the blood of the Duke's men - unless someone pays you to..."
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_BLACKOAK)
 	outfit = /datum/outfit/job/roguetown/mercenary/blackoak_adept

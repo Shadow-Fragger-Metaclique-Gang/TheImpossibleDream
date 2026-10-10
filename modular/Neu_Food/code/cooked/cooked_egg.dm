@@ -121,8 +121,8 @@
 	cuisine = CUISINE_NORTHERN
 	list_reagents = list(/datum/reagent/consumable/nutriment = NUTRITION_MEAL_AND_HALF)
 	tastes = list("fried egg" = 1, "sausage" = 1, "bacon" = 1, "toast" = 1)
-	name = "Hammerheldan breakfast"
-	desc = "A classic of the northern fortresses, peeled of its more exotic ingredients for Midderland kitchens. Paired with a strong sunrise liquor, it makes for a true staple of the Dwarven diet."
+	name = "Hammerholdian breakfast"
+	desc = "A classic of the northern fortresses, peeled of its more exotic ingredients for Azurean kitchens, a true staple of Dwarven diet."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_egg.dmi'
 	icon_state = "hammerbreak"
 	eat_effect = /datum/status_effect/buff/greatmealbuff

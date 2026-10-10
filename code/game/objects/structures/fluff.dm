@@ -1625,8 +1625,8 @@
 	..()
 
 /obj/structure/fluff/psycross
-	name = "stone pantheon wheel"
-	desc = "Symbol of the Divine Pantheon, the religion of five - once ten, and nevermore - deities which reigns throughout most of the known world. Their divine order must be maintained."
+	name = "stone pantheon cross"
+	desc = "Symbol of the Divine Pantheon, the religion of ten - formerly eleven - deities which reigns throughout most of the known world. Their divine order must be maintained."
 	icon_state = "cross_undivided_r"
 	icon = 'icons/roguetown/misc/tallstructure.dmi'
 	break_sound = 'sound/combat/hits/onwood/destroyfurniture.ogg'
@@ -1693,14 +1693,14 @@
 		return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/fluff/psycross/copper
-	name = "pantheonic wheel"
+	name = "pantheon cross"
 	icon_state = "cross_undivided_church"
 	break_sound = null
 	attacked_sound = list("sound/combat/hits/onmetal/metalimpact (1).ogg", "sound/combat/hits/onmetal/metalimpact (2).ogg")
 	chance2hear = 66
 
 /obj/structure/fluff/psycross/crafted
-	name = "wooden pantheonic wheel"
+	name = "wooden pantheon cross"
 	icon_state = "cross_undivided"
 	max_integrity = 80
 	chance2hear = 10
@@ -1714,7 +1714,7 @@
 
 /obj/structure/fluff/psycross/psycrucifix/stone
 	name = "stone psydonic crucifix"
-	desc = "Formed of stone, this great Psycross symbolises that HE is forever ENDURING."
+	desc = "Formed of stone, this great Psycross symbolises that HE is forever ENDURING. Considered a rare sight upon the Peaks."
 	icon_state = "cross_psy_r"
 	max_integrity = 120
 	chance2hear = 10

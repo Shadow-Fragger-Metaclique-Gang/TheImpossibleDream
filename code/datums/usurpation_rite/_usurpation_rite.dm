@@ -19,10 +19,10 @@
 	var/list/assenters
 	var/phase_timer_id
 	var/started_at = 0
-	var/new_ruler_title = "Count"
-	var/new_ruler_title_f = "Countess"
-	var/new_realm_type = "County"
-	var/new_realm_type_short = "County"
+	var/new_ruler_title = "Grand Duke"
+	var/new_ruler_title_f = "Grand Duchess"
+	var/new_realm_type = "Grand Duchy"
+	var/new_realm_type_short = "Duchy"
 	var/mob/living/carbon/human/contester
 	var/contester_timer_id
 	var/contest_time_remaining = 0
@@ -226,7 +226,10 @@
 			to_chat(invoker, span_notice("The crown materializes at your feet."))
 		crown.forceMove(get_turf(invoker))
 
+	// [SURREALIS-EDIT] - LORE
+	// var/realm = SSticker.realm_name || "Azure Peak" // SURREALIS-EDIT - ORIGINAL
 	var/realm = SSticker.realm_name || "the Pharos"
+	// [/SURREALIS-EDIT]
 	// Imitate the text whenever a new Duke joins the game
 	to_world("<b><span class='notice'><span class='big'>[invoker.real_name] is [SSticker.rulertype] of [realm].</span></span></b>")
 

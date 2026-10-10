@@ -27,7 +27,14 @@
 		"Peculiar"
 	],
 
-	"greetings": ["", "Hey, ", "Hi ", "Hello ", "Wait, ", "It's "],
+	"greetings": [
+		"",
+		"Hey, ",
+		"Hi ",
+		"Hello ",
+		"Wait, ",
+		"It's "
+	],
 
 	"getout": [
 		"@pick(add_name)get out",
@@ -54,7 +61,11 @@
 		"What was that?"
 	],
 
-	"add_name": ["%TARGETNAME%, ", "%TARGETNAME% ", ""],
+	"add_name": [
+		"%TARGETNAME%, ",
+		"%TARGETNAME% ",
+		""
+	],
 
 	"doubt": [
 		"Why?",
@@ -112,7 +123,6 @@
 		"steward",
 		"seneschal",
 		"Duke",
-		"Count",
 		"innkeeper",
 		"priest",
 		"%TARGETNAME%"
@@ -171,7 +181,7 @@
 		"the baths",
 		"the farm",
 		"the wizard's tower",
-		"the temple",
+		"the church",
 		"the archives",
 		"the mansion",
 		"the druid grove",
@@ -195,7 +205,7 @@
 		"the inn",
 		"the barracks",
 		"the druid's grove",
-		"the temple",
+		"the church",
 		"the archives",
 		"the baths",
 		"the farms",
@@ -245,4 +255,5 @@
 		"Energy",
 		"?????"
 	]
+
 }

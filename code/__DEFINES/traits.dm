@@ -133,7 +133,10 @@
 #define TRAIT_PURITAN_ADVENTURER "Interrogator" //technically not, but interrogation related so it goes here.
 #define TRAIT_HEARTFELT "Heartfelt"
 #define TRAIT_INQUISITION "Otavan Adherent"
+// [SURREALIS-EDIT] - LORE
+// #define TRAIT_CLERGY "Clergy of the Azurian Church" // SURREALIS-EDIT - ORIGINAL
 #define TRAIT_CLERGY "Clergy of the Pharovian Temple"
+// [/SURREALIS-EDIT]
 
 //Edge case Factionals
 #define TRAIT_UNCONVERTIBLE "Unconvertible" //patron-change related, unconvertable.
@@ -164,7 +167,10 @@
 #define TRAIT_DUNGEONMASTER "Ruthless Jailor"
 
 //Levy Callouts
+// [SURREALIS-EDIT] - LORE
+// #define TRAIT_LEVY "Azurean Militia" // SURREALIS-EDIT - ORIGINAL
 #define TRAIT_LEVY "Pharovian Militia"
+// [/SURREALIS-EDIT]
 
 //Hearthstone port (Tracking)
 #define TRAIT_PERFECT_TRACKER "Huntmaster" //Will always find any tracks and analyzes them perfectly.
@@ -180,7 +186,10 @@
 //ONE PANTHEON AGAINST THE DARKNESS
 
 //Undivided
+// [SURREALIS-EDIT] - LORE
+// #define TRAIT_UNDIVIDED "The Ten Undivided" // SURREALIS-EDIT - ORIGINAL
 #define TRAIT_UNDIVIDED "The Pantheon Undivided"
+// [/SURREALIS-EDIT]
 //Astrata
 #define TRAIT_APRICITY	"Apricity" //Decreased stamina regen time during "day" and less so during night
 //Astrata (Sun Elf)
@@ -295,7 +304,10 @@
 #define TRAIT_MANORKEEPER "Manorkeeper" // Flavortext-related for the Absolver.
 #define TRAIT_MANIAC_AWOKEN "Awoken" //Trey Liam. No, He doesn't exist.
 
+// [SURREALIS-EDIT] - LORE
+// #define TRAIT_AZURENATIVE "Azure Native" //ambushes only trigger when sprinting, exclusive to black oaks. // SURREALIS-EDIT - ORIGINAL
 #define TRAIT_AZURENATIVE "Grove Native" //ambushes only trigger when sprinting, exclusive to black oaks.
+// [/SURREALIS-EDIT]
 
 //Magic Related
 #define TRAIT_ARCYNE "Arcyne Training" //enables full-mage interactions
@@ -421,7 +433,10 @@
 //Ecom Related traits
 #define TRAIT_DEBTOR "Default Debtor"
 #define TRAIT_DEBTOR_CROWN "Default Debtor (Crown)"
+// [SURREALIS-EDIT] - LORE
+// #define TRAIT_DEBTOR_CHURCH "Default Debtor (Church)" // SURREALIS-EDIT - ORIGINAL
 #define TRAIT_DEBTOR_CHURCH "Default Debtor (Temple)"
+// [/SURREALIS-EDIT]
 #define TRAIT_DEBTOR_MERCHANT "Default Debtor (Merchant)"
 #define TRAIT_DEBTOR_BATHHOUSE "Default Debtor (Bathhouse)"
 #define TRAIT_AGENT_MERCHANT "Agent of the Trading Company"
@@ -466,22 +481,22 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_LEVY = span_greentext("I am one among the Levy! We are the Crown's spare spears, sent ahead of the Armsmen to face dangers beyond the walls and hold the line until better soldiers arrive. When fighting alongside fellow levymen, I can issue coordinated callouts (Shift + Ctrl + RMB)!"),
 	TRAIT_STEELHEARTED = span_info("I have hardened nerves, and do not waiver from the sight of violence in battle."),
 	TRAIT_OUTLAW = span_info("This land's meisters and castificos reject my touch."),
-	TRAIT_ALDERMAN = span_info("Alderman of the Assembly, voice of the respectable citizenry of Pharos. Upon my charter I may spend the Crown's Purse and commission the realm's defense within the bounds the Commons have set me."),
+	TRAIT_ALDERMAN = span_info("Alderman of the Assembly, voice of the respectable citizenry of Azuria. Upon my charter I may spend the Crown's Purse and commission the realm's defense within the bounds the Commons have set me."),
 	TRAIT_ALDERMAN_CENSURED = span_warning("The Assembly has censured my name. No seat, no warrant shall be mine until the week ends."),
 	TRAIT_TECHNOPHOBE = span_info("I've principles against using some forms of artificed machinery, or perhaps I'm incapable of using them."),
 	TRAIT_LEPROSY = span_necrosis("I'm a disgusting leper..."),
-	TRAIT_UNDIVIDED = span_info("I have seen past petty squabbles, and am a true follower of the Blessed Pentacle. I feel most comfortable around the clergy."),
+	TRAIT_UNDIVIDED = span_info("I have seen past petty squabbles, and am a true follower of the Ten Undivided. I feel most comfortable around churchmen."),
 	TRAIT_TAVERN_FIGHTER = span_info("I am vigilant in my duties. The Tavern is my home, none shall dare oppose me or skip out on payment."),
-	TRAIT_GUARDSMAN = span_info("I am vigilant in my duties. In the town of Pharos, my abilities are sharper due to my routine and familiarity."),
+	TRAIT_GUARDSMAN = span_info("I am vigilant in my duties. In the town of Azure Peak, my abilities are sharper due to my routine and familiarity."),
 	TRAIT_GUARDSMAN_DISGRACED = span_warning("I have betrayed my oath. My vigilance falters in the town. I must beg forgiveness to restore my honor, or see my betrayal through to the end."),
-	TRAIT_WOODSMAN = span_info("I am vigilant in my duties. In the grove and coast of Pharos, my abilities are sharper due to my routine and familiarity."),
+	TRAIT_WOODSMAN = span_info("I am vigilant in my duties. In the grove and coast of Azure Peak, my abilities are sharper due to my routine and familiarity."),
 	TRAIT_ANTHRAXI = span_info("I am the deadliest being in the underdark. No beast or foe can ever hope to match me in the caves."),
 	TRAIT_DEATHBARGAIN = span_info("A horrible deal has been prepared in your name. May you never see it fulfilled..."),
 	TRAIT_RITUALIST = span_info("I am skilled in the holy arts. Using ritual chalk, I can more deftly channel my God's powers via runes."),
 	TRAIT_MARRIAGE_CAPABLE = span_info("By the favor of Eora or the authority of Astrata, I can perform the Eoran rite of marriage."),
 	TRAIT_INSPIRING_MUSICIAN = span_info("The flow of battle dances to my song!"),
 	TRAIT_INQUISITION = span_info("I serve the Holy Otavan Inquisition. From a passing glance, I can recognize all other adherents within the local sect."),
-	TRAIT_CLERGY = span_info("I serve the Temple of the Pantheon in Pharos. From a passing glance, I can recognize all other clergy of this sect."),
+	TRAIT_CLERGY = span_info("I serve the Church of the Ten in Azuria. From a passing glance, I can recognize all other clergy of this Church."),
 	TRAIT_CHOSEN = "Astrata choose you to represent her glory.",
 	TRAIT_WEBWALK = "I can move freely between webs.",
 	TRAIT_NOSTINK = span_dead("My nose is numb to the smell of decay."),
@@ -634,15 +649,15 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_NITEVISION = span_info("I can see perfectly in the dark."),
 	TRAIT_UNFORGIVABLE = span_smallred("THE NEEDLE IN MY EYE OPENS MY MYND TO THE TRUTH! HELL IS REAL, REALITY SUFFERS, THE GARDEN BURNS AND I AM HOLDING THE TORCH, ALL WHOM ATTEMPT TO DIVERGE ME FROM THIS PATH TO BE UNMADE SHALL JOIN ME."),
 	TRAIT_NOCSHADES = span_info("The lens I look through allows me to see in the dark clear as dae, at the cost of greater vision."),
-	TRAIT_RESIDENT = span_info("I've been granted a Meister account, and the ownership of a house in the Pharos."),
+	TRAIT_RESIDENT = span_info("I've been granted a Meister account, and the ownership of a house in Azure Peak."),
 	TRAIT_DEBTOR = span_danger("I have defaulted on a loan. My name is writ red in the ledger until the debt is cleared."),
 	TRAIT_DEBTOR_CROWN = span_danger("My defaulted debt is owed to the Crown. The Steward keeps the tally."),
-	TRAIT_DEBTOR_CHURCH = span_danger("My defaulted debt is owed to the Temple. The faithful keep the tally."),
+	TRAIT_DEBTOR_CHURCH = span_danger("My defaulted debt is owed to the Church. The faithful keep the tally."),
 	TRAIT_DEBTOR_MERCHANT = span_danger("My defaulted debt is owed to the Merchant. The trading company keeps the tally."),
 	TRAIT_DEBTOR_BATHHOUSE = span_danger("My defaulted debt is owed to the Bathhouse. The bathmasters keep the tally."),
-	TRAIT_AGENT_MERCHANT = span_info("I am a chartered agent of the Pharovian Trading Company. I keep its tally and ledger."),
+	TRAIT_AGENT_MERCHANT = span_info("I am a chartered agent of the Azurian Trading Company. I keep its tally and ledger."),
 	TRAIT_AGENT_BATHHOUSE = span_info("I am an agent of the Bathhouse. I keep its tally and ledger."),
-	TRAIT_AGENT_CHURCH = span_info("I am a Benefactor of the Temple of the Pantheon. The faithful know my name."),
+	TRAIT_AGENT_CHURCH = span_info("I am a Benefactor of the Church of Azuria. The faithful know my name."),
 	TRAIT_ARREARS = span_smallred("I am behind on my poll tax. The Stewardry keeps the tally; the garrison may mark my destitution."),
 	TRAIT_LIGHT_STEP = span_info("My steps are light and swift. I make less noise while sneaking and wearing armor, and can sneak much quicker."),
 	TRAIT_HARDSOLE = span_info("My steps are tempered by countless trials. Stepping on glass or sharp objects won't impair me."),
@@ -666,7 +681,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_EORAN_SERENE = span_greentext("Eora has blessed me with all-encompassing serenity. I feel no more stress."),
 	TRAIT_NECRAS_VOW = span_warning("I've pledged myself to Necra. If I fall, I am Hers."),
 	TRAIT_PESTRAS_BLESSING = span_infection("The sacred black rot of Pestra burns within me. Should intelligent foes try to harm me, they will feel her greatest plague."),
-	TRAIT_HERESIARCH = span_warning("I've been touched by the truth of Psydonia. Lyfe as we understand cannot persist under the Pentacle or the pretense of Psydon. Something must change."),
+	TRAIT_HERESIARCH = span_warning("I've been touched by the truth of Psydonia. Lyfe as we understand cannot persist under the Ten or the pretense of Psydon. Something must change."),
 	TRAIT_HALLOWED = span_notice("I'm closer to the gods than most. I can utilize my miracles, regardless of if I bear an amulet or not."),
 	TRAIT_ZURCH = span_warning("I know of sacred sites of worship where followers of the Ascendants convene, and the path to the nearest conclave is etched into my memory."),
 	TRAIT_CAVEDWELLER = span_info("The mountains are my home. I prefer to live beneath the surface away from the sun's gaze and know the caves of this land like the back of my hand."),
@@ -707,7 +722,7 @@ GLOBAL_LIST_INIT(roguetraits, list(
 	TRAIT_BLACKBLOOD = span_artery("I was once a creature of the night, but cured by the Otavan Inquisition at a heavy cost. My blood, tainted with tinctures, rites and concoctions, endures infection and holds an odd regenerative factor to it. Unfortunately, most healing miracles do not affect me at all, and I am sensitive to sunlight, aswell."),
 	TRAIT_COMBAT_AWARE = span_notice("My honed senses and intuition allow me to spot notable things in the midst of battle with ease."),
 	TRAIT_TEMPO	= span_greentext("I can keep up with multiple opponents at once."),
-	TRAIT_BLACKOAK = span_warning("The Black Oaks can spot <b>any</b> foreigners and outsiders, no matter how long they've lived in the Pharos. I can spot an invader at a glance."),
+	TRAIT_BLACKOAK = span_warning("The Black Oaks can spot <b>any</b> foreigners and outsiders, no matter how long they've lived in Azuria. I can spot an invader at a glance."),
 	TRAIT_DREAMWALKER = span_warning("I walk the dream and reality at the same time. My mind frays, but my vision shall be reality."),
 	TRAIT_ENGINEERING_GOGGLES = span_warning("I can see structural details others can't."),
 	TRAIT_ASSASSIN = span_cult("Holy my Hecatomb. Holy my Hunger. Wholly I offer my flesh. The Sinistar has chosen me to be one of his huntsmen."),

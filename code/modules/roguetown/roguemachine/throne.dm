@@ -1,7 +1,7 @@
 GLOBAL_VAR(king_throne)
 
 /obj/structure/roguethrone
-	name = "throne of Pharos"
+	name = "throne of Azure Peak"
 	desc = "A big throne, to hold the Lord's giant personality. Say 'secrets of the throat' with the crown on your head if you are confused."
 	icon = 'icons/roguetown/misc/96x96.dmi'
 	icon_state = "throne"
@@ -99,7 +99,10 @@ GLOBAL_VAR(king_throne)
 
 /obj/structure/roguethrone/get_mechanics_examine(mob/user)
 	. = ..()
+	// [SURREALIS-EDIT] - LORE
+	// . += span_info("<b>Throat Commands</b> (say these at the Throat of Azure Peak):") // SURREALIS-EDIT - ORIGINAL
 	. += span_info("<b>Throat Commands</b> (say these at the Throat of Pharos):")
+	// [/SURREALIS-EDIT]
 	. += span_info("'Make Announcement' - broadcast a message (requires crown)")
 	. += span_info("'Revise Charter' - revise or restore charters (requires crown, ruler only)")
 	. += span_info("'Make Decree' - issue a royal decree (requires crown, ruler only)")
@@ -110,7 +113,10 @@ GLOBAL_VAR(king_throne)
 	. += span_info("'Purge Laws' - remove all laws (requires crown, ruler only)")
 	. += span_info("'Declare Outlaw' - outlaw someone (requires crown, ruler only)")
 	. += span_info("'Set Taxes' - set the tax rate (requires crown, ruler only)")
+	// [SURREALIS-EDIT] - LORE
+	// . += span_info("'Change Colors' - change the duchy's colors (requires crown, ruler only)") // SURREALIS-EDIT - ORIGINAL
 	. += span_info("'Change Colors' - change the county's colors (requires crown, ruler only)")
+	// [/SURREALIS-EDIT]
 	. += span_info("'Become Regent' - claim regency when ruler is absent (requires crown, noble blood, regency position)")
 	. += span_info("'Summon Crown' / 'Summon Key' - retrieve royal items")
 	. += span_info("<b>Rites of Succession</b> (say at the Throat or near the Throne):")

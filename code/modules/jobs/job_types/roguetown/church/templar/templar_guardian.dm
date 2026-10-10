@@ -28,7 +28,7 @@
 		/datum/skill/misc/medicine = SKILL_LEVEL_NOVICE,
 	)
 	subclass_stashed_items = list(
-		"The Verses and Acts of the Pantheon" = /obj/item/book/rogue/bibble,
+		"The Verses and Acts of the Ten" = /obj/item/book/rogue/bibble,
 	)
 	extra_context = "This subclass gains Expert skill in their weapon of choice."
 

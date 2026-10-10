@@ -284,7 +284,7 @@
 
 /datum/action/cooldown/spell/graggar/graggar_battlecry
 	name = "Vicious Roar"
-	desc = "Grants you and all allies nearby a buff to their strength, willpower, and constitution. Debuffs followers of the Gods, but not Psydonians."
+	desc = "Grants you and all allies nearby a buff to their strength, willpower, and constitution. Debuffs followers of the Ten, but not Psydonites."
 	fluff_desc = "The battlefield quakes with your roar! Shaken to their core, they will prove easy pickings for a worthy champion such as yourself; the power of the Sinistar, unleashed.\
 	SLAUGHTER THE LAMBS - DRINK THEIR MARROW - FEAST UPON THEIR FLESH - LEAVE NO TRACE OF THEIR PATHETIC EXISTENCE! - THE SINISTAR HUNGERS!"
 	button_icon_state = "vicious_roar"

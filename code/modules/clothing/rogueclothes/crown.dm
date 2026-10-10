@@ -1,7 +1,7 @@
 #define GARRISON_CROWN_COLOR "#C2A245"
 
 /obj/item/clothing/head/roguetown/crown/serpcrown
-	name = "Crown of Pharos"
+	name = "Crown of Azuria"
 	article = "the"
 	desc = "Heavy is the head that wears this."
 	icon_state = "serpcrown"
@@ -47,7 +47,10 @@
 	REMOVE_TRAIT(user, TRAIT_GARRISON_ITEM, "[ref(src)]")
 
 /obj/item/clothing/head/roguetown/crown/serpcrown/proc/anti_stall()
+	// [SURREALIS-EDIT] - LORE
+	// src.visible_message(span_danger("The Crown of Azuria crumbles to dust, the ashes spiriting away in the direction of the Keep.")) // SURREALIS-EDIT - ORIGINAL
 	src.visible_message(span_danger("The Crown of Pharos crumbles to dust, the ashes spiriting away in the direction of the Keep."))
+	// [/SURREALIS-EDIT]
 	SSroguemachine.scomm_machines -= src
 	SSroguemachine.crown = null //Do not harddel.
 	qdel(src) //Anti-stall
@@ -56,7 +59,10 @@
 /obj/item/clothing/head/roguetown/crown/serpcrown/attack_right(mob/living/carbon/human/user)
 	user.changeNext_move(CLICK_CD_MELEE)
 	visible_message(span_notice ("[user] presses [user.p_their()] hands against the [src]."))
+	// [SURREALIS-EDIT] - LORE
+	// var/input_text = input(user, "Enter your ducal message:", "Crown SCOM") // SURREALIS-EDIT - ORIGINAL
 	var/input_text = input(user, "Enter your noble message:", "Crown SCOM")
+	// [/SURREALIS-EDIT]
 	if(input_text)
 		var/usedcolor = user.voice_color
 		if(user.voicecolor_override)

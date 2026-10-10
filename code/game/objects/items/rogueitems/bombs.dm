@@ -450,7 +450,7 @@
 /obj/item/satchel_bomb/mega
 	name = "mega blastpowder satchel"
 	desc = "An overfilled satchel of blastpowder originally made by Lubbin Bleat, Otava's famed sheep-kin bathhouse attendant and ruler of the slumberbeat.. \
-	</br>This bomb has been outlawed by all of Psydonia's kingdoms, and labled as a grave threat to every house of worship of the Pantheon. \
+	</br>This bomb has been outlawed by all of Psydonia's kingdoms, and labled as a threat by both the Churches of the Pantheon and Orthodoxy. \
 	</br> <font color='FF0000'>IF YOU SEE A LIT WICK, YOU BEST RUN AWAY QUICK!</font>"
 	icon_state = "satchel_bomb"
 	lit_state = "satchel_bomb-lit"

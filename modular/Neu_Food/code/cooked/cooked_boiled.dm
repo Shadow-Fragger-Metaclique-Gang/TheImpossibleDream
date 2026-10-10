@@ -50,7 +50,7 @@
 	dish_type = DISH_NOODLES
 	cuisine = CUISINE_SOUTH_IMPERIAL
 	name = "pesto spaghetti"
-	desc = "Noodles mixed with a spiced refined sauce made from smoky rocknut and garlick. A cultural blend of Pharovian improvisation and Navarno ingenuity."
+	desc = "Noodles mixed with a spiced refined sauce made from smoky rocknut and garlick. A cultural blend of Azurian improvisation and Navarno ingenuity."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_pasta.dmi'
 	icon_state = "spaghetti_pesto"
 	list_reagents = list(/datum/reagent/consumable/nutriment = NUTRITION_FULL_MEAL, /datum/reagent/consumable/acorn_powder = 4, /datum/reagent/drug/westleach = 1)

@@ -225,12 +225,18 @@
 								success = TRUE
 								break
 						if(success)	//The SAFE option
+							// [SURREALIS-EDIT] - LORE
+							// if(alert(user, "You are within holy grounds. Do you wish to call your god to aid in its defense? (You will live if the duration ends within the Church.)", "Your Oath", "Yes", "No") == "Yes") // SURREALIS-EDIT - ORIGINAL
 							if(alert(user, "You are within holy grounds. Do you wish to call to Astrata, the Absolute, to aid in its defense? (You will live if the duration ends within the Temple.)", "Your Oath", "Yes", "No") == "Yes")
+							// [/SURREALIS-EDIT]
 								is_activating = TRUE
 								activate(user, STATE_SAFE)
 						else	//The NOT SAFE option
 							if(alert(user, "You are trying to activate the weapon outside of holy grounds. Do you wish to fulfill your Oath of Vengeance? (You will die.)", "Your Oath", "Yes", "No") == "Yes")
+								// [SURREALIS-EDIT] - LORE
+								// var/choice = alert(user, "You pray to your god. How many minutes will you ask for? (Shorter length means greater boons)","Your Oath (It is up to you if your death is canon)", "Six", "Two", "Nevermind") // SURREALIS-EDIT - ORIGINAL
 								var/choice = alert(user, "You pray to the Star, blazing. How many minutes will you ask for? (Shorter length means greater boons)","Your Oath (It is up to you if your death is canon)", "Six", "Two", "Nevermind")
+								// [/SURREALIS-EDIT]
 								switch(choice)
 									if("Six")
 										is_activating = TRUE
@@ -361,7 +367,10 @@
 		if(istype(M.patron, /datum/patron/inhumen))
 			var/turf/T = get_step(get_step(M, NORTH), NORTH)
 			T.Beam(M, icon_state="lightning[rand(1,12)]", time = 5)
+			// [SURREALIS-EDIT] - LORE
+			// M.visible_message(span_warning("[M] gets struck down by the Ten!"), span_warning("The Ten curse you! You stood too close to one of their devout!")) // SURREALIS-EDIT - ORIGINAL
 			M.visible_message(span_warning("[M] gets struck down by the Gods!"), span_warning("The Gods curse you! You stood too close to one of their devout!"))
+			// [/SURREALIS-EDIT]
 			M.electrocution_animation(20)
 			mob_ignite(M)
 			playsound(M, 'sound/magic/lightning.ogg', 100, FALSE)
@@ -491,7 +500,7 @@
 	flag = MARTYR
 	department_flag = CHURCHMEN
 	faction = "Station"
-	tutorial = "Martyrs are hand-picked among the most devout of the Temple's chosen. They are given one of the Star's cherished relics to protect the Temple, and to inspire hope and lead by example of grace, kindness and vicious intolerance to any who do not carry the weight of the Wheel. They have sworn an Oath in the sight of the gods, and will fulfill it to the bitter end."
+	tutorial = "Martyrs are hand-picked among the most devout of the Holy See. They are given one of the See's cherished relics to protect the Church, and to inspire hope and lead by example of grace, kindness and vicious intolerance to any who do not share the belief of the Ten. They have sworn an Oath in the sight of the gods, and will fulfill it to the bitter end."
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_CONSTRUCT RACES_DESPISED RACES_OOZE)
 	allowed_patrons = list(/datum/patron/divine/undivided)
@@ -522,7 +531,7 @@
 
 /datum/advclass/martyr
 	name = "Martyr"
-	tutorial = "Martyrs are hand-picked among the most devout of the Temple's chosen. They are given one of the Star's cherished relics to protect the Temple, and to inspire hope and lead by example of grace, kindness and vicious intolerance to any who do not carry the weight of the Wheel. They have sworn an Oath in the sight of the gods, and will fulfill it to the bitter end."
+	tutorial = "Martyrs are hand-picked among the most devout of the Holy See. They are given one of the See's cherished relics to protect the Church, and to inspire hope and lead by example of grace, kindness and vicious intolerance to any who do not share the belief of the Ten. They have sworn an Oath in the sight of the gods, and will fulfill it to the bitter end."
 	outfit = /datum/outfit/job/roguetown/martyr/basic
 	subclass_languages = list(/datum/language/grenzelhoftian)
 	category_tags = list(CTAG_MARTYR)
@@ -553,7 +562,7 @@
 		/datum/skill/misc/sneaking = SKILL_LEVEL_NOVICE,
 	)
 	subclass_stashed_items = list(
-		"The Verses and Acts of the Pantheon" = /obj/item/book/rogue/bibble,
+		"The Verses and Acts of the Ten" = /obj/item/book/rogue/bibble,
 	)
 
 /datum/outfit/job/roguetown/martyr
@@ -605,7 +614,7 @@
 	lefthand_file = 'icons/mob/inhands/weapons/roguemartyr_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/roguemartyr_righthand.dmi'
 	name = "divine longsword"
-	desc = "A relic from Zybantium's own vaults; a blessed silver longsword, marked with the six-pointed sigil of Astrata's Solar might. </br>It simmers with godly energies, and will only yield to the hands of those who have taken the Oath."
+	desc = "A relic from the Holy See's own vaults; a blessed silver longsword, marked with the ten-pointed sigil of Astrata's undivided might. </br>It simmers with godly energies, and will only yield to the hands of those who have taken the Oath."
 	parrysound = "bladedmedium"
 	swingsound = BLADEWOOSH_LARGE
 	pickup_sound = 'sound/foley/equip/swordlarge2.ogg'
@@ -713,7 +722,7 @@
 	icon = 'icons/roguetown/weapons/axes64.dmi'
 	item_state = "martyraxe"
 	name = "divine axe"
-	desc = "A relic from Zybantium's own vaults; a blessed silver axe, marked with the six-pointed sigil of Astrata's absolute might. </br>It simmers with godly energies, and will only yield to the hands of those who have taken the Oath."
+	desc = "A relic from the Holy See's own vaults; a blessed silver axe, marked with the ten-pointed sigil of Astrata's undivided might. </br>It simmers with godly energies, and will only yield to the hands of those who have taken the Oath."
 	minstr = 12
 	max_blade_int = 250
 	bigboy = 1
@@ -808,7 +817,7 @@
 	icon = 'icons/roguetown/weapons/blunt64.dmi'
 	item_state = "martyrmace"
 	name = "divine mace"
-	desc = "A relic from Zybantium's own star-touched vaults; a blessed silver mace, marked with the six-pointed sigil of Astrata's solar might. </br>It simmers with godly energies, and will only yield to the hands of those who have taken the Oath."
+	desc = "A relic from the Holy See's own vaults; a blessed silver mace, marked with the ten-pointed sigil of Astrata's undivided might. </br>It simmers with godly energies, and will only yield to the hands of those who have taken the Oath."
 	bigboy = 1
 	wlength = WLENGTH_LONG
 	associated_skill = /datum/skill/combat/maces
@@ -898,7 +907,7 @@
 	icon = 'icons/roguetown/weapons/polearms64.dmi'
 	item_state = "martyrtrident"
 	name = "divine trident"
-	desc = "A relic from depths of the Zybantine Temple's vaults; a blessed silver spear, marked with the six-pointed sigil of Astrata's undivided might. </br>It simmers with godly energies, and will only yield to the hands of those who have taken the Oath."
+	desc = "A relic from the Holy See's own vaults; a blessed silver spear, marked with the ten-pointed sigil of Astrata's undivided might. </br>It simmers with godly energies, and will only yield to the hands of those who have taken the Oath."
 	bigboy = 1
 	wlength = WLENGTH_LONG
 	associated_skill = /datum/skill/combat/polearms
@@ -994,7 +1003,7 @@
 
 /obj/item/clothing/suit/roguetown/armor/plate/full/holysee
 	name = "holy silver plate"
-	desc = "Silver-clad plate for the guardians and the warriors, for the spears and shields of the Temple."
+	desc = "Silver-clad plate for the guardians and the warriors, for the spears and shields of the Ten."
 	icon = 'icons/roguetown/clothing/special/martyr.dmi'
 	icon_state = "silverarmor"
 	item_state = "silverarmor"
@@ -1037,7 +1046,7 @@
 
 /obj/item/clothing/gloves/roguetown/plate/holysee
 	name = "holy silver plate gauntlets"
-	desc = "Silver-clad plate for the guardians and the warriors, for the spears and shields of the Temple."
+	desc = "Silver-clad plate for the guardians and the warriors, for the spears and shields of the Ten."
 	icon = 'icons/roguetown/clothing/special/martyr.dmi'
 	icon_state = "silvergloves"
 	item_state = "silvergloves"
@@ -1079,7 +1088,7 @@
 
 /obj/item/clothing/shoes/roguetown/boots/armor/holysee
 	name = "holy silver plated boots"
-	desc = "Silver-clad plate for the guardians and the warriors, for the spears and shields of the Temple."
+	desc = "Silver-clad plate for the guardians and the warriors, for the spears and shields of the Ten."
 	icon = 'icons/roguetown/clothing/special/martyr.dmi'
 	icon_state = "silverboots"
 	item_state = "silverboots"
@@ -1122,7 +1131,7 @@
 
 /obj/item/clothing/under/roguetown/platelegs/holysee
 	name = "holy silver chausses"
-	desc = "Plate leggings of silver forged for the sacred Sacrifice. A sea of silver to descend upon evil."
+	desc = "Plate leggings of silver forged for the Holy See's forces. A sea of silver to descend upon evil."
 	icon = 'icons/roguetown/clothing/special/martyr.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/martyr.dmi'
 	sleeved = 'icons/roguetown/clothing/onmob/helpers/sleeves_pants.dmi'
@@ -1164,7 +1173,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/holysee
 	name = "holy silver bascinet"
-	desc = "Branded by the miracle of the Star Absolute, these helms are worn by its chosen warriors. A bastion of hope in the dark nite."
+	desc = "Branded by the Holy See, these helms are worn by its chosen warriors. A bastion of hope in the dark nite."
 	icon = 'icons/roguetown/clothing/special/martyr.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/martyrhelmets.dmi'
 	bloody_icon = 'icons/effects/blood64.dmi'
@@ -1213,7 +1222,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/holysee/alt
 	name = "holy silver armet"
-	desc = "Forged before the moon and inlaid with eclipsun, these helms are worn by its chosen warriors. A bastion of hope in the dark nite."
+	desc = "Branded by the Holy See, these helms are worn by its chosen warriors. A bastion of hope in the dark nite."
 	icon = 'icons/roguetown/clothing/special/martyr.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/martyrhelmets.dmi'
 	bloody_icon = 'icons/effects/blood64.dmi'
@@ -1229,7 +1238,7 @@
 
 /obj/item/clothing/cloak/holysee
 	name = "holy silver vestments"
-	desc = "A set of vestments worn by the sacred Sacrificials of the Star - paired with the silver embroidery of the Lune. Paired by Star and Moon, these wards ordain it as a bastion against evil."
+	desc = "A set of vestments worn by the Holy See's forces, silver embroidery and seals of light ordain it as a bastion against evil."
 	icon = 'icons/roguetown/clothing/special/martyr.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/martyr.dmi'
 	icon_state = "silvertabard"

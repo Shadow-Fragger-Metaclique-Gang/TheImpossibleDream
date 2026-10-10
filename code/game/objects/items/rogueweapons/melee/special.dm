@@ -901,7 +901,7 @@
 
 /obj/item/rogueweapon/sword/falchion/militia/bronze
 	name = "kopis"
-	desc = "The falchion's ancient predecessor, veiled in bronze - yet no less lethal against an awaiting trunk. The curved grip snuggly fits in the wielder's hand, allowing their will to be imposed upon assailant-and-anatheman alike with terrible force."
+	desc = "The falchion's ancient predecessor, veiled in bronze - yet no less lethal against an awaiting trunk. The curved grip snuggly fits in the wielder's hand, allowing their will to be imposed upon assailant-and-archdevil alike with terrible force."
 	possible_item_intents = list(/datum/intent/sword/cut, /datum/intent/sword/chop/militia, /datum/intent/sword/thrust/long/deep, /datum/intent/sword/strike)
 	icon_state = "kopis"
 	sheathe_icon = "kopis"
@@ -1244,7 +1244,7 @@
 // Standard of the keep.
 // Big ol' flag that they keep to give bonuses, used by the manorguard standard bearer.
 /obj/item/rogueweapon/spear/keep_standard
-	name = "count's banner"
+	name = "ducal standard"
 	desc = "The local lord's banner, fashioned to a blacksteel pike and turned into a deadly instrument of war. \
 	The man who wields this is said to bring great fortune to his house, and those who keep him safe. \
 	<small>Runes glow near the head of the pike. A sure sign of the arcyne.</small>"

@@ -1,0 +1,8 @@
+/datum/book_entry/cuisine/north_imperial
+	blurb = "A broad category for the cuisine that originated from the heartland of the Known World - namely, modern dae Grenzelhoft. It is hearty and delicious, full of breads, pies, sausage. Though seafood are eaten, it is not as prominent and does not feature in its dishes list. Ale and Beer are the main source of drinks, with occasional spirits added in. Famous dishes includes the Grenzelbun, Squire's Delight, Nitzel and Schnitzel."
+
+/datum/book_entry/cuisine/south_imperial
+	blurb = "An imposition for the varied diet that developed in the Pharos and its various neighboring courts within the Kingdom. It incorporates elements of North Imperial food - namely the hearty staple of breads and pastries; that which oft and regularly fills its kitchens with their rich and pleasant airs. Compared to its northern counterpart, it includes practically all seafood dishes- pies, poached, smoked, Scarred, or even raw- so long as their physiology can handle it. Etruscan cuisine, courtesy of its proximity to the Kingdom, oft find themselves warmly regarded and well-cooked as well, bringing pomomensa platters and Etruscan spices to wealthier tables. Turf meats are treated mixed- Heartland lamb and pork are held in particularly high regard, whereas beef is comparatively rare."
+
+/datum/book_entry/cuisine/otavais
+	blurb = "Otava and its predecessor states, centrally located to trade as the Grenz, were boosted with a bountiful coastline and diverse climate. So their cuisine has a little bit of everything, and is known for its richness. A bit of signature pies, a bit of signature bread, cheesecake (though not honeycake, viewed as too decadent and Zybantine), fruit cakes, and some but not all good seafood."

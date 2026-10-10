@@ -32,7 +32,7 @@
 
 /obj/item/reagent_containers/glass/bottle/rogue/healthpot/zarum/bog
 	name = "bottle of medicinal fish honeygar"
-	desc = "A bottle with a mudclay cork, tethered to the bottleneck via braided twine. Fermented fish-paste, herbs and honey make for an unexpectedly palatable medicine. Developed by the low levies of distant Azure Peak from their bog's fish-vinegar recipe, the added honey softens the brew's harsh bite and tempers its fishy aftertaste. It heals no better than ordinary fish vinegar, but goes down with considerably less suffering."
+	desc = "A bottle with a mudclay cork, tethered to the bottleneck via braided twine. Fermented fish-paste, herbs and honey make for an unexpectedly palatable medicine. Developed by the Levy of Azure Peak from the Terrorbog fish-vinegar recipe, the added honey softens the brew's harsh bite and tempers its fishy aftertaste. It heals no better than ordinary fish vinegar, but goes down with considerably less suffering."
 	list_reagents = list(/datum/reagent/medicine/healthpot/zarum/bog = 50)
 
 //vanderlin potion stuff//
@@ -406,7 +406,7 @@
 
 /obj/item/reagent_containers/glass/bottle/clayvaseclassic/holy_water
 	list_reagents = list(/datum/reagent/water/holywater = 65)
-	desc = "A richly ornamented ceramic vase. The circular wheel of the Pantheon \
+	desc = "A richly ornamented ceramic vase. The circular cross of the Ten Undivided \
 	adorns its side; whatever is inside must be sacred."
 
 /obj/item/reagent_containers/glass/bottle/clayfancyvaseclassic/water

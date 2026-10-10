@@ -461,6 +461,9 @@ SUBSYSTEM_DEF(BMtreasury)
 		SStreasury.church_fund.balance += tithe
 	if(SStreasury.bathhouse_fund)
 		SStreasury.bathhouse_fund.balance += amt_to_generate
+	// [SURREALIS-EDIT] - LORE
+	// send_ooc_note("Regular income to the Bathhouse Fund: +[amt_to_generate][tithe > 0 ? " (after [tithe]m tithe to the Church)" : ""]", job = "Bathmaster") // SURREALIS-EDIT - ORIGINAL
 	send_ooc_note("Regular income to the Bathhouse Fund: +[amt_to_generate][tithe > 0 ? " (after [tithe]m tithe to the Temple)" : ""]", job = "Bathmaster")
+	// [/SURREALIS-EDIT]
 	record_round_statistic(STATS_BATHMATRON_VAULT_TOTAL_REVENUE, amt_to_generate)
 	return amt_to_generate

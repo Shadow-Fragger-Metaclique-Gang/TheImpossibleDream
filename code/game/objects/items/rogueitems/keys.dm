@@ -126,7 +126,10 @@
 		SSroguemachine.key = src
 
 /obj/item/roguekey/lord/proc/anti_stall()
+	// [SURREALIS-EDIT] - LORE
+	// src.visible_message(span_danger("The Key of Azure Peak crumbles to dust, the ashes spiriting away in the direction of the Keep.")) // SURREALIS-EDIT - ORIGINAL
 	src.visible_message(span_danger("The Key to the Pharos crumbles to dust, the ashes spiriting away in the direction of the Keep."))
+	// [/SURREALIS-EDIT]
 	SSroguemachine.key = null //Do not harddel.
 	qdel(src) //Anti-stall
 
@@ -404,8 +407,8 @@
 /////////////////////
 
 /obj/item/roguekey/priest
-	name = "priest's key"
-	desc = "This is the master key of the temple."
+	name = "bishop's key"
+	desc = "This is the master key of the church."
 	icon_state = "cheesekey"
 	lockid = "priest"
 
@@ -424,8 +427,8 @@
 	lockid = "keeper2"
 
 /obj/item/roguekey/church
-	name = "temple key"
-	desc = "This bronze key should open almost all doors in the temple."
+	name = "church key"
+	desc = "This bronze key should open almost all doors in the church."
 	icon_state = "brownkey"
 	lockid = "church"
 
@@ -436,61 +439,61 @@
 	lockid = "graveyard"
 
 /obj/item/roguekey/church/roomi
-	name = "temple bedroom I key"
+	name = "church bedroom I key"
 	desc = "The key to the first room."
 	icon_state = "brownkey"
 	lockid = "church_bedroom_up_1"
 
 /obj/item/roguekey/church/roomii
-	name = "temple bedroom II key"
+	name = "church bedroom II key"
 	desc = "The key to the second room."
 	icon_state = "brownkey"
 	lockid = "church_bedroom_up_2"
 
 /obj/item/roguekey/church/roomiii
-	name = "temple bedroom III key"
+	name = "church bedroom III key"
 	desc = "The key to the third room."
 	icon_state = "brownkey"
 	lockid = "church_bedroom_up_3"
 
 /obj/item/roguekey/church/roomiv
-	name = "temple bedroom IV key"
+	name = "church bedroom IV key"
 	desc = "The key to the fourth room."
 	icon_state = "brownkey"
 	lockid = "church_bedroom_up_4"
 
 /obj/item/roguekey/church/roomv
-	name = "temple bedroom V key"
+	name = "church bedroom V key"
 	desc = "The key to the fifth room."
 	icon_state = "brownkey"
 	lockid = "church_bedroom_up_5"
 
 /obj/item/roguekey/church/roomvi
-	name = "temple bedroom VI key"
+	name = "church bedroom VI key"
 	desc = "The key to the fifth room."
 	icon_state = "brownkey"
 	lockid = "church_bedroom_up_6"
 
 /obj/item/roguekey/church/roomvii
-	name = "temple bedroom VII key"
+	name = "church bedroom VII key"
 	desc = "The key to the fifth room."
 	icon_state = "brownkey"
 	lockid = "church_bedroom_up_7"
 
 /obj/item/roguekey/church/roomviii
-	name = "temple bedroom VIII key"
+	name = "church bedroom VIII key"
 	desc = "The key to the fifth room."
 	icon_state = "brownkey"
 	lockid = "church_bedroom_up_8"
 
 /obj/item/roguekey/church/roomix
-	name = "temple bedroom IX key"
+	name = "church bedroom IX key"
 	desc = "The key to the fifth room."
 	icon_state = "brownkey"
 	lockid = "church_bedroom_up_9"
 
 /obj/item/roguekey/church/roomx
-	name = "temple bedroom X key"
+	name = "church bedroom X key"
 	desc = "The key to the fifth room."
 	icon_state = "brownkey"
 	lockid = "church_bedroom_up_10"
@@ -870,13 +873,13 @@
 
 /obj/item/roguekey/university
 	name = "university key"
-	desc = "This key should open all but the most secure areas of the University-Under-the-Scar."
+	desc = "This key should open all but the most secure areas of the University of Azuria."
 	icon_state = "greenkey"
 	lockid = "university"
 
 /obj/item/roguekey/university_secure
 	name = "university tower key"
-	desc = "This key should open the tower in the University-Under-the-Scar, where dangerous magic is contained."
+	desc = "This key should open the tower in the University of Azuria, where dangerous magic is contained."
 	icon_state = "brownkey"
 	lockid = "university_secure"
 

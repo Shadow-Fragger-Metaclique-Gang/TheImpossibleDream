@@ -624,7 +624,7 @@ LICH SKELETONS
 // Medium armor, high INT, same chant/spells as regular spellblade. No miracles.
 /datum/advclass/greater_skeleton/lich/spellblade
 	name = "Venerated Azurcaephan"
-	tutorial = "Swerve, parry, cast. Your bones have dried, and your flesh have withered. But your wits, and the flow of the arcyne remains untamed. Fuse gilbranze and sorcery, let the legends of the Azurcaephan be known again. Enigma, reborn in arcyne fyre! No! Tarichea! Tarichea! Tarichea! Long may she live! Long may she reign! Tarichea forevermore! My blade undulled, my chant unbroken, my wits untarnished!"
+	tutorial = "Swerve, parry, cast. Your bones have dried, and your flesh have withered. But your wits, and the flow of the arcyne remains untamed. Fuse gilbranze and sorcery, let the legends of the Azurcaephan be known again. Azurea, reborn in arcyne fyre! No! Tarichea! Tarichea! Tarichea! Long may she live! Long may she reign! Tarichea forevermore! My blade undulled, my chant unbroken, my wits untarnished!"
 	outfit = /datum/outfit/job/roguetown/greater_skeleton/lich/spellblade
 	maximum_possible_slots = 1
 	category_tags = list(CTAG_LSKELETON)
@@ -811,8 +811,8 @@ LICH SKELETONS
 //Most importantly, unlike other lich skeletons, these ones really stand out amongst the many. You know who to target on-sight pretty much.
 //Yes the name is a bitter irony because Sectarian means a closed-minded us vs them, mindset. Aka limited or bigoted, but this fits the "slaughter the living so they may walk with her" mindset of skeletons.
 /datum/advclass/greater_skeleton/lich/sectarian
-	name = "Ancient Anathematic Sectarian"
-	tutorial = "Amongst the many fallen, few not only take their place not only in reverence but through faith and channeling the Demiurge's mortal divinity. No matter how far you've fallen, your faith will be that which shall carve the heavens and fundament - Let the Anathema aid in your ambition, let their Will be your guide and render your master's vision reality."
+	name = "Ancient Zizite Sectarian"
+	tutorial = "'Progress. Ascension. Destiny. A mandate, commanded by God, to be fufilled by Man.' - Amongst the many fallen, few not only take their place not only in reverence but through faith and channeling divinity. No matter how far you've fallen, your faith will be that which shall peirce the heavens - Let Progress be your chariot, let her will be your guide and let your master's vision become reality."
 	outfit = /datum/outfit/job/roguetown/greater_skeleton/lich/sectarian
 	maximum_possible_slots = 3 //don't want too many healers for skeletons in a round but we want leniency for when they die and get replaced
 
@@ -980,7 +980,7 @@ LICH SKELETONS
 
 /obj/item/clothing/gloves/roguetown/angle/grenzelgloves/blacksmith/lich
 	name = "decrepit forge gauntlets"
-	desc = "A wrap of rugged silks and leather from beyond your lyfetime; oft serving to physically hold together phalanges wrapped beneath. You can feel the dust and crumbs of bone of those before contained within its fingers."
+	desc = "A shirt of rugged silks and leather from beyond your lyfetime, donned as a grasp 'pon the one thing that oft' outlasts through aeon the most; \"Artifice, Progress, Construction\"."
 	//no color changes, it already looks good
 
 /obj/item/clothing/head/roguetown/roguehood/shalal/hijab/lich
@@ -1077,7 +1077,7 @@ LICH SKELETONS
 
 /obj/item/rogueweapon/greatsword/grenz/flamberge/paalloy
 	name = "ancient flamberge"
-	desc = "Polished gilbranze and velvety saigaleather, masterfully bound together to hewn a greatsword of archaic opulance. One must remember that even the undying aren't consigned to the Anathema's grasp; for those of true faith and nobleheartedness can persist in penitence."
+	desc = "Polished gilbranze and velvety saigaleather, masterfully bound together to hewn a greatsword of archaic opulance. One must remember that even the undying aren't consigned to the Archdevil's grasp; for those of true faith and nobleheartedness can persist in penitence."
 	icon_state = "ancientflamb"
 	smeltresult = /obj/item/ingot/aaslag
 

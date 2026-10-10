@@ -8,7 +8,10 @@
 /datum/book_entry/treasury_underground/black_market/inner_book_html(mob/user)
 	return {"
 		<div>
+		<!-- \[SURREALIS-EDIT\] - LORE -->
+		<!-- <p><b>BLACK MARKET:</b> Merchant letting you down? Stolen 100 cutleries from the Keep and have nothing to do with it but sneed? The Black Market is your friend! Just walk all the way across Azuria's famously safe Grove and Coast to a little island in the northeast, and dump your goods. The Bathmatron and </p> SURREALIS-EDIT - ORIGINAL -->
 		<p><b>BLACK MARKET:</b> Merchant letting you down? Stolen 100 cutleries from the Keep and have nothing to do with it but sneed? The Black Market is your friend! Just walk all the way across the Pharos' famously safe, infamously scarred Grove and Coast to a little island in the northeast, and dump your goods. The Bathmatron and </p>
+		<!-- \[/SURREALIS-EDIT\] -->
 
 		<h3>Brassface & Contraband Vendor</h3>
 		<ul>
@@ -19,8 +22,12 @@
 
 		<h3>The Ordinance</h3>
 		<ul>
+			<!-- \[SURREALIS-EDIT\] - LORE -->
+			<!-- <p>The Church of Azuria and the Bathhouse have signed an agreement that the Bathhouse will not sell any items that violate the Ordinance, and that in exchange the Church shall not interfere with the Bathhouse's business, and take it under their protection. The Ordinance's details can be read in the SURREALIS-EDIT - ORIGINAL -->
+			<!-- Meister, and can be revoked by either side for any or no reasons. While it is in force, part of the secret Bathhouse Vault's income is remitted to the Church alongside a small portion of sales. The agreement does not prohibit the Church from breaking it or interfering if the Bathhouse does not even bother to hide their violations or outright professes heresy. SURREALIS-EDIT - ORIGINAL -->
 			<p>The Temple of Pharos and the Bathhouse have signed an agreement that the Bathhouse will not sell any items that violate the Ordinance, and that in exchange the Temple shall not interfere with the Bathhouse's business, and take it under their protection. The Ordinance's details can be read in the
 			Meister, and can be revoked by either side for any or no reasons. While it is in force, part of the secret Bathhouse Vault's income is remitted to the Temple alongside a small portion of sales. The agreement does not prohibit the Temple from breaking it or interfering if the Bathhouse does not even bother to hide their violations or outright professes heresy.
+			<!-- \[/SURREALIS-EDIT\] -->
 			</p>
 		</ul>
 

@@ -110,7 +110,7 @@
 
 /obj/item/clothing/head/roguetown/helmet/heavy/undivided
 	name = "templar silver sallet"
-	desc = "A silver-plated jousting helm, and symbol of hope worn by the templars of the Pentagrammatic Gods. Those who don it have sworn to lay down their lyves for the greater good, for no cost is too great to preserve Their will."
+	desc = "A silver-plated jousting helm, and symbol of hope worn by the Azurian Sect of The Undivided. Those who don it have sworn to lay down their lyves for the greater good, for no cost is too great to preserve Their will."
 	icon_state = "silversallet"
 	item_state = "silversallet"
 

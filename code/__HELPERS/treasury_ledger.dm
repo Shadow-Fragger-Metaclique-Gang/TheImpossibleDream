@@ -5,7 +5,10 @@
 #define TREASURY_FLOW_SUBSIDY "Poll Subsidy"
 #define TREASURY_FLOW_IMPORT "Crown Import"
 #define TREASURY_FLOW_CONTRACT "Contract Commissions"
+// [SURREALIS-EDIT] - LORE
+// #define TREASURY_FLOW_TITHE "Church Tithe" // SURREALIS-EDIT - ORIGINAL
 #define TREASURY_FLOW_TITHE "Temple's Tithe"
+// [/SURREALIS-EDIT]
 #define TREASURY_FLOW_BANDITRY "Banditry Losses"
 #define TREASURY_FLOW_LOAN_OUT "Loan Issued"
 #define TREASURY_FLOW_LOAN_IN "Loan Repaid"

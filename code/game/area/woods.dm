@@ -1,7 +1,7 @@
 // Azure Grove - the areas to the south of the map
 
 /area/rogue/outdoors/woods
-	name = "The Pharovian Grove"
+	name = "The Azure Grove"
 	icon_state = "woods"
 	ambientsounds = AMB_FORESTDAY
 	ambientnight = AMB_FORESTNIGHT
@@ -23,7 +23,7 @@
 				/mob/living/carbon/human/species/human/northern/militia/deserter = 20,
 				/mob/living/carbon/human/species/hobgoblin/npc/ambush = 15,
 				/mob/living/carbon/human/species/human/northern/highwayman/ambush = 10)
-	first_time_text = "THE PHAROVIAN GROVE"
+	first_time_text = "THE AZURE GROVE"
 	converted_type = /area/rogue/indoors/shelter/woods
 	deathsight_message = "somewhere in the wilds"
 	threat_region = THREAT_REGION_AZURE_GROVE
@@ -31,7 +31,7 @@
 	area_sniff_message = "You smell old, mighty trees."
 
 /area/rogue/indoors/shelter/woods
-	name = "Pharovian Grove"
+	name = "Azure Grove"
 	icon_state = "woods"
 	droning_sound = 'sound/music/area/forest.ogg'
 	droning_sound_dusk = 'sound/music/area/septimus.ogg'
@@ -41,7 +41,7 @@
 	area_sniff_message = "You smell old, mighty trees... But someone cut them into planks."
 
 /area/rogue/outdoors/woods/north
-	name = "Pharovian Grove - North"
+	name = "Azure Grove - North"
 	ambush_mobs = list(
 		/mob/living/simple_animal/hostile/retaliate/rogue/badger = 10,
 		/mob/living/simple_animal/hostile/retaliate/rogue/raccoon = 30,
@@ -54,7 +54,7 @@
 	threat_region = THREAT_REGION_AZURE_GROVE
 
 /area/rogue/outdoors/woods/northeast
-	name = "Pharovian Grove - Northeast"
+	name = "Azure Grove - Northeast"
 	ambush_mobs = list(
 			/mob/living/simple_animal/hostile/retaliate/rogue/badger = 10,
 			/mob/living/simple_animal/hostile/retaliate/rogue/raccoon = 30,
@@ -69,7 +69,7 @@
 	threat_region = THREAT_REGION_AZURE_GROVE
 
 /area/rogue/outdoors/woods/southeast
-	name = "Pharovian Grove - Southeast"
+	name = "Azure Grove - Southeast"
 	ambush_mobs = list(
 		/mob/living/simple_animal/hostile/retaliate/rogue/badger = 10,
 		/mob/living/simple_animal/hostile/retaliate/rogue/raccoon = 30,
@@ -83,7 +83,7 @@
 		/mob/living/carbon/human/species/human/northern/highwayman/ambush = 30)
 
 /area/rogue/outdoors/woods/south
-	name = "Pharovian Grove - South"
+	name = "Azure Grove - South"
 	ambush_mobs = list(
 		/mob/living/simple_animal/hostile/retaliate/rogue/badger = 10,
 		/mob/living/simple_animal/hostile/retaliate/rogue/raccoon = 30,
@@ -96,7 +96,7 @@
 		/mob/living/carbon/human/species/human/northern/highwayman/ambush = 20)
 
 /area/rogue/outdoors/woods/southwest
-	name = "Pharovian Grove - Southwest"
+	name = "Azure Grove - Southwest"
 	ambush_mobs = list(
 		/mob/living/simple_animal/hostile/retaliate/rogue/badger = 10,
 		/mob/living/simple_animal/hostile/retaliate/rogue/raccoon = 30,
@@ -109,7 +109,7 @@
 		/mob/living/carbon/human/species/human/northern/highwayman/ambush = 20)
 
 /area/rogue/outdoors/woods/northwest
-	name = "Pharovian Grove - Northwest"
+	name = "Azure Grove - Northwest"
 	ambush_mobs = list(
 		/mob/living/simple_animal/hostile/retaliate/rogue/badger = 10,
 		/mob/living/simple_animal/hostile/retaliate/rogue/raccoon = 30,

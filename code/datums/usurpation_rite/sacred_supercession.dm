@@ -11,12 +11,12 @@
  */
 /datum/usurpation_rite/sacred_supercession
 	name = "Rite of Sacred Supercession"
-	desc = "When a king fails to uphold the divine order, the faithful must act. Reluctantly, the temple must claim temporal power, to shepherd the faithful back on an orderly path."
-	explanation = {"<p>A member of the Temple of the Pentacle may claim the throne through divine mandate.</p>\
-<p><b>Who may invoke:</b> Any member of the Temple who follows one of the divine patrons.</p>\
-<p><b>How it works:</b> Members of the Temple of Pharos, or those who have reached the First Tier of Divine devotion, must gather near the throne and speak the words 'I assent' to support your claim. Only followers of the Pantheon may participate.</p>\
+	desc = "When a king fails to uphold the divine order, the faithful must act. Reluctantly, the church must claim temporal power, to shepherd the faithful back on an orderly path."
+	explanation = {"<p>A member of the Church of the Ten may claim the throne through divine mandate.</p>\
+<p><b>Who may invoke:</b> Any member of the Church of the Ten who follows one of the divine patrons.</p>\
+<p><b>How it works:</b> Members of the Church of the Ten, or those who have reached the First Tier of Divine devotion, must gather near the throne and speak the words 'I assent' to support your claim. Only followers of the Ten may participate.</p>\
 <p><b>Completion condition:</b> <b>5</b> weighted voices must speak their assent. Foreign or wandering clergy count as only half a voice. Once the threshold is reached, the realm is alerted and a contestation period begins — survive it and stay conscious while remaining near the throne, and it is yours.</p>\
-<p><b>Restrictions:</b> Only followers of the Pantheon may invoke or assent. Outlaws and the undead are shunned.</p>\
+<p><b>Restrictions:</b> Only followers of the Ten may invoke or assent. Outlaws and the undead are shunned.</p>\
 <p><b>Realm type if successful:</b> Prince-Bishopric, ruled by a Prince-Bishop.</p>"}
 	new_ruler_title = "Prince-Bishop"
 	new_ruler_title_f = "Princess-Bishop"
@@ -25,17 +25,17 @@
 	roundend_epilogue = "Astrata's sacred order has been restored, but with a twist. " + \
 		"For as long as most faithful can remember, realms of Psydonia were ruled by the blue-blooded, " + \
 		"those who derive their power from Astrata's divinity, but never wielded Her power directly. " + \
-		"Now, the Temple itself has taken the throne. " + \
+		"Now, the Church itself has taken the throne. " + \
 		"Is this truly Astrata's will? To mix temporal and spiritual power in one ruler? " + \
 		"The Sun Goddess is silent, or perhaps she has acquiesced to this new order." + \
 		"\n\n" + \
 		"To the west, the smoke of a signal fire rises. " + \
-		"Through this takeover, the Temple has broken the balance of power that kept in check the uneven balance of a kingdom wrack with schism. - " + \
-		"Those of the Pantheon, the faith of the majority, and those of Psydon - the minority, but only just." + \
-		"Each tolerated the other - with effort - and kept each other in check. " + \
-		"The regent may believe themselves final, and just in their reign, " + \
-		"But this usurpation shall come at a cost: in blood, in wealth, in rebellion, inquisition, and protestation. The children of the Progenitus shall not stay silent." + \
-		"Strife is inevitable. The Scar shall witness it all."
+		"Through this takeover, the Church has broken the balance of power that kept the realm sovereign - " + \
+		"the Tens, the faith of the majority, Psydon, the faith of a minority. " + \
+		"Each tolerated the other and kept each other in check. " + \
+		"The ruler may believe themselves sovereign, " + \
+		"but Otava believes Grenzelhoft have won a battle, and will not let them win the war. " + \
+		"War is coming."
 
 /// Any member of the Church of the Ten with a divine patron. No outlaws or undead.
 /datum/usurpation_rite/sacred_supercession/can_invoke(mob/living/carbon/human/user)
@@ -71,10 +71,16 @@
 		to_chat(faithful, span_warning("You cannot assent to your own claim."))
 		return FALSE
 	if(!istype(faithful.patron, /datum/patron/divine))
+		// [SURREALIS-EDIT] - LORE
+		// to_chat(faithful, span_warning("Only followers of the Ten may speak assent to this rite.")) // SURREALIS-EDIT - ORIGINAL
 		to_chat(faithful, span_warning("Only followers of the Pentacle may speak assent to this rite."))
+		// [/SURREALIS-EDIT]
 		return FALSE
 	if(!is_qualified_faithful(faithful))
+		// [SURREALIS-EDIT] - LORE
+		// to_chat(faithful, span_warning("Only ordained members of the Church or those who have proven their devotion may speak assent.")) // SURREALIS-EDIT - ORIGINAL
 		to_chat(faithful, span_warning("Only ordained members of the Temple or those who have proven their devotion may speak assent."))
+		// [/SURREALIS-EDIT]
 		return FALSE
 	if(HAS_TRAIT(faithful, TRAIT_OUTLAW))
 		to_chat(faithful, span_warning("Astrata shuns those who stand outside the order."))
@@ -105,6 +111,17 @@
 		start_contesting()
 
 /datum/usurpation_rite/sacred_supercession/on_contesting_started()
+	// [SURREALIS-EDIT] - LORE
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	priority_announce( \
+		"[invoker.real_name] has invoked the Rite of Sacred Supercession!\n\n" + \
+		"In the name of Astrata, Goddess of Order, the Church reluctantly makes a claim upon the throne of [SSticker.realm_name], to restore order and faith!\n\n" + \
+		"The faithful have affirmed this claim.\n\n" + \
+		"The Sun's judgment shall fall in [RITE_CONTEST_DURATION / (1 MINUTES)] minutes -- unless the claim is struck down.", \
+		"Rite of Sacred Supercession", \
+		sound_contesting)
+	*/
 	priority_announce( \
 		"[invoker.real_name] has invoked the Rite of Sacred Supercession!\n\n" + \
 		"In the name of Astrata, Goddess of Order, the Temple reluctantly makes a claim upon the throne of [SSticker.realm_name], to restore order and faith!\n\n" + \
@@ -112,6 +129,7 @@
 		"The Sun's judgment shall fall in [RITE_CONTEST_DURATION / (1 MINUTES)] minutes -- unless the claim is struck down.", \
 		"Rite of Sacred Supercession", \
 		sound_contesting)
+	// [/SURREALIS-EDIT]
 	to_chat(invoker, span_notice("The faithful have spoken. The realm has been alerted. Stay near the throne for [RITE_CONTEST_DURATION / (1 MINUTES)] minutes and the succession is yours. You may move freely, but do not stray too far."))
 	phase_timer_id = addtimer(CALLBACK(src, PROC_REF(complete)), RITE_CONTEST_DURATION, TIMER_STOPPABLE)
 

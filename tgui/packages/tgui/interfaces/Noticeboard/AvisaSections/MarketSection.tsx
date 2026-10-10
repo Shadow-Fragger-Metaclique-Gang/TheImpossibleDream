@@ -360,10 +360,19 @@ export const MarketView = ({
         {loreOpen && (
           <div style={{ ...dashedFrameStyle, marginTop: 8 }}>
             <p style={{ margin: '0 0 6px 0' }}>
+              {/* [SURREALIS-EDIT] - LORE */}
+              {/* SURREALIS-EDIT - ORIGINAL */}
+              {/*
+              Wares lifted from the Navigator pass into the warehouses of the
+              Azurian Trading Company, sorted by category. Each week the factors
+              weigh which goods are scarce and which lie in glut, and the
+              Navigator&apos;s payouts shift accordingly.
+              */}
               Wares lifted from the Navigator pass into the warehouses of the
               Pharovian Trading Company, sorted by category. Each week the
               factors weigh which goods are scarce and which lie in glut, and
               the Navigator&apos;s payouts shift accordingly.
+              {/* [/SURREALIS-EDIT] */}
             </p>
             <p style={{ margin: '0 0 6px 0' }}>
               <b style={{ color: SEAL_GREEN }}>Saturation</b> tracks the

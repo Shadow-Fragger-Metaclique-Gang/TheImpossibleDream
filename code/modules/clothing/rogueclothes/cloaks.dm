@@ -448,16 +448,16 @@
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/cloaks.dmi'
 	alternate_worn_layer = TABARD_LAYER
 	boobed = TRUE
-	name = "pantheonic tabard"
-	desc = "The refuge of the PENTACLE upon my back. A Undivided House, standing eternal against the encroaching darkness."
+	name = "undivided tabard"
+	desc = "The refuge of the TEN upon my back. A Undivided House, standing eternal against the encroaching darkness."
 	icon_state = "seetabard"
 
 /obj/item/clothing/cloak/templar/undividedcleric
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/cloaks.dmi'
 	alternate_worn_layer = TABARD_LAYER
 	boobed = TRUE
-	name = "pantheonic devotee tabard"
-	desc = "The refuge of the GREATEST GODS upon my back. A Great Wheel, to carry the light amongst the ever-present darkness that looms ahead."
+	name = "undivided devotee tabard"
+	desc = "The refuge of the TEN upon my back. A Undivided Pantheon, to carry the light amongst the ever-present darkness that looms ahead."
 	icon_state = "tenclerictabard"
 
 /obj/item/clothing/cloak/templar/undivided_alt
@@ -465,7 +465,7 @@
 	alternate_worn_layer = TABARD_LAYER
 	boobed = TRUE
 	name = "crusader tabard"
-	desc = "The refuge of the DIVINE WILLS upon my back. An Almighty Temple, standing eternal against the encroaching darkness."
+	desc = "The refuge of the TEN upon my back. A Undivided House, standing eternal against the encroaching darkness."
 	icon_state = "seetabardalt"
 
 /obj/item/clothing/cloak/tabard/devotee
@@ -1281,7 +1281,7 @@
 /obj/item/clothing/cloak/cape/inquisitorsilver
 	name = "silver order cloak"
 	desc = "A time honored cloak inlined with silver threading, the stitchwork tethers it to the Silver Orders; a catch-all term for the various faith-militances that \
-	ward Psydonia from monsters, creechers, and the ever-looming threat of assault of the Anatheme."
+	ward Psydonia from monsters, creechers, and the ever-looming threat of the Archdevil's return."
 	icon_state = "sinquisitor_cloak"
 	icon = 'icons/roguetown/clothing/cloaks.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/onmob/cloaks.dmi'
@@ -1364,16 +1364,16 @@
 	nodismemsleeves = TRUE
 
 /obj/item/clothing/cloak/undivided
-	name = "pantheonic cloak"
-	desc = "The refuge of the PENTACLE upon my back. A Undivided House, standing eternal against the encroaching darkness."
+	name = "undivided cloak"
+	desc = "The refuge of the TEN upon my back. A Undivided House, standing eternal against the encroaching darkness."
 	icon_state = "seecloak"
 	sleeved = 'icons/roguetown/clothing/onmob/cloaks.dmi'
 	alternate_worn_layer = CLOAK_BEHIND_LAYER
 	slot_flags = ITEM_SLOT_BACK_R|ITEM_SLOT_CLOAK
 
 /obj/item/clothing/cloak/undividedcleric
-	desc = "The refuge of the PENTACLE upon my back. A Undivided Pantheon, to carry the light amongst the ever-present darkness that looms ahead."
-	name = "pantheonic devotee cloak"
+	desc = "The refuge of the TEN upon my back. A Undivided Pantheon, to carry the light amongst the ever-present darkness that looms ahead."
+	name = "undivided devotee cloak"
 	icon_state = "tenclericcloak"
 	sleeved = 'icons/roguetown/clothing/onmob/cloaks.dmi'
 	alternate_worn_layer = CLOAK_BEHIND_LAYER
@@ -1454,7 +1454,7 @@
 
 /obj/item/clothing/cloak/half/shadowcloak
 	name = "stalker cloak"
-	desc = "A heavy leather cloak held together by a gilded pin, depicting the Count's court. The sign of a faithful servant."
+	desc = "A heavy leather cloak held together by a gilded pin, depicting the Grand Duke's house. The sign of a faithful servant."
 	icon_state = "shadowcloak"
 	color = null
 
@@ -1768,7 +1768,7 @@
 
 /obj/item/clothing/cloak/wardencloak
 	name = "warden's cloak"
-	desc = "A cloak of dense, thick wool worn by the Wardens of the Scarland's forests. Incredibly warm, \
+	desc = "A cloak of dense, thick wool worn by the Wardens of Azuria's Forests. Incredibly warm, \
 	and doubles as a blanket in a pinch."
 	icon_state = "wardencloak"
 	alternate_worn_layer = CLOAK_BEHIND_LAYER
@@ -1819,7 +1819,7 @@
 
 /obj/item/clothing/cloak/forrestercloak/snow
 	name = "snow cloak"
-	desc = "A cloak meant to keep one's body warm in the cold of the mountains as well as the dampness of the lowlands."
+	desc = "A cloak meant to keep one's body warm in the cold of the mountains as well as the dampness of Azuria."
 	icon_state = "snowcloak"
 	cold_protection = 15
 
@@ -1979,7 +1979,7 @@
 
 /obj/item/clothing/cloak/banneret
 	name = "knight banneret's cape"
-	desc = "A cape with a gold embroided heraldry of Pharos."
+	desc = "A cape with a gold embroided heraldry of Azure."
 	icon = 'icons/roguetown/clothing/special/captain.dmi'
 	mob_overlay_icon = 'icons/roguetown/clothing/special/onmob/captain.dmi'
 	sleeved = 'icons/roguetown/clothing/special/onmob/captain.dmi'
@@ -2018,7 +2018,7 @@
 
 /obj/item/clothing/cloak/kazengun
 	name = "jinbaori"
-	desc = "A simple kind of Kazengunite surcoat, worn here in the distant fields of Pharos to differentiate friend from foe."
+	desc = "A simple kind of Kazengunite surcoat, worn here in the distant battlefields of Azuria to differentiate friend from foe."
 	icon_state = "kazenguncoat"
 	item_state = "kazenguncoat"
 	detail_tag = "_detail"

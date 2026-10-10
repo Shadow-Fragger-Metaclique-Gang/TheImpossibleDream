@@ -55,7 +55,7 @@
 	optional_roles = list(
 		/datum/migrant_role/migrant_mercenary = 2,
 	)
-	greet_text = "Summoned by the promise of lucrative contracts, constant conflicts, and the potentials within the Scar, you and your fellow sellswords have made your way to Pharos to seek fortune."
+	greet_text = "Summoned by the promise of lucrative contracts and constant conflicts, you and your fellow sellswords have made your way to Azure Peak to seek fortune."
 
 // The Pentarchy - A band of five thematically constrained mercenaries.
 /datum/migrant_wave/pentarchy
@@ -74,7 +74,7 @@
 		/datum/migrant_role/pentarchy/bravo = 1,
 		/datum/migrant_role/pentarchy/warmage = 1,
 	)
-	greet_text = "An unlikely gathering of sellswords, perhaps formed in Pharos itself. The news of renewed conflicts and lucrative contracts funded by Pharovian coins have lured you here. Make your fortune."
+	greet_text = "An unlikely gathering of sellswords, perhaps formed in Azure Peak itself. The news of renewed conflicts and lucrative contracts funded by Azurean coins have lured you here. Make your fortune."
 	greet_text_by_fill = list(
 		"5" = "The Pentarchy rides whole. United in one company, one purpose - oh, who are we joking about. You five have always been the oddest bedfellow.",
 		"4" = "The Pentarchy rides whole! Five blades! United as one! Except for the fifth one! No idea where they went! Guess we're the Tetrarchy now! Hoorah!"

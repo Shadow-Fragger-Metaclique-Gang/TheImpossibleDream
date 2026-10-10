@@ -20,7 +20,10 @@
 /obj/item/mundane/puzzlebox/easy/Initialize(mapload)
 	. = ..()
 	dice_roll = rand(6,15)
+	// [SURREALIS-EDIT] - LORE
+	// fluff_desc = pick("It, frankly, looks rather depressing.","I can see an engraving of Psydon sending the Comet Syon on the side.","It doesn't look so difficult.","It's dusty and boring.","Why do I want to play with this for hours?","I could probably get a vagrant to solve this.","It looks like it was made for fools.") // SURREALIS-EDIT - ORIGINAL
 	fluff_desc = pick("It, frankly, looks rather depressing.","I can see an engraving of ancient Psydon casting down the wicked on the side.","It doesn't look so difficult.","It's dusty and boring.","Why do I want to play with this for hours?","I could probably get a vagrant to solve this.","It looks like it was made for fools.")
+	// [/SURREALIS-EDIT]
 	desc += "[fluff_desc]"
 
 

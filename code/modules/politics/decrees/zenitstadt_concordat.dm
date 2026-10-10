@@ -1,15 +1,15 @@
 /datum/decree/zenitstadt_concordat
 	id = DECREE_ZENITSTADT_CONCORDAT
-	name = "The Concordat of Zybantium"
+	name = "The Zenitstadt Concordat"
 	category = DECREE_CATEGORY_ANCIENT
-	mechanical_text = "Temple clergy and declared Benefactors of the Faith pay no taxes."
-	flavor_text = {"This Concordat, sworne under the Graces of the GODS and with Ravox as witness, witnesseth that this Temple, that of the Pharos, consecrated beneath the Five, quickened by Astrata's light, and blessed by the Scar of the Progenitus, shall keep the peace of the gods upon this land: to pray for the safety and prosperity of the Realm by daye and by night, to maintain the favor of the Divine Wills through proper sacrament and offering, to levy tithe from amongst its own brethren, to shelter the poor and downtrodden, and to furnish its own knightly order of templars that the common defense of the Realm be not wanting.
+	mechanical_text = "Church clergy and declared Benefactors of the Faith pay no taxes."
+	flavor_text = {"This Zenitstadt Concordat, sworne under the Ten's Grace and with Ravox as witness, witnesseth that the Church of Azuria, consecrated beneath the Ten and quickened by Astrata's light, shall keep the peace of the gods upon this land: to pray for the safety and prosperity of the Realm by daye and by night, to maintain the favor of the Ten through proper sacrament and offering, to levy tithe from amongst its own brethren, to shelter the poor and downtrodden, and to furnish its own knightly order of templars that the common defense of the Realm be not wanting.
 
-In exchange, as the sacred envoys of the gods and sworn servants of the Highest Wills, the clergy of the Temple shall bear no tax nor levy, neither upon their persons nor upon the properties of the Faith; nor shall the Crown intrude upon the internal discipline of the Temple, save by lawful counsel taken with the Temple.
+In exchange, as the sacred envoys of the gods and sworn servants of the Ten, the clergy of the Church of Azuria shall bear no tax nor levy, neither upon their persons nor upon the properties of the Faith; nor shall the Crown intrude upon the internal discipline of the Church, save by lawful counsel taken with the Church of the Ten.
 
-Yeven under the seal of the Crown, in witness of the Gods."}
-	revoke_text = "The %RULER% has rescinded the Concordat of Zybantium. The Temple's wealth shall serve the greater good of the Realm - let the Wheel judge who betrayed whom."
-	restore_text = "The %RULER% has affirmed the Concordat of Zybantium. The hand of the Crown shall meddle no more in the disposition of the Temple's worldly wealth."
+Yeven under the seal of the Crown, in witness of the Ten."}
+	revoke_text = "The %RULER% has rescinded the Zenitstadt Concordat. The Church's wealth shall serve the greater good of the Realm - let the Ten judge who betrayed whom."
+	restore_text = "The %RULER% has affirmed the Zenitstadt Concordat. The hand of the Crown shall meddle no more in the disposition of the Church's worldly wealth."
 
 /datum/decree/zenitstadt_concordat/roll_initial_year()
 	return CALENDAR_EPOCH_YEAR - rand(50, 120)

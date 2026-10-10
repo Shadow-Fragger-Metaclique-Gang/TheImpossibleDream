@@ -124,7 +124,7 @@
 
 /obj/item/rogueweapon/stoneaxe/woodcut/aaxe
 	name = "decrepit axe"
-	desc = "A hatchet of frayed bronze. It reigns from a tyme before tyme; when Man wrought metal not to spill blood, but to better shape the world in His image."
+	desc = "A hatchet of rotted metal. It reigns from a tyme before the Comet Syon's impact; when Man wrought metal not to spill blood, but to better shape the world in His image."
 	icon_state = "ahandaxe"
 	force = 17
 	force_wielded = 20
@@ -825,11 +825,11 @@
 	var/inactive_gripped_intents = list()
 
 /obj/item/rogueweapon/stoneaxe/battle/holyseeaxe
-	name = "pentablessed axe"
-	desc = "A blessed axe, wielded by the Pentacle's crusaders to keep the forces of evil at bay, \
-			it is oft rumored these axes are commonplace amongst the greater crusades of the Temple against \
+	name = "holy see axe"
+	desc = "A blessed axe, wielded by the Holy See's crusaders to keep the forces of evil at bay, \
+			it is oft rumored these axes are commonplace amongst the greater crusades of the See against \
 			Heathenry and Heretic alyke, often used to tear down walls and fortifications that heretics hide within, \
-			a ceremonial manifestation of Necra's destination and Astrata's all-reaching grasp of authority."
+			a ceremonial manifestation of Malum's destruction and Astrata's all-reaching grasp of authority."
 	icon_state = "churchaxe"
 	wdefense = 5
 	max_blade_int = 260

@@ -152,7 +152,7 @@
 	authorized_jobs = list("Steward", "Clerk")
 
 /obj/item/mini_flagpole/duke
-	name = "count miniature flagpole"
+	name = "duke miniature flagpole"
 	controlled_role = "duke"
 	flag_color = "#007FFF" // Azure
 

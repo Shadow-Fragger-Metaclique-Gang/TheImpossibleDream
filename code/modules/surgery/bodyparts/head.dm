@@ -62,7 +62,10 @@
 /obj/item/bodypart/head/examine()
 	. = ..()
 	if(sellprice && !no_head_bounty)
+		// [SURREALIS-EDIT] - LORE
+		// . += span_notice("This head seems to be wanted by the Judiciary of Azuria. It can be turned in at a HEADEATER.") // SURREALIS-EDIT - ORIGINAL
 		. += span_notice("This head seems to be wanted by the Pharovian Judiciary. It can be turned in at a HEADEATER.")
+		// [/SURREALIS-EDIT]
 
 /obj/item/bodypart/head/grabbedintents(mob/living/user, precise)
 	var/used_limb = precise

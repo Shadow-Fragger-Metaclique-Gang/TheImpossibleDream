@@ -9,8 +9,8 @@
 	forbidden_races = list(RACES_DESPISED)
 
 	tutorial = "You are a fully trained and accomplished physician, well-practiced \
-	in the arts of medicine and alchemy. You are quartered within the University-Under-the-Scar \
-	under the authority of the Head Physician, who has graciously negotiated your \
+	in the arts of medicine and alchemy. You are quartered within the University of \
+	Azuria under the authority of the Head Physician, who has graciously negotiated your \
 	access to the heartbeast beneath the University - while you would do well to treat \
 	it with caution, it is a source of vital heartsblood. Treat the sick and wounded, \
 	gather herbs as is necessary to peddle your potions, and walk with Pestra's light. \
@@ -38,8 +38,8 @@
 /datum/advclass/apothecary
 	name = "Apothecary"
 	tutorial = "You are a fully trained and accomplished physician, well-practiced \
-	in the arts of medicine and alchemy. You are quartered within the University-Under-the-Scar \
-	under the authority of the Head Physician, who has graciously negotiated your \
+	in the arts of medicine and alchemy. You are quartered within the University of \
+	Azuria under the authority of the Head Physician, who has graciously negotiated your \
 	access to the heartbeast beneath the University - while you would do well to treat \
 	it with caution, it is a source of vital heartsblood. Treat the sick and wounded, \
 	gather herbs as is necessary to peddle your potions, and walk with Pestra's light. \

@@ -1,6 +1,6 @@
 /obj/structure/roguemachine/ship_fulfillment
 	name = "ship fulfillment crate"
-	desc = "A wide crate stamped with the seal of the Pharovian Trading Company. Goods deposited here are accepted against the demands of foreign vessels in port - the depositor is paid in mammon to their account, less the Crown's export duty and the Merchant's middleman cut."
+	desc = "A wide crate stamped with the seal of the Azurian Trading Company. Goods deposited here are accepted against the demands of foreign vessels in port - the depositor is paid in mammon to their account, less the Crown's export duty and the Merchant's middleman cut."
 	icon = 'icons/roguetown/misc/machines.dmi'
 	icon_state = "streetvendor1"
 	density = TRUE
@@ -230,7 +230,10 @@
 		return
 	if(I.atc_sealed)
 		if(message)
+			// [SURREALIS-EDIT] - LORE
+			// to_chat(user, span_warning("[I] bears an Azurian Trading Company seal - foreign captains will not buy Company stock back.")) // SURREALIS-EDIT - ORIGINAL
 			to_chat(user, span_warning("[I] bears an Pharovian Trading Company seal - foreign captains will not buy Company stock back."))
+			// [/SURREALIS-EDIT]
 		return
 	var/datum/component/unsellable/unsellable = GetComponent(/datum/component/unsellable)
 	if(unsellable)

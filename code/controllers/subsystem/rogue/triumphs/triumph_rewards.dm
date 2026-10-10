@@ -8,7 +8,7 @@
 
 /obj/item/reagent_containers/glass/bottle/alchemical/tripot
 	name = "vial of distilled triumphance"
-	desc = "The fruits of your labor, distilled into a sparkling pittance that shimmers with the potentiality of the Scar. Sipping this \
+	desc = "The fruits of your labor, distilled into a sparkling pittance that shimmers with Azurian light. Sipping this \
 	tincture will lightly amplify all of your characteristics for a week's tyme, as long as you down it all in one gulp."
 	list_reagents = list(/datum/reagent/buff/tri = 10)
 
@@ -31,7 +31,7 @@
 
 /atom/movable/screen/alert/status_effect/buff/alch/tripot
 	name = "Triumphance"
-	desc = "My latest triumph has empowered me! I am a true champion of the Scar!"
+	desc = "My latest triumph has empowered me! I am a true champion of Azuria!"
 	icon_state = "triumph"
 
 //
@@ -48,7 +48,7 @@
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/g/triumph
 	name = "ornate inverted psycross"
-	desc = "'Meet your lord, and know your place. Let my ambition never cease, and let my hands be the vessel that rips paradise free from its heavenly grasp. Let Psydonia's carcass not spell the death of Man, but the birth of Gods.'"
+	desc = "'Meet your lord, and know your place. Let progress be my chariot, and let my hands be the vessel that rips paradise free from its heavenly grasp. Let Psydonia's carcass not spell the death of Man, but the birth of Gods.'"
 	sellprice = 66
 
 /obj/item/clothing/neck/roguetown/psicross/astrata/g/triumph
@@ -112,7 +112,7 @@
 
 /obj/item/clothing/ring/signet/triumph
 	name = "ornate signet ring"
-	desc = "A ring of opulent gold, bearing the symbol of an aristocratic household. It seals writs of religious importance - a matter better known to the Inquisition, rather than the Temple or Crown."
+	desc = "A ring of opulent gold, bearing the symbol of an aristocratic household. It seals writs of religious importance - a matter better known to the Inquisition, rather than the Church or Crown."
 	sellprice = 77
 
 /obj/item/clothing/ring/gold/triumph

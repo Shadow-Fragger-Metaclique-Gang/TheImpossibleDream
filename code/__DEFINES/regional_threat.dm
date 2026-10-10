@@ -5,9 +5,14 @@
 #define DANGER_LEVEL_DANGEROUS "Dangerous"
 #define DANGER_LEVEL_BLEAK "Bleak"
 
+// [SURREALIS-EDIT] - LORE
+// #define THREAT_REGION_AZURE_BASIN "Azure Basin" // SURREALIS-EDIT - ORIGINAL
+// #define THREAT_REGION_AZURE_GROVE "Azure Grove" // SURREALIS-EDIT - ORIGINAL
+// #define THREAT_REGION_AZUREAN_COAST "Azurean Coast" // SURREALIS-EDIT - ORIGINAL
 #define THREAT_REGION_AZURE_BASIN "Basin of the Pharos"
 #define THREAT_REGION_AZURE_GROVE "Pharovian Grove"
 #define THREAT_REGION_AZUREAN_COAST "Scarred Coast"
+// [/SURREALIS-EDIT]
 #define THREAT_REGION_MOUNT_DECAP "Mount Decapitation"
 #define THREAT_REGION_TERRORBOG "Terrorbog"
 #define THREAT_REGION_UNDERDARK "Underdark"

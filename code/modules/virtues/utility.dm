@@ -57,8 +57,8 @@
 		NOTABLE_RESIDENCY,
 	)
 	choice_tooltips = list(
-		NOTABLE_RESIDENCY = "I am a Resident of the Pharos, with access to one of its buildings all to myself.",
-		NOTABLE_SHREWD = "Grants Secular Appraise -- a spell that allows you to tell how much wealth someone has on them, and in their Meister."
+		NOTABLE_SHREWD = "I've managed to secure a Meister account and a lump sum within it. Grants Secular Appraise -- a spell that allows you to tell how much wealth someone has on them, and in their Meister.",
+		NOTABLE_RESIDENCY = "I am a Resident of Azure Peak, with access to one of its buildings all to myself.",
 	)
 
 /datum/virtue/utility/notable/apply_to_human(mob/living/carbon/human/recipient)
@@ -107,7 +107,10 @@
 						if(length(possible_chairs))
 							var/obj/structure/chair/chosen_chair = pick(possible_chairs)
 							recipient.forceMove(get_turf(chosen_chair))
+							// [SURREALIS-EDIT] - LORE
+							// to_chat(recipient, span_notice("As a resident of Azure Peak, you find yourself seated at a chair in the local tavern.")) // SURREALIS-EDIT - ORIGINAL
 							to_chat(recipient, span_notice("As a resident of Pharos, you find yourself seated at a chair in the local tavern."))
+							// [/SURREALIS-EDIT]
 						else
 							for(var/area/A in world)
 								if(!istype(A, /area/rogue/indoors/town/tavern))
@@ -118,7 +121,10 @@
 							if(length(possible_spawns))
 								var/turf/spawn_loc = pick(possible_spawns)
 								recipient.forceMove(spawn_loc)
+								// [SURREALIS-EDIT] - LORE
+								// to_chat(recipient, span_notice("As a resident of Azure Peak, you find yourself in the local tavern.")) // SURREALIS-EDIT - ORIGINAL
 								to_chat(recipient, span_notice("As a resident of Pharos, you find yourself in the local tavern."))
+								// [/SURREALIS-EDIT]
 
 #undef NOTABLE_RESIDENCY
 #undef NOTABLE_SHREWD
@@ -439,7 +445,7 @@
 
 /datum/virtue/heretic/zchurch_keyholder
 	name = "Defiled Keyholder"
-	desc = "The Pantheonic and Psydonic have their blood-stained grounds, and so do we. Underneath their noses, we pray to the true gods - I know the location of the local heretic conclave. Secrecy is paramount. If found out, I will surely be killed."
+	desc = "The 'Holy' See has their blood-stained grounds, and so do we. Underneath their noses, we pray to the true gods - I know the location of the local heretic conclave. Secrecy is paramount. If found out, I will surely be killed."
 	ui_fa_icon = "mask"
 	added_traits = list(TRAIT_ZURCH)
 

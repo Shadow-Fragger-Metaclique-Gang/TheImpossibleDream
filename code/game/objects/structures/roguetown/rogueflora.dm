@@ -972,7 +972,7 @@
 	mush_light_power = 3
 	mush_light_color = "#e2e2e2"
 	int_req = 10
-	special_examine = "This mushroom has an identical appearance to a highly murderous mushroom, called the weeping angel, but luckily that one isn't native to Pharos."
+	special_examine = "This mushroom has an identical appearance to a highly murderous mushroom, called the weeping angel, but luckily that one isn't native to Azure."
 	static_debris = null
 	rare_mush_bonus_drop = /obj/item/reagent_containers/food/snacks/rogue/mushroom
 	mush_animate = FALSE

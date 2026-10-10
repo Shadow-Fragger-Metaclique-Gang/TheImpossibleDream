@@ -73,8 +73,15 @@ export const GronnWrit = (props: {
         <i>Be it known unto all who bear arms in {realm}&apos;s defence:</i>
       </p>
       <p style={writParagraph}>
+        {/* [SURREALIS-EDIT] - LORE */}
+        {/* SURREALIS-EDIT - ORIGINAL */}
+        {/*
+        That {subject} hath been seen upon these shores, sworn to the false
+        Four, refusing the holy chrism of the Tens.
+        */}
         That {subject} hath been seen upon these shores, sworn to the false
         Four, refusing the holy chrism of the Gods.
+        {/* [/SURREALIS-EDIT] */}
       </p>
       {crimes.length > 0 && (
         <>
@@ -92,11 +99,21 @@ export const GronnWrit = (props: {
         </>
       )}
       <p style={writParagraph}>
+        {/* [SURREALIS-EDIT] - LORE */}
+        {/* SURREALIS-EDIT - ORIGINAL */}
+        {/*
+        By writ of the {rulerTitle}, and by counsel of the Holy See, let{' '}
+        {subject} be declared <span style={caputLupinum}>ANATHEMA</span>: cut
+        off from the body of the faithful, harboured by no temple, mourned by no
+        priest. Pursue them upon the strand and the cliff; let them not gain the
+        sea before steel finds them.
+        */}
         By writ of the {rulerTitle}, and by counsel of the Temple's priesthood,
         let {subject} be declared <span style={caputLupinum}>ANATHEMA</span>:
         cut off from the body of the faithful, harboured by no temple, mourned
         by no priest. Pursue them upon the strand and the cliff; let them not
         gain the sea before steel finds them.
+        {/* [/SURREALIS-EDIT] */}
       </p>
       <p style={writParagraph}>
         Upon their death the writ shall fall silent and mark itself; return it

@@ -389,7 +389,7 @@
 		)
 
 /datum/crafting_recipe/roguetown/survival/woodtencross
-	name = "wooden amulet of the Pantheon"
+	name = "wooden amulet of Ten"
 	display_category = ITEM_CAT_GARMENT_COMMON
 	category = "Clothes"
 	result = /obj/item/clothing/neck/roguetown/psicross/undivided/wood

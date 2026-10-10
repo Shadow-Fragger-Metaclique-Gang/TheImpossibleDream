@@ -1,6 +1,6 @@
 /datum/advclass/mercenary/desert_rider_almah
 	name = "Desert Rider Almah"
-	tutorial = "You're an Almah - a blade dancer, trained in the arts of spellbladery, an art originating from Raneshan in ancient times. Your people have refined spellbladery into an artform. They call you a bladedancer - for the beautiful, bloody tapestry of magycks and blade you weave out of your foes in battle."
+	tutorial = "You're an Almah - a blade dancer, trained in the arts of spellbladery, an art originating from Azurea in ancient time. Your people have refined spellbladery into an artform. They call you a bladedancer - for the beautiful, bloody tapestry of magycks and blade you weave out of your foes in battle."
 	allowed_sexes = list(MALE, FEMALE)
 
 	outfit = /datum/outfit/job/roguetown/mercenary/desert_rider_almah

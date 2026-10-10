@@ -92,7 +92,7 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 	var/base_name
 	var/sub_name
 	var/psydonic = FALSE
-	var/origin = "Pharos"
+	var/origin = "Azuria"
 	var/origin_default = /datum/virtue/origin/azuria
 	var/max_age = 75
 	var/is_subrace = FALSE

@@ -739,12 +739,13 @@
 				return list("shrink" = 0.4,"sx" = -4,"sy" = -6,"nx" = 5,"ny" = -6,"wx" = 0,"wy" = -6,"ex" = -1,"ey" = -6,"nturn" = 100,"sturn" = 156,"wturn" = 90,"eturn" = 180,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 0)
 
 /obj/item/rogueweapon/estoc/triumph //Alternate variants for the Estoc series.
-	name = " estoc"
+	name = "azurian estoc"
 	icon = 'icons/roguetown/weapons/swords64.dmi'
 	icon_state = "estoc_triumph"
 	desc = "A deviation from the traditional longsword, meant to pierce maille or find the gaps in an \
 	opponent's plate armor. This edgeless blade is almost exclusively half-sworded on foot, or as a lance \
-	from saigaback. Wrapped around the grip is a roll of leather, dyed in stormier hues."
+	from saigaback. Wrapped around the grip is a roll of leather, dyed in Azuria's stormier hues; an unfetterable \
+	connection to the Peak's history."
 	bigboy = TRUE
 
 /obj/item/rogueweapon/sword/long/ap/triumph //Alternate variants for the Estoc series.

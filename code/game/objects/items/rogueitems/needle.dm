@@ -317,7 +317,7 @@
 /obj/item/needle/thorn/cleric
 	name = "clerical needle"
 	icon_state = "lesserneedle"
-	desc = "This iron-tipped needle can stem the flow of nastier wounds; a blessing, when one is delivered a grave blow while far away from the Temple."
+	desc = "This iron-tipped needle can stem the flow of nastier wounds; a blessing, when one is delivered a grave blow while far away from the Church."
 	stringamt = 10
 	maxstring = 10
 	anvilrepair = null

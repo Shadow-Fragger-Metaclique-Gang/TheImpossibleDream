@@ -465,9 +465,11 @@ export const MigrantPanel = () => {
         <div style={pageStyle}>
           <div style={titleStyle}>Find a Purpose</div>
           <div style={subtitleStyle}>
-            The mist parts, and travellers find their way to Azure Peak.
+            {/* [SURREALIS-EDIT] - LORE */}
+            {/* The mist parts, and travellers find their way to Azure Peak. SURREALIS-EDIT - ORIGINAL */}
             The mist parts, and travellers find their way to the realm around
             The Scar.
+            {/* [/SURREALIS-EDIT] */}
           </div>
 
           <div

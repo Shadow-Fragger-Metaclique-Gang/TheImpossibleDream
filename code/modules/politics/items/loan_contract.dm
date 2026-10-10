@@ -57,7 +57,10 @@
 		to_chat(user, span_warning("I have no Meister account to receive these funds. I must open one first."))
 		return
 	if(source_fund_id == "church" && (user.job in GLOB.church_positions))
+		// [SURREALIS-EDIT] - LORE
+		// to_chat(user, span_warning("The Church prohibits usury to its own. Eora's coin is for the poor and the downtrodden, not the faithful.")) // SURREALIS-EDIT - ORIGINAL
 		to_chat(user, span_warning("The Temple prohibits usury to its own. Eora's coin is for the poor and the downtrodden, not the faithful."))
+		// [/SURREALIS-EDIT]
 		return
 	var/datum/fund/preview_fund = SStreasury.resolve_fund_by_id(source_fund_id)
 	var/preview_label = preview_fund ? SStreasury.indenture_faction_label(preview_fund) : "an unknown lender"
@@ -102,7 +105,7 @@
 
 /obj/item/loan_contract/indenture
 	name = "Writ of Indenture"
-	desc = "A binding indenture between two institutions of Pharos. Only the named target's authorised hand may seal it."
+	desc = "A binding indenture between two institutions of Azuria. Only the named target's authorised hand may seal it."
 	icon_state = "paper_altprep"
 	var/target_fund_id
 

@@ -36,7 +36,10 @@
 
 	var/shown_patreon_level = client.patreonlevel()
 	if(!shown_patreon_level)
+		// [SURREALIS-EDIT] - LORE
+		// shown_patreon_level = "<font color='#41acc7'><b>Azurean Chad</b></font>" // SURREALIS-EDIT - ORIGINAL
 		shown_patreon_level = "<font color='#41acc7'><b>Dreamer</b></font>"
+		// [/SURREALIS-EDIT]
 	switch(shown_patreon_level)
 		if(1)
 			shown_patreon_level = "Silver"

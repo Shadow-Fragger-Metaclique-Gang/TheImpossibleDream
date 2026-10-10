@@ -25,22 +25,42 @@ SUBSYSTEM_DEF(event_scheduler)
 
 	var/fogtime = delayinminutes MINUTES
 	fog_scheduled = TRUE
+	// [SURREALIS-EDIT] - LORE
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	priority_announce("The fog looms over the hills in the distance. The Peaks are hungry tonight.\n\n\
+	- The fog is lethal, do not venture forth without a fog-repelling lamptern. These relics protect those in their light.\n\
+	- Necran clergy may ward off the fog or perform rituals to safeguard entire areas.\n\
+	- Lampterns are not eternal, they must be refilled with blessed, golden-colored oils.",
+	"Azure Peak Weather")
+	*/
 	priority_announce("The fog looms over the hills in the distance. The Scar is bleeding, tonight. \n\n\
 	- The fog is lethal, do not venture forth without a fog-repelling lamptern. These relics protect those in their light.\n\
 	- Necran clergy may ward off the fog or perform rituals to safeguard entire areas.\n\
 	- Lampterns are not eternal, they must be refilled with blessed, golden-colored oils.",
 	"Pharos Weather")
+	// [/SURREALIS-EDIT]
 	addtimer(CALLBACK(src, PROC_REF(delayed_tech_unlock)), 1 MINUTES)
 	fog_timer_id = addtimer(CALLBACK(src, PROC_REF(trigger_fog_event)), fogtime, TIMER_STOPPABLE)
 
 /datum/controller/subsystem/event_scheduler/proc/trigger_fog_event()
 	fog_active = TRUE
 	SSParticleWeather.run_weather(/datum/particle_weather/fog/necra, TRUE)
+	// [SURREALIS-EDIT] - LORE
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	priority_announce("The fog bellows in from over the hills, coating the peaks in ominous hue.\n\n\
+	- The fog is lethal; do not venture forth without a fog-repelling lamptern. These relics protect those in their light.\n\
+	- Necran clergy may ward off the fog or perform rituals to safeguard entire areas.\n\
+	- Lampterns are not eternal; they must be refilled with blessed, golden-colored oils.",
+	"Azure Peak Weather")
+	*/
 	priority_announce("The fog bellows in from over the hills, blanketing the land in ominious hues. There are glimpses of glittering colourwithin the shade.\n\n\
 	- The fog is lethal; do not venture forth without a fog-repelling lamptern. These relics protect those in their light.\n\
 	- Necran clergy may ward off the fog or perform rituals to safeguard entire areas.\n\
 	- Lampterns are not eternal; they must be refilled with blessed, golden-colored oils.",
 	"Pharos Weather")
+	// [/SURREALIS-EDIT]
 
 /proc/show_current_datetime()
 	var/dd = text2num(time2text(world.timeofday, "DD"))
@@ -95,7 +115,10 @@ SUBSYSTEM_DEF(event_scheduler)
 	fog_active = FALSE
 	SSParticleWeather.stopWeather()
 	SEND_SIGNAL(src, COMSIG_FOG_END)
+	// [SURREALIS-EDIT] - LORE
+	// priority_announce("The fog dissipates as quickly as it arrived. The sun returns.", "Azure Peak Weather") // SURREALIS-EDIT - ORIGINAL
 	priority_announce("The fog dissipates as quickly as it arrived. The sun returns.", "Pharos Weather")
+	// [/SURREALIS-EDIT]
 
 /datum/controller/subsystem/event_scheduler/ui_interact(mob/user)
 	var/dat = "<html><head><style>"

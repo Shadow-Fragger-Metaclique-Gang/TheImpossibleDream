@@ -10,8 +10,8 @@
 
 /datum/merchant_catalog/rosawood
 	id = "rosawood"
-	name = "Azurian Arsenal"
-	desc = "The private arsenal of the Court of the Peaks, producing the finest elven arms in the Midderland - fine steel weapons, bows and the bounty of Eveswood." //TODO: flavor
+	name = "Rosawood Arsenal"
+	desc = "The private arsenal of the Count of Rosawood, producing the finest elven arms in Azuria - fine steel weapons, bows and the bounty of Eveswood." //TODO: flavor
 	favor_cost = ROSAWOOD_ARSENAL_FAVOR
 	home_origin_name = "Azuria"
 	home_realm_id = REALM_AZURIA

@@ -1,6 +1,6 @@
 // Azure Coast - the northern part of the map - may not be actually coast
 /area/rogue/outdoors/beach/forest
-	name = "Scarred Coast"
+	name = "Azure Coast"
 	loot_budget = LOOT_BUDGET_AZURE_COAST
 	loot_pool_key = "azure_coast"
 	icon_state = "beach"
@@ -32,7 +32,7 @@
 				/mob/living/carbon/human/species/hobgoblin/npc/ambush = 12,
 				/mob/living/carbon/human/species/goblin/npc/archer/sea = 10,
 				/datum/npc_warband/huscarl_raiding_party = 4)
-	first_time_text = "THE SCARRED COAST"
+	first_time_text = "THE AZURE COAST"
 	converted_type = /area/rogue/indoors/shelter/woods
 	deathsight_message = "somewhere betwixt Abyssor's realm and Dendor's bounty"
 	threat_region = THREAT_REGION_AZUREAN_COAST
@@ -40,7 +40,7 @@
 	area_sniff_message = "You smell deadite animals."
 
 /area/rogue/outdoors/beach/forest/hamlet
-	name = "The Scarred Coast - Hamlet"
+	name = "The Azure Coast - Hamlet"
 	first_time_text = "THE HAMLET"
 	ambush_mobs = null // We don't want actual ambushes in Hamlet but we also don't want to misuse outdoors/beach lol
 	threat_region = THREAT_REGION_AZUREAN_COAST
@@ -48,11 +48,11 @@
 	area_sniff_message = "You smell deadites and the sea."
 
 /area/rogue/outdoors/beach/forest/north
-	name = "The Scarred Coast - North"
+	name = "The Azure Coast - North"
 	threat_region = THREAT_REGION_AZUREAN_COAST
 
 /area/rogue/outdoors/beach/forest/south
-	name = "The Scarred Coast - South"
+	name = "The Azure Coast - South"
 	threat_region = THREAT_REGION_AZUREAN_COAST
 
 /area/rogue/under/cave/dukecourt

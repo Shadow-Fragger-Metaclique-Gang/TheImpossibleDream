@@ -13,7 +13,10 @@ GLOBAL_LIST_INIT(mockery_insults, list(
 	"Even your shadow is embarrassed by you!",
 	"You swing like a tavern drunk on his last ale!",
 	"Your mother was a Rous, and your father smelled of jacksberries!",
+	// [SURREALIS-EDIT] - LORE
+	// "What are you going to do for a face when the Archdevil wants his arse back?!", // SURREALIS-EDIT - ORIGINAL
 	"What are you going to do for a face when the Darkstar wants his arse back?!",
+	// [/SURREALIS-EDIT]
 	"You may need a smith - for you seem ill-equipped for a battle of wits!",
 	"How much sparring did it take to become this awful?!",
 	"Need you borrow mine spectacles? Come get them!",

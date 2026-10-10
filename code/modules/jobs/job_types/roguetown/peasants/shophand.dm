@@ -12,7 +12,7 @@
 	allowed_ages = list(AGE_ADULT)
 	is_quest_giver = TRUE
 
-	tutorial = "You are a shophand, hired by the Pharovian Trading Company to work one of their many storefronts around town. Your duties are simple: keep the shelves stocked, keep the customers happy, and try not to get sacked. It is not glamorous work, but you serve under the Factor of Pharos - second only to the Grand Factor themselves. Keep your eyes on the ledgers, learn what you can, and one day you may rise to Factor yourself. Then the mammons shall flow - into your pouch."
+	tutorial = "You are a shophand, hired by the Azurian Trading Company to work one of their many storefronts around town. Your duties are simple: keep the shelves stocked, keep the customers happy, and try not to get sacked. It is not glamorous work, but you serve under the Factor of Azure Peak - second only to the Grand Factor themselves. Keep your eyes on the ledgers, learn what you can, and one day you may rise to Factor yourself. Then the mammons shall flow - into your pouch."
 
 	outfit = /datum/outfit/job/roguetown/shophand
 	display_order = JDO_SHOPHAND
@@ -33,7 +33,7 @@
 
 /datum/advclass/shophand
 	name = "Shophand"
-	tutorial = "You are a shophand, hired by the Pharovian Trading Company to work one of their many storefronts around town. Your duties are simple: keep the shelves stocked, keep the customers happy, and try not to get sacked. It is not glamorous work, but you serve under the Factor of Pharos - second only to the Grand Factor themselves. Keep your eyes on the ledgers, learn what you can, and one day you may rise to Factor yourself. Then the mammons shall flow - into your pouch."
+	tutorial = "You are a shophand, hired by the Azurian Trading Company to work one of their many storefronts around town. Your duties are simple: keep the shelves stocked, keep the customers happy, and try not to get sacked. It is not glamorous work, but you serve under the Factor of Azure Peak - second only to the Grand Factor themselves. Keep your eyes on the ledgers, learn what you can, and one day you may rise to Factor yourself. Then the mammons shall flow - into your pouch."
 	outfit = /datum/outfit/job/roguetown/shophand/basic
 	category_tags = list(CTAG_SHOPHAND)
 	subclass_stats = list(

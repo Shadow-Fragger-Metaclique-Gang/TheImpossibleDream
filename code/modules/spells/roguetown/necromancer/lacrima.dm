@@ -101,13 +101,19 @@
 	user.visible_message(span_alert("[user] tears a glob of pulsating Lux from [target]'s heart!"))
 
 	if(HAS_TRAIT(target, TRAIT_PSYDONITE) || HAS_TRAIT(target, TRAIT_INQUISITION))
+		// [SURREALIS-EDIT] - LORE
+		// to_chat(target, span_purple("<b>You hear a vicious giggle echoing through your mind. The Dame of Progress is pleased.</b>")) // SURREALIS-EDIT - ORIGINAL
 		to_chat(target, span_purple("<b>You hear a vicious giggle echoing through your mind. The Demiurge is pleased.</b>"))
+		// [/SURREALIS-EDIT]
 		target.add_stress(/datum/stressevent/torn_lux_psydonite)
 		owner.add_stress(/datum/stressevent/dame_favor)
 		owner.playsound_local(owner, 'sound/misc/zizo.ogg', 25, FALSE)
 
 	else if(HAS_TRAIT(target, TRAIT_NOBLE) || HAS_TRAIT(target, TRAIT_CLERGY))
+		// [SURREALIS-EDIT] - LORE
+		// to_chat(target, span_purple("<b>You hear a vicious giggle echoing through your mind. The Dame of Progress is pleased.</b>")) // SURREALIS-EDIT - ORIGINAL
 		to_chat(target, span_purple("<b>You hear a vicious giggle echoing through your mind. The Demiurge is pleased.</b>"))
+		// [/SURREALIS-EDIT]
 		target.add_stress(/datum/stressevent/torn_lux_devout)
 		owner.add_stress(/datum/stressevent/dame_favor)
 		owner.playsound_local(owner, 'sound/misc/zizo.ogg', 25, FALSE)

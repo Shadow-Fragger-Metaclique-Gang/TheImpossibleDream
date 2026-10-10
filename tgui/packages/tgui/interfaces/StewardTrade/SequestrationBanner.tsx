@@ -41,11 +41,21 @@ export const SequestrationBanner = (props: {
         SEQUESTRATION DECLARED
       </div>
       <div style={{ fontVariant: 'normal' }}>
+        {/* [SURREALIS-EDIT] - LORE */}
+        {/* SURREALIS-EDIT - ORIGINAL */}
+        {/*
+        Following the Crown&apos;s default, the Azurian Trading Company holds
+        the sequestered revenues of the realm and farms the customs and salt
+        tolls in perpetuity until the {sequestration.debt}m debt is repaid.
+        Trade controls and stockpile pricing stand locked. Petitions, taxation,
+        and the lash of fines remain.
+        */}
         Following the Crown&apos;s default, the Pharovian Trading Company holds
         the sequestered revenues of the realm and farms the customs and salt
         tolls in perpetuity until the {sequestration.debt}m debt is repaid.
         Trade controls and stockpile pricing stand locked. Petitions, taxation,
         and the lash of fines remain.
+        {/* [/SURREALIS-EDIT] */}
       </div>
     </div>
   );

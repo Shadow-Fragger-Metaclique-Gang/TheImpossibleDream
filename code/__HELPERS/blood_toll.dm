@@ -14,6 +14,19 @@
 /proc/blood_toll_score_grade(per_capita)
 	if(per_capita < BLOOD_TOLL_THRESHOLD_D)
 		return list("grade" = "F", "copy" = "NOTHING EVER HAPPENS", "color" = "#7a7a7a")
+	// [SURREALIS-EDIT] - LORE
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	if(per_capita < BLOOD_TOLL_THRESHOLD_C)
+		return list("grade" = "D", "copy" = "AZURIA HAS FALLEN", "color" = "#bd1717")
+	if(per_capita < BLOOD_TOLL_THRESHOLD_B)
+		return list("grade" = "C", "copy" = "AZURIA STUMBLES", "color" = "#c87a3a")
+	if(per_capita < BLOOD_TOLL_THRESHOLD_A)
+		return list("grade" = "B", "copy" = "AZURIA STANDS FAST", "color" = "#c4b454")
+	if(per_capita < BLOOD_TOLL_THRESHOLD_S)
+		return list("grade" = "A", "copy" = "AZURIA TRIUMPHS", "color" = "#7ec46a")
+	return list("grade" = "S", "copy" = "AZURIA CAME, SAW AND CONQUERED", "color" = "#e6c060")
+	*/
 	if(per_capita < BLOOD_TOLL_THRESHOLD_C)
 		return list("grade" = "D", "copy" = "PHAROS HAS FALLEN", "color" = "#bd1717")
 	if(per_capita < BLOOD_TOLL_THRESHOLD_B)
@@ -23,6 +36,7 @@
 	if(per_capita < BLOOD_TOLL_THRESHOLD_S)
 		return list("grade" = "A", "copy" = "PHAROS TRIUMPHS", "color" = "#7ec46a")
 	return list("grade" = "S", "copy" = "PHAROS CAME, SAW AND CONQUERED", "color" = "#e6c060")
+	// [/SURREALIS-EDIT]
 
 /proc/render_blood_toll_chronicle()
 	var/list/data = list()

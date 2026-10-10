@@ -1,5 +1,5 @@
 /datum/food_recipe/peppersteak_ducal
-	name = "noble peppersteak"
+	name = "ducal peppersteak"
 	base_item = /obj/item/reagent_containers/food/snacks/rogue/peppersteak
 	ingredients = list(
 		/obj/item/reagent_containers/food/snacks/grown/garlick/rogue
@@ -136,7 +136,7 @@
 
 // Spiced Baked Poultry + Garlick -> Ducal Bird-Roast
 /datum/food_recipe/ducal_birdroast
-	name = "noble bird-roast"
+	name = "ducal bird-roast"
 	base_item = /obj/item/reagent_containers/food/snacks/rogue/meat/poultry/baked/spiced
 	ingredients = list(
 		/obj/item/reagent_containers/food/snacks/grown/garlick/rogue

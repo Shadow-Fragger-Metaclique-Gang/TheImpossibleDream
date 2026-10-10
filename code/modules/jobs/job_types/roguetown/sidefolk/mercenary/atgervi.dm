@@ -1,6 +1,6 @@
 /datum/advclass/mercenary/atgervi
 	name = "Atgervi"
-	tutorial = "You are a Varangian of the Gronn Highlands. Warrior-Traders most known for their exploits into the Zybantine Empire, which will be forever remembered by historians."
+	tutorial = "You are a Varangian of the Gronn Highlands. Warrior-Traders most known for their exploits into the Raneshen Empire, which will be forever remembered by historians."
 	allowed_sexes = list(MALE, FEMALE)
 
 	outfit = /datum/outfit/job/roguetown/mercenary/atgervi
@@ -38,7 +38,10 @@
 
 /datum/outfit/job/roguetown/mercenary/atgervi/pre_equip(mob/living/carbon/human/H)
 	..()
+	// [SURREALIS-EDIT] - LORE
+	// to_chat(H, span_warning("You are a Varangian of the Gronn Highlands. Warrior-Traders whose exploits into the Raneshen Empire will be forever remembered by historians.")) // SURREALIS-EDIT - ORIGINAL
 	to_chat(H, span_warning("You are a Varangian of the Gronn Highlands. Warrior-Traders whose exploits into the Zybantine Empire will be forever remembered by historians."))
+	// [/SURREALIS-EDIT]
 	head = /obj/item/clothing/head/roguetown/helmet/bascinet/atgervi
 	gloves = /obj/item/clothing/gloves/roguetown/angle/atgervi
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/atgervi
@@ -78,7 +81,7 @@
 
 /datum/advclass/mercenary/atgervi_shaman
 	name = "Atgervi Shaman"
-	tutorial = "You are a Shaman of the Fjall, The Northern Empty. Shamans are savage combatants who commune with the Divine through ritualistic violence, rather than idle prayer."
+	tutorial = "You are a Shaman of the Fjall, The Northern Empty. Shamans are savage combatants who commune with the Ecclesical Beast Gods through ritualistic violence, rather than idle prayer."
 	allowed_sexes = list(MALE, FEMALE)
 
 	outfit = /datum/outfit/job/roguetown/mercenary/atgervi_shaman
@@ -113,7 +116,10 @@
 /datum/outfit/job/roguetown/mercenary/atgervi_shaman/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.set_blindness(0)
+	// [SURREALIS-EDIT] - LORE
+	// to_chat(H, span_warning("You are a Shaman of the Fjall, The Northern Empty. Shamans are savage combatants who commune with the Ecclesical Beast gods through ritualistic violence, rather than idle prayer.")) // SURREALIS-EDIT - ORIGINAL
 	to_chat(H, span_warning("You are a Shaman of the Fjall, The Northern Empty. Shamans are savage combatants who commune with the Divine through ritualistic violence, rather than idle prayer."))
+	// [/SURREALIS-EDIT]
 	H.dna.species.soundpack_m = GLOB.voice_packs[/datum/voicepack/male/warrior]
 
 	head = /obj/item/clothing/head/roguetown/helmet/leather/shaman_hood
@@ -275,7 +281,7 @@
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/gronn
 	name = "carved talisman" //plotting talisman
-	desc = "'The hunt, the studying of your prey, the learning of its routes, the knowledge our ancestors passed down, the empowerment of your people and yourself. Learn of the world, or fade away.'	</br>	</br>The Plotting Wolf embodies the virtues of cunning, cruelty, and knowledge, so that no obstacle nor threat to the homeland remains insurmountable. To understand the truths of beast-and-bronze is to lighten the future's hardships. Do not humor magicka, however, for playing with fire shall always end in someone being burned."
+	desc = "'The hunt, the studying of your prey, the learning of its routes, the knowledge our ancestors passed down, the empowerment of your people and yourself. Learn of the world, or fade away.'	</br>	</br>The Plotting Wolf embodies the virtues of progress and knowledge, so that no obstacle nor threat to the homeland remains insurmountable. To understand the truths of beast-and-bronze is to lighten the future's hardships. Do not humor magicka, however, for playing with fire shall always end in someone being burned."
 	icon_state = "gronnzizo"
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/gronn/get_examine_highlight_status()

@@ -1,7 +1,7 @@
 /datum/patron/inhumen/zizo
 	name = "Zizo"
-	domain = "Ambition, Undeath, Hubris, Artifice, Left Hand Magicks"
-	desc = "A once-mortal, made Divine - and bringer of the Shattering. Her hubris in thinking she could harvest lux from the planet itself led to the elimination of her entire race. Her works are still used to this dae in some cases."
+	domain = "Progress, Undeath, Hubris, Artifice, Left Hand Magicks"
+	desc = "A once-mortal snow elf turned goddess. Her hubris in thinking she could harvest lux from the planet itself led to the elimination of her entire race. Her works are still used to this dae in some cases."
 	worshippers = "Necromancers, Researchers, Wizards, Warlocks and the Undead"
 	mob_traits = list(TRAIT_CABAL, TRAIT_ZIZOSIGHT)
 	miracles = list(/datum/action/cooldown/spell/touch/orison							= CLERIC_ORI,
@@ -21,18 +21,17 @@
 	confess_lines = list(
 		"PRAISE ZIZO!",
 		"ZIZO GRANTS ME TRUTH!",
-		"ZIZO, SHATTER THIS WORLD!",
+		"ZIZO BRINGS PROGRESS!",
 	)
 	storyteller = /datum/storyteller/zizo
 
 	titles = list(
-		"Demiurge",
-		"Bearer of Ambition",
-		"Regent of Ambition",
-		"Queen of Secrets",
+		"Dame of Progress",
+		"Lady of Progress",
+		"Lady of Secrets",
+		"Dame of Secrets",
 		"Lady of Bones",
-		"Godslayer",
-		"Anathema Anatheme",
+		"Dame of Bones",
 		"Arch Lych",
 		"Archlych", // sometimes this is one word instead of two
 		"Archlich",

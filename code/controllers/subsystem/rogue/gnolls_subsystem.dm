@@ -46,7 +46,10 @@ SUBSYSTEM_DEF(gnoll_scaling)
 
 		for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
 			if(player.client)
+				// [SURREALIS-EDIT] - LORE
+				// to_chat(player, span_alert("Graggar demands blood, gnolls flock to Azuria.")) // SURREALIS-EDIT - ORIGINAL
 				to_chat(player, span_alert("Graggar demands blood, gnolls flock to the Scar."))
+				// [/SURREALIS-EDIT]
 
 /datum/controller/subsystem/gnoll_scaling/proc/get_gnoll_scaling()
 	if(gnoll_scaling_mode != 0)

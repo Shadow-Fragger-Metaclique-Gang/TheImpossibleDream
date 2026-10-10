@@ -43,7 +43,10 @@
 	var/client/player = H?.client
 	if(player.prefs)
 		if(!istype(player.prefs.virtue_origin, /datum/virtue/origin/azuria) && !istype(player.prefs.virtue_origin, /datum/virtue/origin/grenzelhoft) && !istype(player.prefs.virtue_origin, /datum/virtue/origin/otava) && !istype(player.prefs.virtue_origin, /datum/virtue/origin/etrusca))
+			// [SURREALIS-EDIT] - LORE
+			// var/list/new_origins = list("Azuria" = /datum/virtue/origin/azuria, // SURREALIS-EDIT - ORIGINAL
 			var/list/new_origins = list("Pharos" = /datum/virtue/origin/azuria,
+			// [/SURREALIS-EDIT]
 			"Grenzelhoft" = /datum/virtue/origin/grenzelhoft,
 			"Otava" = /datum/virtue/origin/otava,
 			"Etrusca" = /datum/virtue/origin/etrusca)

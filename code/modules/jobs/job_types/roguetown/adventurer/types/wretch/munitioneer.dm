@@ -47,7 +47,10 @@
 		"Stashed Funds" = /obj/item/roguecoin/silver/pile/munitioneerpile, //uniquely gets 75 vs 50 starting funds
 	)
 /datum/outfit/job/roguetown/wretch/munitioneer/pre_equip(mob/living/carbon/human/H)
+	// [SURREALIS-EDIT] - LORE
+	// to_chat(H, span_warning("You are a passable warrior- though weak- but your true strength lies in your ability to bend the resources of Azuria to your will.")) // SURREALIS-EDIT - ORIGINAL
 	to_chat(H, span_warning("You are a passable warrior- though weak- but your true strength lies in your ability to bend the rich resources of the land beneath the Scar to your will."))
+	// [/SURREALIS-EDIT]
 	has_loadout = TRUE
 	head = /obj/item/clothing/head/roguetown/roguehood/warden/munitioneer
 	mask = /obj/item/clothing/mask/rogue/facemask/steel/paalloy

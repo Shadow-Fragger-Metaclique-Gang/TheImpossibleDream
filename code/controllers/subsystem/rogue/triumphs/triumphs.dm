@@ -295,7 +295,10 @@ SUBSYSTEM_DEF(triumphs)
 // Display leaderboard browser popup
 /datum/controller/subsystem/triumphs/proc/show_triumph_leaderboard(client/C)
 
+	// [SURREALIS-EDIT] - LORE
+	// var/webpagu = "<B>CHAMPIONS OF AZURE</B><br>" // SURREALIS-EDIT - ORIGINAL
 	var/webpagu = "<B>CHAMPIONS OF THE SCAR</B><br>"
+	// [/SURREALIS-EDIT]
 	webpagu += "<hr><br>"
 
 	if(triumph_leaderboard.len)

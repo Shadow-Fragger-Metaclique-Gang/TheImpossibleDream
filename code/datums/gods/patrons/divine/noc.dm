@@ -48,7 +48,10 @@
 	// Allows praying atop ritual chalk of the god.
 	for(var/obj/structure/ritualcircle/noc in view(1, get_turf(follower)))
 		return TRUE
+	// [SURREALIS-EDIT] - LORE
+	// to_chat(follower, span_danger("For Noc to hear my prayer I must either be in his blessed moonlight, within the church, or near a psycross.")) // SURREALIS-EDIT - ORIGINAL
 	to_chat(follower, span_danger("For Noc to hear my prayer I must either be in his blessed moonlight, within the temple, or near a psycross."))
+	// [/SURREALIS-EDIT]
 	return FALSE
 
 /datum/patron/divine/noc/on_lesser_heal(

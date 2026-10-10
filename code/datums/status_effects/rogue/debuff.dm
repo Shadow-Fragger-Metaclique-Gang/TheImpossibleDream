@@ -754,7 +754,7 @@
 
 /atom/movable/screen/alert/status_effect/debuff/excomm
 	name = "Excommunicated!"
-	desc = "The Gods have forsaken me!"
+	desc = "The Ten have forsaken me!"
 	icon_state = "excommunication"
 
 /datum/status_effect/debuff/apostasy
@@ -811,7 +811,10 @@
 			D.passive_devotion_gain = original_passive_devotion_gain
 			D.passive_progression_gain = original_passive_progression_gain
 
+		// [SURREALIS-EDIT] - LORE
+		// to_chat(H, span_boldnotice("I have been welcomed back to the Church. I am now able to gain devotion again.")) // SURREALIS-EDIT - ORIGINAL
 		to_chat(H, span_boldnotice("I have been welcomed back to the faith. I am now able to gain devotion again."))
+		// [/SURREALIS-EDIT]
 
 /atom/movable/screen/alert/status_effect/debuff/apostasy
 	name = "Apostasy!"

@@ -258,7 +258,7 @@
 	cuisine = CUISINE_NORTH_IMPERIAL|CUISINE_SOUTH_IMPERIAL
 	dish_type = DISH_BREAD
 	name = "marmaladed bun"
-	desc = "A delicious treat to bring along for those long-and-lonesome hikes through the Pharovian forests; doubly-so, if you happen to be a tallow-coated wildkin of the urisine variety."
+	desc = "A delicious treat to bring along for those long-and-lonesome hikes through the Azurian forests; doubly-so, if you happen to be a tallow-coated wildkin of the urisine variety."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	tastes = list("sweet-tarty jamminess" = 1, "a lavish break from the dae's woes" = 1)
 	icon_state = "bun_marmalade"
@@ -288,8 +288,8 @@
 
 // Undivided variant
 /obj/item/reagent_containers/food/snacks/rogue/foodbase/decabun_raw
-	name = "raw pentabun"
-	desc = "A piece of raw dough with the shape of the Pantheonic wheel pressed onto it."
+	name = "raw decabun"
+	desc = "A piece of raw dough with the shape of the Undivided cross pressed onto it."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "decabun_raw"
 	cooked_type = /obj/item/reagent_containers/food/snacks/rogue/decabun
@@ -401,8 +401,8 @@
 /obj/item/reagent_containers/food/snacks/rogue/decabun
 	cuisine = CUISINE_NORTH_IMPERIAL|CUISINE_SOUTH_IMPERIAL
 	dish_type = DISH_BREAD
-	name = "pentabun"
-	desc = "A bun bearing the symbol of the Pentacle, undivided and ever whole. The only thing to possibly seperate them would be a \
+	name = "decabun"
+	desc = "A bun bearing the symbol of the Ten, undivided and ever whole. The only thing to possibly seperate them would be a \
 	helping of jam or marmalade."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "decabun"
@@ -653,7 +653,7 @@
 	cuisine = CUISINE_SOUTH_IMPERIAL|CUISINE_ETRUSCAN
 	dish_type = DISH_BREAD|DISH_PIE
 	name = "tomatoplate"
-	desc = "A culinary delight from Etrusca's shores, purported to've originated from an inflow of Etruscan refugees from long ago. The \
+	desc = "A culinary delight from Azuria's shores, purported to've originated from an inflow of Etruscan refugees from long ago. The \
 	richness of the flatbread's sauced tomatoes is perfectly complemented by its cheesey blanket; all it's missing is a cold pint of \
 	ale and an ongoing game of lampternball to jeer at."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
@@ -694,7 +694,7 @@
 	cuisine = CUISINE_SOUTH_IMPERIAL|CUISINE_ETRUSCAN
 	dish_type = DISH_BREAD|DISH_PIE
 	name = "sausaged tomatoplate"
-	desc = "A culinary delight from Etrusca's shores, purported to've originated from an inflow of Etruscan refugees from long ago. The \
+	desc = "A culinary delight from Azuria's shores, purported to've originated from an inflow of Etruscan refugees from long ago. The \
 	richness of the flatbread's sauced tomatoes is perfectly complemented by its cheesey blanket and crispy sasuages; all it's missing \
 	is a cold pint of ale and an ongoing game of lampternball to jeer at."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
@@ -735,7 +735,7 @@
 	cuisine = CUISINE_SOUTH_IMPERIAL|CUISINE_ETRUSCAN
 	dish_type = DISH_BREAD|DISH_PIE
 	name = "fished tomatoplate"
-	desc = "A culinary delight from Etrusca's shores, purported to've originated from an inflow of Etruscan refugees from long ago. The \
+	desc = "A culinary delight from Azuria's shores, purported to've originated from an inflow of Etruscan refugees from long ago. The \
 	richness of the flatbread's sauced tomatoes is perfectly complemented by its cheesey blanket and oily fishes; all it's missing \
 	is a cold pint of ale and an ongoing game of lampternball to jeer at."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
@@ -776,7 +776,7 @@
 	cuisine = CUISINE_SOUTH_IMPERIAL|CUISINE_ETRUSCAN
 	dish_type = DISH_BREAD|DISH_PIE
 	name = "onioned tomatoplate"
-	desc = "A culinary delight from Etrusca's shores, purported to've originated from an inflow of Etruscan refugees from long ago. The \
+	desc = "A culinary delight from Azuria's shores, purported to've originated from an inflow of Etruscan refugees from long ago. The \
 	richness of the flatbread's sauced tomatoes is perfectly complemented by its cheesey blanket and crunchy onions; all it's missing \
 	is a cold pint of ale and an ongoing game of lampternball to jeer at."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
@@ -817,7 +817,7 @@
 	cuisine = CUISINE_SOUTH_IMPERIAL|CUISINE_ETRUSCAN
 	dish_type = DISH_BREAD|DISH_PIE
 	name = "truffled tomatoplate"
-	desc = "A culinary delight from Etrusca's shores, purported to've originated from an inflow of Etruscan refugees from long ago. The \
+	desc = "A culinary delight from Azuria's shores, purported to've originated from an inflow of Etruscan refugees from long ago. The \
 	richness of the flatbread's sauced tomatoes is perfectly complemented by its cheesey blanket and decadant truffles; all it's missing \
 	is a cold pint of ale and an ongoing game of lampternball to jeer at."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
@@ -858,7 +858,7 @@
 	cuisine = CUISINE_SOUTH_IMPERIAL|CUISINE_ETRUSCAN
 	dish_type = DISH_BREAD|DISH_PIE
 	name = "truffled tomatoplate" //Like jackberried treats, this is a poisoned variant! For those who don't properly source their truffles.. or simply want to poison others!
-	desc = "A culinary delight from Etrusca's shores, purported to've originated from an inflow of Etruscan refugees from long ago. The \
+	desc = "A culinary delight from Azuria's shores, purported to've originated from an inflow of Etruscan refugees from long ago. The \
 	richness of the flatbread's sauced tomatoes is perfectly complemented by its cheesey blanket and decadant truffles; all it's missing \
 	is a cold pint of ale and an ongoing game of lampternball to jeer at."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
@@ -899,7 +899,7 @@
 	cuisine = CUISINE_SOUTH_IMPERIAL|CUISINE_ETRUSCAN
 	dish_type = DISH_BREAD|DISH_PIE
 	name = "pearacotta tomatoplate"
-	desc = "A curious spin on an Etruscan classic, attributed to the hands of Vanderlin's most esteemed culinarians. The \
+	desc = "A curious spin on an Azurian classic, attributed to the hands of Vanderlin's most esteemed culinarians. The \
 	richness of the flatbread's sauced tomatoes is perfectly complemented by its cheesey blanket and sweet pears; a melody of flavors \
 	that has helped to embolden the creativity of Psydonia's artists for centuries-hence, and - hopefully - centuries-more."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
@@ -1027,7 +1027,7 @@
 	dish_type = DISH_NOODLES
 	cuisine = CUISINE_SOUTH_IMPERIAL
 	name = "pesto lasagna"
-	desc = "Pasta sheets elegantly stacked with pesto neatly spread between. It's taste can only be described as 'zig-like', the rocknut in the pesto seeming to boil from the heat. This version is even more loved by Pharovian nobles, though visiting Montecarinan signoria-bloods are known occasionally to be offended at the taste."
+	desc = "Pasta sheets elegantly stacked with pesto neatly spread between. It's taste can only be described as 'zig-like', the rocknut in the pesto seeming to boil from the heat. This version is even more loved by Azurian nobles, though visiting Montecarinan signoria-bloods are known occasionally to be offended at the taste."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_pasta.dmi'
 	icon_state = "lasagna_pesto"
 	faretype = FARE_LAVISH
@@ -1210,7 +1210,7 @@
 	cuisine = CUISINE_RANESHENI
 	dish_type = DISH_BREAD
 	name = "challah loaf"
-	desc = "A Nshkormh loaf of bread, made from leavened dough and egg, the communities of Psydonians in the region continued it's usage even during the Sun Dominion's banning of it's creation for it's 'rejection of Astratan butterness'."
+	desc = "A Nshkormh loaf of bread, made from leavened dough and egg, the communities of Psydonites in the region continued it's usage even during the Sun Dominion's banning of it's creation for it's 'rejection of Astratan butterness'."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_baked.dmi'
 	icon_state = "challah4"
 	slices_num = 4

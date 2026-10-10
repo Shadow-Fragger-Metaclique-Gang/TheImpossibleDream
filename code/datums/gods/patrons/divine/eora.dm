@@ -56,7 +56,10 @@
 	// Allows player to pray while wearing eoran bud.
 	if(HAS_TRAIT(follower, TRAIT_PACIFISM))
 		return TRUE
+	// [SURREALIS-EDIT] - LORE
+	// to_chat(follower, span_danger("For Eora to hear my prayer I must either pray within the church, near a psycross, offering her poppy flowers, or wearing one of her blessed flowers atop my head..")) // SURREALIS-EDIT - ORIGINAL
 	to_chat(follower, span_danger("For Eora to hear my prayer I must either pray within the temple, near a psycross, offering her poppy flowers, or wearing one of her blessed flowers atop my head.."))
+	// [/SURREALIS-EDIT]
 	return FALSE
 
 /datum/patron/divine/eora/on_lesser_heal(

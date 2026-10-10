@@ -39,6 +39,19 @@
 		user.remove_stress(/datum/stressevent/blessed_weapon)
 
 /datum/component/silverbless/proc/on_examine(datum/source, mob/user, list/examine_list)
+	// [SURREALIS-EDIT] - LORE
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	if(!is_blessed)
+		if(silver_type & SILVER_PSYDONIAN)
+			examine_list += span_info("<font color = '#cfa446'>This object may be blessed by the lingering shard of COMET SYON.</font>")
+		else if(silver_type & SILVER_TENNITE)
+			examine_list += span_info("<font color = '#cfa446'>This object may be blessed by a bishop.</font>")
+	if(is_blessed == BLESSING_PSYDONIAN)
+		examine_list += span_info("<font color = '#46bacf'>This object has been blessed by COMET SYON.</font>")
+	else if(is_blessed == BLESSING_TENNITE)
+		examine_list += span_info("<font color = '#46bacf'>This object has been blessed by THE TEN.</font>")
+	*/
 	if(!is_blessed)
 		if(silver_type & SILVER_PSYDONIAN)
 			examine_list += span_info("<font color = '#cfa446'>This object may be blessed by the lingering shard of THE SHATTERING.</font>")
@@ -48,6 +61,7 @@
 		examine_list += span_info("<font color = '#46bacf'>This object has been blessed by THE SHATTERING.</font>")
 	else if(is_blessed == BLESSING_TENNITE)
 		examine_list += span_info("<font color = '#46bacf'>This object has been blessed by THE PENTACLE.</font>")
+	// [/SURREALIS-EDIT]
 
 /datum/component/silverbless/proc/try_bless(blessing_type)
 	if(!is_blessed)
@@ -62,7 +76,10 @@
 		var/obj/item/I = parent
 		playsound(I, 'sound/magic/holyshield.ogg', 100)
 		if(silver_type == SILVER_PSYDONIAN) //Courtesy of @UntoldTactics, from PR #1354 on Scarlet Reach.
+			// [SURREALIS-EDIT] - LORE
+			// I.visible_message(span_notice("[I] glistens with power as dust of COMET SYON lands upon it!")) // SURREALIS-EDIT - ORIGINAL
 			I.visible_message(span_notice("[I] glistens with power as effervescence of PSYDON's possibilities drifts across it!"))
+			// [/SURREALIS-EDIT]
 		else
 			I.visible_message(span_notice("[I] glistens with power as a divine blessing is infused within!"))
 

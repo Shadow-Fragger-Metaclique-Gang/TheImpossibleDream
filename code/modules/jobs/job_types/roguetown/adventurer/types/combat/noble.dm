@@ -1,6 +1,6 @@
 /datum/advclass/noble
 	name = "Aristocrat"
-	tutorial = "You are a traveling noble visiting the lands of Pharos, upon the Scar. With wealth, come the poor, ready to pilfer you of your hard earned (inherited) coin, so tread lightly unless you want to meet a grisly end."
+	tutorial = "You are a traveling noble visiting the lands of Azure Peak's dutchy. With wealth, come the poor, ready to pilfer you of your hard earned (inherited) coin, so tread lightly unless you want to meet a grizzly end."
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_CONSTRUCT RACES_DESPISED)
 	outfit = /datum/outfit/job/roguetown/adventurer/noble
@@ -41,7 +41,10 @@
 	H.dna.species.soundpack_f = GLOB.voice_packs[/datum/voicepack/female/haughty]
 	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes/gold
 	if(H.mind)
+		// [SURREALIS-EDIT] - LORE
+		// var/clothing = list("Classic - Nowhere Significant", "Azuria", "Grenzelhoft", "Otava", "Aavnr", "Ranesheni", "Gronn", "Etrusca", "Naledi", "Kazengun") // SURREALIS-EDIT - ORIGINAL
 		var/clothing = list("Classic - Nowhere Significant", "Pharos", "Grenzelhoft", "Otava", "Aavnr", "Ranesheni", "Gronn", "Etrusca", "Naledi", "Kazengun")
+		// [/SURREALIS-EDIT]
 		if(is_species(H, /datum/species/elf/dark) || is_species(H, /datum/species/dullahan)) //Species Exclusive Options -> Drow Underdark House
 			clothing += "Underdark" //dullahan are only included for oversights/downstreams where they might be able to roll for this.
 		//if(is_species(H, /datum/species/kobold) || is_species(H, /datum/species/dracon)) //Species Exclusive Options -> Lirvan
@@ -65,7 +68,10 @@
 				beltr = /obj/item/flashlight/flare/torch/lantern
 				id = /obj/item/clothing/ring/silver
 				H.cmode_music = 'sound/music/combat_noble.ogg'
+			// [SURREALIS-EDIT] - LORE
+			// if("Azuria") // SURREALIS-EDIT - ORIGINAL
 			if("Pharos")
+			// [/SURREALIS-EDIT]
 				if(should_wear_masc_clothes(H))
 					shirt = /obj/item/clothing/suit/roguetown/shirt/dress/royal/prince
 					armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/sailor/nightman
@@ -387,7 +393,7 @@
 
 /datum/advclass/noble/knighte
 	name = "Knight Errant"
-	tutorial = "You are a knight from a distant land, a scion of a noble house visiting the Scar for one reason or another."
+	tutorial = "You are a knight from a distant land, a scion of a noble house visiting Azuria for one reason or another."
 	outfit = /datum/outfit/job/roguetown/adventurer/knighte
 	traits_applied = list(TRAIT_NOBLE, TRAIT_HEAVYARMOR, TRAIT_STEELHEARTED)
 	noble_income = 15
@@ -420,7 +426,10 @@
 /datum/outfit/job/roguetown/adventurer/knighte/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
+		// [SURREALIS-EDIT] - LORE
+		// to_chat(H, span_warning("You are a knight from a distant land, a scion of a noble house visiting Azuria for one reason or another.")) // SURREALIS-EDIT - ORIGINAL
 		to_chat(H, span_warning("You are a knight from a distant land, a scion of a noble house visiting Pharos and the Scar for one reason or another."))
+		// [/SURREALIS-EDIT]
 		var/helmets = list(
 			"Pigface Bascinet" = /obj/item/clothing/head/roguetown/helmet/bascinet/pigface,
 			"Guard Helmet"		= /obj/item/clothing/head/roguetown/helmet/heavy/guard,

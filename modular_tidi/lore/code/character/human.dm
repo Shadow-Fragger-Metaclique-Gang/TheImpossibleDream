@@ -1,0 +1,2 @@
+/datum/species
+	origin = "Pharos"

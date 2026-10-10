@@ -25,8 +25,9 @@
 
 /datum/virtue/combat/devotee
 	name = "Devotee"
-	desc = "Though not officially of the clergy, my relationship with my chosen Patron is strong enough to grant me the most minor of their blessings. I've also kept a cross of my deity."
+	desc = "Though not officially of the Church, my relationship with my chosen Patron is strong enough to grant me the most minor of their blessings. I've also kept a psycross of my deity."
 	ui_fa_icon = "person-praying"
+
 	custom_text = "You gain access to T0 miracles of your patron. As a non-combat role you also receive a minor passive devotion gain. If you already have access to Miracles, you get slightly increased passive devotion gain."
 
 	added_skills = list(list(/datum/skill/magic/holy, 1, 6))
@@ -66,7 +67,10 @@
 			ADD_TRAIT(recipient, TRAIT_PSYDONITE, TRAIT_GENERIC)
 			recipient.mind?.special_items["Psycross"] = /obj/item/clothing/neck/roguetown/psicross
 		if(/datum/patron/divine/undivided)
+			// [SURREALIS-EDIT] - LORE
+			// recipient.mind?.special_items["Amulet of the Undivided"] = /obj/item/clothing/neck/roguetown/psicross/undivided // SURREALIS-EDIT - ORIGINAL
 			recipient.mind?.special_items["Amulet of the Pantheon"] = /obj/item/clothing/neck/roguetown/psicross/undivided
+			// [/SURREALIS-EDIT]
 		if(/datum/patron/inhumen/matthios)
 			recipient.mind?.special_items["Amulet of Matthios"] = /obj/item/clothing/neck/roguetown/psicross/inhumen/matthios
 		if(/datum/patron/inhumen/graggar)

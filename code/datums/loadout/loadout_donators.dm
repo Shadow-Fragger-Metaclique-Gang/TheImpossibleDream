@@ -367,15 +367,15 @@
 // --- NALEDI / RANESHEN ---
 
 /datum/loadout_item/donator/universal/regional/naledipontigambeson
-	name = "Gift - Regional, Medjai Outerwear"
+	name = "Gift - Regional, Pontifex Outerwear"
 	path = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/pontifex/loadout
 
 /datum/loadout_item/donator/universal/regional/naledipontishirt
-	name = "Gift - Regional, Medjai Innerwear"
+	name = "Gift - Regional, Pontifex Innerwear"
 	path = /obj/item/clothing/suit/roguetown/shirt/robe/pointfex/loadout
 
 /datum/loadout_item/donator/universal/regional/naledipontipants
-	name = "Gift - Regional, Medjai Pants"
+	name = "Gift - Regional, Pontifex Pants"
 	path = /obj/item/clothing/under/roguetown/trou/leather/pontifex/loadout
 
 /datum/loadout_item/donator/universal/regional/naledihierogambeson
@@ -612,7 +612,7 @@
 	ckeywhitelist = list("ryan180602")
 
 /datum/loadout_item/donator/ryan/psy_helm
-	name = "Donator Kit - Unorthodoxist Psydonian Helm"
+	name = "Donator Kit - Unorthodoxist Psydonite Helm"
 	path = /obj/item/enchantingkit/ryan_psyhelm
 
 /datum/loadout_item/donator/ryan/naginata

@@ -17,7 +17,7 @@
 	while keeping themselves mostly isolated due to the persecution from other mortal races. \
 	Only recently in the past few centuries have sapient Goblins been moving out of their isolated villages and tribes \
 	and seeking their future in civilised society, \
-	despite the discrimination and persecution almost universally across Psydonia. \
+	despite the discrimination and persecution from Church, State, and People almost universally across Psydonia. \
 	Having been formed to be fodder for the War God’s armies, Goblins were blessed with extremely rapid adaptability, \
 	with each generation of Goblins being more adapted to its environment than the last. \
 	Most goblins appear as green skinned, but many tribes have adapted to different environments, \

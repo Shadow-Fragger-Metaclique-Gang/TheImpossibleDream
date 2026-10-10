@@ -13,8 +13,12 @@
 		</div>
 
 		<ul>
+			<!-- \[SURREALIS-EDIT\] - LORE -->
+			<!-- <li><b>The Great Writ of Azuria</b> - Nobility pays no tax and levy, and cannot be fined.</li> SURREALIS-EDIT - ORIGINAL -->
+			<!-- <li><b>The Zenitstadt Concordat</b> - The Church, and any declared benefactors of the Church (Whom the Bishop can grant the status to up to [PATRONAGE_CAP_BENEFACTOR] of), pays no taxation and levy.</li> SURREALIS-EDIT - ORIGINAL -->
 			<li><b>The Great Writ of Pharos</b> - Nobility pays no tax and levy, and cannot be fined.</li>
 			<li><b>The Concordat of Zybantium</b> - The Temple, and any declared benefactors of the Temple (Whom the Pontifex can grant the status to up to [PATRONAGE_CAP_BENEFACTOR] of), pays no taxation and levy.</li>
+			<!-- \[/SURREALIS-EDIT\] -->
 			<li><b>The Otavan Accords</b> - The Inquisition pays no tax and no levy.</li>
 			<li><b>The Golden Bull of Kingsfield</b> - burghers are capped at [GOLDEN_BULL_BURGHER_CAP * 100]% of balance per levy or fine, with a [GOLDEN_BULL_DAILY_FINE_CAP]-mammon ceiling on each fine.</li>
 			<li><b>The Covenant of Noc and Pestra</b> - University members, Apothecary and Head Physician are limited to the lightest poll tax of [NOC_PESTRA_POLL_CAP]m, and a minimum wage from the Crown's payroll.</li>
@@ -99,7 +103,10 @@
 		<div>
 		<p>Patronages let certain roles extend their Charter's protection to other individuals.</p>
 		<ul>
+			<!-- \[SURREALIS-EDIT\] - LORE -->
+			<!-- <li><b>Bishop</b> - The Bishop may declare up to [PATRONAGE_CAP_BENEFACTOR] persons as benefactors of the Church, granting them the same tax and levy exemption as the Church while the Concordat is in force. The Bishop may revoke at will.</li> SURREALIS-EDIT - ORIGINAL -->
 			<li><b>Pontifex</b> - The Pontifex may declare up to [PATRONAGE_CAP_BENEFACTOR] persons as benefactors of the Temple, granting them the same tax and levy exemption as the Temple while the Concordat is in force. The Pontifex may revoke at will.</li>
+			<!-- \[/SURREALIS-EDIT\] -->
 			<li><b>Steward</b> - The Steward may print Letters of Citizenry at the Nerve Master. The bearer gains Golden Bull protections while the Charter is in force. One can be printed every minute.</li>
 		</ul>
 
@@ -108,9 +115,14 @@
 		<h3>Faction Patronage Writs</h3>
 		<p>Three factions print their own patronage writs at their MEISTER's institutional panel. Each writ is a one use item: hand it to someone for them to claim it by using it in hand. Roster slots are limited per faction and prune when an enrolled member dies or is gone.</p>
 		<ul>
+			<!-- \[SURREALIS-EDIT\] - LORE -->
+			<!-- <li><b>Writ of Charter</b> (Merchant, up to [PATRON_CAP_MERCHANT]) - the bearer becomes an Agent of the Azurian Trading Company. They are recognized as a Burgher for tax purposes (Golden Bull cap) and will recognize the Company's debtors. Also confers Residency, so they are treated as a towner for round purposes including the towner contract gate.</li> SURREALIS-EDIT - ORIGINAL -->
+			<!-- <li><b>Token of the Bathhouse</b> (Bathmaster, up to [PATRON_CAP_BATHHOUSE]) - the bearer becomes an Agent of the Bathhouse. They may pass through the secret tunnel and the northeastern coast smugglers will offer them better prices on Black Market sales. They may also will recognize Bathhouse's debtors. Use discretion when granting to outlaws or wretches - the mark of the Bathhouse is visible, and being seen with it on a fugitive may invite Church or Crown reprisal against the Bathmaster.</li> SURREALIS-EDIT - ORIGINAL -->
+			<!-- <li><b>Letter of Benefaction</b> (Bishop / Martyr, up to [PATRON_CAP_CHURCH]) - the bearer becomes a Benefactor of the Church and inherits the Concordat's tax exemption (no direct taxation while the Concordat stands). They may also see the Church's debtors. This is one of the way for the Church main channel to gain lay allies say, in preparation for conflicts.</li> SURREALIS-EDIT - ORIGINAL -->
 			<li><b>Writ of Charter</b> (Merchant, up to [PATRON_CAP_MERCHANT]) - the bearer becomes an Agent of the Pharovian Trading Company. They are recognized as a Burgher for tax purposes (Golden Bull cap) and will recognize the Company's debtors. Also confers Residency, so they are treated as a towner for round purposes including the towner contract gate.</li>
 			<li><b>Token of the Bathhouse</b> (Bathmaster, up to [PATRON_CAP_BATHHOUSE]) - the bearer becomes an Agent of the Bathhouse. They may pass through the secret tunnel and the northeastern coast smugglers will offer them better prices on Black Market sales. They may also will recognize Bathhouse's debtors. Use discretion when granting to outlaws or wretches - the mark of the Bathhouse is visible, and being seen with it on a fugitive may invite the Temple's or Crown reprisal against the Bathmaster.</li>
 			<li><b>Letter of Benefaction</b> (Bishop / Martyr, up to [PATRON_CAP_CHURCH]) - the bearer becomes a Benefactor of the Temple and inherits the Concordat's tax exemption (no direct taxation while the Concordat stands). They may also see the Temple's debtors. This can be one of the Temple's main channels to gain lay allies for certain matters - such as preparation for conflicts.</li>
+			<!-- \[/SURREALIS-EDIT\] -->
 		</ul>
 		</div>
 	"}
@@ -149,7 +161,10 @@
 		<div>
 		<p>Both legal and illegal ways to dodge taxes exist.</p>
 
+		<!-- \[SURREALIS-EDIT\] - LORE -->
+		<!-- <p><b>Legal Evasion</b>: Subjects without a bank account are inherently immune to poll taxes. Avoiding Contract Levy requires membership in a tax-exempt class - nobles, church members, or holders of Church Benefactor status (granted by the Bishop). Note that the Church itself is not expected to adventure without IC reason, so Benefactor status is the practical channel. Tax immunity does not apply to indirect taxes like import tariffs or export duties.</p> SURREALIS-EDIT - ORIGINAL -->
 		<p><b>Legal Evasion</b>: Subjects without a bank account are inherently immune to poll taxes. Avoiding Contract Levy requires membership in a tax-exempt class - nobles, clergy, or holders of Temple Benefactor status (granted by the Bishop). Note that the clergy itself is not expected to adventure without IC reason, so Benefactor status is the practical channel. Tax immunity does not apply to indirect taxes like import tariffs or export duties.</p>
+		<!-- \[/SURREALIS-EDIT\] -->
 
 		<p><b>Illegal Evasion</b>: The Merchant can stop paying taxes by toggling the navigator's tax setting and refusing to pay on Goldface sales. The risk of being caught and penalised by the Crown falls on the Merchant. The machines tally dodged amounts, but only the Shophand and the Merchant themselves can view the exact tally - the Crown can only guess and accuse, with or without proof.</p>
 		</div>
@@ -211,8 +226,12 @@
 		<p>Towner contracts are exempt from both the Contract Levy and the Guild's referral cut.</p>
 
 		<ul>
+			<!-- \[SURREALIS-EDIT\] - LORE -->
+			<!-- <li><b>A Caravan Gone Missing</b> - a smith's wagon was ambushed on the road. The fellowship clears the bandits and the smith recover and opens the strongbox. The fellowship is paid in coins while the smith takes the recovered ingots. Restricted to Azure Grove and the Azurean Coast. Accessible by: Adventurer Blacksmith, Guild Blacksmith, Artificer, Guildmaster.</li> SURREALIS-EDIT - ORIGINAL -->
+			<!-- <li><b>A Miner's Lead</b> - a miner has prospected an elemental-guarded vein. The vein erupts only when the miner arrives. The fellowship is paid in coin and the ore is the miner's by agreement. Restricted to the Azurean Coast and the Underdark. Accessible by: Miner, Architect, Guildmaster.</li> SURREALIS-EDIT - ORIGINAL -->
 			<li><b>A Caravan Gone Missing</b> - a smith's wagon was ambushed on the road. The fellowship clears the bandits and the smith recover and opens the strongbox. The fellowship is paid in coins while the smith takes the recovered ingots. Restricted to Pharovian Grove and the Scarred Coast. Accessible by: Adventurer Blacksmith, Guild Blacksmith, Artificer, Guildmaster.</li>
 			<li><b>A Miner's Lead</b> - a miner has prospected an elemental-guarded vein. The vein erupts only when the miner arrives. The fellowship is paid in coin and the ore is the miner's by agreement. Restricted to the Scarred Coast and the Underdark. Accessible by: Miner, Architect, Guildmaster.</li>
+			<!-- \[/SURREALIS-EDIT\] -->
 		</ul>
 		"}
 
@@ -360,7 +379,10 @@
 /datum/book_entry/treasury_general/zadcote/inner_book_html(mob/user)
 	return {"
 		<div>
+		<!-- \[SURREALIS-EDIT\] - LORE -->
+		<!-- <p>The Zadcote is used to send messages, parcels, and for the nefarious - bottlebombs to linked zadcages. Each Zadcote is bound to a single faction - the Crown, the Azurian Trading Company, or the Bathhouse and accepts orders only from its faction.</p> SURREALIS-EDIT - ORIGINAL -->
 		<p>The Zadcote is used to send messages, parcels, and for the nefarious - bottlebombs to linked zadcages. Each Zadcote is bound to a single faction - the Crown, the Pharovian Trading Company, or the Bathhouse and accepts orders only from its faction.</p>
+		<!-- \[/SURREALIS-EDIT\] -->
 
 		<p>A Zadcage can ride in a pack, on a person, or be set down, and the zad will route to it reliably. Each zadcote spawns with its linked zadcages automatically..</p>
 

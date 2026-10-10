@@ -1,6 +1,6 @@
 /datum/advclass/iconoclast //Support Cleric, Heavy armor, unarmed, miracles.
 	name = "Iconoclast"
-	tutorial = "Trained to channel the ways of the Saints, you serve as means of enacting the Great Change most viciously. It is your fate. Take from the wealthy, give to the worthless, empower, enact. They will look up to you, in search of the Great Leveller's guidance. Be their light in the dark - the spark to their flame. Ignite."
+	tutorial = "Trained by an Ecclesial sect, you uphold the Ideological purity of the Matthiosian Creed. Take from the wealthy, give to the worthless, empower. They will look up to you, in search of the God of Robbery's guidance. Be their light in the dark."
 	allowed_sexes = list(MALE, FEMALE)
 	forbidden_races = list(RACES_DESPISED)
 	outfit = /datum/outfit/job/roguetown/bandit/iconoclast

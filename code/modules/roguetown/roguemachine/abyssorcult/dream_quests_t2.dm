@@ -14,7 +14,7 @@
 	)
 	target_description = "unknown"
 	summary = "I am dreaming too deep."
-	vision_text = "I stand upon the precipice of the temple. \
+	vision_text = "I stand upon the precipice of the church. \
 	It's a dae like any other. The rays of Astrata bathe the steps. \
 	Merely another humble servant of the Deepfather, that's who you are, ready to feed the congegation with his bounty yet again. \
 	But it's not just a regular day. Something feels... Off. \

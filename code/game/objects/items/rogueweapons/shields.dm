@@ -358,7 +358,7 @@
 	smeltresult = /obj/item/ingot/iron
 
 /obj/item/rogueweapon/shield/tower/holysee
-	name = "pentablessed shield"
+	name = "decablessed shield"
 	desc = "A blessed kite shield, said to bestow the Pantheon's protection upon the wielder. A final, staunch line against the darkness. For it's not what is before the shield-carrier that matters, but the home behind them."
 	icon_state = "gsshield"
 	force = 20
@@ -522,7 +522,7 @@
 /obj/item/rogueweapon/shield/tower/metal/palloy
 	name = "ancient shield"
 	desc = "A venerable scutum, plated with polished gilbranze. An undying legionnaire's closest friend; that which rebukes arrow-and-bolt alike with \
-	unphasing prejudice. It is a reminder - one of many - of the Winnower's joys - and that the dead cannot be stopped."
+	unphasing prejudice. It is a reminder - one of many - that Her progress cannot be stopped."
 	icon_state = "ancientsh"
 	smeltresult = /obj/item/ingot/aaslag
 

@@ -79,7 +79,7 @@
 					/obj/item/clothing/neck/roguetown/psicross/xylix,)
 
 /datum/supply_pack/rogue/apparel/crosses/divinepantheonten
-	name = "Pantheonic Amulet"
+	name = "Undivided Amulet"
 	cost = 10
 	contains = list(
 					/obj/item/clothing/neck/roguetown/psicross/undivided,)

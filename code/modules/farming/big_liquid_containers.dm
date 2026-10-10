@@ -158,7 +158,7 @@
 
 /obj/structure/fermentation_keg/rose_tea
 	name = "saliciously aromatic barrel"
-	desc = "A barrel with a mark of a rosa over it. Sloshing inside is an local variant of rosa tea; refreshingly fragrant, calming, and purported to have minor restorative effects."
+	desc = "A barrel with a mark of a rosa over it. Sloshing inside is an Azurian variant of rosa tea; refreshingly fragrant, calming, and purported to have minor restorative effects."
 
 /obj/structure/fermentation_keg/rose_tea/Initialize(mapload)
 	. = ..()
