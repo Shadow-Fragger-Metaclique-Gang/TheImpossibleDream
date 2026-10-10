@@ -1,10 +1,16 @@
 # LORE
+**Related PRs:**
+https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/15
+https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/17
+https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/18
+https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/19
+https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/30
 
 **Tag:** `LORE`
 
 **Created in:**
 
-**Major changes:**
+**Major changes:** 
 
 ## Surrealis Lore
 
