@@ -13,5 +13,5 @@
 		"THE FIVE ETERNAL, FOREVERMORE!",
 	)
 	titles = list(
-		"Gods" // having to put the actual word "Undivided" in your prayers is counterintuitive. they're the ten that's what people call them. Also, for kazengunites, they don't have this concept. Sorryyyyy
+		"Gods"
 	)

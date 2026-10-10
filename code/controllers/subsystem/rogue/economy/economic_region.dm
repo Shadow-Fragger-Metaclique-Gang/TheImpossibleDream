@@ -377,25 +377,19 @@ GLOBAL_LIST_INIT(economic_regions, init_economic_regions())
 
 /// Builds the AZURIA'S REGIONS section of the Lore Primer from the economic_region datums,
 /// so steward UI prose and primer prose stay in sync from a single source.
+/// [SURREALIS-EDITED] - LORE
 /proc/build_regions_primer_html()
 	var/list/parts = list()
-	// [SURREALIS-EDIT] - LORE
-	// parts += "<details>" // SURREALIS-EDIT - ORIGINAL
-	// parts += "<summary><strong><span style='font-size:130%'> REGIONS OF AZURIA </span></strong></summary>" // SURREALIS-EDIT - ORIGINAL
 	parts += "<div style='text-align:center'>"
 	parts += "<details style='max-width:800px; margin:0 auto;'>"
 	parts += "<summary><strong><span style='font-size:130%'> REGIONS OF THE REALM </span></strong></summary>"
-	// [/SURREALIS-EDIT]
 	parts += "<strong><span style='font-size:115%'> THE INTERNAL VASSALS AND DEMESNES </span></strong>"
 	parts += "<br><br>"
 	for(var/region_id in GLOB.economic_regions)
 		var/datum/economic_region/region = GLOB.economic_regions[region_id]
 		if(!region)
 			continue
-		// [SURREALIS-EDIT] - LORE
-		// parts += "<details>" // SURREALIS-EDIT - ORIGINAL
 		parts += "<details style='max-width:800px; margin:0 auto;'>"
-		// [/SURREALIS-EDIT]
 		parts += "<summary><strong> [uppertext(region.name)] </strong></summary>"
 		parts += "<br>"
 		if(region.subtitle)
@@ -406,7 +400,5 @@ GLOBAL_LIST_INIT(economic_regions, init_economic_regions())
 		parts += "</details>"
 	parts += "<br><br>"
 	parts += "</details>"
-	// [SURREALIS-ADD] - LORE
 	parts += "</div>"
-	// [/SURREALIS-ADD]
 	return jointext(parts, "\n")

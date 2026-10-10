@@ -63,7 +63,6 @@
 #include "code\misc\villain.dm"
 #include "code\structures\alchemist.dm"
 #include "code\structures\church.dm"
-#include "code\structures\effects.dm"
 #include "code\structures\farming.dm"
 #include "code\structures\items.dm"
 #include "code\structures\mages.dm"
