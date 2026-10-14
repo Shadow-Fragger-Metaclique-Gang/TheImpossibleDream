@@ -182,40 +182,32 @@
 			return TRUE
 
 		// Bonuses! Flavour! SOVL!
-		for(var/obj/item/clothing/neck/current_item in target.get_equipped_items(TRUE))
-			if(current_item.type in list(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy, /obj/item/clothing/neck/roguetown/psicross, /obj/item/clothing/neck/roguetown/psicross/wood, /obj/item/clothing/neck/roguetown/psicross/aalloy, /obj/item/clothing/neck/roguetown/psicross/silver,	/obj/item/clothing/neck/roguetown/psicross/g))
-				pp += 1
-				if(pp >= 12 & target == owner) // A harmless easter-egg. Only applies on self-cast. You'd have to be pretty deliberate to wear 12 of them.
-					target.visible_message(span_danger("[target]'s many psycrosses reverberate with a strange, ephemeral sound..."), span_userdanger("HE must be waking up! I can hear it! I'm ENDURING so much!"))
-					playsound(owner, 'sound/magic/PSYDONE.ogg', 100, FALSE)
-					sleep(60)
-					owner.psydo_nyte()
-					owner.playsound_local(owner, 'sound/misc/psydong.ogg', 100, FALSE)
-					sleep(20)
-					owner.psydo_nyte()
-					owner.playsound_local(owner, 'sound/misc/psydong.ogg', 100, FALSE)
-					sleep(15)
-					owner.psydo_nyte()
-					owner.playsound_local(owner, 'sound/misc/psydong.ogg', 100, FALSE)
-					sleep(10)
-					owner.gib()
-					return FALSE
-
-				switch(current_item.type) // Target-based worn Psicross Piety bonus. For fun.
-					if(/obj/item/clothing/neck/roguetown/psicross/wood)
-						psicross_bonus = 0.1
-					if(/obj/item/clothing/neck/roguetown/psicross/aalloy)
-						psicross_bonus = 0.2
-					if(/obj/item/clothing/neck/roguetown/psicross)
-						psicross_bonus = 0.3
-					if(/obj/item/clothing/neck/roguetown/psicross/silver)
-						psicross_bonus = 0.4
-					if(/obj/item/clothing/neck/roguetown/psicross/g) // PURITY AFLOAT.
-						psicross_bonus = 0.5
-					if(/obj/item/clothing/neck/roguetown/psicross/weeping)
-						psicross_bonus = 0.7
-					if(/obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy)
-						zcross_trigger = TRUE
+		for(var/obj/item/clothing/neck/roguetown/psicross/current_item in target.get_equipped_items(TRUE))
+			var/bonus = current_item.endure_bonus
+			if(!bonus)
+				continue
+			pp += 1
+			if(pp >= 12 & target == owner) // A harmless easter-egg. Only applies on self-cast. You'd have to be pretty deliberate to wear 12 of them.
+				target.visible_message(span_danger("[target]'s many psycrosses reverberate with a strange, ephemeral sound..."), span_userdanger("HE must be waking up! I can hear it! I'm ENDURING so much!"))
+				playsound(owner, 'sound/magic/PSYDONE.ogg', 100, FALSE)
+				sleep(60)
+				owner.psydo_nyte()
+				owner.playsound_local(owner, 'sound/misc/psydong.ogg', 100, FALSE)
+				sleep(20)
+				owner.psydo_nyte()
+				owner.playsound_local(owner, 'sound/misc/psydong.ogg', 100, FALSE)
+				sleep(15)
+				owner.psydo_nyte()
+				owner.playsound_local(owner, 'sound/misc/psydong.ogg', 100, FALSE)
+				sleep(10)
+				owner.gib()
+				return FALSE
+			if(bonus < 0)
+				owner.visible_message(span_warning("[owner] shuddered. Something's very wrong."), span_userdanger("Cold shoots through my spine. Something laughs at me for trying."))
+				owner.playsound_local(owner, 'sound/misc/zizo.ogg', 25, FALSE)
+				H.adjustBruteLoss(25)
+				return FALSE
+			psicross_bonus = max(psicross_bonus, bonus)
 
 		if(damtotal >= 300) // ARE THEY ENDURING MUCH, IN ONE WAY OR ANOTHER?
 			situational_bonus += 0.3
@@ -322,13 +314,13 @@
 		var/psicross_bonus = 0
 
 		for(var/obj/item/clothing/neck/roguetown/psicross/current_item in H.get_equipped_items(TRUE))
-			if(current_item.piety_bonus < 0)
+			if(current_item.healprayer_bonus < 0)
 				owner.visible_message(span_warning("[owner] shudders. Something's very wrong."), span_userdanger("Cold shoots through my spine. Something laughs at me for trying."))
 				owner.playsound_local(owner, 'sound/misc/zizo.ogg', 25, FALSE)
 				H.adjustBruteLoss(25)
 				return FALSE
 			else
-				psicross_bonus = max(psicross_bonus, current_item.piety_bonus)
+				psicross_bonus = max(psicross_bonus, current_item.healprayer_bonus)
 
 		var/bruthealval = base_heal + psicross_bonus + brute_pain_bonus
 		var/burnhealval = base_heal + psicross_bonus + burn_pain_bonus

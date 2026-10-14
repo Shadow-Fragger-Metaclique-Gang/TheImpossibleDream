@@ -51,16 +51,15 @@
 			return FALSE
 		return TRUE
 	// Allows prayer if raining and outside. Psydon weeps.
-	// this is a gpt'd fix after we updated our weather system. im pretty sure i get how it works, just didnt know how to call the SSParticleWeather.
-	var/datum/particle_weather/W = SSParticleWeather?.runningWeather
-	if(istype(W, /datum/particle_weather/rain_gentle) || istype(W, /datum/particle_weather/rain_storm))
-		if(istype(get_area(follower), /area/rogue/outdoors))
-			return TRUE
-	if(istype(W, /datum/particle_weather/blood_rain_gentle) || istype(W, /datum/particle_weather/blood_rain_storm))
-		if(istype(get_area(follower), /area/rogue/outdoors))
-			follower.add_stress(/datum/stressevent/something_stirs)
-			follower.playsound_local(follower, 'sound/magic/psydonbleeds.ogg', 40, TRUE)
-			return TRUE
+	var/area/follower_area = get_area(follower)
+	if(follower_area.outdoors)
+		switch(SSParticleWeather.runningWeather?.target_trait)
+			if(PARTICLEWEATHER_RAIN)
+				return TRUE
+			if(PARTICLEWEATHER_BLOODRAIN)
+				follower.add_stress(/datum/stressevent/something_stirs)
+				follower.playsound_local(follower, 'sound/magic/psydonbleeds.ogg', 40, TRUE)
+				return TRUE
 	// Allows prayer if bleeding.
 	if(follower.bleed_rate > 0)
 		return TRUE
@@ -68,5 +67,5 @@
 	var/obj/item/clothing/neck/roguetown/psicross/held_item = follower.get_active_held_item()
 	if(istype(held_item, /obj/item/clothing/neck/roguetown/psicross) && held_item.is_silver && (held_item.healprayer_bonus > 0)) // todo: create + check associated_patron instead of healprayer_bonus
 		return TRUE
-	to_chat(follower, span_danger("..yet, I feel incomplete. To complete my prayer, I must stand before a structured cross, be grasping a silvered psycross, be bleeding from a wound, or be standing in the rain. Just as He weeps, so must I."))
+	to_chat(follower, span_danger("... yet, I feel incomplete. To complete my prayer, I must stand before a structured cross, be grasping a silvered psycross, be bleeding from a wound, or be standing in the rain. Just as He weeps, so must I."))
 	return FALSE
