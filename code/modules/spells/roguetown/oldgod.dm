@@ -24,6 +24,11 @@
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_HUMAN | SPELL_REQUIRES_SAME_Z
 	required_items = list(/obj/item/clothing/neck/roguetown/psicross) //He is dead so yeah we need something to INVOKE IT
 
+/datum/action/cooldown/spell/psydon/proc/zizofail(mob/living/carbon/human/victim)
+	victim.visible_message(span_warning("[victim] shudders. Something's very wrong."), span_userdanger("Cold shoots through my spine. Something laughs at me for trying."))
+	victim.playsound_local(victim, 'sound/misc/zizo.ogg', 25, FALSE)
+	victim.adjustBruteLoss(25)
+
 /////////////////////
 // T0 - BOOTCHECK	//
 /////////////////////
@@ -143,6 +148,22 @@
 	charge_required = FALSE
 	cooldown_time = 30 SECONDS
 
+// easter egg for Psicross Overload
+/datum/action/cooldown/spell/psydon/endure/proc/psydone()
+	owner.visible_message(span_danger("[owner]'s many psycrosses reverberate with a strange, ephemeral sound..."), span_userdanger("HE must be waking up! I can hear it! I'm ENDURING so much!"))
+	playsound(owner, 'sound/magic/PSYDONE.ogg', 100, FALSE)
+	sleep(60)
+	owner.psydo_nyte()
+	owner.playsound_local(owner, 'sound/misc/psydong.ogg', 100, FALSE)
+	sleep(20)
+	owner.psydo_nyte()
+	owner.playsound_local(owner, 'sound/misc/psydong.ogg', 100, FALSE)
+	sleep(15)
+	owner.psydo_nyte()
+	owner.playsound_local(owner, 'sound/misc/psydong.ogg', 100, FALSE)
+	sleep(10)
+	owner.gib()
+
 /datum/action/cooldown/spell/psydon/endure/cast(atom/cast_on)
 	. = ..()
 	var/mob/living/carbon/human/H = owner
@@ -151,12 +172,10 @@
 		var/brute = target.getBruteLoss()
 		var/burn = target.getFireLoss()
 		var/list/wAmount = target.get_wounds()
-		var/conditional_buff = FALSE
 		var/situational_bonus = 0
 		var/psicross_bonus = 0
 		var/pp = 0
 		var/damtotal = brute + burn
-		var/zcross_trigger = FALSE
 
 		if(H.cmode)
 			if(H != target)
@@ -187,25 +206,11 @@
 			if(!bonus)
 				continue
 			pp += 1
-			if(pp >= 12 & target == owner) // A harmless easter-egg. Only applies on self-cast. You'd have to be pretty deliberate to wear 12 of them.
-				target.visible_message(span_danger("[target]'s many psycrosses reverberate with a strange, ephemeral sound..."), span_userdanger("HE must be waking up! I can hear it! I'm ENDURING so much!"))
-				playsound(owner, 'sound/magic/PSYDONE.ogg', 100, FALSE)
-				sleep(60)
-				owner.psydo_nyte()
-				owner.playsound_local(owner, 'sound/misc/psydong.ogg', 100, FALSE)
-				sleep(20)
-				owner.psydo_nyte()
-				owner.playsound_local(owner, 'sound/misc/psydong.ogg', 100, FALSE)
-				sleep(15)
-				owner.psydo_nyte()
-				owner.playsound_local(owner, 'sound/misc/psydong.ogg', 100, FALSE)
-				sleep(10)
-				owner.gib()
+			if(pp >= 12 & target == owner) // A "harmless" easter-egg. Only applies on self-cast. You'd have to be pretty deliberate to wear 12 of them.
+				psydone()
 				return FALSE
 			if(bonus < 0)
-				owner.visible_message(span_warning("[owner] shuddered. Something's very wrong."), span_userdanger("Cold shoots through my spine. Something laughs at me for trying."))
-				owner.playsound_local(owner, 'sound/misc/zizo.ogg', 25, FALSE)
-				H.adjustBruteLoss(25)
+				zizofail()
 				return FALSE
 			psicross_bonus = max(psicross_bonus, bonus)
 
@@ -215,21 +220,12 @@
 		if(wAmount.len > 5)
 			situational_bonus += 0.3
 
-		if (situational_bonus > 0)
-			conditional_buff = TRUE
-
 		target.visible_message(span_info("A strange stirring feeling pours from [target]!"), span_info("Sentimental thoughts drive away my pain..."))
 		var/psyhealing = 3
 		psyhealing += psicross_bonus
-		if (conditional_buff & !zcross_trigger)
+		if (situational_bonus > 0)
 			to_chat(owner, "In <b>ENDURING</b> so much, become <b>EMBOLDENED</b>!")
 			psyhealing += situational_bonus
-
-		if (zcross_trigger)
-			owner.visible_message(span_warning("[owner] shuddered. Something's very wrong."), span_userdanger("Cold shoots through my spine. Something laughs at me for trying."))
-			owner.playsound_local(owner, 'sound/misc/zizo.ogg', 25, FALSE)
-			H.adjustBruteLoss(25)
-			return FALSE
 
 		target.apply_status_effect(/datum/status_effect/buff/psyhealing, psyhealing)
 		target.apply_status_effect(/datum/status_effect/buff/adrenaline_rush/psydon)
@@ -315,9 +311,7 @@
 
 		for(var/obj/item/clothing/neck/roguetown/psicross/current_item in H.get_equipped_items(TRUE))
 			if(current_item.healprayer_bonus < 0)
-				owner.visible_message(span_warning("[owner] shudders. Something's very wrong."), span_userdanger("Cold shoots through my spine. Something laughs at me for trying."))
-				owner.playsound_local(owner, 'sound/misc/zizo.ogg', 25, FALSE)
-				H.adjustBruteLoss(25)
+				zizofail()
 				return FALSE
 			else
 				psicross_bonus = max(psicross_bonus, current_item.healprayer_bonus)
