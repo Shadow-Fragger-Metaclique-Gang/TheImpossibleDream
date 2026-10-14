@@ -78,10 +78,10 @@
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.mind)
-			H.mind.AddSpell(new /datum/action/cooldown/spell/psydon/persist)
+			H.mind.AddSpell(new /datum/action/cooldown/spell/psydon/prayer/respite/persist)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/psydonlux_tamper)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/psydonabsolve)
-			H.mind.RemoveSpell(/datum/action/cooldown/spell/psydon/respite)
+			H.mind.RemoveSpell(/datum/action/cooldown/spell/psydon/prayer/respite)
 			H.mind.teach_crafting_recipe(/datum/crafting_recipe/roguetown/alchemy/qsabsolution)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 

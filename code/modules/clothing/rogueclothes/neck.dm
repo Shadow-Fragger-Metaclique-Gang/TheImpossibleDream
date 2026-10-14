@@ -531,6 +531,7 @@
 	anvilrepair = /datum/skill/craft/armorsmithing
 	grid_width = 32
 	grid_height = 32
+	var/piety_bonus = 5 // todo: associated_patron to make it so i don't have to override piety bonus to 0 for every non psydon psycross?
 	/// Used to see whether or not we display the wrist icon or the neck icon regardless.
 	var/wrist_display = FALSE
 
@@ -599,6 +600,7 @@
 	item_state = "psycross_g"
 	//dropshrink = 0.75
 	resistance_flags = FIRE_PROOF
+	piety_bonus = 9 // PURITY AFLOAT.
 
 /obj/item/clothing/neck/roguetown/psicross/silver/naledi
 	name = "golden psycross"
@@ -608,6 +610,7 @@
 	//dropshrink = 0.75
 	resistance_flags = FIRE_PROOF
 	sellprice = 100
+	piety_bonus = 9
 
 /obj/item/clothing/neck/roguetown/psicross/aalloy
 	name = "decrepit psycross"
@@ -616,6 +619,7 @@
 	color = "#bb9696"
 	chunkcolor = "#532e25"
 	material_category = ARMOR_MAT_PLATE
+	piety_bonus = 4
 
 /obj/item/clothing/neck/roguetown/psicross/paalloy
 	name = "ancient psycross"
@@ -623,6 +627,10 @@
 	icon_state = "psycross_a"
 	chunkcolor = "#532e25"
 	material_category = ARMOR_MAT_PLATE
+
+/obj/item/clothing/neck/roguetown/psicross/inhumen
+	abstract_type = /obj/item/clothing/neck/roguetown/psicross/inhumen
+	piety_bonus = -INFINITY
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/aalloy
 	name = "decrepit zcross"
@@ -692,6 +700,7 @@
 	icon_state = "matthios"
 	resistance_flags = FIRE_PROOF
 	smeltresult = null
+	piety_bonus = 0 // won't blow you up like a zcross
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/matthios/get_examine_highlight_status()
 	return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_SUSPICIOUS, HERESYDESC_MATTHIOS_ICON)
@@ -716,6 +725,7 @@
 	icon_state = "graggar"
 	resistance_flags = FIRE_PROOF
 	smeltresult = null
+	piety_bonus = 0
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar/get_examine_highlight_status()
 	return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_SUSPICIOUS, HERESYDESC_GRAGGAR_ICON)
@@ -740,6 +750,7 @@
 	icon_state = "baotha"
 	resistance_flags = FIRE_PROOF
 	smeltresult = null
+	piety_bonus = 0
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/baotha/get_examine_highlight_status()
 	return list(EXAMINEHIGHLIGHT_HERESYSEVERITY_SUSPICIOUS, HERESYDESC_BAOTHA_ICON)
@@ -762,11 +773,13 @@
 	name = "amulet of Ten"
 	desc = "The Ten eternal, strength in unity. Stalwart for centuries against the darkness."
 	icon_state = "undivided"
+	piety_bonus = 0
 
 /obj/item/clothing/neck/roguetown/psicross/silver/undivided
 	name = "silver amulet of Ten"
 	desc = "Ward of silver, sigil of eternity; by the Ten, I command thee back to Hell!"
 	icon_state = "undivided_s"
+	piety_bonus = 0
 
 /obj/item/clothing/neck/roguetown/psicross/undivided/g
 	name = "golden amulet of Ten"
@@ -786,11 +799,13 @@
 	name = "amulet of Astrata"
 	desc = "As sure as the sun rises, tomorrow will come."
 	icon_state = "astrata"
+	piety_bonus = 0
 
 /obj/item/clothing/neck/roguetown/psicross/silver/astrata
 	name = "silver amulet of Astrata"
 	desc = "Let no monster hold comfort in Her brother's shadow."
 	icon_state = "astrata_s"
+	piety_bonus = 0
 
 /obj/item/clothing/neck/roguetown/psicross/astrata/g
 	name = "golden amulet of Astrata"
@@ -810,11 +825,13 @@
 	name = "amulet of Noc"
 	desc = "There is always more to know, more to learn, more to be."
 	icon_state = "noc"
+	piety_bonus = 0
 
 /obj/item/clothing/neck/roguetown/psicross/silver/noc
 	name = "blessed amulet of Noc"
 	desc = "Within the Beyond, where dreams and daemons coalesce, lies the secret to all knowledge; both arcyne and aeternal. Under my ward, I shall guide thee forth to this pedestal."
 	icon_state = "noc"
+	piety_bonus = 0
 
 /obj/item/clothing/neck/roguetown/psicross/noc/bronze
 	name = "bronze amulet of Noc"
@@ -859,6 +876,7 @@
 	icon_state = "abyssor"
 	salvage_result = /obj/item/pearl/blue
 	salvage_amount = 1
+	piety_bonus = 0
 
 /obj/item/clothing/neck/roguetown/psicross/abyssor/wood
 	name = "wooden amulet of Abyssor"
@@ -880,6 +898,7 @@
 	name = "amulet of Dendor"
 	desc = "If you need something to worship, then worship life. Every last crawling bit of it."
 	icon_state = "dendor"
+	piety_bonus = 0
 
 /obj/item/clothing/neck/roguetown/psicross/dendor/wood
 	name = "wooden amulet of Dendor"
@@ -901,6 +920,7 @@
 	name = "amulet of Necra"
 	desc = "The certainty of death is a reminder to enjoy the time you have."
 	icon_state = "necra"
+	piety_bonus = 0
 
 /obj/item/clothing/neck/roguetown/psicross/necra/wood
 	name = "wooden amulet of Necra"
@@ -922,11 +942,13 @@
 	name = "silver amulet of Necra"
 	desc = "Guide the lost, the forgotten, and the damned to their final resting place."
 	icon_state = "necra_s"
+	piety_bonus = 0
 
 /obj/item/clothing/neck/roguetown/psicross/pestra
 	name = "amulet of Pestra"
 	desc = "The healthy wear a crown only the sick can see."
 	icon_state = "pestra"
+	piety_bonus = 0
 
 /obj/item/clothing/neck/roguetown/psicross/pestra/wood
 	name = "wooden amulet of Pestra"
@@ -948,6 +970,7 @@
 	name = "amulet of Ravox"
 	desc = "What are you fighting for?"
 	icon_state = "ravox"
+	piety_bonus = 0
 
 /obj/item/clothing/neck/roguetown/psicross/ravox/wood
 	name = "wooden amulet of Ravox"
@@ -992,6 +1015,7 @@
 	name = "amulet of Malum"
 	desc = "From the ashes, creation."
 	icon_state = "malum"
+	piety_bonus = 0
 
 /obj/item/clothing/neck/roguetown/psicross/malum/wood
 	name = "wooden amulet of Malum"
@@ -1013,6 +1037,7 @@
 	name = "amulet of Eora"
 	desc = "In a world full of horror and hardship, all we have is each other."
 	icon_state = "eora"
+	piety_bonus = 0
 
 /obj/item/clothing/neck/roguetown/psicross/eora/wood
 	name = "wooden amulet of Eora"
@@ -1035,6 +1060,7 @@
 	desc = "In lyfe a smile is sharper than any blade."
 	icon_state = "xylix"
 	toggle_icon_state = FALSE
+	piety_bonus = 0
 	var/disguised_type = null
 
 /obj/item/clothing/neck/roguetown/psicross/xylix/wood
@@ -1119,6 +1145,7 @@
 	sellprice = 0
 	salvage_result = /obj/item/grown/log/tree/stick
 	salvage_amount = 1
+	piety_bonus = 2
 
 /obj/item/clothing/neck/roguetown/psicross/bronze
 	name = "bronze psycross"
@@ -1132,6 +1159,7 @@
 	icon_state = "psycross_s"
 	item_state = "psycross_s"
 	is_silver = TRUE
+	piety_bonus = 7
 
 /obj/item/clothing/neck/roguetown/psicross/silver/get_mechanics_examine(mob/user)
 	. = ..()
@@ -1144,6 +1172,7 @@
 	sellprice = 80
 	salvage_result = /obj/item/pearl
 	salvage_amount = 3 // Pearls are easy to cut off from an amulet
+	piety_bonus = 0
 
 /obj/item/clothing/neck/roguetown/psicross/bpearl
 	name = "blue pearl amulet"
@@ -1152,6 +1181,7 @@
 	sellprice = 220
 	salvage_result = /obj/item/pearl/blue
 	salvage_amount = 3 // Pearls are easy to cut off from an amulet
+	piety_bonus = 0
 
 /obj/item/clothing/neck/roguetown/psicross/shell
 	name = "oyster shell necklace"
@@ -1160,6 +1190,7 @@
 	sellprice = 25
 	salvage_result = /obj/item/oystershell
 	salvage_amount = 5
+	piety_bonus = 0
 
 /obj/item/clothing/neck/roguetown/psicross/shell/bracelet
 	name = "shell bracelet"
@@ -1169,6 +1200,7 @@
 	slot_flags = ITEM_SLOT_WRISTS
 	salvage_result = /obj/item/oystershell
 	salvage_amount = 3
+	piety_bonus = 0
 
 /obj/item/clothing/neck/roguetown/talkstone
 	name = "talkstone"
@@ -1537,6 +1569,7 @@
 	equip_delay_self = 3 SECONDS
 	unequip_delay_self = 7 SECONDS
 	inv_storage_delay = 3 SECONDS
+	piety_bonus = 11
 	var/active_item
 
 /obj/item/clothing/neck/roguetown/psicross/weeping/Initialize(mapload)
@@ -1828,3 +1861,4 @@
 	name = "Aurum's Amulets"
 	desc = "A long gold chain that was double woven for strength. At regular intervals, a gold loop just barely big enough to have something attached to it. Two of the loops had charms dangling from them. Each gold still. One in the shape of a Xylixian mask, the other in the shape of Dendor's claws."
 	icon_state = "lief_amulet"
+	piety_bonus = 0
