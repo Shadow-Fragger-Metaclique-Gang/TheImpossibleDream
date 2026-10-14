@@ -51,7 +51,7 @@
 	req_bar = /obj/item/ingot/silver
 	additional_items = list(/obj/item/clothing/neck/roguetown/psicross) // bandaid until someone makes proper silver amulet sprites for the other Ten
 	craftdiff = SKILL_LEVEL_EXPERT
-	created_item = /obj/item/clothing/neck/roguetown/psicross/silver/undivided
+	created_item = /obj/item/clothing/neck/roguetown/psicross/undivided/silver
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 /datum/anvil_recipe/valuables/silver_amulet_noc
@@ -60,7 +60,7 @@
 	req_bar = /obj/item/ingot/silver
 	additional_items = list(/obj/item/clothing/neck/roguetown/psicross/noc)
 	craftdiff = SKILL_LEVEL_EXPERT
-	created_item = /obj/item/clothing/neck/roguetown/psicross/silver/noc
+	created_item = /obj/item/clothing/neck/roguetown/psicross/noc/silver
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 /datum/anvil_recipe/valuables/silver_amulet_astrata
@@ -69,7 +69,7 @@
 	req_bar = /obj/item/ingot/silver
 	additional_items = list(/obj/item/clothing/neck/roguetown/psicross)
 	craftdiff = SKILL_LEVEL_EXPERT
-	created_item = /obj/item/clothing/neck/roguetown/psicross/silver/astrata
+	created_item = /obj/item/clothing/neck/roguetown/psicross/astrata/silver
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 /datum/anvil_recipe/valuables/silver_amulet_necra
@@ -78,7 +78,7 @@
 	req_bar = /obj/item/ingot/silver
 	additional_items = list(/obj/item/clothing/neck/roguetown/psicross/necra)
 	craftdiff = SKILL_LEVEL_EXPERT
-	created_item = /obj/item/clothing/neck/roguetown/psicross/silver/necra
+	created_item = /obj/item/clothing/neck/roguetown/psicross/necra/silver
 	display_category = ITEM_CAT_VALUABLES_HOLY
 
 /datum/anvil_recipe/valuables/gold_reformcross

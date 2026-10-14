@@ -108,7 +108,9 @@
 		var/knowledgable = (willroll - bloodroll) >= 3
 
 		if(!powerful)
-			for(var/obj/item/clothing/neck/roguetown/psicross/silver/I in target.contents) //Subpath fix.
+			for(var/obj/item/clothing/neck/roguetown/psicross/I in target.contents) //Subpath fix.
+				if(!I.is_silver)
+					continue
 				var/extra = "!"
 				if(knowledgable)
 					extra = ", I sense the caster was [user]!"

@@ -39,22 +39,22 @@
 /datum/supply_pack/rogue/luxury/silverastcross
 	name = "Silver Amulet of Astrata"
 	cost = 250
-	contains = list(/obj/item/clothing/neck/roguetown/psicross/silver/astrata)
+	contains = list(/obj/item/clothing/neck/roguetown/psicross/astrata/silver)
 
 /datum/supply_pack/rogue/luxury/silvertencross
 	name = "Silver Amulet of Ten"
 	cost = 250
-	contains = list(/obj/item/clothing/neck/roguetown/psicross/silver/undivided)
+	contains = list(/obj/item/clothing/neck/roguetown/psicross/undivided/silver)
 
 /datum/supply_pack/rogue/luxury/silvernecracross
 	name = "Silver Amulet of Necra"
 	cost = 250
-	contains = list(/obj/item/clothing/neck/roguetown/psicross/silver/necra)
+	contains = list(/obj/item/clothing/neck/roguetown/psicross/necra/silver)
 
 /datum/supply_pack/rogue/luxury/silvernoccross
 	name = "Blessed Amulet of Noc"
 	cost = 250
-	contains = list(/obj/item/clothing/neck/roguetown/psicross/silver/noc)
+	contains = list(/obj/item/clothing/neck/roguetown/psicross/noc/silver)
 
 /datum/supply_pack/rogue/luxury/silverdagger
 	name = "Silver Dagger"

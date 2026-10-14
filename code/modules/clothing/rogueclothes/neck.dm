@@ -569,6 +569,8 @@
 	. += span_info("Middle click to kneel in prayer. Praying generates Devotion, which can be used to cast most miracles.")
 	. += span_info("By typing '*pray' into your chatbar, you can write a dedicated prayer to your character's patron. Dedicated prayers have a rare chance of being answered by higher powers.")
 	. += span_info("Adjusting an amulet while wearing it in the ring slot allows you to visibly layer it over most sleeves and clothing.")
+	if(is_silver)
+		. += span_info("Silver amulets protect against most unholy curses, hexes, and other mind-altering spells.")
 
 /obj/item/clothing/neck/roguetown/psicross/reform
 	name = "reformist psycross"
@@ -775,11 +777,12 @@
 	icon_state = "undivided"
 	piety_bonus = 0
 
-/obj/item/clothing/neck/roguetown/psicross/silver/undivided
+/obj/item/clothing/neck/roguetown/psicross/undivided/silver
 	name = "silver amulet of Ten"
 	desc = "Ward of silver, sigil of eternity; by the Ten, I command thee back to Hell!"
 	icon_state = "undivided_s"
-	piety_bonus = 0
+	item_state = "psycross_s"
+	is_silver = TRUE
 
 /obj/item/clothing/neck/roguetown/psicross/undivided/g
 	name = "golden amulet of Ten"
@@ -801,11 +804,12 @@
 	icon_state = "astrata"
 	piety_bonus = 0
 
-/obj/item/clothing/neck/roguetown/psicross/silver/astrata
+/obj/item/clothing/neck/roguetown/psicross/astrata/silver
 	name = "silver amulet of Astrata"
 	desc = "Let no monster hold comfort in Her brother's shadow."
 	icon_state = "astrata_s"
-	piety_bonus = 0
+	item_state = "psycross_s"
+	is_silver = TRUE
 
 /obj/item/clothing/neck/roguetown/psicross/astrata/g
 	name = "golden amulet of Astrata"
@@ -827,11 +831,12 @@
 	icon_state = "noc"
 	piety_bonus = 0
 
-/obj/item/clothing/neck/roguetown/psicross/silver/noc
+/obj/item/clothing/neck/roguetown/psicross/noc/silver
 	name = "blessed amulet of Noc"
 	desc = "Within the Beyond, where dreams and daemons coalesce, lies the secret to all knowledge; both arcyne and aeternal. Under my ward, I shall guide thee forth to this pedestal."
 	icon_state = "noc"
-	piety_bonus = 0
+	item_state = "psycross_s"
+	is_silver = TRUE
 
 /obj/item/clothing/neck/roguetown/psicross/noc/bronze
 	name = "bronze amulet of Noc"
@@ -938,11 +943,12 @@
 	item_state = "necra_g"
 	resistance_flags = FIRE_PROOF
 
-/obj/item/clothing/neck/roguetown/psicross/silver/necra
+/obj/item/clothing/neck/roguetown/psicross/necra/silver
 	name = "silver amulet of Necra"
 	desc = "Guide the lost, the forgotten, and the damned to their final resting place."
 	icon_state = "necra_s"
-	piety_bonus = 0
+	item_state = "psycross_s"
+	is_silver = TRUE
 
 /obj/item/clothing/neck/roguetown/psicross/pestra
 	name = "amulet of Pestra"
@@ -1160,10 +1166,6 @@
 	item_state = "psycross_s"
 	is_silver = TRUE
 	piety_bonus = 7
-
-/obj/item/clothing/neck/roguetown/psicross/silver/get_mechanics_examine(mob/user)
-	. = ..()
-	. += span_info("Silver amulets protect against most unholy curses, hexes, and other mind-altering spells.")
 
 /obj/item/clothing/neck/roguetown/psicross/pearl //put it as a psycross so it can be used for miracles
 	name = "pearl amulet"

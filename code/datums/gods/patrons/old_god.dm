@@ -65,7 +65,8 @@
 	if(follower.bleed_rate > 0)
 		return TRUE
 	// Allows prayer if holding silver psycross.
-	if(istype(follower.get_active_held_item(), /obj/item/clothing/neck/roguetown/psicross/silver))
+	var/obj/item/clothing/neck/roguetown/psicross/held_item = follower.get_active_held_item()
+	if(istype(held_item, /obj/item/clothing/neck/roguetown/psicross) && held_item.is_silver && (held_item.healprayer_bonus > 0)) // todo: create + check associated_patron instead of healprayer_bonus
 		return TRUE
 	to_chat(follower, span_danger("..yet, I feel incomplete. To complete my prayer, I must stand before a structured cross, be grasping a silvered psycross, be bleeding from a wound, or be standing in the rain. Just as He weeps, so must I."))
 	return FALSE
