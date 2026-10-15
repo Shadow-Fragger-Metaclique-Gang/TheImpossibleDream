@@ -78,6 +78,8 @@
 	var/datum/spellblade_chant/chant = GLOB.spellblade_chants[spellblade_chant_selected]
 	chant.apply_chant(H)
 
+	backr = /obj/item/rogueweapon/shield/heater
+
 	// used to handle skill assignment automatically
 	var/obj/item/rogueweapon/granted_weapon = null
 	switch(spellblade_chant_selected)
@@ -166,13 +168,13 @@
 				"Bucket Helmet"			= /obj/item/clothing/head/roguetown/helmet/heavy/bucket,
 				"Knight Helmet"			= /obj/item/clothing/head/roguetown/helmet/heavy/knight,
 				"Armet"					= /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet,
-				"Snouted Armet"					= /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet/snouted,
+				"Snouted Armet"			= /obj/item/clothing/head/roguetown/helmet/heavy/knight/armet/snouted,
 				"Visored Sallet"		= /obj/item/clothing/head/roguetown/helmet/sallet/visored,
-				"Snouted Visored Sallet"		= /obj/item/clothing/head/roguetown/helmet/sallet/visored/snouted,
+				"Snouted Visored Sallet"= /obj/item/clothing/head/roguetown/helmet/sallet/visored/snouted,
 				"Klappvisier Bascinet"	= /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan,
 				"Hounskull Bascinet"	= /obj/item/clothing/head/roguetown/helmet/bascinet/pigface/hounskull,
 				"Slitted Kettle"		= /obj/item/clothing/head/roguetown/helmet/heavy/knight/skettle,
-				"Volfskulle Bascinet"		= /obj/item/clothing/head/roguetown/helmet/heavy/volfplate,
+				"Volfskulle Bascinet"	= /obj/item/clothing/head/roguetown/helmet/heavy/volfplate,
 				"None"
 			)
 			if(istype(H.patron, /datum/patron/divine/noc))
@@ -180,7 +182,6 @@
 			var/helmchoice = input(H, "Choose your Helm.", "LIGHT SHINES THROUGH") as anything in helmets
 			if(helmchoice != "None")
 				head = helmets[helmchoice]
-	backr = /obj/item/rogueweapon/shield/heater
 
 	// Patron-specific bonuses
 	H.cmode_music = 'sound/music/combat_heretic.ogg'

@@ -167,5 +167,5 @@
 					qdel(H.get_item_by_slot(SLOT_BACK_R))
 					H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/gwstrap(H), SLOT_BACK_R, TRUE)
 	if(granted_weapon)
-		H.equip_to_appropriate_slot(granted_weapon)
+		H.equip_to_appropriate_slot_or_hands(granted_weapon)
 		H.adjust_skillrank_up_to(granted_weapon.associated_skill, SKILL_LEVEL_EXPERT, TRUE)
