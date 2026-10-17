@@ -327,7 +327,10 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 		user.put_in_hands(C)
 		update_icon()
 		return
-	else if(bbarding)
+	// [SURREALIS-EDIT] - DROW_MERCS
+	// else if(bbarding) // SURREALIS-EDIT - ORIGINAL
+	else if(bbarding && !bbarding.natural_armor)
+	// [/SURREALIS-EDIT]
 		user.visible_message(span_notice("[user] is removing the bard from [src]..."), span_notice("I start removing the bard from [src]..."))
 		if(!do_after(user, 10 SECONDS, TRUE, src))
 			return
@@ -386,7 +389,10 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 				detail_above_overlay.appearance_flags = RESET_ALPHA|RESET_COLOR
 				add_overlay(detail_above_overlay)
 
-		if(bbarding)
+		// [SURREALIS-EDIT] - DROW_MERCS
+		// if(bbarding) // SURREALIS-EDIT - ORIGINAL
+		if(bbarding && !bbarding.natural_armor)
+		// [/SURREALIS-EDIT]
 			var/barding_overlay = bbarding.female_barding_state && gender == FEMALE ? bbarding.female_barding_state : bbarding.barding_state
 			var/mutable_appearance/barding_base_overlay = mutable_appearance(bbarding.barding_icon, barding_overlay, barding_layer)
 			barding_base_overlay.appearance_flags = RESET_ALPHA|RESET_COLOR

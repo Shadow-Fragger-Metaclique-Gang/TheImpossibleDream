@@ -1,2 +1,5 @@
 #include "code\ducal_standard.dm"
 #include "code\standard_bearer.dm"
+#include "code\flail_overrides.dm"
+#include "code\weapon_disarm.dm"
+#include "code\greatflail_special.dm"
