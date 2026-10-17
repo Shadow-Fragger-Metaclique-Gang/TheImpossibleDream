@@ -9,3 +9,7 @@
 /obj/item/churcharticles/litany
 	name = "litany of the Divine Wills"
 	desc = "A finely illuminated parchment of litany bearing the sacred verses of the Pantheon of the Pentacle. Penned upon blessed parchment and sealed with crimson wax, it contains the Rite of Endorsement, a solemn invocation entrusted only to ordained priests. Once the final verse is spoken, the parchment burns to ash, and one of the Gods' sacred croziers is called forth. Don't lose it."
+
+/obj/item/rogueweapon/woodstaff/aries // more humble with no aura
+	name = "staff of the shepherd"
+	desc = "A finely wrought crozier crowned with the likeness of a shepherd watching over his flock. Its curved head serves as a reminder that a true shepherd does not rule through fear, but through guidance, mercy, and unwavering vigilance. To the faithful it is a symbol of humble service; to the lost, a promise that even the stray may yet find their way home."

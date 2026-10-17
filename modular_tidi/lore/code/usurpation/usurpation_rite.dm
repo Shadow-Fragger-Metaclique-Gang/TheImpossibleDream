@@ -49,21 +49,24 @@
 		"so does the Inquisition endure to re-establish His rule upon Psydonia."
 
 /datum/usurpation_rite/sacred_supercession
-	desc = "When a king fails to uphold the divine order, the faithful must act. Reluctantly, the temple must claim temporal power, to shepherd the faithful back on an orderly path."
 	explanation = {"<p>A member of the Temple of the Pentacle may claim the throne through divine mandate.</p>\
 <p><b>Who may invoke:</b> Any member of the Temple who follows one of the divine patrons.</p>\
 <p><b>How it works:</b> Members of the Temple of Pharos, or those who have reached the First Tier of Divine devotion, must gather near the throne and speak the words 'I assent' to support your claim. Only followers of the Pantheon may participate.</p>\
 <p><b>Completion condition:</b> <b>5</b> weighted voices must speak their assent. Foreign or wandering clergy count as only half a voice. Once the threshold is reached, the realm is alerted and a contestation period begins — survive it and stay conscious while remaining near the throne, and it is yours.</p>\
 <p><b>Restrictions:</b> Only followers of the Pantheon may invoke or assent. Outlaws and the undead are shunned.</p>\
-<p><b>Realm type if successful:</b> Prince-Bishopric, ruled by a Prince-Bishop.</p>"}
+<p><b>Realm type if successful:</b> Prince-Pontifexus, ruled by a Prince-Pontifexus.</p>"}
+	new_ruler_title = "Prince-Pontifexus"
+	new_ruler_title_f = "Princess-Pontifexus"
+	new_realm_type = "Pentacle-Protectorate"
+	new_realm_type_short = "Pentacle-Protectorate"
 	roundend_epilogue = "Astrata's sacred order has been restored, but with a twist. " + \
-		"For as long as most faithful can remember, realms of Psydonia were ruled by the blue-blooded, " + \
-		"those who derive their power from Astrata's divinity, but never wielded Her power directly. " + \
-		"Now, the Temple itself has taken the throne. " + \
-		"Is this truly Astrata's will? To mix temporal and spiritual power in one ruler? " + \
-		"The Sun Goddess is silent, or perhaps she has acquiesced to this new order." + \
+		"Rare within these modern days is it for the Temple to reign directly - its clergy traditionally content to rest by the wayside and guide." + \
+		"Now, the Temple itself has taken the throne. To usurp the unrighteous, or to lay claim left fallow." + \
+		"Shall this new Pharos exist as a return to the glorious days of the Imperate's reign? " + \
+		"Will it unite the followers of the Pentacle, and demand subservience out of the less faithful?" + \
+		"Has it truly earned the right to rule from the Star, absolute? She stays silent - but burns brightest, as ever." + \
 		"\n\n" + \
-		"To the west, the smoke of a signal fire rises. " + \
+		"To the west, rumors spread like wildfire. " + \
 		"Through this takeover, the Temple has broken the balance of power that kept in check the uneven balance of a kingdom wrack with schism. - " + \
 		"Those of the Pantheon, the faith of the majority, and those of Psydon - the minority, but only just." + \
 		"Each tolerated the other - with effort - and kept each other in check. " + \
@@ -72,9 +75,11 @@
 		"Strife is inevitable. The Scar shall witness it all."
 
 /datum/usurpation_rite/solar_succession
+	name = "Rite of Solar Succession"
+	desc = "When the throne falters, it is the right, no, the duty of the noble to step in and restore order."
 	explanation = {"<p>A noble may claim the throne through the assent of their peers. An ancient tradition upheld by the order ordained by Astrata.</p>\
 <p><b>Who may invoke:</b> Any noble.</p>\
 <p><b>How it works:</b> Nobles of the realm must then gather near the throne and speak the words 'I assent' to support your claim.</p>\
-<p><b>Completion condition:</b> Members of the noble family (Consort, Prince), Insiders (Hand, Steward, Councillor) and those with Heartfelt ties need only <b>3</b> noble voices — a palace coup. All other nobles require a quorum of <b>5</b> voices. Resident nobles of Pharos count as a full voice; foreign (wanderer) nobles count as only half. Once the threshold is reached, the realm is alerted and a contestation period begins — survive it and stay conscious while remaining near the throne, and it is yours.</p>\
+<p><b>Completion condition:</b> Members of the noble family (Consort, Heir), Insiders (Hand, Steward, Councillor) and those with Heartfelt ties need only <b>3</b> noble voices — a palace coup. All other nobles require a quorum of <b>5</b> voices. Resident nobles of Pharos count as a full voice; foreign (wanderer) nobles count as only half. Once the threshold is reached, the realm is alerted and a contestation period begins — survive it and stay conscious while remaining near the throne, and it is yours.</p>\
 <p><b>Restrictions:</b> Outlaws and those touched by the stench of undead may not invoke or assent.</p>\
 <p><b>Realm type if successful:</b> County, ruled by a Count / Countess.</p>"}

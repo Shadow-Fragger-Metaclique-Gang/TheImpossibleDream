@@ -1,0 +1,3 @@
+#include "code\lord_of_vanity.dm"
+#include "code\clothes.dm"
+#include "code\skin.dm"

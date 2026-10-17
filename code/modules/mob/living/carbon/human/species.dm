@@ -734,7 +734,10 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 		if(!I.species_exception || !is_type_in_list(src, I.species_exception))
 			return FALSE
 
-	var/is_nudist = HAS_TRAIT(H, TRAIT_NUDIST)
+	// [SURREALIS-EDIT] - NUDIST_APPROVED - Only bypass the Nudist restriction, including the cloak slot.
+	// var/is_nudist = HAS_TRAIT(H, TRAIT_NUDIST) // SURREALIS-EDIT - ORIGINAL
+	var/is_nudist = HAS_TRAIT(H, TRAIT_NUDIST) && !I.nudist_approved
+	// [/SURREALIS-EDIT]
 	var/is_shirtless = HAS_TRAIT(H, TRAIT_SHIRTLESS)
 	var/is_inhumen = HAS_TRAIT(H, TRAIT_INHUMEN_ANATOMY)
 	var/num_arms = H.get_num_arms(FALSE)

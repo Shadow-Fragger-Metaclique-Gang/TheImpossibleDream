@@ -260,7 +260,7 @@ const Sidebar = () => {
                 Triumphs: {triumphs}
               </Button>
             </Stack.Item>
-            <Stack.Item>
+            {/* SRLS EDIT START - removes agevet icon <Stack.Item>
               <Button fluid icon="baby" onClick={() => act('agevet')}>
                 Verified:{' '}
                 {agevet ? (
@@ -273,7 +273,7 @@ const Sidebar = () => {
                   </Box>
                 )}
               </Button>
-            </Stack.Item>
+            </Stack.Item> SRLS EDIT END - removes agevet icon */}
             <Stack.Item grow />
             <Stack.Item>
               <Button

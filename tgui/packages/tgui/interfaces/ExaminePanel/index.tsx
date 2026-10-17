@@ -56,7 +56,7 @@ export const ExaminePanel = () => {
               onClick={() => act('donator_chat')}
             />
           )}
-          {!!is_vet && (
+          {/*SRLS EDIT START - removes agevet icon !!is_vet && (
             <Button
               color="gold"
               icon="crown"
@@ -64,7 +64,7 @@ export const ExaminePanel = () => {
               tooltipPosition="bottom-start"
               onClick={() => act('vet_chat')}
             />
-          )}
+          )SRLS EDIT END - removes agevet icon */}
           <Button
             color="green"
             icon="music"

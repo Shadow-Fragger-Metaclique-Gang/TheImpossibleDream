@@ -1,3 +1,7 @@
+/datum/job/roguetown/lord
+	display_title = "Count"
+	f_title = "Countess"
+
 /datum/advclass/lord/warrior
 	subclass_stashed_items = list(
 		"County Caparison (Saiga)" = /obj/item/caparison/azure,
@@ -20,3 +24,7 @@
 	subclass_stashed_items = list(
 		"County Caparison (Saiga)" = /obj/item/caparison/azure,
 		"Fogbeast Caparison" = /obj/item/caparison/fogbeast)
+
+/datum/job/roguetown/prince
+	display_title = "Heir"
+	f_title = "Heiress"

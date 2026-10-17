@@ -1,0 +1,4 @@
+author: "RandomGooberCoder"
+delete-after: True
+changes:
+  - bugfix: "Since all users are vetted during WL, the status won't be shown in examine panels."

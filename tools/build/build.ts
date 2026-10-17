@@ -18,7 +18,38 @@ export const TGS_MODE = process.env.CBT_BUILD_MODE === 'TGS';
 export const DME_NAME = 'roguetown';
 
 Juke.chdir('../..', import.meta.url);
+// [SURREALIS-ADD] - Autosort our global_modules.dm file to prevent merge conflicts
+const GlobalModulesFile = 'modular_tidi/global_modules.dm';
 
+function sortGlobalModules() {
+  let fileContents = fs.readFileSync(GlobalModulesFile, 'utf8');
+  let lines = fileContents.split('\n');
+  let includeLines = [];
+
+  for (let i = 0; i < lines.length; i++) {
+    if (lines[i].trim().startsWith('#include')) {
+      includeLines.push(lines[i]);
+    }
+  }
+
+  includeLines.sort();
+
+  let nextInclude = 0;
+
+  for (let i = 0; i < lines.length; i++) {
+    if (lines[i].trim().startsWith('#include')) {
+      lines[i] = includeLines[nextInclude];
+      nextInclude = nextInclude + 1;
+    }
+  }
+
+  let newFileContents = lines.join('\n');
+
+  if (newFileContents != fileContents) {
+    fs.writeFileSync(GlobalModulesFile, newFileContents);
+  }
+}
+// [/SURREALIS-ADD]
 export const DefineParameter = new Juke.Parameter({
   type: 'string[]',
   alias: 'D',
@@ -96,6 +127,7 @@ export const DmTarget = new Juke.Target({
     return [`${DME_NAME}.dmb`, `${DME_NAME}.rsc`];
   },
   executes: async ({ get }) => {
+    sortGlobalModules();
     await DreamMaker(`${DME_NAME}.dme`, {
       defines: ['CBT', ...get(DefineParameter)],
       warningsAsErrors: get(WarningParameter).includes('error'),
@@ -116,6 +148,7 @@ export const DmTestTarget = new Juke.Target({
     get(DefineParameter).includes('ALL_MAPS') && DmMapsIncludeTarget,
   ],
   executes: async ({ get }) => {
+    sortGlobalModules();
     fs.copyFileSync(`${DME_NAME}.dme`, `${DME_NAME}.test.dme`);
     await DreamMaker(`${DME_NAME}.test.dme`, {
       defines: ['CBT', 'CIBUILDING', ...get(DefineParameter)],

@@ -115,3 +115,26 @@
 
 /obj/item/rogueweapon/whip/antique/psywhip
 	desc = "A chain-linked whip, meticulously assembled from a hundred pieces of blessed silver. Its origins are steeped in mythos: most believe it to originate from an ancient bloodline of vampyre-killers, which once saved Psydonia from a powerful leechlorde. Whether it was happenstance or fate itself that eventually led it into your grasp, however, is better left unspoken. </br>'There, upon the Cathedral's ceiling, was painted a scene-most-beautiful: of a robed Psydon standing before the Anathema, parting the nite's sky a thousandfold with a crack from His fiery whip. Just as He had done prior, so too must you bring daelight to the darkness.'"
+
+/obj/item/rogueweapon/huntingknife/idagger/steel/holysee
+	name = "eclipsum dagger"
+	desc = "A sliver of heaven, shaped into an elegant dagger. The alloy radiates with magnificence: a reminder that no matter how dark the nites grow, there will always be a dawn to follow. Such a dagger is reserved for the Pentacle's pontifexus - both as a symbol of their divine authority, and as a means of ritualistic bloodletting. </br>'..come forth, child o' myne, and be anointed in the Pantheon's light once more..'"
+
+/obj/item/rogueweapon/huntingknife/idagger/silver/elvish/poopknife
+	name = "thine majesty's nitesoil-cleaver"
+	desc = "A heraldric accompaniment to the chamberpot, and the most closely-guarded secret before the Scar. It is said that this once belonged to the Count's eldest ancestor, who - in a fit of constipatory labor - had unwittingly realized another use for their wave-bladed trophy. Clinging to its silvered edge is a thin layer of otherworldly ash, refusing to yield to neither soap-nor-rag."
+
+/obj/item/rogueweapon/huntingknife/idagger/steel/profane/get_mechanics_examine(mob/user)
+	. = ..()
+	. += span_info("This is a dagger used by the ASSASSIN antagonist. Targets who have the \"TARGETED\" vice can be soul-trapped \
+	within it by use of it's PECULATE intent. If you are an assassin, slay your target, or wait until they have produced a \"BLED OUT\" \
+	message in order to sap them with it.")
+	. += span_info("PECULATE steals the face of any valid being, TARGETED or not. It is still a little buggy. It will not work on NPCs, revenants, \
+	or oozelings. Their souls will still be trapped if they are valid, however.")
+	. += span_info("BREAKING the dagger requires the assassin to be slain.")
+	// keep this updated w/ absolver if that also gets added
+	. += span_info("This dagger can be broken through a Necran Rite, a Pontifex's blessing, or an Absolver's Golgatha blessing.")
+	. += span_info("Breaking the dagger will restore the souls, allowing any ghosts who are still present in-round to be returned to their \
+	bodies and revived.")
+	. += span_redinfo("If you are an assassin, you can break any dagger you own by MMB'ing it. Please consider using this is if you are about to ERP \
+	or similar. Thank you.")

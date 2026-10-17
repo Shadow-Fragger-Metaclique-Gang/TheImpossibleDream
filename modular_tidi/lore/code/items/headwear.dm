@@ -14,3 +14,7 @@
 
 /obj/item/clothing/head/roguetown/chaperon/noble/court
 	desc = "A noble's chaperon made for the courtiers of Pharos."
+
+/obj/item/clothing/head/roguetown/crown_hat
+	name = "crown hat"
+	desc = "Oft worn in place of a crown, this hat is the signature headwear of the Count. Its iconic feather stretches tall above its peers."

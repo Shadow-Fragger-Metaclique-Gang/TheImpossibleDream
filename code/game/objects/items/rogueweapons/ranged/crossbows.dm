@@ -349,7 +349,7 @@
 	beneath the stock is a windlass mechanism, necessary to surmount the siegebow's titanic draw-strength. It loads \
 	heavier, full-length bolts; purpose-made to pulverize. </br>Assembled in Grenzelhoft, championed by Valoria, and \
 	unfamiliar to the highlands of Azure Peak."
-	icon = 'icons/roguetown/weapons/misc32.dmi'
+	icon = 'icons/roguetown/weapons/ranged32.dmi'
 	icon_state = "heavybow0"
 	item_state = "heavybow"
 	possible_item_intents = list(/datum/intent/shoot/crossbow/heavy, /datum/intent/arc/crossbow/heavy, /datum/intent/buttstroke/heavy, /datum/intent/effect/daze) //Remember, this is quite heavy.

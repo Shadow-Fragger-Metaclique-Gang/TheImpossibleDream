@@ -23,6 +23,7 @@
 	)
 
 /datum/job/roguetown/priest
+	display_title = "Pontifex"
 	tutorial = "The Divine is all that matters in a world of the immoral. The Shattered God abandoned us, and in his stead the PENTACLE rules over us mortals--and you will preach their wisdom to any who still heed their will. The faithless are growing in number. It is up to you to shepherd them toward a Gods-fearing future, o bridge-builder."
 
 /datum/advclass/bishop
@@ -34,7 +35,8 @@
 	)
 
 /datum/job/roguetown/sexton
-	tutorial = "You are a Sexton, an apprentice, helping hand or aide for the temple. Your responsibilities are little, but so are your obligations."
+	display_title = "Initiate"
+	tutorial = "You are an apprentice helping hand for the Temple. Freshly converted or oathsworn to the Pentacle, your rightful place - Solar-defined - is below that of all others within. Serve with dignity and grace, and perhaps you may earn your superior's grace."
 
 /datum/advclass/sexton/groundskeeper
 	tutorial = "You are the groundskeeper for the temple, and are responsible for all the little odd-jobs that keep it running. \
@@ -48,3 +50,19 @@
 	subclass_stashed_items = list(
 		"The Verses and Acts of the Pantheon" = /obj/item/book/rogue/bibble,
 	)
+
+/obj/structure/roguemachine/vaultbank/church/get_authority_label()
+	return "the Pontifex or Martyr"
+
+/datum/advclass/herald
+	name = "Herald of the Abyss"
+	tutorial = "One of Abyssor's acolytes dedicated to the path of the dream painter. You are amongst the most studious of the cult, capable of casting the most powerful miracles. Detail your visions, bring great tidings... Perfom the grunt work to prepare the greatest rituals."
+
+/datum/advclass/voice
+	name = "Voice of the Seas"
+	tutorial = "One of Abyssor's visionaries dedicated to the path of the dream painter. You are amongst the exhalted of the cult, leading this little branch of abyssorite misfits. Keep in mind your authority does not reach past the cult - and many would fear you for your draw towards the Dreamer. Perhaps you can recruit some of the loyal abyssorites around here."
+
+/datum/advclass/templar/maris
+	name = "Maris"
+	tutorial = "One of Abyssor's sentinels dedicated to the path of the dream painter. You are amongst the protectors of the cult, keeping your fellow cultists safe from dreamfiends."
+

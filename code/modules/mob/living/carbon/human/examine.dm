@@ -915,11 +915,14 @@
 		if(name in GLOB.excommunicated_players)
 			. += span_userdanger("HERETIC! SHAME!")
 
+		// [SURREALIS-REMOVE] - EXCIDIUM - removes fluoride validhunt stare
+		/**
 		if(HAS_TRAIT(src, TRAIT_EXCOMMUNICATED))
 			. += span_userdanger("EXCOMMUNICATED! SHAME!")
 		if(name in GLOB.outlawed_players)
 			. += span_userdanger("OUTLAW!")
-
+		*/
+		//[/SURREALIS-REMOVE]
 		. += deadite_examine()
 
 		var/datum/antagonist/vampire/vamp_inspect_vlord = src.mind?.has_antag_datum(/datum/antagonist/vampire/lord)
@@ -953,11 +956,15 @@
 			if(H.marriedto == name)
 				. += span_love("It's my spouse.")
 
+		// [SURREALIS-REMOVE] - EXCIDIUM - removes validhunting tools
+		/**
 		if(HAS_TRAIT(user, TRAIT_JUSTICARSIGHT) && !HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS))
 			for(var/datum/bounty/b in GLOB.head_bounties)
 				if(b.target == real_name)
 					. += span_syndradio("[m3] a bounty on [m2] head of [b.amount] mammon for [b.reason], issued by [b.employer].")
 					break
+		*/
+		// [/SURREALIS-REMOVE]
 
 		if(name in GLOB.court_agents)
 			var/datum/job/J = SSjob.GetJob(user.mind?.assigned_role)

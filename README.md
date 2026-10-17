@@ -2,7 +2,7 @@
 
 | Website                   | Link                                           |
 |---------------------------|------------------------------------------------|
-| Discord | [https://discord.gg/F2EQA3HFUu](https://discord.gg/F2EQA3HFUu)
+| Discord | [https://discord.gg/F2EQA3HFUu](https://discord.com/invite/FbmNd5acRZ)
 | UPSTREAM    | [https://github.com/Azure-Peak/Azure-Peak](https://github.com/Azure-Peak/Azure-Peak)    |
 | UPSTREAM WIKI    | [https://azurepeak.miraheze.org/wiki/Main_Page](https://azurepeak.miraheze.org/wiki/Main_Page) |
 

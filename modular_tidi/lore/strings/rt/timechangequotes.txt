@@ -1,12 +1,9 @@
 PSYDON yet lives. PSYDON yet ENDURES.
 Dae is far less dangerous than Nite; Astrata’s gaze is far more searing to all forms of evils in a direct burn.
-The Gods of the Pentacle are less directly responsive to prayer than the Ascendant. The Temple claims that this is a test of faith.
-The world flooded for a thousand daes before Abyssor was finally put to rest. Some say he will one dae stir from his slumber; his sleep must endure.
-The Eternal Empirate crumbled like most every empire will; after an internal decay, pushes for independence, and a return of cultures unique to each land once claimed.
-Holy miracles are lethal to the shambling dead, and unholy magicks mend their bones and skin.
+Outside of places of power like Pharos, the Gods of the Pentacle are less directly responsive to prayer than the Ascendant. The Temple claims that this is a test of faith.
+The Eternal Empirate crumbled like most every empire will; after an internal decay, the rising drives of the powerful within, and a return of cultures unique to each land once claimed.
 Xylix's gift to mortals is the humble tarot deck, allowing them to divine the fates themselves.
 It is said that Eora was once twin of Baotha - by the Ascendant, at least. Out of jealousy and chastity, she attempted to murder her own mother, and was outcast from Her Heaven.
-Pestra once saved the life of Eora. The two are said to have shared a close bond since, though with differing ideas of beauty.
 ZIZO dwells within the hellish north, raging, weeping. Her icy fury manifests as the magickal blizzards that torment Gronn, or so it is said.
 Dendor burst from the feverishly-sleeping Abyssor's head, spilling life forth in a chaotic frenzy.
 Werewolves are tests sent by Dendor to ensure our purity and faith.
@@ -57,11 +54,14 @@ The powerful nation of Otava is home to a denomination that venerates PSYDON abo
 The Naledi captal of Veralun is a prosperous metropolis built around an oasis. Gleaming gold filigree marks white-marble buildings. Grand mosques stretch their minarets to the sky in praise of PSYDON.
 I AM OLDER THAN AEON. I AM SIN, FATHER OF LIES. I HAVE GONE BY MANY NAMES. SAY THEM AND WEEP, FOR I AM ALL THAT THEY ARE.
 Working yourself to death is considered an act worthy of veneration for Malumites—so long as you finish your creation.
+It's a good idea to bandage and suture arterial wounds as soon as possible. Death happens slowly, and then all at once.
+Gripping bleeding bodyparts makes them bleed slower. The harder you grip, the less you bleed.
 The Sovereignty of Otava is a lush wet country home to the best stoneworkers on Psydonia. The gigantic towers of the Grand Cathedral in the capital stand as the seat of the His Majesty's Holy Inquisition; and the home of its Arch Lector.
 A ancient Orthodoxic greeting or farewell is 'purity afloat.' The psycross is often held over the chest during this ritual.
 No one knows what 'purity afloat' actually means.
 Within the Psydonian doctrine of ag Cruucis, a traditional greeting is 'ides and agonies.' To reply is with 'all in agony.' To fare well is to say 'suffer well.'
 Blacksteel is a pale imitation of the Zizo-blessed Darksteel, which is gifted to Her followers in Her benevolence.
+Blacksteel is a blessed alloy of pure silver and steel. Its recipe was stolen by Zizite heretics and perverted into Darksteel.
 The Gronn Highlands are a mountainous region known for its jagged peaks and terrible blizzards. It is home to a hardy, brutal people who struggle to survive against the land, building fortified stone villages that cling to cliffsides.
 The Gronn Lowlands, counterintuitively, are a warm, heavily-swamped clime where diseases run rampant among the foreign, and the locals are isolated, crude, and violent. Few can appreciate an Eskallian from the lowlands - even if his cuisine is marvelously flavorful.
 Dwarves are renowned for their artifice and craftsmanship - though are easily inclined towards madness. Within the catacombs and sewers of civilization, betwixt Obriskii dens and Worms-that-Walk, there lurk the wretched sewer dwarves...
@@ -77,6 +77,7 @@ Worshippers of the One are fools hellbent on dooming our world and must be corre
 LOOK UP TO THOSE WHO EXCEL AT VIOLENCE; THEY CARRY THE WILL OF THE GODS AND RECIEVE PUNISHMENT OF HELL BEYOND HELLS.
 O SYDON, forgive your wayward child. Forgive us our ignorance. Forgive us our defilement of your corpse.
 Wearing a red tabard provokes even the most serene minotaur - and makes Ravox laugh with joy.
+An arcing arrow can only hit a target below you, not above you. A thrown rock, however...
 ASTRATA is a VILE TYRANT and must be CONSUMED AND SUBSUMED.
 ASTRATA is law made manifest and must be respected, lest society fall into chaos.
 No pursuit was too perilous, no sacrifice too great. Until, well...
@@ -88,7 +89,9 @@ Stories tell that neither Noc nor Dendor have any relation to Lupians whatsoever
 Solitary Lupians who suffer from gigantism are often mistaken for werevolves and shot without question, so they travel in packs - be it with their own or other peoples.
 Drakian... Fluvian... Lupian... They're all wildblooded idiots, why do we bother giving them names?
 Humen... Elf... Dwarf... They're all flatfaced idiots, why do we bother giving them names?
-To trust an Abyssorite is to believe in Xylix. Since the first communion, his followers frequently fall to madness.
+Pomegranate arils are boons sent to mortals by Eora to test whether they're dedicated enough to care for something precious.
+The mythical ashen aril is coveted by thieves, heretics and all manner of ruffians. For it is said to yield unimaginable power.
+The winds tell tales of Astratan devout turning flesh to flame and flame to blades. Beware her fury.
 Shal'ghur is a city only known by this name, denoted affectionately by creatures that dwell in Abyssor's dream. The shades of winding streets full of the damned reflected in his realm. A cautionary tale on the dangers of dream incursions.
 The mast buckles, as the ship is led through treacherous waters by Abyssorite under Astrata's gaze. Sleeping eyes giving way for the faithful of Noc, who continue their toil at nite.
 To dream is to commune with Abyssor. Coffee is a sin, but a bit of Camomille tea never goes amiss.
@@ -103,34 +106,22 @@ Astrata, Psydonia, Noc, Hermes, Kytheria, Nepolx, Jove... diviners oft theorize 
 The pen is not mightier than the sword. The pen merely persuades many swords to it's cause.
 The greatest lesson you can learn from a Northman is this: you can never have too many knives.
 I DREAM OF A DARK, BLUE STAR IN THE SKY. IT'S RED EYES GAZE AT ME WITH CONTEMPT. IT GROWS IN SIZE EVERY SECOND.
-PHYSICAL POWER ALLOWS THROWING A PUNCH. MENTAL POWER ALLOWS THROWING A FIREBALL.
 Adventurers beware: barber surgeons speak of red potions causing tumors in the liver...
 Adventurers rejoice: barber surgeons speak of red potions curing tumors in the liver!
-Stone to coal, coal to iron, iron to gold, gold to toper... thus goes the alchymist's mantra.
-BLOOD RAIN SYMBOLIZES THE GROWING POWER OF THE ANATHEMA. IF I SEE IT, I SHOULD EXPECT VIOLENCE.
-IN these DARK daes within the REALMS. One would do well not to wander into the woad...
-The Fulmen Chair's true name is the "ZRONK", named for the first associate of Magellan to pull the lever. His lyfe, taken, to fuel another.
-LEFT HAND. RIGHT HAND. LEFT HAND. I SCALE THE CLIFF. I SEE ASTRATA'S DAWN. MY BODY TIRES, BUT I AM FREE FROM THE MENACE BELOW.
-Often used measurements include the 'mote' for time, the 'cubit' or 'imperial foot' for length, and the 'dram' for liquid volume.
-I KICK THE LAMPTERN. THE FYRE-BEARER BLOCKS MY SHOT-- MY TEAM LOSES THE GAME OF LAMPTERNBALL!!!
-I SEE THE DREADED GEM-EATER. HIS METAL MITTS HOLD MY HIDDEN STASH OF SAFFIRA. ONE BY ONE, HE POPS THEM INTO HIS MOUTH...
-WHY IS IT WRITTEN SAIGA AND NOT PSYGA?
-SAKURA LEAVES FALLING IS A SIGN OF EORA'S GROWING POWER. IF I SEE THEM, I SHOULD EXPECT PEACE...
-Focusing on your SPECIAL powers outside of combat allows deft fingers to pick pockets.
 Nobody in Otava owns a thesaurus. No synonym for 'endure' will ever be used.
 Matthios, in the form of His Saints, has broken the chains of many monsters, and set them loose on the world. Slaves pray to Matthios, too, that their chains may be broken.
 The glittering black gemstones of onyxa are said to prized by warlocks and drow for black rituals. The face reflected in its shard is never your own.
 The cult of Matthios, the Fiddler-upon-Flames, idolizes the ignition and spread of flame. While often at odds with Astrata, on one thing they agree: it is a pleasure to burn.
-Eating the fyritus flower will prevent one from being infected by werewolves.
 Pestran witchcovens developed the art of potion-making in ancient times. Modern alchemy bears little resemblance to its oldest forms, but the stereotype of the wart-nosed witch remains, for better or worse.
 The famous Zybantine 'desert riders' are among the most skilled swordsmen in the world. They'd all kill their own mother for a piece of coin.
 Prestidigitation is often known as the apprentice's friend, as it helps remove char and soot before the Magos notices.
 'Mageburn' is the colloquial name for injury from backfiring spells, such as fireballs at close range. The surest sign of a new apprentice is burn marks on the hands and face.
-The ideal number for an adventuring party is a band of five. This tradition dates back nearly a century- to the band of five heroes that overthrew the Mad Duke.
-The fortress of Gundu'zirak was once dedicated to the production of golems and dolls. Its ruins lie under Mount Decapitation, along with the other hundred horrors there.
-The fastest way to attract the attention of a god is to say their name. In some cases, this is a very bad idea.
-Sacrifices to the gods are common forms of worship, and thought to earn their favor. Food, coin, animals and relics can all be offered.
-Ravox exults in GLORY. Duels are honorable and righteous, and it is dishonorable to strike a surrendering opponent.
+Bronze is cherished by the worshippers of Ravox; the first alloy gifted to Psydonia, hewn into plate-and-blade by Man to bring justice unto the wicked. His most ardent paladins oft-forsake steel longswords, in favor of bronze flamberges.
+They'll tell you that the first alloy known to Psydonia was bronze, but they'd be lying.
+Gold can be used to forge the finest - and most expensive - arms in all of Psydonia. Mind the fragility, however; they're meant for ceremonies, not clashes.
+Gold is paradoxically cherished by the worshippers of both Astrata and Matthios; the catalyst of ultimate authority, fit to both establish and usurp tyranny.
+Silver is cherished by the worshippers of Psydon, as they believe it to be liquid remnants of His blood, carrying but the slightest mote of His strength, love, and hatred within each ounce.
+Silver is cherished by the worshippers of Noc, as they believe it to be the fragments of divine magicka; a catalyst that would eventually reintroduce arcyne secrets to the worthy.
 Ravoxians are all morons.
 Graggar does not stand for 'might makes right.' The truth is more concise: Might makes.
 Old enough druids are thought to eventually turn into trees. Treehood is an ideal state for some adherent worshippers of Dendor.
@@ -156,44 +147,25 @@ Cultists of Noc often take on a new name, called a Nocturne, and shed their past
 Cultists of Noc pursue wisdom, study, scripture and divination. Many of Psydonia's greatest discoveries have come from a Noccite sect. Many of Psydonia's greatest fires have also come from a Noccite sect.
 The ruins beneath the Scar are dotted with ancient, crumbling statues and fixtures. It is thought that the most ancient of these are Aasimar, who one day stopped moving, and never started again.
 Aasimar cannot die of old age. Sometimes, however, they simply give up, and turn fully to stone. It is considered bad luck to deface a statue, as a result.
+Every yil, Heartfelt hosts a grand banquet for the nobility of Azuria, Rockhill, and Zyndvhartia to attend. The Holy Psydonic Inquisition is credited with thwarting an attempted bombing of its palace, during the previous yil's feast.
 Everything these tips tell you is made up.
 Everything these tips tell you is completely true.
-You should move to Kingsfield. It's better there.
+You should move to Sovereznor. It's better there.
 They say that Heartfelt has fallen to a horde of the living dead, or-.. no, wait, wasn't that Readtun?
 Adonai, my God, why hath you forsaken me?!
 BEFORE THE FINAL BLOW WAS STRUCK, I TORE OPEN A PORTAL IN TYME AND FLUNG PSYDON INTO THE DAES-TO-COME; WHERE MY SIN IS LAW! NOW.. THE LOWLY FOOL SEEKS TO RETURN TO THE PAST, AND UNDO THE EVIL THAT IS ZIZO!
-Blastpowder was originally created by Hammerhold's wisest dwarve-alchemists to 'spice up' bubbleless ale. All it took was an errant spark - and the cellar's subsequent obliteration - to reveal an alternative use.
-Glimmering slag and gold have two things in common; they're both useless on their own, and they both thrumb with latent magicka. Perhaps alloying them together, three-to-one, could offer something new?
-What's the difference between a longsword, broadsword, and bastard sword? One's for a noble, another's for a knight, and the last one's for whatever they make after a nite of drunken revelry.
-Bronze tools, weapons, and armor tend to be sharper and sturdier than their iron-wrought counterparts. The trickier part is forging the alloy; but, perhaps fashioning a smelter out of stone, charcoal, copper and tin could do the trick.
-Bronze is cherished by the worshippers of Ravox; the first alloy gifted to Psydonia, hewn into plate-and-blade by Man to bring justice unto the wicked. His most ardent paladins oft-forsake steel longswords, in favor of bronze flamberges.
-They'll tell you that the first alloy known to Psydonia was bronze, but they'd be lying.
-Gold can be used to forge the finest - and most expensive - arms in all of Psydonia. Mind the fragility, however; they're meant for ceremonies, not clashes.
-Gold is paradoxically cherished by the worshippers of both Astrata and Matthios; the catalyst of ultimate authority, fit to both establish and usurp tyranny.
-Silver is cherished by the worshippers of Psydon, as they believe it to be liquid remnants of His blood, carrying but the slightest mote of His strength, love, and hatred within each ounce.
-Silver is cherished by the worshippers of Noc, as they believe it to be the fragments of divine magicka; a catalyst that would eventually reintroduce arcyne secrets to the worthy.
-Joapstone, Petriamber, Rosellusk, and Aoetal are not real stones. Do not listen to the rambling of gem-crafting madmen.
-Gemerald skulls are a sign of calamity. Folk-tales mention their service to the darker impulses of the Daeva found west.
-The rat overlords inside the SCOMS are fond of cheese. Feed them and the cries of your victims will go unheard... for a time.
-College mages are often good sources of treasure. They steal from the university as much as any rogue does.
-Inspect tabards closely, they tend to bear the names of the wearer... or horrible jokes.
 When my tyme comes, tell me - will I stand up?
 One of the rarer flowers known to Psydonia is the black rosa, exclusively grown along the highlands that border Otava, Grenzelhoft, and the Fjall. They are believed to have mystical properties, especially when used to invoke rites for funerals and sacrifices.
 Littered across the Terrorbog are old pathways and ruined battlements; the remains of a doomed attempt to colonize that which refuses to kneel before civilization.
-We don't go to the Terrorbog.
 Nocmas is the most cherished holidae amongst the elders and youth of Psydonia, where the harshest nites of the winter solstice are countered with freshly-baked pastries and freely-exchanged books. Naturally, the Inquisition has barred Nocmas from being practiced within Otava's borders, on the grounds of it 'corrupting the youth with exchange of unsanctioned literature and learning.'
 Amongst many pre-Orthodoxic denominations of Psydonism, it is traditional to not invoke His name; for to do so outside of the gravest circumstances would be to dishonor His sacrifice. Instead, they honor Him as 'the Weeping God' - most adrently, through grand and elaborate rituals performed on the winter solstice.
 Better known as the Fjalls, the Northern Empty is rumored to hide Psydonia's most well-sought truths beneath its permafrost. The few Fjallic natives who've embarked southward rarely entertain such rumors, however.
 In ancient tymes, the Anathema's worshippers symbolized their faith with a blazing vortex. Purportances of it instead representing the Sun, preceding Astrata's reign, are harshly punished by the Temple's internal Inquisition.
 Whirlwinds, though rare, are unmatched in terms of sheer devastation. Worshippers of the Pantheon oft-attribute them as conduits of divine retribution, while Psydonians fear them as spasms of Anathematic majjicka.
-Corrupted silver burns the unanointed palm, and sunders the lyving without mercy. Such is born from dark magycks, known best by the lyches and necromancers of Zizo.
 Zizo sacrificed the entirety of Her people to ascend, but something went terribly wrong. Now, a million are one; and in the darkest nites, they say you can see Her crimson vortex screaming through the dimmest stars.
 Zizo sought to save Her people from an infertilizing ailment that would soon doom them to extinction. All that She needed was a sliver of His power; yet even She could've never accounted for how weak the filament was.
 The Golgathan Stain is said to have once hosted the final battle between the living embodiments of Ravox and Graggar. This cleaved, distorted range of black-ice mountains near Azuria is universally lethal - for no mortal may walk where Gods have warred.
 Mount Decapitation is always blanketed in a thick layer of snow, owing to its elevation. It cradles many secrets and riches beneath the snow, yet plenty of perils as well.
-Strange dreams seem to trail all who inhabit the lands marred by the Scar. To hear someone remarking about a 'week' with unusual and unfortunate fates isn't uncommon, but one should be wary to discern whatever facts might've been laced into such fiction.
-Pharos is a realm blessed by the Scar - that, which suffuses it entirely, and shapes every life within. It is a place of Might - what might be, what could be, what should be.
-If you are staying in a wayside inn and two men force entry to your room? Kill them with your crossbow.
 Fire is orange-red, and sometimes sylver-white, or sometimes cerulean fair, or sometimes verdant green. If you see any other colors of fire - including colors prismatic or indescribable - please inform the Inquisition immediately.
 Insert the needle into your eye. Open your mind to the truth - that this world must fall, and all within it rendered to ash.
 There are only three things that're certain; death, taxes, and the quality of an Innhouse's liqour.
@@ -208,6 +180,7 @@ It's a tough fight ahead, but happiness has to be fought for.
 The County of Pharos beat back a streak of Hammerheldan Reivers in 1622 at a great cost. Some still lurk in the forests, biding their tyme. The true threat is in their dwarves - believed to have adapted to the town's sewers.
 You now face divine judgement. May it extend eternally.
 BAITING is a suboptimal combat strategy. Never use it. Instead, stab your foe in the chest until they perish.
+FEINT attack the SKELETONS!
 BEWARE those who venerate the ANATHEMA. The INSANE, the BROKEN, the SADISTIC, and YOU.
 BEWARE those who venerate the SHATTERED. The INSANE, the ZEALOUS, the FOOLISH, and YOU.
 BEWARE those who venerate the TYRANTS. The INSANE, the VAINGLORIOUS, the DELUDED, and YOU.
@@ -261,7 +234,7 @@ ETERNAL SHAME UNTO ME. I DESERVE THIS.
 Do you want to play as a lich's skeleton?
 PROGRESS DEMANDS SACRIFICE.
 EVERYTHING HAS A PRICE... ASK YOUR LOCAL MERCHANT!
-Relics of the Four are sanctified by their foul divinity; scorning and scorching non-believers who lay their hands upon them.
+Relics of the Infernus are sanctified by their foul divinity; scorning and scorching non-believers who lay their hands upon them.
 Soldiers are often buried with a dagger in their hands, or on their chest, should the hands be missing.
 OH, YOU WON'T BELIEVE WHAT I NAMED THE WOODS FULL OF MURDER.
 OH, YOU WON'T BELIEVE WHAT I NAMED THE BOG FULL OF TERROR.
@@ -270,7 +243,6 @@ WE ARE THE LAST OF THE LEGION, THE BEST OF THE BASTERDS, AND SLAVES TO NONE!
 ROW, ROW, ROW YOU FOOLS!
 SALVE -- COAGULA -- SALVE -- COAGULA
 WITCHES PRACTICE THE NEW WAYS, NOT THE OLD.
-SHOW ME VHESLYN'S BODY.
 DENDOR! FATHER! SPIRIT-GUIDE! LET ME -- VINDICATE MY PRIDE!
 FLESH OF GOD! SECOND SIGHT! KING OF BEASTS, BLESS THIS NITE!
 LISTEN TO ME WHETHER YOU WANT TO HEAR IT OR NOT, YOU WEREN'T EVEN BORN WHEN THIS HAPPENED.

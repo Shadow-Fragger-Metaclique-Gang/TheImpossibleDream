@@ -30,3 +30,8 @@
 
 /datum/job/roguetown/suitor
 	tutorial = "You are a noble from a foreign house who has travelled to the Pharos in order to win favour of the court nobles and secure a political ally for your house. Competition is fierce, and it seems you're not the only one vying for the courts favor..."
+
+/datum/objective/marry
+	name = "marry"
+	explanation_text = "Secure a marriage with the local Count/Countess - or alternatively marry one of the noble heirs and ensure they are coronated by the week's end."
+	team_explanation_text = "Secure a marriage with the local Count/Countess - or alternatively marry one of the noble heirs and ensure they are coronated by the week's end."
