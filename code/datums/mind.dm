@@ -654,6 +654,10 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 	for(var/datum/antagonist/A in antag_datums)
 		output += A.antag_memory
 		all_objectives |= A.objectives
+	// [SURREALIS-ADD] - HERETICS
+	if(heretic_path?.current_objective)
+		all_objectives |= heretic_path.current_objective
+	// [/SURREALIS-ADD]
 
 	if(all_objectives.len)
 		output += "<B>Objectives:</B>"

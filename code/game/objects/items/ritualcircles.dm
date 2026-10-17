@@ -2167,10 +2167,6 @@ More uniquely, her rites always cut out the light in the room, then proc. 10 sec
 	var/riteselection = input(user, "Rituals of Unity", src) as null|anything in baotharites
 	// [/SURREALIS-EDIT]
 	switch(riteselection) // put ur rite selection here
-		// [SURREALIS-ADD] - SEXCON - (New proc in modular_tidi/sexcon/code/overrides/ritual_circles.dm)
-		if("Unholy Boon of Fertility")
-			fertility_boon_rite(user)
-		// [/SURREALIS-ADD]
 		if("Rite of Armaments")
 			if(user.has_status_effect(/datum/status_effect/debuff/armamentrites))
 				to_chat(user, span_warning("I am not yet ready to perform this rite."))

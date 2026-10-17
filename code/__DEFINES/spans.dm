@@ -31,6 +31,9 @@
 #define span_cultlarge(str) ("<span class='cultlarge'>" + (str) + "</span>")
 #define span_cultsmall(str) ("<span class='cultsmall'>" + (str) + "</span>")
 #define span_danger(str) ("<span class='danger'>" + (str) + "</span>")
+// [SURREALIS-ADD]
+#define span_doyourjobidiot(str) ("<span class='doyourjobidiot'>" + (str) + "</span>")
+// [/SURREALIS-ADD]
 #define span_combatprimary(str) ("<span class='combatprimary'>" + (str) + "</span>")
 #define span_combatsecondary(str) ("<span class='combatsecondary'>" + (str) + "</span>")
 #define span_combatsecondarybp(str) ("<span class='combatsecondarybodypart'>" + (str) + "</span>")

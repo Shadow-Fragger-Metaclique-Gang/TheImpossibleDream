@@ -247,7 +247,6 @@
 #include "code\organs\organ_dna.dm"
 #include "code\overrides\new_player.dm"
 #include "code\overrides\addictions.dm"
-#include "code\overrides\ritual_circles.dm"
 #include "code\collar\collars.dm"
 #include "code\organs\tail_customizers.dm"
 #include "code\overrides\preferences_toggles.dm"
