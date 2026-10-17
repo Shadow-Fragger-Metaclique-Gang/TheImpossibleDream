@@ -10944,6 +10944,14 @@
 /obj/item/roguecoin/aalloy/pile,
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/cave/his_vault)
+"dlZ" = (
+/obj/effect/decal/cobbleedge{
+	dir = 1;
+	icon_state = "borderfall"
+	},
+/obj/structure/roguemachine/contractledger,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/town/steward)
 "dmc" = (
 /turf/open/water/swamp,
 /area/rogue/under/cave/goblindungeon)
@@ -16224,6 +16232,7 @@
 "eSU" = (
 /obj/structure/table/wood/poor,
 /obj/item/natural/feather,
+/obj/item/storage/belt/rogue/surgery_bag,
 /turf/open/floor/carpet/red,
 /area/rogue/indoors/inq)
 "eSX" = (
@@ -18464,7 +18473,6 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/church/basement)
 "fDi" = (
-/obj/item/roguemachine/mastermail,
 /obj/structure/rack/rogue/shelf/biggest,
 /obj/item/storage/roguebag{
 	pixel_x = -7;
@@ -19757,7 +19765,6 @@
 /area/rogue/indoors/town/manor)
 "fXe" = (
 /obj/structure/roguemachine/atm,
-/obj/structure/roguemachine/scomm/l,
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/steward)
 "fXq" = (
@@ -23786,7 +23793,6 @@
 /turf/open/floor/rogue/metal/barograte,
 /area/rogue/under/underdark/south)
 "hhE" = (
-/obj/structure/roguemachine/contractledger,
 /obj/effect/decal/wood/herringbone{
 	dir = 4
 	},
@@ -25594,6 +25600,10 @@
 	},
 /turf/open/floor/rogue/tile,
 /area/rogue/indoors/inq)
+"hFX" = (
+/obj/structure/fluff/railing/border/north,
+/turf/open/floor/rogue/woodturned/nosmooth,
+/area/rogue/outdoors/town)
 "hFY" = (
 /obj/structure/roguemachine/scomm/r,
 /turf/open/floor/rogue/hexstone,
@@ -36153,6 +36163,17 @@
 "kIl" = (
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/shelter)
+"kIs" = (
+/obj/structure/table/wood/long_table/mid/alt,
+/obj/structure/roguemachine/contractledger{
+	layer = 5
+	},
+/obj/structure/bars{
+	icon_state = "barsbent";
+	layer = 2.81
+	},
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/shelter/town/sargoth)
 "kIt" = (
 /obj/structure/fluff/railing/wood/west,
 /obj/machinery/light/rogue/lanternpost{
@@ -40023,14 +40044,9 @@
 /turf/open/floor/rogue/cobble/mossy,
 /area/rogue/under/cave/his_vault/one)
 "lMP" = (
-/obj/effect/decal/wood/herringbone{
-	dir = 4
-	},
-/obj/effect/decal/wood/herringbone{
-	dir = 1
-	},
-/turf/open/floor/rogue/ruinedwood/spiral,
-/area/rogue/indoors/shelter/town/sargoth)
+/obj/structure/fluff/railing/border,
+/turf/open/floor/rogue/woodturned/nosmooth,
+/area/rogue/outdoors/town)
 "lMU" = (
 /obj/structure/fluff/railing/fence{
 	dir = 1
@@ -40957,6 +40973,11 @@
 /obj/effect/landmark/start/vagabond,
 /turf/open/floor/rogue/blocks/green,
 /area/rogue/under/town/sewer)
+"maY" = (
+/obj/structure/fluff/railing/border/north,
+/obj/structure/mineral_door/swing_door,
+/turf/open/floor/rogue/woodturned/nosmooth,
+/area/rogue/indoors/town/steward)
 "mbb" = (
 /mob/living/simple_animal/hostile/retaliate/rogue/spider,
 /turf/open/floor/rogue/dirt,
@@ -47045,7 +47066,8 @@
 /area/rogue/indoors/town/dwarfin)
 "nWa" = (
 /obj/structure/roguemachine/steward,
-/obj/machinery/light/rogue/candle,
+/obj/structure/roguemachine/noticeboard/wall,
+/obj/machinery/light/rogue/candle/l,
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town/steward)
 "nWd" = (
@@ -47799,6 +47821,11 @@
 	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/inq)
+"ofP" = (
+/obj/structure/fluff/railing/border,
+/obj/structure/mineral_door/swing_door,
+/turf/open/floor/rogue/woodturned/nosmooth,
+/area/rogue/indoors/town/steward)
 "ofS" = (
 /obj/structure/stairs/fancy/l{
 	dir = 1
@@ -55502,7 +55529,10 @@
 /obj/structure/standingbell{
 	name = "steward service bell"
 	},
-/obj/machinery/light/rogue/candle/l,
+/obj/structure/roguemachine/scomm/l{
+	pixel_x = 0;
+	pixel_y = -30
+	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/town/steward)
 "qyZ" = (
@@ -61919,6 +61949,10 @@
 /obj/structure/bars/passage/shutter{
 	redstone_id = "warehouse_shutter"
 	},
+/obj/structure/mineral_door/wood/donjon{
+	lockid = "steward";
+	dir = 1
+	},
 /turf/open/floor/rogue/concrete,
 /area/rogue/indoors/town/steward)
 "suC" = (
@@ -63461,6 +63495,7 @@
 /obj/item/rogueweapon/thresher,
 /obj/structure/rack/rogue,
 /obj/machinery/light/rogue/candle/blue/r,
+/obj/item/rogueweapon/whip,
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/inq)
 "sTm" = (
@@ -65746,6 +65781,10 @@
 	},
 /turf/open/floor/rogue/cobble,
 /area/rogue/under/cave/his_vault)
+"tzB" = (
+/obj/structure/fluff/walldeco/wantedposter/r,
+/turf/open/floor/rogue/ruinedwood/spiral,
+/area/rogue/indoors/town/steward)
 "tzM" = (
 /obj/machinery/light/rogue/hearth,
 /obj/structure/fluff/railing/border,
@@ -73325,7 +73364,10 @@
 /turf/closed/wall/mineral/rogue/stone,
 /area/rogue/indoors/town/physician)
 "vNk" = (
-/obj/structure/fluff/walldeco/wantedposter/r,
+/obj/item/roguemachine/mastermail{
+	pixel_y = 0;
+	pixel_x = 32
+	},
 /turf/open/floor/rogue/woodturned,
 /area/rogue/indoors/town/steward)
 "vNl" = (
@@ -310824,8 +310866,8 @@ jeZ
 boy
 boy
 hhE
-boy
-lMP
+kIs
+ttC
 ttC
 spE
 boy
@@ -322428,8 +322470,8 @@ nho
 nho
 puH
 puH
-puH
-puH
+nho
+nho
 puH
 xkS
 wYz
@@ -322780,8 +322822,8 @@ nho
 qMd
 lbD
 lbD
-lbD
-lbD
+hFX
+lMP
 lbD
 lbD
 lbD
@@ -323132,8 +323174,8 @@ qpK
 lbD
 lbD
 bbh
-bbh
-bbh
+maY
+ofP
 bbh
 lbD
 lbD
@@ -323845,7 +323887,7 @@ jPk
 bbh
 nWa
 kmR
-qDP
+dlZ
 opM
 eQZ
 oeL
@@ -324194,7 +324236,7 @@ ggO
 viJ
 ifB
 vkV
-bbh
+uIY
 fDi
 kmR
 eGr
@@ -325256,7 +325298,7 @@ bbh
 iYQ
 xMZ
 vkV
-vkV
+tzB
 oeL
 bbh
 lbD
