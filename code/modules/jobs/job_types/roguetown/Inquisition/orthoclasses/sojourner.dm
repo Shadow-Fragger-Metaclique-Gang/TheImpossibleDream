@@ -93,7 +93,7 @@
 	gloves = /obj/item/clothing/gloves/roguetown/bandages/weighted
 	pants = /obj/item/clothing/under/roguetown/trou/leather/pontifex
 	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
-	neck = /obj/item/clothing/neck/roguetown/psicross/silver/naledi
+	neck = /obj/item/clothing/neck/roguetown/psicross/naledi/silver
 	id = /obj/item/clothing/ring/signet/psy/g
 	belt = /obj/item/storage/belt/rogue/leather/rope/upgraded/dark
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid

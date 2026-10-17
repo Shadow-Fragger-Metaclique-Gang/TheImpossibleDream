@@ -114981,7 +114981,7 @@
 /area/rogue/under/cave/his_vault)
 "tzf" = (
 /obj/structure/table/wood/poor,
-/obj/item/clothing/neck/roguetown/psicross/silver/necra{
+/obj/item/clothing/neck/roguetown/psicross/necra/silver{
 	pixel_x = -5;
 	pixel_y = 15
 	},
@@ -139950,7 +139950,7 @@
 	pixel_x = 6;
 	pixel_y = 9
 	},
-/obj/item/clothing/neck/roguetown/psicross/silver/astrata{
+/obj/item/clothing/neck/roguetown/psicross/astrata/silver{
 	pixel_x = -16
 	},
 /turf/open/floor/rogue/carpet/lord/left,
