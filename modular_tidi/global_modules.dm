@@ -10,6 +10,7 @@
 #include "lore\_lore.dme"
 #include "nudist_approved\_nudist_approved.dme"
 #include "phrase_highlights\_phrase_highlights.dme"
+#include "ported_customization\_ported_customization.dme"
 #include "pq-remover\_pq-remover.dme"
 #include "sexcon\_sexcon.dme"
 #include "sound_changes\_sound_changes.dme"
