@@ -1210,7 +1210,7 @@
 			heretic_text += "Baotha's debauched."
 			if(HAS_TRAIT(examiner, TRAIT_DEPRAVED))
 				heretic_text += " She leads us to the greatest ends."
-		else if(HAS_TRAIT(examiner, TRAIT_DEPRVAED))
+		else if(HAS_TRAIT(examiner, TRAIT_DEPRAVED))
 			heretic_text += "Exalted!"
 	//SRLS EDIT END - heretic examine texts for others of the Four
 
