@@ -2,10 +2,10 @@
 	name = "ZIZO!"
 	heretic_tier = 2
 	var/list/affected = list()
-	var/affected_needed = 10
+	var/affected_needed = 4
 
 /datum/objective/heretic/zizo/apostasy/update_explanation_text()
-	explanation_text = "Shout ZIZO's name to ten different people. You must be plainly visiblee to them while doing so."
+	explanation_text = "Speak ZIZO's name to four different people. You must be visible to them, but your identity may be obscured."
 
 /datum/objective/heretic/zizo/apostasy/on_creation()
 	. = ..()

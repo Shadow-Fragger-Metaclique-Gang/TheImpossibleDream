@@ -20,7 +20,7 @@
 	baotha_objective_done = TRUE
 	check_progress()
 
-// Latch onto powder attack and check if we're forcing real drugs onto someone, and then send the completion signal
+/// Latch onto powder attack and check if we're forcing real drugs onto someone, and then send the completion signal
 /obj/item/reagent_containers/powder/attack(mob/M, mob/user, def_zone)
 	var/drugged = heretic_is_drugged(reagents)
 	. = ..()

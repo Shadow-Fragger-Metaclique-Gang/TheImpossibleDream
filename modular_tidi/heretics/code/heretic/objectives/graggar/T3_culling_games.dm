@@ -8,7 +8,7 @@
 /datum/objective/heretic/graggar/culling/update_explanation_text()
 	explanation_text = "Another follower of GRAGGAR has been chosen to participate in a culling game. Hunt them down and eat their heart before they eat mine."
 
-// Mostly a bootleg of the pre existing culling game god event
+/// Mostly a bootleg of the pre existing culling game god event
 /datum/objective/heretic/graggar/culling/on_creation()
 	. = ..()
 	if(owner?.current)
@@ -114,8 +114,8 @@
 	if(istype(second_objective))
 		second_objective.join_culling(src)
 
-// AP culling games gives an omnistat boost and triumphs to the winner and a stat penalty to the loser
-// Also AP inexplicably annihilates your stats if your heart gets destroyed instead of being eaten for whatever reason??????????
+/// AP culling games gives an omnistat boost and triumphs to the winner and a stat penalty to the loser
+/// Also AP inexplicably annihilates your stats if your heart gets destroyed instead of being eaten for whatever reason??????????
 /datum/culling_duel/heretic/process_win(mob/living/winner, mob/living/loser)
 	winner.remove_stress(/datum/stressevent/graggar_culling_unfinished)
 	remove_verb(winner, /mob/living/carbon/human/proc/remember_culling)
@@ -199,7 +199,7 @@
 			return TRUE
 	return FALSE
 
-// Used for the tier four culling games that spawns either a gnoll or an assassin
+/// Used for the tier four culling games that spawns either a gnoll or an assassin
 /datum/objective/heretic/graggar/culling/proc/spawn_hunter(mob/candidate, rank, class_tag)
 	if(!istype(candidate, /mob/dead))
 		return

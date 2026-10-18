@@ -19,8 +19,8 @@
 	var/obj/item/inqarticles/blood_vial/vial
 	var/testing = FALSE
 
-// If you wanna carry this thing around for on the go blood tests, have the absolver slave away with it
-// Don't let them lose it though! It's wholly unique and irreplaceable
+/// If you wanna carry this thing around for on the go blood tests, have the absolver slave away with it
+/// Don't let them lose it though! It's wholly unique and irreplaceable
 /datum/component/storage/can_be_inserted(obj/item/storing, stop_messages, mob/user, worn_check = FALSE, params, storage_click = FALSE)
 	if(istype(storing, /obj/item/inqarticles/assayer))
 		if(user && !stop_messages)

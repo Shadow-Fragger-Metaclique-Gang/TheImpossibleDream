@@ -8,6 +8,15 @@
 	var/rite_offering
 	var/list/rite_chant_lines
 
+/datum/objective/heretic/on_creation()
+	. = ..()
+	if(owner?.current)
+		RegisterSignal(owner.current, COMSIG_QDELETING, PROC_REF(on_body_deleted))
+
+/datum/objective/heretic/proc/on_body_deleted(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, signal_procs[source])
+
 /datum/objective/heretic/proc/check_offering(mob/living/user, atom/movable/offering)
 	return
 

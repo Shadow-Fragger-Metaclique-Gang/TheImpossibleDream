@@ -77,18 +77,27 @@ GLOBAL_DATUM_INIT(baotha_name, /regex, regex(@"\bbaotha\b", "i"))
 	. = ..()
 	message = .
 	if(findtext(message, "zizo") && findtext(message, GLOB.zizo_name))
-		if(!istype(patron, /datum/patron/inhumen) && !HAS_TRAIT(src, TRAIT_NOMOOD) && get_stress_amount() < STRESS_INSANE) // If you're tweaking you can say ZIZO for fun
+		if(devotion && !istype(patron, /datum/patron/inhumen) && !HAS_TRAIT(src, TRAIT_NOMOOD) && get_stress_amount() < STRESS_INSANE) // If you're tweaking you can say ZIZO for fun
 			to_chat(src, span_warning("<i>The name catches in my throat.</i>"))
 			visible_message(span_warning("[src] suddenly turns pale and begins to tremble!"), ignored_mobs = src)
 			add_stress(/datum/stressevent/zizo_noticed)
 			return ""
 		adjust_storyteller_influence("Zizo", 1)
-		if(istype(patron, /datum/patron/inhumen) && !HAS_TRAIT(src, TRAIT_CABAL))
+		if(!HAS_TRAIT(src, TRAIT_CABAL))
 			add_stress(/datum/stressevent/zizo_noticed)
-			to_chat(src, span_warning("Uttering ZIZO's name attracts ITS gaze."))
+			to_chat(src, span_warning("<i>Uttering ZIZO's name attracts ITS gaze.</i>"))
 	if(findtext(message, "graggar") && findtext(message, GLOB.graggar_name))
 		adjust_storyteller_influence("Graggar", 1)
 	if(findtext(message, "matthios") && findtext(message, GLOB.matthios_name))
 		adjust_storyteller_influence("Matthios", 1)
 	if(findtext(message, "baotha") && findtext(message, GLOB.baotha_name))
 		adjust_storyteller_influence("Baotha", 1)
+
+/// All zizoids can speak zchant
+/datum/patron/inhumen/zizo/on_gain(mob/living/pious)
+	. = ..()
+	pious.grant_language(/datum/language/undead)
+
+/datum/patron/inhumen/zizo/on_loss(mob/living/pious)
+	. = ..()
+	pious.remove_language(/datum/language/undead)

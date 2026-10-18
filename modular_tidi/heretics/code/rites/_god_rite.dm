@@ -172,7 +172,11 @@ GLOBAL_LIST_EMPTY(surrealis_type_icons)
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_atom_colour)), 0.5 SECONDS)
 
 /obj/structure/ritualcircle/proc/can_use_rites(mob/living/user)
-	return user.patron?.type == allowed_patron
+	if(user.patron?.type != allowed_patron)
+		return FALSE
+	if(ispath(allowed_patron, /datum/patron/inhumen))
+		return user.mind?.heretic_path || user.get_skill_level(/datum/skill/magic/ritualist)
+	return TRUE
 
 /obj/structure/ritualcircle/proc/get_rite_datums()
 	if(!rite_datums)

@@ -20,7 +20,7 @@
 	SIGNAL_HANDLER
 	if(completed)
 		return
-	for(var/mob/living/carbon/human/witness in viewers(7, owner.current))
+	for(var/mob/living/carbon/human/witness in get_hearers_in_view(7, owner.current))
 		if(witness != owner.current && witness.client && witness.stat == CONSCIOUS)
 			complete()
 			UnregisterSignal(owner.current, COMSIG_ORGAN_CONSUMED)

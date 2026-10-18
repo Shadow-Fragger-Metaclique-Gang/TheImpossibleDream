@@ -1,12 +1,16 @@
-// This file exists because Baothan objectives usually require two steps to complete, doing drugs and doing something else
-// It was easier to make a subtype that checks for these multiple stage tasks than having to redefine it every single time
-// Step order is not static, you can do them in any order
+/// This file exists because Baothan objectives usually require two steps to complete, doing drugs and doing something else
+/// It was easier to make a subtype that checks for these multiple stage tasks than having to redefine it every single time
+/// Step order is not static, you can do them in any order
 /datum/objective/heretic/baotha
 	heretic_patron = /datum/patron/inhumen/baotha
-	var/needs_indulgence = TRUE // Do we need to do drugs or get drunk
-	var/indulged = FALSE // Did we do drugs or get drunk
-	var/baotha_objective_text // Second objective text, since the first is always doing drugs or getting drunk
-	var/baotha_objective_done = FALSE // Did we do it
+	/// Do we need to do drugs or get drunk
+	var/needs_indulgence = TRUE
+	/// Did we do drugs or get drunk
+	var/indulged = FALSE
+	/// Second objective text, since the first is always doing drugs or getting drunk
+	var/baotha_objective_text
+	/// Did we do it
+	var/baotha_objective_done = FALSE
 
 /datum/objective/heretic/baotha/update_explanation_text()
 	if(baotha_objective_text)
@@ -55,8 +59,8 @@
 		return
 	to_chat(owner.current, replacetext(replacetext(progress_text(), "- INCOMPLETE", "- [span_red("INCOMPLETE")]"), "- COMPLETE", "- [span_green("COMPLETE")]"))
 
-// We always list "Snort drugs or get drunk" since every two step objective has you doing drugs or getting drunk
-// It's very Baothan, isn't it?
+/// We always list "Snort drugs or get drunk" since every two step objective has you doing drugs or getting drunk
+/// It's very Baothan, isn't it?
 /datum/objective/heretic/baotha/progress_text()
 	if(!baotha_objective_text)
 		return

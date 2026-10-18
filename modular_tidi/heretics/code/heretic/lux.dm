@@ -31,9 +31,9 @@
 			qdel(src)
 	qdel(lux_as_food)
 
-// Impure lux apparently didn't contain reagents, so we add some to it
-// This has quite literally zero balance implications because you can't grind impure lux
-// Why does lux have vitae physically inside of it anyways? Why are they reagent containers?
+/// Impure lux apparently didn't contain reagents, so we add some to it
+/// This has quite literally zero balance implications because you can't grind impure lux
+/// Why does lux have vitae physically inside of it anyways? Why are they reagent containers?
 /obj/item/reagent_containers/lux_impure
 	list_reagents = list(/datum/reagent/vitae = 2.5)
 

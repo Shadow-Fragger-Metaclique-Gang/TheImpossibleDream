@@ -26,7 +26,7 @@
 	complete()
 	UnregisterSignal(owner.current, COMSIG_ITEM_CRAFTED)
 
-// So we can actually build them
+/// So we can actually build them
 /datum/crafting_recipe/roguetown/structure/zizo_cross
 	always_availible = TRUE
 	skillcraft = null

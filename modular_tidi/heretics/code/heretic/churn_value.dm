@@ -1,5 +1,5 @@
-// Copy of and mutually exclusive with transact that listens for sacrificing certain things or things worth a certain amount of value
-// Hook for some of Matthios's objectives
+/// Copy of and mutually exclusive with transact that listens for sacrificing certain things or things worth a certain amount of value
+/// Hook for some of Matthios's objectives
 /datum/action/cooldown/spell/matthios/transact
 	exclusive_group = "transact"
 
