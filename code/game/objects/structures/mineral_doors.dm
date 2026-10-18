@@ -494,6 +494,8 @@
 				user.visible_message(span_notice("[user] repaired [src]."), \
 				span_notice("I repaired [src]."))
 
+// [SURREALIS-REMOVE] - BELT_KEYS - (Moved to modular_tidi/belt_keys/code/belt_keys.dm)
+/*
 /obj/structure/mineral_door/attack_right(mob/user)
 	user.changeNext_move(CLICK_CD_FAST)
 	var/obj/item = user.get_active_held_item()
@@ -505,6 +507,8 @@
 		trykeylock(item, user)
 	else
 		return ..()
+*/
+// [/SURREALIS-REMOVE]
 
 /obj/structure/mineral_door/proc/trykeylock(obj/item/I, mob/user, autobump = FALSE)
 	if(door_opened || isSwitchingStates)
@@ -909,9 +913,13 @@
 	repair_cost_second = /obj/item/natural/stone
 	repair_skill = /datum/skill/craft/masonry
 
+// [SURREALIS-REMOVE] - BELT_KEYS - (Moved to modular_tidi/belt_keys/code/belt_keys.dm)
+/*
 /obj/structure/mineral_door/wood/donjon/stone/attack_right(mob/user)
 	if(user.get_active_held_item())
 		..()
+*/
+// [/SURREALIS-REMOVE]
 
 /obj/structure/mineral_door/wood/donjon/stone/view_toggle(mob/user)
 	return
@@ -921,6 +929,8 @@
 	icon_state = base_state
 	..()
 
+// [SURREALIS-REMOVE] - BELT_KEYS - (Moved to modular_tidi/belt_keys/code/belt_keys.dm)
+/*
 /obj/structure/mineral_door/wood/donjon/attack_right(mob/user)
 	if(user.get_active_held_item())
 		..()
@@ -935,6 +945,8 @@
 	else
 		to_chat(user, span_warning("The viewport doesn't toggle from this side."))
 		return
+*/
+// [/SURREALIS-REMOVE]
 
 /obj/structure/mineral_door/wood/donjon/proc/view_toggle(mob/user)
 	if(door_opened)

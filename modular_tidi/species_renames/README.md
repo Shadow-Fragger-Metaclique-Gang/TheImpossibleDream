@@ -24,8 +24,8 @@ First pass broke stuff. I'd introduced some new code to essentially bypass the w
 
 =======
 
-- `species_renames.dme`: the module's .dme.
-- `code/species_renames.dm`: The main body of work - the renames, re-description, and fresh code.
+- `_species_renames.dme`: the module's .dme.
+- `code/_species_renames.dm`: The main body of work - the renames, re-description, and fresh code.
 -
 
 ## Core files changed
