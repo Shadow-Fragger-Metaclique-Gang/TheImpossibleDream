@@ -2,7 +2,7 @@
 
 **Tag:** `PORTED_CUSTOMIZATION`
 
-**Created in:**
+**Created in:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/66
 
 **Major changes:** 4 new hairs. 1 new tiefling tail. 1 new tailmaw. made a few tiefling tails selectable as tailmaws.
 
