@@ -145,3 +145,53 @@
 			message_admins("[key_name_admin(usr)] set [key_name_admin(H)]'s heretic tier to [heretic_path.tier].")
 			log_admin("[key_name(usr)] set [key_name(H)]'s heretic tier to [heretic_path.tier].")
 	traitor_panel()
+
+/datum/admins/build_antag_listing()
+	. = ..()
+	var/list/awakened = list()
+	var/list/passed = list()
+	var/list/failed = list()
+	var/list/not_rolled = list()
+	for(var/datum/mind/M in SSticker.minds)
+		var/list/parts = list()
+		if(M.current)
+			parts += "<a href='?_src_=holder;[HrefToken()];adminplayeropts=[REF(M.current)]'>[M.current.real_name]</a> ([M.assigned_role])"
+		else
+			parts += "<a href='?_src_=vars;[HrefToken()];Vars=[REF(M)]'>[M.name]</a> ([M.assigned_role])"
+		var/list/commands = list("<a href='?priv_msg=[ckey(M.key)]'>PM</a>")
+		commands += M.current ? "<a href='?_src_=holder;[HrefToken()];adminplayerobservefollow=[REF(M.current)]'>FLW</a>" : ""
+		commands += "<a href='?_src_=holder;[HrefToken()];traitor=[REF(M)]'>TP</a>"
+		if(M.heretic_path)
+			var/datum/patron/patron_type = M.heretic_path.patron_type
+			parts += "[initial(patron_type.name)], tier [M.heretic_path.tier][M.heretic_path.chosen_path ? ", [M.heretic_path.chosen_path]" : ""]"
+			if(!M.current)
+				parts += "<font color=red>(Body destroyed)</font>"
+			else if(M.current.stat == DEAD)
+				parts += "<font color=red>(DEAD)</font>"
+			else if(!M.current.client)
+				parts += "(No client)"
+			else
+				parts += ""
+			awakened += "<tr><td>[(parts + commands).Join("</td><td>")]</td></tr>"
+			continue
+		if(!M.can_heretic_awaken())
+			continue
+		var/mob/living/carbon/human/H = M.current
+		parts += H.patron.name
+		var/rolled = GLOB.heretic_awakening_rolls[ckey(M.key)]
+		if(isnull(rolled))
+			parts += "Not rolled ([M.heretic_awakening_chance()]%)"
+			not_rolled += "<tr><td>[(parts + commands).Join("</td><td>")]</td></tr>"
+		else if(rolled)
+			parts += "<font color='green'>Passed</font>[M.heretic_awaken_timer ? ", awakens in [DisplayTimeText(timeleft(M.heretic_awaken_timer))]" : ""]"
+			passed += "<tr><td>[(parts + commands).Join("</td><td>")]</td></tr>"
+		else
+			parts += "<font color='red'>Failed</font> ([M.heretic_awakening_chance()]%)"
+			failed += "<tr><td>[(parts + commands).Join("</td><td>")]</td></tr>"
+	var/list/section = list("<br><b>Heretics</b><br>")
+	section += "<font color='#888888'>Awakened: [length(awakened)] | Awaiting: [length(passed)] | Failed roll: [length(failed)] | Not rolled: [length(not_rolled)]</font><br>"
+	if(length(awakened))
+		section += "<br>Awakened<table cellspacing=5>[awakened.Join()]</table>"
+	if(length(passed) || length(failed) || length(not_rolled))
+		section += "<br>Eligible<table cellspacing=5>[(passed + failed + not_rolled).Join()]</table>"
+	return . + section.Join()
