@@ -52,7 +52,7 @@
 					return I
 
 			// Check inside the belt item if it has contents (storage belts, etc.)
-			if(I.contents && I.contents.len)
+			if(LAZYLEN(I.contents))
 				for(var/obj/item/contained_item in I.contents)
 					if(istype(contained_item, /obj/item/roguekey))
 						var/obj/item/roguekey/K = contained_item
@@ -82,7 +82,7 @@
 
 /obj/structure/mineral_door/trykeylock(obj/item/I, mob/user, autobump = FALSE)
 	// Handle belt items that contain keys
-	if(I.contents && I.contents.len && !istype(I, /obj/item/storage/keyring))
+	if(LAZYLEN(I.contents) && !istype(I, /obj/item/storage/keyring))
 		var/obj/item/found_key = null
 		for(var/obj/item/contained_item in I.contents)
 			if(istype(contained_item, /obj/item/roguekey))
