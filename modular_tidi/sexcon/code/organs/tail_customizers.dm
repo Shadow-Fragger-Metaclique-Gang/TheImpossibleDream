@@ -31,7 +31,7 @@
 
 /datum/customizer_choice/organ/tail/tgui_pref_choices(datum/preferences/prefs, datum/customizer_entry/entry, customizer_type)
 	var/list/data = ..()
-	if(entry.accessory_type != /datum/sprite_accessory/tail/manticore)
+	if(organ_type != /obj/item/organ/tail/manticore && entry.accessory_type != /datum/sprite_accessory/tail/manticore)
 		return data
 	var/datum/customizer_entry/organ/tail/tail_entry = entry
 	data["template"] = "FeatureChoiceVagina"
