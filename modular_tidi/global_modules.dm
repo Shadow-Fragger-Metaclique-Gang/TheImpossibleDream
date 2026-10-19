@@ -9,6 +9,7 @@
 #include "loadout\_loadout.dme"
 #include "lord_of_vanity\_lord_of_vanity.dme"
 #include "lore\_lore.dme"
+#include "mineshaft_collapse\_mine_collapse.dme"
 #include "nudist_approved\_nudist_approved.dme"
 #include "phrase_highlights\_phrase_highlights.dme"
 #include "ported_customization\_ported_customization.dme"
