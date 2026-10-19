@@ -2,9 +2,9 @@
 
 **Tag:** `MINESHAFT_COLLAPSE`
 
-**Created in:**
+**Created in:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/70
 
-**Major changes:**
+**Major changes:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/70
 
 This adds dynamic cave-ins and mineshaft collapsing so mining isn't this bog-boring activity. Mineshaft supports can be propped up to prevent cave-ins, which require one log of wood to craft.
 

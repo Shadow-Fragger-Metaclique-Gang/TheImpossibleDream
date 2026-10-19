@@ -24,8 +24,11 @@ GLOBAL_VAR_INIT(mine_collapse_active, 0)
 	anchored = TRUE
 	alpha = 0
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	invisibility = INVISIBILITY_ABSTRACT
 	appearance_flags = 0
 	max_integrity = 0
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	move_resist = INFINITY
 	obj_flags = INDESTRUCTIBLE
 	var/last_trigger = 0
 	var/time_between_triggers = 2 MINUTES
