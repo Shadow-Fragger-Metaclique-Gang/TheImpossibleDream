@@ -4,7 +4,9 @@
 
 **Created in:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/66
 
-**Major changes:** 4 new hairs. 1 new tiefling tail. 1 new tailmaw. made a few tiefling tails selectable as tailmaws.
+**RELATED PRs:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/68
+
+**Major changes:** Tons of ported hairstyles. 5 new tailmaws. 1 new tiefling tail.
 
 Really what it says on the tin. Things like hairs, wings, tails, genital organs, etc etc ported from other servers.
 
