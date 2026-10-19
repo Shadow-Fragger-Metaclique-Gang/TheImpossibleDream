@@ -108,3 +108,6 @@
 
 /datum/job/roguetown/forlorn
 	min_pq = 0
+
+/datum/job/roguetown/lamplighter
+	min_pq = 0

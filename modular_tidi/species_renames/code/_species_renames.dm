@@ -66,6 +66,7 @@
 
 /datum/species/moth
 	base_name = "Beastbloods"
+
 /datum/species/anthromorphsmall
 	base_name = "Beastbloods"
 	desc = "Verminvolk are primarily denoted from other wildblooded species simply by their diminutive stature - and being of a species that demands it. \n \n\
@@ -77,6 +78,7 @@
 
 /datum/species/tabaxi
 	base_name = "Beastbloods"
+
 /datum/species/vulpkanin
 	base_name = "Beastbloods"
 	desc = "Relative cousins to the Lupians of the North, the Venardine are a nomadic peoples spread scattershot around the Known World. Often travelling across countries and continents in migratory packs, the Venardine almost never settle in one place; establishing basal burrows on the fringes of society, plying their trade, then moving on when time - or trouble - demands they upend themselves. \n \n\
@@ -139,13 +141,20 @@
 	Their emergence is sublime - a whisper on the winds, a forge’s flame igniting without kindling, or a religious icon emerging from a mosaic or a venerable statue coming to life; marble made motile. Thus, a new being enters this world. \n \n\
 	The making of these Crafts tend to vary: some are animate, marble statues - as is the <i>Kept-of-Stone</i> craft - whereas others, like those of <i>Swept-of-Wing,</i> are otherwise humanoid - but bear blessed wings upon their back. \
 	Innate conduits to the Divines, they often find themselves as agents of the Temple; its guardians, scholars, and priesthood caste. \n \n\
-	Regardless of their nature, Aasimar blood glitters golden when spilled. \n<i>It is a grave omen to any of the Faithful when the streets shine with threads of liquid gold.</i>"
+	Regardless of their nature, Aasimar blood glitters golden when spilled. \n \n\
+	<i>It is a grave omen to any of the Faithful when the streets shine with threads of liquid gold.</i>"
 
 /datum/species/tieberian
 	desc = "Found roaming across the expansive landmasses of the Western Realms, Tieflings are some of the youngest species of the Known World. All Tieflings are half-kins, of sorts – scions of the city-states of Tlifchital, which long had normalized, venerated, and mastered the arcanist art of summoning the Daeva- burning beings temporarily realized from a realm esoteric. \n \n\
 	Through ritualistic assimilation, these hybrids of worldly mortal and otherworldly Daevic were created; first marked by scarlet skin, cloven hooves, and prominent horns. \n \n\
 	Such traits - and others like them - have carried over through eleven generations, if counted scholastically- and the city-states, ever curious, continue to create more. \n \n\
 	East of the Realms, tieflings exist on the boundaries of societies; historically scorned or shunned by way of their birth. Originally, Pantheonic doctrine dictated them as unnatural abominations; their creation a blasphemy before the Pentacle. Though the Temple’s official perspective has eased since, only recently have such prejudices begun to fade across its peoples. "
+
+/datum/species/dullahan
+	name = "Dullahan"
+	desc_title = "Dullahan"
+	desc = "The Dullahan are those that have died, returning from death to continue 'living' in a manner to speak. Their origins are not entirely known, yet many strongly believe them to have originated from the rot and decay of Psydonia. \
+	Unable to truly rest, yet entirely sane of mind. Capable of detaching their heads through unknown arcyne means, they are oft wanderers due to their unknown origins and being ostracized by both the Temple and many of the common polities around the lands."
 
 // GODTOUCHED END
 
@@ -176,16 +185,9 @@
 // ARTIFICIAL RACES
 
 /datum/species/construct/metal
-	name = "Metal Construct"
-	id = "constructm"
-	origin_default = /datum/virtue/origin/naledi
-	origin = "Naledi"
+	name = "Replicae"
+	desc_title = "Replicae"
 	base_name = "Artificials"
-	is_subrace = TRUE
-	desc_title = "Metallic Construct"
-	desc = "Masterworks of artifice, metal constructs are as the name implies- entirely constructed by mortal hands. They are beings not of flesh and blood, but cold metal and the arcyne. \
-	Constructs are said to originate from works of Zizo, and they hail from the far-off lands of the Southern Empty- a great city of artifice, where the only artificers capable of understanding what is necessary to create the constructs live. \
-	For some reason, they have found themselves travelling out of the empty, as of late. Children of the Resonator Siphon."
 
 /datum/species/ooze
 	name = "Murkling"
@@ -237,4 +239,7 @@ GLOBAL_LIST_INIT(species_legacy_names, list(
 	"Half Orc" = /datum/species/halforc,
 	"Half-Kin" = /datum/species/demihuman,
 	"Wild-Kin" = /datum/species/anthromorph,
+	"Critterkin" = /datum/species/anthromorphsmall,
+	"Metal Construct" = /datum/species/construct/metal,
+	"Revenant" = /datum/species/dullahan,
 ))
