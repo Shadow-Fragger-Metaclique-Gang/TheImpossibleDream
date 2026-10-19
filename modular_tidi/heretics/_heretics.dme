@@ -1,6 +1,7 @@
 #include "_heretics_defines.dm"
 #include "code\rites\_god_rite.dm"
 #include "code\rites\ascension.dm"
+#include "code\rites\broken_glass.dm"
 #include "code\rites\patron_knives.dm"
 #include "code\rites\pantheon\abyssor\_abyssor.dm"
 #include "code\rites\pantheon\abyssor\crystal_spire.dm"

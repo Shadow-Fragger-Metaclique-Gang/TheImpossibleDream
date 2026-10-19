@@ -43,7 +43,11 @@
 			header_parts += "<a class='linkOff'>Awaken now (not eligible)</a>"
 		header_parts += "<a href='?src=[REF(src)];heretic=force'>Force awaken</a>"
 		var/rolled = GLOB.heretic_awakening_rolls[ckey(key)]
-		header_parts += "Roll: [isnull(rolled) ? "not yet ([heretic_awakening_chance()]% chance)" : (rolled ? "passed" : "failed")]"
+		/// If you lose heretic or respawn after already being one you'll show as having it lost
+		if(ckey(key) in GLOB.heretic_awakened_players)
+			header_parts += "Roll: lost"
+		else
+			header_parts += "Roll: [isnull(rolled) ? "not yet ([heretic_awakening_chance()]% chance)" : (rolled ? "passed" : "failed")]"
 	out += header_parts.Join(" | ") + "<br>"
 	if(!heretic_path)
 		return . + out
@@ -151,6 +155,7 @@
 	var/list/awakened = list()
 	var/list/passed = list()
 	var/list/failed = list()
+	var/list/lost = list()
 	var/list/not_rolled = list()
 	for(var/datum/mind/M in SSticker.minds)
 		var/list/parts = list()
@@ -179,19 +184,22 @@
 		var/mob/living/carbon/human/H = M.current
 		parts += H.patron.name
 		var/rolled = GLOB.heretic_awakening_rolls[ckey(M.key)]
-		if(isnull(rolled))
+		if(ckey(M.key) in GLOB.heretic_awakened_players)
+			parts += "<font color='red'>Lost</font>"
+			lost += "<tr><td>[(parts + commands).Join("</td><td>")]</td></tr>"
+		else if(isnull(rolled))
 			parts += "Not rolled ([M.heretic_awakening_chance()]%)"
 			not_rolled += "<tr><td>[(parts + commands).Join("</td><td>")]</td></tr>"
 		else if(rolled)
-			parts += "<font color='green'>Passed</font>[M.heretic_awaken_timer ? ", awakens in [DisplayTimeText(timeleft(M.heretic_awaken_timer))]" : ""]"
+			parts += "<font color='green'>Passed</font>[M.heretic_awaken_timer ? ", in [DisplayTimeText(timeleft(M.heretic_awaken_timer), 60)]" : ""]"
 			passed += "<tr><td>[(parts + commands).Join("</td><td>")]</td></tr>"
-		else
+		else if(M.heretic_awakening_chance())
 			parts += "<font color='red'>Failed</font> ([M.heretic_awakening_chance()]%)"
 			failed += "<tr><td>[(parts + commands).Join("</td><td>")]</td></tr>"
 	var/list/section = list("<br><b>Heretics</b><br>")
-	section += "<font color='#888888'>Awakened: [length(awakened)] | Awaiting: [length(passed)] | Failed roll: [length(failed)] | Not rolled: [length(not_rolled)]</font><br>"
+	section += "<font color='#888888'>Awakened: [length(awakened)] | Awaiting: [length(passed)] | Failed roll: [length(failed)] | Lost: [length(lost)] | Not rolled: [length(not_rolled)]</font><br>"
 	if(length(awakened))
 		section += "<br>Awakened<table cellspacing=5>[awakened.Join()]</table>"
-	if(length(passed) || length(failed) || length(not_rolled))
-		section += "<br>Eligible<table cellspacing=5>[(passed + failed + not_rolled).Join()]</table>"
+	if(length(passed) || length(failed) || length(lost) || length(not_rolled))
+		section += "<br>Eligible<table cellspacing=5>[(passed + failed + lost + not_rolled).Join()]</table>"
 	return . + section.Join()

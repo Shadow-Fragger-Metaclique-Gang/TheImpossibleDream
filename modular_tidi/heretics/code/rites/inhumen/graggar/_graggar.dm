@@ -2,6 +2,7 @@
 	allowed_patron = /datum/patron/inhumen/graggar
 	rites = list(
 		/datum/runeritual/god/ascension/graggar,
+		/datum/runeritual/god/broken_glass,
 		/datum/runeritual/god/graggar/armaments,
 		/datum/runeritual/god/graggar/war_ritual,
 		/datum/runeritual/god/patron_knife/graggar,

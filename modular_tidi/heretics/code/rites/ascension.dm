@@ -3,9 +3,7 @@
 	name = "Rite of Ascension"
 	desc = "Provide concord of your success to your patron's demands, progressing your path further and granting rewards."
 	flavor = "The path of proving one's loyalty to the ANATHEMA is paved with sacrifice. Not your own, of course. What sort of foolish deity would ask that their followers spill their own blood? Such is an antiquated practice reserved only for those of Pantheonic worship."
-
-/datum/runeritual/god/ascension/is_hidden(mob/living/user, obj/structure/ritualcircle/circle)
-	return !user.mind?.heretic_path?.current_objective
+	awakened_heretic_only = TRUE
 
 /datum/runeritual/god/ascension/get_layout(mob/living/user)
 	var/datum/objective/heretic/objective = user?.mind?.heretic_path?.current_objective

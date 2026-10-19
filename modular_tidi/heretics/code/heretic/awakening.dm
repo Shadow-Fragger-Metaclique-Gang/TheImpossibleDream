@@ -1,5 +1,5 @@
 /datum/job
-	var/heretic_awakening_chance = 30
+	var/heretic_awakening_chance = 0
 
 /datum/advclass
 	var/heretic_awakening_chance
@@ -24,6 +24,45 @@
 
 /datum/job/roguetown/innkeeper
 	heretic_awakening_chance = 50
+
+/datum/job/roguetown/adventurer
+	heretic_awakening_chance = 50
+
+/datum/job/roguetown/cook
+	heretic_awakening_chance = 50
+
+/datum/job/roguetown/farmer
+	heretic_awakening_chance = 50
+
+/datum/job/roguetown/tapster
+	heretic_awakening_chance = 50
+
+/datum/job/roguetown/trader
+	heretic_awakening_chance = 50
+
+/datum/job/roguetown/archivist
+	heretic_awakening_chance = 30
+
+/datum/job/roguetown/servant
+	heretic_awakening_chance = 30
+
+/datum/job/roguetown/shophand
+	heretic_awakening_chance = 30
+
+/datum/job/roguetown/councillor
+	heretic_awakening_chance = 20
+
+/datum/job/roguetown/seneschal
+	heretic_awakening_chance = 20
+
+/datum/job/roguetown/suitor
+	heretic_awakening_chance = 20
+
+/datum/job/roguetown/veteran
+	heretic_awakening_chance = 20
+
+/datum/job/roguetown/wapprentice
+	heretic_awakening_chance = 20
 
 /datum/job/roguetown/manorguard
 	heretic_awakening_chance = 20
@@ -67,58 +106,8 @@
 /datum/job/roguetown/adventurer/courtagent
 	heretic_awakening_chance = 10
 
-/datum/job/roguetown/knight
-	heretic_awakening_chance = 0
-
-/datum/job/roguetown/squire
-	heretic_awakening_chance = 0
-
-/datum/job/roguetown/hand
-	heretic_awakening_chance = 0
-
-/datum/job/roguetown/steward
-	heretic_awakening_chance = 0
-
-/datum/job/roguetown/clerk
-	heretic_awakening_chance = 0
-
-/datum/job/roguetown/guildmaster
-	heretic_awakening_chance = 0
-
-/datum/job/roguetown/sexton
-	heretic_awakening_chance = 0
-
-/datum/job/roguetown/lamplighter
-	heretic_awakening_chance = 0
-
-/datum/job/roguetown/wretch
-	heretic_awakening_chance = 0
-
-/datum/job/roguetown/mercenary
-	heretic_awakening_chance = 0
-
-/datum/job/roguetown/gnoll
-	heretic_awakening_chance = 0
-
-/datum/job/roguetown/assassin
-	heretic_awakening_chance = 0
-
-/datum/job/roguetown/goblin // Shouldn't be able to roll but just in case
-	heretic_awakening_chance = 0
-
-/datum/job/roguetown/greater_skeleton
-	heretic_awakening_chance = 0
-
-/datum/job/roguetown/vampire_guard
-	heretic_awakening_chance = 0
-
-/datum/job/roguetown/vampire_servant
-	heretic_awakening_chance = 0
-
-/datum/job/roguetown/vampire_spawn
-	heretic_awakening_chance = 0
-
 GLOBAL_LIST_EMPTY(heretic_awakening_rolls) // You can only roll once per round
+GLOBAL_LIST_EMPTY(heretic_awakened_players)
 
 /datum/job/after_spawn(mob/living/H, mob/M, latejoin = FALSE)
 	. = ..()
@@ -127,6 +116,8 @@ GLOBAL_LIST_EMPTY(heretic_awakening_rolls) // You can only roll once per round
 
 /datum/mind/proc/schedule_heretic_awakening(player)
 	if(heretic_path || heretic_awaken_timer || !can_heretic_awaken())
+		return
+	if(player in GLOB.heretic_awakened_players)
 		return
 	if(isnull(GLOB.heretic_awakening_rolls[player]))
 		GLOB.heretic_awakening_rolls[player] = prob(heretic_awakening_chance())
@@ -175,6 +166,7 @@ GLOBAL_LIST_EMPTY(heretic_awakening_rolls) // You can only roll once per round
 
 /datum/mind/proc/awaken_heretic()
 	var/mob/living/carbon/human/H = current
+	GLOB.heretic_awakened_players |= ckey(key)
 	H.playsound_local(H, 'modular_tidi/heretics/sound/heretic_awaken.ogg', 100, FALSE)
 	to_chat(H, span_cult(span_reallybig("I am a heretic of [get_god_name(H.patron)].")))
 	to_chat(H, span_cult("<i>HERE — where the VEIL is at its weakest, I am able to freely commune with my patron in order to enact their DARK WILL.</i>"))

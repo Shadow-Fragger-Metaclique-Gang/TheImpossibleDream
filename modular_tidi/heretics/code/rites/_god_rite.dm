@@ -26,9 +26,10 @@ GLOBAL_LIST_EMPTY(surrealis_type_icons)
 	var/list/layout
 	var/list/chant_lines
 	var/chant_delay = 5 SECONDS
+	var/awakened_heretic_only = FALSE
 
 /datum/runeritual/god/proc/is_hidden(mob/living/user, obj/structure/ritualcircle/circle)
-	return FALSE
+	return awakened_heretic_only && !user.mind?.heretic_path
 
 /datum/runeritual/god/proc/get_layout(mob/living/user)
 	return layout
@@ -125,7 +126,7 @@ GLOBAL_LIST_EMPTY(surrealis_type_icons)
 /datum/runeritual/god/proc/requirement_name(requirement)
 	var/list/names = list()
 	for(var/requirement_type in (islist(requirement) ? requirement : list(requirement)))
-		names += parse_required_item(requirement_type)
+		names |= parse_required_item(requirement_type)
 	return english_list(names, and_text = " or ")
 
 /datum/runeritual/god/proc/requirement_icons(requirement)
@@ -224,6 +225,7 @@ GLOBAL_LIST_EMPTY(surrealis_type_icons)
 	data["tiles"] = GLOB.god_rite_tiles.Copy()
 	data["rune_name"] = name
 	data["rune_icon"] = surrealis_type_icon(type)
+	var/list/heretic_rite_list = list()
 	var/list/rite_list = list()
 	for(var/datum/runeritual/god/rite as anything in get_rite_datums())
 		if(rite.is_hidden(user, src))
@@ -234,19 +236,20 @@ GLOBAL_LIST_EMPTY(surrealis_type_icons)
 		for(var/tile in rite_layout)
 			tile_names[tile] = rite.requirement_name(rite_layout[tile])
 			tile_icons[tile] = rite.requirement_icons(rite_layout[tile])
-		rite_list += list(list(
+		var/list/target_list = rite.awakened_heretic_only ? heretic_rite_list : rite_list
+		target_list += list(list(
 			"id" = "[rite.type]",
 			"name" = rite.name,
 			"desc" = rite.desc,
 			"flavor" = rite.flavor,
-			"ascension" = istype(rite, /datum/runeritual/god/ascension),
+			"awakened_heretic_only" = rite.awakened_heretic_only,
 			"tier" = rite.tier,
 			"tier_name" = skill_to_string(rite.tier),
 			"cooldown" = rite.cooldown ? DisplayTimeText(rite.cooldown) : null,
 			"tile_names" = tile_names,
 			"tile_icons" = tile_icons,
 		))
-	data["rites"] = rite_list
+	data["rites"] = heretic_rite_list + rite_list
 	return data
 
 /obj/structure/ritualcircle/ui_data(mob/user)

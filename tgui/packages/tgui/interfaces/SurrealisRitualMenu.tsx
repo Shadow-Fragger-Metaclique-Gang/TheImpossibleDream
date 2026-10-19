@@ -16,7 +16,7 @@ type Rite = {
   name: string;
   desc: string | null;
   flavor: string | null;
-  ascension: boolean;
+  awakened_heretic_only: boolean;
   tier: number;
   tier_name: string;
   cooldown: string | null;
@@ -153,7 +153,7 @@ const RitesPage = () => {
                       className={locked ? 'RiteList__rite--locked' : undefined}
                       leftSlot={
                         <Box className="RiteList__mark">
-                          {rite.ascension ? 'ᛦ' : ''}
+                          {rite.awakened_heretic_only ? 'ᛦ' : ''}
                         </Box>
                       }
                       rightSlot={
@@ -728,7 +728,11 @@ const RiteBody = (props: {
       {tiered || rite.cooldown ? (
         <Box className="RiteText__requirements">
           {tiered ? `${rite.tier_name} Ritualism` : null}
-          {tiered && rite.cooldown ? <> &middot; </> : null}
+          {tiered && rite.cooldown ? (
+            <Box as="span" className="RiteText__separator">
+              {' · '}
+            </Box>
+          ) : null}
           {rite.cooldown ? `${rite.cooldown} cooldown` : null}
         </Box>
       ) : null}

@@ -2,6 +2,7 @@
 	allowed_patron = /datum/patron/inhumen/baotha
 	rites = list(
 		/datum/runeritual/god/ascension/baotha,
+		/datum/runeritual/god/broken_glass,
 		/datum/runeritual/god/baotha/armaments,
 		/datum/runeritual/god/baotha/joybringer,
 		/datum/runeritual/god/baotha/fertility_boon,

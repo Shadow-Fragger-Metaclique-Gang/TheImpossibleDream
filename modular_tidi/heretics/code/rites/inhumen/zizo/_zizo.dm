@@ -2,6 +2,7 @@
 	allowed_patron = /datum/patron/inhumen/zizo
 	rites = list(
 		/datum/runeritual/god/ascension/zizo,
+		/datum/runeritual/god/broken_glass,
 		/datum/runeritual/god/zizo/armaments,
 		/datum/runeritual/god/zizo/chant_of_insight,
 		/datum/runeritual/god/zizo/dance_of_the_demiurge,

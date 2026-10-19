@@ -81,17 +81,9 @@
 	desc = "Reforges any knife upon the rune into a saccharine misericorde, paid for in powders of ecstasy."
 	knife_type = /obj/item/rogueweapon/huntingknife/idagger/steel/baotha
 	layout = list(
-		"W" = /obj/item/reagent_containers/powder,
+		"W" = list(/obj/item/reagent_containers/powder/spice, /obj/item/reagent_containers/powder/ozium, /obj/item/reagent_containers/powder/moondust, /obj/item/reagent_containers/powder/moondust_purest, /obj/item/reagent_containers/powder/starsugar, /obj/item/reagent_containers/powder/herozium),
 		"C" = /obj/item/rogueweapon/huntingknife,
-		"E" = /obj/item/reagent_containers/powder,
-	)
-	banned_atom_types = list(
-		/obj/item/reagent_containers/powder/flour,
-		/obj/item/reagent_containers/powder/salt,
-		/obj/item/reagent_containers/powder/rocknut,
-		/obj/item/reagent_containers/powder/coarse_salt,
-		/obj/item/reagent_containers/powder/mineral,
-		/obj/item/reagent_containers/powder/black_ichor,
+		"E" = list(/obj/item/reagent_containers/powder/spice, /obj/item/reagent_containers/powder/ozium, /obj/item/reagent_containers/powder/moondust, /obj/item/reagent_containers/powder/moondust_purest, /obj/item/reagent_containers/powder/starsugar, /obj/item/reagent_containers/powder/herozium),
 	)
 	chant_lines = list(
 		"Pour the wine, cut the spice!",

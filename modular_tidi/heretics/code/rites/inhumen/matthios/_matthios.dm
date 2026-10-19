@@ -2,6 +2,7 @@
 	allowed_patron = /datum/patron/inhumen/matthios
 	rites = list(
 		/datum/runeritual/god/ascension/matthios,
+		/datum/runeritual/god/broken_glass,
 		/datum/runeritual/god/matthios/armaments,
 		/datum/runeritual/god/matthios/defenestration,
 		/datum/runeritual/god/patron_knife/matthios,
