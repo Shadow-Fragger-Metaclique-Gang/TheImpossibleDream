@@ -50,13 +50,21 @@
 	tempo_capable = FALSE
 
 /datum/job/roguetown/gnoll/special_job_check(mob/dead/new_player/player)
+	// [SURREALIS-REMOVE] ANTAGAPI.DLL - unlocks adminbusing antag slots
+	/*
 	if(is_storyteller_soft_antag_blocked())
 		return FALSE
+	*/
+	// [/SURREALIS-REMOVE] ANTAGAPI.DLL - unlocks adminbusing antag slots
 	return ..()
 
 /datum/job/roguetown/gnoll/special_check_latejoin(client/C)
+	// [SURREALIS-REMOVE] ANTAGAPI.DLL - unlocks adminbusing antag slots
+	/*
 	if(is_storyteller_soft_antag_blocked())
 		return FALSE
+	*/
+	// [/SURREALIS-REMOVE] ANTAGAPI.DLL - unlocks adminbusing antag slots
 	return ..()
 
 /datum/job/roguetown/gnoll/after_spawn(mob/living/L, mob/M, latejoin = TRUE)

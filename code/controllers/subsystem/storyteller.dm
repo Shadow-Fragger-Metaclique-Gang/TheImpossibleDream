@@ -1800,6 +1800,8 @@ SUBSYSTEM_DEF(gamemode)
 		return
 	switch(href_list["panel"])
 		if("main")
+			// [SURREALIS-REMOVE] ANTAGAPI.DLL - unlocks adminbusing antag slots
+			/*
 			// Fine-tuning the gamemode (forcing a preset, the toggles, slot overrides) is only allowed before the
 			// player vote opens at the +120s mark. After that - or once the round starts - these are locked.
 			var/main_action = href_list["action"]
@@ -1807,6 +1809,8 @@ SUBSYSTEM_DEF(gamemode)
 				to_chat(usr, span_warning("Gamemode fine-tuning is locked once the player vote opens (or after roundstart)."))
 				message_admins("[key_name_admin(usr)] tried to fine-tune the gamemode ([main_action]) while it was locked.")
 				return
+			*/
+			// [/SURREALIS-REMOVE] ANTAGAPI.DLL - unlocks adminbusing antag slots
 			switch(href_list["action"])
 				if("set_storyteller")
 					message_admins("[key_name_admin(usr)] is picking a new gamemode preset.")
