@@ -1700,7 +1700,11 @@ More uniquely, her rites always cut out the light in the room, then proc. 10 sec
 	neck = /obj/item/clothing/neck/roguetown/bevor/zizo
 	r_hand = /obj/item/rogueweapon/sword/long/zizo
 
+	// [SURREALIS-REMOVE] - HERETICS
+	/*
 	H.mind.RemoveSpell(/datum/action/cooldown/spell/mending) // brute forcing this one, hope this works ryon!
+	*/
+	// [/SURREALIS-REMOVE]
 	H.mind.AddSpell(new /datum/action/cooldown/spell/mending/lesser)
 	if(!H.mind.has_spell(/datum/action/cooldown/spell/miracle/intervention) && H.devotion.max_devotion == CLERIC_REQ_4)	// Devotion check to make sure we give it to the HWretch not some Guy
 		H.mind.AddSpell(new /datum/action/cooldown/spell/miracle/intervention)
@@ -1717,7 +1721,11 @@ More uniquely, her rites always cut out the light in the room, then proc. 10 sec
 	r_hand = /obj/item/rogueweapon/sword/zizo
 	l_hand = /obj/item/rogueweapon/shield/tower/metal/zizo
 
+	// [SURREALIS-REMOVE] - HERETICS
+	/*
 	H.mind.RemoveSpell(new /datum/action/cooldown/spell/mending/lesser)
+	*/
+	// [/SURREALIS-REMOVE]
 
 
 /obj/structure/ritualcircle/matthios
@@ -2125,7 +2133,10 @@ More uniquely, her rites always cut out the light in the room, then proc. 10 sec
 	cloak = /obj/item/clothing/cloak/graggar
 	r_hand = /obj/item/rogueweapon/greataxe/steel/doublehead/graggar
 
-	H.mind.RemoveSpell(new /datum/action/cooldown/spell/mending/lesser)
+	// [SURREALIS-EDIT] - HERETICS
+	// H.mind.RemoveSpell(new /datum/action/cooldown/spell/mending/lesser) // SURREALIS-EDIT - ORIGINAL
+	H.mind.AddSpell(new /datum/action/cooldown/spell/mending/lesser)
+	// [/SURREALIS-EDIT]
 
 /datum/outfit/job/roguetown/viciousrite/heavy/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()
