@@ -4,7 +4,7 @@ For any changes concerning generic weaponry and their intents.
 
 **Tag:** `WEAPONS`
 
-**Created in:**
+**Created in:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/76
 
 **Major changes:**
 
@@ -19,5 +19,5 @@ Reverts https://github.com/Azure-Peak/Azure-Peak/pull/9387
 
 ## Core files changed
 
-- `code\modules\mob\inventory.dm`: Removes the check preventing usage of shields with unarmed weapons
+- `code\modules\mob\inventory.dm`: Removes the check preventing usage of shields with unarmed weapons.
 - `code\modules\clothing\rogueclothes\gloves\unique.dm`: Removes the forced WEAPONLESS trait on wearing any form of knuckledusters.
