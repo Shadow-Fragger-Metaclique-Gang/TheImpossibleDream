@@ -8,6 +8,8 @@
 	max_blade_int = 180 //nerfed compared to the gronn special claws
 
 /obj/item/rogueweapon/handclaw
+	wdefense = 5
+	force = 30
 	possible_item_intents = list(/datum/intent/claw/cut/iron, /datum/intent/claw/lunge/iron, /datum/intent/claw/rend)
 	max_blade_int = 300
 
@@ -94,6 +96,7 @@
 	swingdelay = 0
 	damfactor = 1.1
 	clickcd = CLICK_CD_MELEE
+	intent_intdamage_factor = 1
 
 /datum/intent/claw/rend/steel
 	damfactor = 3

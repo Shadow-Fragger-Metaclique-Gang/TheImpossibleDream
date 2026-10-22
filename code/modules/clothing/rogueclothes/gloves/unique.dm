@@ -74,6 +74,7 @@
 /obj/item/clothing/gloves/roguetown/knuckles/get_mechanics_examine(mob/user)
 	. = ..()
 	. += span_notice("Allows unarmed parrying, similar to bracers. Takes integrity damage when parrying. Expert Pugilists parry far more effectively with these.")
+/* [SURREALIS-REMOVE] WEAPONS - Unnecessary tech debt pushed in a salt PR.
 	. += span_warning("While worn, I cannot wield weapons or hold a shield.")
 	//. += span_notice("Activate - while held in your current hand - to turn these into knuckledusters, which can be wielded as a dedicated weapon for unarmed combat.")
 
@@ -92,6 +93,7 @@
 /obj/item/clothing/gloves/roguetown/knuckles/dropped(mob/user)
 	. = ..()
 	REMOVE_TRAIT(user, TRAIT_WEAPONLESS, REF(src))
+[/SURREALIS-REMOVE] */
 
 /obj/item/clothing/gloves/roguetown/knuckles/bronze
 	name = "bronze knuckles"
