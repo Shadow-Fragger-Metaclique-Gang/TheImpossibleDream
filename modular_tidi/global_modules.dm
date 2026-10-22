@@ -9,5 +9,6 @@
 #include "nudist_approved\_nudist_approved.dme"
 #include "phrase_highlights\_phrase_highlights.dme"
 #include "pq-remover\_pq-remover.dme"
+#include "quirks\_quirks.dme"
 #include "sexcon\_sexcon.dme"
 #include "species_renames\_species_renames.dme"

@@ -435,7 +435,10 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 		var/msg = ""
 		if(length(rumour_cached))
 			msg += "<b>You recall what you heard around Town about [src]...</b><br>[rumour_cached]"
-		if(((HAS_TRAIT(usr, TRAIT_NOBLE)) || observer_privilege) && length(noble_gossip_cached))
+		// [SURREALIS-EDIT] - QUIRKS
+		// if(((HAS_TRAIT(usr, TRAIT_NOBLE)) || observer_privilege) && length(noble_gossip_cached)) // SURREALIS-EDIT - ORIGINAL
+		if(((HAS_TRAIT(usr, TRAIT_NOBLE)) || (HAS_TRAIT(usr, TRAIT_GOSSIPER)) || observer_privilege) && length(noble_gossip_cached))
+		// [/SURREALIS-EDIT]
 			if(msg)
 				msg += "<br><br>"
 			msg += "<b>You recall what the other Blue-bloods hushed about [src]...</b><br>[noble_gossip_cached]"

@@ -76,6 +76,13 @@
 			. += span_notice("They carry [mammonsonperson] mammons, with [mammonsinbank] stored away, totaling [totalvalue].")
 		else if(mammonsonperson && mammonsonperson >= 100)
 			. += span_notice("They carry about [mammonsonperson] mammons with them.")
+	// [SURREALIS-ADD] - QUIRKS - (New proc in modular_tidi/quirks/code/malodorous.dm)
+	. += malodorous_examine_lines(user)
+	if(HAS_TRAIT(src, TRAIT_GNOLL_HUNTED) && ishuman(user) && istype(user, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = user
+		if(H.dna?.species?.type == /datum/species/gnoll)
+			. += span_cultsmall("Graggar has marked them!")
+	// [/SURREALIS-ADD]
 	var/obscured = check_obscured_slots()
 	var/skipface = (wear_mask && (wear_mask.flags_inv & HIDEFACE)) || (head && (head.flags_inv & HIDEFACE))
 	if(HAS_TRAIT(user, TRAIT_ROYALSERVANT))
@@ -709,7 +716,10 @@
 	if(pose_text)
 		. += fieldset_block("Pose", pose_text, "pose_block")
 
-	if(HAS_TRAIT(user, TRAIT_ASSASSIN) && src.has_flaw(/datum/charflaw/targeted))
+	// [SURREALIS-EDIT] - QUIRKS
+	// if(HAS_TRAIT(user, TRAIT_ASSASSIN) && src.has_flaw(/datum/charflaw/targeted)) // SURREALIS-EDIT - ORIGINAL
+	if(HAS_TRAIT(user, TRAIT_ASSASSIN) && HAS_TRAIT(src, TRAIT_ASSASSIN_TARGET))
+	// [/SURREALIS-EDIT]
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(locate(/obj/item/rogueweapon/huntingknife/idagger/steel/profane) in H.get_all_gear())
@@ -737,7 +747,10 @@
 		. += deadite_examine()
 	else
 		on_examine_face(user)
-		var/used_name = name
+		// [SURREALIS-EDIT] - QUIRKS - (New proc in modular_tidi/quirks/code/quirk_hooks.dm)
+		// var/used_name = name // SURREALIS-EDIT - ORIGINAL
+		var/used_name = scarred_examine_name(name, observer_privilege)
+		// [/SURREALIS-EDIT]
 		var/used_title = get_role_title()
 		if(HAS_TRAIT(src, TRAIT_RESIDENT) && used_title == "Licker" && licker_subclass)
 			used_title = licker_subclass.name
@@ -1065,6 +1078,10 @@
 					. += span_redtext("[m1] repugnant!")
 				if (THEY_THEM, IT_ITS)
 					. += span_redtext("[m1] repulsive!")
+
+		// [SURREALIS-ADD] - QUIRKS - (New proc in modular_tidi/quirks/code/quirk_hooks.dm)
+		. += quirk_examine_lines(user, m1, m2)
+		// [/SURREALIS-ADD]
 
 		var/datum/antagonist/vampire/vamp_inspect =src.mind?.has_antag_datum(/datum/antagonist/vampire)
 		if(vamp_inspect && (!SEND_SIGNAL(src, COMSIG_DISGUISE_STATUS)))

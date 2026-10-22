@@ -20,6 +20,10 @@
 		if(istype(cf, /datum/charflaw/hunted) || istype(cf, /datum/charflaw/targeted))
 			H.charflaws.Remove(cf)
 			QDEL_NULL(cf)
+	// [SURREALIS-ADD] - QUIRKS
+	REMOVE_TRAIT(H, TRAIT_GNOLL_HUNTED, TRAIT_QUIRK)
+	REMOVE_TRAIT(H, TRAIT_ASSASSIN_TARGET, TRAIT_QUIRK)
+	// [/SURREALIS-ADD]
 	H.set_patron(/datum/patron/inhumen/zizo)
 	H.cmode_music = 'sound/music/combat_heretic.ogg'
 	H.faction = list(FACTION_UNDEAD)

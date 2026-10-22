@@ -12,6 +12,9 @@ import {
   usePopupBackend,
   usePopupContext,
 } from 'pm/popups';
+// [SURREALIS-ADD] - QUIRKS
+import { PopupSurrealisQuirk } from 'pm/popups/SurrealisQuirk';
+// [/SURREALIS-ADD]
 import { useEffect, useState } from 'react';
 import {
   Box,
@@ -73,7 +76,10 @@ declare module 'pm/popups' {
     Quirk: PopupQuirkContext;
   }
 }
-registerPopup('Quirk', 'quirk', PopupQuirkSelector);
+// [SURREALIS-EDIT] - QUIRKS
+// registerPopup('Quirk', 'quirk', PopupQuirkSelector); // SURREALIS-EDIT - ORIGINAL
+registerPopup('Quirk', 'quirk', PopupSurrealisQuirk);
+// [/SURREALIS-EDIT]
 
 // Main content
 const PopupQuirkSelectorInner = (props: {

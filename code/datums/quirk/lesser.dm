@@ -17,6 +17,8 @@
 	added_traits = list(TRAIT_GOODLOVER)
 	ui_fa_icon = "bed"
 
+// [SURREALIS-REMOVE] - QUIRKS
+/*
 /datum/quirk/wyrdbeauty
 	name = "Otherworldly"
 	desc = "No-one can quite seem to decide whether I'm mesmerizing or horrifying."
@@ -25,6 +27,8 @@
 	allowed_virtues = list(/datum/virtue/combat/second_chance, /datum/virtue/utility/feytouched) // hacky, but w/e
 	allowed_quirks = list(/datum/quirk/feytouched)
 	ui_fa_icon = "person-rays"
+*/
+// [/SURREALIS-REMOVE]
 
 /datum/quirk/ugly
 	name = "Disfigured"
@@ -74,11 +78,15 @@
 	added_traits = list(TRAIT_VEGAN) // this is really, _really_ restrictive - it's genuinely kind of impressive to stick to this?
 	ui_fa_icon = "seedling"
 
+// [SURREALIS-REMOVE] - QUIRKS
+/*
 /datum/quirk/nihilist
 	name = "Nihilist"
 	desc = "My past was not a gentle one—through service, desperation, or repeated exposure, I have become desensitized to death and dismemberment. The soul recoils in disgust as the body stands on business unmoved."
 	added_traits = list(TRAIT_NIHILIST)
 	ui_fa_icon = "skull"
+*/
+// [/SURREALIS-REMOVE]
 
 /datum/quirk/feytouched
 	name = "Feytouched"
