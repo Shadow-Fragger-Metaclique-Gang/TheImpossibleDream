@@ -1283,6 +1283,8 @@
 	icon = 'icons/roguetown/weapons/special/freifechter.dmi'
 	max_blade_int = 300	//You're gonna parry a lot. You need it.
 	max_integrity = 235
+	possible_item_intents = list(/datum/intent/dagger/sucker_punch, SWORD_STRIKE)
+	gripped_intents = list(/datum/intent/spear/thrust/pike, /datum/intent/spear/thrust/pike/skewer)
 
 /obj/item/rogueweapon/spear/boar/frei/pike
 	name = "banner of Szöréndnížina"
