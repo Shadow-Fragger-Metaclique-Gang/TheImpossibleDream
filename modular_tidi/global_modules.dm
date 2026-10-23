@@ -15,6 +15,7 @@
 #include "phrase_highlights\_phrase_highlights.dme"
 #include "ported_customization\_ported_customization.dme"
 #include "pq-remover\_pq-remover.dme"
+#include "quirks\_quirks.dme"
 #include "sexcon\_sexcon.dme"
 #include "sound_changes\_sound_changes.dme"
 #include "species_changes\_species_changes.dme"

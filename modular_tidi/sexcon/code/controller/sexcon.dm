@@ -470,6 +470,8 @@
 					splashed_user.visible_message(span_love("[splashed_user] takes a load on their body!"), span_love("I take a load on my body!"))
 			else
 				external.refresh_cum()
+		if(HAS_TRAIT(user, TRAIT_MALODOROUS) && !HAS_TRAIT(splashed_user, TRAIT_MALODOROUS))
+			user.malodorous_apply_contact_stink(splashed_user)
 		modular_record_collar_receive_event(splashed_user, user)
 	if(effective_target?.has_flaw(/datum/charflaw/addiction/lovefiend))
 		effective_target.sate_addiction(/datum/charflaw/addiction/lovefiend)
@@ -516,6 +518,12 @@
 			apply_cum_consumed_buff(splashed_user)
 		if(!oral && user?.dna?.species?.id == "gnoll")
 			splashed_user.has_gnoll_scent_this_round = TRUE
+		var/user_malodorous = HAS_TRAIT(user, TRAIT_MALODOROUS)
+		var/target_malodorous = HAS_TRAIT(splashed_user, TRAIT_MALODOROUS)
+		if(user_malodorous && !target_malodorous)
+			user.malodorous_apply_contact_stink(splashed_user)
+		else if(target_malodorous && !user_malodorous)
+			splashed_user.malodorous_apply_contact_stink(user)
 		modular_record_collar_receive_event(splashed_user, user)
 		if(!oral)
 			var/obj/item/organ/testicles/testes = user.getorganslot(ORGAN_SLOT_TESTICLES)

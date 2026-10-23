@@ -67,7 +67,10 @@
 /datum/round_event_control/antagonist/solo/assassins/trim_candidates(list/candidates)
 	candidates = ..()
 	for(var/mob/living/candidate in candidates)
-		if(candidate.has_flaw(/datum/charflaw/targeted) || candidate.has_flaw(/datum/charflaw/hunted))
+		// [SURREALIS-EDIT] - QUIRKS
+		// if(candidate.has_flaw(/datum/charflaw/targeted) || candidate.has_flaw(/datum/charflaw/hunted)) // SURREALIS-EDIT - ORIGINAL
+		if(HAS_TRAIT(candidate, TRAIT_ASSASSIN_TARGET) || HAS_TRAIT(candidate, TRAIT_GNOLL_HUNTED))
+		// [/SURREALIS-EDIT]
 			candidates -= candidate
 		// needs to be a gaggarite
 		if(istype(candidate.patron, /datum/patron/inhumen/graggar))
@@ -108,6 +111,9 @@
 	for(var/mob/living/carbon/human/player as anything in GLOB.human_list)
 		if(!player.mind || !player.client)
 			continue
-		if(player.has_flaw(/datum/charflaw/targeted))
+		// [SURREALIS-EDIT] - QUIRKS
+		// if(player.has_flaw(/datum/charflaw/targeted)) // SURREALIS-EDIT - ORIGINAL
+		if(HAS_TRAIT(player, TRAIT_ASSASSIN_TARGET))
+		// [/SURREALIS-EDIT]
 			count++
 	return count

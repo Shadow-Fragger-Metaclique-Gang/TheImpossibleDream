@@ -84,6 +84,10 @@
 		if(istype(cf, /datum/charflaw/hunted) || istype(cf, /datum/charflaw/targeted))
 			body.charflaws.Remove(cf)
 			QDEL_NULL(cf)
+	// [SURREALIS-ADD] - QUIRKS
+	REMOVE_TRAIT(body, TRAIT_GNOLL_HUNTED, TRAIT_QUIRK)
+	REMOVE_TRAIT(body, TRAIT_ASSASSIN_TARGET, TRAIT_QUIRK)
+	// [/SURREALIS-ADD]
 	body.ambushable = FALSE
 	body.AddComponent(/datum/component/dreamwalker_repair)
 	body.AddComponent(/datum/component/dreamwalker_mark)

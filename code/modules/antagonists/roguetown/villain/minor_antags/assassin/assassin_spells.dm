@@ -31,7 +31,10 @@
 	for(var/mob/living/L in GLOB.player_list)
 		if(L == assassin || istype(L, /mob/living/carbon/human/dummy))
 			continue
-		var/is_hunted = L.has_flaw(/datum/charflaw/targeted)
+		// [SURREALIS-EDIT] - QUIRKS
+		// var/is_hunted = L.has_flaw(/datum/charflaw/targeted) // SURREALIS-EDIT - ORIGINAL
+		var/is_hunted = HAS_TRAIT(L, TRAIT_ASSASSIN_TARGET)
+		// [/SURREALIS-EDIT]
 		var/is_trapped = HAS_TRAIT(L, TRAIT_CLAIMED_BY_DARKSTAR)
 		var/is_valid_prey = is_hunted && !is_trapped
 
