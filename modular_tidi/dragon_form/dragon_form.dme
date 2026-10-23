@@ -1,0 +1,2 @@
+#include "code\dragon_form.dm"
+#include "code\regenerating.dm"
