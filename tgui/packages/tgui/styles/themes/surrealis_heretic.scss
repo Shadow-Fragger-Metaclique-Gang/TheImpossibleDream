@@ -1,0 +1,40 @@
+@use 'azure_base' as *;
+
+.theme-surrealis_heretic:root {
+  @include azure-theme((
+    'base':            #0f0b0a,
+    'base-light':      #150e0c,
+    'base-dark':       #0a0706,
+    'section':         rgba(44, 16, 13, 0.45),
+    'section-title':   #b0362b,
+    'text':            #c9b9a6,
+    'label':           #7d6a5c,
+    'accent':          rgba(110, 26, 18, 0.45),
+    'accent-bright':   rgba(150, 34, 24, 0.6),
+    'border':          #3a1a16,
+    'btn-text':        #c9b9a6,
+    'btn-selected':    rgba(120, 24, 18, 0.55),
+    'btn-disabled':    #4a3a32,
+    'scrollbar-thumb': rgba(110, 26, 18, 0.6),
+    'glow':            rgba(110, 26, 18, 0.15),
+    'link':            #b0362b,
+    'link-visited':    #8f1d16,
+    'link-hover':      #d0463a,
+  ), '../assets/azure_default/topbar_red.svg');
+
+  &, .Window, .Layout, .Layout__content, .Window__rest, .Window__content {
+    background: #0f0b0a !important;
+    background-image: none !important;
+  }
+
+  .TitleBar {
+    background-color: #150e0c;
+    border-bottom: 1px solid #3a1a16;
+    box-shadow: none;
+  }
+
+  .TitleBar__title {
+    color: #b0362b;
+    letter-spacing: 1px;
+  }
+}

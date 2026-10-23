@@ -107,13 +107,21 @@
 		winset(usr, "[JOB_SUBPREFS_WINDOW_ID]", "focus=true")
 
 /datum/job/roguetown/wretch/special_job_check(mob/dead/new_player/player)
+	// [SURREALIS-REMOVE] ANTAGAPI.DLL - unlocks adminbusing antag slots
+	/*
 	if(is_storyteller_soft_antag_blocked())
 		return FALSE
+	*/
+	// [SURREALIS-REMOVE] ANTAGAPI.DLL - unlocks adminbusing antag slots
 	return ..()
 
 /datum/job/roguetown/wretch/special_check_latejoin(client/C)
+	// [SURREALIS-REMOVE] ANTAGAPI.DLL - unlocks adminbusing antag slots
+	/*
 	if(is_storyteller_soft_antag_blocked())
 		return FALSE
+	*/
+	// [SURREALIS-REMOVE] ANTAGAPI.DLL - unlocks adminbusing antag slots
 	return ..()
 
 /datum/job/roguetown/wretch/after_spawn(mob/living/L, mob/M, latejoin = TRUE)

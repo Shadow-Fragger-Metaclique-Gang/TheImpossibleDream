@@ -1,0 +1,397 @@
+.RiteList__mark {
+  width: 12px;
+  text-align: center;
+  color: #c0150f;
+}
+
+.RiteList__tier {
+  font-size: 0.85em;
+  opacity: 0.55;
+}
+
+.RiteList__rite--locked {
+  opacity: 0.45;
+}
+
+.RiteText__flavor {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 1.05em;
+  line-height: 1.45;
+}
+
+.RiteText__requirements {
+  margin-top: 6px;
+  font-size: 0.9em;
+  opacity: 0.6;
+}
+
+.RiteText__separator {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.RiteText__arrangement {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-top: 12px;
+}
+
+.RiteText__side {
+  flex: 1;
+  min-width: 0;
+}
+
+.RiteText__heading {
+  margin-bottom: 4px;
+  font-size: 0.8em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.RiteText__explanation {
+  margin-top: 10px;
+  font-size: 0.9em;
+  line-height: 1.4;
+  opacity: 0.6;
+}
+
+.ComponentList__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.ComponentList__icon {
+  width: 24px;
+  height: 24px;
+  flex: none;
+
+  img {
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+  }
+}
+
+.ComponentList__name {
+  flex: 1;
+  min-width: 0;
+}
+
+.RuneBoard {
+  position: relative;
+  flex: none;
+  width: 240px;
+  height: 240px;
+}
+
+.RuneBoard__circle {
+  position: absolute;
+  inset: 0;
+  filter: drop-shadow(1px 1px 0 #837471);
+  pointer-events: none;
+}
+
+.RuneBoard__rune {
+  position: absolute;
+  left: 88px;
+  top: 88px;
+  width: 64px;
+  height: 64px;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+.RuneBoard__item {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  transform: translate(-50%, -50%);
+
+  img {
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+  }
+
+  &--placed img {
+    filter: drop-shadow(0 0 4px rgba(111, 163, 90, 0.6));
+  }
+
+  &--missing {
+    img {
+      opacity: 0.28;
+      filter: grayscale(1);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px dashed rgba(163, 57, 44, 0.85);
+      border-radius: 50%;
+    }
+  }
+}
+
+.HereticReward {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.HereticReward__heading {
+  margin-bottom: 6px;
+  font-size: 0.8em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.HereticReward__fork-heading {
+  margin-top: 10px;
+}
+
+.HereticReward__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.HereticReward__chip {
+  padding: 1px 7px;
+  border: 1px solid #5a1f18;
+  border-radius: 3px;
+  background: rgba(110, 26, 18, 0.35);
+  font-weight: bold;
+  font-size: 0.9em;
+}
+
+.HereticReward__gift {
+  margin-bottom: 2px;
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    margin-right: 8px;
+    vertical-align: middle;
+    border-radius: 50%;
+    background: #b0362b;
+  }
+}
+
+.HereticReward__fork {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.HereticReward__card {
+  padding: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(20, 10, 8, 0.6);
+
+  &--forsaken {
+    opacity: 0.18;
+    filter: grayscale(1);
+
+    .HereticReward__card-title {
+      text-decoration: line-through;
+    }
+  }
+}
+
+.HereticReward__card-title {
+  margin-bottom: 6px;
+  color: #b0362b;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+}
+
+.HereticReward__card-blurb {
+  margin-bottom: 8px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 0.95em;
+  line-height: 1.4;
+  opacity: 0.75;
+}
+
+.HereticReward__greyed {
+  opacity: 0.35;
+  filter: grayscale(1);
+}
+
+.HereticReward__stamp {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2px 18px;
+  border: 3px solid #a3241b;
+  border-radius: 4px;
+  color: #b8291f;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 0.18em;
+  white-space: nowrap;
+  text-shadow: 0 0 6px rgba(160, 30, 20, 0.45);
+  box-shadow:
+    0 0 10px rgba(160, 30, 20, 0.25),
+    inset 0 0 10px rgba(160, 30, 20, 0.2);
+  pointer-events: none;
+
+  &--small {
+    padding: 2px 12px;
+    font-size: 20px;
+  }
+
+  &--forsaken {
+    border: 2px solid #4a3a32;
+    color: #6a5a50;
+    text-shadow: none;
+    box-shadow: none;
+  }
+}
+
+.HereticVellum {
+  position: relative;
+  width: 700px;
+  height: 250px;
+  margin: 0 auto;
+  overflow: hidden;
+  font-family: Georgia, 'Times New Roman', serif;
+  background:
+    radial-gradient(ellipse 60% 40% at 22% 30%, rgba(70, 20, 12, 0.35), transparent 70%),
+    radial-gradient(ellipse 30% 50% at 80% 75%, rgba(20, 10, 6, 0.55), transparent 70%),
+    radial-gradient(ellipse 25% 20% at 62% 18%, rgba(90, 40, 20, 0.25), transparent 70%),
+    radial-gradient(ellipse at center, #3a2a1d 0%, #2a1d14 55%, #160e09 100%);
+  box-shadow: inset 0 0 40px 12px rgba(0, 0, 0, 0.85);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      93deg,
+      rgba(255, 240, 210, 0.018) 0 2px,
+      transparent 2px 5px
+    );
+  }
+}
+
+.HereticVellum__strokes {
+  position: absolute;
+  inset: 0;
+}
+
+.HereticVellum__sigil {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  line-height: 1;
+  text-align: center;
+  cursor: pointer;
+
+  &--done {
+    font-size: 30px;
+    color: #6e1a12;
+    text-shadow:
+      0 0 1px #3b0c08,
+      1px 1px 0 rgba(30, 6, 4, 0.6);
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -8px -10px;
+      z-index: -1;
+      border-radius: 46% 54% 50% 50%;
+      background: radial-gradient(circle, rgba(90, 22, 14, 0.35), transparent 70%);
+    }
+  }
+
+  &--current {
+    font-size: 36px;
+    color: #c0150f;
+    text-shadow:
+      0 0 6px rgba(200, 20, 15, 0.7),
+      -1px -1px 0 rgba(255, 120, 110, 0.35);
+    animation: HereticVellum__wet 3s ease-in-out infinite;
+  }
+
+  &--future {
+    width: 26px;
+    height: 26px;
+    border: 1.5px dashed rgba(20, 16, 14, 0.85);
+    border-radius: 50%;
+    color: rgba(25, 20, 18, 0.9);
+    font-size: 15px;
+    line-height: 23px;
+  }
+
+  &--forsaken {
+    font-size: 26px;
+    color: rgba(90, 30, 20, 0.12);
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -6px -12px;
+      background: repeating-linear-gradient(
+        160deg,
+        rgba(60, 40, 30, 0.35) 0 1px,
+        transparent 1px 4px
+      );
+    }
+  }
+
+  &--selected {
+    outline: 1px solid rgba(201, 185, 166, 0.35);
+    outline-offset: 8px;
+    border-radius: 50%;
+  }
+}
+
+@keyframes HereticVellum__wet {
+  50% {
+    text-shadow:
+      0 0 12px rgba(220, 30, 20, 0.9),
+      -1px -1px 0 rgba(255, 140, 130, 0.45);
+  }
+}
+
+.HereticVellum__label {
+  position: absolute;
+  transform: translateX(-50%);
+  width: 118px;
+  text-align: center;
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1.15;
+  color: #8a6e58;
+  cursor: pointer;
+
+  &--current {
+    color: #d8b8a0;
+  }
+}
+
+.HereticVellum__branch {
+  position: absolute;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: #8a2a1e;
+  white-space: nowrap;
+
+  &--forsaken {
+    color: rgba(110, 60, 40, 0.18);
+    text-decoration: line-through;
+  }
+}

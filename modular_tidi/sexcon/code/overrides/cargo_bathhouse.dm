@@ -53,7 +53,7 @@
 /datum/supply_pack/rogue/bath_toys/emberwine
 	name = "Emberwine Vial"
 	cost = 50
-	contains = list(/obj/item/reagent_containers/glass/bottle/alchemical/emberwine/full)
+	contains = list(/obj/item/reagent_containers/glass/bottle/alchemical/emberwine)
 
 /datum/supply_pack/rogue/bath_toys/cursedcollargreater
 	name = "Cursed Collar"

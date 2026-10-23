@@ -1,3 +1,5 @@
+// NEW ADDITIONS
+
 /datum/loadout_item/royalsleeves
 	name = "Royal Sleeves"
 	path = /obj/item/clothing/wrists/roguetown/royalsleeves
@@ -155,3 +157,45 @@
 	name = "Porcelain Mask"
 	path = /obj/item/clothing/mask/rogue/iamcrystalclear
 	sort_category = "Accessories"
+
+
+// TRIUMPH COST OVERRIDES
+
+/datum/loadout_item/paper_parasol
+	triumph_cost = 0
+
+/datum/loadout_item/fine_parasol
+	triumph_cost = 0
+
+/datum/loadout_item/cloth
+	triumph_cost = 0
+
+/datum/loadout_item/broom
+	triumph_cost = 0
+
+/datum/loadout_item/bucket
+	triumph_cost = 0
+
+/datum/loadout_item/needle
+	triumph_cost = 0
+
+/datum/loadout_item/whetstone
+	triumph_cost = 0
+
+/datum/loadout_item/hammer
+	triumph_cost = 0
+
+/datum/loadout_item/axe
+	triumph_cost = 0
+
+/datum/loadout_item/knife
+	triumph_cost = 0
+
+/datum/loadout_item/hoe
+	triumph_cost = 0
+
+/datum/loadout_item/spade
+	triumph_cost = 0
+
+/datum/loadout_item/mirror
+	triumph_cost = 0

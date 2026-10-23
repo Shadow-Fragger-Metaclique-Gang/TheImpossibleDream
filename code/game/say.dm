@@ -196,10 +196,22 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		plaintext_input = input
 		input = parsemarkdown_basic(input, limited = TRUE, barebones = TRUE)
 
+	// [SURREALIS-EDIT]
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	if(copytext(plaintext_input, length(plaintext_input) - 1) == "!!")
 		spans |= SPAN_YELL
 
 	var/spanned = attach_spans(input, spans)
+	*/
+	var/yelling = copytext(plaintext_input, length(plaintext_input) - 1) == "!!"
+	if(yelling)
+		spans |= SPAN_YELL
+
+	var/spanned = attach_spans(input, spans)
+	if(yelling)
+		return "— \"[spanned]\""
+	// [/SURREALIS-EDIT]
 	if(isliving(src))
 		var/mob/living/L = src
 		if(L.cmode)

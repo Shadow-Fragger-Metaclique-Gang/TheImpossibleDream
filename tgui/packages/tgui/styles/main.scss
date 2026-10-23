@@ -29,6 +29,10 @@
 @include meta.load-css('./themes/parchment.scss');
 @include meta.load-css('./themes/parchment_vellum.scss');
 @include meta.load-css('./themes/parchment_leatherbound.scss');
+// [SURREALIS-ADD] - HERETICS
+@include meta.load-css('./themes/surrealis_heretic.scss');
+@include meta.load-css('./interfaces/SurrealisRitualMenu.scss');
+// [/SURREALIS-ADD]
 
 // Interfaces
 @include meta.load-css('./interfaces/AlertModal.scss');

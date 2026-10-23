@@ -152,6 +152,8 @@
 
 #define BODY_SIZE_NORMAL 1.00
 // [SURREALIS-EDIT] - SPECIES_CHANGES - Increased and decreased the max/min body size for all species. We love Giant Virtue 115% scaled Lupians in this server.
+// #define BODY_SIZE_MAX 1.05 // SURREALIS-EDIT - ORIGINAL
+// #define BODY_SIZE_MIN 0.95 // SURREALIS-EDIT - ORIGINAL
 #define BODY_SIZE_MAX 1.15
 #define BODY_SIZE_MIN 0.90
 // [/SURREALIS-EDIT]

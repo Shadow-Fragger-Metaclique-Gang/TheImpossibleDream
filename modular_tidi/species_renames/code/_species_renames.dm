@@ -240,6 +240,6 @@ GLOBAL_LIST_INIT(species_legacy_names, list(
 	"Half-Kin" = /datum/species/demihuman,
 	"Wild-Kin" = /datum/species/anthromorph,
 	"Critterkin" = /datum/species/anthromorphsmall,
-	"Metal Constuct" = /datum/species/construct/metal,
+	"Metal Construct" = /datum/species/construct/metal,
 	"Revenant" = /datum/species/dullahan,
 ))
