@@ -142,7 +142,7 @@
 	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 	belt = /obj/item/storage/belt/rogue/leather/black
-	neck = /obj/item/clothing/neck/roguetown/psicross/silver/necra //thematic
+	neck = /obj/item/clothing/neck/roguetown/psicross/necra/silver //thematic
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backr = /obj/item/rogueweapon/shovel/silver //Not pre-blessed, mind you

@@ -702,13 +702,13 @@
 		if(/datum/patron/old_god)
 			wrists = /obj/item/clothing/neck/roguetown/psicross/silver
 		if(/datum/patron/divine/astrata)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/silver/astrata
+			wrists = /obj/item/clothing/neck/roguetown/psicross/astrata/silver
 		if(/datum/patron/divine/necra)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/silver/necra
+			wrists = /obj/item/clothing/neck/roguetown/psicross/necra/silver
 		if(/datum/patron/divine/noc)
-			wrists = /obj/item/clothing/neck/roguetown/psicross/silver/noc
+			wrists = /obj/item/clothing/neck/roguetown/psicross/noc/silver
 		else
-			wrists = /obj/item/clothing/neck/roguetown/psicross/silver/undivided
+			wrists = /obj/item/clothing/neck/roguetown/psicross/undivided/silver
 
 	//Old people get the option to become glass cannons. Expert Knives + Expert in their chosen weapon, but a permenant -I STR, -I PER, -2 SPD and -2 CON debuff.
 

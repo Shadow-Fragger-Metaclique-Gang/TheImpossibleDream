@@ -316,7 +316,7 @@
 	if (!H.restrained())
 		to_chat(src, span_warning ("My victim needs to be restrained in order to do this!"))
 		return
-	if(!istype(S, /obj/item/clothing/neck/roguetown/psicross/silver))
+	if(!istype(S, /obj/item/clothing/neck/roguetown/psicross) && !S.is_silver)
 		to_chat(src, span_warning("I need to be holding a silver psycross to extract this divination!"))
 		return
 	for(var/obj/structure/fluff/psycross/N in oview(5, src))
@@ -385,7 +385,7 @@
 	if (!H.restrained())
 		to_chat(src, span_warning ("My victim needs to be restrained in order to do this!"))
 		return
-	if(!istype(S, /obj/item/clothing/neck/roguetown/psicross/silver))
+	if(!istype(S, /obj/item/clothing/neck/roguetown/psicross) && !S.is_silver)
 		to_chat(src, span_warning("I need to be holding a silver psycross to extract this divination!"))
 		return
 	for(var/obj/structure/fluff/psycross/N in oview(5, src))
