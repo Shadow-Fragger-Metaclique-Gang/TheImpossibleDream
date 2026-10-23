@@ -395,7 +395,12 @@ To avoid TOO much conflicts w/random char parts, consider a proc that checks if 
 
 #define ALL_ACOLYTE_PATRONS list(/datum/patron/divine/undivided, /datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/pestra, /datum/patron/divine/ravox, /datum/patron/divine/eora, /datum/patron/divine/xylix, /datum/patron/divine/necra, /datum/patron/divine/abyssor, /datum/patron/divine/malum) // Currently unused.
 
-#define ALL_DIVINE_PATRONS list(/datum/patron/divine/undivided, /datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/abyssor, /datum/patron/divine/ravox, /datum/patron/divine/necra, /datum/patron/divine/xylix, /datum/patron/divine/pestra, /datum/patron/divine/malum, /datum/patron/divine/eora)
+// [SURREALIS-EDIT] - LORE
+// #define ALL_DIVINE_PATRONS list(/datum/patron/divine/undivided, /datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/abyssor, /datum/patron/divine/ravox, /datum/patron/divine/necra, /datum/patron/divine/xylix, /datum/patron/divine/pestra, /datum/patron/divine/malum, /datum/patron/divine/eora) // SURREALIS-EDIT - ORIGINAL
+#define ALL_DIVINE_PATRONS list(/datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/ravox, /datum/patron/divine/eora, /datum/patron/divine/necra)
+#define ALL_PRIMAL_PATRONS list(/datum/patron/divine/dendor, /datum/patron/divine/abyssor)
+#define ALL_EMBODIED_PATRONS list(/datum/patron/divine/xylix, /datum/patron/divine/malum, /datum/patron/divine/pestra)
+// [/SURREALIS-EDIT]
 
 #define ALL_GRONNIC_PATRONS list(/datum/patron/inhumen/zizo, /datum/patron/inhumen/graggar, /datum/patron/inhumen/matthios, /datum/patron/inhumen/baotha, /datum/patron/divine/abyssor, /datum/patron/divine/dendor)
 
@@ -498,6 +503,9 @@ GLOBAL_LIST_EMPTY(round_join_times)
 #define CTAG_NO_OUTFIT		"CAT_NO_OUTFIT"		//VL and other blank slates
 
 #define CTAG_WARDEN			"CAT_WARDEN"		// Warden class - Handles warden class selector.
+// [SURREALIS-ADD] - JOB_OVERRIDES
+#define CTAG_WILDS_WARDEN	"CAT_WILDS_WARDEN"	// Warden of the Wilds class selector
+// [/SURREALIS-ADD]
 #define CTAG_WATCH			"CAT_WATCH"			// Watch class - Handles Town Watch class selector
 #define CTAG_MENATARMS		"CAT_MENATARMS"		// Men-at-Arms class - Handles Men-at-Arms class selector
 #define CTAG_SERGEANT		"CAT_SERGEANT"		// Sergeant class - Handles Sergeant class selector (weapons selection)

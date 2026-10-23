@@ -24,6 +24,12 @@ SUBSYSTEM_DEF(lobbymenu)
 			if(job_choice[job_name] == JP_HIGH)
 				if(job_name in wanderer_jobs)
 					job_name = "Wanderer"
+				// [SURREALIS-ADD] - JOB_OVERRIDES
+				else
+					var/datum/job/preferred_job = SSjob.name_occupations[job_name]
+					if(preferred_job?.display_title)
+						job_name = preferred_job.display_title
+				// [/SURREALIS-ADD]
 				if(player.ready == PLAYER_READY_TO_PLAY)
 					if(!ready_players_by_job[job_name])
 						ready_players_by_job[job_name] = list()

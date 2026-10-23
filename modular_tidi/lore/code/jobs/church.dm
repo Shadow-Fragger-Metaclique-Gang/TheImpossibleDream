@@ -54,15 +54,19 @@
 /obj/structure/roguemachine/vaultbank/church/get_authority_label()
 	return "the Pontifex or Martyr"
 
+/datum/advclass/druid
+	name = "Maenad"
+	tutorial = "Shape-changer, fanatic, long has your body been declared to the Lord of Madness. Your frenzied ways will not bow to the careful culturing of society, and your chants grow more than just trees and flowers. Loose your wyld ways upon the land, and chase your desires!"
+
 /datum/advclass/herald
-	name = "Herald of the Abyss"
-	tutorial = "One of Abyssor's acolytes dedicated to the path of the dream painter. You are amongst the most studious of the cult, capable of casting the most powerful miracles. Detail your visions, bring great tidings... Perfom the grunt work to prepare the greatest rituals."
+	name = "Hiereis"
+	tutorial = "Though housed by no temple and sworn to no holy books, you are as any priest- dedicated to your God. The Dreamer slumbers beneath the waves, and you uphold the balance of life on land, blessing fisherfolk and sailors and healing the drowned."
 
 /datum/advclass/voice
-	name = "Voice of the Seas"
-	tutorial = "One of Abyssor's visionaries dedicated to the path of the dream painter. You are amongst the exhalted of the cult, leading this little branch of abyssorite misfits. Keep in mind your authority does not reach past the cult - and many would fear you for your draw towards the Dreamer. Perhaps you can recruit some of the loyal abyssorites around here."
+	name = "Oracle"
+	tutorial = "Diviner of the Deep, Seer of the Unseen, the tides sing to you. Create your Dream in the image of His, and with your brush remake the path of the sea and sand."
 
 /datum/advclass/templar/maris
-	name = "Maris"
-	tutorial = "One of Abyssor's sentinels dedicated to the path of the dream painter. You are amongst the protectors of the cult, keeping your fellow cultists safe from dreamfiends."
+	name = "Hetaeroi"
+	tutorial = "Armored by faith and anointed in salted brine, you have been chosen to fight the Tidefather’s battles on land and protect the vulnerable hiereis. Like the washing of the waves, you are determined to wear away the evyls of this world."
 

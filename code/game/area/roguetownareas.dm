@@ -32,8 +32,11 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(list(/area/rogue/indoors
 	if(!ishuman(AM))
 		return
 	var/mob/living/carbon/human/guy = AM
-	if((src.town_area == TRUE) && HAS_TRAIT(guy, TRAIT_GUARDSMAN) && !guy.has_status_effect(/datum/status_effect/buff/guardbuffone)) //man at arms
-		guy.apply_status_effect(/datum/status_effect/buff/guardbuffone)
+	// [SURREALIS-REMOVE] - JOB_OVERRIDES
+	// Area buffs are removed except where flavorful/necessary.
+	// if((src.town_area == TRUE) && HAS_TRAIT(guy, TRAIT_GUARDSMAN) && !guy.has_status_effect(/datum/status_effect/buff/guardbuffone)) //man at arms // SURREALIS-REMOVE - ORIGINAL
+	// 	guy.apply_status_effect(/datum/status_effect/buff/guardbuffone) // SURREALIS-REMOVE - ORIGINAL
+	// [/SURREALIS-REMOVE]
 	if(GLOB.roguetown_areas_typecache[type]) // risen peasant rebels regain their fervor in town and its underways
 		var/datum/antagonist/prebel/rebel_datum = guy.mind ? guy.mind.has_antag_datum(/datum/antagonist/prebel) : null
 		if(rebel_datum && rebel_datum.uprisen)
@@ -41,12 +44,14 @@ GLOBAL_LIST_INIT(roguetown_areas_typecache, typecacheof(list(/area/rogue/indoors
 				guy.apply_status_effect(/datum/status_effect/buff/rebel_town_gated/uprising)
 			if(istype(rebel_datum, /datum/antagonist/prebel/head) && !guy.has_status_effect(/datum/status_effect/buff/rebel_town_gated/leader))
 				guy.apply_status_effect(/datum/status_effect/buff/rebel_town_gated/leader)
+	// [SURREALIS-REMOVE] - JOB_OVERRIDES
+	// if((src.warden_area == TRUE) && HAS_TRAIT(guy, TRAIT_WOODSMAN) && !guy.has_status_effect(/datum/status_effect/buff/wardenbuff)) // Warden // SURREALIS-REMOVE - ORIGINAL
+	// 	guy.apply_status_effect(/datum/status_effect/buff/wardenbuff) // SURREALIS-REMOVE - ORIGINAL
+	// if((src.drow_area == TRUE) && HAS_TRAIT(guy, TRAIT_ANTHRAXI) && !guy.has_status_effect(/datum/status_effect/buff/anthraxbuff)) // Drow Mercenaries // SURREALIS-REMOVE - ORIGINAL
+	// 	guy.apply_status_effect(/datum/status_effect/buff/anthraxbuff) // SURREALIS-REMOVE - ORIGINAL
+	// [/SURREALIS-REMOVE]
 	if((src.tavern_area == TRUE) && HAS_TRAIT(guy, TRAIT_TAVERN_FIGHTER) && !guy.has_status_effect(/datum/status_effect/buff/innkeeperbuff)) // THE FIGHTER
 		guy.apply_status_effect(/datum/status_effect/buff/innkeeperbuff)
-	if((src.warden_area == TRUE) && HAS_TRAIT(guy, TRAIT_WOODSMAN) && !guy.has_status_effect(/datum/status_effect/buff/wardenbuff)) // Warden
-		guy.apply_status_effect(/datum/status_effect/buff/wardenbuff)
-	if((src.drow_area == TRUE) && HAS_TRAIT(guy, TRAIT_ANTHRAXI) && !guy.has_status_effect(/datum/status_effect/buff/anthraxbuff)) // Drow Mercenaries
-		guy.apply_status_effect(/datum/status_effect/buff/anthraxbuff)
 	if((src.necra_area == TRUE) && !(guy.has_status_effect(/datum/status_effect/debuff/necrandeathdoorwilloss)||(guy.has_status_effect(/datum/status_effect/debuff/deathdoorwilloss)))) //Necra saps at wil
 		if(HAS_TRAIT(guy, TRAIT_SOUL_EXAMINE))
 			guy.apply_status_effect(/datum/status_effect/debuff/necrandeathdoorwilloss)

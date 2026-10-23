@@ -23,6 +23,7 @@
 /datum/advclass/guildmaster
 	tutorial = "You are the leader of the Pharovian Guild of Crafts. You represents the interests of all of the craftsmen underneath you - including the Tailor\
 	the Blacksmiths, the Artificers and the Architects. Other townspeople may look to you for guidance, but they are not under your control. You are an experienced smith and artificer, and can do their work easily. Protect the craftsmen's interests."
+	extra_context = "A Guildmaster who worships Malum is granted Malum's miracles, up to the fourth tier, as well as the Ritualist trait."
 
 /datum/job/roguetown/guildsman
 	tutorial = "You are a member of the Pharovian Guild of Crafts, a massive guild formed to represent the interests of all craftsmen in the township of Pharos.\

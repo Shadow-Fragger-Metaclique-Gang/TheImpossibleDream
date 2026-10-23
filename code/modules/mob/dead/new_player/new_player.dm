@@ -417,14 +417,20 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 		dat += "<a class='job command' href='byond://?src=[REF(src)];SelectedJob=Siege Skeleton'>BECOME AN EVIL SKELETON</a>"
 		dat += "</fieldset><br>"
 		column_counter++
-		if(column_counter > 0 && (column_counter % 4 == 0))
+		// [SURREALIS-EDIT] - NEW_JOBS
+		// if(column_counter > 0 && (column_counter % 4 == 0)) // SURREALIS-EDIT - ORIGINAL
+		if(column_counter > 0 && (column_counter % 5 == 0))
+		// [/SURREALIS-EDIT]
 			dat += "</td><td valign='top'>"
 	if(has_world_trait(/datum/world_trait/goblin_siege))
 		dat += "<fieldset style='width: 185px; border: 2px solid #df1919; display: inline'>"
 		dat += "<a class='job command' href='byond://?src=[REF(src)];SelectedJob=Goblin'>BECOME A GOBLIN</a>"
 		dat += "</fieldset><br>"
 		column_counter++
-		if(column_counter > 0 && (column_counter % 4 == 0))
+		// [SURREALIS-EDIT] - NEW_JOBS
+		// if(column_counter > 0 && (column_counter % 4 == 0)) // SURREALIS-EDIT - ORIGINAL
+		if(column_counter > 0 && (column_counter % 5 == 0))
+		// [/SURREALIS-EDIT]
 			dat += "</td><td valign='top'>"
 
 	var/list/omegalist = list()
@@ -433,6 +439,9 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 	omegalist += list(GLOB.retinue_positions)
 	omegalist += list(GLOB.garrison_positions)
 	omegalist += list(GLOB.church_positions)
+	// [SURREALIS-ADD] - NEW_JOBS
+	omegalist += list(GLOB.primal_divines_positions)
+	// [/SURREALIS-ADD]
 	omegalist += list(GLOB.burgher_positions)
 	omegalist += list(GLOB.atc_positions)
 	omegalist += list(GLOB.peasant_positions)
@@ -478,6 +487,10 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 					// cat_name = "Churchmen" // SURREALIS-EDIT - ORIGINAL
 					cat_name = "Clergy"
 					// [/SURREALIS-EDIT]
+				// [SURREALIS-ADD] - NEW_JOBS
+				if (PRIMAL_DIVINES)
+					cat_name = "Primal Divines"
+				// [/SURREALIS-ADD]
 				if (BURGHERS)
 					cat_name = "Burghers"
 				if (ATC)
@@ -519,7 +532,10 @@ GLOBAL_LIST_INIT(roleplay_readme, world.file2list("strings/rt/rp_prompt.txt"))
 
 			dat += "</fieldset><br>"
 			column_counter++
-			if(column_counter > 0 && (column_counter % 4 == 0))
+			// [SURREALIS-EDIT] - NEW_JOBS
+			// if(column_counter > 0 && (column_counter % 4 == 0)) // SURREALIS-EDIT - ORIGINAL
+			if(column_counter > 0 && (column_counter % 5 == 0))
+			// [/SURREALIS-EDIT]
 				dat += "</td><td valign='top'>"
 	dat += "</td></tr></table></center>"
 	dat += "</div></div>"

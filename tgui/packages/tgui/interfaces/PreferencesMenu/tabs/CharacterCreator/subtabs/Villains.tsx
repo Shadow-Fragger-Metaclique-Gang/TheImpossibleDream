@@ -5,6 +5,9 @@ import {
   LabeledGridList,
 } from 'pm/components';
 import { SubtabVillainDownstream } from 'pm/downstream/tabs/CharacterCreator/subtabs/Villains';
+// [SURREALIS-ADD] - MERCENARY_STATUE
+import { StatueWretchSection } from 'pm/downstream/StatueSections';
+// [/SURREALIS-ADD]
 import { useBackendStrict } from 'tgui/backend';
 import { Button, NoticeBox, Section, Stack } from 'tgui-core/components';
 import type { VillainData } from '../data';
@@ -30,6 +33,11 @@ export const SubtabVillain = () => {
           <BountySettings />
         </Stack.Item>
         <SubtabVillainDownstream />
+        {/* [SURREALIS-ADD] - MERCENARY_STATUE */}
+        <Stack.Item>
+          <StatueWretchSection />
+        </Stack.Item>
+        {/* [/SURREALIS-ADD] */}
       </Stack>
     </Section>
   );

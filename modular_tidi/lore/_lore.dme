@@ -2,6 +2,7 @@
 #include "code\religion\divine.dm"
 #include "code\religion\faiths.dm"
 #include "code\religion\gods.dm"
+#include "code\religion\factions.dm"
 #include "code\religion\inhumen.dm"
 #include "code\religion\patrons.dm"
 #include "code\usurpation\decrees.dm"

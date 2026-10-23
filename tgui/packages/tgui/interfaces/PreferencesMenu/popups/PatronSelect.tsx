@@ -71,10 +71,25 @@ const getGodheadIcon = (patron: ConstantPatron) => {
       return '\u16BC';
     case 'Zizo':
       return '\u16E3';
+    // [SURREALIS-ADD] - LORE
+    case 'Abyssor':
+      return '\u16DA';
+    case 'Dendor':
+      return '\u234B';
+    case 'Pestra':
+      return '\u16D2';
+    // [/SURREALIS-ADD]
     default:
       return '?';
   }
 };
+
+// [SURREALIS-ADD] - LORE
+// Factions without a head patron still mark their representative patrons with an icon.
+const FACTION_ICON_PATRONS = ['Abyssor', 'Dendor', 'Pestra', 'Zizo'];
+const hasFactionIcon = (faith: ConstantFaith, patron: EnhancedPatron) =>
+  faith.godhead === patron.type || FACTION_ICON_PATRONS.includes(patron.name);
+// [/SURREALIS-ADD]
 
 const PopupPatronSelectInner = (props: { constantData: ConstantData }) => {
   const { constantData } = props;
@@ -165,8 +180,17 @@ const PopupPatronSelectInner = (props: { constantData: ConstantData }) => {
                     id={`PreferencesMenuPopupPatronSelectorTab_${patron.type}`}
                     leftSlot={
                       <Stack align="center" justify="center">
-                        {faith.godhead === patron.type ? (
-                          <Tooltip content="This patron is considered the head of their faith.">
+                        {/* [SURREALIS-EDIT] - LORE */}
+                        {/* {faith.godhead === patron.type ? ( // SURREALIS-EDIT - ORIGINAL */}
+                        {hasFactionIcon(faith, patron) ? (
+                          // [/SURREALIS-EDIT]
+                          <Tooltip
+                            content={
+                              faith.godhead === patron.type
+                                ? 'This patron is considered the head of their faith.'
+                                : 'This patron represents their faith.'
+                            }
+                          >
                             <Stack.Item fontSize={1.2}>
                               {getGodheadIcon(patron)}
                             </Stack.Item>
@@ -246,9 +270,14 @@ const RightPane = (props: {
           ])}
         >
           <LabeledGridList>
-            <LabeledGridList.Item label="Head Patron">
-              {godhead?.name || 'None'}
-            </LabeledGridList.Item>
+            {/* [SURREALIS-EDIT] - LORE */}
+            {/* <LabeledGridList.Item label="Head Patron"> // SURREALIS-EDIT - ORIGINAL */}
+            {godhead && (
+              <LabeledGridList.Item label="Head Patron">
+                {godhead.name}
+              </LabeledGridList.Item>
+            )}
+            {/* [/SURREALIS-EDIT] */}
             <LabeledGridList.Item label="Likely Worshippers">
               {faith.worshippers}
             </LabeledGridList.Item>
@@ -265,8 +294,17 @@ const RightPane = (props: {
           className={classes(['PreferencesMenu__PatronSelection', faith.name])}
           title={
             <Stack align="center">
-              {faith.godhead === patron.type ? (
-                <Tooltip content="This patron is considered the head of their faith.">
+              {/* [SURREALIS-EDIT] - LORE */}
+              {/* {faith.godhead === patron.type ? ( // SURREALIS-EDIT - ORIGINAL */}
+              {hasFactionIcon(faith, patron) ? (
+                // [/SURREALIS-EDIT]
+                <Tooltip
+                  content={
+                    faith.godhead === patron.type
+                      ? 'This patron is considered the head of their faith.'
+                      : 'This patron represents their faith.'
+                  }
+                >
                   <Stack.Item fontSize={1.2}>
                     {getGodheadIcon(patron)}
                   </Stack.Item>

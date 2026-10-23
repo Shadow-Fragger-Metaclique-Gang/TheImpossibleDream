@@ -61,7 +61,9 @@
 #define ACOLYTE		(1<<4)
 #define SEXTON		(1<<5)
 #define PAINTER		(1<<6)
-
+// [SURREALIS-ADD] - PRIMAL_DIVINES
+#define KORYBANTES	(1<<7)
+// [/SURREALIS-ADD]
 #define BURGHERS			(1<<5)
 
 #define MERCHANT	(1<<0)
@@ -106,7 +108,9 @@
 #define INQUISITOR	(1<<0)
 #define ABSOLVER	(1<<1)
 #define ORTHODOXIST	(1<<2)
-
+// [SURREALIS-ADD] - NEW_JOBS
+#define DUNGEONEER	(1<<3)
+// [/SURREALIS-ADD]
 #define ANTAGONIST			(1<<10)
 
 #define ASSASSIN		(1<<0)
@@ -124,6 +128,9 @@
 #define SLOP				(1<<11)
 
 #define ATC					(1<<12)
+// [SURREALIS-ADD] - JOB_OVERRIDES
+#define PRIMAL_DIVINES		(1<<13)
+// [/SURREALIS-ADD]
 
 #define TESTER		(1<<0)
 
@@ -136,6 +143,9 @@
 #define JCOLOR_BURGHER "#759259"
 #define JCOLOR_GUILD "#91a77d"
 #define JCOLOR_ATC "#5b9bd5"
+// [SURREALIS-ADD] - JOB_OVERRIDES
+#define JCOLOR_PRIMAL_DIVINES "#367f8c"
+// [/SURREALIS-ADD]
 #define JCOLOR_PEASANT "#685542"
 #define JCOLOR_SIDEFOLK "#aea176"
 #define JCOLOR_WANDERER	"#23763a"
@@ -151,6 +161,8 @@
 	/* [SURREALIS-EDIT] - LORE */\
 	/* "Church" = JCOLOR_CHURCH, SURREALIS-EDIT - ORIGINAL */\
 	"Clergy" = JCOLOR_CHURCH,\
+	"Primal Divines" = JCOLOR_PRIMAL_DIVINES,\
+	"Merchantry" = JCOLOR_ATC,\
 	/* [/SURREALIS-EDIT] */\
 	"Inquisition" = JCOLOR_INQUISITION,\
 	"Burghers" = JCOLOR_BURGHER,\
@@ -197,9 +209,15 @@
 #define JDO_ACOLYTE 5.4
 #define JDO_SEXTON 5.5
 #define JDO_PAINTER 5.6
+// [SURREALIS-ADD] - JOB_OVERRIDES
+#define JDO_PRIMAL_DIVINES 5.7
+// [/SURREALIS-ADD]
 
 // Azurian Trading Company
 #define JDO_MERCHANT 6
+// [SURREALIS-ADD] - JOB_OVERRIDES
+#define JDO_MERCHANT_HIRELING 6.01
+// [/SURREALIS-ADD]
 #define JDO_SHOPHAND 6.05
 
 // Town Burghers
@@ -239,6 +257,10 @@
 #define JDO_INQUISITOR 10
 #define JDO_ORTHODOXIST 10.1
 #define JDO_ABSOLVER 10.2
+// [SURREALIS-ADD] - NEW_JOBS
+#define JDO_DUNGEONEER 10.3
+#define CTAG_DUNGEONEER "CAT_DUNGEONEER"
+// [/SURREALIS-ADD]
 
 // Antagonists
 #define JDO_ASSASSIN 11

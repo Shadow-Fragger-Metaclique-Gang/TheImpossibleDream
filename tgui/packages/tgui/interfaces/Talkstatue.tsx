@@ -40,6 +40,9 @@ type Data = {
   is_adventurer: BooleanLike;
   is_wretch: BooleanLike;
   is_bathhouse: BooleanLike;
+  // [SURREALIS-ADD] - MERCENARY_STATUE
+  public_wretch_access: BooleanLike;
+  // [/SURREALIS-ADD]
   my_key: string;
   message_char_limit: number;
   merc_status_options: string[];
@@ -378,9 +381,15 @@ const WretchTab = (props: { data: Data; act: ActFn }) => {
           color: INK_SOFT,
         }}
       >
+        {/* [SURREALIS-EDIT] - MERCENARY_STATUE
         This roster is visible only to wretches and the bathhouse staff. The
         bathhouse may reach a wretch under their chosen nom de guerre for
         discreet work.
+        SURREALIS-EDIT - ORIGINAL */}
+        {data.public_wretch_access
+          ? 'The Wretch roster has been revealed to all. Messaging remains restricted to bathhouse staff.'
+          : 'This roster is visible only to wretches and the bathhouse staff. The bathhouse may reach a wretch under their chosen nom de guerre for discreet work.'}
+        {/* [/SURREALIS-EDIT] */}
       </div>
 
       {!!data.is_bathhouse && (
@@ -433,7 +442,11 @@ const WretchTab = (props: { data: Data; act: ActFn }) => {
 
 export const Talkstatue = () => {
   const { act, data } = useBackend<Data>();
-  const wretchVisible = !!data.is_wretch || !!data.is_bathhouse;
+  // [SURREALIS-EDIT] - MERCENARY_STATUE
+  // const wretchVisible = !!data.is_wretch || !!data.is_bathhouse; // SURREALIS-EDIT - ORIGINAL
+  const wretchVisible =
+    !!data.is_wretch || !!data.is_bathhouse || !!data.public_wretch_access;
+  // [/SURREALIS-EDIT]
   const [tab, setTab] = useState<Tab>('mercs');
   const activeTab: Tab = tab === 'wretches' && !wretchVisible ? 'mercs' : tab;
   return (

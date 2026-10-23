@@ -97,6 +97,9 @@
 
 /datum/job/roguetown/mercenary/after_spawn(mob/living/L, mob/M, latejoin = FALSE)
 	..()
+	// [SURREALIS-EDIT] - MERCENARY_STATUE
+	// Registration is automatic in post_equip, so the remote-touch prompt below is no longer used.
+	/* SURREALIS-EDIT - ORIGINAL
 	if(L && ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(!H.mind)
@@ -113,9 +116,15 @@
 
 			statue.pending_registrations[M.key] = H
 			addtimer(CALLBACK(statue, TYPE_PROC_REF(/obj/structure/roguemachine/talkstatue/mercenary, expire_registration), M.key), 5 MINUTES)
+	*/
+	// [/SURREALIS-EDIT]
 
 /datum/advclass/mercenary/post_equip(mob/living/carbon/human/H) // has to be here because this is done AFTER subclass selection
 	. = ..()
+	// [SURREALIS-ADD] - MERCENARY_STATUE
+	if(!statue_post_equip(H))
+		return
+	// [/SURREALIS-ADD]
 	var/list/subprefs = H.client?.prefs?.job_subprefs
 	if(!subprefs)
 		return

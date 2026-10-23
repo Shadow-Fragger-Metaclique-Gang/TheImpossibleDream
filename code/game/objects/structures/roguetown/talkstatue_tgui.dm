@@ -57,6 +57,10 @@
 	if(!Adjacent(user))
 		to_chat(user, span_warning("I moved too far from the statue."))
 		return
+	// [SURREALIS-ADD] - MERCENARY_STATUE
+	if(!new_nom && data["auto_nom"])
+		new_nom = data["auto_nom"] // Clearing restores the assigned alias instead of exposing the real name
+	// [/SURREALIS-ADD]
 	data["nom_de_guerre"] = new_nom
 	to_chat(user, span_notice("My nom de guerre is set to: <b>[new_nom ? new_nom : "(real name)"]</b>"))
 	playsound(loc, 'sound/misc/beep.ogg', 100, FALSE, -1)
@@ -159,6 +163,9 @@
 		if(!choice)
 			return
 		target_key = picker[choice]
+	// [SURREALIS-ADD] - MERCENARY_STATUE
+	target_key = resolve_wretch_key(target_key)
+	// [/SURREALIS-ADD]
 	var/list/data = wretch_status[target_key]
 	if(!data)
 		to_chat(sender, span_warning("My message cannot be delivered for some reason."))
@@ -227,12 +234,18 @@
 	var/is_adv = ishuman(user) && role_matches(user, "Adventurer")
 	var/is_wretch = user_role == "Wretch"
 	var/is_bathhouse = (user_role == "Bathmaster") || (user_role == "Bathhouse Attendant")
+	// [SURREALIS-ADD] - MERCENARY_STATUE
+	var/public_wretch_access = wretch_roster_ui_data(data, is_wretch, is_bathhouse)
+	// [/SURREALIS-ADD]
 	data["is_merc"] = is_merc ? TRUE : FALSE
 	data["is_adventurer"] = is_adv ? TRUE : FALSE
 	data["is_wretch"] = is_wretch ? TRUE : FALSE
 	data["is_bathhouse"] = is_bathhouse ? TRUE : FALSE
 	var/mob/living/carbon/human/HU = user
-	data["my_key"] = ishuman(user) ? HU.real_name : ""
+	// [SURREALIS-EDIT] - MERCENARY_STATUE
+	// data["my_key"] = ishuman(user) ? HU.real_name : "" // SURREALIS-EDIT - ORIGINAL
+	data["my_key"] = ishuman(user) ? (is_wretch ? REF(HU) : HU.real_name) : ""
+	// [/SURREALIS-EDIT]
 	data["message_char_limit"] = message_char_limit
 
 	data["merc_status_options"] = list("Available", "Contracted", "Do not Disturb")
@@ -240,7 +253,10 @@
 	data["wretch_status_options"] = list("Available", "On a Job", "Lying Low", "Do not Disturb")
 	data["mercenaries"] = roster_payload(mercenary_status, FALSE)
 	data["adventurers"] = roster_payload(adventurer_status, FALSE)
-	if(is_wretch || is_bathhouse)
+	// [SURREALIS-EDIT] - MERCENARY_STATUE
+	// if(is_wretch || is_bathhouse) // SURREALIS-EDIT - ORIGINAL
+	if(is_wretch || is_bathhouse || public_wretch_access)
+	// [/SURREALIS-EDIT]
 		data["wretches"] = roster_payload(wretch_status, TRUE)
 	else
 		data["wretches"] = list()
@@ -257,7 +273,10 @@
 		if(use_nom && d["nom_de_guerre"])
 			display_name = d["nom_de_guerre"]
 		out += list(list(
-			"key" = key,
+			// [SURREALIS-EDIT] - MERCENARY_STATUE
+			// "key" = key, // SURREALIS-EDIT - ORIGINAL
+			"key" = use_nom ? REF(M) : key,
+			// [/SURREALIS-EDIT]
 			"name" = display_name,
 			"status" = d["status"] || "Available",
 			"message" = d["message"] || "",

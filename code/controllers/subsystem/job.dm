@@ -996,6 +996,12 @@ SUBSYSTEM_DEF(job)
 			// [/SURREALIS-EDIT]
 		if(INQUISITION)
 			key = "Inquisition"
+		// [SURREALIS-ADD] - JOB_OVERRIDES
+		if(ATC)
+			key = "Merchantry"
+		if(PRIMAL_DIVINES)
+			key = "Primal Divines"
+		// [/SURREALIS-ADD]
 		if(BURGHERS)
 			key = "Burghers"
 		if(GUILDSMAN)

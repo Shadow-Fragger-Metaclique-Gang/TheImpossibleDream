@@ -413,7 +413,9 @@ GLOBAL_VAR_INIT(last_crown_announcement_time, -1000)
 			REMOVE_TRAIT(found_human, TRAIT_OUTLAW, TRAIT_GENERIC)
 			if(HAS_TRAIT(found_human, TRAIT_GUARDSMAN_DISGRACED))
 				REMOVE_TRAIT(found_human, TRAIT_GUARDSMAN_DISGRACED, TRAIT_GENERIC)
-				ADD_TRAIT(found_human, TRAIT_GUARDSMAN, JOB_TRAIT)
+				// [SURREALIS-REMOVE] - JOB_OVERRIDES
+				// ADD_TRAIT(found_human, TRAIT_GUARDSMAN, JOB_TRAIT) //ORIGINAL
+				// [/SURREALIS-REMOVE]
 				found_human.remove_status_effect(/datum/status_effect/debuff/disgracedguardsman)
 		return FALSE
 	if(!found_human)
