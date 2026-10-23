@@ -104,7 +104,6 @@
 	point_cost = 2
 	added_traits = list(TRAIT_GOODLOVER)
 	incompatible_traits = list(TRAIT_GOODLOVER)
-	incompatible_virtues = list(/datum/virtue/utility/socialite, /datum/virtue/utility/performer)
 
 /datum/quirk/gossiper
 	name = "Gossiper"
@@ -215,7 +214,6 @@
 	incompatible_traits = list(TRAIT_NOBLE)
 	incompatible_virtues = list(/datum/virtue/utility/woodwalker)
 	allowed_species = list()
-
 
 /datum/quirk/pretty
 	name = "Pretty"
@@ -338,6 +336,6 @@
 /// AP Subtype
 /datum/quirk/wyldeater
 	name = "Wyld Metabolism"
-	desc = "Dendor's touch lies heavier upon me than most. I can eat things most would fail to stomach."
+	desc = "Be it a boon of Dendor or a quirk of anatomy, I can handle consuming things most people would consider poisonous."
 	added_traits = list(TRAIT_WILD_EATER)
-	allowed_species = list(/datum/species/anthromorph, /datum/species/anthromorphsmall, /datum/species/lupian, /datum/species/tabaxi, /datum/species/akula, /datum/species/vulpkanin)
+	point_cost = 2
