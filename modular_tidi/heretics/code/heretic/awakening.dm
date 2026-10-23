@@ -37,8 +37,20 @@
 /datum/job/roguetown/tapster
 	heretic_awakening_chance = 50
 
+/datum/job/roguetown/bathworker
+	heretic_awakening_chance = 50
+
 /datum/job/roguetown/trader
 	heretic_awakening_chance = 50
+
+/datum/job/roguetown/shophand
+	heretic_awakening_chance = 50
+
+/datum/job/roguetown/councillor
+	heretic_awakening_chance = 50
+
+/datum/job/roguetown/manorguard
+	heretic_awakening_chance = 40
 
 /datum/job/roguetown/archivist
 	heretic_awakening_chance = 30
@@ -46,11 +58,8 @@
 /datum/job/roguetown/servant
 	heretic_awakening_chance = 30
 
-/datum/job/roguetown/shophand
+/datum/job/roguetown/wapprentice
 	heretic_awakening_chance = 30
-
-/datum/job/roguetown/councillor
-	heretic_awakening_chance = 20
 
 /datum/job/roguetown/seneschal
 	heretic_awakening_chance = 20
@@ -61,16 +70,7 @@
 /datum/job/roguetown/veteran
 	heretic_awakening_chance = 20
 
-/datum/job/roguetown/wapprentice
-	heretic_awakening_chance = 20
-
-/datum/job/roguetown/manorguard
-	heretic_awakening_chance = 20
-
 /datum/job/roguetown/sergeant
-	heretic_awakening_chance = 20
-
-/datum/job/roguetown/warden
 	heretic_awakening_chance = 20
 
 /datum/job/roguetown/watchman
@@ -98,9 +98,6 @@
 	heretic_awakening_chance = 10
 
 /datum/job/roguetown/bathmaster
-	heretic_awakening_chance = 10
-
-/datum/job/roguetown/bathworker
 	heretic_awakening_chance = 10
 
 /datum/job/roguetown/adventurer/courtagent

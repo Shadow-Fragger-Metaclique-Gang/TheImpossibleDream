@@ -1,0 +1,2 @@
+#include "code\static_intensity.dm"
+#include "code\static_intensity_config.dm"
