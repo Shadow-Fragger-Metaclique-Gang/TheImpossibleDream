@@ -20,3 +20,4 @@
 #include "species_changes\_species_changes.dme"
 #include "species_renames\_species_renames.dme"
 #include "weapons_modular\_weapons_modular.dme"
+#include "ww_tweaks\_ww_tweaks.dme"
