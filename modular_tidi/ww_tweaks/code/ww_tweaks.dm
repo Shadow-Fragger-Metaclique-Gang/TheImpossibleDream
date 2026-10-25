@@ -1,6 +1,5 @@
-/datum/wound
-	/// Override the default % chance for werewolf infection to always trigger an infection
-	werewolf_infection_probability = 100
+// Override the default % chance for werewolf infection to always trigger an infection
+/datum/wound/werewolf_infection_probability = 100
 
 /mob/living/death(gibbed, nocutscene = FALSE) // we want to remove the curse on death
 	if(!isnull(mind))
