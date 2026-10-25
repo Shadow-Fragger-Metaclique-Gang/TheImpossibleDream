@@ -57,7 +57,7 @@
 /obj/item/clothing/neck/roguetown/psicross/g
 	desc = "'Paradise awaits.'"
 
-/obj/item/clothing/neck/roguetown/psicross/silver/naledi
+/obj/item/clothing/neck/roguetown/psicross/naledi/silver
 	desc = "'Paradise awaits!' </br>The surface is meticulously lined with Naledian glyphs, said to ward off the possessive allure of djinns."
 
 /obj/item/clothing/neck/roguetown/psicross/aalloy
@@ -97,7 +97,7 @@
 	name = "amulet of the Pantheon"
 	desc = "The Wills eternal, strength in unity. Stalwart for centuries against the darkness."
 
-/obj/item/clothing/neck/roguetown/psicross/silver/undivided
+/obj/item/clothing/neck/roguetown/psicross/undivided/silver
 	name = "silver amulet of the Pantheon"
 	desc = "Ward of silver, sigil of eternity; by the Pentacle, I command thee back to Hell!"
 

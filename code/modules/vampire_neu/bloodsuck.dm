@@ -58,7 +58,8 @@
 			addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/carbon, vomit), 0, TRUE), rand(8 SECONDS, 15 SECONDS))
 		return
 
-	if(VDrinker && istype(victim.wear_neck, /obj/item/clothing/neck/roguetown/psicross/silver) || HAS_TRAIT(victim, TRAIT_SILVER_BLESSED))
+	var/obj/item/worn_amulet = victim.wear_neck
+	if(VDrinker && (istype(worn_amulet, /obj/item/clothing/neck/roguetown/psicross) && worn_amulet.is_silver) || HAS_TRAIT(victim, TRAIT_SILVER_BLESSED))
 		to_chat(src, span_silver("SILVER! MY BANE!"))
 		src.adjust_fire_stacks(5, /datum/status_effect/fire_handler/fire_stacks/sunder)
 		src.Stun(5)

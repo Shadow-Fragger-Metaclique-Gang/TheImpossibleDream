@@ -12397,7 +12397,7 @@
 /area/rogue/outdoors/town/roofs/grim)
 "byu" = (
 /obj/structure/table/wood/poor,
-/obj/item/clothing/neck/roguetown/psicross/silver/necra{
+/obj/item/clothing/neck/roguetown/psicross/necra/silver{
 	pixel_x = -5;
 	pixel_y = 15
 	},
@@ -113238,7 +113238,7 @@
 "nOe" = (
 /obj/structure/table/wood/large_table/north_east,
 /obj/machinery/light/rogue/candle/l,
-/obj/item/clothing/neck/roguetown/psicross/silver/astrata{
+/obj/item/clothing/neck/roguetown/psicross/astrata/silver{
 	pixel_x = 3;
 	pixel_y = 0
 	},

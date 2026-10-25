@@ -20,7 +20,7 @@
 	spell_tier = 0
 	point_cost = 0
 
-	required_items = list(/obj/item/clothing/neck/roguetown/psicross/malum, /obj/item/clothing/neck/roguetown/psicross/undivided, /obj/item/clothing/neck/roguetown/psicross/silver/undivided)
+	required_items = list(/obj/item/clothing/neck/roguetown/psicross/malum, /obj/item/clothing/neck/roguetown/psicross/undivided, /obj/item/clothing/neck/roguetown/psicross/undivided/silver)
 
 /////////////////
 // T0 - Ignite //
@@ -30,7 +30,7 @@
 	background_icon = 'icons/mob/actions/malummiracles.dmi'
 	button_icon = 'icons/mob/actions/malummiracles.dmi'
 	spell_color = GLOW_COLOR_MALUM
-	required_items = list(/obj/item/clothing/neck/roguetown/psicross/malum, /obj/item/clothing/neck/roguetown/psicross/undivided, /obj/item/clothing/neck/roguetown/psicross/silver/undivided)
+	required_items = list(/obj/item/clothing/neck/roguetown/psicross/malum, /obj/item/clothing/neck/roguetown/psicross/undivided, /obj/item/clothing/neck/roguetown/psicross/undivided/silver)
 
 /////////////////////////
 // T0 - Reconstruction //
