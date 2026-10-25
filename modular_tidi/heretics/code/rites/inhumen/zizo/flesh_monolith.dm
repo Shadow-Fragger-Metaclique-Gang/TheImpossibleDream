@@ -22,6 +22,7 @@
 	max_integrity = 300
 	var/datum/weakref/maker_ref
 	var/list/gazers = list()
+	var/list/unmoved = list()
 
 /obj/structure/flesh_monolith/OnCrafted(dirin, mob/user)
 	. = ..()
@@ -33,8 +34,9 @@
 	var/mob/living/carbon/human/victim = user
 	if(!istype(victim) || !victim.mind || victim.stat == DEAD || istype(victim.patron, /datum/patron/inhumen) || HAS_TRAIT(victim, TRAIT_NOMOOD))
 		. = ..()
-		if(user == maker_ref?.resolve() && length(gazers))
-			. += span_danger("[length(gazers)] [length(gazers) == 1 ? "has" : "have"] GAZED upon IT!")
+		if(istype(victim) && victim.mind && victim.stat != DEAD && !(REF(victim) in unmoved))
+			unmoved += REF(victim)
+			victim.visible_message(span_warning("[victim] looks at the [src] without so much as a flicker of a reaction."), ignored_mobs = victim)
 		return
 	. = list()
 	gaze(victim)
@@ -61,6 +63,12 @@
 
 /obj/item/organ/heart
 	var/datum/weakref/monolith_maker
+
+/mob/living/carbon/human/examine(mob/user)
+	. = ..()
+	var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
+	if(heart?.monolith_maker && heart.monolith_maker.resolve() == user)
+		. += span_userdanger("THEY HAVE SEEN IT!")
 
 /obj/item/organ/heart/examine(mob/user)
 	. = ..()

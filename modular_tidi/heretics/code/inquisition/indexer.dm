@@ -28,7 +28,7 @@
 	. += span_info("Load a blood vial into the INDEXER, then use it on someone to take a sample.")
 	. += span_info("Aim for a part of them that's bare. The jab is quick and quiet; they won't notice, and only I hear the INDEXER work.")
 	. += span_info("A throat can always be jabbed, covered or not, but I must have a hold of them first, and everyone nearby will see and hear it.")
-	. += span_info("The INDEXER can also draw the blood out of a rune carved in it. The HEMATIC ASSAYER will name whose blood it was.")
+	. += span_info("The INDEXER can also draw the blood out of a rune carved in it. The HEMATIC ASSAYER can follow it back to whoever carved it.")
 	. += span_info("Use the INDEXER in hand to take the vial out, then test the vial at the HEMATIC ASSAYER.")
 
 /obj/item/inqarticles/indexer/attackby(obj/item/I, mob/living/user, params)
@@ -95,7 +95,7 @@
 			return
 		user.playsound_local(user, 'sound/items/indexer_finished.ogg', 50, FALSE)
 		to_chat(user, span_notice("I quietly take a sample of [subject]'s blood."))
-	vial.fill(subject.real_name, subject.get_blood_corruption(), subject.mind && (subject.mind.has_antag_datum(/datum/antagonist/werewolf) || subject.mind.has_antag_datum(/datum/antagonist/vampire)))
+	vial.fill(subject.real_name, subject.get_blood_corruption(), subject.mind && (subject.mind.has_antag_datum(/datum/antagonist/werewolf) || subject.mind.has_antag_datum(/datum/antagonist/vampire)), subject)
 	update_icon()
 	if(vial.cursed) // Concrete scraping sound dot ogg
 		playsound(src, 'sound/items/indexer_cursed.ogg', 100, FALSE, 3)
@@ -112,7 +112,7 @@
 		to_chat(user, span_warning("[indexer] needs an empty vial to draw the blood from [src]."))
 		return TRUE
 	var/mob/living/carver = blood_carver?.resolve()
-	indexer.vial.fill(blood_carver_name, 100, carver?.mind && (carver.mind.has_antag_datum(/datum/antagonist/werewolf) || carver.mind.has_antag_datum(/datum/antagonist/vampire)))
+	indexer.vial.fill(blood_carver_name, 100, carver?.mind && (carver.mind.has_antag_datum(/datum/antagonist/werewolf) || carver.mind.has_antag_datum(/datum/antagonist/vampire)), carver)
 	indexer.update_icon()
 	user.visible_message(span_warning("[user] drives [indexer] into [src], drawing the dried blood out of it as the rune crumbles away!"), span_notice("[indexer] draws the dried blood out of [src], and the rune crumbles away."))
 	playsound(src, 'sound/items/indexer_finished.ogg', 100, FALSE)
@@ -139,6 +139,8 @@
 	var/subject_name
 	var/subject_corruption = 0
 	var/cursed = FALSE
+	var/label
+	var/datum/weakref/subject
 
 /obj/item/inqarticles/blood_vial/update_icon_state()
 	if(!subject_name)
@@ -147,26 +149,50 @@
 		icon_state = cursed ? "assayer_vial_full_cursed" : "assayer_vial_full"
 	return ..()
 
+/obj/item/inqarticles/blood_vial/update_overlays()
+	. = ..()
+	if(label)
+		. += mutable_appearance(icon, "vial_label")
+
 /obj/item/inqarticles/blood_vial/examine(mob/user)
 	. = ..()
 	if(subject_name && HAS_TRAIT(user, TRAIT_INQUISITION))
 		if(cursed)
 			. += span_warning("The blood within is turbid and accursed. There's no need to test it, but Otava will pay for a sample of it through the HERMES.")
 		else
-			. += span_notice("It holds a sample of blood. Whose, only the HEMATIC ASSAYER can say for sure.")
+			. += span_notice("It holds a sample of blood. Use it in hand to mark it before testing.")
 	else if(subject_name)
 		. += span_notice("It holds a sample of blood.")
 
-/obj/item/inqarticles/blood_vial/proc/fill(name, corruption, is_cursed = FALSE)
+/obj/item/inqarticles/blood_vial/attack_self(mob/user)
+	if(!subject_name)
+		to_chat(user, span_warning("[src] is empty."))
+		return
+	if(cursed)
+		to_chat(user, span_warning("The accursed blood needs no name."))
+		return
+	var/new_label = stripped_input(user, "WHOSE BLOOD IS THIS?", "BLOOD VIAL", label, MAX_NAME_LEN)
+	if(!new_label || !subject_name || cursed || !user.is_holding(src))
+		return
+	label = new_label
+	name = "[initial(name)] ([label])"
+	update_icon()
+	to_chat(user, span_notice("I mark [src] as the blood of [label]."))
+
+/obj/item/inqarticles/blood_vial/proc/fill(name, corruption, is_cursed = FALSE, mob/living/subject_mob)
 	subject_name = name
 	subject_corruption = corruption
 	cursed = is_cursed
+	subject = subject_mob ? WEAKREF(subject_mob) : null
 	update_icon()
 
 /obj/item/inqarticles/blood_vial/proc/empty()
 	subject_name = null
 	subject_corruption = 0
 	cursed = FALSE
+	label = null
+	subject = null
+	name = initial(name)
 	update_icon()
 
 /obj/item/reagent_containers/food/snacks/grown/rogue/fyritius/attacked_by(obj/item/I, mob/living/user)

@@ -41,7 +41,12 @@ GLOBAL_LIST_INIT(heretic_high_nobility, list("Grand Duke", "Consort", "Prince", 
 	if(istype(applied, /datum/wound/artery/neck))
 		var/datum/wound/artery/neck/slit_throat = applied
 		slit_throat.slit_by = WEAKREF(user)
-	SEND_SIGNAL(user, COMSIG_HERETIC_CRIT_DEALT, owner, applied)
+
+/obj/item/bodypart/bodypart_attacked_by(bclass = BCLASS_BLUNT, dam, mob/living/user, zone_precise = src.body_zone, silent = FALSE, crit_message = FALSE, armor, obj/item/weapon, pen_info, no_crit = FALSE, no_debuff = FALSE)
+	var/old_bleeding = bleeding
+	. = ..()
+	if(user && owner && bleeding > old_bleeding)
+		SEND_SIGNAL(user, COMSIG_HERETIC_WOUND_DEALT, owner, .)
 
 /obj/item/bodypart/try_crit(bclass = BCLASS_BLUNT, dam, mob/living/user, zone_precise = src.body_zone, silent = FALSE, crit_message = FALSE)
 	. = ..()

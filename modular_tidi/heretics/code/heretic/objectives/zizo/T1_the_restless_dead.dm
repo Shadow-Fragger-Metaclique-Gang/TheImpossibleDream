@@ -3,7 +3,7 @@
 	heretic_tier = 1
 
 /datum/objective/heretic/zizo/grave/update_explanation_text()
-	explanation_text = "Desecrate and rob a grave."
+	explanation_text = "Desecrate and rob a grave. It must be a marked grave."
 
 /datum/objective/heretic/zizo/grave/on_creation()
 	. = ..()

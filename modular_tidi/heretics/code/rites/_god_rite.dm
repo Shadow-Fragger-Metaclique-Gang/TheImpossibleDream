@@ -24,6 +24,7 @@ GLOBAL_LIST_EMPTY(surrealis_type_icons)
 	var/cooldown = 0
 	var/flavor
 	var/list/layout
+	var/list/layout_alt
 	var/list/chant_lines
 	var/chant_delay = 5 SECONDS
 	var/awakened_heretic_only = FALSE
@@ -33,6 +34,9 @@ GLOBAL_LIST_EMPTY(surrealis_type_icons)
 
 /datum/runeritual/god/proc/get_layout(mob/living/user)
 	return layout
+
+/datum/runeritual/god/proc/get_layout_alt(mob/living/user)
+	return layout_alt
 
 /datum/runeritual/god/proc/lock_reason(mob/living/user, obj/structure/ritualcircle/circle)
 	if(tier > user.get_skill_level(/datum/skill/magic/ritualist))
@@ -44,9 +48,9 @@ GLOBAL_LIST_EMPTY(surrealis_type_icons)
 	to_chat(user, span_warning("<i>[replacetext(message, "\n", "<br>")]</i>"))
 	circle.fail_invoke()
 
-/datum/runeritual/god/proc/match_layout(obj/structure/ritualcircle/circle, mob/living/user)
+/datum/runeritual/god/proc/match_layout(obj/structure/ritualcircle/circle, mob/living/user, list/use_layout)
 	var/list/selected_atoms = list()
-	var/list/rite_layout = get_layout(user)
+	var/list/rite_layout = use_layout || get_layout(user)
 	for(var/tile in rite_layout)
 		selected_atoms[tile] = null
 		var/turf/T = tile == "C" ? get_turf(circle) : get_step(circle, GLOB.god_rite_tiles[tile])
@@ -70,10 +74,21 @@ GLOBAL_LIST_EMPTY(surrealis_type_icons)
 	for(var/tile in selected_atoms)
 		if(!selected_atoms[tile])
 			what_are_we_missing += requirement_name(rite_layout[tile])
-	if(length(what_are_we_missing))
+	if(!length(what_are_we_missing))
+		return selected_atoms
+	var/list/rite_layout_alt = get_layout_alt(user)
+	if(!rite_layout_alt)
 		deny(user, circle, "Ritual failed, missing components!\nYou are missing [english_list(what_are_we_missing)] in order to complete the ritual \"[name]\".")
 		return FALSE
-	return selected_atoms
+	var/list/alt_atoms = match_layout(circle, user, rite_layout_alt)
+	var/list/alt_missing = list()
+	for(var/tile in alt_atoms)
+		if(!alt_atoms[tile])
+			alt_missing += requirement_name(rite_layout_alt[tile])
+	if(!length(alt_missing))
+		return alt_atoms
+	deny(user, circle, "Ritual failed, missing components!\nYou are missing [english_list(what_are_we_missing)], or else [english_list(alt_missing)], in order to complete the ritual \"[name]\".")
+	return FALSE
 
 /datum/runeritual/god/proc/chant(mob/living/user, obj/structure/ritualcircle/circle)
 	for(var/line in chant_lines)
@@ -236,6 +251,15 @@ GLOBAL_LIST_EMPTY(surrealis_type_icons)
 		for(var/tile in rite_layout)
 			tile_names[tile] = rite.requirement_name(rite_layout[tile])
 			tile_icons[tile] = rite.requirement_icons(rite_layout[tile])
+		var/list/rite_layout_alt = rite.get_layout_alt(user)
+		var/list/alt_tile_names
+		var/list/alt_tile_icons
+		if(rite_layout_alt)
+			alt_tile_names = list()
+			alt_tile_icons = list()
+			for(var/tile in rite_layout_alt)
+				alt_tile_names[tile] = rite.requirement_name(rite_layout_alt[tile])
+				alt_tile_icons[tile] = rite.requirement_icons(rite_layout_alt[tile])
 		var/list/target_list = rite.awakened_heretic_only ? heretic_rite_list : rite_list
 		target_list += list(list(
 			"id" = "[rite.type]",
@@ -248,6 +272,8 @@ GLOBAL_LIST_EMPTY(surrealis_type_icons)
 			"cooldown" = rite.cooldown ? DisplayTimeText(rite.cooldown) : null,
 			"tile_names" = tile_names,
 			"tile_icons" = tile_icons,
+			"alt_tile_names" = alt_tile_names,
+			"alt_tile_icons" = alt_tile_icons,
 		))
 	data["rites"] = heretic_rite_list + rite_list
 	return data
@@ -263,10 +289,18 @@ GLOBAL_LIST_EMPTY(surrealis_type_icons)
 		var/list/selected_atoms = rite.match_layout(src, living_user)
 		for(var/tile in selected_atoms)
 			tile_states[tile] = !!selected_atoms[tile]
+		var/list/alt_tile_states
+		var/list/rite_layout_alt = rite.get_layout_alt(living_user)
+		if(rite_layout_alt)
+			alt_tile_states = list()
+			var/list/alt_atoms = rite.match_layout(src, living_user, rite_layout_alt)
+			for(var/tile in alt_atoms)
+				alt_tile_states[tile] = !!alt_atoms[tile]
 		states["[rite.type]"] = list(
 			"locked" = rite.lock_reason(living_user, src),
 			"cooldown_left" = S_TIMER_COOLDOWN_TIMELEFT(living_user, rite.type) || 0,
 			"tile_states" = tile_states,
+			"alt_tile_states" = alt_tile_states,
 		)
 	data["rite_states"] = states
 	data["heretic"] = living_user.mind?.heretic_path?.menu_data()

@@ -3,9 +3,11 @@
 
 /datum/runeritual/god/zizo/raise_deadite
 	name = "Raise Deadite"
-	desc = "Raises the corpse upon the rune as a greater deadite that serves me, one able to fight as it did in lyfe. The lyving may be given to the rune as well. With no corpse, a greater skeleton answers instead, should a soul be found."
+	desc = "Raises a body, lyving <i>or</i> dead, upon the rune as a greater deadite; one capable of wielding weapons and fighting as it did in lyfe. The ritual can be performed with bones and lux and <i>no</i> body to instead raise a bound skeleton from the depths. You may only raise many deadites, but may only possess one bound skeleton at a time."
+	flavor = "The dead know only stillness. Atrophy. Stagnation. There is no ambition in a lyfeless corpse. To IT, there is no sin greater than sloth."
 	tier = SKILL_LEVEL_JOURNEYMAN
-	layout = list(
+	layout = list("C" = /mob/living/carbon/human)
+	layout_alt = list(
 		"NW" = /obj/item/natural/bone,
 		"NE" = /obj/item/natural/bone,
 		"SW" = /obj/item/natural/bone,
@@ -14,8 +16,8 @@
 	)
 	banned_atom_types = list(/obj/item/reagent_containers/lux/moss, /obj/item/reagent_containers/lux/eoran_aril)
 	chant_lines = list(
-		"ZIZO! ZIZO! HARBINGER OF AMBITION! THIEF OF THE DEAD'S STILLNESS!",
-		"ZIZO! ZIZO! FILL THE DEAD WITH BREATH AND VIGOR TO WALK AGAIN!",
+		"ZIZO! ZIZO! HARBINGER OF AMBITION!",
+		"ZIZO! ZIZO! FREE OF ATROPHY! FREE OF STAGNATION!",
 		"ZIZO! ZIZO! LET THE DEAD RISE AND SERVE!",
 	)
 
@@ -35,6 +37,16 @@
 	if(vessel)
 		return raise_greater_deadite(user, circle, vessel, selected_atoms)
 	return raise_skeleton(user, circle, selected_atoms)
+
+/datum/runeritual/god/zizo/raise_deadite/match_layout(obj/structure/ritualcircle/circle, mob/living/user, list/use_layout)
+	if(!use_layout)
+		return list("C" = find_vessel(user, circle))
+	return ..()
+
+/datum/runeritual/god/zizo/raise_deadite/parse_required_item(atom/item_path, number_of_things)
+	if(ispath(item_path, /mob/living/carbon/human))
+		return "a body, lyving or dead"
+	return ..()
 
 /datum/runeritual/god/zizo/raise_deadite/proc/find_vessel(mob/living/user, obj/structure/ritualcircle/circle)
 	for(var/mob/living/carbon/human/body in get_turf(circle))

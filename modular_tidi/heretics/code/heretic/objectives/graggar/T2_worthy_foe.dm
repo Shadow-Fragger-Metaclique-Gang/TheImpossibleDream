@@ -1,11 +1,12 @@
 /datum/objective/heretic/graggar/worthy_foe
-	name = "WORTHY FOE"
+	name = "CUTTHROAT"
 	heretic_tier = 2
 	var/throats_slit = 0
 	var/throats_slit_required = 1
+	var/steelhearted_only = FALSE
 
 /datum/objective/heretic/graggar/worthy_foe/update_explanation_text()
-	explanation_text = "Lethally slit the throat of a steelhearted opponent."
+	explanation_text = "Lethally slit someone's throat. Hylics do not count."
 
 /datum/objective/heretic/graggar/worthy_foe/on_creation()
 	. = ..()
@@ -21,7 +22,9 @@
 	if(completed)
 		return
 	var/mob/living/carbon/human/victim = dead
-	if(!istype(victim) || !HAS_TRAIT(victim, TRAIT_STEELHEARTED) || !victim.throat_slit_by(owner.current))
+	if(!istype(victim) || victim == owner.current || !victim.mind || !victim.throat_slit_by(owner.current))
+		return
+	if(steelhearted_only && !HAS_TRAIT(victim, TRAIT_STEELHEARTED))
 		return
 	throats_slit++
 	if(throats_slit < throats_slit_required)

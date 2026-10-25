@@ -4,7 +4,7 @@
 	needs_indulgence = FALSE
 
 /datum/objective/heretic/baotha/clergy/update_explanation_text()
-	explanation_text = "Make a noble, a member of the clergy or a member of the inquisition bearing Baotha's brand climax while they are affected by drugs or emberwine."
+	explanation_text = "Make a noble, a member of the clergy, or a member of the inquisition bearing Baotha's brand climax while they are affected by drugs or emberwine."
 
 /datum/objective/heretic/baotha/clergy/on_climax(mob/living/carbon/human/climaxer)
 	if(!HAS_TRAIT(climaxer, TRAIT_BAOTHA_FERTILITY_BOON) || (!climaxer.is_noble() && !climaxer.is_clergy_or_inquisition()))

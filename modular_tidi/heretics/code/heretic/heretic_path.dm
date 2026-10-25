@@ -138,7 +138,7 @@
 			return list("gifts" = list("+1 INT", "+1 PER", "Tier zero miracles", "Ritualism +1", "An inverted psycross"))
 		if(2)
 			return list(
-				"gifts" = list("Tier one miracles", "Ritualism +1"),
+				"gifts" = list("Tier one miracles", "Ritualism +1", "Tempo", "Immunity to the church's curses and apostasy"),
 				"paths" = list(
 					HERETIC_PATH_AVANTYNE = list("+1 STR", "Medium armor training, unless I have critical resistance or am thick blooded"),
 					HERETIC_PATH_AMBITION = list("+1 SPD", "+1 PER", "A minor spell", "Four utility spells", "Arcana +2, up to Expert"),
@@ -150,12 +150,12 @@
 			return list("gifts" = list("+1 INT", "+1 WIL", "Tier two miracles", "A dark crystal", "Wrestling +1, up to Expert", "Athletics +1"))
 		if(4)
 			if(chosen_path == HERETIC_PATH_AVANTYNE)
-				return list("gifts" = list("+1 STR", "Tier three miracles"))
-			return list("gifts" = list("+1 PER", "+1 WIL", "Tier three miracles"))
+				return list("gifts" = list("+1 STR", "Tier three miracles", "Ritualism +1", "Heavy armor training, unless I have critical resistance or am thick blooded"))
+			return list("gifts" = list("+1 PER", "+1 WIL", "Tier three miracles", "Ritualism +1"))
 		if(5)
 			if(chosen_path == HERETIC_PATH_AVANTYNE)
-				return list("gifts" = list("+1 CON", "+1 WIL", "Tier four miracles", "Ritualism +1", "Heavy armor training, unless I have critical resistance or am thick blooded"))
-			return list("gifts" = list("+1 SPD", "+1 INT", "Tier four miracles", "Ritualism +1", "A major spell", "A minor spell", "Arcana +2, up to Master"))
+				return list("gifts" = list("+1 CON", "+1 WIL", "Tier four miracles"))
+			return list("gifts" = list("+1 SPD", "+1 INT", "Tier four miracles", "A major spell", "A minor spell", "Arcana +2, up to Master"))
 
 /datum/heretic_path/proc/zizo_rewards(mob/living/carbon/human/user, completed_tier, turf/drop_turf)
 	switch(completed_tier)
@@ -173,6 +173,8 @@
 		if(2)
 			grant_miracle_tier(user, CLERIC_T1)
 			add_ritualism(user)
+			ADD_TRAIT(user, TRAIT_TEMPO, HERETIC_PATH_TRAIT)
+			ADD_TRAIT(user, TRAIT_HERESIARCH, HERETIC_PATH_TRAIT)
 			choose_path(user)
 			if(chosen_path == HERETIC_PATH_AVANTYNE)
 				user.change_stat(STATKEY_STR, 1)
@@ -195,19 +197,19 @@
 				user.change_stat(STATKEY_INT, 1)
 		if(4)
 			grant_miracle_tier(user, CLERIC_T3)
+			add_ritualism(user)
 			if(chosen_path == HERETIC_PATH_AVANTYNE)
 				user.change_stat(STATKEY_STR, 1)
+				REMOVE_TRAIT(user, TRAIT_MEDIUMARMOR, HERETIC_PATH_TRAIT)
+				add_training(user, TRAIT_HEAVYARMOR)
 			else
 				user.change_stat(STATKEY_PER, 1)
 				user.change_stat(STATKEY_WIL, 1)
 		if(5)
 			grant_miracle_tier(user, CLERIC_T4)
-			add_ritualism(user)
 			if(chosen_path == HERETIC_PATH_AVANTYNE)
 				user.change_stat(STATKEY_CON, 1)
 				user.change_stat(STATKEY_WIL, 1)
-				REMOVE_TRAIT(user, TRAIT_MEDIUMARMOR, HERETIC_PATH_TRAIT)
-				add_training(user, TRAIT_HEAVYARMOR)
 			else
 				user.change_stat(STATKEY_SPD, 1)
 				user.change_stat(STATKEY_INT, 1)
@@ -222,22 +224,22 @@
 			return list("gifts" = list("Delayed potential...", "Tier zero miracles", "An amulet of Graggar"))
 		if(2)
 			return list(
-				"gifts" = list("Tier one miracles", "Ritualism +1"),
+				"gifts" = list("Tier one miracles", "Ritualism +1", "Tempo", "Immunity to the church's curses and apostasy"),
 				"paths" = list(
 					HERETIC_PATH_MARAUDER = list("+1 STR", "Medium armor training, unless I have critical resistance or am thick blooded"),
-					HERETIC_PATH_ASSASSIN = list("+1 SPD", "Dodge expert, unless I have critical resistance or am thick blooded", "Light step", "Sneaking +3"),
+					HERETIC_PATH_ASSASSIN = list("+1 SPD", "Dodge expert, unless I have critical resistance or am thick blooded", "Light step", "Sneaking +3", "Climbing +2, up to Expert"),
 				),
 			)
 		if(3)
-			return list("gifts" = list("+1 CON", "+1 WIL", "Tier two miracles", "Athletics +1", "Wrestling +1, up to Expert", "Something more..."))
+			return list("gifts" = list("+1 CON", "+1 WIL", "Tier two miracles", "Ritualism +1", "Athletics +1", "Wrestling +1, up to Expert", "Something more..."))
 		if(4)
 			if(chosen_path == HERETIC_PATH_MARAUDER)
 				return list("gifts" = list("+1 CON", "+1 WIL", "Tier three miracles", "Ritualism +1", "Heavy armor training, unless I have critical resistance or am thick blooded"))
 			return list("gifts" = list("+1 SPD", "Tier three miracles", "Ritualism +1", "Sneaking +1"))
 		if(5)
 			if(chosen_path == HERETIC_PATH_MARAUDER)
-				return list("gifts" = list("+1 STR", "Tier four miracles", "Ritualism +1", "Master in a weapon of my choice besides daggers, if I have none"))
-			return list("gifts" = list("+1 SPD", "Tier four miracles", "Ritualism +1", "Master in knives"))
+				return list("gifts" = list("+1 STR", "Tier four miracles", "Master in a weapon of my choice besides daggers, if I have none"))
+			return list("gifts" = list("+1 SPD", "Tier four miracles", "Master in knives"))
 
 /datum/heretic_path/proc/graggar_rewards(mob/living/carbon/human/user, completed_tier, turf/drop_turf)
 	switch(completed_tier)
@@ -252,6 +254,8 @@
 		if(2)
 			grant_miracle_tier(user, CLERIC_T1)
 			add_ritualism(user)
+			ADD_TRAIT(user, TRAIT_TEMPO, HERETIC_PATH_TRAIT)
+			ADD_TRAIT(user, TRAIT_HERESIARCH, HERETIC_PATH_TRAIT)
 			choose_path(user)
 			if(chosen_path == HERETIC_PATH_MARAUDER)
 				user.change_stat(STATKEY_STR, 1)
@@ -261,8 +265,10 @@
 				add_training(user, TRAIT_DODGEEXPERT)
 				ADD_TRAIT(user, TRAIT_LIGHT_STEP, HERETIC_PATH_TRAIT)
 				user.adjust_skillrank(/datum/skill/misc/sneaking, 3, TRUE)
+				user.adjust_skillrank_up_to(/datum/skill/misc/climbing, min(user.get_skill_level(/datum/skill/misc/climbing) + 2, SKILL_LEVEL_EXPERT), TRUE)
 		if(3)
 			grant_miracle_tier(user, CLERIC_T2)
+			add_ritualism(user)
 			user.adjust_skillrank(/datum/skill/misc/athletics, 1, TRUE)
 			add_wrestling(user)
 			user.change_stat(STATKEY_CON, 1)
@@ -282,7 +288,6 @@
 				user.adjust_skillrank(/datum/skill/misc/sneaking, 1, TRUE)
 		if(5)
 			grant_miracle_tier(user, CLERIC_T4)
-			add_ritualism(user)
 			if(chosen_path == HERETIC_PATH_MARAUDER)
 				user.change_stat(STATKEY_STR, 1)
 				grant_chosen_weapon_skill(user, SKILL_LEVEL_MASTER)
@@ -298,24 +303,24 @@
 			return list("gifts" = list("+1 SPD", "Tier zero miracles", "An amulet of Matthios", "Sneaking +2", "Lockpicking +2", "Pickpocketing +2"))
 		if(2)
 			return list(
-				"gifts" = list("Tier one miracles", "Ritualism +1"),
+				"gifts" = list("Tier one miracles", "Ritualism +1", "Tempo", "Immunity to the church's curses and apostasy"),
 				"paths" = list(
 					HERETIC_PATH_DRAKE = list("+1 STR", "Expert in a weapon of my choice besides daggers, if I have none", "Medium armor training, unless I have critical resistance or am thick blooded"),
-					HERETIC_PATH_THIEF = list("+1 SPD", "+1 PER", "Dodge expert, unless I have critical resistance or am thick blooded", "Light step", "Sneaking +1", "Lockpicking +1", "Pickpocketing +1"),
+					HERETIC_PATH_THIEF = list("+1 SPD", "+1 PER", "Dodge expert, unless I have critical resistance or am thick blooded", "Light step", "Sneaking +1", "Lockpicking +1", "Pickpocketing +1", "Climbing +2, up to Expert"),
 				),
 			)
 		if(3)
 			if(chosen_path == HERETIC_PATH_DRAKE)
-				return list("gifts" = list("+1 CON", "+1 WIL", "Tier two miracles", "Wrestling +1, up to Expert", "Athletics +1"))
-			return list("gifts" = list("+1 PER", "+1 WIL", "Tier two miracles", "Wrestling +1, up to Expert", "Athletics +1"))
+				return list("gifts" = list("+1 CON", "+1 WIL", "Tier two miracles", "Ritualism +1", "Wrestling +1, up to Expert", "Athletics +1"))
+			return list("gifts" = list("+1 PER", "+1 WIL", "Tier two miracles", "Ritualism +1", "Wrestling +1, up to Expert", "Athletics +1"))
 		if(4)
 			if(chosen_path == HERETIC_PATH_DRAKE)
-				return list("gifts" = list("+1 STR", "Tier three miracles", "Ritualism +1"))
+				return list("gifts" = list("+1 STR", "Tier three miracles", "Ritualism +1", "Heavy armor training, unless I have critical resistance or am thick blooded"))
 			return list("gifts" = list("+1 INT", "+1 WIL", "Tier three miracles", "Ritualism +1"))
 		if(5)
 			if(chosen_path == HERETIC_PATH_DRAKE)
-				return list("gifts" = list("+1 CON", "+1 WIL", "Tier four miracles", "Ritualism +1", "Master in a weapon of my choice besides daggers, if I have none", "Heavy armor training, unless I have critical resistance or am thick blooded"))
-			return list("gifts" = list("+1 SPD", "+1 PER", "Tier four miracles", "Ritualism +1", "Master in knives"))
+				return list("gifts" = list("+1 CON", "+1 WIL", "Tier four miracles", "Master in a weapon of my choice besides daggers, if I have none"))
+			return list("gifts" = list("+1 SPD", "+1 PER", "Tier four miracles", "Master in knives"))
 
 /datum/heretic_path/proc/matthios_rewards(mob/living/carbon/human/user, completed_tier, turf/drop_turf)
 	switch(completed_tier)
@@ -335,6 +340,8 @@
 		if(2)
 			grant_miracle_tier(user, CLERIC_T1)
 			add_ritualism(user)
+			ADD_TRAIT(user, TRAIT_TEMPO, HERETIC_PATH_TRAIT)
+			ADD_TRAIT(user, TRAIT_HERESIARCH, HERETIC_PATH_TRAIT)
 			choose_path(user)
 			if(chosen_path == HERETIC_PATH_DRAKE)
 				grant_chosen_weapon_skill(user, SKILL_LEVEL_EXPERT)
@@ -348,8 +355,10 @@
 				user.adjust_skillrank(/datum/skill/misc/sneaking, 1, TRUE)
 				user.adjust_skillrank(/datum/skill/misc/lockpicking, 1, TRUE)
 				user.adjust_skillrank(/datum/skill/misc/stealing, 1, TRUE)
+				user.adjust_skillrank_up_to(/datum/skill/misc/climbing, min(user.get_skill_level(/datum/skill/misc/climbing) + 2, SKILL_LEVEL_EXPERT), TRUE)
 		if(3)
 			grant_miracle_tier(user, CLERIC_T2)
+			add_ritualism(user)
 			add_wrestling(user)
 			user.adjust_skillrank(/datum/skill/misc/athletics, 1, TRUE)
 			user.change_stat(STATKEY_WIL, 1)
@@ -362,18 +371,17 @@
 			add_ritualism(user)
 			if(chosen_path == HERETIC_PATH_DRAKE)
 				user.change_stat(STATKEY_STR, 1)
+				REMOVE_TRAIT(user, TRAIT_MEDIUMARMOR, HERETIC_PATH_TRAIT)
+				add_training(user, TRAIT_HEAVYARMOR)
 			else
 				user.change_stat(STATKEY_INT, 1)
 				user.change_stat(STATKEY_WIL, 1)
 		if(5)
 			grant_miracle_tier(user, CLERIC_T4)
-			add_ritualism(user)
 			if(chosen_path == HERETIC_PATH_DRAKE)
 				grant_chosen_weapon_skill(user, SKILL_LEVEL_MASTER)
 				user.change_stat(STATKEY_CON, 1)
 				user.change_stat(STATKEY_WIL, 1)
-				REMOVE_TRAIT(user, TRAIT_MEDIUMARMOR, HERETIC_PATH_TRAIT)
-				add_training(user, TRAIT_HEAVYARMOR)
 			else
 				user.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_MASTER, TRUE)
 				user.change_stat(STATKEY_SPD, 1)
@@ -386,13 +394,13 @@
 		if(1)
 			return list("gifts" = list("+1 SPD", "Tier one miracles"))
 		if(2)
-			return list("gifts" = list("+1 SPD", "+1 PER", "Tier two miracles", "Ritualism +1", "Dodge expert, unless I have critical resistance or am thick blooded"))
+			return list("gifts" = list("+1 SPD", "+1 PER", "Tier two miracles", "Ritualism +1", "Dodge expert, unless I have critical resistance or am thick blooded", "Tempo", "Immunity to the church's curses and apostasy"))
 		if(3)
-			return list("gifts" = list("+2 CON", "Tier three miracles", "Wrestling +1, up to Expert", "Athletics +1"))
+			return list("gifts" = list("+2 CON", "Tier three miracles", "Ritualism +1", "Wrestling +1, up to Expert", "Athletics +1"))
 		if(4)
 			return list("gifts" = list("+1 SPD", "Tier four miracles", "Ritualism +1"))
 		if(5)
-			return list("gifts" = list("+1 STR", "+1 WIL", "Ritualism +1"))
+			return list("gifts" = list("+1 STR", "+1 WIL"))
 
 /datum/heretic_path/proc/baotha_rewards(mob/living/carbon/human/user, completed_tier, turf/drop_turf)
 	switch(completed_tier)
@@ -413,8 +421,11 @@
 			user.change_stat(STATKEY_SPD, 1)
 			user.change_stat(STATKEY_PER, 1)
 			add_training(user, TRAIT_DODGEEXPERT)
+			ADD_TRAIT(user, TRAIT_TEMPO, HERETIC_PATH_TRAIT)
+			ADD_TRAIT(user, TRAIT_HERESIARCH, HERETIC_PATH_TRAIT)
 		if(3)
 			grant_miracle_tier(user, CLERIC_T3)
+			add_ritualism(user)
 			add_wrestling(user)
 			user.adjust_skillrank(/datum/skill/misc/athletics, 1, TRUE)
 			user.change_stat(STATKEY_CON, 2)
@@ -423,7 +434,6 @@
 			add_ritualism(user)
 			user.change_stat(STATKEY_SPD, 1)
 		if(5)
-			add_ritualism(user)
 			user.change_stat(STATKEY_STR, 1)
 			user.change_stat(STATKEY_WIL, 1)
 

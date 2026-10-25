@@ -105,6 +105,7 @@
 /datum/sex_controller/New(mob/living/carbon/human/owner)
 	user = owner
 	charge = get_max_charge()
+	. = ..()
 
 /datum/sex_controller/Destroy()
 	user = null
@@ -679,7 +680,6 @@
 	var/from_tailmaw = get_manticore_tail(user) && ((climax_part & SEX_PART_TAIL_MAW) || (!user.getorganslot(ORGAN_SLOT_TESTICLES) && !user.getorganslot(ORGAN_SLOT_VAGINA)))
 	if(try_resist_orgasm())
 		return
-	SEND_SIGNAL(user, COMSIG_MOB_EJACULATED)
 	log_combat(user, user, "Ejaculated")
 	if(!from_tailmaw && modular_try_handle_chastity_ejaculation())
 		return
@@ -800,6 +800,7 @@
 	set_arousal(40)
 	if(consume_charge)
 		adjust_charge(-CHARGE_FOR_CLIMAX)
+		SEND_SIGNAL(user, COMSIG_MOB_EJACULATED)
 	else
 		to_chat(user, span_love("<i>Spurt!</i>"))
 	if(user.has_status_effect(/datum/status_effect/debuff/false_sensation))

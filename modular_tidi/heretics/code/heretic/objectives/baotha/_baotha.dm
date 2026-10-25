@@ -1,6 +1,6 @@
-/// This file exists because Baothan objectives usually require two steps to complete, doing drugs and doing something else
-/// It was easier to make a subtype that checks for these multiple stage tasks than having to redefine it every single time
-/// Step order is not static, you can do them in any order
+// This file exists because Baothan objectives usually require two steps to complete, doing drugs and doing something else
+// It was easier to make a subtype that checks for these multiple stage tasks than having to redefine it every single time
+// Step order is not static, you can do them in any order
 /datum/objective/heretic/baotha
 	heretic_patron = /datum/patron/inhumen/baotha
 	/// Do we need to do drugs or get drunk

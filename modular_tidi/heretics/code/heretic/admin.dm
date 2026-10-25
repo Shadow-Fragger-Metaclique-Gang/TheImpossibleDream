@@ -37,10 +37,10 @@
 			header_parts += "<a href='?src=[REF(src)];heretic=clear_converted'>Clear</a>"
 		else if(heretic_awaken_timer)
 			header_parts += "Awakening in [DisplayTimeText(timeleft(heretic_awaken_timer))]"
-		if(istype(H) && can_heretic_awaken())
-			header_parts += "<a href='?src=[REF(src)];heretic=awaken'>Awaken now</a>"
-		else
-			header_parts += "<a class='linkOff'>Awaken now (not eligible)</a>"
+		if(istype(H) && can_heretic_awaken() && !heretic_awaken_timer && !(ckey(key) in GLOB.heretic_awakened_players))
+			header_parts += "<a href='?src=[REF(src)];heretic=start_timer'>Start awakening timer</a>"
+		else if(!heretic_awaken_timer)
+			header_parts += "<a class='linkOff'>Start awakening timer (not eligible)</a>"
 		header_parts += "<a href='?src=[REF(src)];heretic=force'>Force awaken</a>"
 		var/rolled = GLOB.heretic_awakening_rolls[ckey(key)]
 		/// If you lose heretic or respawn after already being one you'll show as having it lost
@@ -76,15 +76,15 @@
 		to_chat(usr, span_warning("[name] has no human body."))
 		return
 	switch(href_list["heretic"])
-		if("awaken") // If someone is already on track to awaken, force them to early
-			if(!can_heretic_awaken())
+		if("start_timer") // Start the awakening timer for someone who failed or never rolled
+			if(heretic_awaken_timer || !can_heretic_awaken())
 				return
-			if(heretic_awaken_timer)
-				deltimer(heretic_awaken_timer)
-				heretic_awaken_timer = null
-			awaken_heretic()
-			message_admins("[key_name_admin(usr)] awakened [key_name_admin(H)] as a heretic of [H.patron.name].")
-			log_admin("[key_name(usr)] awakened [key_name(H)] as a heretic of [H.patron.name].")
+			GLOB.heretic_awakening_rolls[ckey(key)] = TRUE
+			schedule_heretic_awakening(ckey(key))
+			if(!heretic_awaken_timer)
+				return
+			message_admins("[key_name_admin(usr)] started [key_name_admin(H)]'s heretic awakening timer, awakening in [DisplayTimeText(timeleft(heretic_awaken_timer))].")
+			log_admin("[key_name(usr)] started [key_name(H)]'s heretic awakening timer, awakening in [DisplayTimeText(timeleft(heretic_awaken_timer))].")
 		if("force") // If someone is ineligible to awaken, force them to even if they aren't of inhumen faith
 			if(heretic_path)
 				return

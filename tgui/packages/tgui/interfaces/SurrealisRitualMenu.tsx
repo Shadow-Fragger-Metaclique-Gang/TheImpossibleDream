@@ -22,12 +22,22 @@ type Rite = {
   cooldown: string | null;
   tile_names: Record<string, string>;
   tile_icons: Record<string, string[]>;
+  alt_tile_names: Record<string, string> | null;
+  alt_tile_icons: Record<string, string[]> | null;
 };
 
 type RiteState = {
   locked: string | null;
   cooldown_left: number;
   tile_states: Record<string, boolean>;
+  alt_tile_states: Record<string, boolean> | null;
+};
+
+type Arrangement = {
+  tileStates: Record<string, boolean>;
+  altTileStates: Record<string, boolean>;
+  mainReady: boolean;
+  altReady: boolean;
 };
 
 type HereticObjective = {
@@ -153,7 +163,7 @@ const RitesPage = () => {
                       className={locked ? 'RiteList__rite--locked' : undefined}
                       leftSlot={
                         <Box className="RiteList__mark">
-                          {rite.awakened_heretic_only ? 'ᛦ' : ''}
+                          {rite.awakened_heretic_only ? 'ᛣ' : ''}
                         </Box>
                       }
                       rightSlot={
@@ -394,7 +404,7 @@ const SigilMark = (props: {
         style={{ left: `${star.x}px`, top: `${star.y}px` }}
         onClick={() => onSelect(star.key)}
       >
-        {star.state === 'future' ? '?' : 'ᛦ'}
+        {star.state === 'future' ? '?' : 'ᛣ'}
       </Box>
       {star.objective ? (
         <Box
@@ -610,7 +620,12 @@ const RiteDetails = (props: { rite: Rite }) => {
   const locked = state?.locked;
   const cooldownLeft = state?.cooldown_left ?? 0;
   const tileStates = state?.tile_states ?? {};
-  const arrangementReady = Object.values(tileStates).every(Boolean);
+  const altTileStates = state?.alt_tile_states ?? {};
+  const mainReady = Object.values(tileStates).every(Boolean);
+  const altReady =
+    !!rite.alt_tile_names && Object.values(altTileStates).every(Boolean);
+  const arrangement = { tileStates, altTileStates, mainReady, altReady };
+  const arrangementReady = mainReady || altReady;
 
   let invokeText = 'Invoke';
   if (performing) {
@@ -626,7 +641,7 @@ const RiteDetails = (props: { rite: Rite }) => {
       <Stack.Item grow>
         <Section fill scrollable title={rite.name}>
           <Box style={{ position: 'relative', minHeight: '100%' }}>
-            <RiteBody rite={rite} tileStates={tileStates} />
+            <RiteBody rite={rite} arrangement={arrangement} />
             {locked ? (
               <LockOverlay reason={locked} cooldownLeft={cooldownLeft} />
             ) : null}
@@ -713,11 +728,8 @@ const CooldownTimer = (props: { deciseconds: number }) => {
   );
 };
 
-const RiteBody = (props: {
-  rite: Rite;
-  tileStates: Record<string, boolean>;
-}) => {
-  const { rite, tileStates } = props;
+const RiteBody = (props: { rite: Rite; arrangement: Arrangement }) => {
+  const { rite, arrangement } = props;
   const tiered = rite.tier > 0;
 
   return (
@@ -737,11 +749,14 @@ const RiteBody = (props: {
         </Box>
       ) : null}
       <Box className="RiteText__arrangement">
-        <RuneBoard rite={rite} tileStates={tileStates} />
+        <RuneBoard rite={rite} arrangement={arrangement} />
         <Box className="RiteText__side">
-          <ComponentList rite={rite} tileStates={tileStates} />
+          <ComponentList rite={rite} arrangement={arrangement} />
           {rite.desc ? (
-            <Box className="RiteText__explanation">{rite.desc}</Box>
+            <Box
+              className="RiteText__explanation"
+              dangerouslySetInnerHTML={{ __html: rite.desc }}
+            />
           ) : null}
         </Box>
       </Box>
@@ -758,46 +773,78 @@ const useIconFrame = () => {
   return frame;
 };
 
-const ComponentList = (props: {
-  rite: Rite;
-  tileStates: Record<string, boolean>;
-}) => {
-  const { rite, tileStates } = props;
+const ComponentList = (props: { rite: Rite; arrangement: Arrangement }) => {
+  const { rite, arrangement } = props;
+  const { tileStates, altTileStates, mainReady, altReady } = arrangement;
   const frame = useIconFrame();
-  const components: Record<
-    string,
-    { icons: string[]; have: number; total: number }
-  > = {};
-  for (const tile of Object.keys(rite.tile_names)) {
-    const name = rite.tile_names[tile];
-    components[name] ??= {
-      icons: rite.tile_icons[tile] ?? [],
-      have: 0,
-      total: 0,
-    };
-    components[name].total++;
-    if (tileStates[tile]) {
-      components[name].have++;
-    }
-  }
-  const names = Object.keys(components);
-  if (!names.length) {
+  const hasMain = Object.keys(rite.tile_names).length > 0;
+  if (!hasMain && !rite.alt_tile_names) {
     return null;
   }
 
   return (
     <Box>
       <Box className="RiteText__heading">Components</Box>
-      {names.map((name) => {
-        const { icons, have, total } = components[name];
+      <ComponentRows
+        names={rite.tile_names}
+        icons={rite.tile_icons}
+        states={tileStates}
+        dim={altReady && !mainReady}
+        frame={frame}
+      />
+      {rite.alt_tile_names ? (
+        <>
+          <Box className="ComponentList__or">OR</Box>
+          <ComponentRows
+            names={rite.alt_tile_names}
+            icons={rite.alt_tile_icons ?? {}}
+            states={altTileStates}
+            dim={mainReady}
+            frame={frame}
+          />
+        </>
+      ) : null}
+    </Box>
+  );
+};
+
+const ComponentRows = (props: {
+  names: Record<string, string>;
+  icons: Record<string, string[]>;
+  states: Record<string, boolean>;
+  dim: boolean;
+  frame: number;
+}) => {
+  const { names, icons, states, dim, frame } = props;
+  const components: Record<
+    string,
+    { icons: string[]; have: number; total: number }
+  > = {};
+  for (const tile of Object.keys(names)) {
+    const name = names[tile];
+    components[name] ??= {
+      icons: icons[tile] ?? [],
+      have: 0,
+      total: 0,
+    };
+    components[name].total++;
+    if (states[tile]) {
+      components[name].have++;
+    }
+  }
+
+  return (
+    <Box className={dim ? 'ComponentList__group--dim' : undefined}>
+      {Object.keys(components).map((name) => {
+        const { icons: rowIcons, have, total } = components[name];
         const done = have === total;
         return (
           <Box key={name} className="ComponentList__row">
             <Box className="ComponentList__icon">
-              {icons.length ? (
+              {rowIcons.length ? (
                 <img
                   alt=""
-                  src={`data:image/png;base64,${icons[frame % icons.length]}`}
+                  src={`data:image/png;base64,${rowIcons[frame % rowIcons.length]}`}
                 />
               ) : null}
             </Box>
@@ -903,15 +950,42 @@ const ChalkCircle = () => {
   );
 };
 
-const RuneBoard = (props: {
-  rite: Rite;
-  tileStates: Record<string, boolean>;
-}) => {
-  const { rite, tileStates } = props;
+const RuneBoard = (props: { rite: Rite; arrangement: Arrangement }) => {
+  const { rite, arrangement } = props;
+  const { tileStates, altTileStates, mainReady, altReady } = arrangement;
   const { data } = useBackend<Data>();
   const { rune_icon } = data;
   const tileKeys = Object.keys(data.tiles);
   const frame = useIconFrame();
+
+  const drawTile = (
+    tile: string,
+    index: number,
+    names: Record<string, string>,
+    icons: Record<string, string[]>,
+    states: Record<string, boolean>,
+    dim: boolean,
+  ) => {
+    const needed = names[tile];
+    const tileIcons = icons[tile] ?? [];
+    if (!needed || !tileIcons.length) {
+      return null;
+    }
+    const spot = runeSpot(index);
+    return (
+      <Tooltip key={tile} content={needed}>
+        <Box
+          className={`RuneBoard__item RuneBoard__item--${states[tile] ? 'placed' : 'missing'}${dim ? ' RuneBoard__item--dim' : ''}`}
+          style={{ left: `${spot.x}px`, top: `${spot.y}px` }}
+        >
+          <img
+            alt=""
+            src={`data:image/png;base64,${tileIcons[frame % tileIcons.length]}`}
+          />
+        </Box>
+      </Tooltip>
+    );
+  };
 
   return (
     <Box className="RuneBoard">
@@ -922,26 +996,27 @@ const RuneBoard = (props: {
         src={`data:image/png;base64,${rune_icon}`}
       />
       {tileKeys.map((tile, index) => {
-        const needed = rite.tile_names[tile];
-        const icons = rite.tile_icons[tile] ?? [];
-        if (!needed || !icons.length) {
-          return null;
+        if (rite.tile_names[tile]) {
+          return drawTile(
+            tile,
+            index,
+            rite.tile_names,
+            rite.tile_icons,
+            tileStates,
+            altReady && !mainReady,
+          );
         }
-        const placed = tileStates[tile];
-        const spot = runeSpot(index);
-        return (
-          <Tooltip key={tile} content={needed}>
-            <Box
-              className={`RuneBoard__item RuneBoard__item--${placed ? 'placed' : 'missing'}`}
-              style={{ left: `${spot.x}px`, top: `${spot.y}px` }}
-            >
-              <img
-                alt=""
-                src={`data:image/png;base64,${icons[frame % icons.length]}`}
-              />
-            </Box>
-          </Tooltip>
-        );
+        if (rite.alt_tile_names) {
+          return drawTile(
+            tile,
+            index,
+            rite.alt_tile_names,
+            rite.alt_tile_icons ?? {},
+            altTileStates,
+            mainReady,
+          );
+        }
+        return null;
       })}
     </Box>
   );
