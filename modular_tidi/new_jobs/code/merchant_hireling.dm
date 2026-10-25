@@ -63,7 +63,3 @@
 /// Gives the Merchant keyring, stored in a pack if one accepts it, otherwise left at their feet. Shared by the Merchant's Mercenary and the Dockers.
 /proc/give_merchant_keyring(mob/living/carbon/human/H)
 	H.equip_to_slot_if_possible(new /obj/item/storage/keyring/merchant(get_turf(H)), SLOT_IN_BACKPACK, FALSE, TRUE, FALSE, TRUE, TRUE)
-
-/datum/job/roguetown/merchant_hireling/New()
-	. = ..()
-	job_subclasses -= /datum/advclass/mercenary/lirvanmerc

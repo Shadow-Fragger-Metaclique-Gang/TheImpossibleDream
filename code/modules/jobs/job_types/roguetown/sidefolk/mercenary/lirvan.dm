@@ -145,7 +145,7 @@ third; SUNSET, little neat ability. it may be buggy. don't quote me on that. it 
 
 /obj/effect/proc_holder/spell/self/lirvan_tithe
 	name = "INVOKE"
-	desc = "Draw strength from the wealth you carry. Armor, jewelry, and raw mammon counted equally. More WEALTH means more POWER. More POWER at 160, 200, 300, 360, 440, 600, 800, 1000, and 1200 mammon."
+	desc = "Draw strength from the wealth you carry. Armor, jewelry, and raw mammon counted equally. More WEALTH means more POWER. More POWER at 200, 300, 360, 440, and 600 mammon." // SURREALIS NONMODULAR CHANGE
 	antimagic_allowed = TRUE
 	clothes_req = FALSE
 	recharge_time = 90 SECONDS
@@ -184,7 +184,7 @@ third; SUNSET, little neat ability. it may be buggy. don't quote me on that. it 
 			owner.add_filter(LIRVAN_BLING_FILTER, 2, list("type" = "outline", "color" = outline_colour, "alpha" = 120, "size" = 1))
 		if(!lirvanlight)
 			lirvanlight = owner.mob_light(7, 7, _color = outline_colour)
-		if(wealth_value < 160)
+		if(wealth_value < 200) // SURREALIS NONMODULAR CHANGE
 			to_chat(owner, span_notice("WEALTH answers my call. Every single one of my- ONLY [src.wealth_value] MAMMONS?!"))
 			owner.emote("whimper", forced = TRUE)
 			return
@@ -206,26 +206,20 @@ third; SUNSET, little neat ability. it may be buggy. don't quote me on that. it 
 
 /datum/status_effect/buff/lirvan_tithe/proc/update_effects()
 	wealth_value = get_moni_value(owner)
-	if(wealth_value < 160)
+	// SURREALIS NONMODULAR CHANGE - tiers now start at 200 and cap at 600
+	if(wealth_value < 200)
 		effectedstats = list(STATKEY_CON = 1, STATKEY_LCK = 1)
-	else if(wealth_value < 200)
+	else if(wealth_value < 300)
 		effectedstats = list(STATKEY_STR = 1, STATKEY_CON = 1, STATKEY_LCK = 1)
-	else if(wealth_value < 299)
-		effectedstats = list(STATKEY_STR = 2, STATKEY_CON = 1, STATKEY_LCK = 1)
 	else if(wealth_value < 360)
-		effectedstats = list(STATKEY_STR = 2, STATKEY_CON = 2, STATKEY_LCK = 1, STATKEY_SPD = 1)
+		effectedstats = list(STATKEY_STR = 2, STATKEY_CON = 1, STATKEY_LCK = 1, STATKEY_SPD = 1)
 	else if(wealth_value < 440)
-		effectedstats = list(STATKEY_STR = 3, STATKEY_CON = 2, STATKEY_LCK = 2, STATKEY_SPD = 1)
+		effectedstats = list(STATKEY_STR = 2, STATKEY_CON = 2, STATKEY_LCK = 1, STATKEY_SPD = 1)
 	else if(wealth_value < 600)
-		effectedstats = list(STATKEY_STR = 3, STATKEY_CON = 4, STATKEY_LCK = 2, STATKEY_SPD = 2, STATKEY_PER = 1)
-	else if(wealth_value < 800)
-		effectedstats = list(STATKEY_STR = 3, STATKEY_CON = 4, STATKEY_LCK = 2, STATKEY_SPD = 2, STATKEY_PER = 2)
-	else if(wealth_value < 1000)
-		effectedstats = list(STATKEY_STR = 4, STATKEY_CON = 4, STATKEY_LCK = 2, STATKEY_SPD = 2, STATKEY_PER = 2)
-	else if(wealth_value < 1200)
-		effectedstats = list(STATKEY_STR = 4, STATKEY_CON = 5, STATKEY_LCK = 3, STATKEY_SPD = 2, STATKEY_PER = 2)
+		effectedstats = list(STATKEY_STR = 3, STATKEY_CON = 2, STATKEY_LCK = 2, STATKEY_SPD = 1)
 	else
-		effectedstats = list(STATKEY_STR = 5, STATKEY_CON = 5, STATKEY_LCK = 3, STATKEY_SPD = 3, STATKEY_PER = 2)
+		effectedstats = list(STATKEY_STR = 3, STATKEY_CON = 2, STATKEY_LCK = 2, STATKEY_SPD = 2, STATKEY_PER = 1)
+	// SURREALIS NONMODULAR CHANGE END
 
 
 /datum/intent/katar/lirvasbite //snowflake intent
