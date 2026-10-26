@@ -11,6 +11,8 @@
 
 Really what it says on the tin. Things like hairs, wings, tails, genital organs, etc etc ported from other servers.
 
+**THIS MODULE IS PENDING RENAMING TO JUST "CUSTOMIZATION" SO IT CAN JUST BE A CATCH-ALL MODULE FOR ALL CUSTOMIZATION.**
+
 ## Files
 
 - `_ported_customization.dme`: local includes
