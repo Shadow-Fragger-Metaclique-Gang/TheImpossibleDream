@@ -21,5 +21,5 @@ Really what it says on the tin. Things like hairs, wings, tails, genital organs,
 - `tiefling.dm`: enables wings for tieflings.
 - `wings.dm`: dictates what wings tieflings can choose. enables angel wings.
 ## Core files changed
-
+- `code/modules/mob/dead/new_player/sprite_accessory/wings.dm` LINE 165, Comments out EXTRA_STATE from succubus wings so that the ugly red detail gets disabled.
 
