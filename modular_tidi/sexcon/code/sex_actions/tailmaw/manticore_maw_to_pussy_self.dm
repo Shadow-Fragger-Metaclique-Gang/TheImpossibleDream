@@ -21,7 +21,7 @@
 
 	user.sexcon.perform_sex_action(user, 3, 0, TRUE)
 
-	handle_tailmaw_ejaculation(user, user, user, user)
+	user.sexcon.handle_passive_ejaculation(climax_part = SEX_PART_TAIL_MAW)
 
 	user.sexcon.suppress_moan = FALSE
 
