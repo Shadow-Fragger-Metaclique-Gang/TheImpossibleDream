@@ -162,7 +162,7 @@
 /datum/sprite_accessory/wings/wide/succubus
 	name = "Succubus"
 	icon_state = "succubus"
-	extra_state = TRUE
+	//extra_state = TRUE SURREALIS EDIT. DISABLES THAT UGLY FUCKING RED LINE AT THE BOTTOM OF THE SUCCUBUS WINGS!!!
 
 /datum/sprite_accessory/wings/wide/dragon_synth
 	name = "Dragon (synthetic alt)"
