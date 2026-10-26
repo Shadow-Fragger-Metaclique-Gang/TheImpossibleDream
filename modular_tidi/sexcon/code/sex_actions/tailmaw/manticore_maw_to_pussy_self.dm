@@ -1,7 +1,7 @@
 /datum/sex_action/manticore_maw_to_pussy_self
 	parent_type = /datum/sex_action/tailmaw
 	name = "Eat own cunt with tail maw"
-	category = SEX_CATEGORY_HANDS
+	category = SEX_CATEGORY_PENETRATE
 	user_sex_part = SEX_PART_CUNT | SEX_PART_TAIL_MAW // only user part to avoid self-targeting restrictions
 	solo = TRUE
 

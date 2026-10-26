@@ -1,7 +1,7 @@
 /datum/sex_action/manticore_tailjob_self
 	parent_type = /datum/sex_action/tailmaw
 	name = "Jerk off with tail maw"
-	category = SEX_CATEGORY_HANDS
+	category = SEX_CATEGORY_PENETRATE
 	user_sex_part = SEX_PART_COCK | SEX_PART_TAIL_MAW // only user part to avoid self-targeting restrictions
 	solo = TRUE
 
@@ -21,7 +21,7 @@
 
 	user.sexcon.perform_sex_action(user, 3, 0, TRUE)
 
-	handle_tailmaw_ejaculation(user, user, user, user)
+	handle_tailmaw_ejaculation(user, user, user, user) // you're using yourself.
 
 	user.sexcon.suppress_moan = FALSE
 
