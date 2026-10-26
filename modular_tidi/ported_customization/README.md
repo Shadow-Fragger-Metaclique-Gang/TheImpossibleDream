@@ -5,6 +5,7 @@
 **Created in:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/66
 
 **RELATED PRs:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/68
+				 https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/87
 
 **Major changes:** Tons of ported hairstyles. 5 new tailmaws. 1 new tiefling tail. Tieflings get to choose wings now! Angel wings enabled.
 
