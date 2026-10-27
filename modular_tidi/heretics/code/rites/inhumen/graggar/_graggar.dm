@@ -6,6 +6,7 @@
 		/datum/runeritual/god/graggar/armaments,
 		/datum/runeritual/god/graggar/war_ritual,
 		/datum/runeritual/god/patron_knife/graggar,
+		/datum/runeritual/god/dollmaker
 	)
 	unworthy_message = "I hear a distant war cry in the back of my mind as I touch this..."
 	rites_title = "Rituals of Violence"

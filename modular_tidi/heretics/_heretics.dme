@@ -1,7 +1,9 @@
 #include "_heretics_defines.dm"
 #include "code\rites\_god_rite.dm"
+#include "code\rites\hex_ritual.dm"
 #include "code\rites\ascension.dm"
 #include "code\rites\broken_glass.dm"
+#include "code\rites\dollmaker.dm"
 #include "code\rites\patron_knives.dm"
 #include "code\rites\pantheon\abyssor\_abyssor.dm"
 #include "code\rites\pantheon\abyssor\crystal_spire.dm"
@@ -42,6 +44,7 @@
 #include "code\rites\inhumen\matthios\armaments.dm"
 #include "code\rites\inhumen\matthios\defenestration.dm"
 #include "code\rites\inhumen\zizo\_zizo.dm"
+#include "code\rites\inhumen\zizo\hexes\hex_veiled_eyes.dm"
 #include "code\rites\inhumen\zizo\armaments.dm"
 #include "code\rites\inhumen\zizo\avantyne_weapons.dm"
 #include "code\rites\inhumen\zizo\chant_of_insight.dm"
@@ -56,6 +59,8 @@
 #include "code\heretic\objective_hooks.dm"
 #include "code\heretic\churn_value.dm"
 #include "code\heretic\apostasy.dm"
+#include "code\heretic\hexes\hex.dm"
+#include "code\heretic\hexes\veiled_eyes.dm"
 #include "code\heretic\objectives\_heretic_objective.dm"
 #include "code\heretic\objectives\T0_the_calling.dm"
 #include "code\heretic\objectives\baotha\_baotha.dm"
@@ -102,3 +107,12 @@
 #include "code\chalk.dm"
 #include "code\ritualism\ritualism_skill.dm"
 #include "code\ritualism\ritualist_grants.dm"
+// BEGIN_INTERNALS
+// END_INTERNALS
+// BEGIN_FILE_DIR
+#define FILE_DIR .
+// END_FILE_DIR
+// BEGIN_PREFERENCES
+// END_PREFERENCES
+// BEGIN_INCLUDE
+// END_INCLUDE

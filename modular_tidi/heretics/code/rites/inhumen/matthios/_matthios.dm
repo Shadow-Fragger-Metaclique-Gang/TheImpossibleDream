@@ -6,6 +6,7 @@
 		/datum/runeritual/god/matthios/armaments,
 		/datum/runeritual/god/matthios/defenestration,
 		/datum/runeritual/god/patron_knife/matthios,
+		/datum/runeritual/god/dollmaker
 	)
 	unworthy_message = "Somehow, I get the feeling touching this will take something from me..."
 	rites_title = "Rituals of Transaction"
