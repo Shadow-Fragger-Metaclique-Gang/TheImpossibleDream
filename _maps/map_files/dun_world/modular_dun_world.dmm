@@ -11680,8 +11680,6 @@
 /area/rogue/indoors/cave)
 "bYa" = (
 /obj/structure/closet/crate/chest/inqcrate,
-/obj/item/paper/inqslip/accusation,
-/obj/item/paper/inqslip/accusation,
 /obj/item/paper/inqslip/confession,
 /obj/item/paper/inqslip/confession,
 /obj/machinery/light/rogue/candle/blue,
@@ -53996,8 +53994,6 @@
 	pixel_y = 3
 	},
 /obj/item/paper/inqslip/confession,
-/obj/item/paper/inqslip/accusation,
-/obj/item/paper/inqslip/accusation,
 /turf/open/floor/rogue/metal{
 	icon_state = "plating2"
 	},
@@ -73528,8 +73524,6 @@
 	},
 /obj/item/paper/inqslip/confession,
 /obj/item/paper/inqslip/confession,
-/obj/item/paper/inqslip/accusation,
-/obj/item/paper/inqslip/accusation,
 /obj/effect/decal/wood/herringbone2{
 	dir = 4
 	},
@@ -129102,9 +129096,6 @@
 /area/rogue/outdoors/bog/north)
 "vYm" = (
 /obj/structure/table/wood/poor,
-/obj/item/paper/inqslip/accusation{
-	pixel_x = -9
-	},
 /obj/item/paper/inqslip/confession{
 	pixel_x = 8
 	},

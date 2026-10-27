@@ -38,7 +38,6 @@
 			unmoved += REF(victim)
 			victim.visible_message(span_warning("[victim] looks at the [src] without so much as a flicker of a reaction."), ignored_mobs = victim)
 		return
-	. = list()
 	gaze(victim)
 
 /obj/structure/flesh_monolith/proc/gaze(mob/living/carbon/human/victim)
@@ -52,7 +51,7 @@
 		return
 	gazers += key
 	to_chat(victim, span_narsie("IT'S LOOKING AT ME!"))
-	SEND_SOUND(victim, 'sound/villain/seen_wonder.ogg')
+	SEND_SOUND(victim, pick('modular_tidi/heretics/sound/heretic_scary_one.ogg', 'modular_tidi/heretics/sound/heretic_scary_two.ogg', 'modular_tidi/heretics/sound/heretic_scary_three.ogg', 'modular_tidi/heretics/sound/heretic_scary_four.ogg'))
 	var/obj/item/organ/heart/heart = victim.getorganslot(ORGAN_SLOT_HEART)
 	if(heart && maker_ref?.resolve())
 		heart.monolith_maker = maker_ref

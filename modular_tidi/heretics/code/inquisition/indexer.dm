@@ -222,10 +222,32 @@ GLOBAL_LIST_EMPTY(cursed_blood_sold)
 	qdel(vial)
 	return TRUE
 
+/datum/inqports/articles/accusations
+	name = null
+
+/datum/inqports/articles/indexaccused
+	name = null
+
+/datum/inqports/articles/assayer
+	name = "Replacement HEMATIC ASSAYER"
+	item_type = /obj/item/inqarticles/assayer
+	marquescost = 16
+	maximum = 1
+
+/datum/inqports/articles/indexers
+	name = "2 INDEXERs"
+	item_type = /obj/structure/closet/crate/chest/inqcrate/articles/indexers
+	marquescost = 4
+
 /datum/inqports/articles/blood_vials
 	name = "4 Blood Vials"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/articles/blood_vials
 	marquescost = 4
+
+/obj/structure/closet/crate/chest/inqcrate/articles/indexers/Initialize(mapload)
+	. = ..()
+	new /obj/item/inqarticles/indexer(src)
+	new /obj/item/inqarticles/indexer(src)
 
 /obj/structure/closet/crate/chest/inqcrate/articles/blood_vials/Initialize(mapload)
 	. = ..()
