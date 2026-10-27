@@ -5,9 +5,9 @@
 	tier = SKILL_LEVEL_NOVICE
 	awakened_heretic_only = TRUE
 	layout = list(
+		"N" = /obj/item/organ/eyes,
 		"C" = /obj/item/wax_doll,
-		"N" = /obj/item/rogueweapon/huntingknife/idagger,
-		"S" = /obj/item/organ/eyes
+		"S" = /obj/item/candle
 		)
 	chant_lines = list(
 	"#ZIZO! Pry their eyes away from me!",
@@ -28,5 +28,5 @@
 	if(!hex.apply(user, doll.targetted_victim, focus))
 		return FALSE
 
-	to_chat(user, span_cult("The wax melts away as the dagger moves on its own and pierces the eyeballs until they are naught but a gory mess. Only it remains."))
+	to_chat(user, span_cult("The wax melts away as infernal flames erupt from the candle, searing the pupils of the disembodied eyes. Only the burnt organs remains."))
 	return TRUE

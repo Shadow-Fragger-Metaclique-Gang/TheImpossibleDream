@@ -6,7 +6,7 @@
 	awakened_heretic_only = TRUE
 	layout = list("C" = /obj/item/candle)
 	chant_lines = list(
-	"#Anathema, I beseech your guidance!",
+	"#Anathema, I beseech your guidance!", // Most of it is whispered as this isn't a ritual that does really anything beside let you target someone.
 	"#See whom I have Seen...",
 	"...And mold this wax in their likeness!",
 	)
@@ -19,7 +19,7 @@
 	var/mob/living/carbon/human/targetted_victim
 
 /obj/item/wax_doll/examine(mob/user)
-	if(user.mind?.heretic_path || targetted_victim)
+	if(user.mind?.heretic_path && targetted_victim)
 		desc = "A doll shaped from wax. Its face is the spitting image of [targetted_victim]."
 	else
 		desc = "A crude effigy molded from wax. It doesn't particularly look like anything."
@@ -29,7 +29,7 @@
 	var/mob/living/carbon/human/examiner = user
 	var/mob/living/carbon/human/target = examiner.last_examined
 
-	if(!target || QDELETED(target))
+	if(!target)
 		to_chat(user, span_warning("...My mind draws a blank. I should get another look at my victim."))
 		return FALSE
 

@@ -102,6 +102,7 @@
 #include "code\heretic\admin.dm"
 #include "code\inquisition\indexer.dm"
 #include "code\inquisition\assayer.dm"
+#include "code\inquisition\oldgod.dm"
 #include "code\runes.dm"
 #include "code\carriageman.dm"
 #include "code\chalk.dm"
