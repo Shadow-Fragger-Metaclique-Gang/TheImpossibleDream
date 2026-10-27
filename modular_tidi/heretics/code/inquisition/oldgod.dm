@@ -96,7 +96,7 @@
 		return
 
 	var/datum/hex/selected_hex = choices[selection]
-	if(!selected_hex)
+	if(!selected_hex || QDELETED(selected_hex))
 		return
 	tracked_hex = selected_hex
 	to_chat(user, span_notice("I attune my senses to [tracked_hex.name]."))
