@@ -19,7 +19,7 @@
 	)
 	var/static/list/branch_blurbs = list(
 		HERETIC_PATH_AVANTYNE = "Champions of the Anatheme, clad in darkened plate formed march wielding reddened blades twinged in the twisted-red color of their own rotten lux. Subtlety is foregone the same way knights of houses garb themselves in garish silks in exchange for raw might.",
-		HERETIC_PATH_AMBITION = "Black robes and glittering gems upon arcyne-infused staves. The very picture of a left-handed mage. The walking dead shall pave the way forwards; thundering rhythmic stomps each time their decrepit boots stomp against the stones beneath them.",
+		HERETIC_PATH_AMBITION = "Black robes and glittering gems upon arcyne-infused staves. The very picture of a left-handed mage. The walking dead shall pave the way forwards; thundering rhythmic stomps as they march upon the stones beneath them.",
 		HERETIC_PATH_MARAUDER = "MOTIVE FORCE! RIP AND TEAR! NONE SHALL STAND IN THE WAY OF UNBRIDLED STRENGTH AND POTENTIAL ENERGY YEARNING TO BE REALIZED. DISPLAY MIGHT THROUGH SHEER, VISCERAL COMBAT. THE GORESTAR WILL SURELY LAUGH THIS NITE!",
 		HERETIC_PATH_ASSASSIN = "NOT ALL OF GRAGGAR'S CHILDREN SCREAM. SOME WHISPER IN THE DARK, BIDING THEIR TIME 'TILL THE IDEAL MOMENT TO STRIKE. INITIATES OF GRAGGAR'S KNIVES ARE OFTEN KILLED BEFORE REALIZING THEIR POTENTIAL; A NECESSARY CULLING OF THE WEAK. PROVE YOURSELF WORTHY.",
 		HERETIC_PATH_DRAKE = "Clash. Metal against metal. Unity against class. The blue-blooded wretches hide behind plate and chivalry. Bring to bare the flail of Matthios against their steel. They shall crumble.",

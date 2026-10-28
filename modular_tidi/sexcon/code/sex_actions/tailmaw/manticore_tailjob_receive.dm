@@ -1,6 +1,7 @@
 /datum/sex_action/manticore_tailjob_receive
 	parent_type = /datum/sex_action/tailmaw
 	name = "Use their tail maw on my cock"
+	category = SEX_CATEGORY_PENETRATE
 	check_same_tile = FALSE
 	user_sex_part = SEX_PART_COCK
 	target_sex_part = SEX_PART_TAIL_MAW

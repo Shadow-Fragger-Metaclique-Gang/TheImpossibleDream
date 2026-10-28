@@ -267,7 +267,10 @@
 
 	Unconscious(20 SECONDS)
 	sleep(10 SECONDS)
-	to_chat(src, span_narsie("Death is not the end..."))
+	// [SURREALIS-EDIT]
+	// to_chat(src, span_narsie("Death is not the end...")) // SURREALIS-EDIT - ORIGINAL
+	to_chat(src, span_cult("Death is not the end..."))
+	// [/SURREALIS-EDIT]
 	visible_message(span_warning("[src] convulses on the floor momentarily..."))
 	src.Jitter(15) //Convulse a bit.
 	sleep(15 SECONDS)

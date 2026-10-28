@@ -7,7 +7,7 @@
 	var/datum/action/cooldown/spell/assassin/get_targets/recall
 
 /datum/objective/heretic/graggar/contract/update_explanation_text()
-	explanation_text = "Lethally slit the throats of two people marked for death."
+	explanation_text = "Land the killing blow against two people marked for death."
 
 /datum/objective/heretic/graggar/contract/on_creation()
 	. = ..()
@@ -27,15 +27,15 @@
 	if(completed)
 		return
 	var/mob/living/carbon/human/victim = dead
-	if(!istype(victim) || !victim.has_flaw(/datum/charflaw/targeted) || !victim.throat_slit_by(owner.current))
+	if(!istype(victim) || !victim.has_flaw(/datum/charflaw/targeted) || !victim.last_hit_by(owner.current))
 		return
 	marks_killed++
 	if(marks_killed < marks_killed_required)
-		to_chat(owner.current, span_cult("<i>[marks_killed] of [marks_killed_required] marked for death.</i>"))
+		to_chat(owner.current, span_cult("<i>[marks_killed] of [marks_killed_required] slain.</i>"))
 		return
 	QDEL_NULL(recall)
 	complete()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
 
 /datum/objective/heretic/graggar/contract/progress_text()
-	return "[marks_killed] of [marks_killed_required] marked for death."
+	return "[marks_killed] of [marks_killed_required] slain."

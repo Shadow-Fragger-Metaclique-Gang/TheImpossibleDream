@@ -2,11 +2,11 @@
 	name = "Steel Against Faith"
 	heretic_tier = 3
 	heretic_branch = HERETIC_PATH_AVANTYNE
-	var/throats_slit = 0
-	var/throats_slit_required = 1
+	var/kills = 0
+	var/kills_required = 1
 
 /datum/objective/heretic/zizo/avantyne/update_explanation_text()
-	explanation_text = "Clad in avantyne, lethally slit the throat of a member of the clergy or the inquisition."
+	explanation_text = "Clad in avantyne, land the killing blow against a member of the clergy or the inquisition."
 
 /datum/objective/heretic/zizo/avantyne/on_creation()
 	. = ..()
@@ -22,14 +22,14 @@
 	if(completed)
 		return
 	var/mob/living/carbon/human/victim = dead
-	if(!istype(victim) || !is_quarry(victim) || !victim.throat_slit_by(owner.current))
+	if(!istype(victim) || !is_quarry(victim) || !victim.last_hit_by(owner.current))
 		return
 	var/mob/living/carbon/human/heretic = owner.current
 	if(!istype(heretic) || !istype(heretic.wear_armor, /obj/item/clothing/suit/roguetown/armor/plate/full/zizo) && !istype(heretic.wear_armor, /obj/item/clothing/suit/roguetown/armor/plate/fluted/zizo))
 		return
-	throats_slit++
-	if(throats_slit < throats_slit_required)
-		to_chat(heretic, span_cult("<i>[throats_slit] of [throats_slit_required] slain.</i>"))
+	kills++
+	if(kills < kills_required)
+		to_chat(heretic, span_cult("<i>[kills] of [kills_required] slain.</i>"))
 		return
 	complete()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
@@ -38,5 +38,5 @@
 	return victim.is_clergy_or_inquisition()
 
 /datum/objective/heretic/zizo/avantyne/progress_text()
-	if(throats_slit_required > 1)
-		return "[throats_slit] of [throats_slit_required] slain."
+	if(kills_required > 1)
+		return "[kills] of [kills_required] slain."

@@ -1,5 +1,5 @@
 // NUDIST_APPROVED
-/datum/controller/global_vars/InitGlobalroguetraits()
+/datum/controller/global_vars/Initialize(mapload)
 	. = ..()
 	roguetraits[TRAIT_NUDIST] = "I <b>refuse</b> to wear clothes. They are a hindrance to my freedom. I can tolerate certain accessories."
 	roguetraits[TRAIT_NUDE_SLEEPER] = span_warning("I can't fall asleep unless I'm nude and resting comfortably. Unremovable clothing and certain accessories are allowed.")

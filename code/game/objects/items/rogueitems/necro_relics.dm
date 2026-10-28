@@ -102,6 +102,9 @@
 	target.key = C.key
 	current_charges--
 	SSjob.EquipRank(target, "Greater Skeleton", TRUE)
+	// [SURREALIS-ADD] - DEADITE_TWEAKS
+	target.set_summoned_by(user)
+	// [/SURREALIS-ADD]
 	target.visible_message(span_warning("[target]'s eyes light up with an eerie glow!"))
 	var/datum/weakref/W = WEAKREF(target)
 	active_skeletons += W

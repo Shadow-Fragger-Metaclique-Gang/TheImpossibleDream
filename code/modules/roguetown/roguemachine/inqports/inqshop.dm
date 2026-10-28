@@ -305,6 +305,8 @@
 	item_type = /obj/item/clothing/ring/signet/psy
 	marquescost = 4
 
+// [SURREALIS-REMOVE] - HERETICS
+/*
 /datum/inqports/articles/indexers
 	name = "3 INDEXERs"
 	item_type = /obj/structure/closet/crate/chest/inqcrate/articles/indexers
@@ -315,6 +317,8 @@
 	new /obj/item/inqarticles/indexer(src)
 	new /obj/item/inqarticles/indexer(src)
 	new /obj/item/inqarticles/indexer(src)
+*/
+// [/SURREALIS-REMOVE]
 
 /datum/inqports/articles/accusations
 	name = "3 Writs of Accusation"

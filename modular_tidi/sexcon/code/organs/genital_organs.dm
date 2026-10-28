@@ -173,9 +173,7 @@
 	return FALSE
 
 /obj/item/organ/vagina/be_impregnated(mob/living/carbon/human/father)
-	if(!owner)
-		return FALSE
-	if(owner.stat == DEAD)
+	if(!owner || owner.stat == DEAD || !fertility || owner == father) // no cloning allowed
 		return FALSE
 	if(pregnant)
 		to_chat(owner, span_love("I feel a surge of warmth in my belly again..."))
