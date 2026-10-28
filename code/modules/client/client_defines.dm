@@ -65,6 +65,10 @@
 	// comment out the line below when debugging locally to enable the options & messages menu
 	control_freak = 1
 
+	// [SURREALIS-ADD] - VERB_PANEL - Verbs are shown by the browser stat panel; the hidden built-in BYOND verb panel was still rebuilt by the client, walking every atom it knows.
+	show_verb_panel = FALSE
+	// [/SURREALIS-ADD]
+
 		////////////////////////////////////
 		//things that require the database//
 		////////////////////////////////////
