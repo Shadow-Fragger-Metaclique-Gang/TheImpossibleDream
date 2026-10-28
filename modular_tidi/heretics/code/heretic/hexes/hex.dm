@@ -7,12 +7,18 @@
 // BY TAPPING INTO THIS PAIN, THEY CAN TRACK THE FOCUS
 // WHICH WILL LET THEM SUSPEND THE CURSE, AND EVEN DESTROY IT
 
+// Theoretically doesn't have to be fully negative. I don't see why you wouldn't be able to use this system for rituals that empower the cultist so long as the site is undisturbed
+// But this opens the problem that you could have 20 buffs in the corner of the map that no one has any idea about except the cultist himself
+// And the absolver sucking up all your buffs (which would be very funny admittedly)
+
 /mob/living/carbon/human/
 	var/list/cast_hexes // The hexes we've casted
 	var/list/active_hexes // The hexes we've been targetted by
 	var/list/shared_hexes // hexes shared via PURIFY
 	var/last_examined // The last person we've examined. This is for the DOLLMAKER ritual.
 
+/obj/item/
+	var/hex_focus = FALSE // is this item already a focus?
 
 /datum/hex/
 	var/name = "Generic Hex"
@@ -25,16 +31,18 @@
 	var/mutable_appearance/focus_rune // A visual representation of where the focus should be to keep the curse active
 
 /datum/hex/proc/apply(mob/living/carbon/human/hex_caster, mob/living/carbon/human/hex_victim, obj/item/new_focus)
-	if(!hex_caster || !hex_victim || !new_focus)
+	if(!hex_caster || !hex_victim || !new_focus) // something went wrong! restarting the universe!
 		qdel(src)
-		return FALSE
-	if(caster || victim || focus) // If something goes horribly wrong and somehow the same hex datum is cast twice
 		return FALSE
 
 	caster = hex_caster
 	victim = hex_victim
+	if(new_focus.hex_focus) // if we somehow forget to prevent reusing focuses in our ritual... this doesnt have any feedback for the cultist
+		qdel(src)
+		return FALSE
 	focus = new_focus
-	focus.add_filter("hex_focus_filter", 2, list("type" = "outline", "color" = "#AD456D", "alpha" = 180, "size" = 3)) // same colour as when you utter DEMIURGE or ANATHEMA
+	focus.hex_focus = TRUE
+	focus.add_filter("hex_focus_filter", 1, list("type" = "outline", "color" = "#AD456D", "alpha" = 180, "size" = 2)) // same colour as when you utter DEMIURGE or ANATHEMA
 	ritual_turf = get_turf(focus)
 	focus_rune = mutable_appearance('icons/roguetown/misc/rune_wards.dmi', "rune_alarm")
 	focus_rune.alpha = 255
@@ -117,6 +125,7 @@
 	if(focus)
 		UnregisterSignal(focus, COMSIG_PARENT_QDELETING)
 		UnregisterSignal(focus, COMSIG_MOVABLE_MOVED)
+		focus.hex_focus = FALSE
 		focus.remove_filter("hex_focus_filter")
 	if(absolver)
 		UnregisterSignal(absolver, COMSIG_PARENT_QDELETING)
@@ -137,3 +146,12 @@
 /datum/hex/proc/on_remove(mob/living/carbon/human/sufferer = victim)
 	return
 
+//debug hex
+/datum/hex/debug
+	name = "Debug Hex"
+
+/datum/hex/debug/on_apply(mob/living/carbon/human/sufferer = victim)
+	to_chat(sufferer, span_cult("The vile maintainers have taken away my merging rights!"))
+
+/datum/hex/debug/on_remove(mob/living/carbon/human/sufferer = victim)
+	to_chat(sufferer, span_cult("My github finally feels full, again."))

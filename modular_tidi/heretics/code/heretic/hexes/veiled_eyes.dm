@@ -1,3 +1,6 @@
+// proof of concept hex that actually does something
+// i highly encourage you to come up with funny ways to grief people, rather than simply stat debuffs or parry debuffs like the bishop's curses
+// i don't want this to be just "cast -4 str on your target to frag him easier"
 /datum/hex/veiled_eyes
 	name = "\improper Hex of the Veiled Eyes"
 

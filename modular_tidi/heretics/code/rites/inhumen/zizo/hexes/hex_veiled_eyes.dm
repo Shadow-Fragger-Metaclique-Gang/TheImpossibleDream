@@ -16,9 +16,12 @@
 	)
 
 /datum/runeritual/god/hex/zizo/veiled_eyes/on_finished_recipe(mob/living/user, list/selected_atoms, turf/loc)
-	var/obj/item/rogueweapon/huntingknife/idagger/focus = selected_atoms["N"]
+	var/obj/item/organ/eyes/focus = selected_atoms["N"]
 	var/obj/item/wax_doll/doll = selected_atoms["C"]
 
+	if(focus.hex_focus)
+		to_chat(user, span_warning("I'm already sustaining a hex with this focus. I must find another one."))
+		return FALSE
 	if(!doll.targetted_victim)
 		to_chat(user, span_warning("The effigy melts away and disintegrates into nothingness. What happened to my victim..?"))
 		qdel(doll)

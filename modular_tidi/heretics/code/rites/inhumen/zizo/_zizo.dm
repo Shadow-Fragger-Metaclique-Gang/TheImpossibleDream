@@ -9,7 +9,8 @@
 		/datum/runeritual/god/zizo/raise_deadite,
 		/datum/runeritual/god/patron_knife/zizo,
 		/datum/runeritual/god/dollmaker,
-		/datum/runeritual/god/hex/zizo/veiled_eyes
+		/datum/runeritual/god/hex/zizo/veiled_eyes,
+		/datum/runeritual/god/hex/zizo/false_witness
 	)
 	unworthy_message = "Touching it sends a cold shock up my arm. I shouldn't be trying to use this..."
 	rites_title = "Rituals of Ambition"
