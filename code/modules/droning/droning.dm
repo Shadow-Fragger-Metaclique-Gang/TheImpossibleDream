@@ -90,8 +90,10 @@ SUBSYSTEM_DEF(droning)
 
 	var/frenq = 1
 
-	if(HAS_TRAIT(dreamer.mob, TRAIT_DRUQK))
-		frenq = -1
+	// [SURREALIS-REMOVE] - SOUND_STREAM - Combat music is streamed now, and BYOND cannot play a stream in reverse.
+	// if(HAS_TRAIT(dreamer.mob, TRAIT_DRUQK)) // SURREALIS-REMOVE - ORIGINAL
+	// 	frenq = -1 // SURREALIS-REMOVE - ORIGINAL
+	// [/SURREALIS-REMOVE]
 
 	if(ishuman(dreamer.mob))
 		var/mob/living/carbon/human/H = dreamer.mob
@@ -106,6 +108,9 @@ SUBSYSTEM_DEF(droning)
 	combat_music.frequency = frenq
 	if(!HAS_TRAIT(dreamer.mob, TRAIT_DRUQK))
 		combat_music.pitch = 1 / combat_music.frequency
+	// [SURREALIS-ADD] - SOUND_STREAM - Unstreamed, the client decodes the whole track on its main thread before playing it (a freeze).
+	combat_music.status = SOUND_STREAM
+	// [/SURREALIS-ADD]
 	SEND_SOUND(dreamer, combat_music)
 	dreamer.droning_sound = combat_music
 	dreamer.last_droning_sound = combat_music.file
@@ -141,6 +146,9 @@ SUBSYSTEM_DEF(droning)
 			droning.file = 'sound/music/asunderedmind.ogg'
 		else if(HAS_TRAIT(listener.mob, TRAIT_DRUQK))
 			droning.file = 'sound/music/spice.ogg'
+		// [SURREALIS-ADD] - SOUND_STREAM - Unstreamed, the client decodes the whole track on its main thread before playing it (a freeze on every area change).
+		droning.status = SOUND_STREAM
+		// [/SURREALIS-ADD]
 
 		listener.droning_sound = droning
 		listener.last_droning_sound = area_player.droning_sound
@@ -164,6 +172,9 @@ SUBSYSTEM_DEF(droning)
 			droning.file = 'sound/music/asunderedmind.ogg'
 		else if(HAS_TRAIT(listener.mob, TRAIT_DRUQK))
 			droning.file = 'sound/music/spice.ogg'
+		// [SURREALIS-ADD] - SOUND_STREAM - Unstreamed, the client decodes the whole track on its main thread before playing it (a freeze on every area change).
+		droning.status = SOUND_STREAM
+		// [/SURREALIS-ADD]
 
 		listener.droning_sound = droning
 		listener.last_droning_sound = area_player.droning_sound_current
