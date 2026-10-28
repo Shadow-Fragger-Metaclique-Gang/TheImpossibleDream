@@ -31,5 +31,4 @@
 	if(!hex.apply(user, doll.targetted_victim, focus))
 		return FALSE
 
-	to_chat(user, span_cult("The wax melts away as infernal flames erupt from the candle, searing the pupils of the disembodied eyes. Only the burnt organs remains."))
 	return TRUE

@@ -63,7 +63,7 @@
 	chargetime = 0
 	recharge_time = 1 SECONDS
 	miracle = TRUE
-	antimagic_allowed = FALSE
+	antimagic_allowed = TRUE
 	var/datum/hex/tracked_hex
 
 /obj/effect/proc_holder/spell/invoked/psydondiscern/cast(list/targets, mob/living/carbon/human/user)
@@ -74,6 +74,7 @@
 		give_tracking_directions(user)
 	return TRUE
 
+// lord bless gnoll tracking for letting me just use their bullshit
 /obj/effect/proc_holder/spell/invoked/psydondiscern/proc/select_hex(mob/living/carbon/human/user)
 	var/list/available_hexes = list()
 	if(user.active_hexes)

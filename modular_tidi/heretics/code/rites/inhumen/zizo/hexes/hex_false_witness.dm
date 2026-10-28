@@ -34,5 +34,4 @@
 	if(!hex.apply(user, doll.targetted_victim, focus))
 		return FALSE
 
-	to_chat(user, span_cult("The tongue shrivels up into a desiccated piece of meat."))
 	return TRUE
