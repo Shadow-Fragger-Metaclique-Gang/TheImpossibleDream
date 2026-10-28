@@ -84,7 +84,7 @@
 			//[SURREALIS-ADD] - HERETIC - HEX TRANSFER AND HEX TRACK
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/psydonpurify)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/psydondiscern)
-			//[SURREALIS-ADD] - HERETIC - END
+			//[/SURREALIS-ADD]
 			H.mind.RemoveSpell(/datum/action/cooldown/spell/psydon/respite)
 			H.mind.teach_crafting_recipe(/datum/crafting_recipe/roguetown/alchemy/qsabsolution)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
