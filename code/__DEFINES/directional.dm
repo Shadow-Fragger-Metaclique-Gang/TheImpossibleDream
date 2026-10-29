@@ -14,6 +14,8 @@
 /* Directions */
 ///All the cardinal direction bitflags.
 #define ALL_CARDINALS (NORTH|SOUTH|EAST|WEST)
+//All directions but not including up down and center.
+#define ALL_SUBCARDINALS (NORTH|SOUTH|EAST|WEST|NORTHEAST|NORTHWEST|SOUTHEAST|SOUTHWEST)
 
 /// Create directional subtypes for a path to simplify mapping.
 #define MAPPING_DIRECTIONAL_HELPERS(path, offset) ##path/directional/north {\

@@ -311,7 +311,7 @@
 
 ////////////////////////////////////////
 
-/atom/movable/Move(atom/newloc, direct, glide_size_override = 0)
+/atom/movable/Move(atom/newloc, direction, glide_size_override = 0, update_dir = TRUE)
 	var/atom/movable/pullee = pulling
 	var/mob/living/pulled
 	var/turf/T = loc
@@ -322,18 +322,18 @@
 	if(istype(pulledby, /mob/living))
 		pulled = pulledby
 	var/atom/oldloc = loc
-	var/direction_to_move = direct
+	var/direction_to_move = direction
 
 //Early override for some cases like diagonal movement
-	if(glide_size_override)
+	if(glide_size_override && glide_size != glide_size_override)
 
 		set_glide_size(glide_size_override)
 
 	if(loc != newloc)
-		if (!(direct & (direct - 1))) //Cardinal move
-			lastcardinal = direct
+		if (!(direction & (direction - 1))) //Cardinal move
+			lastcardinal = direction
 			. = ..()
-		else //Diagonal move, split it into cardinal moves
+
 // [SURREALIS-EDIT] - THROWING_REFACTOR - This isn't actually necessary really, it's just complete shitcode so i had to rewrite it.
 /* ORIGINAL
 			if (direct & NORTH)
@@ -395,24 +395,70 @@
 						direction_to_move = pick(SOUTH,WEST)
 						. = step(src, direction_to_move)
 */
-			if(allow_diagonal_movement)
-				. = ..() //right here
-			else if(lastcardinal & direct)
-				direction_to_move = direct ^ lastcardinal
-				. = step(src, direction_to_move)
-				if(!.)
-					direction_to_move ^= direct
-					. = step(src, direction_to_move)
-			else
-				direction_to_move = direct & pick( (NORTH | SOUTH), (EAST | WEST) )
-				. = step(src, direction_to_move)
+
 // [/SURREALIS-EDIT] - THROWING_REFACTOR
+
+		else
+			if(!allow_diagonal_movement) //Diagonal move, split it into cardinal moves on the same tick for logic reasons.
+				moving_diagonally = FIRST_DIAG_STEP
+				var/first_step_dir
+				// The `&& moving_diagonally` checks are so that a forceMove taking
+				// place due to a Crossed, Bumped, etc. call will interrupt
+				// the second half of the diagonal movement, or the second attempt
+				// at a first half if step() fails because we hit something.
+				if (direction & NORTH)
+					if (direction & EAST)
+						if (step(src, NORTH) && moving_diagonally)
+							first_step_dir = NORTH
+							moving_diagonally = SECOND_DIAG_STEP
+							. = step(src, EAST)
+						else if (moving_diagonally && step(src, EAST))
+							first_step_dir = EAST
+							moving_diagonally = SECOND_DIAG_STEP
+							. = step(src, NORTH)
+					else if (direction & WEST)
+						if (step(src, NORTH) && moving_diagonally)
+							first_step_dir = NORTH
+							moving_diagonally = SECOND_DIAG_STEP
+							. = step(src, WEST)
+						else if (moving_diagonally && step(src, WEST))
+							first_step_dir = WEST
+							moving_diagonally = SECOND_DIAG_STEP
+							. = step(src, NORTH)
+				else if (direction & SOUTH)
+					if (direction & EAST)
+						if (step(src, SOUTH) && moving_diagonally)
+							first_step_dir = SOUTH
+							moving_diagonally = SECOND_DIAG_STEP
+							. = step(src, EAST)
+						else if (moving_diagonally && step(src, EAST))
+							first_step_dir = EAST
+							moving_diagonally = SECOND_DIAG_STEP
+							. = step(src, SOUTH)
+					else if (direction & WEST)
+						if (step(src, SOUTH) && moving_diagonally)
+							first_step_dir = SOUTH
+							moving_diagonally = SECOND_DIAG_STEP
+							. = step(src, WEST)
+						else if (moving_diagonally && step(src, WEST))
+							first_step_dir = WEST
+							moving_diagonally = SECOND_DIAG_STEP
+							. = step(src, SOUTH)
+				if(moving_diagonally == SECOND_DIAG_STEP)
+					if(!. && update_dir)
+						setDir(first_step_dir)
+				moving_diagonally = 0
+				return
+			else
+				. = ..() //Allow a diagonal movement.
+
+
 	if(!loc || (loc == oldloc && oldloc != newloc))
 		last_move = 0
 		return
 
 	if(.)
-		Moved(oldloc, direct)
+		Moved(oldloc, direction)
 	if(. && pulled && pulledby == pulled && pulled.cmode && pulled.grab_state < GRAB_AGGRESSIVE) //NICHE case of being in a first tier grab state.
 		if(!pulledby || QDELETED(pulledby))
 			return
@@ -455,10 +501,10 @@
 
 		set_glide_size(glide_size_override)
 
-	last_move = direct
+	last_move = direction
 	if(!nodirchange && !throwing)
 		setDir(direction_to_move)
-	if(. && has_buckled_mobs() && !handle_buckled_mob_movement(loc,direct, glide_size_override)) //movement failed due to buckled mob(s)
+	if(. && has_buckled_mobs() && !handle_buckled_mob_movement(loc,direction, glide_size_override)) //movement failed due to buckled mob(s)
 		return FALSE
 
 //Called after a successful Move(). By this point, we've already moved
