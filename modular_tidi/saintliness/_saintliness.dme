@@ -1,0 +1,7 @@
+#include "code\signals.dm"
+#include "code\defines.dm"
+#include "code\_patron.dm"
+#include "code\components\_saintliness.dm"
+#include "code\components\astrata.dm"
+#include "code/sexcon/controller/sex_action.dm"
+
