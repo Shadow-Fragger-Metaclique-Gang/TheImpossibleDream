@@ -213,7 +213,7 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = NUTRITION_MEAL_AND_QUARTER*3)
 	tastes = list("frybird" = 1)
 	name = "frybird bucket"
-	desc = "Hearty, comforting, and rich - Azurean Frybirds are the best on the entire continent and now even in a convinient bucket!"
+	desc = "Hearty, comforting, and rich - Azurean Frybirds are the best on the entire continent and now even in a convenient bucket!"
 	faretype = FARE_FINE
 	portable = FALSE
 	icon = 'modular/Neu_Food/icons/cooked/cooked_meat_meal.dmi'
@@ -269,7 +269,7 @@
 /* .............	Wine glazed venison loins	................ */
 /obj/item/reagent_containers/food/snacks/rogue/meat/saiga_loins/cooked/sauced
 	name = "forest bounty"
-	desc = "Venison tenderloin cut into fine slices, covered in a mixture of berry paste and wine-glazing. The liqour seems to have caramelized into a tasty layer of glaze."
+	desc = "Venison tenderloin cut into fine slices, covered in a mixture of berry paste and wine-glazing. The liquor seems to have caramelized into a tasty layer of glaze."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_meat_meal.dmi'
 	icon_state = "loins_sauced"
 	tastes = list("tender venison" = 1, "caramelized wine" = 1, "berry paste")
