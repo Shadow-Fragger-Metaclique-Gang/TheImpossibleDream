@@ -131,6 +131,28 @@
 			animate(transform = prev_transform, time = 0)
 
 		is_jumping = TRUE // Mark as jumping to differentiate from being thrown
+// [SURREALIS-EDIT] - THROWING_REFACTOR - Turn this into a callback to make it less laggy.
+/*
+		if(jextra)
+			throw_at(A, jrange, 1, src, spin = FALSE)
+			while(src.throwing)
+				sleep(1)
+			throw_at(get_step(src, src.dir), 1, 1, src, spin = FALSE)
+		else
+			throw_at(A, jrange, 1, src, spin = FALSE)
+			while(src.throwing)
+				sleep(1)
+		is_jumping = FALSE
+		if(jroot && !HAS_TRAIT(src, TRAIT_ZJUMP))	//Jesters and werewolves don't get immobilized at all
+			Immobilize((HAS_TRAIT(src, TRAIT_LEAPER) ? 5 : 10))	//Acrobatics get half the time
+			if(HAS_TRAIT(src, TRAIT_DEADITE)) //Non-Jester deadites collapse and fall over on landing, you're literally rotting apart.
+				Knockdown(10)
+		if(isopenturf(src.loc))
+			var/turf/open/T = src.loc
+			if(T.landsound)
+				playsound(T, T.landsound, 100, FALSE)
+			T.Entered(src)
+*/
 		throw_at(A, jrange, 1, src, spin = FALSE, callback = CALLBACK(src, PROC_REF(after_jump), jextra))
 	else
 		animate(src, pixel_z = pixel_z + 6, time = 1)
@@ -147,7 +169,7 @@
 
 #undef FLIP_DIRECTION_CLOCKWISE
 #undef FLIP_DIRECTION_ANTICLOCKWISE
-
+// [SURREALIS-ADD] - THROWING_REFACTOR - Turn this into a callback to make it less laggy.
 /mob/living/proc/after_jump(stumble)
 	if(stumble)
 		throw_at(get_step(src, src.dir), 1, 1, src, spin = FALSE)
@@ -160,7 +182,7 @@
 		if(T.landsound)
 			playsound(T, T.landsound, 100, FALSE)
 		T.Entered(src)
-
+// [SURREALIS-EDIT] - THROWING_REFACTOR
 /mob/living/proc/get_jump_range()
 	if(!check_armor_skill() || get_item_by_slot(SLOT_LEGCUFFED))
 		return 1
