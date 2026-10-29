@@ -123,7 +123,10 @@
 		"Etruscan Swamps" = SKIN_COLOR_ETRUSCAN_SWAMPS,
 		"Shalvine Forests" = SKIN_COLOR_SHALVINE_FORESTS,
 		"Lalvestine Thickets" = SKIN_COLOR_LALVE_STEPPES,
-		"Naledi Coverts"	= SKIN_COLOR_NALEDI_COAST
+		"Naledi Coverts"	= SKIN_COLOR_NALEDI_COAST,
+		// [SURREALIS-ADD] - ADDITIONAL_SKINTONES //would be using `/datum/species/elf/wood/final/get_skin_list()` but seems subtypesof treats final as its own subtype.
+		"Ashen Ones"        = SKIN_COLOR_ASHEN_ONES
+		// [SURREALIS-ADD]
 	)
 
 /datum/species/elf/wood/get_hairc_list()
