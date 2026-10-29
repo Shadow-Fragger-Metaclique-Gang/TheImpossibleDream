@@ -17,4 +17,4 @@ This holds SRLS-specific skintonesc.
 
 ## Core files changed
 
-None.
+- 'code\modules\mob\living\carbon\human\species_types\roguetown\elf\elfs.dm' had to add a variable due to a byond bug https://www.byond.com/forum/post/2992317 , otherwise it would create a new subtype of the race.
