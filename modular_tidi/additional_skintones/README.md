@@ -2,7 +2,7 @@
 
 **Tag:** `ADDITIONAL_SKINTONES`
 
-**Created in:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/58
+**Created in:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/99
 
 **Major changes:**
 
