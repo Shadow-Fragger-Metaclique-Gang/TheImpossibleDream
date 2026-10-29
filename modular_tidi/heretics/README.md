@@ -42,11 +42,13 @@ Also adds hexes. Awakened heretics can hex others via rites to give them debilit
 - `code/inquisition/oldgod.dm`: Absolver PURIFY and DISCERN miracle. PURIFY lets the absolver suffer from the same curse as the target, and DISCERN lets them vaguely track the focus of any curse they suffer from. the absolver is encouraged to go eat curses for breakfast so he can find the focus
 - `code/inquisition/indexer.dm`: the reworked indexer, which quietly draws blood a la Lifeweb inquisition and fills reusable blood vials for testing. Indexers are no longer attached to writs. Blood vials replace the old indexer's functionality for the most part.
 - `code/inquisition/assayer.dm`: the hematic assayer, used for testing extracted blood vials for blood corruption.
+- `code/inquisition/bloodhound.dm`: the BLOODHOUND, used for tracking foci if an absolver is missing.
 - `code/inquisition/absolutionist.dm`: gives the absolver their new PURIFY and DISCERN miracles
 - `code/carriageman.dm`: the carriageman's toll refreshes rite cooldowns instead of getting rid of the rites expended debuff.
 - `code/runes.dm`: the list of god runes.
 - `code/chalk.dm`: ritual chalk offers every rune to everyone.
 - `code/examine.dm`: examine override for flesh monolith & dollmaker examine tracking
+- `code/give_tracking_info.dm`: helper proc for tracking. used in psydondiscern & yearn & bloodhound
 - `code/ritualism/ritualism_skill.dm`: the Ritualism skill.
 - `code/ritualism/ritualist_grants.dm`: everything that granted the ritualist trait grants Expert Ritualism instead.
 

@@ -8,7 +8,7 @@
 	chant_lines = list(
 	"#Anathema, I beseech your guidance!", // Most of it is whispered as this isn't a ritual that does really anything beside let you target someone.
 	"#See whom I have Seen...",
-	"...And mold this wax in their likeness!",
+	"...And mold this wax in their image!",
 	)
 
 /obj/item/wax_doll
@@ -20,7 +20,7 @@
 
 /obj/item/wax_doll/examine(mob/user)
 	if(user.mind?.heretic_path && targetted_victim)
-		desc = "A doll shaped from wax. Its face is the spitting image of [targetted_victim]."
+		desc = "A doll shaped from wax. Its face is the spitting image of [targetted_victim.real_name]."
 	else
 		desc = "A crude effigy molded from wax. It doesn't particularly look like anything."
 	. = ..()

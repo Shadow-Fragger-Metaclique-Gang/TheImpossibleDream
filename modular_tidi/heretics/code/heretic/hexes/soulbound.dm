@@ -55,11 +55,13 @@
 	return ..()
 
 /datum/hex/soulbound/on_apply(mob/living/carbon/human/sufferer = victim)
+	to_chat(sufferer, span_cult("A crushing loneliness subsumes my entire being. I can feel my soul reaching out towards someone distant, and I can feel theirs reaching towards me. I <b>have</b> to find them!"))
 	sufferer.AddComponent(/datum/component/baotha_soulbound, src)
 	sufferer.AddSpell(new /obj/effect/proc_holder/spell/invoked/yearn)
 
 /datum/hex/soulbound/on_remove(mob/living/carbon/human/sufferer = victim)
 	var/datum/component/baotha_soulbound/component = sufferer.GetComponent(/datum/component/baotha_soulbound)
+	to_chat(sufferer, span_cult("My soul lies still once again; I no longer feel a connection."))
 	if(component)
 		qdel(component)
 	sufferer.RemoveSpell(/obj/effect/proc_holder/spell/invoked/yearn)
@@ -67,7 +69,7 @@
 // the actual soulbinded component
 /datum/component/baotha_soulbound
 	dupe_mode = COMPONENT_DUPE_UNIQUE
-	var/datum/hex/soulbound/bond // WHICH hex? Differentiates if someone was spiteful enough to soulbind you twice
+	var/datum/hex/soulbound/bond
 	var/panic_distance = 4 // sets separated to TRUE
 	var/separated = FALSE // start FREAKING OUT
 
@@ -197,21 +199,19 @@
 		tracked_person = null
 		return
 
-	var/turf/user_turf = get_turf(user)
-	var/turf/target_turf = get_turf(tracked_person)
-
-	if(!user_turf || !target_turf)
+	var/list/tracked_info = get_tracking_info(user, tracked_person)
+	if(!tracked_info)
 		return
 
-	if(user_turf.z != target_turf.z)
-		to_chat(user, span_notice("I feel their presence somewhere [user_turf.z > target_turf.z ? "below" : "above"] me."))
+	if(tracked_info["z_level_difference"] != 0)
+		to_chat(user, span_notice("My soul guides me somewhere [tracked_info["z_level_difference"] > 0 ? "above" : "below"] me."))
 		return
 
-	var/distance = get_dist(user_turf, target_turf)
-	var/direction = dir2text(get_dir(user_turf, target_turf))
+	var/distance = tracked_info["distance"]
+	var/direction = tracked_info["direction"]
 
 	if(distance <= 4)
-		to_chat(user, span_boldnotice("They're so close. I can feel them beside me."))
+		to_chat(user, span_boldnotice("They're so close. I can feel our souls brushing against each other..."))
 	else if(distance < 20)
 		to_chat(user, span_notice("My soul aches for someone to the [direction]."))
 	else

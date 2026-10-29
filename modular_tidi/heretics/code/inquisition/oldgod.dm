@@ -105,7 +105,6 @@
 /obj/effect/proc_holder/spell/invoked/psydondiscern/proc/give_tracking_directions(mob/living/carbon/human/user)
 	if(!tracked_hex)
 		to_chat(user, span_warning("There's nothing to follow."))
-		tracked_hex = null
 		return
 
 	if(!(tracked_hex in user.active_hexes) && !(tracked_hex in user.shared_hexes))
@@ -113,19 +112,20 @@
 		tracked_hex = null
 		return
 
-	var/turf/user_turf = get_turf(user)
-	var/turf/focus_turf = get_turf(tracked_hex.focus)
-
-	if(user_turf.z != focus_turf.z)
-		to_chat(user, span_notice("I sense the magick somewhere [user_turf.z > focus_turf.z ? "below" : "above"] me."))
+	var/list/tracked_info = get_tracking_info(user, tracked_hex.focus)
+	if(!tracked_info)
 		return
 
-	var/dist = get_dist(user_turf, focus_turf)
-	var/dir_text = dir2text(get_dir(user_turf, focus_turf))
+	if(tracked_info["z_level_difference"] != 0)
+		to_chat(user, span_notice("I sense the magick somewhere [tracked_info["z_level_difference"] > 0 ? "above" : "below"] me."))
+		return
 
-	if(dist <= 10)
-		to_chat(user, span_boldnotice("The magick is overwhelming. Its source must be here!"))
-	else if(dist < 20)
-		to_chat(user, span_notice("I feel strong magick to the [dir_text]."))
+	var/distance = tracked_info["distance"]
+	var/direction = tracked_info["direction"]
+
+	if(distance <= 10)
+		to_chat(user, span_boldnotice("The magick is overwhelming. The source must be here!"))
+	else if(distance < 20)
+		to_chat(user, span_notice("I feel strong magick to the [direction]."))
 	else
-		to_chat(user, span_notice("I sense faint magick to the [dir_text]."))
+		to_chat(user, span_notice("I sense faint magick to the [direction]."))
