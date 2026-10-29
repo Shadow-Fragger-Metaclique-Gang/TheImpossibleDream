@@ -123,7 +123,8 @@
 		"Etruscan Swamps" = SKIN_COLOR_ETRUSCAN_SWAMPS,
 		"Shalvine Forests" = SKIN_COLOR_SHALVINE_FORESTS,
 		"Lalvestine Thickets" = SKIN_COLOR_LALVE_STEPPES,
-		"Naledi Coverts"	= SKIN_COLOR_NALEDI_COAST
+		"Naledi Coverts"	= SKIN_COLOR_NALEDI_COAST,
+		"Ashen Ones"        = SKIN_COLOR_ASHEN_ONES //Surrealis edit
 	)
 
 /datum/species/elf/wood/get_hairc_list()
