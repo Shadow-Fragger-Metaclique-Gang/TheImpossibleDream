@@ -4,7 +4,7 @@
 #define SKIN_COLOR_ASHEN_ONES "ffffff"
 
 //boutta fucking ruin this entire modularity system
-/datum/species/elf/wood/final/get_skin_list()
+/datum/species/elf/wood/get_skin_list()
 	return list(
 		"Grenzel Woods" = SKIN_COLOR_GRENZEL_WOODS,
 		"Dandelion Creek" = SKIN_COLOR_DANDELION_CREEK,
