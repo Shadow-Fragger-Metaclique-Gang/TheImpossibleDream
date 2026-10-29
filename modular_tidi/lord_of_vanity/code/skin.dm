@@ -8,12 +8,12 @@
 	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER
 	repair_fraction = 0.35
 	repairmsg_full = "Why yes, my clothing IS pristine isn't it?"
-	repairmsg_end = "My clothes shimmer anew, as opulant as the day they were tailored."
+	repairmsg_end = "My clothes shimmer anew, as opulent as the day they were tailored."
 	repairmsg_continue = "As I think on their radiance, my clothing mends some of its abuse."
 
 /obj/item/clothing/suit/roguetown/armor/manual/meditation/chest/duke
 	name = "the lord's new vest"
-	desc = "A shimmering vest of magicial cloth tailored exclusively for a most wise and fashionable lord. Invisible to the dullard."
+	desc = "A shimmering vest of magical cloth tailored exclusively for a most wise and fashionable lord. Invisible to the dullard."
 	body_parts_covered = COVERAGE_VEST
 	body_parts_inherent = COVERAGE_VEST
 	armor = ARMOR_BRIGANDINE
@@ -21,7 +21,7 @@
 	max_integrity = ARMOR_INT_CHEST_LIGHT_MASTER
 	repair_fraction = 0.35
 	repairmsg_full = "Why yes, my vest IS pristine isn't it?"
-	repairmsg_end = "My vest shimmers anew, as opulant as the day it was tailored."
+	repairmsg_end = "My vest shimmers anew, as opulent as the day it was tailored."
 	repairmsg_continue = "As I think on its radiance, my vest mends some of its abuse."
 
 /obj/item/clothing/suit/roguetown/armor/manual/meditation/legs/duke
@@ -36,7 +36,7 @@
 	max_integrity = ARMOR_INT_LEG_BRONZE
 	repair_fraction = 0.35
 	repairmsg_full = "Why yes, my pantaloons are pristine aren't they?"
-	repairmsg_end = "My trousers shimmer anew, as opulant as the day they were tailored."
+	repairmsg_end = "My trousers shimmer anew, as opulent as the day they were tailored."
 	repairmsg_continue = "As I think on their radiance, my hosen mend some of their abuse."
 
 /obj/item/clothing/suit/roguetown/armor/manual/meditation/legs/duke/worn_on_body(mob/living/carbon/human/user)

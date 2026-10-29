@@ -16,7 +16,7 @@
 
 /datum/usurpation_rite/progressive_dominion
 	name = "Rite of Anathematic Dominion"
-	desc = "The rule of the ignorant must end. The rule of the weak must end. You, by your hand, will render this Scar - this lighthouse - your own. A minor Ambition, but one so very impactufl."
+	desc = "The rule of the ignorant must end. The rule of the weak must end. You, by your hand, will render this Scar - this lighthouse - your own. A minor Ambition, but one so very impactful."
 	explanation = {"<p>A mage of sufficient power, a follower of Zizo, or the undead, may claim the throne through the assent of those who embrace progress.</p>\
 <p><b>Who may invoke:</b> Any mage with Apprentice-level Arcyne Training or higher, any follower of Zizo, or any undead.</p>\
 <p><b>How it works:</b> Mages trained in the Arcyne arts, followers of Zizo, or those touched by undeath, must gather near the throne and speak the words 'I assent' to support your claim.</p>\

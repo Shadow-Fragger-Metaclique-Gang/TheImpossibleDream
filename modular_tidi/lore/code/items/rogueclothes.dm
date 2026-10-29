@@ -10,7 +10,7 @@
 	desc = "The refuge of the DIVINE WILLS upon my back. An Almighty Temple, standing eternal against the encroaching darkness."
 
 /obj/item/clothing/cloak/cape/inquisitorsilver
-	desc = "A time honored cloak inlined with silver threading, the stitchwork tethers it to the Silver Orders; a catch-all term for the various faith-militances that \
+	desc = "A time honored cloak inlaid with silver threading, the stitchwork tethers it to the Silver Orders; a catch-all term for the various faith-militances that \
 	ward Psydonia from monsters, creechers, and the ever-looming threat of assault of the Anatheme."
 
 /obj/item/clothing/cloak/undivided
@@ -32,7 +32,7 @@
 	desc = "A cloak meant to keep one's body warm in the cold of the mountains as well as the dampness of the lowlands."
 
 /obj/item/clothing/cloak/banneret
-	desc = "A cape with a gold embroided heraldry of Pharos."
+	desc = "A cape with a gold embroidered heraldry of Pharos."
 
 /obj/item/clothing/cloak/kazengun
 	desc = "A simple kind of Kazengunite surcoat, worn here in the distant fields of Pharos to differentiate friend from foe."
@@ -41,7 +41,7 @@
 	name = "Crown of Pharos"
 
 /obj/item/clothing/shoes/roguetown/sandals/aalloy
-	desc = "Rotted metal platforms, curled about to cradle the feet. The beaches that these sandals once treaded are no more; pearly sands eroded away by eons."
+	desc = "Rotted metal platforms, curled about to cradle the feet. The beaches that these sandals once trod are no more; pearly sands eroded away by eons."
 
 /obj/item/clothing/shoes/roguetown/boots/maille/bronze
 	desc = "A pair of leather boots, reinforced with smaller bronze plates along the feet and ankles. A thick layer of chainmail has been woven across \
@@ -70,7 +70,7 @@
 	desc = "A symbol of power from an era soon shattered."
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/paalloy
-	desc = "'Ascension. Destiny. Reign. A mandate, commanded by the Demiurge, to be fufilled by the dead and ab-dead. IT called us forth from the edge of reality - and with their dying breath, rasped out the final truth; the fire is gone, and the world will soon follow.'"
+	desc = "'Ascension. Destiny. Reign. A mandate, commanded by the Demiurge, to be fulfilled by the dead and ab-dead. IT called us forth from the edge of reality - and with their dying breath, rasped out the final truth; the fire is gone, and the world will soon follow.'"
 
 /obj/item/clothing/neck/roguetown/psicross/inhumen/iron
 	desc = "'Zaios Dei.'"
@@ -144,4 +144,4 @@
 	desc = "A gold-embroidered dress shirt specially tailored by the finest tailors in the land for the monarch of Pharos."
 
 /obj/item/clothing/wrists/roguetown/bracers/cloth/naledi
-	desc = "Sheared burlap and cloth, meticulously fashioned around the forearms. Naledian-trained monks rarely share the same fatalistic mindset as their Otavan cousins, and - consequency - tend to be averse with binding their wrists in jagged thorns. Unbloodied fingers tend to work far better with the arcyne, too. </br>'..And so, the great tears that they wept when it took its last breath, the rain of the Weeping, is what marked this era of silence. Fools would tell you that Psydon has died, that they splintered into 'smaller fragments', but that does not make sense. They are everything within and without, they are beyond size and shape. How can everything become something? No, they have merely turned their ear from us. They mourn, for their greatest child and their worst..'"
+	desc = "Sheared burlap and cloth, meticulously fashioned around the forearms. Naledian-trained monks rarely share the same fatalistic mindset as their Otavan cousins, and - consequently - tend to be averse with binding their wrists in jagged thorns. Unbloodied fingers tend to work far better with the arcyne, too. </br>'..And so, the great tears that they wept when it took its last breath, the rain of the Weeping, is what marked this era of silence. Fools would tell you that Psydon has died, that they splintered into 'smaller fragments', but that does not make sense. They are everything within and without, they are beyond size and shape. How can everything become something? No, they have merely turned their ear from us. They mourn, for their greatest child and their worst..'"

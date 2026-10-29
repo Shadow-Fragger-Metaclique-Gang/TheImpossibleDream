@@ -38,7 +38,7 @@
 	list_reagents = list(/datum/reagent/vitae = 2.5)
 
 /obj/item/reagent_containers/lux_impure/attack(mob/living/M, mob/living/user, def_zone)
-	if(M != user || user.used_intent.type == INTENT_HARM || !HAS_TRAIT(M, TRAIT_DEPRAVED)) // I get why they're not subtypes of eachother but also fuck you
+	if(M != user || user.used_intent.type == INTENT_HARM || !HAS_TRAIT(M, TRAIT_DEPRAVED)) // I get why they're not subtypes of each other but also fuck you
 		return ..()
 	var/obj/item/reagent_containers/food/snacks/lux/impure/lux_as_food = new
 	lux_as_food.name = name

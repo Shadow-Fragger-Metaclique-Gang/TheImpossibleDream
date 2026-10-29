@@ -1,5 +1,5 @@
 /datum/language/grenzelhoftian
-	desc = "The primary language of the Grenzelhoft Emperiate, a robust language filled with hearty words and enthusiastic enunciation."
+	desc = "The primary language of the Grenzelhoft Imperiate, a robust language filled with hearty words and enthusiastic enunciation."
 
 /datum/language/oldazurian
 	name = "Old Imperial"

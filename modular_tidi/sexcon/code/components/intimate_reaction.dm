@@ -245,11 +245,11 @@
 		if(devout)
 			return "chastity_receive_devout"
 		if(has_penis_chastity && has_vagina_chastity)
-			return "chastity_intersex_anal_recieve"
+			return "chastity_intersex_anal_receive"
 		if(has_penis_chastity)
-			return "chastity_cock_anal_recieve"
+			return "chastity_cock_anal_receive"
 		if(has_vagina_chastity)
-			return "chastity_vagina_anal_recieve"
+			return "chastity_vagina_anal_receive"
 
 	// Self-touch: the wearer attempting to pleasure themselves through or against the device.
 	// Detected when the acting mob IS the wearer — covers masturbate_cage_penis, masturbate_vagina, etc.

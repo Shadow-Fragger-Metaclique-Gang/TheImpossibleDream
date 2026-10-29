@@ -1,5 +1,5 @@
 /obj/item/clothing/suit/roguetown/armor/brigandine/banneret
-	desc = "A resplendant coat-of-plates, gilded and veiled in dyeable silk. Only the finest of knights within the Midderland have been entrusted with this beautiful article."
+	desc = "A resplendent coat-of-plates, gilded and veiled in dyeable silk. Only the finest of knights within the Midderland have been entrusted with this beautiful article."
 
 /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/heavy
 	desc = "A maille-aketon of steel, comfortably fitted beneath a matching cuirass. Best paired with a padded arming jacket \

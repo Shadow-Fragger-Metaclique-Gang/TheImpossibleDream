@@ -17,4 +17,4 @@
 	Sinistar blotted out Astrata's glare, and when the ashes of His empire were still smoldering. </br>..and to think, it was all a war for the End."
 
 /obj/item/clothing/under/roguetown/platelegs/zizo/heavy
-	desc = "An unstemmable realization of the black manchmal, laminated into thrice-parted leggings worn by only the truest - those, still-existant, sworn in the name of ZIZO. In Her name. In His Suffering. For the return of IT."
+	desc = "An unstemmable realization of the black manchmal, laminated into thrice-parted leggings worn by only the truest - those, still-existent, sworn in the name of ZIZO. In Her name. In His Suffering. For the return of IT."

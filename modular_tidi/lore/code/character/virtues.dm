@@ -18,7 +18,7 @@
 	Nobles vie for power over its Court; sometimes with honey, sometimes with steel. <br><br>All of these souls seek to carve out a piece of what could yet be- to make it what will be.</br>"
 
 /datum/virtue/origin/grenzelhoft
-	name = "Grenzelhoftan"
+	name = "Grenzelhoftian"
 
 /datum/virtue/origin/raneshen
 	origin_desc = "Raneshen resides across the ocean as Grenzelhoft's economic rival: \
@@ -70,7 +70,7 @@
 	\
 	Despite vast differences amongst these races, they all have things in common. Their forms over the generations have garnered darker or \
 	paler complexions, their bodies slightly shorter than their surface dwelling compatriots, dark elves being amongst the tallest species in \
-	the Underdark, despite on average being shorted than an average Hammerheldan humen. Despite this in most cases noticable lack of height, these \
+	the Underdark, despite on average being shorted than an average Hammerheldan humen. Despite this in most cases noticeable lack of height, these \
 	races have also grown sturdier, more resilient and more cautious and keen, out of pure necessity. Survival in these depths demands one's all.	\
 	A fact those of the surface that delve deep into these cavers, tend to forget, resulting in their untimely demise. Or worse.\n<br><br>\
 	\

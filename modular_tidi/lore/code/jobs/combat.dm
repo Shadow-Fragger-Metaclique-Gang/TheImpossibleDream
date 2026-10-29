@@ -43,7 +43,7 @@
 	these lands's supple forests will learn to regret it."
 
 /datum/advclass/noble
-	tutorial = "You are a traveling noble visiting the lands of Pharos, upon the Scar. With wealth, come the poor, ready to pilfer you of your hard earned (inherited) coin, so tread lightly unless you want to meet a grisly end."
+	tutorial = "You are a traveling noble visiting the lands of Pharos, upon the Scar. With wealth, come the poor, ready to pilfer you of your hard-earned (inherited) coin, so tread lightly unless you want to meet a grisly end."
 
 /datum/advclass/noble/knighte
 	tutorial = "You are a knight from a distant land, a scion of a noble house visiting the Scar for one reason or another."

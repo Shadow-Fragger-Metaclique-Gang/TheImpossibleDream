@@ -1,8 +1,8 @@
 /obj/item/reagent_containers/food/snacks/jamtallowslice
-	desc = "A portion of jammy paradise, bearing the same hues as the Pharos' morning skies. It yearns to be savored not by its lonesome, but upon a slice of bread - ideally, butterdoughed or toasted."
+	desc = "A portion of jammy paradise, bearing the same hues as the Pharos' morning skies. It yearns to be savored not by its lonesome, but upon a slice of bread - ideally, bookbread or toasted."
 
 /obj/item/reagent_containers/food/snacks/marmaladeslice
-	desc = "A portion of jammy paradise, bearing the same hues and viscosity as the evening seas under the Scar. It yearns to be savored not by its lonesome, but upon a slice of bread - ideally, butterdoughed or toasted."
+	desc = "A portion of jammy paradise, bearing the same hues and viscosity as the evening seas under the Scar. It yearns to be savored not by its lonesome, but upon a slice of bread - ideally, bookbread or toasted."
 
 /obj/item/reagent_containers/food/snacks/grown/sugarshape/dmark
 	name = "sugarshape of noble mark"

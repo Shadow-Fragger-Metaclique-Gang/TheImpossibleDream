@@ -11,7 +11,7 @@
 	display_title = "Docker"
 
 /datum/job/roguetown/tapster
-	tutorial = "You have a simple role at the Old Marks' Tavern; please. You wait tables and help guests, clean the rooms, grow and brew more drink, and assist in the kitchens as need be. Bring a smile to the masses--and those cheapsake townsfolk and adventures might just give you an extra coin...assuming you've not already pilfered their pouch while they're in a drunken stupor off your latest brew."
+	tutorial = "You have a simple role at the Old Marks' Tavern; please. You wait tables and help guests, clean the rooms, grow and brew more drink, and assist in the kitchens as need be. Bring a smile to the masses--and those cheapskate townsfolk and adventurers might just give you an extra coin...assuming you've not already pilfered their pouch while they're in a drunken stupor off your latest brew."
 
 /datum/advclass/tapster
-	tutorial = "You have a simple role at the Old Marks' Tavern; please. You wait tables and help guests, clean the rooms, grow and brew more drink, and assist in the kitchens as need be. Bring a smile to the masses--and those cheapsake townsfolk and adventures might just give you an extra coin...assuming you've not already pilfered their pouch while they're in a drunken stupor off your latest brew."
+	tutorial = "You have a simple role at the Old Marks' Tavern; please. You wait tables and help guests, clean the rooms, grow and brew more drink, and assist in the kitchens as need be. Bring a smile to the masses--and those cheapskate townsfolk and adventurers might just give you an extra coin...assuming you've not already pilfered their pouch while they're in a drunken stupor off your latest brew."
