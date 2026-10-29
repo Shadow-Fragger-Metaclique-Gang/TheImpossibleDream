@@ -132,7 +132,7 @@
 
 		is_jumping = TRUE // Mark as jumping to differentiate from being thrown
 // [SURREALIS-EDIT] - THROWING_REFACTOR - Turn this into a callback to make it less laggy.
-/*
+/* ORIGINAL
 		if(jextra)
 			throw_at(A, jrange, 1, src, spin = FALSE)
 			while(src.throwing)
@@ -154,6 +154,7 @@
 			T.Entered(src)
 */
 		throw_at(A, jrange, 1, src, spin = FALSE, callback = CALLBACK(src, PROC_REF(after_jump), jextra))
+// [/SURREALIS-EDIT]
 	else
 		animate(src, pixel_z = pixel_z + 6, time = 1)
 		animate(pixel_z = prev_pixel_z, transform = turn(transform, pick(-12, 0, 12)), time=2)
@@ -182,7 +183,7 @@
 		if(T.landsound)
 			playsound(T, T.landsound, 100, FALSE)
 		T.Entered(src)
-// [SURREALIS-EDIT] - THROWING_REFACTOR
+// [/SURREALIS-ADD] - THROWING_REFACTOR
 /mob/living/proc/get_jump_range()
 	if(!check_armor_skill() || get_item_by_slot(SLOT_LEGCUFFED))
 		return 1

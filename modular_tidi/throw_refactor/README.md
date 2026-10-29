@@ -4,11 +4,9 @@
 
 **Created in:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/98
 
-**Major changes:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/98
+**Major changes:**
 
 This is a near total rewrite of how thrown objects path in flight, in addition to adjusting their gliding behavior.
-
-## Werewolf Tweaks
 
 ## Layout
 

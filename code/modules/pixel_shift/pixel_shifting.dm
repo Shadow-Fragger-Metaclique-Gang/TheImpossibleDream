@@ -84,6 +84,6 @@
 // [SURREALIS-EDIT] - THROWING_REFACTOR - bugfix
 //	if(!istype(mover, /obj/projectile) && !mover?.throwing && passthroughable & get_dir(src, mover))
 	if(mover && !istype(mover, /obj/projectile) && !mover?.throwing && passthroughable & get_dir(src, mover))
-// [SURREALIS-ADD] - THROWING_REFACTOR
+// [/SURREALIS-ADD] - THROWING_REFACTOR
 		return TRUE
 	return ..()

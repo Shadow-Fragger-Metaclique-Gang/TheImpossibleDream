@@ -335,7 +335,7 @@
 			. = ..()
 		else //Diagonal move, split it into cardinal moves
 // [SURREALIS-EDIT] - THROWING_REFACTOR - This isn't actually necessary really, it's just complete shitcode so i had to rewrite it.
-/*
+/* ORIGINAL
 			if (direct & NORTH)
 				if (direct & EAST)
 					if(lastcardinal == NORTH)
@@ -406,7 +406,7 @@
 			else
 				direction_to_move = direct & pick( (NORTH | SOUTH), (EAST | WEST) )
 				. = step(src, direction_to_move)
-// [SURREALIS-EDIT] - THROWING_REFACTOR
+// [/SURREALIS-EDIT] - THROWING_REFACTOR
 	if(!loc || (loc == oldloc && oldloc != newloc))
 		last_move = 0
 		return

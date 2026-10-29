@@ -65,7 +65,7 @@ SUBSYSTEM_DEF(throwing)
 	var/extra = FALSE
 // [SURREALIS-ADD] - THROWING_REFACTOR - Path the item is going to travel in flight.
 	var/list/path = list()
-// [SURREALIS-ADD] - THROWING_REFACTOR
+// [/SURREALIS-ADD] - THROWING_REFACTOR
 /datum/thrownthing/New(thrownthing, target, target_turf, init_dir, maxrange, speed, thrower, diagonals_first, force, callback, target_zone, extra)
 	. = ..()
 	src.thrownthing = thrownthing
@@ -97,7 +97,7 @@ SUBSYSTEM_DEF(throwing)
 	thrownthing.allow_diagonal_movement = TRUE
 	path.Add(getline(get_turf(thrownthing), target_turf))
 	path -= path[1] //cut initial turf, we don't need it.
-// [SURREALIS-ADD] - THROWING_REFACTOR
+// [/SURREALIS-ADD] - THROWING_REFACTOR
 ///Defines the datum behavior on the thrownthing's qdeletion event.
 /datum/thrownthing/proc/on_thrownthing_qdel(atom/movable/source, force)
 	SIGNAL_HANDLER
@@ -108,7 +108,7 @@ SUBSYSTEM_DEF(throwing)
 // [SURREALIS-EDIT] - THROWING_REFACTOR - bugfix
 	//if (!AM ||!isturf(AM.loc) || !AM.throwing)
 	if (!AM ||!isturf(AM.loc) || !AM.throwing)
-// [SURREALIS-EDIT] - THROWING_REFACTOR
+// [/SURREALIS-EDIT] - THROWING_REFACTOR
 		finalize()
 		return
 
@@ -126,7 +126,7 @@ SUBSYSTEM_DEF(throwing)
 // [SURREALIS-ADD] - THROWING_REFACTOR - If the path is somehow not set up, make sure to do that.
 	if(!length(path))
 		init_path()
-// [SURREALIS-ADD] - THROWING_REFACTOR
+// [/SURREALIS-ADD] - THROWING_REFACTOR
 
 	//calculate how many tiles to move, making up for any missed ticks.
 	var/tilestomove = CEILING(min(((((world.time+world.tick_lag) - start_time + delayed_time) * speed) - (dist_travelled ? dist_travelled : -1)), speed*MAX_TICKS_TO_MAKE_UP) * (world.tick_lag * SSthrowing.wait), 1)
@@ -142,7 +142,7 @@ SUBSYSTEM_DEF(throwing)
 			return
 
 // [SURREALIS-EDIT] - THROWING_REFACTOR
-/*		if (dist_travelled <= max(dist_x, dist_y)) //if we haven't reached the target yet we home in on it, otherwise we use the initial direction
+/* ORIGINAL		if (dist_travelled <= max(dist_x, dist_y)) //if we haven't reached the target yet we home in on it, otherwise we use the initial direction
 			step = get_step(AM, get_dir(AM, target_turf))
 		else
 			step = get_step(AM, init_dir)
@@ -155,14 +155,14 @@ SUBSYSTEM_DEF(throwing)
 		step = get_step(AM, get_dir(AM, path[1]))
 
 		path -= path[1] //Remove the first entry, and shift the entire stack left. This means path[1] is always the next turf.
-// [SURREALIS-EDIT] - THROWING_REFACTOR
+// [/SURREALIS-EDIT] - THROWING_REFACTOR
 		if (!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 			finalize()
 			return
 // [SURREALIS-EDIT] - THROWING_REFACTOR
 //		AM.Move(step, get_dir(AM, step), DELAY_TO_GLIDE_SIZE(1 / speed))
 		AM.Move(step, get_dir(AM, step), MOVEMENT_ADJUSTED_GLIDE_SIZE(1 / speed,  MC_AVERAGE_FAST(1, max((world.time-SSthrowing.last_fire) / SSthrowing.wait, 1))))
-// [SURREALIS-EDIT] - THROWING_REFACTOR
+// [/SURREALIS-EDIT] - THROWING_REFACTOR
 		if (!AM.throwing) // we hit something during our move
 			finalize(hit = TRUE)
 			return
@@ -180,7 +180,7 @@ SUBSYSTEM_DEF(throwing)
 		return
 // [SURREALIS-ADD] - THROWING_REFACTOR
 	thrownthing.allow_diagonal_movement = FALSE
-// [SURREALIS-EDIT] - THROWING_REFACTOR
+// [/SURREALIS-EDIT] - THROWING_REFACTOR
 	thrownthing.throwing = null
 	if (!hit)
 		for (var/thing in get_turf(thrownthing)) //looking for our target on the turf we land on.
