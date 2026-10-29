@@ -1,6 +1,6 @@
 /datum/runeritual/god/hex/zizo/false_witness
 	name = "Hex of the False Witness"
-	flavor = "Profane your victim's blood, ensuring it returns positive results from thaumaturgic investigation."
+	flavor = "Profane your victim's blood, ensuring it returns positive results from haematological investigation."
 	tier = SKILL_LEVEL_NOVICE
 	awakened_heretic_only = TRUE
 	layout = list(

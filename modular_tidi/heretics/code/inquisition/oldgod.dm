@@ -63,7 +63,7 @@
 	chargetime = 0
 	recharge_time = 1 SECONDS
 	miracle = TRUE
-	antimagic_allowed = TRUE
+	antimagic_allowed = TRUE // unlike PURIFY, we do want this to be antimagic allowed because otherwise you're just gonna eat graggar's antimagic and be fucked
 	var/datum/hex/tracked_hex
 
 /obj/effect/proc_holder/spell/invoked/psydondiscern/cast(list/targets, mob/living/carbon/human/user)

@@ -726,11 +726,6 @@
 
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, .)
 
-	// [SURREALIS-ADD] - HERETIC - DOLLMAKER EXAMINE TRACKING
-	var/mob/living/carbon/human/examiner = user
-	examiner.last_examined = src
-	// [/SURREALIS-ADD]
-
 /// Zombies always show up as deadites to others, even behind masks. OOC hint, not metagaming: you can very clearly tell what this abomination is.
 /mob/living/carbon/human/proc/deadite_examine()
 	. = list()

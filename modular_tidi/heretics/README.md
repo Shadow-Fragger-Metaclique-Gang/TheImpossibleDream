@@ -4,6 +4,8 @@
 
 **Created in:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/60
 
+**Related PRs:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/94
+
 **Major changes:**
 
 ## Heretics
@@ -23,7 +25,7 @@ Also adds hexes. Awakened heretics can hex others via rites to give them debilit
 - `code/rites/ascension.dm`: the Rite of Ascension, which progresses heretic objectives.
 - `code/rites/dollmaker.dm`: dollmaker rite, which is needed if you want to do any kind of hexing at all.
 - `code/rites/_hex_rite.dm`: boiler plate hexing ritual.
-- `code/rites/inhumen/[INSERT GOD NAME HERE]/hexes/NAME.dm`: the various hexing rituals
+- `code/rites/inhumen/[INSERT GOD NAME HERE]/hexes/[INSERT HEX NAME HERE].dm`: the various hexing rituals
 - `code/heretic/heretic_path.dm`: an awakened heretic's tier, current objective and tier rewards.
 - `code/heretic/corruption.dm`: blood corruption which is raised by doing evil crap and is used for identifying heretics by the inquisition.
 - `code/heretic/engorged_heart.dm`: engorged hearts, which are an objective hook used by Graggar heretic objectives. You can eat them as any Graggar heretic for a stat buff.
@@ -40,9 +42,11 @@ Also adds hexes. Awakened heretics can hex others via rites to give them debilit
 - `code/inquisition/oldgod.dm`: Absolver PURIFY and DISCERN miracle. PURIFY lets the absolver suffer from the same curse as the target, and DISCERN lets them vaguely track the focus of any curse they suffer from. the absolver is encouraged to go eat curses for breakfast so he can find the focus
 - `code/inquisition/indexer.dm`: the reworked indexer, which quietly draws blood a la Lifeweb inquisition and fills reusable blood vials for testing. Indexers are no longer attached to writs. Blood vials replace the old indexer's functionality for the most part.
 - `code/inquisition/assayer.dm`: the hematic assayer, used for testing extracted blood vials for blood corruption.
+- `code/inquisition/absolutionist.dm`: gives the absolver their new PURIFY and DISCERN miracles
 - `code/carriageman.dm`: the carriageman's toll refreshes rite cooldowns instead of getting rid of the rites expended debuff.
 - `code/runes.dm`: the list of god runes.
 - `code/chalk.dm`: ritual chalk offers every rune to everyone.
+- `code/examine.dm`: examine override for flesh monolith & dollmaker examine tracking
 - `code/ritualism/ritualism_skill.dm`: the Ritualism skill.
 - `code/ritualism/ritualist_grants.dm`: everything that granted the ritualist trait grants Expert Ritualism instead.
 
@@ -50,8 +54,6 @@ Also adds hexes. Awakened heretics can hex others via rites to give them debilit
 
 - `code/datums/mind.dm`: the Notes panel lists a heretic's current objective under Objectives.
 - `tgui/packages/tgui/styles/main.scss`: loads the heretic theme and the ritual menu's styles.
-- `code/modules/jobs/job_types/roguetown/Inquisition/absolutionist.dm`: Gives absolver the PURIFY and DISCERN miracle
-- `code/modules/mob/living/carbon/human/examine.dm`: last examined tracking for dollmaker rite
 
 New TGUI files:
 

@@ -1,6 +1,7 @@
 /datum/runeritual/god/hex/graggar/battle_mage
 	name = "Hex of the Battle Mage"
 	flavor = "Call upon GRAGGAR to force the masters of the arcane into glorious, hand-to-hand combat! They shall bathe in blood, for HE demands it!"
+	desc = "Ineffective on those who do not practice thaumaturgy or those who have already been afflicted by this hex."
 	tier = SKILL_LEVEL_APPRENTICE
 	awakened_heretic_only = TRUE
 	layout = list(
