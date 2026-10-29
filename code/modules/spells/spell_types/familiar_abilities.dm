@@ -642,7 +642,7 @@
 		return TRUE
 
 /obj/effect/proc_holder/spell/invoked/fire_obelisk_beam/drakeling
-	name = "Abberant Beam"
+	name = "Aberrant Beam"
 	desc = "Show these fools the power of the void!"
 	recharge_time = 30 SECONDS
 	overlay_icon = 'icons/mob/actions/mage_shared.dmi'
@@ -687,7 +687,7 @@
 				if(issimple(hit_mob))
 					hit_mob.apply_damage(damage = 15, damagetype = BURN)
 				else
-					hit_mob.apply_damage(damage = 5, damagetype = BURN) // this is literally one-fifth of the normal abberant beam you will not be fragging with this
+					hit_mob.apply_damage(damage = 5, damagetype = BURN) // this is literally one-fifth of the normal aberrant beam you will not be fragging with this
 				to_chat(hit_mob, span_userdanger("You're blasted by [user]'s aberrant beam!"))
 		if(!length(user.beam_parts))
 			return FALSE

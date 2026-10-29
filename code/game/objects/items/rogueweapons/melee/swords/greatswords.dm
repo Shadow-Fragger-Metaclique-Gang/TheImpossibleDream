@@ -271,7 +271,7 @@
 
 /obj/item/rogueweapon/greatsword/bsword/psy
 	name = "forgotten blade"
-	desc = "'Let His name be naught but forgot'n.' </br>The remnants of a legendary champion, who's name has been lost to the annals of tyme. Even so, the tarnished \
+	desc = "'Let His name be naught but forgot'n.' </br>The remnants of a legendary champion, whose name has been lost to the annals of tyme. Even so, the tarnished \
 	silver still glimmers with otherworldly strength; to exorcise, to eradicate, and to endure."
 	icon_state = "oldpsybroadsword"
 	force = 15

@@ -36,7 +36,7 @@
 	// Allows prayer near psycross
 	for(var/obj/structure/fluff/psycross/cross in view(4, get_turf(follower)))
 		if(cross.divine == FALSE)
-			to_chat(follower, span_danger("That defiled cross interupts my prayers!"))
+			to_chat(follower, span_danger("That defiled cross interrupts my prayers!"))
 			return FALSE
 		return TRUE
 	// Allows prayer in the church
@@ -46,8 +46,8 @@
 	for(var/obj/structure/fluff/statue/knight/K in view(4, get_turf(follower)))
 		return TRUE
 	// [SURREALIS-EDIT] - LORE
-	// to_chat(follower, span_danger("For Ravox to hear my prayer I must either pray within the church, near a psycross, or near a knighly statue in memorium of the fallen..")) // SURREALIS-EDIT - ORIGINAL
-	to_chat(follower, span_danger("For Ravox to hear my prayer I must either pray within the temple, near a psycross, or near a knighly statue in memorium of the fallen.."))
+	// to_chat(follower, span_danger("For Ravox to hear my prayer I must either pray within the church, near a psycross, or near a knightly statue in memoriam of the fallen..")) // SURREALIS-EDIT - ORIGINAL
+	to_chat(follower, span_danger("For Ravox to hear my prayer I must either pray within the temple, near a psycross, or near a knightly statue in memoriam of the fallen.."))
 	// [/SURREALIS-EDIT]
 	return FALSE
 

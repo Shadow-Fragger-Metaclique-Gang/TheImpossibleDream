@@ -983,7 +983,7 @@
 					H.update_body()
 					should_update = TRUE
 			else
-				to_chat(H, span_warning("You don't have a ears!"))
+				to_chat(H, span_warning("You don't have ears!"))
 		if("Horns")
 			var/list/valid_horns = list("none")
 			for(var/horns_path in subtypesof(/datum/sprite_accessory/horns))

@@ -2,7 +2,7 @@
 	name = "Arcyne Potential"
 	desc = "I am talented in the Arcyne arts, expanding my capacity for magic. I have become more intelligent from its studies. Other effects depends on what training I chose to focus on at a later age."
 	ui_fa_icon = "hand-sparkles"
-	custom_text = "Classes that has a combat trait (Medium / Heavy Armor Training, Dodge Expert, Critical Resistance, Thick Blooded, Painless or Enduring) get only prestidigitation. Everyone else get +3 utility points and Arcyne Training if they don't have any Arcyne."
+	custom_text = "Classes that have a combat trait (Medium / Heavy Armor Training, Dodge Expert, Critical Resistance, Thick Blooded, Painless or Enduring) get only prestidigitation. Everyone else get +3 utility points and Arcyne Training if they don't have any Arcyne."
 	added_skills = list(list(/datum/skill/magic/arcane, 1, 6), list(/datum/skill/misc/reading, 1, 6))
 
 /datum/virtue/combat/magical_potential/apply_to_human(mob/living/carbon/human/recipient)
@@ -216,7 +216,7 @@
 					ADD_TRAIT(recipient, TRAIT_NASTY_EATER, TRAIT_VIRTUE)
 					ADD_TRAIT(recipient, TRAIT_NITEVISION, TRAIT_VIRTUE)
 					ADD_TRAIT(recipient, TRAIT_SILVER_WEAK, TRAIT_VIRTUE)
-					to_chat(recipient, "You are no longer one among the nite creechers, by the ingenuinity of HIS followers.")
+					to_chat(recipient, "You are no longer one among the nite creechers, by the ingenuity of HIS followers.")
 
 					// inquisition trauma goes here
 					if(!(recipient.patron?.type == /datum/patron/old_god))
