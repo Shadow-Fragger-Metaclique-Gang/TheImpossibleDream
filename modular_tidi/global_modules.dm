@@ -1,4 +1,5 @@
 // #include "accent\accent.dm" Fucked by Sep-24 parity.
+#include "additional_skintones\_additional_skintones.dme"
 #include "belt_keys\_belt_keys.dme"
 #include "combat_music\_combat_music.dme"
 #include "commandbar\_commandbar.dme"
