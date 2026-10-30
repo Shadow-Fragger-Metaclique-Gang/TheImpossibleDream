@@ -35,3 +35,9 @@
 	var/direction = uppertext(tracked_info["direction"])
 	var/proximity = tracked_info["distance"] > 15 ? "FAR." : "CLOSE."
 	say("[direction]. [proximity]")
+
+/datum/inqports/articles/assayer
+	name = "BLOODHOUND"
+	item_type = /obj/item/inqarticles/bloodhound
+	marquescost = 8
+	maximum = 1
