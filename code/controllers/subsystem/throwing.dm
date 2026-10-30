@@ -65,7 +65,7 @@ SUBSYSTEM_DEF(throwing)
 	var/extra = FALSE
 // [SURREALIS-ADD] - THROWING_REFACTOR - Path the item is going to travel in flight.
 	var/list/path = list()
-// [/SURREALIS-ADD] - THROWING_REFACTOR
+// [/SURREALIS-ADD]
 /datum/thrownthing/New(thrownthing, target, target_turf, init_dir, maxrange, speed, thrower, diagonals_first, force, callback, target_zone, extra)
 	. = ..()
 	src.thrownthing = thrownthing
