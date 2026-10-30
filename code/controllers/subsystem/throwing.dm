@@ -155,7 +155,7 @@ SUBSYSTEM_DEF(throwing)
 		step = get_step(AM, get_dir(AM, path[1]))
 
 		path -= path[1] //Remove the first entry, and shift the entire stack left. This means path[1] is always the next turf.
-// [/SURREALIS-EDIT] - THROWING_REFACTOR
+// [/SURREALIS-EDIT]
 		if (!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 			finalize()
 			return
