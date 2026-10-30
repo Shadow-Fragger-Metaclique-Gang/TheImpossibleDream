@@ -142,7 +142,8 @@ SUBSYSTEM_DEF(throwing)
 			return
 
 // [SURREALIS-EDIT] - THROWING_REFACTOR
-/* ORIGINAL		if (dist_travelled <= max(dist_x, dist_y)) //if we haven't reached the target yet we home in on it, otherwise we use the initial direction
+/* ORIGINAL
+		if (dist_travelled <= max(dist_x, dist_y)) //if we haven't reached the target yet we home in on it, otherwise we use the initial direction
 			step = get_step(AM, get_dir(AM, target_turf))
 		else
 			step = get_step(AM, init_dir)
