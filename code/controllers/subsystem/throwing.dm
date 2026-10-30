@@ -162,7 +162,7 @@ SUBSYSTEM_DEF(throwing)
 // [SURREALIS-EDIT] - THROWING_REFACTOR
 //		AM.Move(step, get_dir(AM, step), DELAY_TO_GLIDE_SIZE(1 / speed))
 		AM.Move(step, get_dir(AM, step), MOVEMENT_ADJUSTED_GLIDE_SIZE(1 / speed,  MC_AVERAGE_FAST(1, max((world.time-SSthrowing.last_fire) / SSthrowing.wait, 1))))
-// [/SURREALIS-EDIT] - THROWING_REFACTOR
+// [/SURREALIS-EDIT]
 		if (!AM.throwing) // we hit something during our move
 			finalize(hit = TRUE)
 			return
