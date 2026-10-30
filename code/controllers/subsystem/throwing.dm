@@ -108,7 +108,7 @@ SUBSYSTEM_DEF(throwing)
 // [SURREALIS-EDIT] - THROWING_REFACTOR - bugfix
 	//if (!AM ||!isturf(AM.loc) || !AM.throwing) - ORIGINAL
 	if (!AM ||!isturf(AM.loc) || !AM.throwing)
-// [/SURREALIS-EDIT] - THROWING_REFACTOR
+// [/SURREALIS-EDIT]
 		finalize()
 		return
 
