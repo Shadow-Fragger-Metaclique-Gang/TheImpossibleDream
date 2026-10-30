@@ -36,7 +36,7 @@
 	var/proximity = tracked_info["distance"] > 15 ? "FAR." : "CLOSE."
 	say("[direction]. [proximity]")
 
-/datum/inqports/articles/assayer
+/datum/inqports/articles/bloodhound
 	name = "BLOODHOUND"
 	item_type = /obj/item/inqarticles/bloodhound
 	marquescost = 8
