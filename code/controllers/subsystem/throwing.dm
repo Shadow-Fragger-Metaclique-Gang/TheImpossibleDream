@@ -97,7 +97,7 @@ SUBSYSTEM_DEF(throwing)
 	thrownthing.allow_diagonal_movement = TRUE
 	path.Add(getline(get_turf(thrownthing), target_turf))
 	path -= path[1] //cut initial turf, we don't need it.
-// [/SURREALIS-ADD] - THROWING_REFACTOR
+// [/SURREALIS-ADD]
 ///Defines the datum behavior on the thrownthing's qdeletion event.
 /datum/thrownthing/proc/on_thrownthing_qdel(atom/movable/source, force)
 	SIGNAL_HANDLER
