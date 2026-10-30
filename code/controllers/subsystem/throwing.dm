@@ -180,7 +180,7 @@ SUBSYSTEM_DEF(throwing)
 		return
 // [SURREALIS-ADD] - THROWING_REFACTOR
 	thrownthing.allow_diagonal_movement = FALSE
-// [/SURREALIS-EDIT] - THROWING_REFACTOR
+// [/SURREALIS-ADD]
 	thrownthing.throwing = null
 	if (!hit)
 		for (var/thing in get_turf(thrownthing)) //looking for our target on the turf we land on.
