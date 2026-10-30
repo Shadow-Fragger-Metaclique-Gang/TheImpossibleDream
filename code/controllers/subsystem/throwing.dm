@@ -137,7 +137,7 @@ SUBSYSTEM_DEF(throwing)
 			finalize()
 			return
 		if ((dist_travelled >= maxrange || AM.loc == target_turf || path[1] == null))
-// [SURREALIS-EDIT] - THROWING_REFACTOR
+// [/SURREALIS-EDIT] - THROWING_REFACTOR
 			finalize()
 			return
 
