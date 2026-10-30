@@ -183,7 +183,7 @@
 		if(T.landsound)
 			playsound(T, T.landsound, 100, FALSE)
 		T.Entered(src)
-// [/SURREALIS-ADD] - THROWING_REFACTOR
+// [/SURREALIS-ADD]
 /mob/living/proc/get_jump_range()
 	if(!check_armor_skill() || get_item_by_slot(SLOT_LEGCUFFED))
 		return 1
