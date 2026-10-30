@@ -30,7 +30,7 @@
 	var/moving_diagonally = 0 //0: not doing a diagonal move. 1 and 2: doing the first/second step of the diagonal move
 // [SURREALIS-ADD] - THROWING_REFACTOR
 	var/allow_diagonal_movement = FALSE
-// [SURREALIS-ADD] - THROWING_REFACTOR
+// [/SURREALIS-ADD]
 	var/lastcardinal = 0
 	var/lastcardpress = 0
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
