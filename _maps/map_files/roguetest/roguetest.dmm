@@ -1175,7 +1175,7 @@
 /turf/open/floor/rogue/cobble,
 /area/rogue/indoors/shelter/mountains/decap)
 "CU" = (
-/turf/closed/wall/mineral/rogue/decostone/long,
+/turf/closed/wall/mineral/rogue/decostone/,
 /area/rogue/indoors)
 "CZ" = (
 /turf/open/floor/rogue/dirt/road,
@@ -1593,9 +1593,7 @@
 /turf/open/floor/rogue/dirt/road,
 /area/rogue/outdoors)
 "OI" = (
-/turf/closed/wall/mineral/rogue/decostone/long{
-	dir = 1
-	},
+/turf/closed/wall/mineral/rogue/decostone/,
 /area/rogue/indoors/town/manor)
 "Pc" = (
 /obj/structure/table/wood{

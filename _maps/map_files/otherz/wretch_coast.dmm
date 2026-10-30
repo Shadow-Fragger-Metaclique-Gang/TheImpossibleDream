@@ -2393,7 +2393,7 @@
 /area/rogue/under/cave/inhumen)
 "kd" = (
 /obj/structure/fluff/walldeco/psybanner/zizo,
-/turf/closed/wall/mineral/rogue/decostone/long,
+/turf/closed/wall/mineral/rogue/decostone/,
 /area/rogue/under/cave/inhumen)
 "ke" = (
 /obj/structure/flora/roguegrass/bush/wall/tall,
@@ -5837,11 +5837,6 @@
 /obj/machinery/light/rogue/torchholder/c,
 /turf/open/floor/rogue/twig,
 /area/rogue/indoors/banditcamp)
-"xZ" = (
-/turf/closed/wall/mineral/rogue/decostone/mossy/long{
-	dir = 1
-	},
-/area/rogue/under/cave/inhumen)
 "ya" = (
 /obj/structure/curtain/black,
 /obj/structure/stairs{
@@ -6735,9 +6730,6 @@
 /obj/effect/decal/cleanable/dirt/cobweb/cobweb2,
 /turf/open/floor/rogue/tile/bfloorz,
 /area/rogue/indoors/vampire_manor)
-"BB" = (
-/turf/closed/wall/mineral/rogue/decostone/mossy/long,
-/area/rogue/under/cave/inhumen)
 "BC" = (
 /turf/open/floor/rogue/naturalstone,
 /area/rogue/outdoors/woods)
@@ -11686,7 +11678,7 @@
 /turf/open/floor/carpet/royalblack,
 /area/rogue/indoors/vampire_manor)
 "WT" = (
-/turf/closed/wall/mineral/rogue/decostone/long,
+/turf/closed/wall/mineral/rogue/decostone/,
 /area/rogue/under/cave/inhumen)
 "WU" = (
 /obj/structure/closet/crate/chest/gold,
@@ -31817,7 +31809,7 @@ fB
 fq
 kb
 Ua
-xZ
+Xz
 Xm
 IL
 UM
@@ -48052,7 +48044,7 @@ IL
 ap
 ap
 ap
-xZ
+Xz
 Pv
 Aw
 Pv
@@ -48314,8 +48306,8 @@ ap
 ap
 ap
 Xz
-BB
-BB
+Xz
+Xz
 WT
 Ic
 WT
@@ -48978,7 +48970,7 @@ de
 IN
 Zl
 KU
-xZ
+Xz
 ap
 IL
 UM

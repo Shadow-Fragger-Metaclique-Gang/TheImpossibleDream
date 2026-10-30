@@ -1,0 +1,13 @@
+/turf/closed/wall/mineral/pipe{dir = @ANY} : /turf/closed/wall/mineral/pipe
+/turf/closed/wall/mineral/pipe{icon_state = @ANY} : /turf/closed/wall/mineral/pipe
+/turf/closed/wall/mineral/rogue/decostone{dir = @ANY} : /turf/closed/wall/mineral/rogue/decostone
+/turf/closed/wall/mineral/rogue/decostone{icon_state = @ANY} : /turf/closed/wall/mineral/rogue/decostone
+/turf/open/floor/rogue/cobblerock : /turf/open/floor/rogue/cobblerock
+/turf/closed/wall/mineral/rogue/decostone/mossy/long : /turf/closed/wall/mineral/rogue/decostone/mossy
+/turf/closed/wall/mineral/rogue/decostone/mossy/end : /turf/closed/wall/mineral/rogue/decostone/mossy
+/turf/closed/wall/mineral/rogue/decostone/center : /turf/closed/wall/mineral/rogue/decostone/
+/turf/closed/wall/mineral/rogue/decostone/end : /turf/closed/wall/mineral/rogue/decostone/
+/turf/closed/wall/mineral/rogue/decostone/end/north : /turf/closed/wall/mineral/rogue/decostone/
+/turf/closed/wall/mineral/rogue/decostone/end/east : /turf/closed/wall/mineral/rogue/decostone/
+/turf/closed/wall/mineral/rogue/decostone/end/west : /turf/closed/wall/mineral/rogue/decostone/
+/turf/closed/wall/mineral/rogue/decostone/long : /turf/closed/wall/mineral/rogue/decostone/

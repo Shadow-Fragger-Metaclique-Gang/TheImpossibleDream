@@ -24,11 +24,10 @@
 	var/obj/effect/overlay/water/top/water_top_overlay
 	bullet_sizzle = TRUE
 	bullet_bounce_sound = null //needs a splashing sound one day.
-	smooth = SMOOTH_MORE
-	// cardinal_smooth()/roguesmooth() only ever reads cardinal adjacency bits - see the same note
+
+	// cardinal_smooth()/verdantsmooth() only ever reads cardinal adjacency bits - see the same note
 	// on /turf/open/floor/rogue.
-	smooth_diag = FALSE
-	canSmoothWith = list(/turf/closed/mineral,/turf/closed/wall/mineral/rogue, /turf/open/floor/rogue)
+//	canSmoothWith = list(/turf/closed/mineral,/turf/closed/wall/mineral/rogue, /turf/open/floor/rogue)
 	footstep = null
 	barefootstep = null
 	clawfootstep = null
@@ -87,7 +86,7 @@
 	if(water_top_overlay)
 		water_top_overlay.color = water_color
 		water_top_overlay.icon_state = "top[water_level]"
-
+	verdantsmooth()
 /turf/open/water/Exited(atom/movable/AM, atom/newloc)
 	. = ..()
 	if(isliving(AM) && !AM.throwing)
@@ -180,10 +179,9 @@
 			O.extinguish()
 
 
-/turf/open/water/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
 
-/turf/open/water/roguesmooth(adjacencies)
+
+/turf/open/water/verdantsmooth(adjacencies)
 	var/list/Yeah = ..()
 	if(water_overlay)
 		water_overlay.cut_overlays(TRUE)

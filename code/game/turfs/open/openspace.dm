@@ -28,17 +28,12 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	var/can_cover_up = TRUE
 	var/can_build_on = TRUE
 	dynamic_lighting = 1
-	canSmoothWith = list(/turf/closed/mineral,/turf/closed/wall/mineral/rogue, /turf/open/floor/rogue)
-	smooth = SMOOTH_MORE
-	// cardinal_smooth()/roguesmooth() only ever reads cardinal adjacency bits - see the same note
+//	canSmoothWith = list(/turf/closed/mineral,/turf/closed/wall/mineral/rogue, /turf/open/floor/rogue)
 	// on /turf/open/floor/rogue.
-	smooth_diag = FALSE
 	neighborlay_override = "staticedge"
 
-/turf/open/transparent/openspace/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
 
-/turf/open/transparent/openspace/roguesmooth(adjacencies)
+/turf/open/transparent/openspace/verdantsmooth(adjacencies)
 	var/list/Yeah = ..()
 	for(var/O in Yeah)
 		var/mutable_appearance/M = mutable_appearance(icon, O)
@@ -341,7 +336,6 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	density = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	dynamic_lighting = 0
-	smooth = SMOOTH_FALSE
 
 /turf/closed/sky_void/Initialize(mapload)
 	. = ..()
