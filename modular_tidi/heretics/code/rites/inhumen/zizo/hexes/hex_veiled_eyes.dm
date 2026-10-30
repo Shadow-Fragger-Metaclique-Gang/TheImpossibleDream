@@ -2,10 +2,12 @@
 	name = "Hex of the Veiled Eyes"
 	desc = "Your victim's vision will be harshly reduced."
 	flavor = "Cloak your enemy's vision with lingering shadows, making it challenging to see the world as it is."
-	tier = SKILL_LEVEL_NOVICE
+	tier = SKILL_LEVEL_APPRENTICE
 	awakened_heretic_only = TRUE
 	layout = list(
+		"NW" = /obj/item/natural/cloth,
 		"N" = /obj/item/organ/eyes,
+		"NE" = /obj/item/natural/cloth,
 		"C" = /obj/item/wax_doll,
 		"S" = /obj/item/candle
 		)

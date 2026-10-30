@@ -1,14 +1,14 @@
 /datum/runeritual/god/hex/baotha/soulbound
 	name = "\improper Hex of the Soulbound"
-	flavor = "Calls upon Baotha to unite your two targets, so that they may share life's joys and sorrows."
+	flavor = "Calls upon Baotha to unite your two targets, so that they may share lyfe's joys and sorrows."
 	tier = SKILL_LEVEL_JOURNEYMAN // This is quite griefy
 	awakened_heretic_only = TRUE
 	layout = list(
-		"N" = /obj/item/needle, // expensive because, once again, this is quite the griefy hex
+		"N" = /obj/item/organ/heart, // expensive because, once again, this is quite the griefy hex
 		"W" = /obj/item/wax_doll,
 		"E" = /obj/item/wax_doll,
 		"C" = list(/obj/item/reagent_containers/lux, /obj/item/reagent_containers/lux_impure),
-		"S" = /obj/item/organ/heart
+		"S" = /obj/item/needle
 		)
 	chant_lines = list(
 	"A shared joy is doubled bliss!",
