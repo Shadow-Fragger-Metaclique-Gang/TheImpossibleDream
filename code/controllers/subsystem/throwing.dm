@@ -126,7 +126,7 @@ SUBSYSTEM_DEF(throwing)
 // [SURREALIS-ADD] - THROWING_REFACTOR - If the path is somehow not set up, make sure to do that.
 	if(!length(path))
 		init_path()
-// [/SURREALIS-ADD] - THROWING_REFACTOR
+// [/SURREALIS-ADD]
 
 	//calculate how many tiles to move, making up for any missed ticks.
 	var/tilestomove = CEILING(min(((((world.time+world.tick_lag) - start_time + delayed_time) * speed) - (dist_travelled ? dist_travelled : -1)), speed*MAX_TICKS_TO_MAKE_UP) * (world.tick_lag * SSthrowing.wait), 1)
