@@ -123,6 +123,10 @@
 	using.hud = src
 	static_inventory += using
 
+	// [SURREALIS-ADD] - MIGRANT_WAVES - Button to open the migration wave menu
+	add_migrant_waves_button()
+	// [/SURREALIS-ADD]
+
 /datum/hud/adminghost/New(mob/owner)
 	..()
 	var/atom/movable/screen/using
@@ -149,6 +153,10 @@
 
 	using = new /atom/movable/screen/ghost/bigassuselessbutton(null, src)
 	static_inventory += using
+
+	// [SURREALIS-ADD] - MIGRANT_WAVES - Button to open the migration wave menu
+	add_migrant_waves_button()
+	// [/SURREALIS-ADD]
 
 /datum/hud/ghost/show_hud(version = 0, mob/viewmob)
 	// don't show this HUD if observing; show the HUD of the observee

@@ -77,7 +77,7 @@
 /datum/round_event_control/antagonist/migrant_wave/assassins
 	max_occurrences = 4
 	slot_cap = 4
-	// weight = 10
+	weight = 75
 	// min_players = 0
 	// earliest_start = 0 SECONDS
 	// cost = 1
@@ -122,7 +122,7 @@
 
 /datum/round_event_control/antagonist/migrant_wave/werewolf	// Exiled Werewolf
 	// max_occurrences = 2
-	// weight = 4
+	weight = 15
 	// min_players = 0
 	// earliest_start = 25 MINUTES
 	// cost = 1
@@ -130,9 +130,22 @@
 	// track = EVENT_TRACK_CHARACTER_INJECTION
 	// shared_occurence_type = null
 
+/datum/migrant_wave/bandit
+	track = MIGRANT_TRACK_SPECIAL
+	min_round_time = 30 MINUTES
+	weight = 100
+	is_raid = TRUE
+	can_roll = TRUE
+	required_roles = list(
+		/datum/migrant_role/bandit = 1,
+	)
+	optional_roles = list(
+		/datum/migrant_role/bandit = 4,
+	)
+
 /datum/round_event_control/antagonist/migrant_wave/vampire	// Exiled Vampire
 	// max_occurrences = 2
-	// weight = 4
+	weight = 15
 	// min_players = 0
 	// earliest_start = 25 MINUTES
 	// cost = 1
@@ -142,7 +155,7 @@
 
 /datum/round_event_control/antagonist/migrant_wave/unbound_death_knight	// Death Knight (Unbound)
 	// max_occurrences = 2
-	// weight = 6
+	weight = 20
 	// min_players = 0
 	// earliest_start = 10 MINUTES
 	// cost = 1
@@ -152,7 +165,7 @@
 
 /datum/round_event_control/antagonist/migrant_wave/unbound_spellblade	// Ancient Spellblade (Unbound)
 	// max_occurrences = 2
-	// weight = 6
+	weight = 20
 	// min_players = 0
 	// earliest_start = 10 MINUTES
 	// cost = 1
@@ -162,7 +175,7 @@
 
 /datum/round_event_control/antagonist/migrant_wave/gnolls	// Gnolls Migration (weight 0 upstream, so it never rolls)
 	// max_occurrences = 2
-	// weight = 0
+	weight = 30
 	// min_players = 25
 	// earliest_start = 30 MINUTES
 	// cost = 1

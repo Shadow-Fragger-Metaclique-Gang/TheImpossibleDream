@@ -17,6 +17,7 @@
 #include "lord_of_vanity\_lord_of_vanity.dme"
 #include "lore\_lore.dme"
 #include "mercenary_statue\_mercenary_statue.dme"
+#include "migrant_waves\_migrant_waves.dme"
 #include "mineshaft_collapse\_mine_collapse.dme"
 #include "miracle_changes\_miracle_changes.dme"
 #include "new_jobs\_new_jobs.dme"

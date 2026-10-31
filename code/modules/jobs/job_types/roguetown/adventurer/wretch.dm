@@ -308,6 +308,8 @@
 	var/player_count = override_player_count || length(GLOB.joined_player_list)
 	result["player_count"] = player_count
 
+	// [SURREALIS-EDIT] - JOB_OVERRIDES - Adventurer scaling disabled, slots are a flat cap like any other job
+	/*
 	// Adventurer slots absorb the wretch headroom each pantheon forfeits below the original 15-slot ceiling.
 	var/cap = SSgamemode.current_storyteller?.wretch_slot_cap
 	if(isnull(cap))
@@ -320,10 +322,16 @@
 		slots += floor((player_count - 70) / 10) * 2
 	slots = min(slots, 40 + wretch_offset)
 	result["final_slots"] = slots
+	*/
+	result["wretch_offset"] = 0
+	result["final_slots"] = get_adventurer_slot_cap()
+	// [/SURREALIS-EDIT]
 
 	return result
 
 /proc/update_adventurer_slots(override_player_count)
+	// [SURREALIS-EDIT] - JOB_OVERRIDES - Adventurer scaling disabled, the job's own slot count is left alone
+	/*
 	var/datum/job/adventurer_job = SSjob.GetJob("Adventurer")
 	if(!adventurer_job)
 		return
@@ -332,6 +340,9 @@
 	// Never reduce below current value, so admin-opened slots aren't overwritten.
 	adventurer_job.total_positions = max(adventurer_job.total_positions, slots)
 	adventurer_job.spawn_positions = max(adventurer_job.spawn_positions, slots)
+	*/
+	return
+	// [/SURREALIS-EDIT]
 
 /// Convenience proc to update both wretch and adventurer scaling in one call.
 /proc/update_scaling_slots(override_player_count)

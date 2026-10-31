@@ -146,7 +146,10 @@ GLOBAL_LIST_INIT(defense_quest_tier_costs, list(
 #define QUEST_ISSUE_STATUS_WITHDRAWN "withdrawn"
 
 // Per CKEY cap
-#define QUEST_TAKE_COOLDOWN (10 MINUTES)
+// [SURREALIS-EDIT] - CONTRACT_LOCKOUT - Contract cap lockout window raised from 10 minutes to 1 hour
+// #define QUEST_TAKE_COOLDOWN (10 MINUTES) // SURREALIS-EDIT - ORIGINAL
+#define QUEST_TAKE_COOLDOWN (1 HOURS)
+// [/SURREALIS-EDIT]
 
 // After a quest reroll is generated it is locked for this long to prevent regen
 #define QUEST_LANDMARK_COOLDOWN (5 MINUTES)

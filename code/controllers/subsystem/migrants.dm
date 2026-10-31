@@ -53,8 +53,12 @@ SUBSYSTEM_DEF(migrants)
 	var/wave_type = roll_wave(track)
 	if(wave_type)
 		begin_forming(track, wave_type)
+		// [SURREALIS-REMOVE] - MIGRANT_WAVES - Every wave is announced from begin_forming instead
+		/*
 		if(announce)
 			announce_special_wave(wave_type)
+		*/
+		// [/SURREALIS-REMOVE]
 	track_next_roll[track] = world.time + roll_interval
 
 /datum/controller/subsystem/migrants/proc/process_triumph_track()
@@ -67,7 +71,11 @@ SUBSYSTEM_DEF(migrants)
 	var/wave_type = get_maxed_wave()
 	if(wave_type)
 		begin_forming(MIGRANT_TRACK_TRIUMPH, wave_type)
+		// [SURREALIS-REMOVE] - MIGRANT_WAVES - Every wave is announced from begin_forming instead
+		/*
 		announce_special_wave(wave_type)
+		*/
+		// [/SURREALIS-REMOVE]
 
 /datum/controller/subsystem/migrants/proc/should_resolve_forming(track)
 	if(!track_forming[track])
@@ -102,6 +110,9 @@ SUBSYSTEM_DEF(migrants)
 	track_arrival[track] = world.time + wave_wait_time
 	track_forced[track] = forced
 	log_game("Migrants: [track] track rolled wave: [wave_type][forced ? " (forced)" : ""]")
+	// [SURREALIS-ADD] - MIGRANT_WAVES - Announce every wave (any track, forced or not) to the lobby and ghosts
+	announce_special_wave(wave_type)
+	// [/SURREALIS-ADD]
 
 /datum/controller/subsystem/migrants/proc/resolve_forming_wave(track)
 	var/wave_type = track_forming[track]
@@ -287,7 +298,12 @@ SUBSYSTEM_DEF(migrants)
 
 /datum/controller/subsystem/migrants/proc/spawn_migrant(datum/migrant_wave/wave, datum/migrant_assignment/assignment, spawn_on_location, greet_text)
 	var/rank = "Migrant"
-	var/mob/dead/new_player/newplayer = assignment.client.mob
+	// [SURREALIS-EDIT] - MIGRANT_WAVES - Ghosts can be migrants, so convert them to a new_player first
+	// var/mob/dead/new_player/newplayer = assignment.client.mob
+	var/mob/dead/new_player/newplayer = get_migrant_new_player(assignment.client)
+	if(!newplayer)
+		return
+	// [/SURREALIS-EDIT]
 
 	SSjob.AssignRole(newplayer, rank, TRUE)
 
@@ -591,12 +607,15 @@ SUBSYSTEM_DEF(migrants)
 
 /datum/controller/subsystem/migrants/proc/announce_special_wave(wave_type)
 	var/datum/migrant_wave/wave = MIGRANT_WAVE(wave_type)
+	// [SURREALIS-REMOVE] - MIGRANT_WAVES - Hidden waves and the 5 minute throttle no longer suppress the announcement
+	/*
 	if(wave.hidden)
 		return
 	if(last_ooc_ping && (world.time - last_ooc_ping) < ooc_ping_interval)
 		return
 	last_ooc_ping = world.time
-
+	*/
+	// [/SURREALIS-REMOVE]
 	var/list/needs = list()
 	for(var/role_type in wave.required_roles)
 		var/datum/migrant_role/role = MIGRANT_ROLE(role_type)
@@ -612,7 +631,10 @@ SUBSYSTEM_DEF(migrants)
 	if(length(slots))
 		line += "<br>Slots open for [slots.Join(", ")]."
 	line += "<br>The wave will form in [wave_wait_time / (1 SECONDS)]s (sooner if every slot fills). <a href='?src=[REF(src)];open_panel=1'>Click to join.</a>"
-	for(var/mob/dead/new_player/lobby_nerd in GLOB.player_list)
+	// [SURREALIS-EDIT] - MIGRANT_WAVES - Announce to eligible ghosts as well as the lobby
+	// for(var/mob/dead/new_player/lobby_nerd in GLOB.player_list)
+	for(var/mob/lobby_nerd as anything in get_migrant_candidate_mobs())
+	// [/SURREALIS-EDIT]
 		if(!lobby_nerd.client)
 			continue
 		to_chat(lobby_nerd, "\n<font color='purple'>[line]</font>")
@@ -671,7 +693,10 @@ SUBSYSTEM_DEF(migrants)
 
 /datum/controller/subsystem/migrants/proc/get_active_migrants()
 	var/list/migrants = list()
-	for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
+	// [SURREALIS-EDIT] - MIGRANT_WAVES - Ghosts can queue as well as the lobby
+	// for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
+	for(var/mob/player as anything in get_migrant_candidate_mobs())
+	// [/SURREALIS-EDIT]
 		if(!player.client)
 			continue
 		if(!player.client.prefs)
@@ -683,7 +708,10 @@ SUBSYSTEM_DEF(migrants)
 
 /datum/controller/subsystem/migrants/proc/get_all_migrants()
 	var/list/migrants = list()
-	for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
+	// [SURREALIS-EDIT] - MIGRANT_WAVES - Ghosts can view the migrant panel as well as the lobby
+	// for(var/mob/dead/new_player/player as anything in GLOB.new_player_list)
+	for(var/mob/player as anything in get_migrant_candidate_mobs())
+	// [/SURREALIS-EDIT]
 		if(!player.client)
 			continue
 		if(!player.client.prefs)
