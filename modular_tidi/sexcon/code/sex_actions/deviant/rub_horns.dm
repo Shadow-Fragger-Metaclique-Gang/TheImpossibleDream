@@ -30,9 +30,6 @@
 
 	user.sexcon_action_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective(is_stealth = do_subtle)] rubs [target]'s horns..."), vision_distance = (do_subtle ? 1 : DEFAULT_MESSAGE_RANGE))
 
-	if(!do_subtle)
-		target.sexcon.make_sucking_noise()
-
 	user.sexcon.perform_sex_action(target, 0.5, 0, TRUE)
 
 	user.sexcon.handle_passive_ejaculation(target)
