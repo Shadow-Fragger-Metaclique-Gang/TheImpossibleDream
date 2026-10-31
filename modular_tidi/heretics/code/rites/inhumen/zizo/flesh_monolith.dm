@@ -63,11 +63,7 @@
 /obj/item/organ/heart
 	var/datum/weakref/monolith_maker
 
-/mob/living/carbon/human/examine(mob/user)
-	. = ..()
-	var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
-	if(heart?.monolith_maker && heart.monolith_maker.resolve() == user)
-		. += span_userdanger("THEY HAVE SEEN IT!")
+// examine override for flesh monolith moved into its own examine.dm file
 
 /obj/item/organ/heart/examine(mob/user)
 	. = ..()
