@@ -7,12 +7,14 @@
 /datum/sex_action/rub_horns/shows_on_menu(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
 		return FALSE
+	if(!(. = ..()))
+		return FALSE
 	return TRUE
 
 /datum/sex_action/rub_horns/can_perform(mob/living/user, mob/living/target)
 	if(user == target)
 		return FALSE
-	if(user == target)
+	if(!(. = ..()))
 		return FALSE
 	if(!user.sexcon.Adjacent_Or_Closet(target)) // Should fix the long range horn gropes...
 		return FALSE
