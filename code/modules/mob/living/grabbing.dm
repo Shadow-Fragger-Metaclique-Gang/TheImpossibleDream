@@ -305,11 +305,12 @@
 								span_userdanger("[user] [pick("snaps", "breaks")] my horns!"), span_hear("I hear a sound of bone cracking!"), COMBAT_MESSAGE_RANGE, user)
 						to_chat(user, span_danger("I [pick("snap", "break")] [C]'s horns clean off!"))
 					if(target_masochist)
-						C?.sexcon?.adjust_arousal(20)
+						if(C?.client?.prefs?.sexable)
+							C?.sexcon?.adjust_arousal(20)
 						C.add_stress(/datum/stressevent/hornloss_but_happy)
 					else
 						C.add_stress(/datum/stressevent/hornloss)
-					if(user_sadist)
+					if(user_sadist && user?.client?.prefs?.sexable)
 						user?.sexcon?.adjust_arousal(20)
 					user.changeNext_move(12) // prevent user from clicking and feeding the horns to the target
 			return FALSE
