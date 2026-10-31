@@ -12,6 +12,8 @@
 	var/climbdiff = 0
 
 /turf/closed/basic
+	icon = 'icons/turf/roguefloor_new.dmi'
+	icon_state = "replace-me"
 	baseturfs = /turf/closed/basic
 
 /turf/closed/basic/New()//Do not convert to Initialize

@@ -143,8 +143,8 @@
 	ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 
 /turf/open/floor/rogue/wood
-	smooth_icon = 'icons/turf/floors/wood.dmi'
-	icon_state = "wooden_floor2"
+	icon = 'icons/turf/roguefloor_new.dmi'
+	icon_state = "boards"
 	footstep = FOOTSTEP_WOOD
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
 	clawfootstep = FOOTSTEP_WOOD_CLAW
@@ -394,7 +394,9 @@
 /turf/open/floor/rogue/grassred
 	name = "red grass"
 	desc = "Grass, ripe with Dendor's blood."
-	icon_state = "grass_red"
+	icon = 'icons/turf/roguefloor_new.dmi'
+	icon_state = "grass-red"
+	neighborlay = "grass-red-trim"
 	layer = MID_TURF_LAYER
 	footstep = FOOTSTEP_GRASS
 	barefootstep = FOOTSTEP_SOFT_BAREFOOT
@@ -409,7 +411,7 @@
 						/turf/open/floor/rogue/snowpatchy,
 						/turf/open/floor/rogue/snow,
 						/turf/open/floor/rogue/snowrough)*/ // one-sided, see dirt/winter
-	neighborlay = "grass_rededge"
+
 	winter_type = /turf/open/floor/rogue/grassred/winter
 
 /turf/open/floor/rogue/grassred/Initialize(mapload)
@@ -427,7 +429,8 @@
 /turf/open/floor/rogue/grassyel
 	name = "yellow grass"
 	desc = "Grass, blessed by Astrata's light."
-	icon_state = "grass_yel"
+	icon = 'icons/turf/roguefloor_new.dmi'
+	icon_state = "grass-yellow"
 	layer = MID_TURF_LAYER
 	footstep = FOOTSTEP_GRASS
 	barefootstep = FOOTSTEP_SOFT_BAREFOOT
@@ -435,7 +438,7 @@
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/grassland.wav'
 	slowdown = 0
-	neighborlay = "grass_yeledge"
+	neighborlay = "grass-yellow-trim"
 	winter_type = /turf/open/floor/rogue/grassyel/winter
 	//smooth = SMOOTH_TRUE
 /*	canSmoothWith = list(/turf/open/floor/rogue/grasscold,
@@ -462,7 +465,8 @@
 /turf/open/floor/rogue/grass
 	name = "grass"
 	desc = "Grass, sodden with mud and bogwater."
-	icon_state = "grass"
+	icon = 'icons/turf/roguefloor_new.dmi'
+	icon_state = "grass-green"
 	layer = MID_TURF_LAYER
 	footstep = FOOTSTEP_GRASS
 	barefootstep = FOOTSTEP_SOFT_BAREFOOT
@@ -470,7 +474,7 @@
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/grassland.wav'
 	slowdown = 0
-	neighborlay = "grassedge"
+	neighborlay = "grass-green-trim"
 	spread_chance = 15
 	burn_power = 6
 	//smooth = SMOOTH_TRUE
