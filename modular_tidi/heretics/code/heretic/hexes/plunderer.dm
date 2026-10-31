@@ -79,10 +79,10 @@
 		/obj/item/kitchen/spoon/gold = /obj/item/kitchen/spoon/iron,
 		/obj/item/kitchen/spoon/iron = /obj/item/kitchen/spoon,
 
-		/obj/item/reagent_containers/glass/cup/silver = /obj/item/reagent_containers/glass/cup/golden,
-		/obj/item/reagent_containers/glass/cup/golden = /obj/item/reagent_containers/glass/cup/silver/small,
-		/obj/item/reagent_containers/glass/cup/silver/small = /obj/item/reagent_containers/glass/cup/golden/small,
-		/obj/item/reagent_containers/glass/cup/golden/small = /obj/item/reagent_containers/glass/cup/bronzemug,
+		/obj/item/reagent_containers/glass/cup/silver/small = /obj/item/reagent_containers/glass/cup/silver,
+		/obj/item/reagent_containers/glass/cup/silver = /obj/item/reagent_containers/glass/cup/golden/small,
+		/obj/item/reagent_containers/glass/cup/golden/small = /obj/item/reagent_containers/glass/cup/golden,
+		/obj/item/reagent_containers/glass/cup/golden = /obj/item/reagent_containers/glass/cup/bronzemug,
 		/obj/item/reagent_containers/glass/cup/bronzemug = /obj/item/reagent_containers/glass/cup/wooden,
 
 		// Rings holy shit why are there so many
