@@ -49,6 +49,9 @@
 		return
 
 	var/mob/living/LM = parent
+	var/steps_to_add = 1
+	if(LM.moving_diagonally)
+		steps_to_add = 0.5 //Only increment on the second step.
 	if(!T.footstep || LM.buckled || LM.lying || !CHECK_MULTIPLE_BITFIELDS(LM.mobility_flags, MOBILITY_STAND | MOBILITY_MOVE) || LM.throwing || LM.movement_type & (VENTCRAWLING | FLYING))
 		if (LM.lying && !LM.buckled && !(!T.footstep || LM.movement_type & (VENTCRAWLING | FLYING))) //play crawling sound if we're lying
 			playsound(T, 'sound/blank.ogg', 15 * volume)
@@ -59,15 +62,9 @@
 		if(!C.get_bodypart(BODY_ZONE_L_LEG) && !C.get_bodypart(BODY_ZONE_R_LEG))
 			return
 		if(C.m_intent == MOVE_INTENT_SNEAK && !T.footstepstealth)
-			if(!C.loud_sneaking || C.rogue_sneaking)
+			if(C.rogue_sneaking)
 				return// stealth
-			steps++
-			if(steps&2 == 2) // Hrrghn... Colonel, I'm trying to sneak around, but I'm dummy thicc, and the clap of my asscheeks keeps ALERTING THE GUARDS
-				playsound(C, pick(list('sound/misc/mat/thicc (1).ogg','sound/misc/mat/thicc (2).ogg','sound/misc/mat/thicc (3).ogg','sound/misc/mat/thicc (4).ogg')), 15 * volume)
-			if(steps >= 6)
-				steps = 0
-			return// uhm... stealth?
-	steps++
+	steps += steps_to_add
 
 	if(steps >= 6)
 		steps = 0
@@ -85,6 +82,9 @@
 		return
 	if(isfile(footstep_sounds) || istext(footstep_sounds))
 		playsound(T, footstep_sounds, volume)
+		return
+	var/atom/movable/AM = parent
+	if(AM.moving_diagonally == FIRST_DIAG_STEP)
 		return
 	var/turf_footstep
 	switch(footstep_type)
@@ -108,6 +108,9 @@
 	if(!step_location)
 		return
 	if(HAS_TRAIT(parent, TRAIT_SILENT_FOOTSTEPS))
+		return
+	var/atom/movable/AM = parent
+	if(AM.moving_diagonally == FIRST_DIAG_STEP)
 		return
 	var/mob/living/carbon/human/human_parent = parent
 	var/feetCover = (human_parent.wear_armor?.body_parts_covered | human_parent.wear_pants?.body_parts_covered) & FEET

@@ -219,8 +219,6 @@
 	var/cmode_music_override_name // solely for autoselecting as a spawned-in mob
 	var/last_heard_raw_message //to prevent repeated messages from spamming
 
-	/// If the character has prominent mob descriptors, they'll make extra noise
-	var/loud_sneaking = FALSE
 
 	/// Parry timer for projectiles post-attack. Hooks into the attack animation, so is fairly clunky.
 	var/projectile_parry_timer
