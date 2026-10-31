@@ -14,8 +14,12 @@ GLOBAL_LIST_EMPTY(loadout_items_by_name)
 
 /datum/loadout_item/New()
 	if(isnull(donoritem))
-		if(ckeywhitelist || donator_unlocked)
+		// [SRLS-EDIT] - DONORSHOP - unlocks universal donor items for everyone
+		//if(ckeywhitelist || donator_unlocked) SRLS-EDIT - DONORSHOP - original
+		if(ckeywhitelist)
+		// [/SRLS-EDIT] - DONORSHOP - unlocks universal donor items for everyone
 			donoritem = TRUE
+		// [SRLS-EDIT] - DONORSHOP - unlocks universal donor items for everyone
 	if(!isnull(path)) // First item in the loadout list is the parent datum, so we want to skip it
 		var/obj/targetitem = path
 		desc = targetitem.desc
