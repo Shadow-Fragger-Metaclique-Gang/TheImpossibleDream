@@ -1,4 +1,4 @@
-/datum/advclass/sfighter
+/*/datum/advclass/sfighter
 	name = "Battlemaster"
 	tutorial = "You are a seasoned weapon specialist, clad in maille, with years of experience in warfare and battle under your belt."
 	allowed_sexes = list(MALE, FEMALE)
@@ -751,3 +751,4 @@
 		if("Ghastly Club")
 			H.adjust_skillrank_up_to(/datum/skill/combat/maces, SKILL_LEVEL_JOURNEYMAN, TRUE)
 			r_hand = /obj/item/rogueweapon/mace/woodclub/deprived
+*/
