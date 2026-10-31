@@ -76,6 +76,7 @@
 	if(tier)
 		var/datum/patron/patron = patron_type
 		adjust_storyteller_influence(initial(patron.name), tier)
+	log_objective(current_objective)
 	var/list/data = menu_data()
 	var/list/entry = data["current"]
 	entry["path"] = chosen_path

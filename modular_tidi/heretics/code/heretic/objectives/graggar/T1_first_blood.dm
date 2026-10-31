@@ -20,5 +20,6 @@
 	SIGNAL_HANDLER
 	if(completed || victim == owner.current || !victim.client)
 		return
+	record_victim(victim)
 	complete()
 	UnregisterSignal(owner.current, COMSIG_HERETIC_WOUND_DEALT)

@@ -7,6 +7,7 @@
 #include "deadite_tweaks\_deadite_tweaks.dme"
 #include "drow_mercs\_drow_mercs.dme"
 #include "excidium\_excidium.dme"
+#include "greentext\_greentext.dme"
 #include "heretics\_heretics.dme"
 #include "iconoclast_tweak\_iconoclast_tweak.dme"
 #include "inquisition_scom\_inquisition_scom.dme"

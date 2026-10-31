@@ -28,6 +28,7 @@
 	if(!istype(heretic) || !istype(heretic.wear_armor, /obj/item/clothing/suit/roguetown/armor/plate/full/zizo) && !istype(heretic.wear_armor, /obj/item/clothing/suit/roguetown/armor/plate/fluted/zizo))
 		return
 	kills++
+	record_victim(victim)
 	if(kills < kills_required)
 		to_chat(heretic, span_cult("<i>[kills] of [kills_required] slain.</i>"))
 		return

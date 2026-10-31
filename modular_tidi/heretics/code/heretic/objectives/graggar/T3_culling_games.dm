@@ -64,6 +64,7 @@
 /datum/objective/heretic/graggar/culling/proc/on_culling_win(datum/source, mob/living/loser)
 	SIGNAL_HANDLER
 	duel = null
+	record_victim(loser)
 	complete()
 
 /datum/objective/heretic/graggar/culling/proc/on_heart_destroyed(datum/source)

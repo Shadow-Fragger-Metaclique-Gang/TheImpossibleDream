@@ -1,0 +1,3 @@
+#include "code\greentext_record.dm"
+#include "code\heretic_hooks.dm"
+#include "code\roundend.dm"

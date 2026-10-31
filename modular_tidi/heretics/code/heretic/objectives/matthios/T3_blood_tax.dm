@@ -22,5 +22,6 @@
 	var/mob/living/carbon/human/victim = dead
 	if(!istype(victim) || !victim.is_noble() || !victim.last_hit_by(owner.current))
 		return
+	record_victim(victim)
 	complete()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)

@@ -30,6 +30,7 @@
 	if(!istype(victim) || !victim.has_flaw(/datum/charflaw/targeted) || !victim.last_hit_by(owner.current))
 		return
 	marks_killed++
+	record_victim(victim)
 	if(marks_killed < marks_killed_required)
 		to_chat(owner.current, span_cult("<i>[marks_killed] of [marks_killed_required] slain.</i>"))
 		return

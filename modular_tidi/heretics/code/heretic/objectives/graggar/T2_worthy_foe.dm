@@ -27,6 +27,7 @@
 	if(steelhearted_only && !HAS_TRAIT(victim, TRAIT_STEELHEARTED))
 		return
 	kills++
+	record_victim(victim)
 	if(kills < kills_required)
 		to_chat(owner.current, span_cult("<i>[kills] of [kills_required] slain.</i>"))
 		return
