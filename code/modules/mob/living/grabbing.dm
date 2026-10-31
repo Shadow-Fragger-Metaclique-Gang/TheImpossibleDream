@@ -249,7 +249,7 @@
 							span_userdanger("[user] [pick("chokes", "strangles")] me[chokehold ? " with a chokehold" : ""]!"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE, user)
 					to_chat(user, span_danger("I [pick("choke", "strangle")] [C][chokehold ? " with a chokehold" : ""]!"))
 					user.changeNext_move(CLICK_CD_GRABBING)	//Stops spam for choking.
-		// [SURREALIS-ADD] - HORN-GRABBING FEATURE
+		// [SURREALIS-ADD] - SEXCON - HORN-GRABBING FEATURE
 		if(/datum/intent/grab/horns)
 			if(HAS_TRAIT(user, TRAIT_PACIFISM))
 				to_chat(user, span_warning("Why would I do this! Am I insane?!"))
