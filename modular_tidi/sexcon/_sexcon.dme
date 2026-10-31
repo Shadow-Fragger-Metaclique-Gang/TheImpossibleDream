@@ -258,6 +258,7 @@
 #include "code\overrides\human_examine.dm"
 #include "code\collar\collar_condition.dm"
 #include "code\overrides\floor_licking.dm"
+#include "code\overrides\horn_break.dm"
 #include "code\overrides\bodypart_head.dm"
 #include "code\overrides\human_life.dm"
 #include "code\overrides\human_topic.dm"

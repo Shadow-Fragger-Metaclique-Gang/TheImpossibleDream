@@ -183,6 +183,16 @@
 		else
 			to_chat(src, "You will no longer start with Free Use enabled by default.")
 
+/client/verb/toggle_horn_breaking() // Toggles horn grabbing and horn breaking content in the ERP panel, for misbehaving Kobolds or other degenerate bait scalie characters
+	set category = "Preferences.Sensual"
+	set name = "Toggle Horn Breaking"
+	if(prefs)
+		prefs.horn_breaking = !prefs.horn_breaking
+		prefs.save_preferences()
+		if(prefs.horn_breaking)
+			to_chat(src, "Your horns will be vunerable to being grabbed and broken off.")
+		else
+			to_chat(src, "Your horns will not be able to be grabbed or broken off.")
 
 /client/verb/toggle_cursed_collars() // Toggles cursed collars. Will drop existing collars if toggled off while wearing one
 	set category = "Preferences.Sensual"

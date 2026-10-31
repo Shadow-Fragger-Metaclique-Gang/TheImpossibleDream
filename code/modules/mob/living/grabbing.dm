@@ -249,6 +249,70 @@
 							span_userdanger("[user] [pick("chokes", "strangles")] me[chokehold ? " with a chokehold" : ""]!"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE, user)
 					to_chat(user, span_danger("I [pick("choke", "strangle")] [C][chokehold ? " with a chokehold" : ""]!"))
 					user.changeNext_move(CLICK_CD_GRABBING)	//Stops spam for choking.
+		// [SURREALIS-ADD] - HORN-GRABBING FEATURE
+		if(/datum/intent/grab/horns)
+			if(HAS_TRAIT(user, TRAIT_PACIFISM))
+				to_chat(user, span_warning("Why would I do this! Am I insane?!"))
+				return FALSE
+			if(user.buckled)
+				to_chat(user, span_warning("I can't do this while buckled!"))
+				return FALSE
+			if(user.badluck(10))
+				badluckmessage(user)
+				user.stop_pulling(TRUE)
+				return FALSE
+			if(limb_grabbed && grab_state > GRAB_PASSIVE) //this implies a carbon victim
+				if(iscarbon(M))
+					playsound(src.loc, 'sound/foley/struggle.ogg', 100, FALSE, -1)
+					user.stamina_add(7)
+					var/mob/living/carbon/C = M
+					if(user == M)
+						C.visible_message(span_danger("[user] tightens their grip around their own horns!"), \
+								span_userdanger("[user] twists their own horns!"), span_hear("I hear a sickening sound of bone fragmenting!"), COMBAT_MESSAGE_RANGE, user)
+						to_chat(user, span_danger("I fasten my grip around my own horns!"))
+					else
+						C.visible_message(span_danger("[user] tightens their grip around [C]'s horns!"), \
+								span_userdanger("[user] twists my horns!"), span_hear("I hear a sickening sound of bone fragmenting!"), COMBAT_MESSAGE_RANGE, user)
+						to_chat(user, span_danger("I fasten my grip around [C]'s horns!"))
+					INVOKE_ASYNC(src, PROC_REF(horn_break_sfx), user, C) // invoke the sound for breaking horns
+					if(!do_after(user, 10 SECONDS, target = C))
+						user.changeNext_move(CLICK_CD_RESIST) // stops spam for horn breaking
+						return FALSE
+					var/obj/item/organ/horns/horns = C.getorganslot(ORGAN_SLOT_HORNS)
+					if(!horns) // somehow, the horns were removed before the action could complete, abort
+						return FALSE
+					log_combat(user, C, "horns broken off [horns]")
+					horns.Remove(C)
+					horns.forceMove(C.drop_location())
+					horns.desc = "A severed pair of horns. They look like they were snapped at the base."
+					user.stop_pulling(TRUE)
+					if(user != M) // drop on floor if we were breaking our own horns
+						user.put_in_active_hand(horns)
+					playsound(C, 'modular_tidi/sexcon/sounds/horn_break/snap.ogg', 100, FALSE, -1)
+					playsound(C, 'sound/items/seedextract.ogg', 50, FALSE)
+					INVOKE_ASYNC(src, PROC_REF(horn_break_react), C) // invoke the reaction
+					C.Stun(60)
+					C.fullscreen_redflash("redflash2")
+					var/target_masochist = C.has_flaw(/datum/charflaw/addiction/masochist)
+					var/user_sadist = user.has_flaw(/datum/charflaw/addiction/sadist)
+					if(user == M)
+						C.visible_message(span_danger("[user] [pick("snaps", "breaks")] their own horns clean off!"), \
+								span_userdanger("[user] [pick("snaps", "breaks")] their own horns!"), span_hear("I hear a sound of bone cracking!"), COMBAT_MESSAGE_RANGE, user)
+						to_chat(user, span_danger("I [pick("snap", "break")] my own horns clean off! [target_masochist ? "This.. Feels so good!" : "What is wrong with me?!"]"))
+					else
+						C.visible_message(span_danger("[user] [pick("snaps", "breaks")] [C]'s horns clean off!"), \
+								span_userdanger("[user] [pick("snaps", "breaks")] my horns!"), span_hear("I hear a sound of bone cracking!"), COMBAT_MESSAGE_RANGE, user)
+						to_chat(user, span_danger("I [pick("snap", "break")] [C]'s horns clean off!"))
+					if(target_masochist)
+						C?.sexcon?.adjust_arousal(20)
+						C.add_stress(/datum/stressevent/hornloss_but_happy)
+					else
+						C.add_stress(/datum/stressevent/hornloss)
+					if(user_sadist)
+						user?.sexcon?.adjust_arousal(20)
+					user.changeNext_move(12) // prevent user from clicking and feeding the horns to the target
+			return FALSE
+		// [/SURREALIS-ADD]
 		if(/datum/intent/grab/hostage)
 			if(HAS_TRAIT(user, TRAIT_PACIFISM))
 				to_chat(user, span_warning("Why would I do this! Am I insane?!"))
