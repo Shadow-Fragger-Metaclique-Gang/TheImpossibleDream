@@ -29,7 +29,7 @@
 		if(i < soundfiles_max) // in the case two mobs target the same horned mob, double check that we're within array range
 			playsound(target.loc, soundfiles[i], 50, TRUE)
 		sleep(1.5 SECONDS)
-		if(!user.doing || i >= soundfiles_max)
+		if(QDELETED(user) || QDELETED(target) || !user.doing || i >= soundfiles_max)
 			break
 		switch(i)
 			if(2)
@@ -39,6 +39,8 @@
 
 /obj/item/grabbing/proc/horn_break_react(mob/living/target)
 	sleep(0.6 SECONDS)
+	if(QDELETED(target))
+		return
 	if(target.has_flaw(/datum/charflaw/addiction/masochist))
 		if(target?.client?.prefs?.sexable && (target?.sexcon?.arousal > AROUSAL_HARD_ON_THRESHOLD) && target?.sexcon?.can_ejaculate()) // force climax if aroused
 			target?.sexcon?.ejaculate()
