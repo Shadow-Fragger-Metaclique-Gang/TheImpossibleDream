@@ -69,6 +69,7 @@ Hooks:
 - `code/modules/roguetown/floorinteraction.dm`: licking cum off the floor.
 - `code/modules/spells/spell_types/wizard/utility/mirror_transform.dm`: all organs related to this module.
 - `code/modules/surgery/bodyparts/bodypart_wounds.dm`: thrillseeker stuff.
+- `code/modules/surgery/bodyparts/head.dm`: Horn breaking check for initial grab
 - `interface/stylesheet.dm` and `tgui/packages/tgui-panel/styles/tgchat/chat-dark.scss`: the `love_ludicrous` text class.
 - `roguetown.dme`: ticks `_sexcon_defines.dm`.
 
