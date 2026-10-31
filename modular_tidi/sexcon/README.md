@@ -7,6 +7,7 @@
 **RELATED PRS:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/38
 				 https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/66
 				 https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/89
+				 https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/104
 
 **Major changes:**
 
@@ -59,6 +60,7 @@ Hooks:
 - `code/_onclick/item_attack.dm`: thrillseeker stuff since it had to be rewritten for the new sex code, and so gnolls can hold branding irons.
 - `code/datums/character_flaw/_character_flaw.dm`: new `no_random` var so you don't get lewd vices randomly.
 - `code/datums/status_effects/rogue/roguebuff.dm`: fermented crab refills your balls.
+- `code/modules/mob/living/grabbing.dm`: Horn breaking logic for grabbing top of head
 - `code/modules/mob/living/carbon/human/examine.dm`: chastity, brand and status lines. Details dropdown killing.
 - `code/modules/mob/living/carbon/human/human.dm`: chastity middle-click and strip panel stuff.
 - `code/modules/mob/living/carbon/human/update_icons.dm`: belt toy and chastity overlays.
