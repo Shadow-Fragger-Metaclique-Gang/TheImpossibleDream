@@ -6,6 +6,7 @@
 
 **RELATED PRs:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/68
 				 https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/87
+				 https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/107
 
 **Major changes:** Bunchs of hairstyles. More 'succubus' themed tailmaws. Enables angel wings. Gives tieflings the ability to choose from two "devillish" wings.
 
