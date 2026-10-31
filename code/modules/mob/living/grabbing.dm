@@ -280,6 +280,7 @@
 						return FALSE
 					var/obj/item/organ/horns/horns = C.getorganslot(ORGAN_SLOT_HORNS)
 					if(!horns) // somehow, the horns were removed before the action could complete, abort
+						user.stop_pulling(TRUE) // stop grabbing if the horns were removed before the breaking action was complete
 						return FALSE
 					log_combat(user, C, "horns broken off [horns]")
 					horns.Remove(C)
