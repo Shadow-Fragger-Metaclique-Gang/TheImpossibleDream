@@ -278,9 +278,11 @@
 					if(!do_after(user, 10 SECONDS, target = C))
 						user.changeNext_move(CLICK_CD_RESIST) // stops spam for horn breaking
 						return FALSE
+					if(QDELETED(C) || QDELETED(user))
+						return FALSE
 					var/obj/item/organ/horns/horns = C.getorganslot(ORGAN_SLOT_HORNS)
-					if(!horns) // somehow, the horns were removed before the action could complete, abort
-						user.stop_pulling(TRUE) // stop grabbing if the horns were removed before the breaking action was complete
+					if(!horns || QDELETED(horns)) // somehow, the horns were removed before the action could complete, abort
+						user.stop_pulling(TRUE) // stop grabbing if the horns were removed
 						return FALSE
 					log_combat(user, C, "horns broken off [horns]")
 					horns.Remove(C)
