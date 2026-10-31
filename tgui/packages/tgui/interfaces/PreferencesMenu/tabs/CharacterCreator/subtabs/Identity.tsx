@@ -23,6 +23,12 @@ import {
   SubtabIdentityDownstreamPaneRight,
 } from 'pm/downstream/tabs/CharacterCreator/subtabs/Identity';
 import { usePopupId } from 'pm/popups';
+// [SURREALIS-ADD] - QUIRKS
+import {
+  SurrealisIdentityCardQuirks,
+  SurrealisIdentityCardVices,
+} from 'pm/tabs/CharacterCreator/subtabs/SurrealisIdentityCards';
+// [/SURREALIS-ADD]
 import { useBackendStrict } from 'tgui/backend';
 import { LoadingScreen } from 'tgui/interfaces/common/LoadingScreen';
 import {
@@ -71,12 +77,23 @@ export const SubtabIdentity = () => {
           <Stack.Item>
             <SubtabIdentityCardVirtues />
           </Stack.Item>
+          {/* [SURREALIS-EDIT] - QUIRKS */}
+          {/* SURREALIS-EDIT - ORIGINAL */}
+          {/*
           <Stack.Item>
             <SubtabIdentityCardQuirks />
           </Stack.Item>
           <Stack.Item>
             <SubtabIdentityCardVices />
           </Stack.Item>
+          */}
+          <Stack.Item>
+            <SurrealisIdentityCardQuirks />
+          </Stack.Item>
+          <Stack.Item>
+            <SurrealisIdentityCardVices />
+          </Stack.Item>
+          {/* [/SURREALIS-EDIT] */}
           <SubtabIdentityDownstreamPaneRight />
         </Stack>
       </Box>

@@ -78,3 +78,7 @@ New TGUI files:
 - `tgui/packages/tgui/interfaces/PreferencesMenu/tabs/CharacterCreator/subtabs/Appearance/FeatureChoices/SurrealisFeatureChoicePenis.tsx`: feature choices.
 - `tgui/packages/tgui/interfaces/PreferencesMenu/tabs/CharacterCreator/subtabs/Appearance/FeatureChoices/SurrealisFeatureChoiceBreasts.tsx`: feature choices.
 - `tgui/packages/tgui/interfaces/PreferencesMenu/tabs/CharacterCreator/subtabs/Appearance/FeatureChoices/FeatureChoiceBodyHair.tsx`: feature chocies.
+
+## Changes from other modules
+
+- QUIRKS: `code/controller/sexcon.dm` and `code/controller/sexcon_knotting.dm` spread the Malodorous stink through contact.
