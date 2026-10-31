@@ -77,6 +77,12 @@
 		if(BODY_ZONE_PRECISE_NOSE)
 			return list(/datum/intent/grab/move, /datum/intent/grab/twist, /datum/intent/grab/smash)
 		if(BODY_ZONE_PRECISE_SKULL)
+			// [SURREALIS-ADD] - SEXCON - HORN-GRABBING FEATURE
+			if(owner?.client?.prefs?.horn_breaking)
+				var/obj/item/organ/horns/horns = owner.getorganslot(ORGAN_SLOT_HORNS)
+				if(horns) // if horns exist on this character
+					return list(/datum/intent/grab/move, /datum/intent/grab/smash, /datum/intent/grab/horns)
+			// [/SURREALIS-ADD]
 			return list(/datum/intent/grab/move, /datum/intent/grab/smash)
 		if(BODY_ZONE_PRECISE_L_EYE)
 			return list(/datum/intent/grab/move, /datum/intent/grab/smash)

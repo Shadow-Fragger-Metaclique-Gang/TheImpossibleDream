@@ -5,6 +5,7 @@
 	var/extreme_erp = FALSE
 	var/edging = FALSE
 	var/free_use_default = FALSE
+	var/horn_breaking = FALSE
 	var/sensitive_brands = FALSE
 	var/facial_brands = FALSE
 	var/pubes = FALSE
