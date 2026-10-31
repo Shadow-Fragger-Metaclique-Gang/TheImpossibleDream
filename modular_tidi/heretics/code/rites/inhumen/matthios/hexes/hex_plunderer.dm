@@ -1,7 +1,7 @@
 /datum/runeritual/god/hex/matthios/plunderer
 	name = "Hex of the Plunderer"
 	flavor = "Your victim's riches shall crumble in their very hands."
-	tier = SKILL_LEVEL_JOURNEYMAN
+	tier = SKILL_LEVEL_APPRENTICE
 	awakened_heretic_only = TRUE
 	layout = list(
 		"NW" = /obj/item/roguecoin/gold,
