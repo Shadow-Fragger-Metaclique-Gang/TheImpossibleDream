@@ -377,6 +377,7 @@
 			ADD_TRAIT(H, TRAIT_DUALWIELDER, TRAIT_GENERIC)
 
 //ARMOR AND CLOTHES
+	cloak = /obj/item/clothing/cloak/raincloak/furcloak/brown
 	neck = /obj/item/clothing/neck/roguetown/gorget/bronze
 	belt = /obj/item/storage/belt/rogue/leather/battleskirt/barbarian
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/bronzeskirt
