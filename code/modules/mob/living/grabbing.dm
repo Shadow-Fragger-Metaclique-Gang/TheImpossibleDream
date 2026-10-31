@@ -310,10 +310,13 @@
 						if(C?.client?.prefs?.sexable)
 							C?.sexcon?.adjust_arousal(20)
 						C.add_stress(/datum/stressevent/hornloss_but_happy)
+						C.sate_addiction(/datum/charflaw/addiction/masochist)
 					else
 						C.add_stress(/datum/stressevent/hornloss)
-					if(user_sadist && user?.client?.prefs?.sexable)
-						user?.sexcon?.adjust_arousal(20)
+					if(user_sadist)
+						user.sate_addiction(/datum/charflaw/addiction/sadist)
+						if(user?.client?.prefs?.sexable)
+							user?.sexcon?.adjust_arousal(20)
 					user.changeNext_move(12) // prevent user from clicking and feeding the horns to the target
 			return FALSE
 		// [/SURREALIS-ADD]
