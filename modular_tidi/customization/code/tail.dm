@@ -1,4 +1,4 @@
-// TAILS PORTED FROM OTHER SERVERS
+// TAILS
 /datum/customizer_choice/organ/tail/tiefling/New()
 	sprite_accessories += list(
 		/datum/sprite_accessory/tail/tiefling/spade
@@ -22,7 +22,7 @@
 
 /datum/sprite_accessory/tail/tiefling/spade
 	name = "Spade"
-	icon = 'modular_tidi/ported_customization/icons/tiefling.dmi'
+	icon = 'modular_tidi/customization/icons/tiefling.dmi'
 	icon_state = "spade"
 	can_wag = FALSE
 
@@ -32,5 +32,5 @@
 
 /datum/sprite_accessory/tail/tiefling/spadeheart/tailmaw
 	name = "Succubus (Alt) (Tailmaw)"
-	icon = 'modular_tidi/ported_customization/icons/tiefling.dmi'
+	icon = 'modular_tidi/customization/icons/tiefling.dmi'
 	icon_state = "spadeheart"
