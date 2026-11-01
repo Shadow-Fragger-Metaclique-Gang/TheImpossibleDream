@@ -4,7 +4,8 @@
 	var/static/list/pray_lines = list("...But why would anyone want this turmoil to end?",
 									  "I hold nothing but respect for my sisters. Justice cannot be imposed without a clear mind and a healthy body.",
 									  "Uphold the truth, and observe the Law.",
-									  "The scars you bear? They are your marks of honour.")
+									  "The scars you bear? They are your marks of honour.",
+									  "Customs differ in various kingdoms, but if a warrior is strong enough, he can enforce a few of his native customs anywhere.")
 	var/static/list/login_lines = list("Excellent. Things were getting too peaceful around here.")
 	var/static/list/death_lines = list("You have done well.",
 									   "We will have a toast in your honour.",
@@ -16,9 +17,10 @@
 	var/static/list/surrender_lines = list("Cowardice is unbecoming of a warrior.",
 										   "How can I expect you to uphold Justice if you aren't willing to die for it?",
 										   "Playing dead is a snake's trick...")
-	var/static/list/warcrime_lines = list("What do you think you're doing? Acts of passion have no place on the battlefield!",
+	var/static/list/warcrime_lines = list("What do you think you're doing? We are Warriors, not savages!",
 										  "I'm ashamed of you.",
-										  "You will answer for your crimes.")
+										  "You will answer for your crimes.",
+										  "Only a savage would act in such a manner.")
 	var/static/list/thieving_lines = list("Stop that!",
 										  "Cease your transgressions!",
 										  "Halt!")
@@ -52,6 +54,7 @@
 	SIGNAL_HANDLER
 
 	to_chat(worshipper, span_faith(pick(thieving_lines)))
+	worshipper.playsound_local(worshipper, "sound/vo/male/gen/haltyell (1).ogg", 20)
 	adjust_saintliness(SIN_MORSEL)
 
 /datum/component/saintliness/ravox/proc/on_justice(mob/living/worshipper)
