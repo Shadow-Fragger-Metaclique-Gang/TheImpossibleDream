@@ -35,7 +35,7 @@
 	RegisterSignal(parent, COMSIG_MOB_SURRENDER, PROC_REF(on_surrender))
 	RegisterSignal(parent, COMSIG_MOB_ATTACK_SURRENDERED, PROC_REF(on_warcrime))
 	RegisterSignal(parent, COMSIG_MOB_THIEF, PROC_REF(on_theft))
-	RegisterSignal(parent, COMSIG_CAUGHT_LAWBREAKER, PROC_REF(on_justice))
+	RegisterSignal(parent, COMSIG_MOB_CAUGHT_LAWBREAKER, PROC_REF(on_justice))
 
 /datum/component/saintliness/ravox/proc/on_surrender(mob/living/worshipper)
 	SIGNAL_HANDLER

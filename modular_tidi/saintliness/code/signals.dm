@@ -13,4 +13,7 @@
 #define COMSIG_MOB_SURRENDER "mob_surrender"
 #define COMSIG_MOB_WARCRIME "mob_warcrime"
 #define COMSIG_MOB_THIEF "mob_thief"
-#define COMSIG_CAUGHT_LAWBREAKER "mob_caught_lawbreaker"
+#define COMSIG_MOB_CAUGHT_LAWBREAKER "mob_caught_lawbreaker"
+#define COMSIG_MOB_ROTDRINKER "mob_rotdrinker"
+#define COMSIG_MOB_INCISE_SUCCESS "mob_incise_success"
+#define COMSIG_MOB_VOMIT "mob_vomit"

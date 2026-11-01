@@ -650,8 +650,12 @@
 				visible_message("<span class='danger'>[vomitrelay] throws up all over [parent]!</span>", \
 								"<span class='danger'>I puke all over [parent]!</span>")
 				parent.add_stress(/datum/stressevent/vomitother)
-
-				src.add_stress(/datum/stressevent/vomitedonother)
+				//[SURREALIS-ADD] - SAINTLINESS
+				if(C.patron.type != /datum/patron/divine/pestra)
+					src.add_stress(/datum/stressevent/vomitedonother)
+				else
+					C.add_stress(/datum/stressevent/pestran_vomit)
+				//[/SURREALIS-ADD]
 			distance = 0
 		else if(is_mouth_covered()) //make this add a blood/vomit overlay later it'll be hilarious
 			if(message)
@@ -659,14 +663,24 @@
 								"<span class='danger'>I puke all over myself!</span>")
 				if(iscarbon(src))
 					var/mob/living/carbon/C = src
-					C.add_stress(/datum/stressevent/vomitself)
+					//[SURREALIS-ADD] - SAINTLINESS
+					if(C.patron.type != /datum/patron/divine/pestra)
+						C.add_stress(/datum/stressevent/vomitself)
+					else
+						C.add_stress(/datum/stressevent/pestran_vomit)
+					//[/SURREALIS-ADD]
 			distance = 0
 		else
 			if(message)
 				visible_message("<span class='danger'>[vomit_source] pukes!</span>", "<span class='danger'>I puke!</span>")
 				if(iscarbon(src))
 					var/mob/living/carbon/C = src
-					C.add_stress(/datum/stressevent/vomit)
+					//[SURREALIS-ADD] - SAINTLINESS
+					if(C.patron.type != /datum/patron/divine/pestra)
+						C.add_stress(/datum/stressevent/vomitself)
+					else
+						C.add_stress(/datum/stressevent/pestran_vomit)
+					//[/SURREALIS-ADD]
 	else
 		if(NOBLOOD in dna?.species?.species_traits)
 			return TRUE
@@ -720,6 +734,9 @@
 		T = get_step(T, dir)
 		if (is_blocked_turf(T))
 			break
+	//[SURREALIS-ADD] - SAINTLINESS
+	SEND_SIGNAL(src, COMSIG_MOB_VOMIT)
+	//[/SURREALIS-ADD]
 	return TRUE
 
 /mob/living/carbon/proc/spew_organ(power = 5, amt = 1)
