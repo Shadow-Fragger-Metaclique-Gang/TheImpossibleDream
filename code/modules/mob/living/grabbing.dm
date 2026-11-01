@@ -292,7 +292,6 @@
 					if(user != M) // drop on floor if we were breaking our own horns
 						user.put_in_active_hand(horns)
 					playsound(C, 'modular_tidi/sexcon/sounds/horn_break/snap.ogg', 100, FALSE, -1)
-					playsound(C, 'sound/items/seedextract.ogg', 50, FALSE)
 					INVOKE_ASYNC(src, PROC_REF(horn_break_react), C) // invoke the reaction
 					C.Stun(60)
 					C.fullscreen_redflash("redflash2")
