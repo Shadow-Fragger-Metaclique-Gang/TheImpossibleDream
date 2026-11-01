@@ -4,7 +4,9 @@
 		//BLACK MAGIC THINGS//
 		//////////////////////
 	parent_type = /datum
+	// [SURREALIS-ADD] - DISABLE BYOND DEFAULT VERB PANEL
 	show_verb_panel = FALSE
+	// [/SURREALIS-ADD]
 		////////////////
 		//ADMIN THINGS//
 		////////////////
