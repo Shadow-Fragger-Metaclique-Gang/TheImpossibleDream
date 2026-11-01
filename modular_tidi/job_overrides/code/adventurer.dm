@@ -28,12 +28,31 @@
 	category_tags = list(CTAG_ADVENTURER)
 	class_select_category = CLASS_CAT_CLERIC
 
-// Pentacle only
 /datum/advclass/cleric
-	allowed_patrons = ALL_DIVINE_PATRONS
+	allowed_patrons = list(
+		/datum/patron/divine/astrata,
+		/datum/patron/divine/noc,
+		/datum/patron/divine/ravox,
+		/datum/patron/divine/eora,
+		/datum/patron/divine/necra,
+		/datum/patron/divine/xylix,
+		/datum/patron/divine/malum,
+		/datum/patron/divine/dendor,
+		/datum/patron/divine/abyssor
+	)
 
 /datum/advclass/cleric/paladin
-	allowed_patrons = ALL_DIVINE_PATRONS
+	allowed_patrons = list(
+		/datum/patron/divine/astrata,
+		/datum/patron/divine/noc,
+		/datum/patron/divine/ravox,
+		/datum/patron/divine/eora,
+		/datum/patron/divine/necra,
+		/datum/patron/divine/xylix,
+		/datum/patron/divine/malum,
+		/datum/patron/divine/dendor,
+		/datum/patron/divine/abyssor
+	)
 
 /datum/advclass/cleric/cantor
 	allowed_patrons = list(
@@ -43,7 +62,20 @@
 		/datum/patron/divine/eora,
 		/datum/patron/divine/necra,
 		/datum/patron/divine/xylix,
+		/datum/patron/divine/malum,
+		/datum/patron/divine/dendor,
+		/datum/patron/divine/abyssor,
 	)
 
 /datum/advclass/cleric/missionary
-	allowed_patrons = ALL_DIVINE_PATRONS
+	allowed_patrons = list(
+		/datum/patron/divine/astrata,
+		/datum/patron/divine/noc,
+		/datum/patron/divine/ravox,
+		/datum/patron/divine/eora,
+		/datum/patron/divine/necra,
+		/datum/patron/divine/xylix,
+		/datum/patron/divine/malum,
+		/datum/patron/divine/dendor,
+		/datum/patron/divine/abyssor
+	)
