@@ -191,6 +191,8 @@
 	var/scalar = 1
 	if((direct & (direct - 1)) && mob.loc == n) //moved diagonally successfully
 		scalar = sqrt(2)
+		add_delay *= 2
+		add_delay *= scalar
 
 	add_delay = round(add_delay, world.tick_lag)
 	mob.set_glide_size(MOVEMENT_ADJUSTED_GLIDE_SIZE(add_delay, scalar))
