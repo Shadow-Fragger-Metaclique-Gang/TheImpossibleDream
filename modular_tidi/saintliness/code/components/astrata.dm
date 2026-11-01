@@ -41,19 +41,19 @@
 
 	to_chat(worshipper, span_faith(pick(fornication_lines)))
 	// It's sort of her whole thing...
-	saintliness -= SAINTLINESS_EIDOLON
+	adjust_saintliness(SIN_DREADFUL)
 
 /datum/component/saintliness/astrata/proc/on_marriage(mob/living/worshipper)
 	SIGNAL_HANDLER
 
 	to_chat(worshipper, span_faith(pick(marriage_lines)))
-	saintliness += SAINTLINESS_FEAST
+	adjust_saintliness(SAINTLINESS_FEAST)
 
 /datum/component/saintliness/astrata/proc/on_respect(mob/living/worshipper)
 	SIGNAL_HANDLER
 
 	to_chat(worshipper, span_faith(pick(marriage_lines)))
-	saintliness += SAINTLINESS_TOKEN
+	adjust_saintliness(SAINTLINESS_TOKEN)
 
 /datum/component/saintliness/astrata/proc/on_servility(mob/living/worshipper)
 	SIGNAL_HANDLER
@@ -61,8 +61,15 @@
 	// Nobles need to be haughty and confer respect, not confer it unto others...
 	if(HAS_TRAIT(worshipper,TRAIT_NOBLE))
 		to_chat(worshipper, span_faith(pick(noble_servility_lines)))
-		saintliness -= SAINTLINESS_MORSEL
+		adjust_saintliness(SIN_MORSEL)
 	else
 		to_chat(worshipper, span_faith(pick(peasant_servility_lines)))
-		saintliness += SAINTLINESS_MORSEL
+		adjust_saintliness(SAINTLINESS_MORSEL)
 
+// Hooking baseline features into this. The sex hooks get their own folder because they are wretched.
+
+/datum/emote/living/bow/adjacentaction(mob/user, mob/target)
+	. = ..()
+
+	SEND_SIGNAL(user, COMSIG_MOB_DEMONSTATED_SERVILITY)
+	SEND_SIGNAL(target, COMSIG_MOB_SHOWN_RESPECT)

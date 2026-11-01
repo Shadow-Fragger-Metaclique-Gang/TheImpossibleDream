@@ -31,6 +31,11 @@
 	RegisterSignal(parent, COMSIG_MOB_ON_RELIGIOUS_CONVERSION, PROC_REF(on_conversion))
 	RegisterSignal(parent, COMSIG_MOB_ON_APOSTASY, PROC_REF(on_apostasy))
 
+//Saintliness should stay between 1-100
+/datum/component/saintliness/proc/adjust_saintliness(amount)
+	var/sum = clamp(amount + saintliness, 1, 100)
+	saintliness = sum
+
 
 /datum/component/saintliness/proc/on_sleep(mob/living/worshipper)
 	SIGNAL_HANDLER
