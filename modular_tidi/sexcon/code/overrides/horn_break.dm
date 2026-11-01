@@ -35,7 +35,7 @@
 			if(2)
 				to_chat(target, target_masochist ? span_userdanger("Yes yes yes!") : hurting_thyself ? span_userdanger("What am I doing!?") : span_userdanger("No no no!"))
 			if(5)
-				to_chat(target, target_masochist ? span_userdanger("More!!") : hurting_thyself ? span_userdanger("Stop it, they'll snap!") : span_userdanger("My horn are bending, make it stop!"))
+				to_chat(target, target_masochist ? span_userdanger("More!!") : hurting_thyself ? span_userdanger("Stop it, they'll snap!") : span_userdanger("My horns are bending, make it stop!"))
 
 /obj/item/grabbing/proc/horn_break_react(mob/living/target)
 	sleep(0.6 SECONDS)
