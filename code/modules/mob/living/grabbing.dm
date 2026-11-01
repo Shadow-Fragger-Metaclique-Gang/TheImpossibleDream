@@ -268,8 +268,8 @@
 					var/mob/living/carbon/C = M
 					if(!C?.client?.prefs?.horn_breaking)
 						if(user != M)
-							to_chat(user, span_warning("[C] doesn't wish their horns to be touched. (Their ERP Horn Breaking preference, under Preferences)"))
-						to_chat(C, span_warning("I don't want my horns to be touched. (Your ERP Horn Breaking preference, under Preferences)"))
+							to_chat(user, span_warning("[C] doesn't wish their horns to be touched. (Their ERP Horn Breaking toggle, under Preferences)"))
+						to_chat(C, span_warning("I don't want my horns to be touched. (Your ERP Horn Breaking toggle, under Preferences)"))
 						user.changeNext_move(CLICK_CD_RESIST) // stops spam for horn breaking
 						return FALSE
 					if(user == M)
