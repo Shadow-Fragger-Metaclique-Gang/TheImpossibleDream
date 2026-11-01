@@ -220,7 +220,9 @@
 	to_chat(affected, span_warning("My ears ring before suddenly cutting out all sound!"))
 	affected.confused += 25	//Drunk-walk effect, basically.
 	affected.dizziness += 25
-	ADD_TRAIT(affected, TRAIT_DEAF, "[type]")
+	// [SRLS-REMOVE] - SKULLCRACKS - removes deafness on skullcrack
+	//ADD_TRAIT(affected, TRAIT_DEAF, "[type]")
+	// [SRLS-REMOVE] - SKULLCRACKS - removes deafness on skullcrack
 
 /datum/wound/fracture/head/ears/on_mob_loss(mob/living/affected)
 	. = ..()
