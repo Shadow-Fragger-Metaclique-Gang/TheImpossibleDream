@@ -9,3 +9,4 @@
 #include "code\pilgrim.dm"
 #include "code\retinue.dm"
 #include "code\sidefolk.dm"
+#include "code\veteran.dm"

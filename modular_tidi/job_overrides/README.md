@@ -4,7 +4,7 @@
 
 **Created In:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/71
 
-**Related PRs:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/102
+**Related PRs:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/102 https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/112
 
 **Major changes:**
 
@@ -20,7 +20,8 @@ Files are split by job category.
 - `code/sidefolk.dm`: Mercenaries get 7 slots. Lirvan Tithebound is disabled.
 - `code/peasants.dm`: Shophand becomes Docker with 2 slots. Docker no longer offers its own class; it picks from its own copies of the Goon, Wise Guy and Big Fella classes, with separate slot counts from the Towner versions. Goon and Big Fella Dockers get Appraiser and Wise Guy Dockers get Skilled Appraiser. Goon, Wise Guy and Big Fella stat changes: Goon and Wise Guy get 4 slots. Goon gains Journeyman in the three "Whatever I Can Find" weapon skills. Wise Guy gains Journeyman knives and Expert slings when a sling is chosen.
 - `code/pilgrim.dm`: the Levy gets 8 slots and spawns with the watchtower key. Witches cannot take Pestra.
-- `code/adventurer.dm`: Lamplighters become Adventurer subclasses with 2 slots each. Adventurer Cleric subclasses are Pentacle-only with 2 slots each, except the Cantor, which also accepts Xylix. Adventurer scaling is disabled: the job keeps a flat 20 slots (`get_adventurer_slot_cap()`) and nothing raises them by population or storyteller wretch cap. Every Adventurer subclass with a combat trait, magic or an Expert weapon skill is limited to 2 slots with some exceptions for general archetypes.
+- `code/adventurer.dm`: Lamplighters become Adventurer subclasses with 2 slots each. Adventurer Cleric subclasses are Pentacle-only with 2 slots each, except the Cantor, which also accepts Xylix.
+- `code/veteran.dm`: Adds options for Veteran Mercenary to be from places other than Grenzelhoft.
 
 ## Required core edits
 
