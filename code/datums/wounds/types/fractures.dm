@@ -229,7 +229,9 @@
 	to_chat(affected, span_notice("Slowly my hearing comes back to me.."))
 	affected.confused -= 25
 	affected.dizziness -= 25
-	REMOVE_TRAIT(affected, TRAIT_DEAF, "[type]")
+	// [SRLS-REMOVE] - SKULLCRACKS - removes deafness on skullcrack
+	//REMOVE_TRAIT(affected, TRAIT_DEAF, "[type]")
+	// [SRLS-REMOVE] - SKULLCRACKS - removes deafness on skullcrack
 
 /datum/wound/fracture/head/nose
 	name = "nasal fracture"
