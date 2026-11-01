@@ -19,3 +19,4 @@
 #define COMSIG_MOB_VOMIT "mob_vomit"
 #define COMSIG_MOB_EMOTIONAL_OUTBURST "mob_emotional_outburst"
 #define COMSIG_MOB_CRAFT "mob_craft"
+#define COMSIG_MOB_USE_TECHNOLOGY "mob_use_technology"

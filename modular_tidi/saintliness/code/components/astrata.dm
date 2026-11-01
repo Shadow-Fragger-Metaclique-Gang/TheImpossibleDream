@@ -14,8 +14,7 @@
 	var/static/list/conversion_lines = list("I-I really wasn't counting on you to worship me! R-really!",
 											"Fine! I-I'll be your morning light!")
 	var/static/list/apostasy_lines = list("Hmph!",
-										  "A-as if I'll miss you!",
-										  )
+										  "A-as if I'll miss you!")
 	var/static/list/fornication_lines = list("S-stop that!",
 											 "N-no! Lewd!",
 											 "Wait for marriage first, you idiot!")
