@@ -1,6 +1,5 @@
 /datum/component/saintliness/ravox
-	var/static/list/sleep_lines = list("A well rested warrior can make all the difference in battle.",
-									   "")
+	var/static/list/sleep_lines = list("A well rested warrior can make all the difference in battle.")
 	var/static/list/pray_lines = list("...But why would anyone want this turmoil to end?",
 									  "I hold nothing but respect for my sisters. Justice cannot be imposed without a clear mind and a healthy body.",
 									  "Uphold the truth, and observe the Law.",
