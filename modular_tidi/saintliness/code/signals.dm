@@ -17,3 +17,5 @@
 #define COMSIG_MOB_ROTDRINKER "mob_rotdrinker"
 #define COMSIG_MOB_INCISE_SUCCESS "mob_incise_success"
 #define COMSIG_MOB_VOMIT "mob_vomit"
+#define COMSIG_MOB_EMOTIONAL_OUTBURST "mob_emotional_outburst"
+#define COMSIG_MOB_CRAFT "mob_craft"
