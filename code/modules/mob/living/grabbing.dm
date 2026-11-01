@@ -266,6 +266,12 @@
 					playsound(src.loc, 'sound/foley/struggle.ogg', 100, FALSE, -1)
 					user.stamina_add(7)
 					var/mob/living/carbon/C = M
+					if(!C?.client?.prefs?.horn_breaking)
+						if(user != M)
+							to_chat(user, span_warning("[C] doesn't wish their horns to be touched. (Their ERP Horn Breaking preference, under Preferences)"))
+						to_chat(C, span_warning("I don't want my horns to be touched. (Your ERP Horn Breaking preference, under Preferences)"))
+						user.changeNext_move(CLICK_CD_RESIST) // stops spam for horn breaking
+						return FALSE
 					if(user == M)
 						C.visible_message(span_danger("[user] tightens their grip around their own horns!"), \
 								span_userdanger("[user] twists their own horns!"), span_hear("I hear a sickening sound of bone fragmenting!"), COMBAT_MESSAGE_RANGE, user)
