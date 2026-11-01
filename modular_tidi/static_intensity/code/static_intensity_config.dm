@@ -17,7 +17,7 @@
 		"Rebel" = 1,
 		"Bandit" = 0,
 		// Soft antagonists
-		"Wretch" = 3,
+		"Wretch" = 5,
 		"Gnoll" = 2,
 		"Hag" = 1,
 		"Assassin" = 0,
