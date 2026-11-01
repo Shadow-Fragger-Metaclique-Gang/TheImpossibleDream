@@ -116,7 +116,6 @@
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, 6, TRUE)
 
 /datum/outfit/job/roguetown/vet/merc/choose_loadout(mob/living/carbon/human/H)
-	. = ..()
 	H.adjust_blindness(-3)
 	if(H.mind)
 		var/retirement = list("Pursue Homesteading", "Dabble in Artisan Smithing", "Write an autobiography", "Keep up with your old regimen")
