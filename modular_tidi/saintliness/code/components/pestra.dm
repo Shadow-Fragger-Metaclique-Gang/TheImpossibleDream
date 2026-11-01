@@ -45,25 +45,25 @@
 /datum/component/saintliness/pestra/proc/on_clean(mob/living/worshipper)
 	SIGNAL_HANDLER
 
-	to_chat(worshipper, pick(clean_lines))
+	to_chat(worshipper, span_faith(pick(clean_lines)))
 	adjust_saintliness(SIN_FEAST)
 
 /datum/component/saintliness/pestra/proc/on_rotdrink(mob/living/worshipper)
 	SIGNAL_HANDLER
 
-	to_chat(worshipper, pick(rotdrink_lines))
+	to_chat(worshipper, span_faith(pick(rotdrink_lines)))
 	// They can just drink rot over and over. This shouldn't be that big of a boost.
 	adjust_saintliness(SIN_TOKEN)
 
 /datum/component/saintliness/pestra/proc/on_incise(mob/living/worshipper)
 	SIGNAL_HANDLER
 
-	to_chat(worshipper, pick(incision_lines))
+	to_chat(worshipper, span_faith(pick(incision_lines)))
 	adjust_saintliness(SAINTLINESS_MORSEL)
 
 /datum/component/saintliness/pestra/proc/on_vomit(mob/living/worshipper)
 	SIGNAL_HANDLER
 
-	to_chat(worshipper, pick(vomit_lines))
+	to_chat(worshipper, span_faith(pick(vomit_lines)))
 	adjust_saintliness(SAINTLINESS_TOKEN)
 
