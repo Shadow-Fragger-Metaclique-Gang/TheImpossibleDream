@@ -8,3 +8,5 @@
 #define COMSIG_MOB_SHOWN_RESPECT "mob_shown_respect"
 #define COMSIG_MOB_DEMONSTATED_SERVILITY "mob_demonstrated_servility"
 #define COMSIG_MOB_FORNICATION "mob_fornication"
+#define COMSIG_MOB_MARRIED "mob_married"
+#define COMSIG_MOB_LARCENY "mob_larceny"
