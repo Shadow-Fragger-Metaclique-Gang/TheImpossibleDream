@@ -54,7 +54,7 @@
 /datum/quirk/caustic
 	name = "Prickly"
 	desc = "Through quills, spines, or a caustic makeup, touching me isn't exactly pleasant."
-	mechdesc = "Doesn't affect grabs."
+	mechdesc = "Applies fake pain to anyone who touches you. Doesn't affect grabs."
 	added_traits = list(TRAIT_CAUSTIC)
 	allowed_species = list(/datum/species/ooze, /datum/species/anthromorph, /datum/species/anthromorphsmall, /datum/species/aasimar, /datum/species/dullahan)
 
@@ -104,6 +104,7 @@
 	point_cost = 2
 	added_traits = list(TRAIT_GOODLOVER)
 	incompatible_traits = list(TRAIT_GOODLOVER)
+	incompatible_virtues = list(/datum/virtue/utility/socialite)
 
 /datum/quirk/gossiper
 	name = "Gossiper"
@@ -116,7 +117,7 @@
 
 /datum/quirk/hobbyistmusician
 	name = "Hobbyist Musician"
-	desc = "I've dabbled in music over the years, and I've stashed away an instrument of my own."
+	desc = "I've dabbled in music over the yils, and I've stashed away an instrument of my own."
 	mechdesc = "Comes with a stashed instrument of your choice. You choose the instrument after spawning in."
 	added_skills = list(list(/datum/skill/misc/music, 1, 6))
 
@@ -245,6 +246,7 @@
 	desc = "From performance, deception, or by a need to change yourself in uncanny ways, I've acquired a second, perfect voice. I may switch between them at any point."
 	mechdesc = "Grants access to a new 'Memory' tab. It will have the options for setting and changing your voice."
 	incompatible_vices = list(/datum/charflaw/mute, /datum/charflaw/unintelligible)
+	incompatible_virtues = list(/datum/virtue/utility/prowler)
 
 /datum/quirk/secondvoice/apply_to_human(mob/living/carbon/human/recipient)
 	recipient.verbs += /mob/living/carbon/human/proc/changevoice
@@ -260,7 +262,7 @@
 
 	var/newcolor = input(src, "Choose your character's SECOND voice color:", "VIRTUE","#a0a0a0") as color|null
 	if(newcolor)
-		second_voice = sanitize_hexcolor(newcolor)
+		second_voice = sanitize_hexcolor(newcolor, 6, TRUE)
 		src.verbs -= /mob/living/carbon/human/proc/changevoice
 		return TRUE
 	else
@@ -296,7 +298,7 @@
 /datum/quirk/ugly
 	name = "Ugly"
 	desc = "My face is ugly and makes everyone who looks at me miserable."
-	mechdesc = null
+	mechdesc = "People who examine will be unsettled by your horrible appearance."
 	point_cost = 0
 	drawback = TRUE
 	added_traits = list(TRAIT_UNSEEMLY)
@@ -312,7 +314,8 @@
 /datum/quirk/unsettling
 	name = "Unsettling"
 	desc = "My appearance is deeply unsettling to most."
-	mechdesc = "People who examine you may either be unsettled or indifferent to your uncanny appearance."
+	mechdesc = "People who examine will be unsettled by your uncanny appearance."
+	point_cost = 0
 	drawback = TRUE
 	added_traits = list(TRAIT_UNSETTLING)
 	incompatible_virtues = list(/datum/virtue/utility/socialite)
