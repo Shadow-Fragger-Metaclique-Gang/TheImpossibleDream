@@ -7,7 +7,7 @@
 #define HERETIC_PATH_DRAKE "PATH OF THE DRAKE"
 #define HERETIC_PATH_THIEF "PATH OF THE THIEF"
 
-#define COMSIG_HERETIC_CRIT_DEALT "heretic_crit_dealt"
+#define COMSIG_HERETIC_WOUND_DEALT "heretic_wound_dealt"
 #define COMSIG_HERETIC_GRAVE_ROBBED "heretic_grave_robbed"
 #define COMSIG_HERETIC_VAULT_ENTERED "heretic_vault_entered"
 #define COMSIG_HERETIC_DRUGS_SHARED "heretic_drugs_shared"

@@ -8,7 +8,7 @@
 	tutorial = "A shady guardian of the Black Oaks. Half mercenary band, half irregular militia fighting in the name of their ancestral elven causes. Thankfully, you are not here today to shed the blood of the Count's men — unless someone pays you to..."
 
 /datum/advclass/mercenary/blackoak_ranger
-	tutorial = "A shady ranger of the Black Oaks. Half mercenary band, half irregular militia fighting fighting in the name of ancestral elven causes. Thankfully, you are not here today to shed the blood of the Count's men — unless someone pays you to..."
+	tutorial = "A shady ranger of the Black Oaks. Half mercenary band, half irregular militia fighting in the name of ancestral elven causes. Thankfully, you are not here today to shed the blood of the Count's men — unless someone pays you to..."
 
 /datum/advclass/mercenary/blackoak_adept
 	tutorial = "A spellblade of the Black Oaks. Half mercenary band, half irregular militia fighting in the name of ancestral elven causes. You have honed the ancient Azurean art of spellbladery - an art that is yours and your people's alone. Thankfully, you are not here today to shed the blood of the Count's men - unless someone pays you to..."

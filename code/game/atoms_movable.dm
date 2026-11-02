@@ -28,6 +28,9 @@
 	var/inertia_move_delay = 5
 	var/pass_flags = 0
 	var/moving_diagonally = 0 //0: not doing a diagonal move. 1 and 2: doing the first/second step of the diagonal move
+// [SURREALIS-ADD] - THROWING_REFACTOR
+	var/allow_diagonal_movement = FALSE
+// [/SURREALIS-ADD]
 	var/lastcardinal = 0
 	var/lastcardpress = 0
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
@@ -331,6 +334,8 @@
 			lastcardinal = direct
 			. = ..()
 		else //Diagonal move, split it into cardinal moves
+// [SURREALIS-EDIT] - THROWING_REFACTOR - This isn't actually necessary really, it's just complete shitcode so i had to rewrite it.
+/* ORIGINAL
 			if (direct & NORTH)
 				if (direct & EAST)
 					if(lastcardinal == NORTH)
@@ -389,7 +394,19 @@
 					else
 						direction_to_move = pick(SOUTH,WEST)
 						. = step(src, direction_to_move)
-
+*/
+			if(allow_diagonal_movement)
+				. = ..() //right here
+			else if(lastcardinal & direct)
+				direction_to_move = direct ^ lastcardinal
+				. = step(src, direction_to_move)
+				if(!.)
+					direction_to_move ^= direct
+					. = step(src, direction_to_move)
+			else
+				direction_to_move = direct & pick( (NORTH | SOUTH), (EAST | WEST) )
+				. = step(src, direction_to_move)
+// [/SURREALIS-EDIT] - THROWING_REFACTOR
 	if(!loc || (loc == oldloc && oldloc != newloc))
 		last_move = 0
 		return

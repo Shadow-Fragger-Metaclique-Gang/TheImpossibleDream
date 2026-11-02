@@ -26,7 +26,7 @@
 	var/t_has = p_have()
 	var/t_is = p_are()
 	var/obscure_name = FALSE
-	var/race_name = "<a href='?src=[REF(src)];species_lore=1'><u>[dna.species.name]</u></A> "
+	var/race_name = "<a href='?src=[REF(src)];species_lore=1'><u>[dna.species.name]</u></A>"
 	var/origin_name = "<a href='?src=[REF(src)];origin_lore=1'><u>[dna.species.origin]</u></A>"
 	var/datum/antagonist/maniac/maniac = user.mind?.has_antag_datum(/datum/antagonist/maniac)
 	var/datum/antagonist/skeleton/skeleton = user.mind?.has_antag_datum(/datum/antagonist/skeleton)
@@ -117,7 +117,10 @@
 				guarded = TRUE
 
 	if(HAS_TRAIT(user, TRAIT_DEADITE) && !HAS_TRAIT(src, TRAIT_ZOMBIE_IMMUNE) && src.stat == CONSCIOUS)
-		. += span_narsie(pick("KILL IT. KILL IT", "FLESH. HUNGER.", "KILL. CONSUME.", "CONSUME.", "KILL THE RASPING THING.", "HUNGER.", "EAT IT.", "MUST HAVE FLESH."))
+		// [SURREALIS-EDIT]
+		// . += span_narsie(pick("KILL IT. KILL IT", "FLESH. HUNGER.", "KILL. CONSUME.", "CONSUME.", "KILL THE RASPING THING.", "HUNGER.", "EAT IT.", "MUST HAVE FLESH.")) // SURREALIS-EDIT - ORIGINAL
+		. += span_cult(pick("KILL IT. KILL IT", "FLESH. HUNGER.", "KILL. CONSUME.", "CONSUME.", "KILL THE RASPING THING.", "HUNGER.", "EAT IT.", "MUST HAVE FLESH."))
+		// [/SURREALIS-EDIT]
 
 	if(user != src)
 		var/datum/mind/Umind = user.mind
@@ -131,7 +134,10 @@
 			. += span_userdanger("<a href='?src=[REF(src)];task=bloodpoolinfo;'>Vitae: [(mind && !clan) ? (bloodpool * CLIENT_VITAE_MULTIPLIER) : bloodpool]; Blood: [blood_volume]</a>")
 
 	if(is_npc(src) && src.stat == CONSCIOUS)
-		. += span_warning("[src]'s hollow expression is filled with mindless anger!")
+		// [SURREALIS-EDIT] - LORE
+		// . += span_warning("[src]'s hollow expression is filled with mindless anger!") // SURREALIS-EDIT - ORIGINAL
+		. += span_warning("A hylic. Their malformed existence knows only violence.")
+		// [/SURREALIS-EDIT]
 
 	if(wear_shirt && !(SLOT_SHIRT in obscured))
 		var/str = "[m3] [wear_shirt.generate_tooltip(wear_shirt.get_examine_string(user))]. "

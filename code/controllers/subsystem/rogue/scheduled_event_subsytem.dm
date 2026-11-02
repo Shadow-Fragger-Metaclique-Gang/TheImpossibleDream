@@ -55,7 +55,7 @@ SUBSYSTEM_DEF(event_scheduler)
 	- Lampterns are not eternal; they must be refilled with blessed, golden-colored oils.",
 	"Azure Peak Weather")
 	*/
-	priority_announce("The fog bellows in from over the hills, blanketing the land in ominious hues. There are glimpses of glittering colourwithin the shade.\n\n\
+	priority_announce("The fog bellows in from over the hills, blanketing the land in ominous hues. There are glimpses of glittering colourwithin the shade.\n\n\
 	- The fog is lethal; do not venture forth without a fog-repelling lamptern. These relics protect those in their light.\n\
 	- Necran clergy may ward off the fog or perform rituals to safeguard entire areas.\n\
 	- Lampterns are not eternal; they must be refilled with blessed, golden-colored oils.",

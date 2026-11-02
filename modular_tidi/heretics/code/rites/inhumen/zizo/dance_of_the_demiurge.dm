@@ -7,7 +7,7 @@
 /datum/runeritual/god/zizo/dance_of_the_demiurge/perform(mob/living/user, obj/structure/ritualcircle/zizo/circle) //Jack of all trades
 	if(!do_after(user, 5 SECONDS))
 		return FALSE
-	user.say("O, ZIZO - O, DEMIURGE, O, SHE-MADE-DIVINE!")
+	user.say("ZIZO! ZIZO! DIVINE IS-NOT!")
 	playsound(user, 'sound/misc/carriage4.ogg', 100, FALSE, -1)
 	if(!do_after(user, 5 SECONDS))
 		return FALSE
@@ -17,7 +17,7 @@
 		return FALSE
 	user.say("ZIZO! ZIZO! RENDER MY AMBITIONS REAL!")
 	circle.icon_state = "zizo_active"
-	to_chat(user,span_cultsmall("<i>Her Inzanity although incomprehendable to the ignorant, is invaluable to the enlightened. Their hands guide your mynd and dreamed talent to rapidly enact change.</i>"))
+	to_chat(user,span_cultsmall("<i>Her Inzanity although incomprehensible to the ignorant, is invaluable to the enlightened. Their hands guide your mynd and dreamed talent to rapidly enact change.</i>"))
 	circle.zizolightsnuff(circle)
 	addtimer(VARSET_CALLBACK(circle, icon_state, "zizo_chalky"), 12 SECONDS)
 	sleep(1 SECONDS)

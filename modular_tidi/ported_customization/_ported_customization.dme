@@ -1,2 +1,4 @@
 #include "code\hair.dm"
 #include "code\tail.dm"
+#include "code\tiefling.dm"
+#include "code\wings.dm"

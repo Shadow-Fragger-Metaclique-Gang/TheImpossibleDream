@@ -1,7 +1,7 @@
 /datum/objective/heretic/baotha/lux
 	name = "Lux-ury"
 	heretic_tier = 1
-	baotha_objective_text = "eat a glob of lux regardless of its purity"
+	baotha_objective_text = "devour lux of any purity"
 
 /datum/objective/heretic/baotha/lux/on_creation()
 	. = ..()

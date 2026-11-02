@@ -4,7 +4,7 @@
 	heretic_branch = HERETIC_PATH_THIEF
 
 /datum/objective/heretic/matthios/churn/key/update_explanation_text()
-	explanation_text = "Use CHURN VALUE on a key to the temple, the armory or the inquisition in view of another."
+	explanation_text = "Use CHURN VALUE on a key to the temple, the armory, or the inquisition in view of another."
 
 /datum/objective/heretic/matthios/churn/key/progress_text()
 	return

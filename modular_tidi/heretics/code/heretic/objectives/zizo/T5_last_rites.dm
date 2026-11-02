@@ -4,7 +4,7 @@
 	heretic_branch = HERETIC_PATH_AMBITION
 
 /datum/objective/heretic/zizo/sacrifice/update_explanation_text()
-	explanation_text = "Use the Raise Deadite ritual to raise a member of the high nobility, the Pontifex, the Martyr or a member of the inquisition as an empowered deadite."
+	explanation_text = "Use the Raise Deadite ritual to raise a member of the high nobility, the inquisition, the Pontifex, or the Martyr as an empowered deadite."
 
 /datum/objective/heretic/zizo/sacrifice/on_creation()
 	. = ..()

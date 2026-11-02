@@ -41,7 +41,7 @@
 	extra_context = "This subclass is race-limited to: Dark Elves and Half-Elves. \
 	This subclass can choose between dodge expert with SPD 2, WIL 2, and PER 1 \
 	or medium armor with STR 2, CON 2, and WIL 1. \
-	Female drow recieve nutcracker and bedbreaker. Male drow \
+	Female drow receive nutcracker and bedbreaker. Male drow \
 	lose -1 STR & -1 LCK, but gain 1 SPD & 1 WIL."
 
 /datum/advclass/foreigner/drow/New()

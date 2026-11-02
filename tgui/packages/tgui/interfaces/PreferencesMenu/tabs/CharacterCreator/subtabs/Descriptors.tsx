@@ -9,6 +9,12 @@ import {
   SubtabDescriptorsOtherInfoListDownstream,
   SubtabDescriptorsTextDescriptionsDownstream,
 } from 'pm/downstream/tabs/CharacterCreator/subtabs/Descriptors';
+// [SURREALIS-ADD] - MERCENARY_STATUE
+import {
+  StatueAdventurerSection,
+  StatueMercenarySection,
+} from 'pm/downstream/StatueSections';
+// [/SURREALIS-ADD]
 import { type ReactNode, useEffect, useState } from 'react';
 import { resolveAsset } from 'tgui/assets';
 import { useBackendStrict, useSharedState } from 'tgui/backend';
@@ -47,6 +53,14 @@ export const SubtabDescriptors = () => {
           <TextDescriptions />
         </Stack.Item>
         <SubtabDescriptorsDownstream />
+        {/* [SURREALIS-ADD] - MERCENARY_STATUE */}
+        <Stack.Item>
+          <StatueMercenarySection />
+        </Stack.Item>
+        <Stack.Item>
+          <StatueAdventurerSection />
+        </Stack.Item>
+        {/* [/SURREALIS-ADD] */}
       </Stack>
     </Section>
   );

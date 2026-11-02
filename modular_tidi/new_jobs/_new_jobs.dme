@@ -1,0 +1,6 @@
+#include "code\job_positions.dm"
+#include "code\primal_divines.dm"
+#include "code\inquisition_dungeoneer.dm"
+#include "code\merchant_hireling.dm"
+#include "code\landmarks.dm"
+#include "code\abyssor_cult_lock.dm"

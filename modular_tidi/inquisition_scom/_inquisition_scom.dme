@@ -1,0 +1,4 @@
+#include "code\defines.dm"
+#include "code\inquisition_stones.dm"
+#include "code\scomm_inquisition_line.dm"
+#include "code\spawn_stones.dm"

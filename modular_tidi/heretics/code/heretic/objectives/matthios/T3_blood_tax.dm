@@ -4,7 +4,7 @@
 	heretic_branch = HERETIC_PATH_DRAKE
 
 /datum/objective/heretic/matthios/blood_tax/update_explanation_text()
-	explanation_text = "Lethally slit the throat of a noble."
+	explanation_text = "Land the killing blow against a noble."
 
 /datum/objective/heretic/matthios/blood_tax/on_creation()
 	. = ..()
@@ -20,7 +20,7 @@
 	if(completed)
 		return
 	var/mob/living/carbon/human/victim = dead
-	if(!istype(victim) || !victim.is_noble() || !victim.throat_slit_by(owner.current))
+	if(!istype(victim) || !victim.is_noble() || !victim.last_hit_by(owner.current))
 		return
 	complete()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)

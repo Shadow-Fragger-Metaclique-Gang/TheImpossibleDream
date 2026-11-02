@@ -1,6 +1,6 @@
 /obj/item/rogueweapon/surgery/cautery/branding
 	name = "branding iron"
-	desc = "A iron that is well-writ upon flesh. Heat it up before use."
+	desc = "An iron that is well-writ upon flesh. Heat it up before use."
 	icon = 'modular_tidi/sexcon/icons/branding_iron.dmi'
 	icon_state = "brandingiron"
 	possible_item_intents = list(/datum/intent/use)
@@ -211,7 +211,7 @@
 		return FALSE
 	var/text_var = target_data["text_var"]
 	if(length(holder.vars[text_var]))
-		to_chat(user, span_warning("I reburn over the existing marking."))
+		to_chat(user, span_warning("I re-burn over the existing marking."))
 	holder.vars[text_var] = branding_text
 	return TRUE
 

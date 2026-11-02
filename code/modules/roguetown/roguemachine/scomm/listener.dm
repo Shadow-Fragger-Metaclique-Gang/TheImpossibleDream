@@ -37,7 +37,9 @@
 	lose_hearing_sensitivity()
 	return ..()
 
+// [SURREALIS-EDIT] - LISTENER_DEPLOY - Listeners are placed down with attack_self; labelling moved to attack_right
 /obj/item/listeningdevice/attack_self(mob/living/user)
+	/* SURREALIS-EDIT - ORIGINAL
 	var/input = input(user, "SIX LETTERS", "BEND AN EAR")
 	if(!input)
 		label = null
@@ -48,8 +50,13 @@
 	inqdesc = "An ever-attentive ear... [span_notice("This ear's been bent. It's labelled as [label].")]"
 	desc = inqdesc
 	return
+	*/
+	place_down(user)
+// [/SURREALIS-EDIT]
 
+// [SURREALIS-EDIT] - LISTENER_DEPLOY - Labelling moved here (see bend_ear), replacing the hide toggle
 /obj/item/listeningdevice/attack_right(mob/living/user)
+	/* SURREALIS-EDIT - ORIGINAL
 	if(!hidden)
 		alpha = 30
 		name = "thing"
@@ -61,7 +68,12 @@
 	desc = initial(desc)
 	hidden = FALSE
 	return TRUE
+	*/
+	return bend_ear(user)
+// [/SURREALIS-EDIT]
 
+// [SURREALIS-REMOVE] - LISTENER_DEPLOY - Listeners are armed by being left alone after placement (see modular_tidi/listener_deploy)
+/*
 /obj/item/listeningdevice/MiddleClick(mob/user)
 	if(.)
 		return
@@ -75,6 +87,8 @@
 	to_chat(user, span_info("I [active ? "undeafen" : "deafen"] the Listener."))
 	update_icon()
 	return
+*/
+// [/SURREALIS-REMOVE]
 
 /obj/item/listeningdevice/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode, original_message)
 	if(!active)

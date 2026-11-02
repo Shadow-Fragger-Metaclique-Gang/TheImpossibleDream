@@ -81,6 +81,29 @@
   min-width: 0;
 }
 
+.ComponentList__group--dim {
+  opacity: 0.4;
+}
+
+.ComponentList__or {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+  color: #b0362b;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: bold;
+  letter-spacing: 0.3em;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #3a1a16;
+  }
+}
+
 .RuneBoard {
   position: relative;
   flex: none;
@@ -115,6 +138,10 @@
     width: 100%;
     height: 100%;
     image-rendering: pixelated;
+  }
+
+  &--dim {
+    opacity: 0.4;
   }
 
   &--placed img {

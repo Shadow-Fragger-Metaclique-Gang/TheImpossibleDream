@@ -7,10 +7,10 @@
 			It's not what's in front of you that's important, it's what's behind you."
 
 /obj/item/rogueweapon/mace/warhammer
-	desc = "A one-handed derivative of the mace, purpose-made to defeat armored opponents in battle. Paired nicely with a mug of the Pharos' finest zenny-liqour and a heater shield."
+	desc = "A one-handed derivative of the mace, purpose-made to defeat armored opponents in battle. Paired nicely with a mug of the Pharos' finest zenny-liquor and a heater shield."
 
 /obj/item/rogueweapon/mace/warhammer/bronze/decorated
-	desc = "Beads, silk, and gold caress this carved-and-spiked log; a honored totem who's roots trace back to the daes before Syon's impact. Myths speak of ancient elve-and-humen alike, wielding such bronzen bludgeons against the Anathema's rampaging hordes."
+	desc = "Beads, silk, and gold caress this carved-and-spiked log; a honored totem whose roots trace back to the daes before Syon's impact. Myths speak of ancient elve-and-humen alike, wielding such bronzen bludgeons against the Anathema's rampaging hordes."
 
 /obj/item/rogueweapon/contraption/linker/mace/decrepit
 	desc = "An ancient wrench, reinforced with rotted metal. Once a tool of the Demiurge's reign, repurposed into little more than a cudgel"
@@ -42,7 +42,7 @@
 	sheaths of Otava's most knightly delegates - or the tools of His Majesty's Holy Inquisition."
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/elvish/poopknife
-	desc = "A heraldric accompaniment to the chamberpot, and the most closely-guarded secret in all of the Pharos. It is said that this once belonged to the Duke's eldest ancestor, who - in a fit of constipatory labor - had unwittingly realized another use for their wave-bladed trophy. Clinging to its silvered edge is a thin layer of otherworldly ash, refusing to yield to neither soap-nor-rag."
+	desc = "A heraldic accompaniment to the chamberpot, and the most closely-guarded secret in all of the Pharos. It is said that this once belonged to the Duke's eldest ancestor, who - in a fit of constipatory labor - had unwittingly realized another use for their wave-bladed trophy. Clinging to its silvered edge is a thin layer of otherworldly ash, refusing to yield to neither soap-nor-rag."
 
 /obj/item/rogueweapon/sword/falchion/militia/bronze
 	desc = "The falchion's ancient predecessor, veiled in bronze - yet no less lethal against an awaiting trunk. The curved grip snuggly fits in the wielder's hand, allowing their will to be imposed upon assailant-and-anatheman alike with terrible force."
@@ -56,7 +56,7 @@
 
 /obj/item/rogueweapon/sword/long/ap
 	desc = "A unique longsword from the Grenz highlands, sacrificing its cutting edge for a piercing tip that can easily penetrate maille. Tracing its roots to the \
-	late fourteenth century, this noble sidearm was born from Grenzelhoftan adaptations of the Otavan estoc."
+	late fourteenth century, this noble sidearm was born from Grenzelhoftian adaptations of the Otavan estoc."
 
 /obj/item/rogueweapon/sword/long/church
 	name = "templar's longsword"
@@ -85,13 +85,13 @@
 
 /obj/item/rogueweapon/sword/long/judgement
 	desc = "A noble longsword, and the cherished heirloom of the Pharos' noble bloodline. Its blade is made from Aavnr's finest Vyšvou steel - held \
-	from an ornate carved ivory grip from the region's \"Mamük\" megafauna, and decorated with heraldric engravings of silver. ‎</br>‎‎ </br>'When \
+	from an ornate carved ivory grip from the region's \"Mamük\" megafauna, and decorated with heraldic engravings of silver. ‎</br>‎‎ </br>'When \
 	you stand before thine lord, you cannot say, '..but I was told by others to do thus..', or that, '..virtue was not convenient at the time.' This \
 	will not suffice. Remember that.'"
 
 /obj/item/rogueweapon/sword/short/gladius
 	desc = "A hefty blade of bronze, sharp enough to disembowel and decapitate with-but a lone hand's force. Psydonia's ancient champions drove back the \
-	Anathematic hordes with these shortswords, millenia ago; yet now, the end has crept forth to threaten lyfe once more. Move with the grace of \
+	Anathematic hordes with these shortswords, millennia ago; yet now, the end has crept forth to threaten lyfe once more. Move with the grace of \
 	your ancestors - spread your feet, brace your grasp, and make them bleed for every step they take."
 
 /obj/item/rogueweapon/sword/short/gladius/decorated
@@ -122,7 +122,7 @@
 
 /obj/item/rogueweapon/huntingknife/idagger/silver/elvish/poopknife
 	name = "thine majesty's nitesoil-cleaver"
-	desc = "A heraldric accompaniment to the chamberpot, and the most closely-guarded secret before the Scar. It is said that this once belonged to the Count's eldest ancestor, who - in a fit of constipatory labor - had unwittingly realized another use for their wave-bladed trophy. Clinging to its silvered edge is a thin layer of otherworldly ash, refusing to yield to neither soap-nor-rag."
+	desc = "A heraldic accompaniment to the chamberpot, and the most closely-guarded secret before the Scar. It is said that this once belonged to the Count's eldest ancestor, who - in a fit of constipatory labor - had unwittingly realized another use for their wave-bladed trophy. Clinging to its silvered edge is a thin layer of otherworldly ash, refusing to yield to neither soap-nor-rag."
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/profane/get_mechanics_examine(mob/user)
 	. = ..()

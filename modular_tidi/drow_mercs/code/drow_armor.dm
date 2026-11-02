@@ -2,7 +2,7 @@
 	icon = 'modular_tidi/drow_mercs/icons/drowarmor.dmi'
 	mob_overlay_icon = 'modular_tidi/drow_mercs/icons/onmob_drowarmor.dmi'
 	name = "drowcraft vest"
-	desc = "Traditional Drow armour made from the hide of one of the Underdark's many beasts, underlayered with the chitin plates of a drider. Durable yet still flexible, perfect for skirmishers."
+	desc = "Traditional Drow armour made from the hide of one of the Underdark's many beasts, underlaid with the chitin plates of a drider. Durable yet still flexible, perfect for skirmishers."
 	icon_state = "shadowvest"
 	item_state = "shadowvest"
 	body_parts_covered = COVERAGE_FULL
@@ -27,7 +27,7 @@
 	mob_overlay_icon = 'modular_tidi/drow_mercs/icons/onmob_drowhead.dmi'
 	name = "drow cavalier helm"
 	desc = "A greathelm commonly worn by Underdark spider-jockies. The golden wings convey both a feminine elegance and martriarchal tyranny.\
-	While lacking an adjustable visor, the winged halo and accompanying plumage can detach from the helm and be worn seperately."
+	While lacking an adjustable visor, the winged halo and accompanying plumage can detach from the helm and be worn separately."
 	item_state = "gildeddrowhelm"
 	icon_state = "gildeddrowhelm"
 	adjustable = CAN_CADJUST

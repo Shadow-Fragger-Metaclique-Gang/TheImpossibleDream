@@ -12,6 +12,7 @@ GLOBAL_LIST_INIT(phrase_highlights, list(
 	"grinning god" = "Heretical term used when referring to the Thief-God MATTHIOS.",
 	"leveller" = "Common way of referring to the apostate patron Matthios.",
 	"sutra" = "Common way of referring to the apostate patron Baotha.",
+	"hylic" = "Endemic lyfe. A non-person. A hollow vessel of flesh that moves and acts, but holds no soul.",
 	"kaan" = "Gronnic insult meaning 'whom fornicates with insects'.",
 	"purity afloat" = "Common greeting and departing phrase used by those of Psydonian worship."
 ))

@@ -91,6 +91,10 @@ export enum DepartmentFlag {
   WANDERERS = 1 << 8,
   INQUISITION = 1 << 9,
   ANTAGONIST = 1 << 10,
+  // [SURREALIS-ADD] - NEW_JOBS
+  ATC = 1 << 12,
+  PRIMAL_DIVINES = 1 << 13,
+  // [/SURREALIS-ADD]
 }
 
 export enum DepartmentEnum {
@@ -101,6 +105,10 @@ export enum DepartmentEnum {
   GARRISON = 'GARRISON',
   BURGHERS = 'BURGHERS',
   CHURCHMEN = 'CHURCHMEN',
+  // [SURREALIS-ADD] - NEW_JOBS
+  ATC = 'ATC',
+  PRIMAL_DIVINES = 'PRIMAL_DIVINES',
+  // [/SURREALIS-ADD]
   INQUISITION = 'INQUISITION',
   ANTAGONIST = 'ANTAGONIST',
   PEASANTS = 'PEASANTS',
@@ -114,6 +122,10 @@ export const DEPARTMENT_FLAG_TO_ENUM = {
   [DepartmentFlag.RETINUE]: DepartmentEnum.RETINUE,
   [DepartmentFlag.GARRISON]: DepartmentEnum.GARRISON,
   [DepartmentFlag.CHURCHMEN]: DepartmentEnum.CHURCHMEN,
+  // [SURREALIS-ADD] - NEW_JOBS
+  [DepartmentFlag.ATC]: DepartmentEnum.ATC,
+  [DepartmentFlag.PRIMAL_DIVINES]: DepartmentEnum.PRIMAL_DIVINES,
+  // [/SURREALIS-ADD]
   [DepartmentFlag.BURGHERS]: DepartmentEnum.BURGHERS,
   [DepartmentFlag.PEASANTS]: DepartmentEnum.PEASANTS,
   [DepartmentFlag.SIDEFOLK]: DepartmentEnum.SIDEFOLK,
@@ -228,7 +240,10 @@ export type ConstantFaith = {
   name: string;
   desc: TrustedHTML;
   worshippers: string;
-  godhead: Path;
+  // [SURREALIS-EDIT] - LORE
+  // godhead: Path; // SURREALIS-EDIT - ORIGINAL
+  godhead?: Path | null;
+  // [/SURREALIS-EDIT]
 };
 
 /** {@link ConstantData.markings_by_zone} */

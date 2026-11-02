@@ -30,7 +30,7 @@
 		return
 	var/prompt = alert(target, "The Goddess of corrupted affection is about to give you the boon of fertility; to bear children!",, "Let it happen...", "Resist!")
 	if(prompt == "Let it happen...")
-		to_chat(target, span_warning("A strange feeling of warmth spreads inside your abdomen, growing hotter and hotter untill it almost feels like you are on fire, but pain actually never comes..."))
+		to_chat(target, span_warning("A strange feeling of warmth spreads inside your abdomen, growing hotter and hotter until it almost feels like you are on fire, but pain actually never comes..."))
 		target.Stun(60)
 		target.Knockdown(60)
 		target.sexcon.set_arousal(100)

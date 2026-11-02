@@ -141,7 +141,7 @@
 		if(has_turned && become_rotman)
 			for(var/trait in traits_rotman)
 				ADD_TRAIT(zombie, trait, "[type]")
-			to_chat(zombie, span_green("I no longer crave for flesh... <i>But I still feel ill.</i>"))
+			to_chat(zombie, span_green("I no longer crave flesh... <i>But I still feel ill.</i>"))
 		else
 			if(!was_i_undead)
 				zombie.mob_biotypes &= ~MOB_UNDEAD
@@ -150,7 +150,7 @@
 			zombie.faction += "neutral"
 			zombie.regenerate_organs()
 			if(has_turned)
-				to_chat(zombie, span_green("I no longer crave for flesh..."))
+				to_chat(zombie, span_green("I no longer crave flesh..."))
 
 		for(var/obj/item/bodypart/zombie_part as anything in zombie.bodyparts) //Cure all limbs
 			zombie_part.rotted = FALSE
@@ -262,14 +262,20 @@
 	zombie.visible_message(span_warning("[zombie]'s lyfeless eyes begin to light up with an eerie glow."))
 	zombie.vomit(1, blood = TRUE, stun = FALSE)
 	playsound(get_turf(zombie), 'sound/magic/woundheal_crunch.ogg', 80, FALSE, -1) //Horrible noises
-	to_chat(zombie, span_narsie("Death is not the end..."))
+	// [SURREALIS-EDIT]
+	// to_chat(zombie, span_narsie("Death is not the end...")) // SURREALIS-EDIT - ORIGINAL
+	to_chat(zombie, span_cult("Death is not the end..."))
+	// [/SURREALIS-EDIT]
 	sleep(2 SECONDS) //now get them up to go fight and die
 	if(zombie.resting)
 		zombie.set_resting(FALSE, FALSE) //GET UP, KILL, CONSUME.
 	zombie.visible_message(span_danger("[zombie] stands back up.")) //On par with deadite animals reanimating.
 	zombie.emote("rage") // This is where the fun begins
 	playsound(get_turf(zombie), 'sound/magic/woundheal_crunch.ogg', 80, FALSE, -1) //More horrible noises
-	to_chat(zombie, span_narsie(pick("SO... HUNGRY... CRAVE FLESH!", "FLESH... MUST HAVE FLESH!", "HUNGER... KILL... FLESH!")))
+	// [SURREALIS-EDIT]
+	// to_chat(zombie, span_narsie(pick("SO... HUNGRY... CRAVE FLESH!", "FLESH... MUST HAVE FLESH!", "HUNGER... KILL... FLESH!"))) // SURREALIS-EDIT - ORIGINAL
+	to_chat(zombie, span_cult(pick("SO... HUNGRY... CRAVE FLESH!", "FLESH... MUST HAVE FLESH!", "HUNGER... KILL... FLESH!")))
+	// [/SURREALIS-EDIT]
 	zombie.set_blurriness(0) //Unblind us so we aren't blurred forever
 	if(!zombie.cmode)	//Turns on combat mode if its not on, so you're immedately ready to do your thing
 		zombie.toggle_cmode()

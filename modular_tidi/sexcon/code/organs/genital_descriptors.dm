@@ -44,7 +44,7 @@
 		if(DEFAULT_PENIS_SIZE)
 			adjective = pick("an average","a middling","a modest","a standard","an unremarkable","a fair","a medium")
 		if(MAX_PENIS_SIZE)
-			adjective = pick("a large","a hefty","a sizeable","a thick","a beefy","a considerably-sized","a fat")
+			adjective = pick("a large","a hefty","a sizable","a thick","a beefy","a considerably-sized","a fat")
 	if(penis.massive)
 		adjective = pick("a massive","a colossal","an unpleasently large","a jumbo","a grotesquely swelled","an obscene","an unnaturally large")
 	if(H.sexcon)

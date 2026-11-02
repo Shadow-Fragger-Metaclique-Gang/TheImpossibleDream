@@ -55,6 +55,9 @@
 	var/mob/living/carbon/human/species/skeleton/no_equipment/target = new /mob/living/carbon/human/species/skeleton/no_equipment(T)
 	target.key = C.key
 	SSjob.EquipRank(target, "Fortified Skeleton", TRUE)
+	// [SURREALIS-ADD] - DEADITE_TWEAKS
+	target.set_summoned_by(user)
+	// [/SURREALIS-ADD]
 	target.copy_known_languages_from(user, TRUE)
 	target.visible_message(span_warning("[target]'s eyes light up with an eerie glow!"))
 	addtimer(CALLBACK(target, TYPE_PROC_REF(/mob/living/carbon/human, choose_name_popup), "FORTIFIED SKELETON"), 3 SECONDS)

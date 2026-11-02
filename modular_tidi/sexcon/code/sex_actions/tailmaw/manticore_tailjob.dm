@@ -1,6 +1,7 @@
 /datum/sex_action/manticore_tailjob
 	parent_type = /datum/sex_action/tailmaw
 	name = "Engulf their cock with tail maw"
+	category = SEX_CATEGORY_PENETRATE
 	check_same_tile = FALSE
 	target_sex_part = SEX_PART_COCK
 	user_sex_part = SEX_PART_TAIL_MAW

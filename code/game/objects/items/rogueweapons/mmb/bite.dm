@@ -199,7 +199,21 @@
 						if(prob(50))
 							user.werewolf_feed(bite_victim, 10)
 					else
+						// [SURREALIS-ADD] - RANDOM CHANCE TWEAKS FOR WW INFECTIONS
+						var/lesser_wolf = user.mind.has_antag_datum(/datum/antagonist/werewolf/lesser, FALSE)
+						var/infect_roll
+						if(caused_wound && istype(caused_wound, /datum/wound/artery)) // artery wound
+							infect_roll = lesser_wolf ? 50 : 75
+						else
+							infect_roll = lesser_wolf ? 15 : 30
+						if(prob(infect_roll))
+							caused_wound?.werewolf_infect_attempt()
+						// [/SURREALIS ADD]
+						// [SURREALIS-REMOVE] - REMOVE ORIGINAL INFECT CALL
+						/*
 						caused_wound?.werewolf_infect_attempt()
+						*/
+						// [/SURREALIS-REMOVE] - REMOVE ORIGINAL INFECT CALL
 						if(prob(50))
 							user.werewolf_feed(bite_victim, 10)
 			if(istype(user.dna.species, /datum/species/gnoll))

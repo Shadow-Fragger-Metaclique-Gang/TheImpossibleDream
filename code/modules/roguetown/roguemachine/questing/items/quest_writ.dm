@@ -124,13 +124,13 @@ GLOBAL_LIST_EMPTY(quest_scrolls)
 		to_chat(user, span_warning("Only Crown officials can stamp a scroll in the Crown's name."))
 		return
 	if(assigned_quest.levy_exempt)
-		to_chat(user, span_warning("This contract already bears the levy exempt stamp."))
+		to_chat(user, span_warning("This contract already bears the levy-exempt stamp."))
 		return
 	assigned_quest.levy_exempt = TRUE
 	update_quest_text()
 	playsound(src, 'sound/items/inqslip_sealed.ogg', 75, TRUE, 4)
 	log_game("[key_name(user)] stamped quest \"[assigned_quest.title || assigned_quest.quest_type]\" as LEVY EXEMPT via signet ring.")
-	to_chat(user, span_notice("You press the signet into the scroll and the Crown's seal glows. This contract is now levy exempt."))
+	to_chat(user, span_notice("You press the signet into the scroll and the Crown's seal glows. This contract is now levy-exempt."))
 
 /obj/item/quest_writ/proc/get_quest_assignees(mob/user, include_giver = FALSE)
 	var/list/assignees = list()

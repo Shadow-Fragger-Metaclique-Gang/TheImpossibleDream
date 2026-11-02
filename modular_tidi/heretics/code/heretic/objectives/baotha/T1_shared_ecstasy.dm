@@ -1,7 +1,7 @@
 /datum/objective/heretic/baotha/share
 	name = "Shared Ecstasy"
 	heretic_tier = 1
-	baotha_objective_text = "make another person snort drugs"
+	baotha_objective_text = "make another person snort powdered drugs"
 
 /datum/objective/heretic/baotha/share/on_creation()
 	. = ..()

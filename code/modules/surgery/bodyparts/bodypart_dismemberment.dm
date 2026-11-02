@@ -597,7 +597,7 @@
 
 	if(has_prosthetic && !already_has_spell)
 		H.mind?.AddSpell(new /obj/effect/proc_holder/spell/invoked/overlock)
-		to_chat(H, span_notice("AS the prosthetic attachs I can feel I can push them beyond their limits if I focus."))
+		to_chat(H, span_notice("As the prosthetic attaches, I feel I can push them beyond their limits if I focus."))
 	else if(!has_prosthetic && already_has_spell)
 		H.mind?.RemoveSpell(new /obj/effect/proc_holder/spell/invoked/overlock)
 		H.remove_status_effect(/datum/status_effect/buff/overclock)

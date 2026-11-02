@@ -100,6 +100,9 @@
 	. += span_info("SCOMs broadcast anything said into it into every other SCOM and RCOM across the realm, after a delay.")
 	. += span_info("Left-click the SCOM to mute it, preventing anything from being said or received. Left-click it again to unmute it.")
 	. += span_info("Middle-click the SCOM with a houndstone, crownstone or the Crown equipped to swap channels to the garrison SCOMline. Middle-click again to set it back.")
+	// [SURREALIS-ADD] - INQUISITION_SCOM
+	. += span_info("Middle-click the SCOM while wearing an inquisistone or puritanstone to swap channels to the Inquisition SCOMline. Middle-click again to set it back.")
+	// [/SURREALIS-ADD]
 	. += span_info("Right-click the SCOM to open a jabberline, opening a call between two SCOMs.")
 
 /obj/structure/roguemachine/scomm/Topic(href, href_list)
@@ -234,6 +237,10 @@
 /obj/structure/roguemachine/scomm/MiddleClick(mob/living/carbon/human/user)
 	if(.)
 		return
+	// [SURREALIS-ADD] - INQUISITION_SCOM
+	if(toggle_inquisition_line(user))
+		return
+	// [/SURREALIS-ADD]
 	if(!HAS_TRAIT(user, TRAIT_GARRISON_ITEM))
 		to_chat(user, span_warning("You are not authorized to use the garrison SCOMline. Press the RIGHT button to open a jabberline."))
 		return
@@ -277,6 +284,11 @@
 		set_light(0)
 		return
 	var/prefix = receive_only ? "rcomm" : "scomm"
+	// [SURREALIS-ADD] - INQUISITION_SCOM - "scomm3"/"rcomm3" are the inquisition line icon states
+	if(inquisitionline)
+		icon_state = "[prefix]4"
+		return
+	// [/SURREALIS-ADD]
 	if(garrisonline)
 		icon_state = "[prefix]2"
 		return
@@ -320,10 +332,10 @@
 	if(!listening)
 		return
 	if(receive_only)
-		to_chat(speaker, span_warning("This RCOM is receive only!"))
+		to_chat(speaker, span_warning("This RCOM is receive-only!"))
 		return
 	if(last_cheese && (last_cheese + CHEESE_QUIET_TIME >= world.time))
-		to_chat(speaker, span_warning("The rats seems to be busy nibbling on something!"))
+		to_chat(speaker, span_warning("The rats seem to be busy nibbling on something!"))
 		return
 	if(world.time < last_message + NORMAL_SCOM_PER_MESSAGE_DELAY)
 		var/time_remaining = round((last_message + NORMAL_SCOM_PER_MESSAGE_DELAY - world.time) / 10)
@@ -354,6 +366,11 @@
 		if(message_affix)
 			raw_message = "[raw_message][message_affix]"
 
+		// [SURREALIS-ADD] - INQUISITION_SCOM
+		if(inquisitionline)
+			relay_inquisition_line(raw_message, usedcolor, message_language)
+			return
+		// [/SURREALIS-ADD]
 		if(garrisonline)
 			raw_message = "<span style='color: [GARRISON_SCOM_COLOR]'>[raw_message]</span>" //Prettying up for Garrison line
 			for(var/obj/item/scomstone/garrison/S in SSroguemachine.scomm_machines)

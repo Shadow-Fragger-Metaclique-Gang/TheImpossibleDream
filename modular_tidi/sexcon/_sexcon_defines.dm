@@ -1,4 +1,4 @@
-#define COMSIG_MOB_EJACULATED "comsig_mob_ejaculated"				//from base of /datum/sex_controller/proc/ejaculate()
+#define COMSIG_MOB_EJACULATED "comsig_mob_ejaculated"				//from base of /datum/sex_controller/proc/after_ejaculation()
 #define COMSIG_SEX_JOSTLE "sex_jostle"
 
 #define COMSIG_MOB_EMOTE "mob_emote"

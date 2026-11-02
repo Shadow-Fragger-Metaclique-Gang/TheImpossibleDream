@@ -1,0 +1,2 @@
+#include "code\statue_preferences.dm"
+#include "code\statue_registration.dm"

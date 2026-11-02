@@ -1,0 +1,2 @@
+#define TRAIT_INQUISITION_ITEM "Inquisition Item"
+#define INQUISITION_SCOM_COLOR "#4A7BFF"

@@ -3,7 +3,10 @@
 	#define MINIMUM_OOC_NOTES 0
 #endif
 #ifndef LOCALTEST
-	#define MINIMUM_FLAVOR_TEXT		200
+	// SURREALIS EDIT START - CHARACTER_LIMITS - Minimum flavor text lengths are stupid.
+	// #define MINIMUM_FLAVOR_TEXT		200 // SURREALIS-EDIT - ORIGINAL
+	#define MINIMUM_FLAVOR_TEXT		0
+	// SURREALIS EDIT END
 	#define MINIMUM_OOC_NOTES		5 //Just put something in there
 #endif
 

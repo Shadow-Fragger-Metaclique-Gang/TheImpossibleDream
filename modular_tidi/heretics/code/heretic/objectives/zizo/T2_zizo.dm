@@ -5,7 +5,7 @@
 	var/affected_needed = 4
 
 /datum/objective/heretic/zizo/apostasy/update_explanation_text()
-	explanation_text = "Speak ZIZO's name to four different people. You must be visible to them, but your identity may be obscured."
+	explanation_text = "Speak ZIZO's name to four different people. You must be visible to them, but your identity may be obscured. The listeners may not be of heretical faith."
 
 /datum/objective/heretic/zizo/apostasy/on_creation()
 	. = ..()

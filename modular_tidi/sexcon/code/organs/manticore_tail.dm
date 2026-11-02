@@ -65,7 +65,7 @@ GLOBAL_LIST_INIT(manticore_plain_tailmaw_accessories, list(
 	tail_dna.fertility = fertility
 
 /obj/item/organ/tail/manticore/be_impregnated(mob/living/carbon/human/father)
-	if(!owner || owner.stat == DEAD || !fertility)
+	if(!owner || owner.stat == DEAD || !fertility || owner == father) // no cloning allowed
 		return FALSE
 	if(pregnant)
 		to_chat(owner, span_love("I feel a surge of warmth in my belly again..."))

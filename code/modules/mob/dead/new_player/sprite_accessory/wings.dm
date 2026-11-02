@@ -162,7 +162,11 @@
 /datum/sprite_accessory/wings/wide/succubus
 	name = "Succubus"
 	icon_state = "succubus"
+	// [SURREALIS-REMOVE] - PORTED_CUSTOMIZATION - (its REALLY ugly with it enabled.)
+	/*
 	extra_state = TRUE
+	*/
+	// [/SURREALIS-REMOVE]
 
 /datum/sprite_accessory/wings/wide/dragon_synth
 	name = "Dragon (synthetic alt)"

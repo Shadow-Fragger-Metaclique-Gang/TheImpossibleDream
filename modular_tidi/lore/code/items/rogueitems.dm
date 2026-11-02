@@ -19,7 +19,7 @@
 	chronicling the beliefs held throughout the collective of the Cabal which could mutually agree on the same matters; \
 	such tomes are often considered major contraband in most of Psydonia and oft burned, even by followers of Noc. \
 	Even to this dae its unknown how such tomes keep circulating, presumably from some unknown printing press or two somewhere; \
-	but they are seldom found outside of the black market. Inside are two seperate testaments. </br> \
+	but they are seldom found outside of the black market. Inside are two separate testaments. </br> \
 	</br>APOTHEOSIS - TESTAMENTS OF HER TRUTH, HER RISE, HIS SHATTERING. \
 	</br>DEMIURGOS - TESTAMENTS OF ITS REIGN, THE PLACE OF DEATHRISING, AND PROMISES TO THE FUTURE."
 

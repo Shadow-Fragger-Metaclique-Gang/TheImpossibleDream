@@ -4,7 +4,7 @@
 	heretic_branch = HERETIC_PATH_AMBITION
 
 /datum/objective/heretic/zizo/deadite/update_explanation_text()
-	explanation_text = "Use the Raise Deadite ritual to raise a corpse as an empowered deadite."
+	explanation_text = "Use the Raise Deadite ritual to raise a corpse as an empowered deadite. It may not be the corpse of a hylic."
 
 /datum/objective/heretic/zizo/deadite/on_creation()
 	. = ..()

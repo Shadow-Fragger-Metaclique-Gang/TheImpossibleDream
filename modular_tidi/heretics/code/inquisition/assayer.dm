@@ -1,8 +1,5 @@
 // Evil and fucked up inquisition blood testing machine
 // It and a box of indexers and blood vials for said indexers comes at thirty minutes into the round
-
-// TODO: Make the hematic assayer not call out people by name and instead point to a vague direction
-// TODO: Make it so you can edit a label on the blood vials, maybe with a nice overlay sprite
 /obj/item/inqarticles/assayer
 	name = "HEMATIC ASSAYER"
 	desc = "A blessed silver apparatus that boils a sample of blood and reads what festers in it."
@@ -18,6 +15,8 @@
 	verb_say = "blares"
 	var/obj/item/inqarticles/blood_vial/vial
 	var/testing = FALSE
+	var/list/tests = list()
+	var/list/tracked_test
 
 /// If you wanna carry this thing around for on the go blood tests, have the absolver slave away with it
 /// Don't let them lose it though! It's wholly unique and irreplaceable
@@ -32,6 +31,13 @@
 	QDEL_NULL(vial)
 	return ..()
 
+/obj/item/inqarticles/assayer/getonmobprop(tag)
+	. = ..()
+	if(tag)
+		switch(tag)
+			if("gen", "wielded")
+				return list("shrink" = 0.7,"sx" = 0,"sy" = -2,"nx" = 0,"ny" = -2,"wx" = -4,"wy" = -2,"ex" = 4,"ey" = -2,"northabove" = 0,"southabove" = 1,"eastabove" = 1,"westabove" = 1,"nturn" = 0,"sturn" = 0,"wturn" = 0,"eturn" = 0,"nflip" = 0,"sflip" = 0,"wflip" = 0,"eflip" = 0)
+
 /obj/item/inqarticles/assayer/update_icon_state()
 	if(testing)
 		icon_state = "assayer_working"
@@ -43,7 +49,9 @@
 	. = ..()
 	if(HAS_TRAIT(user, TRAIT_INQUISITION))
 		. += span_info("Insert a filled blood vial and middle-click the HEMATIC ASSAYER to test the blood.")
+		. += span_info("Use a full vial in hand to mark a name on it first, and the HEMATIC ASSAYER will call by that name instead of a generic one.")
 		. += span_info("Once the test is done it spits the vial back out, empty and ready to use again.")
+		. += span_info("The HEMATIC ASSAYER remembers every test until ten minutes pass and the blood rots. Right-click it with no vial inside to fix it on one, and then use it in hand to follow the blood to its owner.")
 		. += span_info("A sample that festers is likely corrupted, but not certainly. Neither result is proof on its own.")
 		. += span_info("Vials containing cursed blood cannot be tested and should be put to use elsewhere.")
 
@@ -67,12 +75,61 @@
 	return TRUE
 
 /obj/item/inqarticles/assayer/attack_right(mob/user)
-	if(!vial || testing)
+	if(testing)
 		return
-	if(!user.put_in_hands(vial))
-		vial.forceMove(get_turf(src))
-	vial = null
-	update_icon()
+	if(vial)
+		if(!user.put_in_hands(vial))
+			vial.forceMove(get_turf(src))
+		vial = null
+		update_icon()
+		return
+	for(var/list/test as anything in tests)
+		if(world.time > test["time"] + 10 MINUTES)
+			tests -= list(test)
+	if(!length(tests))
+		to_chat(user, span_warning("[src] doesn't know anyone's scents yet."))
+		return
+	var/list/choices = list()
+	for(var/list/test as anything in tests)
+		var/choice = "[test["label"] || "UNMARKED"] - [round((world.time - test["time"]) / (1 MINUTES))] minutes ago"
+		while(choices[choice])
+			choice += "."
+		choices[choice] = test
+	var/picked = input(user, "WHOSE BLOOD SHALL IT FOLLOW?", "HEMATIC ASSAYER") as null|anything in choices
+	if(!picked || !user.Adjacent(src))
+		return
+	tracked_test = choices[picked]
+	to_chat(user, span_notice("[src] fixes upon the blood of [tracked_test["label"] || "the unmarked vial"]."))
+
+/obj/item/inqarticles/assayer/attack_self(mob/user)
+	if(!tracked_test)
+		to_chat(user, span_warning("[src] follows no blood."))
+		return
+	if(world.time > tracked_test["time"] + 10 MINUTES)
+		say("THE SCENT HAS EXPIRED.")
+		tracked_test = null
+		return
+	var/datum/weakref/subject_ref = tracked_test["subject"]
+	var/mob/living/subject = subject_ref?.resolve()
+	if(!subject || subject.stat == DEAD || !subject.z)
+		say("THE BLOOD CANNOT BE FOUND.")
+		return
+	var/z_text = ""
+	if(subject.z > user.z)
+		z_text = ", SOMEWHERE ABOVE"
+	else if(subject.z < user.z)
+		z_text = ", SOMEWHERE BELOW"
+	var/pull_dir = get_dir(user, subject)
+	if(!pull_dir)
+		if(z_text)
+			say("THE BLOOD LIES [subject.z > user.z ? "ABOVE" : "BELOW"].")
+		else
+			say("THE BLOOD IS HERE.")
+		return
+	if(get_dist(user, subject) <= 10)
+		say("THE BLOOD LIES TO THE [uppertext(dir2text(pull_dir))][z_text].")
+	else
+		say("THE BLOOD LIES TO THE [uppertext(dir2text(pull_dir))]. IT IS [get_dist(user, subject) <= 15 ? "NEARBY" : "FAR AWAY"][z_text].")
 
 /obj/item/inqarticles/assayer/MiddleClick(mob/user, params)
 	if(!isturf(loc) || !user.Adjacent(src))
@@ -102,12 +159,14 @@
 	if(QDELETED(src))
 		return
 	if(vial?.subject_name)
+		var/blood_of = vial.label ? "THE BLOOD OF [uppertext(vial.label)]" : "THE BLOOD"
 		if(rand(0, 99) < vial.subject_corruption)
 			playsound(src, 'modular_tidi/heretics/sound/assayer_bad.ogg', 80, FALSE)
-			say("THE BLOOD OF [uppertext(vial.subject_name)] FESTERS.")
+			say("[blood_of] FESTERS.")
 		else
 			playsound(src, 'modular_tidi/heretics/sound/assayer_good.ogg', 80, FALSE)
-			say("THE BLOOD OF [uppertext(vial.subject_name)] RUNS CLEAN.")
+			say("[blood_of] RUNS CLEAN.")
+		tests += list(list("label" = vial.label, "subject" = vial.subject, "time" = world.time))
 		vial.empty()
 	sleep(2 SECONDS)
 	if(QDELETED(src))

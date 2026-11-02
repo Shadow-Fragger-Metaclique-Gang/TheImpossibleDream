@@ -3,6 +3,7 @@
 	sprite_accessories += list(
 		/datum/sprite_accessory/tail/tiefling/spade
 	)
+	return ..()
 
 /datum/customizer_choice/organ/tail/manticore/New()
 	sprite_accessories += list(
@@ -11,6 +12,7 @@
 		/datum/sprite_accessory/tail/tiefling/spadeheart/tailmaw,
 		/datum/sprite_accessory/tail/tiefling/spade/tailmaw
 	)
+	return ..()
 
 /datum/sprite_accessory/tail/tiefling/tailmaw
 	name = "Tiefling (Tailmaw)"

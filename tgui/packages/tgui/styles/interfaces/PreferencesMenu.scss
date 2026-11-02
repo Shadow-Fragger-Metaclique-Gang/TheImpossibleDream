@@ -152,11 +152,29 @@
     --color-faith-used-light: var(--color-faith-light);
     --color-faith-used-dark: var(--color-faith-dark);
 
-    &.Ascendents {
+    // [SURREALIS-EDIT] - LORE
+    // &.Ascendents { // SURREALIS-EDIT - ORIGINAL
+    &.Ascendants {
+      // [/SURREALIS-EDIT]
       --color-faith-used: var(--color-faith-ascendent);
       --color-faith-used-light: var(--color-faith-ascendent-light);
       --color-faith-used-dark: var(--color-faith-ascendent-dark);
     }
+
+    // [SURREALIS-ADD] - LORE
+    // Faith names with spaces become two classes, so the first word is matched.
+    &.Primal {
+      --color-faith-used: #52683a;
+      --color-faith-used-light: #{color.adjust(#52683a, $lightness: 10%)};
+      --color-faith-used-dark: #{color.adjust(#52683a, $lightness: -10%)};
+    }
+
+    &.Embodied {
+      --color-faith-used: #8f90d6;
+      --color-faith-used-light: #{color.adjust(#8f90d6, $lightness: 10%)};
+      --color-faith-used-dark: #{color.adjust(#8f90d6, $lightness: -10%)};
+    }
+    // [/SURREALIS-ADD]
 
     &.Genesism {
       --color-faith-used: var(--color-faith-geneism);

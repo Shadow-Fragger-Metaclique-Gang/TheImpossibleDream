@@ -29,6 +29,7 @@
 		/datum/sprite_accessory/hair/head/ported_customization/willowtree,
 		/datum/sprite_accessory/hair/head/ported_customization/zaladin
 	)
+	return ..()
 
 /datum/sprite_accessory/hair/head/ported_customization/ // so we don't have to copy & paste icon for everything.
 	icon = 'modular_tidi/ported_customization/icons/human_hair.dmi'

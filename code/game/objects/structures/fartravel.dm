@@ -41,6 +41,9 @@
 	var/dat = "[ADMIN_LOOKUPFLW(user)] has despawned [departing_mob == user ? "themselves" : departing_mob], job [departing_mob.job], at [AREACOORD(src)]. Contents despawned along:"
 	if(departing_mob.mind)
 		mob_job = SSjob.GetJob(departing_mob.mind.assigned_role)
+		// [SURREALIS-ADD] - MERCENARY_STATUE
+		unregister_from_mercenary_statue(departing_mob)
+		// [/SURREALIS-ADD]
 		if(mob_job)
 			mob_job.current_positions = max(0, mob_job.current_positions - 1)
 			var/datum/advclass/target_job = departing_mob.get_advclass_datum()

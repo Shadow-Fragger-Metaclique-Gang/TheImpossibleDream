@@ -391,7 +391,10 @@ h2.alert {
 .narsie {
   color: #960000;
   font-weight: bold;
-  font-size: 12;
+  // [SURREALIS-EDIT]
+  // font-size: 12; // SURREALIS-EDIT - ORIGINAL
+  font-size: 200%;
+  // [/SURREALIS-EDIT]
 }
 .colossus {
   color: #7f282a;

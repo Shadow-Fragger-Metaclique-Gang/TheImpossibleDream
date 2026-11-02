@@ -31,7 +31,8 @@ import {
 const PRIORITY_BUTTON_SIZE = 18;
 
 // INSTRUCTIONS FOR DOWNSTREAM: you may need to manage this list yourself
-const COLS = [
+// [SURREALIS-EDIT] - CLASS_SELECTION
+/* const COLS = [
   [DepartmentEnum.NOBLEMEN, DepartmentEnum.COURTIERS],
   [DepartmentEnum.RETINUE, DepartmentEnum.GARRISON, DepartmentEnum.BURGHERS],
   [
@@ -41,7 +42,24 @@ const COLS = [
     DepartmentEnum.WANDERERS,
   ],
   [DepartmentEnum.PEASANTS, DepartmentEnum.ANTAGONIST, DepartmentEnum.NONE],
+]; */ // SURREALIS-EDIT - ORIGINAL
+const COLS = [
+  [DepartmentEnum.NOBLEMEN, DepartmentEnum.COURTIERS, DepartmentEnum.RETINUE],
+  [
+    DepartmentEnum.GARRISON,
+    DepartmentEnum.CHURCHMEN,
+    DepartmentEnum.PRIMAL_DIVINES,
+    DepartmentEnum.INQUISITION,
+  ],
+  [DepartmentEnum.ATC, DepartmentEnum.BURGHERS, DepartmentEnum.PEASANTS],
+  [
+    DepartmentEnum.SIDEFOLK,
+    DepartmentEnum.WANDERERS,
+    DepartmentEnum.ANTAGONIST,
+    DepartmentEnum.NONE,
+  ],
 ];
+// [/SURREALIS-EDIT]
 
 export const SubtabClass = () => {
   const [constantData] = useConstantPrefs();
@@ -213,6 +231,18 @@ const DEPARTMENT_ENUM_TO_NAME = {
       Church
     </Box>
   ),
+  // [SURREALIS-ADD] - NEW_JOBS
+  [DepartmentEnum.ATC]: (
+    <Box inline textColor="#5b9bd5">
+      Merchantry
+    </Box>
+  ),
+  [DepartmentEnum.PRIMAL_DIVINES]: (
+    <Box inline textColor="#367f8c">
+      Primal Divines
+    </Box>
+  ),
+  // [/SURREALIS-ADD]
   [DepartmentEnum.BURGHERS]: (
     <Box inline textColor="#c88544">
       Burghers
