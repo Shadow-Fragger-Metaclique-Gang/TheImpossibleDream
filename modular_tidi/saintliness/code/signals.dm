@@ -24,3 +24,4 @@
 #define COMSIG_MOB_JOY "mob_joy"
 #define COMSIG_MOB_STRIPPER "mob_stripper"
 #define COMSIG_MOB_MOURN "mob_mourn"
+#define COMSIG_MOB_BOOKBURNER "mob_bookburner"
