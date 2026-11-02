@@ -1121,7 +1121,10 @@
 			L.set_pull_offsets(src, pulledby.grab_state)
 
 //	if(active_storage && !(CanReach(active_storage.parent,view_only = TRUE)))
-	if(active_storage)
+	// [SURREALIS-EDIT] - INVENTORY OPEN WHILE MOVING
+	// if(active_storage) // SURREALIS-EDIT - ORIGINAL
+	if(active_storage && !(CanReach(active_storage.parent,view_only = TRUE)))
+	// [/SURREALIS-EDIT]
 		active_storage.close(src)
 
 	if(!(mobility_flags & MOBILITY_STAND) && !buckled && prob(getBruteLoss()*200/maxHealth))
