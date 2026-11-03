@@ -13,7 +13,7 @@
 	special = /datum/special_intent/shin_swipe
 	bigboy = TRUE
 	smeltresult = /obj/item/ingot/silver
-	icon = 'modular_tidi/switchblade/icons/testament.dmi'
+	icon = 'modular_tidi/weapons/icons/testament.dmi'
 	icon_state = "psyfoldingblade_on"
 	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/cut/sabre/heavy, /datum/intent/sword/thrust/sabre, /datum/intent/sword/strike)
 
