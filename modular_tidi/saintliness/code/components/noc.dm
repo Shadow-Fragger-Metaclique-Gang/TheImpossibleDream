@@ -8,7 +8,7 @@
 									  "Decrease the inferential distance of your pleas. I'm trying to...",
 									  "We only say that because it's easier to explain than the truth, close your inferential gaps and then we can talk Eye to Eye.",
 									  "What a strange self-sampling assumption to make.",
-									  "Do you have a single bibliographic source to back that up? Opinion disregarded.",
+									  "That isn't supported by any worldly scriptures. Opinion disregarded.",
 									  "I prefer intelligent women myself, but that only leaves my sisters...",
 									  "It's not enough being nice or smart. We live in a world that hates rationality...",
 									  "Go read a book.",
