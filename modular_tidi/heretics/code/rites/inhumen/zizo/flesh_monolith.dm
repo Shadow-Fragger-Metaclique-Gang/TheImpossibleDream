@@ -63,8 +63,6 @@
 /obj/item/organ/heart
 	var/datum/weakref/monolith_maker
 
-// examine override for flesh monolith moved into its own examine.dm file
-
 /obj/item/organ/heart/examine(mob/user)
 	. = ..()
 	if(monolith_maker && monolith_maker.resolve() == user)

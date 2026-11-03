@@ -4,7 +4,8 @@
 
 **Created in:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/60
 
-**Related PRs:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/94
+**Related PRs:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/91
+				 https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/94
 
 **Major changes:**
 
