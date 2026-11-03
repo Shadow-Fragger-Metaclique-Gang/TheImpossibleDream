@@ -27,6 +27,7 @@
 	if(completed)
 		return
 	completed = TRUE
+	owner?.heretic_path?.log_objective(src)
 	if(owner?.current)
 		owner.current.playsound_local(owner.current, 'modular_tidi/heretics/sound/heretic_complete.ogg', 100, FALSE)
 		to_chat(owner.current, span_cult("<i>Done. The Rite of Ascension awaits me.</i>"))

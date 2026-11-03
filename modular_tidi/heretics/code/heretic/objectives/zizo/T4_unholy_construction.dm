@@ -24,6 +24,8 @@
 		return "This heart never gazed upon my monolith."
 
 /datum/objective/heretic/zizo/monolith/take_offering(mob/living/user, atom/movable/offering, turf/loc)
+	var/obj/item/organ/heart/heart = offering
+	record_victim(heart.monolith_gazer?.resolve())
 	var/obj/structure/ritualcircle/circle = locate() in loc
 	circle.icon_state = "zizo_active"
 	addtimer(VARSET_CALLBACK(circle, icon_state, "zizo_chalky"), 12 SECONDS)

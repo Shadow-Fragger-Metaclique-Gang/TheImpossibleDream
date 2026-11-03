@@ -393,7 +393,7 @@ Here, in the Pharos, what is impossible becomes possible.
 		<br><br>
 		Within its intensely hot, dry deserts, worship of the Sun is absolute; Her hierarchies holiest, for they provide structure within shifting sands. With this - and upon the backs of a thousand thousand slaves - they have built routes and gleaming cities within the harshest of realms.
 		<br><br>
-		Raneshan, therefore, has a stranglehold over the exportation of exotic spices, silks, and slaves. Yet, the one thing Raneshen takes pride in above all else is music - its composers are unmatched in skill, and have been the premiere choice for catering to extravagant ceremonies: the latest of which being the coronation of Grenzelhoft's newest Emperor.
+		Raneshan, therefore, has a stranglehold over the exportation of exotic spices, silks, and slaves - a beautiful monopoly unlikely to ever break, so long as the sun rises and sun sets.
 		<br>
 	</details>
 	<details style="max-width:800px; margin:0 auto;">
@@ -401,7 +401,7 @@ Here, in the Pharos, what is impossible becomes possible.
 		<br>
 		<em>// Apostates of Magicked Renown //</em>
 		<br><br>
-		Naledi is a nation dominated by southern dunes, easterly mountains that divide it from Zybantium and Raneshan, and lush savannas that cling to the coast upon the Midderland's seas. Governed by a Shah, who delegates the functions of their cities to politico-philosopher Caliphs and theocratic Cariye. With an emphasis on both academia and piety, Naledi is renowned for it’s warscholars, magickal institutions, and belief in Old Psydonic - a monotheistic denomination of Psydonians that believe He is the only God, and the Pantheon are different names of Him.
+		Naledi is a nation dominated by southern dunes, easterly mountains that divide it from Zybantium and Raneshan, and lush savannas that cling to the coast upon the Midderland's seas. Governed by a Shah, who delegates the functions of their cities to politico-philosopher Caliphs and theocratic Cariye. With an emphasis on both academia and piety, Naledi is renowned for it’s warscholars, magickal institutions, and belief in Old Psydonic - a monotheistic, insular denomination of Psydonians that believe He is the only God, and the Pantheon are different names of Him.
 		<br><br>
 		Decades of invasion from Djinn, destabilized trade routes leaving townships starved, and the exodus of warscholars in search for more opportunities has put Naledi in a gradual state of decline. More troubling, however, is the revelation that its star-speckled skies have abruptly turned into a colorless void.
 		<br>
@@ -412,7 +412,7 @@ Here, in the Pharos, what is impossible becomes possible.
 		<br>
 		<em>// Fiefdom of Sinners-And-Slaves //</em>
 		<br><br>
-		Lirvas, a craggy promonitory just off of the Westerland's coast, is notorious for its guiltless tolerance of almost all faiths and peoples that come here: in so far as they pay. The social strata of Livras is carved into the stone itself: a five-ringed kingdom, built around a mountain range peaking high. Like scales, each ring is strictly segmented by wealth, class, and ownership: sin and excess extravagant defining every layer, but debt always being owed to the greater scales.
+		Lirvas, a craggy promonitory just off of the Westerland's coast, is notorious for its guiltless tolerance of almost all faiths and peoples that come here: in so far as they pay. The social strata of Lirvas is carved into the stone itself: a five-ringed kingdom, built around a mountain range peaking high. Like scales, each ring is strictly segmented by wealth, class, and ownership: sin and excess extravagant defining every layer, but debt always being owed to the greater scales.
 		<br><br>
 		It is ruled not by a man, but a dragon: an ancient megabeast who's power has allowed Lirvas to remain unthreatened by foreign kingdoms, crowned Emperor and sire to the many dragons and wyverns that make this range their home.
 		<br><br>

@@ -655,8 +655,8 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 		output += A.antag_memory
 		all_objectives |= A.objectives
 	// [SURREALIS-ADD] - HERETICS
-	if(heretic_path?.current_objective)
-		all_objectives |= heretic_path.current_objective
+	if(heretic_path)
+		all_objectives |= heretic_path.get_memory_objectives()
 	// [/SURREALIS-ADD]
 
 	if(all_objectives.len)

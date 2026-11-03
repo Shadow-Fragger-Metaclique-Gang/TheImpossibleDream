@@ -63,7 +63,9 @@ SUBSYSTEM_DEF(throwing)
 	var/delayed_time = 0
 	var/last_move = 0
 	var/extra = FALSE
-
+// [SURREALIS-ADD] - THROWING_REFACTOR - Path the item is going to travel in flight.
+	var/list/path = list()
+// [/SURREALIS-ADD]
 /datum/thrownthing/New(thrownthing, target, target_turf, init_dir, maxrange, speed, thrower, diagonals_first, force, callback, target_zone, extra)
 	. = ..()
 	src.thrownthing = thrownthing
@@ -89,7 +91,13 @@ SUBSYSTEM_DEF(throwing)
 	if(callback)
 		QDEL_NULL(callback) //It stores a reference to the thrownthing, its source. Let's clean that.
 	return ..()
-
+// [SURREALIS-ADD] - THROWING_REFACTOR
+//Draw the path we're going to take, and cut the base turf from it.
+/datum/thrownthing/proc/init_path()
+	thrownthing.allow_diagonal_movement = TRUE
+	path.Add(getline(get_turf(thrownthing), target_turf))
+	path -= path[1] //cut initial turf, we don't need it.
+// [/SURREALIS-ADD]
 ///Defines the datum behavior on the thrownthing's qdeletion event.
 /datum/thrownthing/proc/on_thrownthing_qdel(atom/movable/source, force)
 	SIGNAL_HANDLER
@@ -97,7 +105,10 @@ SUBSYSTEM_DEF(throwing)
 
 /datum/thrownthing/proc/tick()
 	var/atom/movable/AM = thrownthing
-	if (!isturf(AM.loc) || !AM.throwing)
+// [SURREALIS-EDIT] - THROWING_REFACTOR - bugfix
+	//if (!AM ||!isturf(AM.loc) || !AM.throwing) - ORIGINAL
+	if (!AM ||!isturf(AM.loc) || !AM.throwing)
+// [/SURREALIS-EDIT]
 		finalize()
 		return
 
@@ -112,14 +123,26 @@ SUBSYSTEM_DEF(throwing)
 	var/atom/step
 
 	last_move = world.time
+// [SURREALIS-ADD] - THROWING_REFACTOR - If the path is somehow not set up, make sure to do that.
+	if(!length(path))
+		init_path()
+// [/SURREALIS-ADD]
 
 	//calculate how many tiles to move, making up for any missed ticks.
 	var/tilestomove = CEILING(min(((((world.time+world.tick_lag) - start_time + delayed_time) * speed) - (dist_travelled ? dist_travelled : -1)), speed*MAX_TICKS_TO_MAKE_UP) * (world.tick_lag * SSthrowing.wait), 1)
 	while (tilestomove-- > 0)
-		if ((dist_travelled >= maxrange || AM.loc == target_turf))
+// [SURREALIS-EDIT] - THROWING_REFACTOR - How exactly does vandalizing this file more make it easier to maintain?
+		//if ((dist_travelled >= maxrange || AM.loc == target_turf))
+		if(!path)
+			finalize()
+			return
+		if ((dist_travelled >= maxrange || AM.loc == target_turf || path[1] == null))
+// [/SURREALIS-EDIT] - THROWING_REFACTOR
 			finalize()
 			return
 
+// [SURREALIS-EDIT] - THROWING_REFACTOR
+/* ORIGINAL
 		if (dist_travelled <= max(dist_x, dist_y)) //if we haven't reached the target yet we home in on it, otherwise we use the initial direction
 			step = get_step(AM, get_dir(AM, target_turf))
 		else
@@ -129,13 +152,18 @@ SUBSYSTEM_DEF(throwing)
 			if (diagonal_error >= 0 && max(dist_x,dist_y) - dist_travelled != 1) //we do a step forward unless we're right before the target
 				step = get_step(AM, dx)
 			diagonal_error += (diagonal_error < 0) ? dist_x/2 : -dist_y
+*/
+		step = get_step(AM, get_dir(AM, path[1]))
 
+		path -= path[1] //Remove the first entry, and shift the entire stack left. This means path[1] is always the next turf.
+// [/SURREALIS-EDIT]
 		if (!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
 			finalize()
 			return
-
-		AM.Move(step, get_dir(AM, step), DELAY_TO_GLIDE_SIZE(1 / speed))
-
+// [SURREALIS-EDIT] - THROWING_REFACTOR
+//		AM.Move(step, get_dir(AM, step), DELAY_TO_GLIDE_SIZE(1 / speed))
+		AM.Move(step, get_dir(AM, step), MOVEMENT_ADJUSTED_GLIDE_SIZE(1 / speed,  MC_AVERAGE_FAST(1, max((world.time-SSthrowing.last_fire) / SSthrowing.wait, 1))))
+// [/SURREALIS-EDIT]
 		if (!AM.throwing) // we hit something during our move
 			finalize(hit = TRUE)
 			return
@@ -151,6 +179,9 @@ SUBSYSTEM_DEF(throwing)
 	//done throwing, either because it hit something or it finished moving
 	if(!thrownthing)
 		return
+// [SURREALIS-ADD] - THROWING_REFACTOR
+	thrownthing.allow_diagonal_movement = FALSE
+// [/SURREALIS-ADD]
 	thrownthing.throwing = null
 	if (!hit)
 		for (var/thing in get_turf(thrownthing)) //looking for our target on the turf we land on.

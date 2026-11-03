@@ -160,7 +160,7 @@
 		return
 	if(vial?.subject_name)
 		var/blood_of = vial.label ? "THE BLOOD OF [uppertext(vial.label)]" : "THE BLOOD"
-		if(rand(0, 99) < vial.subject_corruption)
+		if(vial.false_witness || rand(0, 99) < vial.subject_corruption)
 			playsound(src, 'modular_tidi/heretics/sound/assayer_bad.ogg', 80, FALSE)
 			say("[blood_of] FESTERS.")
 		else

@@ -20,5 +20,6 @@
 	SIGNAL_HANDLER
 	if(completed || !istype(victim) || !victim.is_noble())
 		return
+	record_victim(victim)
 	complete()
 	UnregisterSignal(owner.current, COMSIG_HERETIC_WOUND_DEALT)

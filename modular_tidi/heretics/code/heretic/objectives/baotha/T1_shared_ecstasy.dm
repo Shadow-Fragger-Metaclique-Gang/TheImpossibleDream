@@ -18,6 +18,7 @@
 	if(completed || baotha_objective_done)
 		return
 	baotha_objective_done = TRUE
+	record_victim(sniffer)
 	check_progress()
 
 /// Latch onto powder attack and check if we're forcing real drugs onto someone, and then send the completion signal

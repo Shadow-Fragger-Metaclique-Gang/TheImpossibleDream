@@ -1,6 +1,6 @@
 /datum/job/roguetown/mercenary
-	total_positions = 7
-	spawn_positions = 7
+	total_positions = 5
+	spawn_positions = 5
 
 /datum/advclass/mercenary/lirvanmerc
 	maximum_possible_slots = 0

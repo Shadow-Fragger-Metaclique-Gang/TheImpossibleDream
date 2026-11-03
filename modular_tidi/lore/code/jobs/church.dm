@@ -24,15 +24,47 @@
 
 /datum/job/roguetown/priest
 	display_title = "Pontifex"
+	f_title = "Pontifex"
 	tutorial = "The Divine is all that matters in a world of the immoral. The Shattered God abandoned us, and in his stead the PENTACLE rules over us mortals--and you will preach their wisdom to any who still heed their will. The faithless are growing in number. It is up to you to shepherd them toward a Gods-fearing future, o bridge-builder."
 
 /datum/advclass/bishop
+	name = "Pontifex"
 	tutorial = "The Divine is all that matters in a world of the immoral. \
 	The Shattered God abandoned us, and in his stead the PENTACLE rules over us mortals--and you will preach their wisdom to any who still heed their will. The faithless are growing in number. \
 	It is up to you to shepherd them toward a Gods-fearing future, o bridge-builder."
 	subclass_stashed_items = list(
 		"The Verses and Acts of the Pantheon" = /obj/item/book/rogue/bibble,
 	)
+
+/mob/living/carbon/human/churchannouncement()
+	set name = "Announcement"
+	set category = "RoleUnique.Priest"
+
+	if(stat)
+		return
+
+	if (!istype(get_area(src), /area/rogue/indoors/town/church/chapel))
+		to_chat(src, span_warning("I need to do this in the chapel."))
+		return FALSE
+
+	var/announcementinput = input(src, "Bellow before the Scar", "Make an Announcement") as text|null
+	if(announcementinput)
+		if(!src.can_speak_vocal())
+			to_chat(src,span_warning("I can't speak!"))
+			return FALSE
+		if (!COOLDOWN_FINISHED(src, priest_announcement))
+			to_chat(src, span_warning("You must wait before speaking again."))
+			return
+		visible_message(span_warning("[src] takes a deep breath, preparing to make an announcement."))
+		if(do_after(src, 15 SECONDS, target = src)) // Reduced to 15 seconds from 30 on the original Herald PR. 15 is well enough time for sm1 to shove you.
+			say(announcementinput)
+			var/sanitized_input = trim(copytext(sanitize(announcementinput), 1, MAX_MESSAGE_LEN))
+			var/treated_input = treat_message(sanitized_input, /datum/language/common)
+			priority_announce("[treated_input]", "The Pontifex Preaches", 'sound/misc/bell.ogg', sender = src)
+			COOLDOWN_START(src, priest_announcement, 2 MINUTES) // PRIEST_ANNOUNCEMENT_COOLDOWN is #undef'd at the end of priest.dm
+		else
+			to_chat(src, span_warning("Your announcement was interrupted!"))
+			return FALSE
 
 /datum/job/roguetown/sexton
 	display_title = "Initiate"

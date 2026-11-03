@@ -139,6 +139,7 @@
 	var/subject_name
 	var/subject_corruption = 0
 	var/cursed = FALSE
+	var/false_witness = FALSE //check false_witness.dm
 	var/label
 	var/datum/weakref/subject
 
@@ -184,11 +185,14 @@
 	subject_corruption = corruption
 	cursed = is_cursed
 	subject = subject_mob ? WEAKREF(subject_mob) : null
+	if(HAS_TRAIT(subject_mob, FALSE_WITNESS_TRAIT)) // doesn't update after the blood has been collected, since it is now removed from the victim
+		false_witness = TRUE
 	update_icon()
 
 /obj/item/inqarticles/blood_vial/proc/empty()
 	subject_name = null
 	subject_corruption = 0
+	false_witness = FALSE
 	cursed = FALSE
 	label = null
 	subject = null

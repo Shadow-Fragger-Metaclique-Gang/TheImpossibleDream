@@ -1,3 +1,10 @@
+#define JOB_OVERRIDES_ADVENTURER_SLOTS 20
+
+/// Adventurer slots are a flat number. Population and storyteller scaling no longer apply.
+/proc/get_adventurer_slot_cap()
+	return JOB_OVERRIDES_ADVENTURER_SLOTS
+
+
 /datum/job/roguetown/lamplighter
 	total_positions = 0
 	spawn_positions = 0
@@ -21,14 +28,31 @@
 	category_tags = list(CTAG_ADVENTURER)
 	class_select_category = CLASS_CAT_CLERIC
 
-// Pentacle only, 2 per subclass.
 /datum/advclass/cleric
-	allowed_patrons = ALL_DIVINE_PATRONS
-	maximum_possible_slots = 2
+	allowed_patrons = list(
+		/datum/patron/divine/astrata,
+		/datum/patron/divine/noc,
+		/datum/patron/divine/ravox,
+		/datum/patron/divine/eora,
+		/datum/patron/divine/necra,
+		/datum/patron/divine/xylix,
+		/datum/patron/divine/malum,
+		/datum/patron/divine/dendor,
+		/datum/patron/divine/abyssor
+	)
 
 /datum/advclass/cleric/paladin
-	allowed_patrons = ALL_DIVINE_PATRONS
-	maximum_possible_slots = 2
+	allowed_patrons = list(
+		/datum/patron/divine/astrata,
+		/datum/patron/divine/noc,
+		/datum/patron/divine/ravox,
+		/datum/patron/divine/eora,
+		/datum/patron/divine/necra,
+		/datum/patron/divine/xylix,
+		/datum/patron/divine/malum,
+		/datum/patron/divine/dendor,
+		/datum/patron/divine/abyssor
+	)
 
 /datum/advclass/cleric/cantor
 	allowed_patrons = list(
@@ -38,9 +62,20 @@
 		/datum/patron/divine/eora,
 		/datum/patron/divine/necra,
 		/datum/patron/divine/xylix,
+		/datum/patron/divine/malum,
+		/datum/patron/divine/dendor,
+		/datum/patron/divine/abyssor,
 	)
-	maximum_possible_slots = 2
 
 /datum/advclass/cleric/missionary
-	allowed_patrons = ALL_DIVINE_PATRONS
-	maximum_possible_slots = 2
+	allowed_patrons = list(
+		/datum/patron/divine/astrata,
+		/datum/patron/divine/noc,
+		/datum/patron/divine/ravox,
+		/datum/patron/divine/eora,
+		/datum/patron/divine/necra,
+		/datum/patron/divine/xylix,
+		/datum/patron/divine/malum,
+		/datum/patron/divine/dendor,
+		/datum/patron/divine/abyssor
+	)

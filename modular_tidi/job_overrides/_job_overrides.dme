@@ -10,3 +10,4 @@
 #include "code\retinue.dm"
 #include "code\sidefolk.dm"
 #include "code\inspector.dm"
+#include "code\veteran.dm"

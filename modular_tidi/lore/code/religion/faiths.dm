@@ -2,25 +2,25 @@
 	desc = "EMPTY FUCK. LOSER. LONER. PIECE OF SHIT. THE WORLD HAS FAILED YOU. You do not deserve salvation; none of this wretched fucking plane does.</br> The Archdevyl Vheslyn rose to wreak destruction 'pon Psydonia, the thunderous Godhead split the earth, a sun-maw of shimmering flame atop a colossal, pallid worm. All the world which witnessed her directly was silenced in an instant; their eyes burnt from their skulls, bodies reduced to ash. All lyfe bathed in ochre-violet flame twisted in corruption. Even the lucky and spared who did not witness the single moment of Her reign were affected; weeping sores and burns 'cross their bodies, a radiance without heat that killed them from inside. They would die, coughing blood from their lungs, as their hair wilted from their heads and their skin fell off in scabs. </br> You have reached the bottom of all things; the final layer to peel back. All reality is suffering. The only way to save this broken world is to destroy it completely. It does not matter whether something will rise from the ashes. Whether their enemies are the followers of Psydon, the Gods, or the Four, their goal is the same. To tear the slaves of Reality from their heavens, to gut their followers upon the altar of death and destruction, and to let this world die in a paroxysm of frenzy and wrath. </br>	</br> The world is ending. The garden is on fire, and you are holding a torch. They will all fall in your wake. You will die. But your death simply means one further step to the unmaking of this world, one more soul destroyed on the pyres. MURDERER, PEICE OF SHIT, SACRIFICIAL IDIOT, EMPTY FUCK; FUTURE OF FIRE AND ASH WILL COME, AND I GIVE YOU ONE HOLY CREED: KILL EVERYTHING THAT ISN'T US."
 
 /datum/faith/divine
-	desc = "The <b>TEMPLE</b> of the <b>PANTHEON,</b> blessed and eternal. The most accepted religion across the entirety of the Known World. In a realm defined by countless divine wills, the <b>FIVE GREATEST GODS</b> serve as the mightiest defenders of mortality, and have shaped the bedrock of society long after the Shattering. \n \n\
-		Centrally worshipped in ZYBANTIUM, home of the Old Empire, the Pentacle has entrenched itself within society for nearly two thousand yils. Even as kings pass and regions crumble and reform, the Pantheon - and its lessons - have remained. \n \n\
-		Yet still, turmoil boils within the Temple's doors. Two decades ago, the Deceus Reformation - a wide-sweeping attempt at redefining the Pantheon to encapsulate TEN GODS - has crumbled. These godly cults, while widely practiced, proved far too incompatible with the doctrine and hierarchies of the Faith: closing a sixty-year experiment that has left the clergy more divided than ever. \n \n\
-		These are dread tidings, either from the constant threat of the ASCENDANT, ever the devils, or the ATAVISTS, growing. Psydonian conversions across the continent continue to spread: an aggressive awakening that threatens the very fabric of Pantheonic dominion. \n \n\
-		What could the future hold? How could anyone disobey their manifest divines? Without the aid of the TRUE DIVINE, where could one find hope in this world?"
+	desc = "The <b>TEMPLE</b> of the <b>PANTHEON,</b> blessed and eternal. The most accepted religion across the entirety of the Known World. In a realm defined by countless divine wills, the <b>FIVE GREATEST GODS</b> serve as the mightiest defenders of mortality, and have shaped the bedrock of society long after the Shattering. </br>\n \n\
+		</br> Centrally worshipped in ZYBANTIUM, home of the Old Empire, the Pentacle has entrenched itself within society for nearly two thousand yils. Even as kings pass and regions crumble and reform, the Pantheon - and its lessons - have remained. </br> \n \n\
+		</br> Yet still, turmoil boils within the Temple's doors. Two decades ago, the Deceus Reformation - a wide-sweeping attempt at redefining the Pantheon to encapsulate TEN GODS - has crumbled. These godly cults, while widely practiced, proved far too incompatible with the doctrine and hierarchies of the Faith: closing a sixty-year experiment that has left the clergy more divided than ever.</br> \n \n\
+		</br> These are dread tidings, either from the constant threat of the ASCENDANT, ever the devils, or the ATAVISTS, growing. Psydonian conversions across the continent continue to spread: an aggressive awakening that threatens the very fabric of Pantheonic dominion.</br> \n \n\
+		</br>What could the future hold? How could anyone disobey their manifest divines? Without the aid of the TRUE DIVINE, where could one find hope in this world?"
 	worshippers = "Commonfolk, the Faithful, the Anointed, and the Denizens of the Midderland"
 
 /datum/faith/inhumen
 	name = "Ascendants"
-	desc = "While the many Wills of this world were made Divine by the Shattering of Progenitus PSYDON, there exists more, even older. There exists a Trinity of Divinity most foul- sired by cruelty, division, and consumption. \n\
-		They have existed in the times before PSYDON: older, ancient, and more primitive- cast aside as society and civility took root within the peoples of the world. Their power remains, however. It grows, as the fundament of this world begins to fray - or so it is said. \n\
-		They are the Divines of Hunger; they are the Wills seeking more, and more, and more; never satisfied, never ceasing, never dying. \n\
-		They are the Infernus. They are the Anathema. They are the Inhumen Pantheon; figures of empowerment for the wronged, the cruel, the powerless, and the powerful. \n\ \n\
-		<b><i>Know their names.</i></b> \n\
-		Graggar. Baotha. Matthios. \n\
-		Conquest. Unity. Anarchy. \n\
-		And - crowning these ancient foes, the most dread, most impossible, the Living-Made-God, the lone Divine-once-Mortal, the Demiurge-yet-Waiting- \n\
-		<b>Zizo.</b> \n\
-		To take the mantle of these Divines is to rip out power with your own hands - to destroy the existing hierarchy, to burn and bring ruin to this flawed, disgusting world - and bring forth a newer, more perfect one built by your own hands."
+	desc = "While the many Wills of this world were made Divine by the Shattering of Progenitus PSYDON, there exists more, even older. There exists a Trinity of Divinity most foul- sired by cruelty, division, and consumption.</br> \n\
+		</br>They have existed in the times before PSYDON: older, ancient, and more primitive- cast aside as society and civility took root within the peoples of the world. Their power remains, however. It grows, as the fundament of this world begins to fray - or so it is said.</br> \n\
+		</br>They are the Divines of Hunger; they are the Wills seeking more, and more, and more; never satisfied, never ceasing, never dying.</br> \n\
+		</br>They are the Infernus. They are the Anathema. They are the Inhumen Pantheon; figures of empowerment for the wronged, the cruel, the powerless, and the powerful.</br> \n\ \n\
+		</br><b><i>Know their names.</i></b></br> \n\
+		</br>Graggar. Baotha. Matthios.</br> \n\
+		Conquest. Unity. Anarchy.</br> \n\
+		</br>And - crowning these ancient foes, the most dread, most impossible, the Living-Made-God, the lone Divine-once-Mortal, the Demiurge-yet-Waiting- </br> \n\
+		</br><b>Zizo.</b></br> \n\
+		</br>To take the mantle of these Divines is to rip out power with your own hands - to destroy the existing hierarchy, to burn and bring ruin to this flawed, disgusting world - and bring forth a newer, more perfect one built by your own hands."
 	worshippers = "The Oppressed, Fanatics, Revolutionaries, Cultists, and Apostates of the Pantheon"
 
 /datum/faith/old_god

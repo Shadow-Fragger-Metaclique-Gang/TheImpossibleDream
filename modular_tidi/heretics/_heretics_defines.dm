@@ -1,4 +1,5 @@
 #define HERETIC_PATH_TRAIT "heretic_path"
+#define FALSE_WITNESS_TRAIT "False Witness"
 
 #define HERETIC_PATH_AVANTYNE "PATH OF AVANTYNE"
 #define HERETIC_PATH_AMBITION "PATH OF AMBITION"
@@ -22,6 +23,7 @@
 #define COMSIG_HERETIC_CULLING_WIN "heretic_culling_win"
 #define COMSIG_HERETIC_CULLING_HEART_DESTROYED "heretic_culling_heart_destroyed"
 #define COMSIG_HERETIC_HEART_EATEN "heretic_heart_eaten"
+#define COMSIG_MOB_HUMAN_ITEM_HELD "mob_human_item_held" // used for plunderer.dm hex
 
 #define HERETIC_AWAKEN_EARLIEST (5 MINUTES)
 #define HERETIC_AWAKEN_LATEST (30 MINUTES)

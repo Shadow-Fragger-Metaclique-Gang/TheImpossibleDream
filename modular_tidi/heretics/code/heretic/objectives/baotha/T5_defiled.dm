@@ -12,6 +12,7 @@
 	if(!heretic_is_drugged(climaxer.reagents) || !(locate(/obj/structure/ritualcircle/baotha) in get_turf(climaxer)))
 		return
 	INVOKE_ASYNC(src, PROC_REF(convert), climaxer)
+	record_victim(climaxer)
 	complete()
 
 /datum/objective/heretic/baotha/conversion/proc/convert(mob/living/carbon/human/convert)

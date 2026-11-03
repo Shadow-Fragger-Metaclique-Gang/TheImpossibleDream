@@ -26,6 +26,7 @@
 	if((hearer_ref in affected) || !(owner.current in view(7, hearer)))
 		return
 	affected += hearer_ref
+	record_victim(hearer)
 	if(length(affected) < affected_needed)
 		return
 	complete()
