@@ -1,6 +1,6 @@
 /datum/component/saintliness/noc
 	var/static/list/sleep_lines = list("Don't worry, your dreams simply contain valuable Information I'd like to have a look at.",
-									   "Respite under the moonlight is sweet, isn't it?")
+									   "Moonlit dreams stoke the mind. And lunacy. But disregard that last bit.")
 	var/static/list/pray_lines = list("You clearly haven't read the Doctrines of Lunatic Rationality.",
 									  "The High Decouplers will inherit the world.",
 									  "What? What are you talking about? Increase the frequency with which you update me about your affairs! Ignored!",
