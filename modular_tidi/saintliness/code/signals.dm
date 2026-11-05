@@ -29,3 +29,6 @@
 #define COMSIG_MOB_COMBAT_ACTIVATE "mob_combat_activate"
 #define COMSIG_MOB_DICE_ROLL "mob_dice_roll"
 #define COMSIG_MOB_GAMBLE "mob_gamble"
+#define COMSIG_MOB_WHIPPED "mob_whipped"
+#define COMSIG_MOB_HIGH "mob_high"
+#define COMSIG_MOB_ASCETICISM "mob_asceticism"
