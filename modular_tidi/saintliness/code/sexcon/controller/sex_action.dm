@@ -6,7 +6,7 @@
 
 // None of the sex_actions call ..() so there's no use in overriding them. We'll have to do this all... one by one. Heh.
 // Also only do this to the on_start proc because otherwise the fornication lines'll spam people
-// Some might not like that (weirdos)
+// Some might want that (weirdos) but we won't take their input into account right now.
 
 
 /datum/sex_action/anal_ride_sex/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
