@@ -52,6 +52,9 @@ If you want to add new sprites, markings, organs, whatever, you probably want to
 /datum/species/ooze
 	is_subrace = TRUE
 
+/datum/species/aasimar/
+	blood_color = "#fbe05e"
+
 /datum/species/aasimar/New()
 	. = ..()
 	customizers += list(
