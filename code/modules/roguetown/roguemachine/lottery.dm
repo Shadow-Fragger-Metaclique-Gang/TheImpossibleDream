@@ -88,6 +88,9 @@
 
 //let's actually go gambling and determine results
 		if(src.gamblingprob > src.diceroll)
+			//[SURREALIS-EDIT] - SAINTLINESS
+			SEND_SIGNAL(user, COMSIG_MOB_GAMBLE)
+			//[/SURREALIS-EDIT]
 			src.oldtithe = src.gamblingprice
 			src.gamblingprice *= pick(1.1, 1.1, 1.1, 1.1, 1.2, 1.2, 1.2, 1.4, 1.4, 2)
 			src.gamblingprice = round(src.gamblingprice)
