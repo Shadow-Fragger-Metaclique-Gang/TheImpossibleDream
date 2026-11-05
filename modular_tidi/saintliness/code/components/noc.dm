@@ -12,7 +12,16 @@
 									  "I prefer intelligent women myself, but that only leaves my sisters...",
 									  "It's not enough being nice or smart. We live in a world that hates rationality...",
 									  "Go read a book.",
-									  "What? Marriage? A ridiculous and obsolete dyadic pairing. I prefer the 'orbital' system.")
+									  "What? Marriage? A ridiculous and obsolete dyadic pairing. I prefer the 'orbital' system.",
+									  "Be the solution, not the pollution.",
+									  "The only thing that stands between dreams and reality is persistence.",
+									  "Existence is a self-regulating system of awareness.",
+									  "Wholeness quiets infinite phenomena.",
+									  "This existence is nothing short of a refining canopy of spatial curiosity. We self-actualize, we reflect, we are reborn.",
+									  "Passion is the driver of rebirth.",
+									  "Where there is dogma, inspiration cannot thrive.",
+									  "You are ruled by suffering without realizing it.",
+									  "The dreamscape is calling to you via moonbeam transmission. Can you hear it?")
 	var/static/list/login_lines = list("I don't need you to validate me, but it pleases me greatly that I've conditioned your mindlattice to seek me.")
 	var/static/list/death_lines = list("One more anthropic shadow down.",
 									   "Play stupid games, win stupid prizes.",

@@ -778,6 +778,9 @@
 				spawn(4 SECONDS)
 					if(cmode && client)
 						animate(client, tag = CMODE_SHAKE_ANIMATION)
+		//[SURREALIS-ADD] - SAINTLINESS
+		SEND_SIGNAL(src, COMSIG_MOB_COMBAT_ACTIVATE)
+		//[/SURREALIS-ADD]
 	if(hud_used)
 		if(hud_used.cmode_button)
 			hud_used.cmode_button.update_icon()

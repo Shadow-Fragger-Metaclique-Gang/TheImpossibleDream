@@ -25,3 +25,5 @@
 #define COMSIG_MOB_STRIPPER "mob_stripper"
 #define COMSIG_MOB_MOURN "mob_mourn"
 #define COMSIG_MOB_BOOKBURNER "mob_bookburner"
+#define COMSIG_MOB_AFFECTION "mob_affection"
+#define COMSIG_MOB_COMBAT_ACTIVATE "mob_combat_activate"
