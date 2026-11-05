@@ -4,6 +4,8 @@
 
 **Created in:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/57
 
+**Related PRs:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/120
+
 **Major changes:**
 
 ## Existing Species Part Edits + Scaling Changes
