@@ -23,6 +23,11 @@
 	var/static/list/marriage_lines = list("Oh, what a Charming couple...",
 										  "That's so romantic...",
 										  "Oh my! How delightful! Mwah!")
+	var/static/list/aggro_lines = list("Oh no!",
+									   "But can't you simply talk it out?",
+									   "Is that really necessary?",
+									   "Have a heart!",
+									   "Haven't you heard of conflict resolution?")
 
 
 /datum/component/saintliness/eora/Initialize(...)
@@ -35,9 +40,32 @@
 	RegisterSignal(parent, COMSIG_MOB_COMBAT_ACTIVATE, PROC_REF(on_combat_active))
 
 
+/datum/component/saintliness/eora/proc/on_affection(mob/living/worshipper)
+	SIGNAL_HANDLER
+
+	to_chat(parent, span_faith(pick(affection_lines)))
+	adjust_saintliness(SAINTLINESS_MORSEL)
+
+/datum/component/saintliness/eora/proc/on_marriage(mob/living/worshipper)
+	SIGNAL_HANDLER
+
+	to_chat(parent, span_faith(pick(marriage_lines)))
+	adjust_saintliness(SAINTLINESS_EIDOLON)
+
+/datum/component/saintliness/eora/proc/on_combat_active(mob/living/worshipper)
+	SIGNAL_HANDLER
+
+	to_chat(parent, span_faith(pick(affection_lines)))
+	adjust_saintliness(SIN_TOKEN)
 // Emote Hooks
 
 /datum/emote/living/kiss/adjacentaction(mob/user, mob/target)
+	. = ..()
+
+	SEND_SIGNAL(user, COMSIG_MOB_AFFECTION)
+	SEND_SIGNAL(target, COMSIG_MOB_AFFECTION)
+
+/datum/emote/living/hug/adjacentaction(mob/user, mob/target)
 	. = ..()
 
 	SEND_SIGNAL(user, COMSIG_MOB_AFFECTION)

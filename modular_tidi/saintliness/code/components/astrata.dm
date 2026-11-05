@@ -1,7 +1,6 @@
 /datum/component/saintliness/astrata
 	var/static/list/sleep_lines = list("D-do you want me to wish you pleasant d-dreams? I-I'll never do that, never!",
-										"J-just go to sleep already!"
-										)
+										"J-just go to sleep already!")
 	var/static/list/pray_lines = list("W-what?! Eww!",
 									  "W-what's the matter with you?!",
 									  "Can't believe I have to shepherd you and my idiot siblings...",
