@@ -27,3 +27,5 @@
 #define COMSIG_MOB_BOOKBURNER "mob_bookburner"
 #define COMSIG_MOB_AFFECTION "mob_affection"
 #define COMSIG_MOB_COMBAT_ACTIVATE "mob_combat_activate"
+#define COMSIG_MOB_DICE_ROLL "mob_dice_roll"
+#define COMSIG_MOB_GAMBLE "mob_gamble"
