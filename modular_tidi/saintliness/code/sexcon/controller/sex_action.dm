@@ -1,5 +1,5 @@
 // Doesn't actually check fornication, it just sends the signal to the involved mobs if they're fornicating
-/datum/sex_action/fornication_check(mob/living/carbon/human/user, mob/living/carbon/human/target)
+/datum/sex_action/proc/fornication_check(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user.marriedto != target.real_name || target.marriedto != user.real_name)
 		SEND_SIGNAL(user, COMSIG_MOB_FORNICATION)
 		SEND_SIGNAL(target, COMSIG_MOB_FORNICATION)

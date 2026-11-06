@@ -1,8 +1,8 @@
 /datum/component/saintliness/malum
-	var/static/list/sleep_lines = list("It is quite pathetic to waste time sleeping when you could have been working.",
+	sleep_lines = list("It is quite pathetic to waste time sleeping when you could have been working.",
 									   "The din of brass and metal need no rest. Seek improvement.",
 									   "Sleep and meal-churning are not your purpose.")
-	var/static/list/pray_lines = list("You should mechanize your ailing body.",
+	pray_lines = list("You should mechanize your ailing body.",
 									  "The only reward for labour is labour itself.",
 									  "No! This is not how the protocol is upheld. Recalibrate your cognitive lattice.",
 									  "State your purpose. Do not laze about with your hands held together.",
@@ -14,18 +14,18 @@
 									  "Prayer is the irrational cry of a disorganized mind.",
 									  "Your hyperstition will be recorded."
 									  )
-	var/static/list/login_lines = list("I was expecting your return.")
-	var/static/list/death_lines = list("Worthless.",
+	login_lines = list("I was expecting your return.")
+	death_lines = list("Worthless.",
 									   "Critical Error: You couldn't take care of yourself.")
-	var/static/list/conversion_lines = list("Devote yourself to your tasks, and you will be rewarded.",
+	conversion_lines = list("Devote yourself to your tasks, and you will be rewarded.",
 											"Through labour and practice, the Will triumphs. Begin.")
-	var/static/list/apostasy_lines = list("Redundant components are the first excised from a system.",
+	apostasy_lines = list("Redundant components are the first excised from a system.",
 										  "Reclassification: Traitor.")
-	var/static/list/emotion_lines = list("Enough of that.",
+	emotion_lines = list("Enough of that.",
 										 "Control yourself.",
 										 "Cease these crude fixations of yours.",
 										 "A waste of good water. Recalibrate and rehydrate.")
-	var/static/list/craft_lines = list("Well done.",
+	craft_lines = list("Well done.",
 									   "You are becoming a more efficient version of yourself.",
 									   "Sufficient, but not exceptional.",
 									   "Structure conforms to standardized diagrams. Well done.")

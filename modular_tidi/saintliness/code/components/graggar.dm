@@ -1,31 +1,31 @@
 /datum/component/saintliness/graggar
-	var/static/list/sleep_lines = list("Dream of blood and flesh and bone.",
+	sleep_lines = list("Dream of blood and flesh and bone.",
 									   "No escape here, butterhead.",
 									   "Sweet little bloodrosas, crunch squish...")
-	var/static/list/pray_lines = list("Blood for sex!",
+	pray_lines = list("Blood for sex!",
 									  "Pum dee dum, pillage and rape...",
 									  "Raraggghh... rra-rape...",
 									  "Guahahahahahaa!",
 									  "More. Kill more.",
 									  "First the strong, then the tender ones..")
-	var/static/list/login_lines = list("Hah... fresh meat.")
-	var/static/list/death_lines = list("Mediocre.",
+	login_lines = list("Hah... fresh meat.")
+	death_lines = list("Mediocre.",
 									   "Worthless...",
 									   "Meat, mwuahahahaa!",
 									   "Stupid...",
 									   "Useless!!")
-	var/static/list/conversion_lines = list("Join the bloodspill!",
+	conversion_lines = list("Join the bloodspill!",
 											"Come to play!")
-	var/static/list/apostasy_lines = list("Die!",
+	apostasy_lines = list("Die!",
 										  "Fat bitch.",
 										  "Don't need you.")
-	var/static/list/on_surrender = list("WORTHLESS!!",
+	on_surrender = list("WORTHLESS!!",
 										"Pathetic!",
 										"Little sheep bitch.",
 										"Baaaa!",
 										"Bitch. Bitch. Bitch.",
 										"Fat pussy lips.")
-	var/static/list/on_butchery = list("Meatmeatmeatmeatmeat...",
+	on_butchery = list("Meatmeatmeatmeatmeat...",
 									   "Sweet and tender flesh.",
 									   "Savour sweet blood!",
 									   "CONSUME! FEAST! DEVOUR!!",

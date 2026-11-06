@@ -1,8 +1,8 @@
 /datum/component/saintliness/dendor
-	var/static/list/sleep_lines = list("Hrrrrk! Grroaark!",
+	sleep_lines = list("Hrrrrk! Grroaark!",
 									   "An uneasy presence enters your dreams. A procession of beasts stampedes across barren, stone-laden lands. In their ranks are the canines and cows and other beasts of burden. Blood drips from their maws. Teeth grind against teeth, yearning for warm flesh to devour. They soon fade into the horizon, and you are left with nothing but wind pushing dust about a barren landscape that extends as far as your eyes can see.",
 									   "Churning (Feasting) Crunching.")
-	var/static/list/pray_lines = list("Eating sleeping eating feasting hunting (ruining) tasting maiming...",
+	pray_lines = list("Eating sleeping eating feasting hunting (ruining) tasting maiming...",
 									  "Itching and burning itching and burning.",
 									  "Scream, scream!!!",
 									  "Jackals screaming in the night!",
@@ -10,15 +10,15 @@
 									  "Claw and fangs and blood and bone!",
 									  "Kill masters. Live unchained.",
 									  "Destroytheyokedestroytheyokedestroytheyoke")
-	var/static/list/login_lines = list("Something squirms behind your eyes.")
-	var/static/list/death_lines = list("Blood for soil. Soil for blood.")
-	var/static/list/conversion_lines = list("AAAUUUUUU!!!",
+	login_lines = list("Something squirms behind your eyes.")
+	death_lines = list("Blood for soil. Soil for blood.")
+	conversion_lines = list("AAAUUUUUU!!!",
 											"Be free, be untamed. Be WYLD!")
-	var/static/list/apostasy_lines = list("Breakbreakbreakbreakyou!")
-	var/static/list/tech_lines = list("The defiler's tools!",
+	apostasy_lines = list("Breakbreakbreakbreakyou!")
+	tech_lines = list("The defiler's tools!",
 									  "LET GO OF THAT! NOOOOOW!!",
 									  "Grrraaaaaaaaaao!!")
-	var/static/list/electrocution_lines = list("Hrrrrrrrr!",
+	electrocution_lines = list("Hrrrrrrrr!",
 											   "Hark hark hark!",
 											   "Zzziiiing!")
 
