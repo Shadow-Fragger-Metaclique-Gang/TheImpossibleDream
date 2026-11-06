@@ -17,6 +17,14 @@
 	icon = 'icons/roguetown/misc/structure.dmi'
 	icon_state = "pillow"
 	density = FALSE
+/obj/structure/fluff/railing/raisedtrim
+	name = "raised molding"
+	desc = "It was once said that the gods used these to separate high and low; now they only give the illusion of depth, since Psydonia has the real thing."
+	icon = 'icons/turf/roguefloor.dmi'
+	icon_state = "borderfall"
+	layer = TURF_DECAL_LAYER
+	dir = NORTH
+
 
 /obj/structure/fluff/pillow/red
 	color = CLOTHING_RED
@@ -501,7 +509,7 @@
 			playsound(user, 'sound/misc/wood_saw.ogg', 100, TRUE)
 		return
 	else if(istype(item, /obj/item/rogueweapon/chisel/assembly))
-		to_chat(user, span_warning("You most use both hands to rename the passage."))
+		to_chat(user, span_warning("You must use both hands to rename the passage."))
 
 /obj/structure/bars/grille
 	name = "grille"
@@ -568,7 +576,7 @@
 			playsound(user, 'sound/misc/wood_saw.ogg', 100, TRUE)
 		return
 	else if(istype(item, /obj/item/rogueweapon/chisel/assembly))
-		to_chat(user, span_warning("You most use both hands to rename the grille."))
+		to_chat(user, span_warning("You must use both hands to rename the grille."))
 
 /obj/structure/bars/pipe
 	name = "bronze pipe"
@@ -788,7 +796,7 @@
 					wrotesign = inputty
 					icon_state = "signwrote"
 		else
-			to_chat(user, span_warning("Alas, this will not work. I could carve words, if I stabbed at this with something posessing a short, sharp point. A knife comes to mind."))
+			to_chat(user, span_warning("Alas, this will not work. I could carve words, if I stabbed at this with something possessing a short, sharp point. A knife comes to mind."))
 			return
 	..()
 
@@ -1319,7 +1327,7 @@
 
 /obj/structure/fluff/statue/get_mechanics_examine(mob/user)
 	. = ..()
-	. += span_info("Right-click to access your personal stash. This not only contains the loadout you might've asseembled in the character creation menu, but virtue- and role-specific items as well.")
+	. += span_info("Right-click to access your personal stash. This not only contains the loadout you might've assembled in the character creation menu, but virtue- and role-specific items as well.")
 
 /obj/structure/fluff/statue/Initialize(mapload)
 	. = ..()

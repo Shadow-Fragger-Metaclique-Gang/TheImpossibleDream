@@ -1,5 +1,5 @@
 /datum/advclass/manorguard/cavalry
-	extra_context = "This subclass recieves County Caparison in its stash."
+	extra_context = "This subclass receives County Caparison in its stash."
 
 /datum/advclass/sergeant/sergeant
 	tutorial = "You are a not just anybody but the Sergeant-at-Arms of the County's garrison. While you may have started as some peasant or mercenary, you have advanced through the ranks to that of someone who commands respect and wields it. Take up arms, sergeant!"

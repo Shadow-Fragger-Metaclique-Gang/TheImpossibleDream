@@ -94,8 +94,10 @@
 	assemble_baseturfs()
 
 	levelupdate()
-	if(smooth)
-		queue_smooth(src)
+	SETUP_SMOOTHING()
+
+	if(smoothing_flags & USES_SMOOTHING)
+		QUEUE_SMOOTH(src)
 
 	for(var/atom/movable/AM in src)
 		Entered(AM)
@@ -124,8 +126,7 @@
 	if (opacity)
 		opaque_atom_count = 1 // we count ourselves
 
-	if(smooth & USES_SMOOTHING)
-		QUEUE_SMOOTH(src)
+
 		QUEUE_SMOOTH_NEIGHBORS(src)
 
 	ComponentInitialize()
@@ -146,6 +147,8 @@
 	T = GET_TURF_BELOW(src)
 	if(T)
 		T.multiz_turf_del(src, UP)
+	if(neighborlay_list)
+		remove_neighborlays()
 	STOP_PROCESSING(SSweather,src)
 	if(force)
 		..()
@@ -729,164 +732,3 @@
 //Should return new turf
 /turf/proc/Melt()
 	return ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
-
-/atom/proc/set_adj_in_dir(direction, direction_flag, list/smoothing_list, new_junction)
-	. = new_junction
-	var/smooth_border = (smooth & SMOOTH_BORDER)
-	var/smooth_obj = (smooth & SMOOTH_OBJ)
-	var/smooth_edge = (smooth & SMOOTH_EDGE)
-
-	var/turf/neighbor = get_step(src, direction);
-	if(!neighbor) {
-		if(smooth_border) {
-			. |= direction_flag;
-		};
-		return
-	};
-	if(smooth_edge && type == neighbor.type) {
-		return
-	};
-	if(smooth_obj) {
-		for(var/atom/movable/thing as anything in neighbor) {
-			if(!thing.anchored) {
-				continue;
-			};
-			if(!smoothing_list) {
-				if(type == thing.type) {
-					. |= direction_flag;
-					return
-				};
-				continue;
-			};
-			var/thing_smoothing_groups = thing.smoothing_groups;
-			if(!thing_smoothing_groups) {
-				continue;
-			};
-			for(var/target in smoothing_list) {
-				if(smoothing_list[target] & thing_smoothing_groups[target]) {
-					. |= direction_flag;
-					return
-				};
-			};
-		};
-	};
-	if(!smoothing_list) {
-		if(type == neighbor.type) {
-			. |= direction_flag;
-		};
-		return
-	};
-	var/neighbor_smoothing_groups = neighbor.smoothing_groups;
-	if(neighbor_smoothing_groups) {
-		for(var/target as anything in smoothing_list) {
-			if(smoothing_list[target] & neighbor_smoothing_groups[target]) {
-				. |= direction_flag;
-				return
-			};
-		};
-	};
-	return
-
-/atom/proc/smooth()
-	if(!smoothing_icon)
-		smoothing_icon = initial(icon_state)
-	var/new_junction = NONE
-
-	// cache for sanic speed
-	var/smoothing_list = src.smoothing_list
-
-	var/smooth_edge = (smooth & SMOOTH_EDGE)
-
-	for(var/direction as anything in GLOB.cardinals) //Cardinal case first.
-		new_junction = set_adj_in_dir(direction, direction, smoothing_list, new_junction)
-
-	if(smooth_edge)
-		if(!isturf(src))
-			CRASH("[type] has SMOOTH_EDGE set but is not a turf!")
-		var/turf/T = src
-		T.set_neighborlays(new_junction)
-		return
-
-	if(smooth & SMOOTH_BITMASK_CARDINALS || !(new_junction & (NORTH|SOUTH)) || !(new_junction & (EAST|WEST)))
-		set_smoothed_icon_state(new_junction)
-		return
-
-	if(new_junction & NORTH_JUNCTION)
-		if(new_junction & WEST_JUNCTION)
-			new_junction = set_adj_in_dir(NORTHWEST, NORTHWEST_JUNCTION, smoothing_list, new_junction)
-
-		if(new_junction & EAST_JUNCTION)
-			new_junction = set_adj_in_dir(NORTHEAST, NORTHEAST_JUNCTION, smoothing_list, new_junction)
-
-	if(new_junction & SOUTH_JUNCTION)
-		if(new_junction & WEST_JUNCTION)
-			new_junction = set_adj_in_dir(SOUTHWEST, SOUTHWEST_JUNCTION, smoothing_list, new_junction)
-
-		if(new_junction & EAST_JUNCTION)
-			new_junction = set_adj_in_dir(SOUTHEAST, SOUTHEAST_JUNCTION, smoothing_list, new_junction)
-
-	set_smoothed_icon_state(new_junction)
-
-///Changes the icon state based on the new junction bitmask.
-/atom/proc/set_smoothed_icon_state(new_junction)
-	icon_state = "[smoothing_icon]-[new_junction]"
-
-/turf/proc/set_neighborlays(new_junction)
-	remove_neighborlays()
-
-	if(new_junction == NONE)
-		return
-
-	if(new_junction & NORTH)
-		handle_edge_icon(NORTH)
-
-	if(new_junction & SOUTH)
-		handle_edge_icon(SOUTH)
-
-	if(new_junction & EAST)
-		handle_edge_icon(EAST)
-
-	if(new_junction & WEST)
-		handle_edge_icon(WEST)
-
-/turf/proc/handle_edge_icon(dir)
-	if(neighborlay_self)
-		add_neighborlay(dir, neighborlay_self)
-	if(neighborlay)
-		// Reverse dir because we are offsetting the overlay onto the adjacency
-		add_neighborlay(REVERSE_DIR(dir), neighborlay, TRUE)
-
-/turf/proc/add_neighborlay(dir, edgeicon, offset = FALSE)
-	var/add
-	var/y = 0
-	var/x = 0
-	switch(dir)
-		if(NORTH)
-			add = "[edgeicon]-n"
-			y = -32
-		if(SOUTH)
-			add = "[edgeicon]-s"
-			y = 32
-		if(EAST)
-			add = "[edgeicon]-e"
-			x = -32
-		if(WEST)
-			add = "[edgeicon]-w"
-			x = 32
-
-	if(!add)
-		return
-
-	var/image/overlay = image(icon, src, add, TURF_DECAL_LAYER, pixel_x = offset ? x : 0, pixel_y = offset ? y : 0 )
-
-	LAZYADDASSOC(neighborlay_list, "[dir]", overlay)
-	add_overlay(overlay)
-
-/turf/proc/remove_neighborlays()
-	if(!LAZYLEN(neighborlay_list))
-		return
-	for(var/key as anything in neighborlay_list)
-		cut_overlay(neighborlay_list[key])
-		qdel(neighborlay_list[key])
-		neighborlay_list[key] = null
-		LAZYREMOVE(neighborlay_list, key)

@@ -15,7 +15,7 @@
 
 /obj/item/rogueweapon/halberd/bardiche/elvish/autumn
 	desc = "A cleaving polearm, hewn from the branch of an Fallowelk tree and tipped with a wide blade of faeiron. The \
-	tapered edge can thrust through an oppressor's armor at the right range, while its wide sweeps can dispell even the \
+	tapered edge can thrust through an oppressor's armor at the right range, while its wide sweeps can dispel even the \
 	rowdiest of lumberfoots."
 
 /obj/item/clothing/gloves/roguetown/elven_gloves/autumn

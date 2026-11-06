@@ -1,0 +1,7 @@
+#include "code\quirk.dm"
+#include "code\quirk_points.dm"
+#include "code\quirk_list.dm"
+#include "code\quirk_hooks.dm"
+#include "code\malodorous.dm"
+#include "code\quirk_ui.dm"
+#include "code\overrides.dm"

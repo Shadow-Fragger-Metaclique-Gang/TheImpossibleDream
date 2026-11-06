@@ -21,5 +21,6 @@
 	SIGNAL_HANDLER
 	if(completed)
 		return
+	record_victim(vessel)
 	complete()
 	UnregisterSignal(owner.current, COMSIG_HERETIC_DEADITE_RAISED)

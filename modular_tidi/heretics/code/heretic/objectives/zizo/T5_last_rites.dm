@@ -21,5 +21,6 @@
 	SIGNAL_HANDLER
 	if(completed || !vessel.is_heretic_prize())
 		return
+	record_victim(vessel)
 	complete()
 	UnregisterSignal(owner.current, COMSIG_HERETIC_DEADITE_RAISED)

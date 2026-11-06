@@ -4,7 +4,7 @@
 	cuisine = CUISINE_OTAVAIS
 	dish_type = DISH_PASTRY
 	name = "pastry"
-	desc = "Crispy, buttery, and delightfully flaky. A favorite treat among children and sweetlovers."
+	desc = "Crispy, buttery, and delightfully flaky. A favorite treat among children and sweet-lovers."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_pastry.dmi'
 	icon_state = "pastry"
 	list_reagents = list(/datum/reagent/consumable/nutriment = SMALLDOUGH_NUTRITION)
@@ -465,7 +465,7 @@
 /*	.............	Pumpkin balls	................ */
 /obj/item/reagent_containers/food/snacks/rogue/foodbase/pumpkinball_raw
 	name = "uncooked pumpkin ball"
-	desc = "A simple ball of dough, yearning to be cookied or fried."
+	desc = "A simple ball of dough, yearning to be cooked or fried."
 	icon = 'modular/Neu_Food/icons/raw/raw_dough.dmi'
 	icon_state = "pumpkinball"
 	color = "#d17624"
@@ -782,7 +782,7 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/strudel/sugar
 	name = "coated strudel"
-	desc = "The peak of Grenzelhoftian peasant food - an elongated pastry filled with apple paste and nuts is sure to keep the hunger cramps away. This one even has sugar coating!"
+	desc = "The peak of Grenzelhoftian peasant food - an elongated pastry filled with apple paste and nuts is sure to keep the hunger cramps away. This one even has a sugar coating!"
 	icon_state = "strudel_sugar"
 	tastes = list("crispy apples" = 1, "rocknut" = 1 ,"sugar" = 1)
 	faretype = FARE_LAVISH
@@ -800,7 +800,7 @@
 	cuisine = CUISINE_OTAVAIS
 	dish_type = DISH_PASTRY
 	name = "dot tart"
-	desc = "A small pastry filled with jammed fruits, for when a whole pie would be inappropiate for canapes."
+	desc = "A small pastry filled with jammed fruits, for when a whole pie would be inappropriate for canapes."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_pastry.dmi'
 	icon_state = "baked_dottart"
 	eat_effect = /datum/status_effect/buff/greatsnackbuff
@@ -814,56 +814,56 @@
 
 /obj/item/reagent_containers/food/snacks/rogue/dot_tart/tangerine
 	name = "tangerine dot tart"
-	desc = "A small pastry filled with jammed tangerines, for when a whole pie would be inappropiate for canapes. </br>'If we're kind and polite, the world will be right.'"
+	desc = "A small pastry filled with jammed tangerines, for when a whole pie would be inappropriate for canapes. </br>'If we're kind and polite, the world will be right.'"
 	icon = 'modular/Neu_Food/icons/cooked/cooked_pastry.dmi'
 	icon_state = "tangerine_dottart"
 	tastes = list("crispy dough" = 1, "tangerine jam with a hint of tarty-sweetness" = 1)
 
 /obj/item/reagent_containers/food/snacks/rogue/dot_tart/plum
 	name = "plum dot tart"
-	desc = "A small pastry filled with jammed plums, for when a whole pie would be inappropiate for canapes."
+	desc = "A small pastry filled with jammed plums, for when a whole pie would be inappropriate for canapes."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_pastry.dmi'
 	icon_state = "plum_dottart"
 	tastes = list("crispy dough" = 1, "plum jam with a hint of honey-sweetness" = 1)
 
 /obj/item/reagent_containers/food/snacks/rogue/dot_tart/blackberry
 	name = "blackberry dot tart"
-	desc = "A small pastry filled with jammed blackberries, for when a whole pie would be inappropiate for canapes. </br>'I did it for me. I liked it.. I was good at it. And I felt.. alive.'"
+	desc = "A small pastry filled with jammed blackberries, for when a whole pie would be inappropriate for canapes. </br>'I did it for me. I liked it.. I was good at it. And I felt.. alive.'"
 	icon = 'modular/Neu_Food/icons/cooked/cooked_pastry.dmi'
 	icon_state = "blackberry_dottart"
 	tastes = list("crispy dough" = 1, "blackberry jam with a hint of sour-sweetness" = 1)
 
 /obj/item/reagent_containers/food/snacks/rogue/dot_tart/raspberry
 	name = "raspberry dot tart"
-	desc = "A small pastry filled with jammed raspberries, for when a whole pie would be inappropiate for canapes."
+	desc = "A small pastry filled with jammed raspberries, for when a whole pie would be inappropriate for canapes."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_pastry.dmi'
 	icon_state = "raspberry_dottart"
 	tastes = list("crispy dough" = 1, "raspberry jam with a hint of tartness" = 1)
 
 /obj/item/reagent_containers/food/snacks/rogue/dot_tart/strawberry
 	name = "strawberry dot tart"
-	desc = "A small pastry filled with jammed strawberries, for when a whole pie would be inappropiate for canapes."
+	desc = "A small pastry filled with jammed strawberries, for when a whole pie would be inappropriate for canapes."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_pastry.dmi'
 	icon_state = "strawberry_dottart"
 	tastes = list("crispy dough" = 1, "strawberry jam with a hint of sweetness" = 1)
 
 /obj/item/reagent_containers/food/snacks/rogue/dot_tart/pear
 	name = "pear dot tart"
-	desc = "A small pastry filled with jammed pears, for when a whole pie would be inappropiate for canapes."
+	desc = "A small pastry filled with jammed pears, for when a whole pie would be inappropriate for canapes."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_pastry.dmi'
 	icon_state = "pear_dottart"
 	tastes = list("crispy dough" = 1, "pear jam with a hint of tarty-honeyiness" = 1)
 
 /obj/item/reagent_containers/food/snacks/rogue/dot_tart/apple
 	name = "apple dot tart"
-	desc = "A small pastry filled with jammed apples, for when a whole pie would be inappropiate for canapes."
+	desc = "A small pastry filled with jammed apples, for when a whole pie would be inappropriate for canapes."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_pastry.dmi'
 	icon_state = "apple_dottart"
 	tastes = list("crispy dough" = 1, "caramelized apples with a hint of tartness" = 1)
 
 /obj/item/reagent_containers/food/snacks/rogue/dot_tart/goldapple
 	name = "ambrosia dot tart"
-	desc = "A small pastry filled with the jam of a divine fruit, for when a whole pie would be inappropiate for canapes. </br>'Why must the most forbidden fruits taste the sweetest?'"
+	desc = "A small pastry filled with the jam of a divine fruit, for when a whole pie would be inappropriate for canapes. </br>'Why must the most forbidden fruits taste the sweetest?'"
 	icon = 'modular/Neu_Food/icons/cooked/cooked_pastry.dmi'
 	icon_state = "gapple_dottart"
 	list_reagents = list(/datum/reagent/medicine/stronghealth = 10)
@@ -971,7 +971,7 @@
 	cuisine = CUISINE_SOUTH_IMPERIAL
 	dish_type = DISH_PASTRY
 	name = "pear bookbread"
-	desc = "Children on Nocsmas are traditionally granted both book and pastry without expectation of exchange, this variety is prefered by most little ones."
+	desc = "Children on Nocsmas are traditionally granted both book and pastry without expectation of exchange, this variety is preferred by most little ones."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_pastry.dmi'
 	icon_state = "pear_bookbread5"
 	slices_num = 5
@@ -1070,7 +1070,7 @@
 	cuisine = CUISINE_SOUTH_IMPERIAL
 	dish_type = DISH_PASTRY
 	name = "sliced plum bookbread"
-	desc = "A subtle flavor, best for enjoying subtler books. Mysteries prefered."
+	desc = "A subtle flavor, best for enjoying subtler books. Mysteries preferred."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_pastry.dmi'
 	icon_state = "plum_bookbread_slice"
 	faretype = FARE_FINE
@@ -1207,7 +1207,7 @@
 	cuisine = CUISINE_SOUTH_IMPERIAL
 	dish_type = DISH_PASTRY
 	name = "blackberry bookbread"
-	desc = "Following Her ascension, the great exchanging of books has met steady decline, as neighbor suspects neighbor more and more. Yet, even such prejudices could never hope to fully smother the spirit of Nocmas."
+	desc = "Following Her ascension, the great exchanging of books has met steady decline, as neighbor suspects neighbor more and more. Yet, even such prejudices could never hope to fully smother the spirit of Nocsmas."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_pastry.dmi'
 	icon_state = "blackberry_bookbread5"
 	slices_num = 5
@@ -1306,7 +1306,7 @@
 	cuisine = CUISINE_SOUTH_IMPERIAL
 	dish_type = DISH_PASTRY
 	name = "sliced raspberry bookbread"
-	desc = "Has a taste that puts one in the mood for a good romance novel. For obvious reasons, this flavor isnt very popular with mages."
+	desc = "Has a taste that puts one in the mood for a good romance novel. For obvious reasons, this flavor isn't very popular with mages."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_pastry.dmi'
 	icon_state = "raspberry_bookbread_slice"
 	faretype = FARE_FINE
@@ -1443,7 +1443,7 @@
 	cuisine = CUISINE_SOUTH_IMPERIAL
 	dish_type = DISH_PASTRY
 	name = "chocolate bookbread"
-	desc = "Nocsmas is not only a holiday for children and commoners, for Noccians are found most concentrated in the upper echelons of society. For these academics, it provies a much needed opportunity to share their secrets."
+	desc = "Nocsmas is not only a holiday for children and commoners, for Noccians are found most concentrated in the upper echelons of society. For these academics, it provides a much-needed opportunity to share their secrets."
 	icon = 'modular/Neu_Food/icons/cooked/cooked_pastry.dmi'
 	icon_state = "chocolate_bookbread5"
 	slices_num = 5

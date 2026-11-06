@@ -47,6 +47,10 @@
 		if(istype(cf, /datum/charflaw/hunted) || istype(cf, /datum/charflaw/targeted))
 			H.charflaws.Remove(cf)
 			QDEL_NULL(cf)
+	// [SURREALIS-ADD] - QUIRKS
+	REMOVE_TRAIT(H, TRAIT_GNOLL_HUNTED, TRAIT_QUIRK)
+	REMOVE_TRAIT(H, TRAIT_ASSASSIN_TARGET, TRAIT_QUIRK)
+	// [/SURREALIS-ADD]
 	add_verb(H, /mob/proc/haltyell_exhausting)
 	ADD_TRAIT(H, TRAIT_BANDITCAMP, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_SEEPRICES, TRAIT_GENERIC)

@@ -1,13 +1,12 @@
 /turf/closed/wall/mineral/rogue
-	canSmoothWith = null
+	//canSmoothWith = null
 	desc = ""
-	smooth = SMOOTH_FALSE
 	var/smooth_icon = null
-	smooth_diag = FALSE
 	sheet_type = null
 	baseturfs = /turf/open/floor/rogue/dirt/road
 	wallclimb = TRUE
-	icon = 'icons/turf/roguewall.dmi'
+	icon = 'icons/turf/mining.dmi'
+
 
 /turf/closed/wall/mineral/rogue/examine()
 	. += ..()
@@ -21,19 +20,15 @@
 			if(1 to 25)
 				. +=	"<span class='warning'>It's falling apart!</span>"
 
-/turf/closed/wall/mineral/rogue/Initialize(mapload)
-	if(smooth_icon)
-		icon = smooth_icon
-	. = ..()
 
 /turf/closed/wall/mineral/rogue/get_mechanics_examine(mob/user)
 	. = ..()
 	. += span_info("Click-drag yourself onto a wall to lean against it. This allows other people to move past you, while also gradually restoring energy and stamina.")
-	. += span_info("Left-clicking a wall while you're next to it will allow you to climb it. The higher your Climbing skill is, the quicker you can finish climbing up a level. Buckling yourself to an uprighted chair can help, too.")
+	. += span_info("Left-clicking a wall while you're next to it will allow you to climb it. The higher your Climbing skill is, the quicker you can finish climbing up a level. Buckling yourself to an upright chair can help, too.")
 	. += span_info("Your Climbing skill determines the tier of wall you can scale, as well. Most people can climb rock walls and trees without trouble, but mossy walls and fortifications can only be surmounted by a few.")
 	. += span_info("Press the 'Shift' button and the 'F' key at the same time to look up a level. If there's nothing to stand on - like a branch or unoccupied tile - adjacent to your direction, climbing up might cause you to fall back down.")
 	. += span_info("Note that this behavior mostly applies to walls and trees that're only one level tall. Those with higher Climbing skills can 'cling' to higher walls, allowing them to scale multiple levels without falling.")
-	. += span_info("Certain walls can be destroyed through different means. Rock walls succumb to tools that pick, wood walls crumble to tools that chop, and all walls vanish when introduced to blastpowder and siegeweapons.")
+	. += span_info("Certain walls can be destroyed through different means. Rock walls succumb to tools that pick, wood walls crumble to tools that chop, and all walls vanish when introduced to blastpowder and siege weapons.")
 
 
 //////////////////
@@ -43,14 +38,16 @@
 /turf/closed/wall/mineral/rogue/wood
 	name = "wooden wall"
 	desc = "A rough-hewn wall of wood."
-	icon = 'icons/turf/walls/roguewood.dmi'
-	icon_state = "wood"
-	smooth = SMOOTH_MORE
+	icon = 'icons/turf/smooth/walls/wood.dmi'
+	icon_state = MAP_SWITCH("wood", "wood-0")
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_CLOSED_WALL + SMOOTH_GROUP_WALLS_WOOD
+	smoothing_list = SMOOTH_GROUP_DOOR_SECRET + SMOOTH_GROUP_WALLS_WOOD
 	blade_dulling = DULLING_BASHCHOP
 	max_integrity = 800
 	break_sound = 'sound/combat/hits/onwood/destroywalldoor.ogg'
 	attacked_sound = list('sound/combat/hits/onwood/woodimpact (1).ogg','sound/combat/hits/onwood/woodimpact (2).ogg')
-	canSmoothWith = list(/turf/closed/wall/mineral/rogue/wood, /obj/structure/roguewindow, /obj/structure/roguetent, /turf/closed/wall/mineral/rogue/wooddark)
+	//canSmoothWith = list(/turf/closed/wall/mineral/rogue/wood, /obj/structure/roguewindow, /obj/structure/roguetent, /turf/closed/wall/mineral/rogue/wooddark)
 //	sheet_type = /obj/item/grown/log/tree/lumber
 	above_floor = /turf/open/floor/rogue/ruinedwood
 	baseturfs = /turf/open/floor/rogue/ruinedwood
@@ -63,6 +60,8 @@
 /turf/closed/wall/mineral/rogue/wood/window
 	name = "wooden window"
 	desc = "A window with a rough-hewn wood frame."
+	icon = MAP_SWITCH('icons/turf/smooth/walls/wood.dmi', 'icons/turf/window.dmi')
+	icon_state = "wood"
 	opacity = FALSE
 	max_integrity = 600
 
@@ -79,9 +78,11 @@
 /turf/closed/wall/mineral/rogue/wooddark
 	name = "dark wood wall"
 	desc = "Made from durable, somewhat darker wood." // i am not sure if the wood is really dark
-	icon = 'icons/turf/roguewall.dmi'
-	icon_state = "corner"
-	smooth = SMOOTH_FALSE
+	icon = 'icons/turf/smooth/walls/wood_dark.dmi'
+	icon_state = MAP_SWITCH("wood_dark", "wood_dark-0")
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_CLOSED_WALL + SMOOTH_GROUP_WALLS_WOOD
+	smoothing_list = SMOOTH_GROUP_DOOR_SECRET + SMOOTH_GROUP_WALLS_WOOD
 	blade_dulling = DULLING_BASHCHOP
 	max_integrity = 1000
 	break_sound = 'sound/combat/hits/onwood/destroywalldoor.ogg'
@@ -94,33 +95,12 @@
 	burn_power = 20
 	spread_chance = 4
 
-/turf/closed/wall/mineral/rogue/wooddark/horizontal
-	icon_state = "horizwooddark"
-
-/turf/closed/wall/mineral/rogue/wooddark/vertical
-	icon_state = "vertwooddark"
-
-/turf/closed/wall/mineral/rogue/wooddark/end
-	icon_state = "endwooddark"
-
-/turf/closed/wall/mineral/rogue/wooddark/end/east
-	dir = 4
-
-/turf/closed/wall/mineral/rogue/wooddark/end/west
-	dir = 8
-
-/turf/closed/wall/mineral/rogue/wooddark/end/north
-	dir = 1
-
-/turf/closed/wall/mineral/rogue/wooddark/slitted
-	icon_state = "slittedwooddark"
-
 /turf/closed/wall/mineral/rogue/woodbark
 	name = "bark wall"
 	desc = "a natural wall of dark bark."
 	icon = 'icons/turf/roguewall.dmi'
 	icon_state = "woodbark"
-	smooth = SMOOTH_FALSE
+	smoothing_flags = null
 	blade_dulling = DULLING_BASHCHOP
 	max_integrity = 1100
 	break_sound = 'sound/combat/hits/onwood/destroywalldoor.ogg'
@@ -149,8 +129,9 @@
 	return ..()
 
 /turf/closed/wall/mineral/rogue/wooddark/window
+	icon = MAP_SWITCH('icons/turf/smooth/walls/wood_dark.dmi', 'icons/turf/window.dmi')
+	icon_state = MAP_SWITCH("wood_dark","subwindow")
 	name = "dark wood window"
-	icon_state = "subwindow"
 	opacity = FALSE
 	max_integrity = 800
 
@@ -158,12 +139,16 @@
 	if(istype(mover) && ((mover.pass_flags & PASSTABLE) || (mover.pass_flags & PASSGRILLE)) )
 		return 1
 	return ..()
+/turf/closed/wall/mineral/rogue/wooddark/window/Initialize(mapload)
+	. = ..()
+	var/mutable_appearance/M = mutable_appearance('icons/turf/roguewall.dmi', "woodhole", layer = ABOVE_NORMAL_TURF_LAYER)
+	add_overlay(M)
 
 /turf/closed/wall/mineral/rogue/roofwall
 	name = "wooden wall"
 	icon = 'icons/turf/roguewall.dmi'
 	icon_state = ""
-	smooth = SMOOTH_FALSE
+
 	blade_dulling = DULLING_BASHCHOP
 	max_integrity = 800
 	break_sound = 'sound/combat/hits/onwood/destroywalldoor.ogg'
@@ -219,12 +204,11 @@
 	desc = "Meticulously designed by a professional carpenter."
 	icon = 'icons/turf/roguewall.dmi'
 	icon_state = "decowood"
-	smooth = SMOOTH_FALSE
+
 	blade_dulling = DULLING_BASHCHOP
 	max_integrity = 1200
 	break_sound = 'sound/combat/hits/onwood/destroywalldoor.ogg'
 	attacked_sound = list('sound/combat/hits/onwood/woodimpact (1).ogg','sound/combat/hits/onwood/woodimpact (2).ogg')
-//	sheet_type = /obj/item/grown/log/tree/lumber
 	above_floor = /turf/open/floor/rogue/ruinedwood
 	baseturfs = /turf/open/floor/rogue/ruinedwood
 	neighborlay = "dirtedge"
@@ -247,15 +231,17 @@
 /turf/closed/wall/mineral/rogue/stone
 	name = "stone wall"
 	desc = "A wall of smooth unyielding stone."
-	icon = 'icons/turf/walls/stone_wall.dmi'
-	icon_state = "stone"
-	smooth = SMOOTH_MORE
+	icon = 'icons/turf/smooth/walls/stone.dmi'
+	icon_state = MAP_SWITCH("stone", "stone-0")
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_CLOSED_WALL + SMOOTH_GROUP_WALLS_STONE
+	smoothing_list = SMOOTH_GROUP_DOOR_SECRET + SMOOTH_GROUP_WALLS_STONE
 	blade_dulling = DULLING_BASH
 	max_integrity = 1000
 	sheet_type = /obj/item/natural/stone
 	break_sound = 'sound/combat/hits/onstone/stonedeath.ogg'
 	attacked_sound = list('sound/combat/hits/onstone/wallhit.ogg', 'sound/combat/hits/onstone/wallhit2.ogg', 'sound/combat/hits/onstone/wallhit3.ogg')
-	canSmoothWith = list(/turf/closed/wall/mineral/rogue/stone)
+	//canSmoothWith = list(/turf/closed/wall/mineral/rogue/stone)
 	above_floor = /turf/open/floor/rogue/blocks
 	baseturfs = /turf/open/floor/rogue/blocks
 	neighborlay = "dirtedge"
@@ -268,7 +254,7 @@
 
 /turf/closed/wall/mineral/rogue/stone/unbreakable
 	name = "heavy stone wall"
-	desc = "Seems nigh-indestructable"
+	desc = "Seems nigh-indestructible"
 	max_integrity = 10000000
 	damage_deflection = 99999999
 
@@ -289,13 +275,12 @@
 
 /turf/closed/wall/mineral/rogue/stone/window/Initialize(mapload)
 	. = ..()
-	icon_state = "stone"
-	var/mutable_appearance/M = mutable_appearance(icon, "stonehole", layer = ABOVE_NORMAL_TURF_LAYER)
+	var/mutable_appearance/M = mutable_appearance('icons/turf/roguewall.dmi', "stonehole", layer = ABOVE_NORMAL_TURF_LAYER)
 	add_overlay(M)
 
 /turf/closed/wall/mineral/rogue/stone/window/unbreakable
 	name = "heavy stone window"
-	desc = "Seems nigh-indestructable"
+	desc = "Seems nigh-indestructible"
 	max_integrity = 10000000
 	damage_deflection = 99999999
 
@@ -304,11 +289,11 @@
 	return FALSE
 
 /turf/closed/wall/mineral/rogue/stone/moss
-	icon = 'icons/turf/walls/mossy_stone.dmi'
+	icon = 'icons/turf/smooth/walls/stone_moss.dmi'
 	climbdiff = 4
 
 /turf/closed/wall/mineral/rogue/stone/moss/unbreakable
-	desc = "Seems nigh-indestructable"
+	desc = "Seems nigh-indestructible"
 	max_integrity = 10000000
 	damage_deflection = 99999999
 
@@ -317,11 +302,12 @@
 	return FALSE
 
 /turf/closed/wall/mineral/rogue/stone/window/moss
-	icon = 'icons/turf/walls/mossy_stone.dmi'
+	icon = MAP_SWITCH( 'icons/turf/smooth/walls/stone_moss.dmi', 'icons/turf/window.dmi')
+	icon_state = MAP_SWITCH("stone_moss", "stone_moss")
 	climbdiff = 4
 
 /turf/closed/wall/mineral/rogue/stone/window/moss/unbreakable
-	desc = "Seems nigh-indestructable"
+	desc = "Seems nigh-indestructible"
 	max_integrity = 10000000
 	damage_deflection = 99999999
 
@@ -334,13 +320,17 @@
 	desc = "A durable wall made from specially-crafted stone."
 	icon = 'icons/turf/walls/craftstone.dmi'
 	icon_state = "box"
-	smooth = SMOOTH_MORE
+	icon = 'icons/turf/smooth/walls/stone_fancy.dmi'
+	icon_state = MAP_SWITCH("craftstone", "craftstone-0")
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_CLOSED_WALL + SMOOTH_GROUP_WALLS_STONE_CRAFT
+	smoothing_list = SMOOTH_GROUP_DOOR_SECRET + SMOOTH_GROUP_WALLS_STONE_CRAFT
 	blade_dulling = DULLING_BASH
 	max_integrity = 1200
 	sheet_type = /obj/item/natural/stone
 	break_sound = 'sound/combat/hits/onstone/stonedeath.ogg'
 	attacked_sound = list('sound/combat/hits/onstone/wallhit.ogg', 'sound/combat/hits/onstone/wallhit2.ogg', 'sound/combat/hits/onstone/wallhit3.ogg')
-	canSmoothWith = list(/turf/closed/wall/mineral/rogue/craftstone)
+	//canSmoothWith = list(/turf/closed/wall/mineral/rogue/craftstone)
 	above_floor = /turf/open/floor/rogue/blocks
 	baseturfs = /turf/open/floor/rogue/blocks
 	neighborlay = "dirtedge"
@@ -354,15 +344,17 @@
 /turf/closed/wall/mineral/rogue/stonebrick
 	name = "brick wall"
 	desc = "Rows of overlapping bricks form this wall."
-	icon = 'icons/turf/walls/stonebrick.dmi'
-	icon_state = "stonebrick"
-	smooth = SMOOTH_MORE
+	icon = 'icons/turf/smooth/walls/stone_brick.dmi'
+	icon_state = MAP_SWITCH("stone_brick", "stone_brick-0")
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_CLOSED_WALL + SMOOTH_GROUP_WALLS_STONE_BRICK
+	smoothing_list = SMOOTH_GROUP_DOOR_SECRET + SMOOTH_GROUP_WALLS_STONE_BRICK
 	blade_dulling = DULLING_BASH
 	max_integrity = 1300
 	sheet_type = /obj/item/natural/stone
 	break_sound = 'sound/combat/hits/onstone/stonedeath.ogg'
 	attacked_sound = list('sound/combat/hits/onstone/wallhit.ogg', 'sound/combat/hits/onstone/wallhit2.ogg', 'sound/combat/hits/onstone/wallhit3.ogg')
-	canSmoothWith = list(/turf/closed/wall/mineral/rogue/stonebrick, /turf/closed/wall/mineral/rogue/wooddark)
+	//canSmoothWith = list(/turf/closed/wall/mineral/rogue/stonebrick, /turf/closed/wall/mineral/rogue/wooddark)
 	above_floor = /turf/open/floor/rogue/blocks
 	baseturfs = /turf/open/floor/rogue/blocks
 	neighborlay = "dirtedge"
@@ -372,9 +364,11 @@
 /turf/closed/wall/mineral/rogue/decostone
 	name = "decorated stone wall"
 	desc = "The mason did an excellent job etching details into this wall."
-	icon = 'icons/turf/roguewall.dmi'
-	icon_state = "decostone-b"
-	smooth = SMOOTH_MORE
+	icon = 'icons/turf/smooth/walls/stone_deco.dmi'
+	icon_state = MAP_SWITCH("stone_deco", "stone_deco-0")
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_CLOSED_WALL + SMOOTH_GROUP_WALLS_STONE_DECO
+	smoothing_list = SMOOTH_GROUP_DOOR_SECRET + SMOOTH_GROUP_WALLS_STONE_DECO
 	blade_dulling = DULLING_BASH
 	max_integrity = 1400
 	sheet_type = /obj/item/natural/stone
@@ -385,11 +379,7 @@
 	neighborlay = "dirtedge"
 	climbdiff = 3
 
-/turf/closed/wall/mineral/rogue/decostone/long
-	icon_state = "decostone-l"
 
-/turf/closed/wall/mineral/rogue/decostone/long/east_west
-	dir = 1
 
 /obj/structure/thronething
 	name = "decorated stone wall" // what is thronething??
@@ -398,40 +388,27 @@
 	opacity = 0
 	icon_state = "decostone-l"
 
-/turf/closed/wall/mineral/rogue/decostone/center
-	icon_state = "decostone-c"
-
-/turf/closed/wall/mineral/rogue/decostone/end
-	icon_state = "decostone-e"
-
-/turf/closed/wall/mineral/rogue/decostone/end/north
-	dir = 1
-
-/turf/closed/wall/mineral/rogue/decostone/end/east
-	dir = 4
-
-/turf/closed/wall/mineral/rogue/decostone/end/west
-	dir = 8
 
 /turf/closed/wall/mineral/rogue/decostone/cand
-	icon_state = "decostone-cand"
+//	icon_state = "decostone-cand"
 
 /turf/closed/wall/mineral/rogue/decostone/fluffstone
+	icon = 'icons/turf/roguewall.dmi'
 	icon_state = "fluffstone"
+	smoothing_flags = null
 
 //Mildly better than stone-wall due to it being harder to make, plus not loose-stone cobbled together. Also higher climbing diff akin to stone-brick wall.
 /turf/closed/wall/mineral/rogue/brick
 	name = "brick wall"
 	desc = "Rows of overlapping bricks held together by mortar form a nigh-impenetrable wall of stone."
-	icon = 'icons/turf/walls/brick_wall.dmi'
+//	icon = 'icons/turf/walls/brick_wall.dmi'
 	icon_state = "brick"
-	smooth = SMOOTH_MORE
-	blade_dulling = DULLING_BASH
-	max_integrity = 1600
-	sheet_type = /obj/item/natural/brick
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = SMOOTH_GROUP_CLOSED_WALL + SMOOTH_GROUP_WALLS_STONE_BRICK
+	smoothing_list = SMOOTH_GROUP_DOOR_SECRET + SMOOTH_GROUP_WALLS_STONE_BRICK
 	break_sound = 'sound/combat/hits/onstone/stonedeath.ogg'
 	attacked_sound = list('sound/combat/hits/onstone/wallhit.ogg', 'sound/combat/hits/onstone/wallhit2.ogg', 'sound/combat/hits/onstone/wallhit3.ogg')
-	canSmoothWith = list(/turf/closed/wall/mineral/rogue/brick)
+	//canSmoothWith = list(/turf/closed/wall/mineral/rogue/brick)
 	above_floor = /turf/open/floor/rogue/tile/brick
 	baseturfs = /turf/open/floor/rogue/tile/brick
 	neighborlay = "dirtedge"
@@ -451,100 +428,64 @@
 /turf/closed/wall/mineral/rogue/pipe
 	name = "metal wall"
 	desc = "Solid steel made into an impenetrable obstacle. Dense piping runs along its face."
-	icon = 'icons/turf/pipewall.dmi'
-	icon_state = "iron_box"
-	smooth = SMOOTH_MORE
+	icon = 'icons/turf/smooth/walls/pipe_used.dmi'
+	icon_state = MAP_SWITCH("pipe", "pipe-0")
+	smoothing_flags = SMOOTH_BITMASK_CARDINALS
+	smoothing_groups = SMOOTH_GROUP_CLOSED_WALL + SMOOTH_GROUP_WALLS_PIPE
+	smoothing_list = SMOOTH_GROUP_DOOR_SECRET + SMOOTH_GROUP_WALLS_PIPE
 	blade_dulling = DULLING_BASH
 	max_integrity = 30000
 	sheet_type = null
 	break_sound = 'sound/combat/hits/onmetal/sheet (1).ogg'
 	attacked_sound = list('sound/combat/hits/onmetal/attackpipewall (1).ogg','sound/combat/hits/onmetal/attackpipewall (2).ogg')
-	canSmoothWith = list(/turf/closed/wall/mineral/rogue/pipe)
+	//canSmoothWith = list(/turf/closed/wall/mineral/rogue/pipe)
 	above_floor = /turf/open/floor/rogue/concrete
 	baseturfs = /turf/open/floor/rogue/concrete
 	climbdiff = 4
 	damage_deflection = 20
 
-/turf/closed/wall/mineral/rogue/pipe/corners
-	icon_state = "iron_corner"
-
-/turf/closed/wall/mineral/rogue/pipe/corners/one
-	dir = 1
-
-/turf/closed/wall/mineral/rogue/pipe/corners/four
-	dir = 4
-
-/turf/closed/wall/mineral/rogue/pipe/corners/eight
-	dir = 8
-
-/turf/closed/wall/mineral/rogue/pipe/joint
-	icon_state = "iron_joint"
-
-/turf/closed/wall/mineral/rogue/pipe/joint/one
-	dir = 1
-
-/turf/closed/wall/mineral/rogue/pipe/joint/four
-	dir = 4
-
-/turf/closed/wall/mineral/rogue/pipe/joint/eight
-	dir = 8
-
-/turf/closed/wall/mineral/rogue/pipe/line
-	icon_state = "iron_line"
-
-/turf/closed/wall/mineral/rogue/pipe/line/four
-	dir = 4
-
 /turf/closed/wall/mineral/rogue/stone/blue_moss
-	icon = 'icons/turf/walls/blue_mossy.dmi'
+	icon = 'icons/turf/smooth/walls/stone_moss_blue.dmi'
 
 /turf/closed/wall/mineral/rogue/stone/window/blue_moss
-	icon = 'icons/turf/walls/blue_mossy.dmi'
+	icon = MAP_SWITCH('icons/turf/smooth/walls/stone_moss_blue.dmi', 'icons/turf/window.dmi')
 
 /turf/closed/wall/mineral/rogue/stone/red_moss
-	icon = 'icons/turf/walls/red_mossy.dmi'
+	icon = MAP_SWITCH('icons/turf/smooth/walls/stone_moss_red.dmi', 'icons/turf/window.dmi')
+
 
 /turf/closed/wall/mineral/rogue/stone/red_moss
-	icon = 'icons/turf/walls/red_mossy.dmi'
+	icon = MAP_SWITCH('icons/turf/smooth/walls/stone_moss_red.dmi', 'icons/turf/window.dmi')
+
+
 /turf/closed/wall/mineral/rogue/decostone/mossy
 	name = "decorated mossy stone wall"
 	desc = "There was much effort put into this wall a long time ago."
-	icon = 'icons/turf/Rougewall_mossy.dmi'
-	icon_state = "decostone-b-green"
+	icon = 'icons/turf/smooth/walls/stone_d_moss.dmi'
 	climbdiff = 4
 
-/turf/closed/wall/mineral/rogue/decostone/mossy/long
-	icon_state = "decostone-l-green"
-
-/turf/closed/wall/mineral/rogue/decostone/mossy/end
-	icon_state = "decostone-e-green"
-
 /turf/closed/wall/mineral/rogue/decostone/mossy/cand
-	icon_state = "decostone-cand-green"
+//	icon_state = "decostone-cand-green"
 
 /turf/closed/wall/mineral/rogue/decostone/mossy/blue
-	icon_state = "decostone-b-blue"
+	icon = 'icons/turf/smooth/walls/stone_d_moss_b.dmi'
 
 /turf/closed/wall/mineral/rogue/decostone/mossy/blue/long
-	icon_state = "decostone-l-blue"
 
 /turf/closed/wall/mineral/rogue/decostone/mossy/blue/end
-	icon_state = "decostone-e-blue"
 
 /turf/closed/wall/mineral/rogue/decostone/mossy/blue/cand
-	icon_state = "decostone-cand-blue"
+//	icon_state = "decostone-cand-blue"
 
 /turf/closed/wall/mineral/rogue/decostone/mossy/red
-	icon_state = "decostone-b-red"
+	icon = 'icons/turf/smooth/walls/stone_d_moss_r.dmi'
 
 /turf/closed/wall/mineral/rogue/decostone/mossy/red/long
-	icon_state = "decostone-l-red"
 
 /turf/closed/wall/mineral/rogue/decostone/mossy/red/end
-	icon_state = "decostone-e-red"
 
 /turf/closed/wall/mineral/rogue/decostone/mossy/red/cand
-	icon_state = "decostone-cand-red"
+//	icon_state = "decostone-cand-red"
 
 
 ////////////////
@@ -556,12 +497,12 @@
 	desc = "Made from durable fabric stretched over wooden branches."
 	icon = 'icons/turf/roguewall.dmi'
 	icon_state = "tent"
-	smooth = SMOOTH_FALSE
+
 	blade_dulling = DULLING_BASHCHOP
 	max_integrity = 300
 	break_sound = 'sound/combat/hits/onwood/destroywalldoor.ogg'
 	attacked_sound = list('sound/combat/hits/onwood/woodimpact (1).ogg','sound/combat/hits/onwood/woodimpact (2).ogg')
-//	canSmoothWith = list(/turf/closed/wall/mineral/rogue/wood, /obj/structure/roguewindow, /turf/closed/wall/mineral/rogue/wooddark)
+//	//canSmoothWith = list(/turf/closed/wall/mineral/rogue/wood, /obj/structure/roguewindow, /turf/closed/wall/mineral/rogue/wooddark)
 //	sheet_type = /obj/item/grown/log/tree/lumber
 	above_floor = /turf/open/floor/rogue/twig
 	baseturfs = /turf/open/floor/rogue/twig
@@ -577,13 +518,13 @@
 	icon = 'icons/turf/roguewall.dmi'
 	icon_state = "shroud1"
 	var/smooth_icon = 'icons/turf/smoothrocks.dmi'
-	smooth = SMOOTH_MORE|SMOOTH_BORDER
-	canSmoothWith = null
+	//canSmoothWith = null
 	baseturfs = /turf/open/floor/rogue/shroud
 	blade_dulling = DULLING_CUT
 	opacity = 1
 	density = TRUE
 	max_integrity = 200
+	smoothing_flags = null
 //	layer = EDGED_TURF_LAYER /ROGTODO make these have borders and smooth
 	temperature = TCMB
 	sheet_type = null

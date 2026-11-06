@@ -593,6 +593,9 @@
 	to_chat(C,"<a href='?src=[C];playerlistrogue=1'>* SHOW PLAYER LIST *</a>")
 	to_chat(C,"<a href='byond://?src=[C];viewstats=1'>* View Statistics *</a>")
 	C.show_round_stats(pick_assoc(GLOB.featured_stats))
+	// [SURREALIS-ADD] - GREENTEXT - Villains get their own window next to the Chronicle
+	C.show_greentext_villains()
+	// [/SURREALIS-ADD]
 	C.commendsomeone(forced = TRUE)
 
 /datum/action/report

@@ -655,8 +655,8 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 		output += A.antag_memory
 		all_objectives |= A.objectives
 	// [SURREALIS-ADD] - HERETICS
-	if(heretic_path?.current_objective)
-		all_objectives |= heretic_path.current_objective
+	if(heretic_path)
+		all_objectives |= heretic_path.get_memory_objectives()
 	// [/SURREALIS-ADD]
 
 	if(all_objectives.len)
@@ -1011,7 +1011,7 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 
 /datum/mind/proc/show_spell_tip()
 	if(current)
-		to_chat(current, span_nicegreen("Tip: Ctrl-Click any spell button to enter rearrangement mode. Your bar will glow gree, spells cannot be cast and you can drag one button onto another to swap them in place. Ctrl-Click again to lock in and re-enable casting. Hotkeys are bound left to right (Alt 1 to Alt 9 default), matching the numbers shown on the buttons. Shift-click a spell to learn more about it."))
+		to_chat(current, span_nicegreen("Tip: Ctrl-Click any spell button to enter rearrangement mode. Your bar will glow green, spells cannot be cast and you can drag one button onto another to swap them in place. Ctrl-Click again to lock in and re-enable casting. Hotkeys are bound left to right (Alt 1 to Alt 9 default), matching the numbers shown on the buttons. Shift-click a spell to learn more about it."))
 
 /datum/mind/proc/setup_mage_aspects(list/config, grant_attunement = TRUE)
 	mage_aspect_config = config

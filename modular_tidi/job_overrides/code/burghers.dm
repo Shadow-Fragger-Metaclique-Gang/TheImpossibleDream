@@ -16,3 +16,10 @@
 		/obj/item/roguekey/keeper_inner,
 		/obj/item/roguekey/physician,
 	)
+
+/datum/outfit/job/roguetown/keeper/basic/pre_equip(mob/living/carbon/human/H)
+	..()
+	var/datum/devotion/C = new /datum/devotion(H, H.patron)
+	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = TRUE)
+	H.adjust_skillrank(/datum/skill/magic/ritualist, SKILL_LEVEL_EXPERT, TRUE)
+	LAZYSET(backpack_contents, /obj/item/ritechalk, 1)

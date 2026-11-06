@@ -7,4 +7,5 @@
 	if(baotha_objective_done || istype(climaxer.patron, /datum/patron/inhumen))
 		return
 	baotha_objective_done = TRUE
+	record_victim(climaxer)
 	check_progress()

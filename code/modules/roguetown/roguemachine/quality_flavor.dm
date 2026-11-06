@@ -15,7 +15,7 @@
 	if(quality > ITEM_QUALITY_STANDARD)
 		return pick(
 			"Fine work, my liege!",
-			"Tis the finest goods I have seen in this land!",
+			"'Tis the finest goods I have seen in this land!",
 			"Ah! Fineries suitable for a King!",
 			"We scratched the goods! Of the FINEST quality, my liege!",
 			"MORE!",
@@ -45,8 +45,8 @@
 			"These items might just make Psydon return!",
 			"The Captain is most pleased.",
 			// [SURREALIS-EDIT] - LORE
-			// "Tis was worth the trip to Azuria.", // SURREALIS-EDIT - ORIGINAL
-			"Tis was worth the trip to this Scar.",
+			// "'Tis was worth the trip to Azuria.", // SURREALIS-EDIT - ORIGINAL
+			"'Tis was worth the trip to this Scar.",
 			// [/SURREALIS-EDIT]
 			"The Company appreciates your efforts.",
 			"FACTOR! MORE OF THIS!",

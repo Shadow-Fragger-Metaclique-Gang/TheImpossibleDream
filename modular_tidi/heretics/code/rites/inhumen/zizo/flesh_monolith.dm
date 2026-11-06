@@ -55,6 +55,7 @@
 	var/obj/item/organ/heart/heart = victim.getorganslot(ORGAN_SLOT_HEART)
 	if(heart && maker_ref?.resolve())
 		heart.monolith_maker = maker_ref
+		heart.monolith_gazer = WEAKREF(victim) // GREENTEXT
 	victim.add_stress(/datum/stressevent/saw_wonder)
 	victim.stamina_add(victim.max_stamina)
 	victim.freak_out_targeted(src)
@@ -62,12 +63,8 @@
 
 /obj/item/organ/heart
 	var/datum/weakref/monolith_maker
-
-/mob/living/carbon/human/examine(mob/user)
-	. = ..()
-	var/obj/item/organ/heart/heart = getorganslot(ORGAN_SLOT_HEART)
-	if(heart?.monolith_maker && heart.monolith_maker.resolve() == user)
-		. += span_userdanger("THEY HAVE SEEN IT!")
+	/// Who the heart belonged to when they gazed upon the monolith, since the heart loses its owner once extracted
+	var/datum/weakref/monolith_gazer
 
 /obj/item/organ/heart/examine(mob/user)
 	. = ..()

@@ -7,6 +7,8 @@
 		/datum/runeritual/god/baotha/joybringer,
 		/datum/runeritual/god/baotha/fertility_boon,
 		/datum/runeritual/god/patron_knife/baotha,
+		/datum/runeritual/god/dollmaker,
+		/datum/runeritual/god/hex/baotha/soulbound
 	)
 	unworthy_message = "I feel my fingers going numb, and my arms heaving with unseen weight. I shouldn't be trying to use this..."
 	rites_title = "Rituals of Unity"

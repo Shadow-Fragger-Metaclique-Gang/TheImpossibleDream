@@ -594,7 +594,10 @@
 					if(!should_exclude)
 						all_antagonists |= A
 
-			if(!length(all_teams) && !length(all_antagonists) && !length(GLOB.confessors))
+			// [SURREALIS-EDIT] - GREENTEXT - Awakened heretics are villains too
+			// if(!length(all_teams) && !length(all_antagonists) && !length(GLOB.confessors)) // SURREALIS-EDIT - ORIGINAL
+			if(!length(all_teams) && !length(all_antagonists) && !length(GLOB.confessors) && !length(get_awakened_heretics()))
+			// [/SURREALIS-EDIT]
 				data += "<div style='text-align: center; color: #999; font-style: italic;'>The Realm has no villains... for now</div>"
 			else
 				if(length(GLOB.confessors))
@@ -693,6 +696,9 @@
 
 				if(all_antagonists.len)
 					data += "</div></div>"
+				// [SURREALIS-ADD] - GREENTEXT - Awakened heretics and their completed objectives
+				data += greentext_heretic_section()
+				// [/SURREALIS-ADD]
 			if(length(SSgamemode.false_rumours))
 				data += "<div style='background: #14140a; border: 1px solid #5a5a3a; padding: 12px; border-radius: 4px; margin-bottom: 15px;'>"
 				data += "<div style='color: #cfcfa0; font-weight: bold; margin-bottom: 8px;'>Whispers and Rumours</div>"

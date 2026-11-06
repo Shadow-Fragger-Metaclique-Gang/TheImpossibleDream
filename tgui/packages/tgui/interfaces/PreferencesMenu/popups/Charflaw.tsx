@@ -6,6 +6,9 @@ import {
 } from 'pm/constant_data';
 import type { Path } from 'pm/data';
 import { type PopupData, registerPopup, usePopupBackend } from 'pm/popups';
+// [SURREALIS-ADD] - QUIRKS
+import { PopupSurrealisCharflaw } from 'pm/popups/SurrealisCharflaw';
+// [/SURREALIS-ADD]
 import { ImageButton, Input, Section, Stack } from 'tgui-core/components';
 import { useFuzzySearch } from 'tgui-core/fuzzysearch';
 import { classes } from 'tgui-core/react';
@@ -48,7 +51,10 @@ declare module 'pm/popups' {
     CharFlaw: 'charflaw';
   }
 }
-registerPopup('CharFlaw', 'charflaw', PopupCharflawSelector);
+// [SURREALIS-EDIT] - QUIRKS
+// registerPopup('CharFlaw', 'charflaw', PopupCharflawSelector); // SURREALIS-EDIT - ORIGINAL
+registerPopup('CharFlaw', 'charflaw', PopupSurrealisCharflaw);
+// [/SURREALIS-EDIT]
 
 // Rest of the UI
 const getTriCost = (name: string) => {

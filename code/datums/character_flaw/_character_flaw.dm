@@ -451,7 +451,7 @@ GLOBAL_LIST_INIT(averse_factions, list(
 	var/mob/living/carbon/human/H = user
 	if(logged == FALSE)
 		if(H.name) // If you don't check this, the log entry wont have a name as flaw_on_life is checked at least once before the name is set.
-			log_hunted("[H.ckey] playing as [H.name] had the targeted flaw by vice.") // we log this in the same place as hunted because making a seperate log for it would be silly
+			log_hunted("[H.ckey] playing as [H.name] had the targeted flaw by vice.") // we log this in the same place as hunted because making a separate log for it would be silly
 			logged = TRUE
 
 /datum/charflaw/targeted/apply_post_equipment(mob/user)
@@ -601,7 +601,7 @@ GLOBAL_LIST_INIT(averse_factions, list(
 			user.emote("yawn", forced = TRUE)
 			next_sleep = world.time + rand(7 SECONDS, 11 SECONDS)
 			if(drugged_up)
-				to_chat(user, span_blue("The drugs keeps me awake, for now..."))
+				to_chat(user, span_blue("The drugs keep me awake, for now..."))
 			else
 				to_chat(user, span_blue("I'm getting drowsy..."))
 
@@ -678,7 +678,11 @@ GLOBAL_LIST_INIT(averse_factions, list(
 	H.change_stat(STATKEY_WIL, -1)
 	H.change_stat(STATKEY_SPD, -1)
 	H.change_stat(STATKEY_LCK, -1)
+	// [SURREALIS-REMOVE] - QUIRKS
+	/*
 	H.adjust_triumphs(3)
+	*/
+	// [/SURREALIS-REMOVE]
 
 /datum/charflaw/mind_broken
 	name = "Asundered Mind (+3 TRI)"
@@ -690,7 +694,11 @@ GLOBAL_LIST_INIT(averse_factions, list(
 /datum/charflaw/mind_broken/apply_post_equipment(mob/living/carbon/human/insane_fool)
 	insane_fool.hallucination = INFINITY
 	ADD_TRAIT(insane_fool, TRAIT_PSYCHOSIS, TRAIT_GENERIC)
+	// [SURREALIS-REMOVE] - QUIRKS
+	/*
 	insane_fool.adjust_triumphs(3)
+	*/
+	// [/SURREALIS-REMOVE]
 	if(insane_fool.patron?.type == /datum/patron/divine/abyssor)
 		insane_fool.grant_language(/datum/language/abyssal)
 
@@ -886,7 +894,11 @@ GLOBAL_LIST_INIT(averse_factions, list(
 
 /datum/charflaw/wanted/on_mob_creation(mob/user)
 	. = ..()
+	// [SURREALIS-REMOVE] - QUIRKS
+	/*
 	user.adjust_triumphs(2)
+	*/
+	// [/SURREALIS-REMOVE]
 	ADD_TRAIT(user, TRAIT_OUTLAW, "[type]")
 
 /datum/charflaw/wanted/apply_post_equipment(mob/user)

@@ -27,4 +27,4 @@
 	desc = span_purple("...Zuraus is visible, surely, a sign of our continued bringer of the end! ZIZO, ZIZO, ZIZO!")
 
 /datum/stressevent/blessed_neutral
-	desc = span_green("I feel a presence scarcely watching over me. Ah, blessed be the Fragments and their guidance! They too will me to ENDURE!")
+	desc = span_green("I feel a presence scarcely watching over me. Ah, blessed be the Fragments and their guidance! They, too, will me to ENDURE!")

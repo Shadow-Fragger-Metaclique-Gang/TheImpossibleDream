@@ -258,10 +258,10 @@ GLOBAL_LIST_EMPTY(used_colors)
 		if(inserted_item.glaze_bonus_pct > 0 && !inserted_item.glazed)
 			inserted_item.glazed = TRUE
 		playsound(src, "bubbles", 50, 1)
-// [SURREALIS-ADD] - AUTO-EJECT_DYED_CLOTHES 
+// [SURREALIS-ADD] - AUTO-EJECT_DYED_CLOTHES
 		inserted.forceMove(drop_location())
 		inserted = null
-// [/SURREALIS ADD] 
+// [/SURREALIS ADD]
 		interact(usr)
 
 	if(href_list["paint_detail"])
@@ -326,7 +326,7 @@ GLOBAL_LIST_EMPTY(used_colors)
 /obj/item/dye_brush
 	icon = 'icons/roguetown/items/misc.dmi'
 	name = "dye brush"
-	desc = "A sizeable brush made of the finest mane-hairs. Thick dye adheres to it well."
+	desc = "A sizable brush made of the finest mane-hairs. Thick dye adheres to it well."
 	icon_state = "dbrush"
 	w_class = WEIGHT_CLASS_SMALL
 	dropshrink = 0.7

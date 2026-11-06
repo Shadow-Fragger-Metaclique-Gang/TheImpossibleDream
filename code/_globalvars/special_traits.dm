@@ -60,7 +60,10 @@ GLOBAL_LIST_INIT(special_traits, build_special_traits())
 	if(assigned_job)
 		assigned_job.clamp_stats(character)
 	check_trait_incompatibilities(character)
-	apply_prefs_quirk(character, player) // this needs to be after all traits are applied, so that trait incompats will work
+	// [SURREALIS-EDIT] - QUIRKS - (New proc in modular_tidi/quirks/code/quirk_points.dm)
+	// apply_prefs_quirk(character, player) // this needs to be after all traits are applied, so that trait incompats will work // SURREALIS-EDIT - ORIGINAL
+	surrealis_apply_prefs_quirks(character, player) // this needs to be after all traits are applied, so that trait incompats will work
+	// [/SURREALIS-EDIT]
 	character.calculate_energy()
 	character.calculate_stamina()
 	character.energy = character.max_energy

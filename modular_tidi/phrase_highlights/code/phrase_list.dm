@@ -14,5 +14,8 @@ GLOBAL_LIST_INIT(phrase_highlights, list(
 	"sutra" = "Common way of referring to the apostate patron Baotha.",
 	"hylic" = "Endemic lyfe. A non-person. A hollow vessel of flesh that moves and acts, but holds no soul.",
 	"kaan" = "Gronnic insult meaning 'whom fornicates with insects'.",
-	"purity afloat" = "Common greeting and departing phrase used by those of Psydonian worship."
+	"purity afloat" = "Common greeting and departing phrase used by those of Orthodoxist Psydonian worship.",
+	"bishop" = "A name describing an elevated member of the Psydonian clergy. <b>Only</b> the Psydonian clergy.",
+	"agonies eternal" = "Common mantra recited by those of <i>ag Cruucis</i>, the Body; venerating the eternal, empathetic suffering of PSYDON, wounded - and those of His creations.",
+	"His Majesty" = "The traditional means of referring to the Sovereign of the Kingdom.",
 ))

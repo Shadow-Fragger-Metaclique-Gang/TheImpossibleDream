@@ -66,7 +66,10 @@
 	for(var/mob/living/L in GLOB.player_list)
 		if(L == user || istype(L, /mob/living/carbon/human/dummy) || !L.mind)
 			continue
-		var/is_hunted = L.has_flaw(/datum/charflaw/hunted)
+		// [SURREALIS-EDIT] - QUIRKS
+		// var/is_hunted = L.has_flaw(/datum/charflaw/hunted) // SURREALIS-EDIT - ORIGINAL
+		var/is_hunted = HAS_TRAIT(L, TRAIT_GNOLL_HUNTED)
+		// [/SURREALIS-EDIT]
 		// Don't uncomment for now
 		// var/target_role = L.job
 		var/is_valid_prey = is_hunted
@@ -148,7 +151,7 @@
 		to_chat(user, span_notice("You begin setting your anchor for abduction."))
 		if(do_after(user, 10 SECONDS, target = user))
 			destination_turf = get_turf(user)
-			to_chat(user, span_notice("You anchor your connection to graggar's plane here. Any abducted will be fetched here."))
+			to_chat(user, span_notice("You anchor your connection to Graggar's plane here. Any abducted will be fetched here."))
 		// We are reverting cast because we're only setting the destination.
 		revert_cast()
 		return FALSE
@@ -181,10 +184,13 @@
 
 	// Determine Channel Time
 	var/channel_time = 15 SECONDS
-	if(target.has_flaw(/datum/charflaw/hunted))
+	// [SURREALIS-EDIT] - QUIRKS
+	// if(target.has_flaw(/datum/charflaw/hunted)) // SURREALIS-EDIT - ORIGINAL
+	if(HAS_TRAIT(target, TRAIT_GNOLL_HUNTED))
+	// [/SURREALIS-EDIT]
 		channel_time = 6 SECONDS
 
-	to_chat(user, span_notice("You begin pulling [target] into graggar's plane"))
+	to_chat(user, span_notice("You begin pulling [target] into Graggar's plane."))
 	to_chat(target, span_userdanger("The world around you begins to dissolve into a blood scented nightmare!"))
 	user.visible_message(span_userdanger("[user] tears a blood red rift into space with a claw, and begins dragging [target] into it!"))
 	tracker.channeling_abduction = TRUE

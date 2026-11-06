@@ -11,4 +11,5 @@
 		return
 	if(!heretic_is_drugged(climaxer.reagents) && !climaxer.has_status_effect(/datum/status_effect/debuff/emberwine))
 		return
+	record_victim(climaxer)
 	complete()

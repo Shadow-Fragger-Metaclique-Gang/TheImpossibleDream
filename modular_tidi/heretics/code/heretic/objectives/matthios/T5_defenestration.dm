@@ -20,5 +20,6 @@
 	SIGNAL_HANDLER
 	if(completed || !victim.is_high_nobility())
 		return
+	record_victim(victim)
 	complete()
 	UnregisterSignal(owner.current, COMSIG_HERETIC_DEFENESTRATED)

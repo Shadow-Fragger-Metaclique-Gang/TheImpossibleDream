@@ -17,7 +17,7 @@
 		return FALSE
 	user.say("ZIZO! ZIZO! EYES ATTUNED TO DARK, WISDOM BEYOND THE MOON!")
 	circle.icon_state = "zizo_active"
-	to_chat(user,span_cultsmall("<i>Her Inzanity although incomprehendable to the ignorant, is invaluable to the enlightened. Her darkness now guides you, for the light now spurns you.</i>"))
+	to_chat(user,span_cultsmall("<i>Her Inzanity although incomprehensible to the ignorant, is invaluable to the enlightened. Her darkness now guides you, for the light now spurns you.</i>"))
 	circle.zizolightsnuff(circle)
 	addtimer(VARSET_CALLBACK(circle, icon_state, "zizo_chalky"), 12 SECONDS)
 	sleep(1 SECONDS)
