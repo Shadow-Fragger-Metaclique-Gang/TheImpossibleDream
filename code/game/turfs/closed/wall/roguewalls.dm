@@ -303,7 +303,7 @@
 
 /turf/closed/wall/mineral/rogue/stone/window/moss
 	icon = MAP_SWITCH( 'icons/turf/smooth/walls/stone_moss.dmi', 'icons/turf/window.dmi')
-	icon_state = MAP_SWITCH("stone_moss", "stone_moss")
+	icon_state = MAP_SWITCH("stone", "stone_moss")
 	climbdiff = 4
 
 /turf/closed/wall/mineral/rogue/stone/window/moss/unbreakable
