@@ -1,8 +1,8 @@
 /datum/component/saintliness/eora
-	var/static/list/sleep_lines = list("Lie away, lie away sleeping, lie away safe in my arms.",
+	sleep_lines = list("Lie away, lie away sleeping, lie away safe in my arms.",
 									   "Oops! Now you'll have something to explain when you wake up.",
 									   "THAT's the one you dream of? Huh!")
-	var/static/list/pray_lines = list("My heart's throbbing, it's about to burst!",
+	pray_lines = list("My heart's throbbing, it's about to burst!",
 									  "The City? Which one?!",
 									  "Stop, that's sweeter than a lemon tart!",
 									  "Those who find beautiful meanings in beautiful things are the cultivated. For such there is hope. They are my annointed to whom beautiful things mean only beauty.",
@@ -12,19 +12,19 @@
 									  "All art is quite useless.",
 									  "You want to know more about me? Do dig in at your own peril~~~ ♥",
 									  "With the same sex? Ewww...")
-	var/static/list/login_lines = list("Mwah!")
-	var/static/list/death_lines = list("Oh, that definitely tickled something!")
-	var/static/list/conversion_lines = list("Oh, hello there!",
+	login_lines = list("Mwah!")
+	death_lines = list("Oh, that definitely tickled something!")
+	conversion_lines = list("Oh, hello there!",
 											"Welcome to the flock!",
 											"May serenity envelop you!")
-	var/static/list/apostasy_lines = list("I'll still love you, even if you cut my heart out...")
-	var/static/list/affection_lines = list("Nothing like it. Cherry-sweet love...",
+	apostasy_lines = list("I'll still love you, even if you cut my heart out...")
+	affection_lines = list("Nothing like it. Cherry-sweet love...",
 										   "Cl-closer! Yes! YES!",
 										   "So sweet... so good!")
-	var/static/list/marriage_lines = list("Oh, what a Charming couple...",
+	marriage_lines = list("Oh, what a Charming couple...",
 										  "That's so romantic...",
 										  "Oh my! How delightful! Mwah!")
-	var/static/list/aggro_lines = list("Oh no!",
+	aggro_lines = list("Oh no!",
 									   "But can't you simply talk it out?",
 									   "Is that really necessary?",
 									   "Have a heart!",

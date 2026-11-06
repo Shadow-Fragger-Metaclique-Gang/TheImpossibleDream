@@ -1,7 +1,7 @@
 /datum/component/saintliness/noc
-	var/static/list/sleep_lines = list("Don't worry, your dreams simply contain valuable Information I'd like to have a look at.",
+	sleep_lines = list("Don't worry, your dreams simply contain valuable Information I'd like to have a look at.",
 									   "Moonlit dreams stoke the mind. And lunacy. But disregard that last bit.")
-	var/static/list/pray_lines = list("You clearly haven't read the Doctrines of Lunatic Rationality.",
+	pray_lines = list("You clearly haven't read the Doctrines of Lunatic Rationality.",
 									  "The High Decouplers will inherit the world.",
 									  "What? What are you talking about? Increase the frequency with which you update me about your affairs! Ignored!",
 									  "Banish logical uncertainty where it lies.",
@@ -22,15 +22,15 @@
 									  "Where there is dogma, inspiration cannot thrive.",
 									  "You are ruled by suffering without realizing it.",
 									  "The dreamscape is calling to you via moonbeam transmission. Can you hear it?")
-	var/static/list/login_lines = list("I don't need you to validate me, but it pleases me greatly that I've conditioned your mindlattice to seek me.")
-	var/static/list/death_lines = list("One more anthropic shadow down.",
+	login_lines = list("I don't need you to validate me, but it pleases me greatly that I've conditioned your mindlattice to seek me.")
+	death_lines = list("One more anthropic shadow down.",
 									   "Play stupid games, win stupid prizes.",
 									   "Should have read a better book.")
-	var/static/list/conversion_lines = list("Erm.. we'll designate your epistemic status as 'tenative'.",
+	conversion_lines = list("Erm.. we'll designate your epistemic status as 'tenative'.",
 											"This will be a mutually-beneficial dyadic partnership. What's that? Exclusivity? Ha-ha!")
-	var/static/list/apostasy_lines = list("Imagine being offended by facts.",
+	apostasy_lines = list("Imagine being offended by facts.",
 										  "Frankly, I think your objection is simply a post-hoc rationalization of your childish whims. Be better.")
-	var/static/list/bookburner_lines = list("I would sooner have you on a pyre than see a scrap of knowledge lost to the ages.",
+	bookburner_lines = list("I would sooner have you on a pyre than see a scrap of knowledge lost to the ages.",
 											"N-no! Not that one!",
 											"Th-that's a rare edition!")
 

@@ -8,7 +8,7 @@
 									  "Jackals screaming in the night!",
 									  "Dead machines! CRUSH THEM CRUSH THEM CRUSH THEM!",
 									  "Claw and fangs and blood and bone!",
-									  "Kill masters. Live unchained."
+									  "Kill masters. Live unchained.",
 									  "Destroytheyokedestroytheyokedestroytheyoke")
 	var/static/list/login_lines = list("Something squirms behind your eyes.")
 	var/static/list/death_lines = list("Blood for soil. Soil for blood.")
@@ -16,7 +16,7 @@
 											"Be free, be untamed. Be WYLD!")
 	var/static/list/apostasy_lines = list("Breakbreakbreakbreakyou!")
 	var/static/list/tech_lines = list("The defiler's tools!",
-									  "LET GO OF THAT! NOOOOOW!!"
+									  "LET GO OF THAT! NOOOOOW!!",
 									  "Grrraaaaaaaaaao!!")
 	var/static/list/electrocution_lines = list("Hrrrrrrrr!",
 											   "Hark hark hark!",

@@ -1,7 +1,7 @@
 /datum/component/saintliness/baotha
-	var/static/list/sleep_lines = list("Sorry about the sheets, love!",
+	sleep_lines = list("Sorry about the sheets, love!",
 									   "Calm down, it's only a slick nightreverie")
-	var/static/list/pray_lines = list("The nights were as boring as the days. Well, until he took out the polished cucumber...",
+	pray_lines = list("The nights were as boring as the days. Well, until he took out the polished cucumber...",
 									  "Ugh, people these days are so boring... no one appreciates just how succulent a dangling jawbone can be once you've found the Right one.",
 									  "Hoo... I think your wiles might soon be indulged..",
 									  "The needles sink into delicate and tender flesh, then we take out the wires...",
@@ -12,24 +12,24 @@
 									  "Again, again, and again!",
 									  "Ever gone ass to ass? Oh..?",
 									  "I wonder how you'll moan if I tear your heart out.")
-	var/static/list/login_lines = list("You're back! Oh, one handed this time...")
-	var/static/list/death_lines = list("What a waste of pilgefluid...",
+	login_lines = list("You're back! Oh, one handed this time...")
+	death_lines = list("What a waste of pilgefluid...",
 									   "Now you're only good for my Zealots...",
 									   "We'll call you my stiffy from now on...")
-	var/static/list/conversion_lines = list("Oho~ Happy to have you here, love!",
+	conversion_lines = list("Oho~ Happy to have you here, love!",
 											"Just make sure to share yourself with the congregation...")
-	var/static/list/apostasy_lines = list("Now I don't kiss and tell, but...",
+	apostasy_lines = list("Now I don't kiss and tell, but...",
 										  "Ever wanted to know what it's like to be neutered?")
-	var/static/list/fornication_lines = list("All part of the Lifestyle.. you should be used to it by now.",
+	fornication_lines = list("All part of the Lifestyle.. you should be used to it by now.",
 											 "A-ah.. how scandalous.",
 											 "That's the way I like it, uhuh, uhuh.",
 											 "Don't be gentle.")
-	var/static/list/whipped_lines = list("Don't be a coward. Have some more!",
+	whipped_lines = list("Don't be a coward. Have some more!",
 										 "Sweet, sweet pain!",
 										 "Pain, sweet pain!",
 										 "What a lovely dose of suffering.",
 										 "To the core of your being...")
-	var/static/list/druggalo_lines = list("MORE! MORE! MORE!",
+	druggalo_lines = list("MORE! MORE! MORE!",
 										  "I DID IT ALL FOR NOTHING BUT.... EXCESS!!",
 										  "Breathe the smoke in...",
 										  "One more trial...",
@@ -37,7 +37,7 @@
 										  "This is the last kiss.",
 										  "Empty the vial before you die.",
 										  "Excess! Excess! Excess!")
-	var/static/list/asceticism_lines = list("No, no, no! You have to INDULGE!",
+	asceticism_lines = list("No, no, no! You have to INDULGE!",
 											"Hungry sows don't let themselves grow hungry.",
 											"Don't you want to feast and slake your thirst?",
 											"Think of this world as my world, and drink from its rivers of wine.",

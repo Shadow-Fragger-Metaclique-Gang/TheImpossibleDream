@@ -1,4 +1,5 @@
 #include "code\signals.dm"
+#include "code\spans.dm"
 #include "code\defines.dm"
 #include "code\_patron.dm"
 #include "code\components\_saintliness.dm"
@@ -15,8 +16,10 @@
 #include "code\components\baotha.dm"
 #include "code\components\zizo.dm"
 #include "code\components\matthios.dm"
-#include "code\components\gragger.dm"
+#include "code\components\graggar.dm"
 #include "code\components\psydon.dm"
+#include "code\sexcon\sex_action.dm"
+#include "code\revive.dm"
 
 
 
