@@ -34,3 +34,5 @@
 #define COMSIG_MOB_ASCETICISM "mob_asceticism"
 #define COMSIG_MOB_BUTCHER_LIMB "mob_butcher_limb"
 #define COMSIG_MOB_COMPASSION "mob_compassion"
+#define COMSIG_MOB_TOMESCRIBE "mob_tomescribe"
+#define COMSIG_MOB_ENHANCE "mob_enhance"

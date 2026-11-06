@@ -36,6 +36,8 @@
 	RegisterSignal(parent, COMSIG_MOB_GRAVEROBBER, PROC_REF(on_graverobber))
 	// NO LOVE. NO KISSES. NO COMPASSION.
 	RegisterSignal(parent, COMSIG_MOB_COMPASSION, PROC_REF(on_compassion))
+	// NERD
+	RegisterSignal(parent, COMSIG_MOB_TOMESCRIBE, PROC_REF(on_tomescribe))
 
 /datum/component/saintliness/zizo/proc/on_graverobber(mob/living/worshipper)
 	SIGNAL_HANDLER
@@ -43,11 +45,17 @@
 	to_chat(worshipper, span_faith(pick(graverobber_lines)))
 	adjust_saintliness(SAINTLINESS_FEAST)
 
-/datum/component/saintliness/zizo/proc/compassion(mob/living/worshipper)
+/datum/component/saintliness/zizo/proc/on_compassion(mob/living/worshipper)
 	SIGNAL_HANDLER
 
 	to_chat(worshipper, span_faith(pick(compassion_lines)))
 	adjust_saintliness(SIN_FEAST)
+
+/datum/component/saintliness/zizo/proc/on_tomescribe(mob/living/worshipper)
+	SIGNAL_HANDLER
+
+	to_chat(worshipper, span_faith(pick(tomescribe_lines)))
+	adjust_saintliness(SAINTLINESS_FEAST)
 
 // Emoate Hooks
 
