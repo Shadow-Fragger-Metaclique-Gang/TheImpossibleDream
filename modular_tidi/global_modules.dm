@@ -35,3 +35,4 @@
 #include "weapons\_weapons.dme"
 #include "weapons_modular\_weapons_modular.dme"
 #include "ww_tweaks\_ww_tweaks.dme"
+#include "saintliness\_saintliness.dme"
