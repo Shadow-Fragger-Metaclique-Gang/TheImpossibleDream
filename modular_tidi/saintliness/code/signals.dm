@@ -3,6 +3,8 @@
 
 
 // Generic faith-related signals.
+/*
+//[SURREALIS-ADD] - SAINTLINESS
 #define COMSIG_MOB_ON_RELIGIOUS_CONVERSION "mob_on_religious_conversion"
 #define COMSIG_MOB_ON_APOSTASY "mob_on_apostasy"
 #define COMSIG_MOB_SHOWN_RESPECT "mob_shown_respect"
@@ -36,3 +38,5 @@
 #define COMSIG_MOB_COMPASSION "mob_compassion"
 #define COMSIG_MOB_TOMESCRIBE "mob_tomescribe"
 #define COMSIG_MOB_ENHANCE "mob_enhance"
+//[/SURREALIS-ADD]
+*/

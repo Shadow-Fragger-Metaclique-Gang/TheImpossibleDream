@@ -10,12 +10,12 @@
 	// But when I look at more recent patches made to this, they seem to be used in the way one would typically expect. Oh well.
 	// These are static because I don't want subtypes to all have their own list. Let's save on ram.
 	// Yes, every single child of this'll have to override all these lines. Oh well.
-	var/static/list/sleep_lines = list()
-	var/static/list/pray_lines = list()
-	var/static/list/login_lines = list()
-	var/static/list/death_lines = list()
-	var/static/list/conversion_lines = list()
-	var/static/list/apostasy_lines = list()
+	var/list/sleep_lines = list()
+	var/list/pray_lines = list()
+	var/list/login_lines = list()
+	var/list/death_lines = list()
+	var/list/conversion_lines = list()
+	var/list/apostasy_lines = list()
 
 
 /datum/component/saintliness/Initialize(...)
