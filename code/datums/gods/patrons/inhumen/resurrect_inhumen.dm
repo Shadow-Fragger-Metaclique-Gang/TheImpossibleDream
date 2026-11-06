@@ -65,6 +65,12 @@
 	if(!target.revive_check(owner))
 		return FALSE
 
+	//[SURREALIS-ADD] - SAINTLINESS
+	// Only check this if we can actually revive the goober.
+	var/inhumen_conversion = FALSE
+	if(!istype(target.patron, /datum/patron/inhumen))
+		inhumen_conversion = TRUE
+	//[/SURREALIS-ADD]
 	var/is_matthios = istype(found_cross, /obj/structure/fluff/psycross/matthios)
 	var/is_astrata = istype(found_cross, /obj/structure/fluff/psycross/astrata)
 
@@ -123,6 +129,11 @@
 	target.Jitter(100)
 	target.update_body()
 	target.visible_message(span_astrata("[target] is revived by holy light!"), span_green("I awake from the void."))
+	//[SURREALIS-ADD] - SAINTLINESS
+	//Hardcoded patrons for hardcoded and weird one-off spells.
+	if(inhumen_conversion)
+		target.set_patron(/datum/patron/inhumen/matthios)
+	//[/SURREALIS-ADD]
 	target.mind.remove_antag_datum(/datum/antagonist/zombie)
 	target.remove_status_effect(/datum/status_effect/debuff/rotted_zombie)
 	target.apply_status_effect(/datum/status_effect/debuff/revived)
@@ -611,10 +622,15 @@
 	// check if parent returns TRUE
 	if(.)
 		var/mob/living/carbon/human/target = targets[1]
-
-		user.apply_status_effect(/datum/status_effect/buff/zizo_tithe, tithe_distribution, target)
-		target.apply_status_effect(/datum/status_effect/debuff/zizo_drain, tithe_distribution)
-
+		//[SURREALIS-ADD] - SAINTLINESS
+		var/take_tithe = FALSE
+		// The faithless are still revived, so are sinners. But they pay the price. Loyalty pays.
+		if(check_target_saintliness(target) || !istype(target.patron, /datum/patron/inhumen/zizo))
+			take_tithe = TRUE
+		if(take_tithe)
+			user.apply_status_effect(/datum/status_effect/buff/zizo_tithe, tithe_distribution, target)
+			target.apply_status_effect(/datum/status_effect/debuff/zizo_drain, tithe_distribution)
+		//[/SURREALIS-ADD]
 		var/found_zizo_cross = FALSE
 
 		for(var/atom/A in oview(1, target))
@@ -633,9 +649,17 @@
 				break
 
 		// A proper Zizo cross stabilizes the rite and prevents undeath complications
-		if(found_zizo_cross)
+		//[SURREALIS-EDIT] - SAINTLINESSS
+		// The tithe... is a complication.
+		if(found_zizo_cross && !take_tithe)
+		//[/SURREALIS-EDIT]
 			to_chat(target, span_warning("Your stolen Lux writhes violently, but the unholy cross steadies your Lux before undeath can fully take hold."))
 		else
+			//[SURREALIS-EDIT] - SAINTLINESS
+			//I would be indebted to the Entity that brought me back from the underworld, too.
+			if(!istype(target.patron, /datum/patron/inhumen/zizo))
+				target.set_patron(/datum/patron/inhumen/zizo)
+			//[/SURREALIS-EDIT]
 			if(!target.has_status_effect(/datum/status_effect/debuff/zizo_temp_undeath) || !HAS_TRAIT(target, TRAIT_SILVER_BLESSED))
 				target.apply_status_effect(/datum/status_effect/debuff/zizo_temp_undeath)
 				to_chat(target, span_userdanger("You feel your rekindled Lux torn from within, leaving you hollowed as undeath threatens to gnaw at your fading soul."))
