@@ -26,3 +26,4 @@
 #include "species_renames\_species_renames.dme"
 #include "weapons_modular\_weapons_modular.dme"
 #include "ww_tweaks\_ww_tweaks.dme"
+#include "saintliness\_saintliness.dme"
