@@ -32,3 +32,4 @@
 #define COMSIG_MOB_WHIPPED "mob_whipped"
 #define COMSIG_MOB_HIGH "mob_high"
 #define COMSIG_MOB_ASCETICISM "mob_asceticism"
+#define COMSIG_MOB_BUTCHER_LIMB "mob_butcher_limb"
