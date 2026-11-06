@@ -69,7 +69,13 @@
 	. = ..()
 	if(isliving(targets[1]))
 		var/mob/living/target = targets[1]
-
+		//[SURREALIS-ADD] - SAINTLINESS
+		var/inhumen_conversion = FALSE
+		if(!check_target_saintliness(target))
+			to_chat(span_warning("[target.name]'s soul is tainted and [target.patron.name] demands that they remain dead!"))
+		if(istype(user.patron, /datum/patron/inhumen) && !istype(target.patron, /datum/patron/inhumen))
+			inhumen_conversion = TRUE
+		//[/SURREALIS-ADD]
 		var/validation_result = validate_items(target)
 		if(validation_result != "")
 			to_chat(user, span_warning("[validation_result] on the floor next to or on top of [target]."))
@@ -132,6 +138,10 @@
 		target.Jitter(100)
 		target.update_body()
 		target.visible_message(span_notice("[target] is revived by divine magic!"), span_green("I awake from the void."))
+		//[SURREALIS-ADD] - SAINTLINESS
+		if(inhumen_conversion)
+			target.set_patron(user.patron.type)
+		//[/SURREALIS-ADD]
 		if(revive_pq && !HAS_TRAIT(target, TRAIT_IWASREVIVED) && user?.ckey)
 			adjust_playerquality(revive_pq, user.ckey)
 			ADD_TRAIT(target, TRAIT_IWASREVIVED, "[type]")

@@ -617,6 +617,10 @@
 	var/mob/living/target = cast_on
 	if(!target.check_revive(owner))
 		return FALSE
+	//[SURREALIS-ADD] - SAINTLINESS
+	if(!check_target_saintliness(target))
+		to_chat(span_warning("[target.name]'s soul is tainted and [target.patron.name] demands that they remain dead!"))
+	//[/SURREALIS-ADD]
 	var/found = null
 	for(var/obj/structure/fluff/psycross/S in oview(5, owner))
 		found = S
