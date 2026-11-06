@@ -422,6 +422,7 @@
 
 /turf/closed/mineral/rogue/bedrock
 
+
 	desc = "Lichens and moss cling to the jagged contours of the barren rock face. It is slick with moisture and exudes the heavy odors of dirt, rock and ancient metals compacted into nigh-indestructable rock."
 	icon_state = MAP_SWITCH("mineral", "bedrock")
 	name = "bedrock"
