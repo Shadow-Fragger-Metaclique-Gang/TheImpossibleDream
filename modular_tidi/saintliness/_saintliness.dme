@@ -1,4 +1,3 @@
-#include "code\signals.dm"
 #include "code\spans.dm"
 #include "code\defines.dm"
 #include "code\_patron.dm"
