@@ -1,29 +1,29 @@
 /datum/component/saintliness/ravox
-	var/static/list/sleep_lines = list("A well rested warrior can make all the difference in battle.")
-	var/static/list/pray_lines = list("...But why would anyone want this turmoil to end?",
+	sleep_lines = list("A well rested warrior can make all the difference in battle.")
+	pray_lines = list("...But why would anyone want this turmoil to end?",
 									  "I hold nothing but respect for my sisters. Justice cannot be imposed without a clear mind and a healthy body.",
 									  "Uphold the truth, and observe the Law.",
 									  "The scars you bear? They are your marks of honour.",
 									  "Customs differ in various kingdoms, but if a warrior is strong enough, he can enforce a few of his native customs anywhere.")
-	var/static/list/login_lines = list("Excellent. Things were getting too peaceful around here.")
-	var/static/list/death_lines = list("You have done well.",
+	login_lines = list("Excellent. Things were getting too peaceful around here.")
+	death_lines = list("You have done well.",
 									   "We will have a toast in your honour.",
 									   "Your name will be carved upon the Stele of the Chosen.")
-	var/static/list/conversion_lines = list("The ranks of my Chosen swell.",
+	conversion_lines = list("The ranks of my Chosen swell.",
 											"Observe my Law and thy Prayers, scoundrels hide everywhere.")
-	var/static/list/apostasy_lines = list("The punishment for desertion is death.",
+	apostasy_lines = list("The punishment for desertion is death.",
 										  "You are dishonourably discharged. Begone from my sight.")
-	var/static/list/surrender_lines = list("Cowardice is unbecoming of a warrior.",
+	surrender_lines = list("Cowardice is unbecoming of a warrior.",
 										   "How can I expect you to uphold Justice if you aren't willing to die for it?",
 										   "Playing dead is a snake's trick...")
-	var/static/list/warcrime_lines = list("What do you think you're doing? We are Warriors, not savages!",
+	warcrime_lines = list("What do you think you're doing? We are Warriors, not savages!",
 										  "I'm ashamed of you.",
 										  "You will answer for your crimes.",
 										  "Only a savage would act in such a manner.")
-	var/static/list/thieving_lines = list("Stop that!",
+	thieving_lines = list("Stop that!",
 										  "Cease your transgressions!",
 										  "Halt!")
-	var/static/list/justice_lines = list("Aha! Rat, meet cage.",
+	justice_lines = list("Aha! Rat, meet cage.",
 										  "Sons of bitches think they can get away with this shit until their teeth're lying all over the soil. Good riddance.",
 										  "It's said he has an honest face. It's a shame that I'm blind.")
 

@@ -1,31 +1,31 @@
 /datum/component/saintliness/pestra
-	var/static/list/sleep_lines = list("Even now, your entrails writhe and churn. Their visceral song is sweet music to my ears.")
-	var/static/list/pray_lines = list("You should learn to crawl on your fourth pair of arms.",
+	sleep_lines = list("Even now, your entrails writhe and churn. Their visceral song is sweet music to my ears.")
+	pray_lines = list("You should learn to crawl on your fourth pair of arms.",
 									  "Entrust me your pain.",
 									  "Necrotic flesh knows nothing of agony, and makes a fine home for my children.",
 									  "Your bones are such beautiful, delicate things...",
 									  "Thought must be dissected akin to flesh. Biases and morality stripped from our discerning eyes. Then we can assess the Idea with clear eyes.",
 									  "A heart tickled by a sharpened stilletto.. shards of bone strewn about by a diremaul, scars that never heal... must it always be this way?")
-	var/static/list/login_lines = list("Your flea told me you might be back.")
-	var/static/list/death_lines = list("What a marvellous thing it will be to watch you rot.",
+	login_lines = list("Your flea told me you might be back.")
+	death_lines = list("What a marvellous thing it will be to watch you rot.",
 									   "You are so beautiful, my child. Your cadaver, love to me. Your putrid flesh lovingly cared for, for all eternity!")
-	var/static/list/conversion_lines = list("Ours is the long road of healing.",
+	conversion_lines = list("Ours is the long road of healing.",
 											"We knew you would see the beauty of decay.",
 											"They tell you, you are sick, diseased. Rest in my arms, I will heal you.")
-	var/static/list/apostasy_lines = list("Decompose, rot, turn to dust!",
+	apostasy_lines = list("Decompose, rot, turn to dust!",
 										  "You have forfeit your soul, your flesh, blood, and your heart. The rats would like your heart most of all.")
-	var/static/list/clean_lines = list("No! Stop that!",
+	clean_lines = list("No! Stop that!",
 									   "All those spores... lost.",
 									   "W-why?! You were about to germinate!")
 
-	var/static/list/rotdrinker_lines = list("Inwards, towards the rotcauldron.",
+	rotdrinker_lines = list("Inwards, towards the rotcauldron.",
 											"The nematodes are appreciative.",
 											"As without, so within.")
-	var/static/list/incision_lines = list("Open up, see the scars inside.",
+	incision_lines = list("Open up, see the scars inside.",
 										  "It flowers into a lovely scarlet.",
 										  "Sweet blood...",
 										  "Capilaries... veins... arteries.")
-	var/static/list/vomit_lines = list("As within, so without.",
+	vomit_lines = list("As within, so without.",
 									   "Inner rot. Worldly rot.",
 									   "Decay...")
 
