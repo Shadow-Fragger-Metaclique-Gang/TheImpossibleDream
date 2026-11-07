@@ -283,6 +283,9 @@
 				qdel(G)
 				if(isliving(user))
 					var/mob/living/L = user
+					//[SURREALIS-EDIT] SAINTLINESS
+					SEND_SIGNAL(L, COMSIG_MOB_GRAVEROBBER)
+					//[/SURREALIS-EDIT]
 					if(!HAS_TRAIT(L, TRAIT_GRAVEROBBER))
 						L.apply_status_effect(/datum/status_effect/debuff/cursed)
 		update_icon()

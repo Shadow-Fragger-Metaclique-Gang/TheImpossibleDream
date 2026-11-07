@@ -1560,6 +1560,11 @@
 			if(what == who.get_item_by_slot(where))
 				if(what.doStrip(src, who))
 					log_combat(src, who, "stripped [what] off")
+			//[SURREALIS-EDIT] - SAINTLINESS
+			// Being in crit is kind of like being dead.
+			if(who.stat == DEAD || who.stat == SOFT_CRIT)
+				SEND_SIGNAL(src, COMSIG_MOB_STRIPPER)
+			//[/SURREALIS-EDIT]
 
 	if(Adjacent(who)) //update inventory window
 		who.show_inv(src)

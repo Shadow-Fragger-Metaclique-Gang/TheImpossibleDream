@@ -27,6 +27,7 @@
 #include "phrase_highlights\_phrase_highlights.dme"
 #include "pq-remover\_pq-remover.dme"
 #include "quirks\_quirks.dme"
+#include "saintliness\_saintliness.dme"
 #include "sexcon\_sexcon.dme"
 #include "sound_changes\_sound_changes.dme"
 #include "species_changes\_species_changes.dme"

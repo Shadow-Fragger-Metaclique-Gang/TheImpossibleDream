@@ -1943,6 +1943,10 @@
 
 					priority_announce("[thegroom.real_name] has married [thebride.real_name]!", title = "Holy Union!", sound = 'sound/misc/bell.ogg')
 					record_round_statistic(STATS_MARRIAGES_MADE)
+					// [SURREALIS-ADD] - SAINTLINESS
+					SEND_SIGNAL(thegroom, COMSIG_MOB_MARRIED)
+					SEND_SIGNAL(thebride, COMSIG_MOB_MARRIED)
+					// [/SURREALIS-ADD]
 					A.busy = FALSE
 					return ..()
 	return ..()

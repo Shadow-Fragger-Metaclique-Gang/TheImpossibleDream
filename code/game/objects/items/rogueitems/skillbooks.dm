@@ -287,6 +287,9 @@
 					newbook.desc = "[final_desc][authors_line]"
 				else
 					newbook.desc = final_desc
+				//[SURREALIS-ADD] - SAINTLINESS
+				SEND_SIGNAL(user, COMSIG_MOB_TOMESCRIBE)
+				//[/SURREALIS-ADD]
 				record_round_statistic(STATS_BOOKS_PRINTED)
 				qdel(src)
 

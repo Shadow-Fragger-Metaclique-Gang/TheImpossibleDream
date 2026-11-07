@@ -226,6 +226,9 @@
 			else // Just make one buddy
 				var/obj/item/IT = new crafteditem(used_turf)
 				R.handle_creation(IT)
+			//[SURREALIS-ADD] - Saintliness
+			SEND_SIGNAL(user, COMSIG_MOB_CRAFT)
+			//[/SURREALIS-ADD]
 			playsound(src,pick('sound/items/quench_barrel1.ogg','sound/items/quench_barrel2.ogg'), 100, FALSE)
 			QDEL_NULL(T.hingot)
 			T.update_icon()
