@@ -77,7 +77,6 @@
 	var/datum/wires/wires = null
 
 	var/list/alternate_appearances
-
 	///AI controller that controls this atom. type on init, then turned into an instance during runtime
 	var/datum/ai_controller/ai_controller
 
@@ -87,6 +86,8 @@
 	///Default pixel y shifting for the atom's icon.
 	var/base_pixel_y = 0
 
+	///Icon-smoothing behavior.
+	var/smoothing_flags = NONE
 	///Icon to use for smoothing, only required for secret doors
 	var/smoothing_icon
 	///What directions this is currently smoothing with. IMPORTANT: This uses the smoothing direction flags as defined in icon_smoothing.dm, instead of the BYOND flags.
@@ -95,7 +96,6 @@
 	var/list/smoothing_groups = null
 	///List of smoothing groups this atom can smooth with. If this is null and atom is smooth, it smooths only with itself.
 	var/list/smoothing_list = null
-
 /**
  * Called when an atom is created in byond (built in engine proc)
  *
@@ -173,9 +173,7 @@
 		var/turf/T = loc
 		T.opaque_atom_count++
 
-	if (canSmoothWith)
-		canSmoothWith = typelist("canSmoothWith", canSmoothWith)
-
+	SETUP_SMOOTHING()
 	ComponentInitialize()
 	InitializeAIController()
 
@@ -225,6 +223,9 @@
 
 	QDEL_NULL(light)
 	QDEL_NULL(ai_controller)
+
+	if(smoothing_flags & SMOOTH_QUEUED)
+		SSicon_smooth.remove_from_queues(src)
 
 	return ..()
 
@@ -1132,14 +1133,3 @@
 		qdel(src)
 	else
 		src.dir = pick(dir_list) //Random directions are fun :)
-
-/atom/proc/smooth_icon()
-	if(QDELETED(src))
-		return
-	smooth &= ~SMOOTH_QUEUED
-	if (!z)
-		CRASH("[type] called smooth_icon() without being on a z-level")
-	if(smooth & USES_SMOOTHING)
-		smooth()
-	else
-		CRASH("[type] called smooth_icon() without valid flags: [smooth]")

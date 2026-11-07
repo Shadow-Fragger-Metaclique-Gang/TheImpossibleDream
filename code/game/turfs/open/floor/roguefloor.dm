@@ -1,10 +1,7 @@
 /turf/open/floor/rogue
 	desc = ""
-	canSmoothWith = null
-	smooth = SMOOTH_FALSE
-	// roguesmooth() only ever reads cardinal adjacency bits, so this skips calculate_adjacencies()
+	// verdantsmooth() only ever reads cardinal adjacency bits, so this skips calculate_adjacencies()
 	// computing 4 unused diagonal ones - inherited by the whole grass/dirt/snow/cobble family.
-	smooth_diag = FALSE
 	var/smooth_icon = null
 	var/prettifyturf = FALSE
 	icon = 'icons/turf/roguefloor.dmi'
@@ -28,6 +25,8 @@
 	return //unburnable
 
 /turf/open/floor/rogue/Initialize(mapload)
+	if(prettifyturf)
+		dir = pick(NORTH, SOUTH, EAST, WEST)
 	if(smooth_icon)
 		icon = smooth_icon
 	. = ..()
@@ -62,7 +61,6 @@
 	return ..()
 
 /turf/open/floor/rogue/ruinedwood
-	icon_state = "wooden_floor"
 	name = "wooden floorboards"
 	desc = "Interlocking wooden floorboards scratched with thousands of steps."
 	footstep = FOOTSTEP_WOOD
@@ -71,25 +69,28 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/woodland.wav'
-//	smooth = SMOOTH_MORE
-//	canSmoothWith = list(/turf/closed/mineral/rogue, /turf/closed/mineral, /turf/closed/wall/mineral/rogue/stonebrick, /turf/closed/wall/mineral/rogue/wood, /turf/closed/wall/mineral/rogue/wooddark, /turf/closed/wall/mineral/rogue/decowood, /turf/closed/wall/mineral/rogue/decostone, /turf/closed/wall/mineral/rogue/stone, /turf/closed/wall/mineral/rogue/stone/moss, /turf/open/floor/rogue/cobble, /turf/open/floor/rogue/dirt, /turf/open/floor/rogue/grass)
+	icon = 'icons/turf/roguefloor_new.dmi'
+	icon_state = "boards-worn"
 	neighborlay = "dirtedge"
+	prettifyturf = TRUE
+	smoothing_flags = SMOOTH_EDGE
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_WOOD
+	smoothing_list = SMOOTH_GROUP_FLOOR_OPEN_SPACE + SMOOTH_GROUP_FLOOR_WOOD + SMOOTH_GROUP_MINERAL_WALLS + SMOOTH_GROUP_FLOOR_CARPET
 
-/turf/open/floor/rogue/ruinedwood/Initialize(mapload)
-	dir = pick(GLOB.cardinals)
-	. = ..()
 
 /turf/open/floor/rogue/ruinedwood/turned
-	icon_state = "wooden_floort"
+	icon_state = "boards-sideways-ruined"
 	name = "wooden floorboards"
 	desc = "Interlocking wooden floorboards scratched with thousands of steps."
 
 /turf/open/floor/rogue/ruinedwood/spiral
-	icon_state = "weird1"
+	icon_state = "boards-diagonal-ruined"
 	name = "wooden floorboards"
 	desc = "Interlocking wooden floorboards."
-/turf/open/floor/rogue/ruinedwood/chevron
-	icon_state = "weird2"
+	neighborlay = "boards-diagonal-trim"
+
+/turf/open/floor/rogue/ruinedwood/chevron //I don't have a sprite for this.
+	icon_state = "boards-chevron"
 	name = "floorboards"
 	desc = "Interlocking wooden floorboards."
 
@@ -123,11 +124,7 @@
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/grassland.wav'
 	slowdown = 0
-
-/turf/open/floor/rogue/twig/Initialize(mapload)
-	dir = pick(GLOB.cardinals)
-	. = ..()
-
+	prettifyturf = TRUE
 /turf/open/floor/rogue/twig/platform
 	name = "twig platform"
 	desc = "A destructible platform."
@@ -141,40 +138,44 @@
 	ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
 
 /turf/open/floor/rogue/wood
-	smooth_icon = 'icons/turf/floors/wood.dmi'
-	icon_state = "wooden_floor2"
+	icon = 'icons/turf/roguefloor_new.dmi'
+	icon_state = "boards"
 	footstep = FOOTSTEP_WOOD
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
 	clawfootstep = FOOTSTEP_WOOD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
-	smooth = SMOOTH_MORE
+
 	landsound = 'sound/foley/jumpland/woodland.wav'
-	canSmoothWith = list(/turf/open/floor/rogue/wood,/turf/open/floor/carpet)
+	icon = 'icons/turf/roguefloor_new.dmi'
+	icon_state = "boards-worn"
+	prettifyturf = TRUE
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_WOOD
+	smoothing_list = SMOOTH_GROUP_FLOOR_WOOD
+
+
 
 /turf/open/floor/rogue/wood/nosmooth //these are here so we can put wood floors next to each other but not have them smooth
 	name = "wooden floorboards"
 	desc = "Polished wooden floorboards scuffed by scratches and a persistent layer of grime."
-	icon_state = "wooden_floor"
-	smooth = SMOOTH_MORE
-	canSmoothWith = list(/turf/open/floor/rogue/wood/nosmooth,/turf/open/floor/carpet)
+	icon_state = "boards-dark"
+
 
 /turf/open/floor/rogue/woodturned
-	smooth_icon = 'icons/turf/floors/wood_turned.dmi'
-	icon_state = "wooden_floor2t"
-	smooth = SMOOTH_MORE
-	canSmoothWith = list(/turf/open/floor/rogue/woodturned,/turf/open/floor/carpet)
-	footstep = FOOTSTEP_WOOD
-	barefootstep = FOOTSTEP_HARD_BAREFOOT
-	clawfootstep = FOOTSTEP_WOOD_CLAW
-	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	icon = 'icons/turf/roguefloor_new.dmi'
+	icon_state = "boards-sideways"
+	neighborlay = "boards-sideways-trim"
+	prettifyturf = TRUE
+	smoothing_flags = SMOOTH_EDGE | SMOOTH_EDGE_CORNER
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_WOOD
+	smoothing_list = SMOOTH_GROUP_FLOOR_OPEN_SPACE + SMOOTH_GROUP_FLOOR_WOOD
+
 
 /turf/open/floor/rogue/woodturned/nosmooth
 	name = "wooden floorboards"
 	desc = "Polished wooden floorboards scuffed by scratches and a persistent layer of grime."
-	icon_state = "wooden_floort"
-	smooth = SMOOTH_MORE
-	canSmoothWith = list(/turf/open/floor/rogue/woodturned/nosmooth,/turf/open/floor/carpet)
+	icon_state = "boards-aged"
+	smoothing_flags = null
 
 /turf/open/floor/rogue/rooftop
 	name = "roof"
@@ -259,16 +260,12 @@
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/grassland.wav'
 	slowdown = 0
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/rogue/AzureSand,)
+	//smooth = SMOOTH_TRUE
+	//canSmoothWith = list(/turf/open/floor/rogue/AzureSand,)
 	neighborlay = "grimshartedge"
-
-/turf/open/floor/rogue/AzureSand/Initialize(mapload)
-	dir = pick(GLOB.cardinals)
-	. = ..()
-
-/turf/open/floor/rogue/AzureSand/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
+	smoothing_flags = SMOOTH_EDGE
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_SAND
+	smoothing_list = SMOOTH_GROUP_FLOOR_LIQUID + SMOOTH_GROUP_FLOOR_OPEN_SPACE + SMOOTH_GROUP_FLOOR_GRASS + SMOOTH_GROUP_FLOOR_SAND
 
 /turf/open/floor/rogue/snow
 	name = "snow"
@@ -281,19 +278,14 @@
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/grassland.wav'
 	slowdown = 0
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/frozen_water,)
+	smoothing_flags = SMOOTH_EDGE
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_SNOW
+	smoothing_list = SMOOTH_GROUP_FLOOR_OPEN_SPACE + SMOOTH_GROUP_FLOOR_SNOW + SMOOTH_GROUP_FLOOR_FROZEN
 	neighborlay = "snowedge"
 	spread_chance = 0
 	snowy = TRUE
+	prettifyturf = TRUE
 
-/turf/open/floor/rogue/snow/Initialize(mapload)
-	dir = pick(GLOB.cardinals)
-	. = ..()
-
-/turf/open/floor/rogue/snow/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
 
 /turf/open/floor/rogue/snow/attackby(obj/item/C, mob/user, params)
 	if(istype(C, /obj/item/natural/snowball))
@@ -328,18 +320,14 @@
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/grassland.wav'
 	slowdown = 0
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/rogue/snowrough,
-						/turf/open/floor/rogue/frozen_water,)
+	smoothing_flags = SMOOTH_EDGE
+	prettifyturf = TRUE
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_SNOW
+	smoothing_list = SMOOTH_GROUP_FLOOR_OPEN_SPACE + SMOOTH_GROUP_FLOOR_SNOW + SMOOTH_GROUP_FLOOR_FROZEN
 	neighborlay = "snowroughedge"
 	spread_chance = 0
 
-/turf/open/floor/rogue/snowrough/Initialize(mapload)
-	dir = pick(GLOB.cardinals)
-	. = ..()
 
-/turf/open/floor/rogue/snowrough/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
 
 /turf/open/floor/rogue/snowpatchy
 	name = "patchy snow"
@@ -352,14 +340,13 @@
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/grassland.wav'
 	slowdown = 0
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough,
-						/turf/open/floor/rogue/frozen_water,)
+	prettifyturf = TRUE
+	smoothing_flags = SMOOTH_EDGE
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_SNOW
+	smoothing_list = SMOOTH_GROUP_FLOOR_OPEN_SPACE + SMOOTH_GROUP_FLOOR_SNOW + SMOOTH_GROUP_FLOOR_FROZEN
 	neighborlay = "snowpatchy_grassedge"
 
-/turf/open/floor/rogue/snowpatchy/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
+
 
 /turf/open/floor/rogue/grasscold
 	name = "tundra grass"
@@ -372,21 +359,18 @@
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/grassland.wav'
 	slowdown = 0
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/rogue/snowpatchy,
+	smoothing_flags = SMOOTH_EDGE
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_GRASS_COLD + SMOOTH_GROUP_FLOOR_GRASS
+	smoothing_list = SMOOTH_GROUP_FLOOR_SNOW + SMOOTH_GROUP_FLOOR_FROZEN + SMOOTH_GROUP_FLOOR_GRASS_COLD + SMOOTH_GROUP_FLOOR_GRASS_RED +SMOOTH_GROUP_FLOOR_GRASS_YELLOW
+	/* = list(/turf/open/floor/rogue/snowpatchy,
 						/turf/open/floor/rogue/snow,
 						/turf/open/floor/rogue/snowrough,
 						/turf/open/floor/rogue/frozen_water,
-						/turf/open/floor/rogue/grasscold/winter) // one-sided, see dirt/winter
+						/turf/open/floor/rogue/grasscold/winter)*/ // one-sided, see dirt/winter
 	neighborlay = "grass_coldedge"
 	winter_type = /turf/open/floor/rogue/grasscold/winter
 
-/turf/open/floor/rogue/grasscold/Initialize(mapload)
-	dir = pick(GLOB.cardinals)
-	. = ..()
 
-/turf/open/floor/rogue/grasscold/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
 
 /// Mapper-placed flavor grass (grassred/grassyel/grasscold) skips SSseason's normal color-cycling
 /// (keeps its own identity year-round) but still gets this Winter-only ChangeTurf() pair, so it
@@ -401,7 +385,9 @@
 /turf/open/floor/rogue/grassred
 	name = "red grass"
 	desc = "Grass, ripe with Dendor's blood."
-	icon_state = "grass_red"
+	icon = 'icons/turf/roguefloor_new.dmi'
+	icon_state = "grass-red"
+	neighborlay = "grass-red-trim"
 	layer = MID_TURF_LAYER
 	footstep = FOOTSTEP_GRASS
 	barefootstep = FOOTSTEP_SOFT_BAREFOOT
@@ -409,22 +395,18 @@
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/grassland.wav'
 	slowdown = 0
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(
+	prettifyturf = TRUE
+	smoothing_flags = SMOOTH_EDGE | SMOOTH_EDGE_CORNER
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_GRASS + SMOOTH_GROUP_FLOOR_GRASS_RED
+	smoothing_list = SMOOTH_GROUP_FLOOR_SNOW + SMOOTH_GROUP_FLOOR_GRASS_RED + SMOOTH_GROUP_FLOOR_LIQUID
+	/*canSmoothWith = list(
 						/turf/open/floor/rogue/grassyel,
 						/turf/open/floor/rogue/grasscold,
 						/turf/open/floor/rogue/snowpatchy,
 						/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough) // one-sided, see dirt/winter
-	neighborlay = "grass_rededge"
+						/turf/open/floor/rogue/snowrough)*/ // one-sided, see dirt/winter
+
 	winter_type = /turf/open/floor/rogue/grassred/winter
-
-/turf/open/floor/rogue/grassred/Initialize(mapload)
-	dir = pick(GLOB.cardinals)
-	. = ..()
-
-/turf/open/floor/rogue/grassred/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
 
 /// See /turf/open/floor/rogue/grasscold/winter for why this exists.
 /turf/open/floor/rogue/grassred/winter
@@ -437,7 +419,8 @@
 /turf/open/floor/rogue/grassyel
 	name = "yellow grass"
 	desc = "Grass, blessed by Astrata's light."
-	icon_state = "grass_yel"
+	icon = 'icons/turf/roguefloor_new.dmi'
+	icon_state = "grass-yellow"
 	layer = MID_TURF_LAYER
 	footstep = FOOTSTEP_GRASS
 	barefootstep = FOOTSTEP_SOFT_BAREFOOT
@@ -445,21 +428,13 @@
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/grassland.wav'
 	slowdown = 0
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/rogue/grasscold,
-						/turf/open/floor/rogue/snowpatchy,
-						/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough,
-						/turf/open/floor/rogue/grasscold/winter,) // one-sided, see dirt/winter
-	neighborlay = "grass_yeledge"
+	neighborlay = "grass-yellow-trim"
 	winter_type = /turf/open/floor/rogue/grassyel/winter
+	prettifyturf = TRUE
+	smoothing_flags = SMOOTH_EDGE | SMOOTH_EDGE_CORNER
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_GRASS + SMOOTH_GROUP_FLOOR_GRASS_YELLOW
+	smoothing_list = SMOOTH_GROUP_FLOOR_SNOW + SMOOTH_GROUP_FLOOR_GRASS_RED + SMOOTH_GROUP_FLOOR_GRASS_YELLOW + SMOOTH_GROUP_FLOOR_LIQUID
 
-/turf/open/floor/rogue/grassyel/Initialize(mapload)
-	dir = pick(GLOB.cardinals)
-	. = ..()
-
-/turf/open/floor/rogue/grassyel/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
 
 /// See /turf/open/floor/rogue/grasscold/winter for why this exists.
 /turf/open/floor/rogue/grassyel/winter
@@ -472,7 +447,8 @@
 /turf/open/floor/rogue/grass
 	name = "grass"
 	desc = "Grass, sodden with mud and bogwater."
-	icon_state = "grass"
+	icon = 'icons/turf/roguefloor_new.dmi'
+	icon_state = "grass-green"
 	layer = MID_TURF_LAYER
 	footstep = FOOTSTEP_GRASS
 	barefootstep = FOOTSTEP_SOFT_BAREFOOT
@@ -480,21 +456,15 @@
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/grassland.wav'
 	slowdown = 0
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/rogue/grassred,
-						/turf/open/floor/rogue/grassyel,
-						/turf/open/floor/rogue/grasscold,
-						/turf/open/floor/rogue/snowpatchy,
-						/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough,
-						/turf/open/floor/rogue/frozen_water) // one-sided, see dirt/winter
-	neighborlay = "grassedge"
-
+	neighborlay = "grass-green-trim"
 	spread_chance = 15
 	burn_power = 6
+	prettifyturf = TRUE
+	smoothing_flags = SMOOTH_EDGE | SMOOTH_EDGE_CORNER
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_GRASS
+	smoothing_list = SMOOTH_GROUP_FLOOR_SNOW + SMOOTH_GROUP_FLOOR_GRASS_RED + SMOOTH_GROUP_FLOOR_GRASS_YELLOW + SMOOTH_GROUP_FLOOR_GRASS_COLD + SMOOTH_GROUP_FLOOR_FROZEN + SMOOTH_GROUP_FLOOR_CARPET + SMOOTH_GROUP_FLOOR_LIQUID
 
 /turf/open/floor/rogue/grass/Initialize(mapload)
-	dir = pick(GLOB.cardinals)
 	GLOB.seasonal_grass_turfs |= src
 	. = ..()
 	if(!mapload)
@@ -503,8 +473,7 @@
 		// destroys and recreates src, which would be unsafe to do from within our own Initialize().
 		addtimer(CALLBACK(SSseason, TYPE_PROC_REF(/datum/controller/subsystem/season, apply_season_to_turf), src), 0)
 
-/turf/open/floor/rogue/grass/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
+
 
 /turf/open/floor/rogue/dirt/ambush
 	name = "dirt"
@@ -517,19 +486,12 @@
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/dirtland.wav'
 	slowdown = 1
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/rogue/grass,
-						/turf/open/floor/rogue/grassred,
-						/turf/open/floor/rogue/grassyel,
-						/turf/open/floor/rogue/grasscold,
-						/turf/open/floor/rogue/snowpatchy,
-						/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough,)
 	neighborlay = "dirtedge"
 	muddy = FALSE
 	bloodiness = 20
 	dirt_amt = 3
 	spread_chance = 8
+
 
 /turf/open/floor/rogue/dirt
 	name = "dirt"
@@ -542,17 +504,11 @@
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/dirtland.wav'
 	slowdown = 1
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/rogue/grass,
-						/turf/open/floor/rogue/grassred,
-						/turf/open/floor/rogue/grassyel,
-						/turf/open/floor/rogue/grasscold,
-						/turf/open/floor/rogue/snowpatchy,
-						/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough,
-						/turf/open/floor/rogue/AzureSand,
-						/turf/open/floor/rogue/dirt/winter)
 	neighborlay = "dirtedge"
+	prettifyturf = TRUE
+	smoothing_flags = SMOOTH_EDGE
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_DIRT
+	smoothing_list = SMOOTH_GROUP_FLOOR_OPEN_SPACE + SMOOTH_GROUP_FLOOR_DIRT + SMOOTH_GROUP_FLOOR_GRASS + SMOOTH_GROUP_FLOOR_SAND + SMOOTH_GROUP_FLOOR_STONE
 	winter_type = /turf/open/floor/rogue/dirt/winter
 	var/muddy = FALSE
 	var/bloodiness = 20
@@ -617,8 +573,7 @@
 		if(water_level)
 			START_PROCESSING(SSwaterlevel, src)
 
-/turf/open/floor/rogue/dirt/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
+
 
 /turf/open/floor/rogue/dirt/Initialize(mapload)
 	dir = pick(GLOB.cardinals)
@@ -684,19 +639,12 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/dirtland.wav'
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/rogue/dirt,
-						/turf/open/floor/rogue/grass,
-						/turf/open/floor/rogue/grassred,
-						/turf/open/floor/rogue/grassyel,
-						/turf/open/floor/rogue/grasscold,
-						/turf/open/floor/rogue/snowpatchy,
-						/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough,
-						/turf/open/floor/rogue/AzureSand,
-						/turf/open/floor/rogue/dirt/road/winter, // one-sided, see dirt/road/winter
-						/turf/open/floor/rogue/dirt/winter)
 	neighborlay = "roadedge"
+
+	prettifyturf = TRUE
+	smoothing_flags = SMOOTH_EDGE
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_DIRT_ROAD
+	smoothing_list = SMOOTH_GROUP_FLOOR_OPEN_SPACE + SMOOTH_GROUP_FLOOR_GRASS + SMOOTH_GROUP_FLOOR_SNOW + SMOOTH_GROUP_FLOOR_SAND + SMOOTH_GROUP_FLOOR_STONE
 	winter_type = /turf/open/floor/rogue/dirt/road/winter
 	slowdown = 0
 
@@ -706,16 +654,13 @@
 		return ..()
 	return
 
-/turf/open/floor/rogue/dirt/road/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
-
 /// Real subtype (not an icon swap) so mud/blood/water/dig-hole state on /dirt survives, and
 /// become_muddy()/update_water()'s initial(icon_state) dry-out still lands correctly. Sprite and
 /// edge family match plain snow's exactly, to avoid a jagged seam between two spritesheets.
 ///
 /// Left out of its own canSmoothWith (only dirt's list includes this type, not the reverse) so
 /// its snowedge spills onto an adjacent indoor dirt tile instead of both sides drawing a border -
-/// see roguesmooth().
+/// see verdantsmooth().
 /turf/open/floor/rogue/dirt/winter
 	name = "snow"
 	desc = "A gentle blanket of snow."
@@ -747,6 +692,9 @@
 	landsound = 'sound/foley/jumpland/dirtland.wav'
 	baseturfs = /turf/open/floor/rogue/sand
 	slowdown = 0
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_SAND
+
+
 
 /turf/open/floor/rogue/sand/Initialize(mapload)
 	. = ..()
@@ -764,68 +712,6 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	landsound = 'sound/foley/jumpland/dirtland.wav'
 	slowdown = 0
-
-/turf/proc/roguesmooth(adjacencies)
-	var/list/New
-	var/holder
-
-	cut_overlay(neighborlay_list)
-	neighborlay_list = null
-
-	var/usedturf
-	if(adjacencies & N_NORTH)
-		usedturf = get_step(src, NORTH)
-		if(isturf(usedturf))
-			var/turf/T = usedturf
-			if(neighborlay_override)
-				holder = "[neighborlay_override]-n"
-				LAZYADD(New, holder)
-				LAZYADD(neighborlay_list, holder)
-			else if(T.neighborlay)
-				holder = "[T.neighborlay]-n"
-				LAZYADD(New, holder)
-				LAZYADD(neighborlay_list, holder)
-	if(adjacencies & N_SOUTH)
-		usedturf = get_step(src, SOUTH)
-		if(isturf(usedturf))
-			var/turf/T = usedturf
-			if(neighborlay_override)
-				holder = "[neighborlay_override]-s"
-				LAZYADD(New, holder)
-				LAZYADD(neighborlay_list, holder)
-			else if(T.neighborlay)
-				holder = "[T.neighborlay]-s"
-				LAZYADD(New, holder)
-				LAZYADD(neighborlay_list, holder)
-	if(adjacencies & N_WEST)
-		usedturf = get_step(src, WEST)
-		if(isturf(usedturf))
-			var/turf/T = usedturf
-			if(neighborlay_override)
-				holder = "[neighborlay_override]-w"
-				LAZYADD(New, holder)
-				LAZYADD(neighborlay_list, holder)
-			else if(T.neighborlay)
-				holder = "[T.neighborlay]-w"
-				LAZYADD(New, holder)
-				LAZYADD(neighborlay_list, holder)
-	if(adjacencies & N_EAST)
-		usedturf = get_step(src, EAST)
-		if(isturf(usedturf))
-			var/turf/T = usedturf
-			if(neighborlay_override)
-				holder = "[neighborlay_override]-e"
-				LAZYADD(New, holder)
-				LAZYADD(neighborlay_list, holder)
-			else if(T.neighborlay)
-				holder = "[T.neighborlay]-e"
-				LAZYADD(New, holder)
-				LAZYADD(neighborlay_list, holder)
-
-	if(New)
-		add_overlay(New)
-	return New
-
 /turf/open/floor/rogue/underworld/space
 	name = "void"
 	desc = ""
@@ -836,8 +722,8 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/dirtland.wav'
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/rogue/dark_ice)
+	//smooth = SMOOTH_TRUE
+/* 	canSmoothWith = list(/turf/open/floor/rogue/dark_ice) */
 	slowdown = 50
 
 /turf/open/floor/rogue/underworld/space/dense
@@ -869,8 +755,8 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/dirtland.wav'
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/rogue, /turf/closed/mineral, /turf/closed/wall/mineral)
+	//smooth = SMOOTH_TRUE
+/* 	canSmoothWith = list(/turf/open/floor/rogue, /turf/closed/mineral, /turf/closed/wall/mineral) */
 	slowdown = 0
 
 /turf/open/floor/rogue/underworld/road/Initialize(mapload)
@@ -888,17 +774,20 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/dirtland.wav'
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/rogue/dirt/road,/turf/open/floor/rogue/dirt)
+	//smooth = SMOOTH_TRUE
+/* 	canSmoothWith = list(/turf/open/floor/rogue/dirt/road,/turf/open/floor/rogue/dirt) */
 	neighborlay = "lavedge"
 
-/turf/open/floor/rogue/volcanic/Initialize(mapload)
-	dir = pick(GLOB.cardinals)
-	. = ..()
+
+	prettifyturf = TRUE
+	smoothing_flags = SMOOTH_EDGE
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_DIRT
+	smoothing_list = SMOOTH_GROUP_FLOOR_OPEN_SPACE + SMOOTH_GROUP_FLOOR_DIRT
 
 
 /turf/open/floor/rogue/blocks
-	icon_state = "blocks"
+	icon = 'icons/turf/roguefloor_new.dmi'
+	icon_state = "stone-grid3"
 	name = "stone flooring"
 	desc = "These rough stone slabs have been arranged in a neat grid for a rustic yet tidy charm."
 	footstep = FOOTSTEP_STONE
@@ -906,57 +795,48 @@
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	landsound = 'sound/foley/jumpland/stoneland.wav'
-	smooth = SMOOTH_MORE
-	canSmoothWith = list(/turf/closed/mineral/rogue,
-						/turf/closed/mineral,
-						/turf/closed/wall/mineral/rogue/stonebrick,
-						/turf/closed/wall/mineral/rogue/wood,
-						/turf/closed/wall/mineral/rogue/wooddark,
-						/turf/closed/wall/mineral/rogue/stone,
-						/turf/closed/wall/mineral/rogue/stone/moss,
-						/turf/open/floor/rogue/dirt,
-						/turf/open/floor/rogue/grass,
-						/turf/open/floor/rogue/grassred,
-						/turf/open/floor/rogue/grassyel,
-						/turf/open/floor/rogue/grasscold,
-						/turf/open/floor/rogue/snowpatchy,
-						/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough,)
-
-/turf/open/floor/rogue/blocks/Initialize(mapload)
-	. = ..()
-	dir = pick(GLOB.cardinals)
+	prettifyturf = TRUE
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_STONE
+	smoothing_list = SMOOTH_GROUP_FLOOR_SNOW + SMOOTH_GROUP_FLOOR_WOOD + SMOOTH_GROUP_FLOOR_STONE + SMOOTH_GROUP_FLOOR_GRASS
 
 /turf/open/floor/rogue/blocks/flipped
 	dir = 8
 
 /turf/open/floor/rogue/blocks/stonered
 	icon_state = "stoneredlarge"
+	icon = 'icons/turf/roguefloor.dmi'
 	name = "large red tiles"
 	desc = "Large red earthen tiles carefully set in a pleasantly symmetrical pattern."
 /turf/open/floor/rogue/blocks/stonered/tiny
 	icon_state = "stoneredtiny"
+	icon = 'icons/turf/roguefloor.dmi'
 	name = "square red tiles"
 	desc = "Small square earthen tiles carefully arranged in a somewhat plain pattern."
 
 /turf/open/floor/rogue/blocks/green
-	icon_state = "greenblocks"
+	icon_state = "stone-grid2"
 
 /turf/open/floor/rogue/blocks/bluestone
 	icon_state = "bluestone2"
+	icon = 'icons/turf/roguefloor.dmi'
 
 /turf/open/floor/rogue/blocks/newstone
 	icon_state = "newstone2"
+	icon = 'icons/turf/roguefloor.dmi'
 
 /turf/open/floor/rogue/blocks/newstone/alt
 	icon_state = "bluestone"
+	icon = 'icons/turf/roguefloor.dmi'
 
 /turf/open/floor/rogue/blocks/paving
 	icon_state = "paving"
+	icon = 'icons/turf/roguefloor.dmi'
 /turf/open/floor/rogue/blocks/paving/vert
 	icon_state = "paving-t"
+	icon = 'icons/turf/roguefloor.dmi'
 
 /turf/open/floor/rogue/blocks/platform
+	icon = 'icons/turf/roguefloor.dmi'
 	name = "platform"
 	desc = "A destructible platform."
 	damage_deflection = 10
@@ -1005,31 +885,9 @@
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	landsound = 'sound/foley/jumpland/stoneland.wav'
-	smooth = SMOOTH_MORE
-	canSmoothWith = list(/turf/closed/mineral/rogue,
-						/turf/open/floor/rogue/herringbone,
-						/turf/closed/mineral,
-						/turf/closed/wall/mineral/rogue/stonebrick,
-						/turf/closed/wall/mineral/rogue/wood,
-						/turf/closed/wall/mineral/rogue/wooddark,
-						/turf/closed/wall/mineral/rogue/stone,
-						/turf/closed/wall/mineral/rogue/stone/moss,
-						/turf/open/floor/rogue/cobble,
-						/turf/open/floor/rogue/dirt,
-						/turf/open/floor/rogue/grass,
-						/turf/open/floor/rogue/grassred,
-						/turf/open/floor/rogue/grassyel,
-						/turf/open/floor/rogue/grasscold,
-						/turf/open/floor/rogue/snowpatchy,
-						/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough,)
-
-/turf/open/floor/rogue/hexstone/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
-
-/turf/open/floor/rogue/hexstone/Initialize(mapload)
-	. = ..()
-	dir = pick(GLOB.cardinals)
+	prettifyturf = TRUE
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_STONE
+	smoothing_list = SMOOTH_GROUP_FLOOR_SNOW + SMOOTH_GROUP_FLOOR_WOOD + SMOOTH_GROUP_FLOOR_STONE + SMOOTH_GROUP_FLOOR_GRASS
 
 //Church floors
 
@@ -1042,31 +900,10 @@
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	landsound = 'sound/foley/jumpland/stoneland.wav'
-	smooth = SMOOTH_MORE
-	canSmoothWith = list(/turf/closed/mineral/rogue,
-						/turf/open/floor/rogue/herringbone,
-						/turf/closed/mineral,
-						/turf/closed/wall/mineral/rogue/stonebrick,
-						/turf/closed/wall/mineral/rogue/wood,
-						/turf/closed/wall/mineral/rogue/wooddark,
-						/turf/closed/wall/mineral/rogue/stone,
-						/turf/closed/wall/mineral/rogue/stone/moss,
-						/turf/open/floor/rogue/cobble,
-						/turf/open/floor/rogue/dirt,
-						/turf/open/floor/rogue/grass,
-						/turf/open/floor/rogue/grassred,
-						/turf/open/floor/rogue/grassyel,
-						/turf/open/floor/rogue/grasscold,
-						/turf/open/floor/rogue/snowpatchy,
-						/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough,)
 
-/turf/open/floor/rogue/churchmarble/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
-
-/turf/open/floor/rogue/churchmarble/Initialize(mapload)
-	. = ..()
-	dir = pick(GLOB.cardinals)
+	prettifyturf = TRUE
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_STONE
+	smoothing_list = SMOOTH_GROUP_FLOOR_SNOW + SMOOTH_GROUP_FLOOR_WOOD + SMOOTH_GROUP_FLOOR_STONE + SMOOTH_GROUP_FLOOR_GRASS
 
 /turf/open/floor/rogue/church
 	icon_state = "church"
@@ -1077,31 +914,10 @@
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	landsound = 'sound/foley/jumpland/stoneland.wav'
-	smooth = SMOOTH_MORE
-	canSmoothWith = list(/turf/closed/mineral/rogue,
-						/turf/open/floor/rogue/herringbone,
-						/turf/closed/mineral,
-						/turf/closed/wall/mineral/rogue/stonebrick,
-						/turf/closed/wall/mineral/rogue/wood,
-						/turf/closed/wall/mineral/rogue/wooddark,
-						/turf/closed/wall/mineral/rogue/stone,
-						/turf/closed/wall/mineral/rogue/stone/moss,
-						/turf/open/floor/rogue/cobble,
-						/turf/open/floor/rogue/dirt,
-						/turf/open/floor/rogue/grass,
-						/turf/open/floor/rogue/grassred,
-						/turf/open/floor/rogue/grassyel,
-						/turf/open/floor/rogue/grasscold,
-						/turf/open/floor/rogue/snowpatchy,
-						/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough,)
 
-/turf/open/floor/rogue/church/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
-
-/turf/open/floor/rogue/church/Initialize(mapload)
-	. = ..()
-	dir = pick(GLOB.cardinals)
+	prettifyturf = TRUE
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_STONE
+	smoothing_list = SMOOTH_GROUP_FLOOR_SNOW + SMOOTH_GROUP_FLOOR_WOOD + SMOOTH_GROUP_FLOOR_STONE + SMOOTH_GROUP_FLOOR_GRASS
 
 /turf/open/floor/rogue/churchbrick
 	icon_state = "church_brick"
@@ -1110,31 +926,10 @@
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	landsound = 'sound/foley/jumpland/stoneland.wav'
-	smooth = SMOOTH_MORE
-	canSmoothWith = list(/turf/closed/mineral/rogue,
-						/turf/open/floor/rogue/herringbone,
-						/turf/closed/mineral,
-						/turf/closed/wall/mineral/rogue/stonebrick,
-						/turf/closed/wall/mineral/rogue/wood,
-						/turf/closed/wall/mineral/rogue/wooddark,
-						/turf/closed/wall/mineral/rogue/stone,
-						/turf/closed/wall/mineral/rogue/stone/moss,
-						/turf/open/floor/rogue/cobble,
-						/turf/open/floor/rogue/dirt,
-						/turf/open/floor/rogue/grass,
-						/turf/open/floor/rogue/grassred,
-						/turf/open/floor/rogue/grassyel,
-						/turf/open/floor/rogue/grasscold,
-						/turf/open/floor/rogue/snowpatchy,
-						/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough,)
 
-/turf/open/floor/rogue/churchbrick/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
-
-/turf/open/floor/rogue/churchbrick/Initialize(mapload)
-	. = ..()
-	dir = pick(GLOB.cardinals)
+	prettifyturf = TRUE
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_STONE
+	smoothing_list = SMOOTH_GROUP_FLOOR_SNOW + SMOOTH_GROUP_FLOOR_WOOD + SMOOTH_GROUP_FLOOR_STONE + SMOOTH_GROUP_FLOOR_GRASS
 
 /turf/open/floor/rogue/churchrough
 	icon_state = "church_rough"
@@ -1143,32 +938,10 @@
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	landsound = 'sound/foley/jumpland/stoneland.wav'
-	smooth = SMOOTH_MORE
-	canSmoothWith = list(/turf/closed/mineral/rogue,
-						/turf/open/floor/rogue/herringbone,
-						/turf/closed/mineral,
-						/turf/closed/wall/mineral/rogue/stonebrick,
-						/turf/closed/wall/mineral/rogue/wood,
-						/turf/closed/wall/mineral/rogue/wooddark,
-						/turf/closed/wall/mineral/rogue/stone,
-						/turf/closed/wall/mineral/rogue/stone/moss,
-						/turf/open/floor/rogue/cobble,
-						/turf/open/floor/rogue/dirt,
-						/turf/open/floor/rogue/grass,
-						/turf/open/floor/rogue/grassred,
-						/turf/open/floor/rogue/grassyel,
-						/turf/open/floor/rogue/grasscold,
-						/turf/open/floor/rogue/snowpatchy,
-						/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough,)
+	prettifyturf = TRUE
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_STONE
+	smoothing_list = SMOOTH_GROUP_FLOOR_SNOW + SMOOTH_GROUP_FLOOR_WOOD + SMOOTH_GROUP_FLOOR_STONE + SMOOTH_GROUP_FLOOR_GRASS
 
-/turf/open/floor/rogue/churchrough/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
-
-/turf/open/floor/rogue/churchrough/Initialize(mapload)
-	. = ..()
-	dir = pick(GLOB.cardinals)
-//
 /turf/open/floor/rogue/herringbone
 	icon_state = "herringbone"
 	name = "stone herringbone flooring"
@@ -1179,24 +952,10 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	landsound = 'sound/foley/jumpland/stoneland.wav'
 	neighborlay = "herringedge"
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/rogue/herringbone,
-						/turf/open/floor/rogue/blocks,
-						/turf/open/floor/rogue/dirt,
-						/turf/open/floor/rogue/grass,
-						/turf/open/floor/rogue/grassred,
-						/turf/open/floor/rogue/grassyel,
-						/turf/open/floor/rogue/grasscold,
-						/turf/open/floor/rogue/snowpatchy,
-						/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough,)
 
-/turf/open/floor/rogue/herringbone/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
-
-/turf/open/floor/rogue/herringbone/Initialize(mapload)
-	. = ..()
-	dir = pick(GLOB.cardinals)
+	smoothing_flags = null
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_STONE
+	smoothing_list = SMOOTH_GROUP_FLOOR_SNOW + SMOOTH_GROUP_FLOOR_WOOD + SMOOTH_GROUP_FLOOR_STONE + SMOOTH_GROUP_FLOOR_GRASS
 
 /obj/effect/decal/herringbone
 	name = "herringbone flooring"
@@ -1212,6 +971,7 @@
 	icon_state = "herringbonewoodedge"
 	mouse_opacity = 0
 
+
 /obj/effect/decal/wood/herringbone2
 	name = "herringbone flooring"
 	desc = "Thin planks of wood carefully arranged in a rather pleasing pattern."
@@ -1222,24 +982,16 @@
 /turf/open/floor/rogue/ruinedwood/herringbone
 	name = "wooden herringbone flooring"
 	desc = "Thin planks of wood carefully arranged in a rather pleasing pattern."
-	footstep = FOOTSTEP_WOOD
-	barefootstep = FOOTSTEP_HARD_BAREFOOT
-	clawfootstep = FOOTSTEP_WOOD_CLAW
-	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
-	tiled_dirt = FALSE
-	landsound = 'sound/foley/jumpland/woodland.wav'
-	icon_state = "herringbonewood"
 
-/turf/open/floor/rogue/ruinedwood/herringbone_clear
-	name = "wooden herringbone flooring"
-	desc = "Thin planks of wood carefully arranged in a rather pleasing pattern."
-	footstep = FOOTSTEP_WOOD
-	barefootstep = FOOTSTEP_HARD_BAREFOOT
-	clawfootstep = FOOTSTEP_WOOD_CLAW
-	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
-	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/woodland.wav'
-	icon_state = "herringbonewood2"
+	icon_state = "boards-herringbone-ruined"
+
+/turf/open/floor/rogue/ruinedwood/neglected
+	name = "boards-neglected"
+	desc = "These planks are peeling apart!"
+
+	landsound = 'sound/foley/jumpland/woodland.wav'
+	icon_state = "boards-neglected"
 
 /turf/open/floor/rogue/wood/herringbone
 	footstep = FOOTSTEP_WOOD
@@ -1248,10 +1000,11 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	tiled_dirt = FALSE
 	landsound = 'sound/foley/jumpland/woodland.wav'
-	icon_state = "herringbonewood2"
+	icon_state = "boards-herringbone"
 
 /turf/open/floor/rogue/cobble
-	icon_state = "cobblestone1"
+	icon = 'icons/turf/roguefloor_new.dmi'
+	icon_state = "stone-small"
 	name = "cobblestone"
 	desc = "Stone bricks carefully inlaid upon the ground for a more refined and resilient path."
 	layer = MID_TURF_LAYER
@@ -1260,28 +1013,13 @@
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	landsound = 'sound/foley/jumpland/stoneland.wav'
-	neighborlay = "cobbleedge"
+	neighborlay = "stone-small-trim"
+	smoothing_flags = SMOOTH_EDGE | SMOOTH_EDGE_CORNER
 	winter_type = /turf/open/floor/rogue/cobble/winter
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/rogue/dirt,
-						/turf/open/floor/rogue/grass,
-						/turf/open/floor/rogue/grassred,
-						/turf/open/floor/rogue/grassyel,
-						/turf/open/floor/rogue/grasscold,
-						/turf/open/floor/rogue/snowpatchy,
-						/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough,
-						/turf/open/floor/rogue/AzureSand,
-						/turf/open/floor/rogue/cobblerock,
-						/turf/open/floor/rogue/cobble/winter, // one-sided, see dirt/winter
-						/turf/open/floor/rogue/dirt/winter)
 
-/turf/open/floor/rogue/cobble/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
-
-/turf/open/floor/rogue/cobble/Initialize(mapload)
-	. = ..()
-	icon_state = "cobblestone[rand(1,3)]"
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_STONE
+	smoothing_list = SMOOTH_GROUP_FLOOR_OPEN_SPACE + SMOOTH_GROUP_FLOOR_GRASS + SMOOTH_GROUP_FLOOR_SNOW + SMOOTH_GROUP_FLOOR_STONE + SMOOTH_GROUP_FLOOR_WOOD + SMOOTH_GROUP_FLOOR_SAND
+	prettifyturf = TRUE
 
 /// Same subtype-not-icon-swap approach as dirt/winter, kept for one shared SSseason code path.
 /turf/open/floor/rogue/cobble/winter
@@ -1295,6 +1033,7 @@
 	icon_state = "snowcobblestone[rand(1,3)]"
 
 /turf/open/floor/rogue/cobble/mossy
+	icon = 'icons/turf/roguefloor.dmi'
 	name = "mossy cobblestone"
 	desc = "Dirt and moss have crept between the gaps of this stone-brick flooring."
 	icon_state = "mossystone1"
@@ -1307,22 +1046,6 @@
 	// Overrides the winter_type inherited from /cobble, else this would silently ChangeTurf()
 	// into plain /cobble/winter every Winter, losing its mossy name/desc for the season.
 	winter_type = /turf/open/floor/rogue/cobble/mossy/winter
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/rogue/dirt,
-						/turf/open/floor/rogue/grass,
-						/turf/open/floor/rogue/grassred,
-						/turf/open/floor/rogue/grassyel,
-						/turf/open/floor/rogue/grasscold,
-						/turf/open/floor/rogue/snowpatchy,
-						/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough,
-						/turf/open/floor/rogue/cobblerock,
-						/turf/open/floor/rogue/cobble/mossy/winter, // one-sided, see dirt/winter
-						/turf/open/floor/rogue/dirt/winter)
-
-/turf/open/floor/rogue/cobble/mossy/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
-
 /turf/open/floor/rogue/cobble/mossy/Initialize(mapload)
 	. = ..()
 	icon_state = "mossystone[rand(1,3)]"
@@ -1383,24 +1106,12 @@
 	landsound = 'sound/foley/jumpland/stoneland.wav'
 	neighborlay = "cobblerockedge"
 	winter_type = /turf/open/floor/rogue/cobblerock/winter
-	smooth = SMOOTH_TRUE
-	canSmoothWith = list(/turf/open/floor/rogue/dirt,
-						/turf/open/floor/rogue/grass,
-						/turf/open/floor/rogue/grassred,
-						/turf/open/floor/rogue/grassyel,
-						/turf/open/floor/rogue/grasscold,
-						/turf/open/floor/rogue/snowpatchy,
-						/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough,
-						/turf/open/floor/rogue/AzureSand,
-						/turf/open/floor/rogue/cobblerock/winter, // one-sided, see dirt/winter
-						/turf/open/floor/rogue/dirt/winter)
+	smoothing_flags = SMOOTH_EDGE
+	prettifyturf = TRUE
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_STONE
+	smoothing_list = SMOOTH_GROUP_FLOOR_OPEN_SPACE + SMOOTH_GROUP_FLOOR_DIRT + SMOOTH_GROUP_FLOOR_GRASS + SMOOTH_GROUP_FLOOR_SNOW + SMOOTH_GROUP_FLOOR_STONE + SMOOTH_GROUP_FLOOR_SAND
 
-/turf/open/floor/rogue/cobblerock/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
 
-/turf/open/floor/rogue/cobblerock/no_smooth
-	smooth = SMOOTH_FALSE
 
 /// See /turf/open/floor/rogue/dirt/winter for why this is a subtype rather than an icon swap.
 /turf/open/floor/rogue/cobblerock/winter
@@ -1480,23 +1191,9 @@
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	footstepstealth = TRUE
-	smooth = SMOOTH_MORE
-	canSmoothWith = list(/turf/closed/mineral/rogue,
-						/turf/closed/mineral,
-						/turf/closed/wall/mineral/rogue/stonebrick,
-						/turf/closed/wall/mineral/rogue/wood,
-						/turf/closed/wall/mineral/rogue/wooddark,
-						/turf/closed/wall/mineral/rogue/stone,
-						/turf/closed/wall/mineral/rogue/stone/moss,
-						/turf/open/floor/rogue/cobble,
-						/turf/open/floor/rogue/dirt,
-						/turf/open/floor/rogue/grass,
-						/turf/open/floor/rogue/grassred,
-						/turf/open/floor/rogue/grassyel,
-						/turf/open/floor/rogue/grasscold,
-						/turf/open/floor/rogue/snowpatchy,
-						/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough,)
+
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_STONE
+	smoothing_list = SMOOTH_GROUP_FLOOR_SNOW + SMOOTH_GROUP_FLOOR_WOOD + SMOOTH_GROUP_FLOOR_STONE + SMOOTH_GROUP_FLOOR_GRASS
 
 /turf/open/floor/rogue/tile/masonic
 	icon_state = "masonic"
@@ -1533,20 +1230,11 @@
 
 /turf/open/floor/rogue/tile/brownbrick/browner
 	icon_state = "browner"
-
-/turf/open/floor/rogue/tile/brownbrick/browner/Initialize(mapload)
-	. = ..()
-	icon_state = "browner"
-	dir = pick(GLOB.cardinals)
+	prettifyturf = TRUE
 
 /turf/open/floor/rogue/tile/bluebrick
 	icon_state = "bluebrick"
-
-/turf/open/floor/rogue/tile/bluebrick/Initialize(mapload)
-	. = ..()
-	icon_state = "bluebrick"
-	dir = pick(GLOB.cardinals)
-
+	prettifyturf = TRUE
 /turf/open/floor/rogue/tile/harem
 	icon = 'icons/turf/roguefloor.dmi'
 	icon_state = "harem"
@@ -1568,28 +1256,11 @@
 	barefootstep = FOOTSTEP_HARD_BAREFOOT
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
-	smooth = SMOOTH_MORE
-	canSmoothWith = list(/turf/closed/mineral/rogue,
-						/turf/closed/mineral,
-						/turf/closed/wall/mineral/rogue/stonebrick,
-						/turf/closed/wall/mineral/rogue/wood,
-						/turf/closed/wall/mineral/rogue/wooddark,
-						/turf/closed/wall/mineral/rogue/stone,
-						/turf/closed/wall/mineral/rogue/stone/moss,
-						/turf/open/floor/rogue/cobble,
-						/turf/open/floor/rogue/dirt,
-						/turf/open/floor/rogue/grass,
-						/turf/open/floor/rogue/grassred,
-						/turf/open/floor/rogue/grassyel,
-						/turf/open/floor/rogue/grasscold,
-						/turf/open/floor/rogue/snowpatchy,
-						/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough,)
-
+	prettifyturf = TRUE
 /turf/open/floor/rogue/concrete/Initialize(mapload)
 	. = ..()
 	icon_state = "concretefloor[rand(1,2)]"
-	dir = pick(GLOB.cardinals)
+
 
 /turf/open/floor/rogue/concrete/bronze
 	color = "#ff9100"
@@ -1603,28 +1274,7 @@
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	footstepstealth = TRUE
-	smooth = SMOOTH_MORE
-	canSmoothWith = list(/turf/closed/mineral/rogue,
-						/turf/closed/mineral,
-						/turf/closed/wall/mineral/rogue/stonebrick,
-						/turf/closed/wall/mineral/rogue/wood,
-						/turf/closed/wall/mineral/rogue/wooddark,
-						/turf/closed/wall/mineral/rogue/stone,
-						/turf/closed/wall/mineral/rogue/stone/moss,
-						/turf/open/floor/rogue/cobble,
-						/turf/open/floor/rogue/dirt,
-						/turf/open/floor/rogue/grass,
-						/turf/open/floor/rogue/grassred,
-						/turf/open/floor/rogue/grassyel,
-						/turf/open/floor/rogue/grasscold,
-						/turf/open/floor/rogue/snowpatchy,
-						/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough,)
-
-/turf/open/floor/rogue/metal/Initialize(mapload)
-	. = ..()
-	dir = pick(GLOB.cardinals)
-
+	prettifyturf = TRUE
 /turf/open/floor/rogue/metal/barograte
 	icon_state = "barograte"
 /turf/open/floor/rogue/metal/barograte/open
@@ -1638,23 +1288,8 @@
 	barefootstep = FOOTSTEP_SOFT_BAREFOOT
 	clawfootstep = FOOTSTEP_SOFT_BAREFOOT
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
-	smooth = SMOOTH_MORE
-	canSmoothWith = list(/turf/closed/mineral/rogue,
-						/turf/closed/mineral,
-						/turf/closed/wall/mineral/rogue/stonebrick,
-						/turf/closed/wall/mineral/rogue/wood,
-						/turf/closed/wall/mineral/rogue/wooddark,
-						/turf/closed/wall/mineral/rogue/stone,
-						/turf/closed/wall/mineral/rogue/stone/moss,
-						/turf/open/floor/rogue/cobble,
-						/turf/open/floor/rogue/dirt,
-						/turf/open/floor/rogue/grass,
-						/turf/open/floor/rogue/grassred,
-						/turf/open/floor/rogue/grassyel,
-						/turf/open/floor/rogue/grasscold,
-						/turf/open/floor/rogue/snowpatchy,
-						/turf/open/floor/rogue/snow,
-						/turf/open/floor/rogue/snowrough,)
+
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR + SMOOTH_GROUP_FLOOR_CARPET
 
 /turf/open/floor/rogue/carpet/lord
 	icon_state = ""
@@ -1698,7 +1333,7 @@
 	clawfootstep = null
 	heavyfootstep = null
 	slowdown = 4
-
+	prettifyturf = TRUE
 /turf/open/floor/rogue/shroud/Entered(atom/movable/AM, atom/oldLoc)
 	..()
 	if((isliving(AM))&&(!AM.movement_type == FLYING)) //if we're flying over something we shouldn't be making noise.
@@ -1708,7 +1343,6 @@
 /turf/open/floor/rogue/shroud/Initialize(mapload)
 	. = ..()
 	icon_state = "treetop[rand(1,2)]"
-	dir = pick(GLOB.cardinals)
 
 /turf/open/floor/rogue/naturalstone
 	name = "rough stone ground"
@@ -1719,13 +1353,8 @@
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	landsound = 'sound/foley/jumpland/grassland.wav'
-	smooth = SMOOTH_MORE
-	canSmoothWith = list(/turf/open/floor/rogue,
-						/turf/closed/mineral,
-						/turf/closed/wall/mineral)
-
-/turf/open/floor/rogue/naturalstone/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR +  SMOOTH_GROUP_FLOOR_STONE
+	smoothing_list = SMOOTH_GROUP_FLOOR_SNOW + SMOOTH_GROUP_FLOOR_WOOD + SMOOTH_GROUP_FLOOR_STONE + SMOOTH_GROUP_FLOOR_GRASS
 
 /turf/open/floor/rogue/dark_ice
 	name = "black ice"
@@ -1736,11 +1365,11 @@
 	clawfootstep = FOOTSTEP_HARD_CLAW
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	landsound = 'sound/foley/jumpland/grassland.wav'
-	smooth = SMOOTH_MORE
-	canSmoothWith = list(/turf/open/floor/rogue, /turf/open/floor/rogue/underworld)
+	//smooth = SMOOTH_MORE
+	//canSmoothWith = list(/turf/open/floor/rogue, /turf/open/floor/rogue/underworld)
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR +  SMOOTH_GROUP_FLOOR_FROZEN
+	smoothing_list = SMOOTH_GROUP_OPEN_FLOOR
 
-/turf/open/floor/rogue/dark_ice/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
 
 /turf/open/floor/rogue/dark_ice/regular
 	name = "ice"
@@ -1798,14 +1427,18 @@
 	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
 	landsound = 'sound/foley/jumpland/grassland.wav'
 	slowdown = 0
-	smooth = SMOOTH_TRUE
+	//smooth = SMOOTH_TRUE
 	// Deliberately one-directional: snow/snowrough/snowpatchy list frozen_water so snow draws an
 	// ice edge onto itself at the border, but ice doesn't list them back, so it never draws a
 	// snow edge onto itself in turn - two overlapping edge overlays there produced visible
 	// artifacts. grass/grasscold stay listed since that pairing isn't the one that looked wrong.
-	canSmoothWith = list(/turf/open/floor/rogue/frozen_water,
+	/*canSmoothWith = list(/turf/open/floor/rogue/frozen_water,
 						/turf/open/floor/rogue/grass,
-						/turf/open/floor/rogue/grasscold,)
+						/turf/open/floor/rogue/grasscold,)*/
+	smoothing_flags = SMOOTH_EDGE
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR +  SMOOTH_GROUP_FLOOR_FROZEN
+	smoothing_list = SMOOTH_GROUP_FLOOR_OPEN_SPACE + SMOOTH_GROUP_FLOOR_FROZEN
+
 	neighborlay = "ice"
 	/// Set by freeze_over(). Only seasonally-frozen ice thaws again - mapped ice is permanent.
 	var/seasonal_freeze = FALSE
@@ -1814,8 +1447,6 @@
 	/// Clean ice is slick. Bog crust is not - it's hummocked and rimed, you crunch through it.
 	var/slippery_ice = TRUE
 
-/turf/open/floor/rogue/frozen_water/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
 
 /turf/open/floor/rogue/frozen_water/examine(mob/user)
 	. = ..()
