@@ -28919,11 +28919,6 @@
 /obj/structure/fluff/railing/corner/north_east,
 /turf/open/floor/rogue/blocks/stonered,
 /area/rogue/under/cave/menageriedungeon)
-"fwj" = (
-/obj/machinery/light/rogue/candle/l,
-/obj/structure/fluff/railing/raisedtrim,
-/turf/open/floor/rogue/wood,
-/area/rogue/indoors/town/tavern)
 "fwk" = (
 /obj/structure/fluff/railing/border/east,
 /obj/structure/fluff/railing/raisedtrim,
@@ -33761,11 +33756,6 @@
 	},
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/indoors/shelter/woods)
-"grt" = (
-/obj/structure/fluff/railing/corner/north_east,
-/obj/structure/fluff/railing/raisedtrim,
-/turf/open/floor/rogue/wood,
-/area/rogue/indoors/town/tavern)
 "gru" = (
 /obj/effect/decal/cleanable/debris/glassy,
 /turf/open/floor/rogue/blocks,
@@ -94563,11 +94553,6 @@
 	},
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/exposed/church)
-"rCI" = (
-/obj/machinery/light/rogue/candle/r,
-/obj/structure/fluff/railing/raisedtrim,
-/turf/open/floor/rogue/wood,
-/area/rogue/indoors/town/tavern)
 "rCQ" = (
 /obj/structure/table/wood/long_table/mid,
 /obj/structure/bars{
@@ -501904,8 +501889,8 @@ oVi
 tvR
 cLu
 ocZ
-grt
-rCI
+kOg
+vya
 gpZ
 pvg
 tvR
@@ -506869,15 +506854,15 @@ pmE
 xZJ
 tvR
 gSn
-aHB
+pvg
 btO
-aHB
-aHB
-fwj
-aHB
+pvg
+pvg
+kfA
+pvg
 eYR
-aHB
-fwj
+pvg
+kfA
 wsp
 pvg
 dJN
@@ -507774,16 +507759,16 @@ kSK
 tvR
 aLZ
 tBo
-aHB
-aHB
-aHB
-rCI
-aHB
-aHB
-aHB
+pvg
+pvg
+pvg
+vya
+pvg
+pvg
+pvg
 tBo
-aHB
-rCI
+pvg
+vya
 tvR
 uei
 rVA
