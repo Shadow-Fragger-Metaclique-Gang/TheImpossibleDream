@@ -10,8 +10,7 @@
 									  "Vice and virtue? Simply the viscous materials necessary for art, my love!",
 									  "The only excuse for creating a useless thing is whether you admire it intensely.",
 									  "All art is quite useless.",
-									  "You want to know more about me? Do dig in at your own peril~~~ ♥",
-									  "With the same sex? Ewww...")
+									  "You want to know more about me? Do dig in at your own peril~~~ ♥")
 	login_lines = list("Mwah!")
 	death_lines = list("Oh, that definitely tickled something!")
 	conversion_lines = list("Oh, hello there!",
