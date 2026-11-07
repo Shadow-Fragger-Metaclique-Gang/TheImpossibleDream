@@ -63,6 +63,16 @@
 /obj/structure/fluff/railing/border/west,
 /turf/open/floor/rogue/wood,
 /area/rogue/outdoors/beach)
+"aan" = (
+/obj/structure/bars/pipe{
+	dir = 8;
+	layer = 2;
+	pixel_x = 10;
+	pixel_y = -20
+	},
+/obj/structure/bars,
+/turf/closed/wall/mineral/rogue/pipe,
+/area/rogue/indoors/town/bath)
 "aaq" = (
 /obj/structure/mineral_door/wood/deadbolt{
 	dir = 1
@@ -10423,18 +10433,6 @@
 /obj/structure/flora/roguegrass,
 /turf/open/floor/rogue/grassred,
 /area/rogue/indoors/inq/embassy)
-"bXw" = (
-/obj/structure/bars/pipe{
-	dir = 8;
-	layer = 2;
-	pixel_x = 10;
-	pixel_y = -20
-	},
-/obj/structure/bars,
-/turf/closed/wall/mineral/rogue/pipe{
-	icon_state = "iron_line"
-	},
-/area/rogue/indoors/town/bath)
 "bXx" = (
 /obj/item/reagent_containers/food/snacks/deadmouse,
 /obj/item/natural/bundle/stick{
@@ -154293,7 +154291,7 @@ uHb
 sQT
 ozx
 cPX
-bXw
+aan
 qcp
 aiD
 haH
@@ -154745,7 +154743,7 @@ nPv
 eNh
 ozx
 cPX
-bXw
+aan
 qcp
 aiD
 haH
