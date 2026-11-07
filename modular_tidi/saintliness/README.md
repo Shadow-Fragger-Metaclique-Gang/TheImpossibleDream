@@ -16,7 +16,8 @@ Acting against the wishes of your patron will damn you in their eyes, while piou
 - `code/_patron.dm`: Extra on the base patron datum. Also slaps the saintliness components onto the corresponding patron.
 - `code/components/_saintliness.dm`: Parent datum for all subsequent saintliness components.
 - `code/components/astrata.dm`: Astrata's listener component.
-- `code/signals.dm`: Faith-related signals for the saintliness components.
+- `_signals.dm`: Faith-related signals for the saintliness components. Non-modular because it has to hook into events as they happen.
+- `code/stress_positive.dm`: Adds a moodlet for pestrans, also non-modular because it has to be chuffed into the spot the relevant events happen.
 - `code/defines.dm`: Integer constants rest here.
 
 ## Core files changed

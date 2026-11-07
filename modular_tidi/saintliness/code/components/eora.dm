@@ -18,13 +18,13 @@
 											"Welcome to the flock!",
 											"May serenity envelop you!")
 	apostasy_lines = list("I'll still love you, even if you cut my heart out...")
-	affection_lines = list("Nothing like it. Cherry-sweet love...",
+	var/list/affection_lines = list("Nothing like it. Cherry-sweet love...",
 										   "Cl-closer! Yes! YES!",
 										   "So sweet... so good!")
-	marriage_lines = list("Oh, what a Charming couple...",
+	var/list/marriage_lines = list("Oh, what a Charming couple...",
 										  "That's so romantic...",
 										  "Oh my! How delightful! Mwah!")
-	aggro_lines = list("Oh no!",
+	var/list/aggro_lines = list("Oh no!",
 									   "But can't you simply talk it out?",
 									   "Is that really necessary?",
 									   "Have a heart!",

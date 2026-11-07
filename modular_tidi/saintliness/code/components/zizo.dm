@@ -20,15 +20,18 @@
 	apostasy_lines = list("Ah. So that's how it is.",
 										  "Kuhuhu.... of course you'd choose Them.",
 										  "...One thing. Did you ever believe in it? Truly?")
-	graverobber_lines = list("Good, good, good!",
+	var/list/graverobber_lines = list("Good, good, good!",
 											 "Oh, new servants for the cause!",
 											 "Polish them, clean them. Wrap them in bandages. I'll let you decide what you do with that tangle of bones.",
 											 "Oh, were they a stranger to you? Or someone you loved...?",
 											 "Have no fear, these bones have committed many great sins in their day.",
 											 "You did it wrong. Dug too deep and broke a bone. Typical...")
-	compassion_lines = list("Stomp them, beat them.",
+	var/list/compassion_lines = list("Stomp them, beat them.",
 											"Grind their bones into flour.",
 											"Mercy is just another obstacle in the path of the Inevitable Future.")
+	var/list/tomescribe_lines = list("Recording for posterity, eh?",
+									 "Only the living suffer from a faulty memory.",
+									 "Shadowy and forbidden knowledge, forever recorded.")
 
 /datum/component/saintliness/zizo/Initialize(...)
 	. = ..()

@@ -1,4 +1,4 @@
-/datum/component/saintliness/abyssor
+/datum/component/saintliness/psydon
 
 	// He's dead.
 	sleep_lines = list("...")

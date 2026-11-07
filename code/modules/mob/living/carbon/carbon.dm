@@ -651,10 +651,10 @@
 								"<span class='danger'>I puke all over [parent]!</span>")
 				parent.add_stress(/datum/stressevent/vomitother)
 				//[SURREALIS-ADD] - SAINTLINESS
-				if(C.patron.type != /datum/patron/divine/pestra)
+				if(!istype(src.patron, /datum/patron/divine/pestra))
 					src.add_stress(/datum/stressevent/vomitedonother)
 				else
-					C.add_stress(/datum/stressevent/pestran_vomit)
+					src.add_stress(/datum/stressevent/pestran_vomit)
 				//[/SURREALIS-ADD]
 			distance = 0
 		else if(is_mouth_covered()) //make this add a blood/vomit overlay later it'll be hilarious

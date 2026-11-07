@@ -13,17 +13,17 @@
 											"Observe my Law and thy Prayers, scoundrels hide everywhere.")
 	apostasy_lines = list("The punishment for desertion is death.",
 										  "You are dishonourably discharged. Begone from my sight.")
-	surrender_lines = list("Cowardice is unbecoming of a warrior.",
+	var/list/surrender_lines = list("Cowardice is unbecoming of a warrior.",
 										   "How can I expect you to uphold Justice if you aren't willing to die for it?",
 										   "Playing dead is a snake's trick...")
-	warcrime_lines = list("What do you think you're doing? We are Warriors, not savages!",
+	var/list/warcrime_lines = list("What do you think you're doing? We are Warriors, not savages!",
 										  "I'm ashamed of you.",
 										  "You will answer for your crimes.",
 										  "Only a savage would act in such a manner.")
-	thieving_lines = list("Stop that!",
+	var/list/thieving_lines = list("Stop that!",
 										  "Cease your transgressions!",
 										  "Halt!")
-	justice_lines = list("Aha! Rat, meet cage.",
+	var/list/justice_lines = list("Aha! Rat, meet cage.",
 										  "Sons of bitches think they can get away with this shit until their teeth're lying all over the soil. Good riddance.",
 										  "It's said he has an honest face. It's a shame that I'm blind.")
 
@@ -33,7 +33,7 @@
 
 	//He's kind of a serious, no nonsense guy.
 	RegisterSignal(parent, COMSIG_MOB_SURRENDER, PROC_REF(on_surrender))
-	RegisterSignal(parent, COMSIG_MOB_ATTACK_SURRENDERED, PROC_REF(on_warcrime))
+	RegisterSignal(parent, COMSIG_MOB_WARCRIME, PROC_REF(on_warcrime))
 	RegisterSignal(parent, COMSIG_MOB_THIEF, PROC_REF(on_theft))
 	RegisterSignal(parent, COMSIG_MOB_CAUGHT_LAWBREAKER, PROC_REF(on_justice))
 

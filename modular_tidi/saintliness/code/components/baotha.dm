@@ -20,16 +20,16 @@
 											"Just make sure to share yourself with the congregation...")
 	apostasy_lines = list("Now I don't kiss and tell, but...",
 										  "Ever wanted to know what it's like to be neutered?")
-	fornication_lines = list("All part of the Lifestyle.. you should be used to it by now.",
+	var/list/fornication_lines = list("All part of the Lifestyle.. you should be used to it by now.",
 											 "A-ah.. how scandalous.",
 											 "That's the way I like it, uhuh, uhuh.",
 											 "Don't be gentle.")
-	whipped_lines = list("Don't be a coward. Have some more!",
+	var/list/whipped_lines = list("Don't be a coward. Have some more!",
 										 "Sweet, sweet pain!",
 										 "Pain, sweet pain!",
 										 "What a lovely dose of suffering.",
 										 "To the core of your being...")
-	druggalo_lines = list("MORE! MORE! MORE!",
+	var/list/druggalo_lines = list("MORE! MORE! MORE!",
 										  "I DID IT ALL FOR NOTHING BUT.... EXCESS!!",
 										  "Breathe the smoke in...",
 										  "One more trial...",
@@ -37,7 +37,7 @@
 										  "This is the last kiss.",
 										  "Empty the vial before you die.",
 										  "Excess! Excess! Excess!")
-	asceticism_lines = list("No, no, no! You have to INDULGE!",
+	var/list/asceticism_lines = list("No, no, no! You have to INDULGE!",
 											"Hungry sows don't let themselves grow hungry.",
 											"Don't you want to feast and slake your thirst?",
 											"Think of this world as my world, and drink from its rivers of wine.",
@@ -77,7 +77,7 @@
 /datum/component/saintliness/baotha/proc/on_ascetic(mob/living/worshipper)
 	SIGNAL_HANDLER
 
-	to_chat(worshipper, span_faith(pick(ascet)))
+	to_chat(worshipper, span_faith(pick(asceticism_lines)))
 	adjust_saintliness(SAINTLINESS_FEAST)
 
 // Drug Stuff

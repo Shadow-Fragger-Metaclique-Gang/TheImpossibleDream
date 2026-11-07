@@ -1,6 +1,5 @@
 #include "code\spans.dm"
 #include "code\defines.dm"
-#include "code\_patron.dm"
 #include "code\components\_saintliness.dm"
 #include "code\components\astrata.dm"
 #include "code\components\abyssor.dm"
@@ -17,6 +16,7 @@
 #include "code\components\matthios.dm"
 #include "code\components\graggar.dm"
 #include "code\components\psydon.dm"
+#include "code\_patron.dm"
 #include "code\sexcon\controller\sex_action.dm"
 #include "code\revive.dm"
 

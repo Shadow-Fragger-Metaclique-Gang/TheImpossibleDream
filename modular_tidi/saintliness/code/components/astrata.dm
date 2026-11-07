@@ -14,23 +14,23 @@
 											"Fine! I-I'll be your morning light!")
 	apostasy_lines = list("Hmph!",
 										  "A-as if I'll miss you!")
-	fornication_lines = list("S-stop that!",
+	var/list/fornication_lines = list("S-stop that!",
 											 "N-no! Lewd!",
 											 "Wait for marriage first, you idiot!")
-	marriage_lines = list("N-no, I-I'm not jealous or anything... c-congratulations.")
-	larceny_lines = list("Respect the privacy of others!!")
-	respect_lines = list("D-don't let it get to your head! I-I'm still the one in charge here!",
+	var/list/marriage_lines = list("N-no, I-I'm not jealous or anything... c-congratulations.")
+	var/list/larceny_lines = list("Respect the privacy of others!!")
+	var/list/respect_lines = list("D-don't let it get to your head! I-I'm still the one in charge here!",
 										 "W-what?! They actually like you? Good!")
-	peasant_servility_lines = list("Duty is as heavy as your future is bright.",
+	var/list/peasant_servility_lines = list("Duty is as heavy as your future is bright.",
 												   "Take my yoke and learn from me!")
-	noble_servility_lines = list("You're supposed to be a leader, not a follower!",
+	var/list/noble_servility_lines = list("You're supposed to be a leader, not a follower!",
 										   "STOOOP! Wh-what're you fucking doing?!")
 
 /datum/component/saintliness/astrata/Initialize(...)
 	. = ..()
 	RegisterSignal(parent, COMSIG_MOB_FORNICATION, PROC_REF(on_fornication))
-	RegisterSignal(parent, COMSIG_MOB_MARRIAGE, PROC_REF(on_marriage))
-	RegisterSignal(parent, COMSIG_CRIME_LARCENY, PROC_REF(on_larceny))
+	RegisterSignal(parent, COMSIG_MOB_MARRIED, PROC_REF(on_marriage))
+	RegisterSignal(parent, COMSIG_MOB_LARCENY, PROC_REF(on_larceny))
 	RegisterSignal(parent, COMSIG_MOB_SHOWN_RESPECT, PROC_REF(on_respect))
 	RegisterSignal(parent, COMSIG_MOB_DEMONSTATED_SERVILITY, PROC_REF(on_servility))
 
