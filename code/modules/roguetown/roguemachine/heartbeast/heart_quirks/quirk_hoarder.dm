@@ -172,7 +172,7 @@
 /datum/component/hoarded_item/proc/on_pickup(datum/source, mob/user)
 	SIGNAL_HANDLER
 	var/obj/item/I = parent
-	if(get_dist(I, heart_component.heart_beast) > 3)
+	if(get_dist(get_turf(I), heart_component.heart_beast) > 3)
 		hoarder_quirk.handle_thief(I, user, heart_component)
 		qdel(src)
 		return
@@ -183,9 +183,10 @@
 /datum/component/hoarded_item/proc/on_moved(datum/source, atom/old_loc, movement_dir, forced, list/old_locs, momentum_change)
 	SIGNAL_HANDLER
 	var/obj/item/I = parent
+	var/atom/item_loc = I.loc || old_loc
 
-	if(is_item_stolen(I))
-		var/mob/living/thief = find_culprit(I)
+	if(is_item_stolen(I, item_loc))
+		var/mob/living/thief = find_culprit(I, item_loc)
 
 		if(thief)
 			hoarder_quirk.handle_thief(I, thief, heart_component)
@@ -219,29 +220,33 @@
 		return TRUE
 	return FALSE
 
-/datum/component/hoarded_item/proc/is_item_stolen(obj/item/I)
-	if(get_dist(I, heart_component.heart_beast) > 3)
+/datum/component/hoarded_item/proc/is_item_stolen(obj/item/I, atom/item_loc)
+	if(!item_loc)
+		item_loc = I.loc
+	if(get_dist(get_turf(item_loc), heart_component.heart_beast) > 3)
 		return TRUE
 
-	if(istype(I.loc, /obj/item/storage))
+	if(istype(item_loc, /obj/item/storage))
 		return TRUE
 
-	if(istype(I.loc, /obj/structure/closet))
+	if(istype(item_loc, /obj/structure/closet))
 		return TRUE
 
 	// Further checks are handled by the movable on the mob itself
 	return FALSE
 
-/datum/component/hoarded_item/proc/find_culprit(obj/item/I)
-	if(istype(I.loc, /obj/item/storage/roguebag))
-		var/obj/item/storage/roguebag/bag = I.loc
+/datum/component/hoarded_item/proc/find_culprit(obj/item/I, atom/item_loc)
+	if(!item_loc)
+		item_loc = I.loc
+	if(istype(item_loc, /obj/item/storage/roguebag))
+		var/obj/item/storage/roguebag/bag = item_loc
 
 		// The thief is the person holding the bag
 		if(isliving(bag.loc))
 			return bag.loc
 
-	else if(istype(I.loc, /obj/structure/closet))
-		var/obj/structure/closet/closet = I.loc
+	else if(istype(item_loc, /obj/structure/closet))
+		var/obj/structure/closet/closet = item_loc
 
 		// The thief is the nearest living mob within 1 tile of the closet.
 		var/list/potential_targets = list()
@@ -251,7 +256,7 @@
 		if(potential_targets.len)
 			return pick(potential_targets)
 
-	var/turf/current_turf = get_turf(I)
+	var/turf/current_turf = get_turf(item_loc)
 	if(current_turf)
 		var/list/potential_targets = list()
 		for(var/atom/movable/A in range(2, current_turf))

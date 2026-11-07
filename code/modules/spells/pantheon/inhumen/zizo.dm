@@ -276,18 +276,24 @@
 	. = ..()
 	crumble()
 
-/obj/item/bone/profane_splinter/Moved()
+/obj/item/bone/profane_splinter/Moved(atom/OldLoc, Dir, Forced = FALSE)
 	. = ..()
 	if(QDELETED(src))
 		return
 	if(!is_embedded)
-		crumble()
+		crumble(get_turf(OldLoc))
 
-/obj/item/bone/profane_splinter/proc/crumble()
+/obj/item/bone/profane_splinter/proc/crumble(turf/fallback_turf)
 	if(QDELETED(src))
 		return
-	visible_message(span_purple("[src] crumbles into dust..."), span_purple("[src] crumbles into dust..."))
-	new /obj/item/ash(get_turf(src))
+	var/turf/ash_turf = get_turf(src)
+	if(ash_turf)
+		visible_message(span_purple("[src] crumbles into dust..."), span_purple("[src] crumbles into dust..."))
+	else
+		ash_turf = fallback_turf
+		ash_turf?.visible_message(span_purple("[src] crumbles into dust..."))
+	if(ash_turf)
+		new /obj/item/ash(ash_turf)
 	qdel(src)
 
 /obj/projectile/magic/profane

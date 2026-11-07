@@ -88,6 +88,10 @@
 		var/mob/dead/observer/observer = mob
 		observer.next_gmove = world.time + (world.tick_lag * GLOB.observer_move_delay_multiplier)
 		move_delay = world.time
+		if(observer.updating_glide_size)
+			var/ghost_glide = MOVEMENT_ADJUSTED_GLIDE_SIZE(max(world.tick_lag * GLOB.observer_move_delay_multiplier, world.tick_lag), 1)
+			if(observer.glide_size != ghost_glide)
+				observer.set_glide_size(ghost_glide)
 	else
 		move_delay = world.time + world.tick_lag //this is here because Move() can now be called mutiple times per tick
 	if(!mob || !mob.loc)
