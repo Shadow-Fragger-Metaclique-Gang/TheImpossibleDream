@@ -26,7 +26,10 @@
 #include "nudist_approved\_nudist_approved.dme"
 #include "phrase_highlights\_phrase_highlights.dme"
 #include "pq-remover\_pq-remover.dme"
+<<<<<<< HEAD
 #include "quirks\_quirks.dme"
+=======
+>>>>>>> ea1a3a33e02594f3963b0aac8d583acd924f8fae
 #include "saintliness\_saintliness.dme"
 #include "sexcon\_sexcon.dme"
 #include "sound_changes\_sound_changes.dme"
