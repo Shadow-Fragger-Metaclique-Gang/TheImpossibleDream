@@ -21,11 +21,11 @@
 											"Through labour and practice, the Will triumphs. Begin.")
 	apostasy_lines = list("Redundant components are the first excised from a system.",
 										  "Reclassification: Traitor.")
-	emotion_lines = list("Enough of that.",
+	var/list/emotion_lines = list("Enough of that.",
 										 "Control yourself.",
 										 "Cease these crude fixations of yours.",
 										 "A waste of good water. Recalibrate and rehydrate.")
-	craft_lines = list("Well done.",
+	var/list/craft_lines = list("Well done.",
 									   "You are becoming a more efficient version of yourself.",
 									   "Sufficient, but not exceptional.",
 									   "Structure conforms to standardized diagrams. Well done.")

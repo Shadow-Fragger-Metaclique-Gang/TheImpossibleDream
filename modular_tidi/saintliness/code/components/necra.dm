@@ -23,18 +23,18 @@
 									   "And in a moment you've lost much: The warmth of a beating heart, the scent of petrichor, the gay chirp of a morning songbird. Never to be experienced again.")
 	conversion_lines = list("Consider this the first day of the rest of your existence.")
 	apostasy_lines = list("Verdict: Guilty. Your soul will be tortured for eternity.")
-	graverobbing_lines = list("That taken from hallowed ground will one day return to it.",
+	var/list/graverobbing_lines = list("That taken from hallowed ground will one day return to it.",
 											  "Refrain from disturbing the restful dead.",
 											  "Your mortal gains will be a fraction of your suffering in eternity.",
 											  "Your soul is forfeit.",
 											  "Your ancestors will frown upon you for eternity.")
-	looting_lines = list("Let the restful dead lie.",
+	var/list/looting_lines = list("Let the restful dead lie.",
 										 "Pilfering the bones, are we?",
 										 "What an imprudent act.")
-	joy_lines = list("Remember death, there will be time enough to smile in your grave.",
+	var/list/joy_lines = list("Remember death, there will be time enough to smile in your grave.",
 									 "Laughter invites discord to the hymns of the world-funeral.",
 									 "Sully graven lands not with your babbles of idiocy.")
-	mourn_lines = list("Bear witness and prepare.",
+	var/list/mourn_lines = list("Bear witness and prepare.",
 									   "Life fades, and lamentation takes its place.",
 									   "Cherish the memory, but care not to tarnish it.")
 
@@ -76,17 +76,19 @@
 
 // Emote Hooks
 
-/datum/emote/living/laugh(mob/living/user, params, type_override, intentional)
+/datum/emote/living/laugh/run_emote(mob/living/user, params, type_override, intentional)
 	. = ..()
 	SEND_SIGNAL(user, COMSIG_MOB_JOY)
 
-/datum/emote/living/smile(mob/living/user, params, type_override, intentional)
+/datum/emote/living/smile/run_emote(mob/living/user, params, type_override, intentional)
 	. = ..()
 	SEND_SIGNAL(user, COMSIG_MOB_JOY)
 
-/datum/emote/living/sigh(mob/living/user, params, type_override, intentional)
+/datum/emote/living/sigh/run_emote(mob/living/user, params, type_override, intentional)
 	. = ..()
+	//[SURREALIS-ADD] - SAINTLINESS
 	SEND_SIGNAL(user, COMSIG_MOB_MOURN)
+	//[/SURREALIS-ADD]
 
 /datum/emote/living/carbon/human/cry/run_emote(mob/user, params, type_override, intentional, targetted)
 	. = ..()

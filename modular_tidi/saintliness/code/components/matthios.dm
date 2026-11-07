@@ -28,13 +28,13 @@
 										  "We'll put you on the pyre all the other reactionaries meet their end.",
 										  "Sneeerk! The revolution's not going to wait for YOUR permission.",
 										  "Burn like a bitch, then. I never really liked dogs anyway...")
-	larceny_lines = list("There's no such thing as private property. You're just temporarily inhabiting a location.",
+	var/list/larceny_lines = list("There's no such thing as private property. You're just temporarily inhabiting a location.",
 										 "Feh, landlords.",
 										 "Our trailblazing path will open all doors.")
-	thief_lines = list("Wealth well redistributed.",
+	var/list/thief_lines = list("Wealth well redistributed.",
 									   "Ha! Take that, noble scum!",
 									   "Maybe they should think of this as a involuntary donation.")
-	servility_lines = list("Comrade! What are you doing?!",
+	var/list/servility_lines = list("Comrade! What are you doing?!",
 										   "Stop that! You gave your yoke up, didn't you?!",
 										   "Even the smallest grain of respect is too much for that piece of filth.")
 
@@ -43,7 +43,7 @@
 	. = ..()
 
 	// Steal, rob, and disrespect nobles. We're the plight of the masses, the cream of the crop..
-	RegisterSignal(parent, COMSIG_CRIME_LARCENY, PROC_REF(on_larceny))
+	RegisterSignal(parent, COMSIG_MOB_LARCENY, PROC_REF(on_larceny))
 	RegisterSignal(parent, COMSIG_MOB_THIEF, PROC_REF(on_theft))
 
 	// He hates servility or something like that? Oh yes, he's just Xylix, but evil.

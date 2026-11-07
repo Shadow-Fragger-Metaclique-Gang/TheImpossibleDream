@@ -30,7 +30,7 @@
 											"This will be a mutually-beneficial dyadic partnership. What's that? Exclusivity? Ha-ha!")
 	apostasy_lines = list("Imagine being offended by facts.",
 										  "Frankly, I think your objection is simply a post-hoc rationalization of your childish whims. Be better.")
-	bookburner_lines = list("I would sooner have you on a pyre than see a scrap of knowledge lost to the ages.",
+	var/list/bookburner_lines = list("I would sooner have you on a pyre than see a scrap of knowledge lost to the ages.",
 											"N-no! Not that one!",
 											"Th-that's a rare edition!")
 

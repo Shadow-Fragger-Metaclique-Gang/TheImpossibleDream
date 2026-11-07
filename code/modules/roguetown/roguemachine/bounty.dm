@@ -445,7 +445,7 @@
 		M.equip_to_slot_or_del(prisonmask, SLOT_NECK, TRUE)
 		playsound(src.loc, 'sound/items/beartrap.ogg', 100, TRUE, -1)
 		//[SURREALIS-ADD] - SAINTLINESS
-		SEND_SIGNAL(A, COMSIG_CAUGHT_LAWBREAKER)
+		SEND_SIGNAL(A, COMSIG_MOB_CAUGHT_LAWBREAKER)
 		//[/SURREALIS-ADD]
 	else
 		say("This head carries no reward, you fool.")

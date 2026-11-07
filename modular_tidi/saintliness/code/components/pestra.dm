@@ -14,18 +14,18 @@
 											"They tell you, you are sick, diseased. Rest in my arms, I will heal you.")
 	apostasy_lines = list("Decompose, rot, turn to dust!",
 										  "You have forfeit your soul, your flesh, blood, and your heart. The rats would like your heart most of all.")
-	clean_lines = list("No! Stop that!",
+	var/list/clean_lines = list("No! Stop that!",
 									   "All those spores... lost.",
 									   "W-why?! You were about to germinate!")
 
-	rotdrinker_lines = list("Inwards, towards the rotcauldron.",
+	var/list/rotdrinker_lines = list("Inwards, towards the rotcauldron.",
 											"The nematodes are appreciative.",
 											"As without, so within.")
-	incision_lines = list("Open up, see the scars inside.",
+	var/list/incision_lines = list("Open up, see the scars inside.",
 										  "It flowers into a lovely scarlet.",
 										  "Sweet blood...",
 										  "Capilaries... veins... arteries.")
-	vomit_lines = list("As within, so without.",
+	var/list/vomit_lines = list("As within, so without.",
 									   "Inner rot. Worldly rot.",
 									   "Decay...")
 
@@ -51,7 +51,7 @@
 /datum/component/saintliness/pestra/proc/on_rotdrink(mob/living/worshipper)
 	SIGNAL_HANDLER
 
-	to_chat(worshipper, span_faith(pick(rotdrink_lines)))
+	to_chat(worshipper, span_faith(pick(rotdrinker_lines)))
 	// They can just drink rot over and over. This shouldn't be that big of a boost.
 	adjust_saintliness(SIN_TOKEN)
 

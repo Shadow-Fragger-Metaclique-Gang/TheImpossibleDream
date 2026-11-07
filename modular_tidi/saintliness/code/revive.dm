@@ -21,7 +21,7 @@
 	if(!component_type)
 		return FALSE // They're weird and fucked up idk.
 
-	var/datum/component/saintliness/S = target.GetComponent(worship_component_type)
+	var/datum/component/saintliness/S = target.GetComponent(target.patron.worship_component_type)
 
 	if(S.saintliness < 30)
 		return FALSE
@@ -35,7 +35,7 @@
 	if(!component_type)
 		return FALSE // They're weird and fucked up idk.
 
-	var/datum/component/saintliness/S = target.GetComponent(worship_component_type)
+	var/datum/component/saintliness/S = target.GetComponent(target.patron.worship_component_type)
 
 	if(S.saintliness < 30)
 		return FALSE

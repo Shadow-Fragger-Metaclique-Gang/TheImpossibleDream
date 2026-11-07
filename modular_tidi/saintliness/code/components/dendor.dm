@@ -15,10 +15,10 @@
 	conversion_lines = list("AAAUUUUUU!!!",
 											"Be free, be untamed. Be WYLD!")
 	apostasy_lines = list("Breakbreakbreakbreakyou!")
-	tech_lines = list("The defiler's tools!",
+	var/list/tech_lines = list("The defiler's tools!",
 									  "LET GO OF THAT! NOOOOOW!!",
 									  "Grrraaaaaaaaaao!!")
-	electrocution_lines = list("Hrrrrrrrr!",
+	var/list/electrocution_lines = list("Hrrrrrrrr!",
 											   "Hark hark hark!",
 											   "Zzziiiing!")
 

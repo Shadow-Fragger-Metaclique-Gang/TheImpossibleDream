@@ -19,13 +19,13 @@
 	apostasy_lines = list("Die!",
 										  "Fat bitch.",
 										  "Don't need you.")
-	on_surrender = list("WORTHLESS!!",
+	var/list/surrender_lines = list("WORTHLESS!!",
 										"Pathetic!",
 										"Little sheep bitch.",
 										"Baaaa!",
 										"Bitch. Bitch. Bitch.",
 										"Fat pussy lips.")
-	on_butchery = list("Meatmeatmeatmeatmeat...",
+	var/list/butcher_lines = list("Meatmeatmeatmeatmeat...",
 									   "Sweet and tender flesh.",
 									   "Savour sweet blood!",
 									   "CONSUME! FEAST! DEVOUR!!",
