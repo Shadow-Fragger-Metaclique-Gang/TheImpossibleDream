@@ -108,21 +108,21 @@
 	return null
 
 /mob/living/update_cone()
-	for(var/hidden_hud in client.hidden_images)
-		client.images -= hidden_hud
-		client.hidden_images -= hidden_hud
+	var/list/old_hidden = client.hidden_images.Copy()
+	client.hidden_images.Cut()
 	if(hud_used?.fov)
 		if(hud_used.fov.alpha == 0)
+			client.images -= old_hidden
 			return
+	var/list/new_hidden = list()
 	var/image/I = image(src, src)
 	I.override = 1
 	I.plane = GAME_PLANE_UPPER
 	I.layer = layer
 	I.pixel_x = 0
 	I.pixel_y = 0
-	client.images += I
-	client.hidden_images += I
 	I.appearance_flags = RESET_TRANSFORM|KEEP_TOGETHER|PIXEL_SCALE
+	new_hidden += I
 	if(buckled)
 		var/image/IB = image(buckled, buckled)
 		IB.override = 1
@@ -131,8 +131,7 @@
 		IB.pixel_x = 0
 		IB.pixel_y = 0
 		IB.appearance_flags = RESET_TRANSFORM|KEEP_TOGETHER
-		client.hidden_images += IB
-		client.images += IB
+		new_hidden += IB
 	if(pulling)
 		var/image/IB = image(pulling, pulling)
 		IB.override = 1
@@ -141,8 +140,10 @@
 		IB.pixel_x = 0
 		IB.pixel_y = 0
 		IB.appearance_flags = RESET_TRANSFORM|KEEP_TOGETHER
-		client.hidden_images += IB
-		client.images += IB
+		new_hidden += IB
+	client.images -= old_hidden
+	client.images += new_hidden
+	client.hidden_images += new_hidden
 /*	if(hud_used && hud_used.fov_blocker)
 		fov_blocker
 

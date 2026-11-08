@@ -150,6 +150,7 @@
 #define INIT_ORDER_PATH				-50
 #define INIT_ORDER_DISCORD			-60
 #define INIT_ORDER_PERSISTENCE		-95
+#define INIT_ORDER_ICON_UPDATES		-99
 #define INIT_ORDER_CHAT				-100 //Should be last to ensure chat remains smooth during init.
 #define INIT_ORDER_INIT_PROFILER	-101 //Dumps the init profile, must be after everything else has initialized.
 
@@ -216,6 +217,7 @@
 #define FIRE_PRIORITY_STATPANEL		390
 #define FIRE_PRIORITY_CHAT			400
 #define FIRE_PRIORITY_RUNECHAT		410
+#define FIRE_PRIORITY_ICON_UPDATES	450
 #define FIRE_PRIORITY_OVERLAYS		500
 #define FIRE_PRIORITY_TIMER		700
 #define FIRE_PRIORITY_INPUT			1000 // This must always always be the max highest priority. Player input must never be lost.

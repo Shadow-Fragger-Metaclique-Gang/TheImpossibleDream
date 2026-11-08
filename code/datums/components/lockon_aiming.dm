@@ -67,8 +67,8 @@
 		var/image/I = new
 		I.appearance = lock_appearance
 		I.loc = A
-		M.client.images |= I
 		lock_images |= I
+	M.client.images |= lock_images
 
 /datum/component/lockon_aiming/proc/clear_visuals()
 	var/mob/M = parent
@@ -76,8 +76,8 @@
 		return
 	if(!lock_images)
 		return
+	M.client.images -= lock_images
 	for(var/i in lock_images)
-		M.client.images -= i
 		qdel(i)
 	lock_images.Cut()
 

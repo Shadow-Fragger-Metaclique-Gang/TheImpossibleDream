@@ -52,12 +52,13 @@
 	WXH_TO_HEIGHT(viewer_client?.MeasureText(text, null, BALLOON_TEXT_WIDTH), balloon_alert.maptext_height)
 	balloon_alert.maptext_width = BALLOON_TEXT_WIDTH
 
+	balloon_alert.pixel_y = y_offset ? y_offset + stack_offset : stack_offset
+
 	viewer_client?.images += balloon_alert
 
 	var/length_mult = 1 + max(0, length(strip_html_simple(text)) - BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MIN) * BALLOON_TEXT_CHAR_LIFETIME_INCREASE_MULT
 
 	if(!y_offset)
-		balloon_alert.pixel_y = stack_offset
 		animate(
 			balloon_alert,
 			pixel_y = stack_offset + ICON_SIZE_Y * 1.2,
@@ -65,7 +66,6 @@
 			easing = SINE_EASING | EASE_OUT,
 		)
 	else
-		balloon_alert.pixel_y = y_offset + stack_offset
 		animate(
 			balloon_alert,
 			pixel_y = y_offset + stack_offset + 5,

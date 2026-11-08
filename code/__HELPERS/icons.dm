@@ -1064,6 +1064,7 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 		body.update_inv_belt(hide_experimental = TRUE)
 		body.update_inv_back(hide_experimental = TRUE)
 		body.update_inv_head(hide_nonstandard = TRUE)
+		SSiconupdates.wait_for_commit(body)
 
 		var/icon/out_icon = icon('icons/effects/effects.dmi', "nothing")
 		for(var/D in showDirs)

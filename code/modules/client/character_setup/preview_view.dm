@@ -69,8 +69,14 @@
 /// Updates the currently displayed body
 /atom/movable/screen/map_view/char_preview/proc/update_body()
 	var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
+	preferences.render_new_preview_appearance(mannequin)
+	SSiconupdates.after_commit(mannequin, CALLBACK(src, PROC_REF(finish_update_body), mannequin))
 
-	appearance = preferences.render_new_preview_appearance(mannequin)
+/atom/movable/screen/map_view/char_preview/proc/finish_update_body(mob/living/carbon/human/dummy/mannequin)
+	if(QDELETED(src))
+		unset_busy_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
+		return
+	appearance = mannequin.appearance
 	var/grid_size = forced_grid_size || ROUND_UP(mannequin.dna.current_body_size - 0.1) // arbitrarily chosen wiggle room
 	// this calls wipe_state()
 	unset_busy_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
