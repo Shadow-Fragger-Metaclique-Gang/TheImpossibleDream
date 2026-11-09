@@ -16,7 +16,6 @@
 #include "job_weapon_overrides\_job_weapon_overrides.dme"
 #include "listener_deploy\_listener_deploy.dme"
 #include "loadout\_loadout.dme"
-#include "loadout_additions\_loadout_additions.dme"
 #include "lord_of_vanity\_lord_of_vanity.dme"
 #include "lore\_lore.dme"
 #include "mercenary_statue\_mercenary_statue.dme"
