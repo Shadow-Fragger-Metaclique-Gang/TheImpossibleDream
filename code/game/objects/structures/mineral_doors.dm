@@ -564,6 +564,9 @@
 		to_chat(user, "<span class='warning'>The lock to this door is broken.</span>")
 		user.changeNext_move(CLICK_CD_INTENTCAP)
 	else
+		//[SURREALIS-ADD] - SAINTLINESS
+		SEND_SIGNAL(user, COMSIG_MOB_LARCENY)
+		//[/SURREALIS-ADD]
 		var/lockprogress = 0
 		var/locktreshold = lock_strength
 

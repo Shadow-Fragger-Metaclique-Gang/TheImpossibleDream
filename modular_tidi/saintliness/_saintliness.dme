@@ -1,0 +1,26 @@
+#include "code\spans.dm"
+#include "code\defines.dm"
+#include "code\components\_saintliness.dm"
+#include "code\components\astrata.dm"
+#include "code\components\abyssor.dm"
+#include "code\components\eora.dm"
+#include "code\components\dendor.dm"
+#include "code\components\noc.dm"
+#include "code\components\pestra.dm"
+#include "code\components\malum.dm"
+#include "code\components\ravox.dm"
+#include "code\components\xylix.dm"
+#include "code\components\necra.dm"
+#include "code\components\baotha.dm"
+#include "code\components\zizo.dm"
+#include "code\components\matthios.dm"
+#include "code\components\graggar.dm"
+#include "code\components\psydon.dm"
+#include "code\_patron.dm"
+#include "code\sexcon\controller\sex_action.dm"
+#include "code\revive.dm"
+
+
+
+#include "code/sexcon/controller/sex_action.dm"
+

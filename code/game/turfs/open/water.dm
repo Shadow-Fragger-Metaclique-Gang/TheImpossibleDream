@@ -345,7 +345,15 @@
 
 	if(do_after(L, 25, target = src))
 		if (istype(src,/turf/open/water/sewer))
-			to_chat(user, span_userdanger("Have I gone mad!? Why am I drinking sewage!?"))
+			//[SURREALIS-ADD] - Saintliness
+			if(isliving(user))
+				var/mob/living/drinker = user
+				if(drinker.patron.type != /datum/patron/divine/pestra)
+					to_chat(drinker, span_userdanger("Have I gone mad!? Why am I drinking sewage!?"))
+				SEND_SIGNAL(drinker, COMSIG_MOB_ROTDRINKER)
+			else
+				to_chat(user, span_userdanger("Have I gone mad!? Why am I drinking sewage!?"))
+			//[/SURREALIS-ADD]
 		var/list/waterl = list(src.water_reagent = 5)
 		var/datum/reagents/reagents = new()
 		reagents.add_reagent_list(waterl)
