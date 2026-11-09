@@ -14,7 +14,7 @@
 	keys = list(
 		/obj/item/roguekey/keeper,
 		/obj/item/roguekey/keeper_inner,
-		/obj/item/roguekey/physician,
+		/obj/item/roguekey/apothecary
 	)
 
 /datum/outfit/job/roguetown/keeper/basic/pre_equip(mob/living/carbon/human/H)
