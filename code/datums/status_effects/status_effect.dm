@@ -39,7 +39,8 @@
 	var/expires_at = -1
 	/// The world.time after which the next [proc/tick] will occur.
 	var/next_tick = 0
-	var/expiry_timer
+	/// Bucket key in SSstatuseffects.wake_buckets while a wake is scheduled
+	var/wake_key
 
 	///Icon path for this effect's on-mob effect.
 	var/mob_effect_icon = 'icons/mob/mob_effects.dmi'
@@ -115,9 +116,8 @@
 /datum/status_effect/proc/schedule()
 	if(!needs_processing)
 		return
-	if(expiry_timer)
-		deltimer(expiry_timer)
-		expiry_timer = null
+	if(wake_key)
+		SSstatuseffects.cancel_wake(src)
 	if(tick_interval != STATUS_EFFECT_NO_TICK)
 		START_PROCESSING(SSstatuseffects, src)
 		return
@@ -125,7 +125,7 @@
 		STOP_PROCESSING(SSstatuseffects, src)
 		return
 	var/remaining = expires_at - world.time
-	var/wake_delay = max(remaining + 1, 1)
+	var/wake_delay = max(remaining + world.tick_lag, world.tick_lag)
 	if(owner.client && linked_alert && !QDELETED(linked_alert))
 		var/stable_above = linked_alert.countdown_stable_above(remaining)
 		if(!stable_above)
@@ -134,10 +134,9 @@
 		linked_alert.update_countdown(remaining)
 		wake_delay = max(remaining - stable_above + world.tick_lag, world.tick_lag)
 	STOP_PROCESSING(SSstatuseffects, src)
-	expiry_timer = addtimer(CALLBACK(src, PROC_REF(expire)), wake_delay, TIMER_STOPPABLE)
+	SSstatuseffects.schedule_wake(src, world.time + wake_delay)
 
 /datum/status_effect/proc/expire()
-	expiry_timer = null
 	if(expires_at != -1 && expires_at < world.time)
 		qdel(src)
 		return
@@ -156,9 +155,8 @@
 
 /datum/status_effect/Destroy()
 	STOP_PROCESSING(SSstatuseffects, src)
-	if(expiry_timer)
-		deltimer(expiry_timer)
-		expiry_timer = null
+	if(wake_key)
+		SSstatuseffects.cancel_wake(src)
 	if(owner)
 		linked_alert = null
 		owner.clear_alert(id)
