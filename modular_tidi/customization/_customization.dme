@@ -1,3 +1,4 @@
+#include "code\markings_torso.dm"
 #include "code\hair.dm"
 #include "code\tail.dm"
 #include "code\tiefling.dm"
