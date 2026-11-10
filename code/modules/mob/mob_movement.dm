@@ -192,7 +192,6 @@
 		scalar = 1/sqrt(2)
 		add_delay *= 2
 		add_delay *= scalar
-	add_delay = round(add_delay, world.tick_lag)
 	mob.set_glide_size(MOVEMENT_ADJUSTED_GLIDE_SIZE(add_delay, scalar))
 
 	move_delay += add_delay
