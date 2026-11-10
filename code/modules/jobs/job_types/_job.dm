@@ -292,14 +292,16 @@
 		for(var/stat in job_stats)
 			H.change_stat(stat, job_stats[stat])
 
+	var/static/list/hidden_roles = list(ROLE_VAMPIRE, ROLE_NBEAST, ROLE_BANDIT, ROLE_LICH, ROLE_WRETCH, ROLE_UNBOUND_DEATHKNIGHT)
+	var/list/minds_by_role = (length(peopleknowme) || length(peopleiknow)) ? get_minds_by_role() : null
 	for(var/X in peopleknowme)
-		for(var/datum/mind/MF in get_minds(X))
-			if(isnull(H.mind?.special_role) && (MF?.special_role in list(ROLE_VAMPIRE, ROLE_NBEAST, ROLE_BANDIT, ROLE_LICH, ROLE_WRETCH, ROLE_UNBOUND_DEATHKNIGHT)))
+		for(var/datum/mind/MF in (isnull(X) ? SSticker.minds : minds_by_role[X]))
+			if(isnull(H.mind?.special_role) && (MF?.special_role in hidden_roles))
 				continue
 			H.mind.person_knows_me(MF)
 	for(var/X in peopleiknow)
-		for(var/datum/mind/MF in get_minds(X))
-			if(isnull(H.mind?.special_role) && (MF?.special_role in list(ROLE_VAMPIRE, ROLE_NBEAST, ROLE_BANDIT, ROLE_LICH, ROLE_WRETCH, ROLE_UNBOUND_DEATHKNIGHT)))
+		for(var/datum/mind/MF in (isnull(X) ? SSticker.minds : minds_by_role[X]))
+			if(isnull(H.mind?.special_role) && (MF?.special_role in hidden_roles))
 				continue
 			H.mind.i_know_person(MF)
 	if(give_bank_account)

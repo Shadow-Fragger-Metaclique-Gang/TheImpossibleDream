@@ -1,6 +1,7 @@
 /mob/living
 	/// Simple wound instances with no associated bodyparts
 	var/list/datum/wound/simple_wounds
+	var/life_work = LIFEWORK_WOUNDS
 	/// Simple embedded objects with no associated bodyparts
 	var/list/obj/item/simple_embedded_objects
 	/// Cached value of simple wound bleeding

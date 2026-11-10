@@ -53,7 +53,7 @@
 			var/needed_amount = R.reqs[A]
 			for(var/B in contents)
 				if(ispath(B, A))
-					if(!R.subtype_reqs && (B in subtypesof(A)))
+					if(!R.subtype_reqs && B != A)
 						continue
 					if (R.blacklist.Find(B))
 
@@ -425,7 +425,7 @@
 				if(!I.can_craft_with())
 					surroundings -= I
 			for(var/atom/movable/IS in surroundings)
-				if(!R.subtype_reqs && (IS.type in subtypesof(A)))
+				if(!R.subtype_reqs && IS.type != A && ispath(IS.type, A))
 					surroundings.Remove(IS)
 			surroundings -= Deletion
 			if(ispath(A, /datum/reagent))
@@ -468,7 +468,7 @@
 					for(var/obj/item/natural/bundle/B in surroundings)
 						if(!B.stacktype || !ispath(B.stacktype, A))
 							continue
-						if(!R.subtype_reqs && (B.stacktype in subtypesof(A)))
+						if(!R.subtype_reqs && B.stacktype != A)
 							continue
 						if(R.blacklist.Find(B.stacktype))
 							continue

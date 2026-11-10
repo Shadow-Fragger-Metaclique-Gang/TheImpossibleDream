@@ -83,7 +83,7 @@
 	for(var/V in affectareas)
 		var/area/A = V
 		if(A.z in impacted_z_levels)
-			impacted_areas |= A
+			impacted_areas[A] = TRUE
 	weather_duration = rand(weather_duration_lower, weather_duration_upper)
 	SSweather.curweathers += src
 	if(telegraph_overlay)
@@ -158,7 +158,8 @@
 		var/mob/living/L = A
 		if(immunity_type in L.weather_immunities)
 			return
-	if(!(get_area(A) in impacted_areas))
+	var/area/target_area = get_area(A)
+	if(!target_area || !impacted_areas[target_area])
 		return
 	return 1
 

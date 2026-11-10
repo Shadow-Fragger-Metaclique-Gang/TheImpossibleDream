@@ -1,4 +1,6 @@
 /mob/living/carbon/human
+	var/descriptor_name_key
+	var/descriptor_name_cache
 	name = "Unknown"
 	real_name = "Unknown"
 	icon = 'icons/mob/human.dmi'

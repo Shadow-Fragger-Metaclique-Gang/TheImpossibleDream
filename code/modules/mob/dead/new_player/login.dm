@@ -1,7 +1,13 @@
 /mob/dead/new_player/Login()
-	if(client && CONFIG_GET(flag/use_exp_tracking))
+	if(!client)
+		return
+	if(CONFIG_GET(flag/use_exp_tracking))
 		client.set_exp_from_db()
+		if(!client)
+			return
 		client.set_db_player_flags()
+		if(!client)
+			return
 	if(!mind)
 		mind = new /datum/mind(key)
 		mind.active = 1

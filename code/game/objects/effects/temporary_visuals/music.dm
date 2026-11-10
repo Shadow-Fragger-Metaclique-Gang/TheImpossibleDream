@@ -20,6 +20,7 @@
 	icon_state = "buff"
 
 /datum/status_effect/buff/playing_music
+	tick_interval = 1 SECONDS
 	id = "play_music"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/playing_music
 	var/effect_color

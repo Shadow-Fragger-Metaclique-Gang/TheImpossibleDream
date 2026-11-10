@@ -99,7 +99,7 @@ GLOBAL_LIST_EMPTY(prayers)
 		to_chat(follower, span_warning("Your prayer is too weak to be considered!"))
 		return FALSE
 	for(var/profanity in profane_words)
-		var/regex/cussjar = regex("([profanity])", "im")
+		var/regex/cussjar = cached_regex("([profanity])", "im")
 		if(cussjar.Find(prayer))
 			punish_prayer(follower)
 			return FALSE

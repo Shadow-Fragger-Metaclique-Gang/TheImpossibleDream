@@ -193,12 +193,6 @@
 /mob/living/simple_animal/hostile/proc/ListTargets() //Step 1, find out what we can see
 	if(!search_objects)
 		. = hearers(vision_range, targets_from) - src //Remove self, so we don't suicide
-
-		var/static/hostile_machines = typecacheof(list())
-
-		for(var/HM in typecache_filter_list(range(vision_range, targets_from), hostile_machines))
-			if(can_see(targets_from, HM, vision_range))
-				. += HM
 	else
 		. = oview(vision_range, targets_from)
 

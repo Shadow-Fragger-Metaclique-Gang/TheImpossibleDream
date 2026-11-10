@@ -296,9 +296,9 @@
 				"}
 		for(var/atom/path as anything in tools)
 			if(subtype_reqs)
-				html += "[icon2html(new path, user)] any [initial(path.name)]<br>"
+				html += "[icon2html_for_path(path, user)] any [initial(path.name)]<br>"
 			else
-				html += "[icon2html(new path, user)] [initial(path.name)]<br>"
+				html += "[icon2html_for_path(path, user)] [initial(path.name)]<br>"
 		html += {"
 			</div>
 		<div>
@@ -321,7 +321,7 @@
 
 	if(structurecraft)
 		var/obj/structure = structurecraft
-		html += "<br><strong>Start the process next to a:</strong><br>[icon2html(new structurecraft, user)] [initial(structure.name)]<br>"
+		html += "<br><strong>Start the process next to a:</strong><br>[icon2html_for_path(structurecraft, user)] [initial(structure.name)]<br>"
 	if(req_table)
 		html += "<br><strong>Start the process next to a table.</strong><br>"
 	if(wallcraft)

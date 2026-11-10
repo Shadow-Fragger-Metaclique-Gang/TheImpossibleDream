@@ -84,6 +84,7 @@
 	icon_state = "buff"
 
 /datum/status_effect/buff/sooth_the_soul
+	tick_interval = 1 SECONDS
 	id = "soothe the soul"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/sooth_the_soul
 	duration = 40 SECONDS

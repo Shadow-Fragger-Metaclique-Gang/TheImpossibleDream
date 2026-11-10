@@ -76,11 +76,19 @@ SUBSYSTEM_DEF(role_class_handler)
 
 	//Well that about covers it really.
 
+/mob/living/carbon/human/var/list/pending_class_setup
+
 /*
 	We setup the class handler here, aka the menu
 	We will cache it per server session via an assc list with a ckey leading to the datum.
 */
 /datum/controller/subsystem/role_class_handler/proc/setup_class_handler(mob/living/carbon/human/H, advclass_rolls_override = null, register_id = null)
+	if(!H)
+		return
+	if(!H.client)
+		H.pending_class_setup = list(advclass_rolls_override, register_id)
+		return
+	H.pending_class_setup = null
 	if(!register_id)
 		if(H.job == "Towner")
 			register_id = "towner"

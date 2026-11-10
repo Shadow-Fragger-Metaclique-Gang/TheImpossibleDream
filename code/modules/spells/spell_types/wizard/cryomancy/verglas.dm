@@ -250,6 +250,9 @@
 	desc = "I am concentrating to hold the verglas in place. A single blow or casting another spell will shatter it."
 	icon_state = "debuff"
 
+/datum/status_effect/verglas_concentration/skate
+	tick_interval = 1 SECONDS
+
 /datum/status_effect/verglas_concentration/skate/on_apply()
 	. = ..()
 	RegisterSignal(owner, COMSIG_MOVABLE_TURF_ENTERED, PROC_REF(on_enter))

@@ -1,6 +1,7 @@
 #define FOG_WARD_OUTLINE "fog_ward_outline"
 
 /datum/status_effect/buff/fog_ward
+	tick_interval = 1 SECONDS
 	id = "fog_ward"
 	duration = -1 // Controlled by the presence of the caster
 	alert_type = /atom/movable/screen/alert/status_effect/buff/fog_ward
@@ -48,6 +49,7 @@
 
 // --- THE CASTER VARIANT ---
 /datum/status_effect/buff/fog_ward_caster
+	tick_interval = 1 SECONDS
 	id = "fog_ward_caster"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/fog_ward/caster
 	status_type = STATUS_EFFECT_REFRESH
@@ -56,7 +58,7 @@
 	var/dispel_revenants = TRUE
 
 /datum/status_effect/buff/fog_ward_caster/refresh()
-	duration = refresh_duration
+	set_expires_at(refresh_duration == -1 ? -1 : world.time + refresh_duration)
 
 /datum/status_effect/buff/fog_ward_caster/on_creation(mob/living/new_owner, R, D, dispel)
 	range = R

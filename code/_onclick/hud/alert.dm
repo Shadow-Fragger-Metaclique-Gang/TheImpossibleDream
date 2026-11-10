@@ -105,25 +105,37 @@
 //At or above this, the countdown shows whole minutes ("27m"); below it, M:SS or Ns
 #define ALERT_COUNTDOWN_CUTOFF (3 MINUTES)
 
-/atom/movable/screen/alert/proc/update_countdown(remaining_deciseconds)
+#define ALERT_COUNTDOWN_TENTHS (1 MINUTES)
+
+/atom/movable/screen/alert/proc/format_countdown(remaining_deciseconds)
 	if(remaining_deciseconds <= 0)
+		return null
+	if(remaining_deciseconds >= ALERT_COUNTDOWN_CUTOFF)
+		var/mins_left = max(round(remaining_deciseconds / (1 MINUTES), 1), 1)
+		return "[mins_left]m"
+	var/seconds_left = round(remaining_deciseconds / (1 SECONDS), 0.1)
+	if(seconds_left >= 60)
+		var/mins = round(seconds_left / 60)
+		var/secs = round(seconds_left) % 60
+		return "[mins]:[secs < 10 ? "0[secs]" : "[secs]"]"
+	return "[seconds_left]s"
+
+/atom/movable/screen/alert/proc/countdown_stable_above(remaining_deciseconds)
+	if(remaining_deciseconds >= ALERT_COUNTDOWN_CUTOFF)
+		var/mins_left = round(remaining_deciseconds / (1 MINUTES), 1)
+		return max((mins_left - 0.5) * (1 MINUTES), ALERT_COUNTDOWN_CUTOFF)
+	if(remaining_deciseconds >= ALERT_COUNTDOWN_TENTHS)
+		var/whole_seconds = round(round(remaining_deciseconds / (1 SECONDS), 0.1))
+		return max(whole_seconds * (1 SECONDS) - 0.5, ALERT_COUNTDOWN_TENTHS)
+	return 0
+
+/atom/movable/screen/alert/proc/update_countdown(remaining_deciseconds)
+	var/countdown_text = format_countdown(remaining_deciseconds)
+	if(!countdown_text)
 		if(istype(maptext_holder))
 			maptext_holder.maptext = null
 		last_countdown_text = null
 		return
-
-	var/countdown_text
-	if(remaining_deciseconds >= ALERT_COUNTDOWN_CUTOFF)
-		var/mins_left = max(round(remaining_deciseconds / (1 MINUTES), 1), 1)
-		countdown_text = "[mins_left]m"
-	else
-		var/seconds_left = round(remaining_deciseconds / (1 SECONDS), 0.1)
-		if(seconds_left >= 60)
-			var/mins = round(seconds_left / 60)
-			var/secs = round(seconds_left) % 60
-			countdown_text = "[mins]:[secs < 10 ? "0[secs]" : "[secs]"]"
-		else
-			countdown_text = "[seconds_left]s"
 
 	if(countdown_text == last_countdown_text)
 		return
@@ -138,6 +150,7 @@
 	maptext_holder.maptext = MAPTEXT(countdown_text)
 
 #undef ALERT_COUNTDOWN_CUTOFF
+#undef ALERT_COUNTDOWN_TENTHS
 
 //Gas alerts
 /atom/movable/screen/alert/not_enough_oxy

@@ -69,6 +69,7 @@
 #define HYBRID_BUFF_FILTER "Hybrid_Buff_Glow"
 
 /datum/status_effect/buff/healingaura
+	tick_interval = 1 SECONDS
 
 	id = "healingaura"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/healingaura

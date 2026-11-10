@@ -5,19 +5,18 @@
 /mob/living
 	/// ass list [id] = /datum/status_effect. ATTENTION THE CODER IS A RETARD THIS IS NOT SUPPOSED TO BE HERE I REPEART!!!!!!
 	var/alist/status_effects_by_id
+	var/incapacity_count = 0
 
 /datum/status_effect
 	/// The ID of the effect. ID is used in adding and removing effects to check for duplicates, among other things.
 	var/id = "effect"
 	/// When set initially / in on_creation, this is how long the status effect lasts in deciseconds.
-	/// While processing, this becomes the world.time when the status effect will expire.
 	/// -1 = infinite duration.
 	var/duration = -1
 	/// When set initially / in on_creation, this is how long between [proc/tick] calls in deciseconds.
 	/// Note that this cannot be faster than the processing subsystem you choose to fire the effect on. (See: [var/processing_speed])
-	/// While processing, this becomes the world.time when the next tick will occur.
-	/// -1 = will prevent ticks, and if duration is also unlimited (-1), stop processing wholesale.
-	var/tick_interval = 1 SECONDS
+	/// STATUS_EFFECT_NO_TICK = will prevent ticks, and if duration is also unlimited (-1), stop processing wholesale.
+	var/tick_interval = STATUS_EFFECT_NO_TICK
 	/// The mob affected by the status effect.
 	var/mob/living/owner
 	/// How many of the effect can be on one mob, and/or what happens when you try to add a duplicate.
@@ -34,8 +33,13 @@
 	var/atom/movable/screen/alert/status_effect/linked_alert = null
 	/// Each entry defines a stat affected by the status effect during its duration.
 	var/list/effectedstats = list()
-	/// if TRUE, we will be entered into SSfastprocess for ticking. if the effect is cleared/managed by another source, this should be FALSE.
+	/// if TRUE, we will be entered into SSstatuseffects for ticking. if the effect is cleared/managed by another source, this should be FALSE.
 	var/needs_processing = TRUE
+	/// The world.time when the status effect will expire. -1 = never.
+	var/expires_at = -1
+	/// The world.time after which the next [proc/tick] will occur.
+	var/next_tick = 0
+	var/expiry_timer
 
 	///Icon path for this effect's on-mob effect.
 	var/mob_effect_icon = 'icons/mob/mob_effects.dmi'
@@ -56,6 +60,8 @@
 // ON THE ON_CREATION!!!!!!
 /datum/status_effect/proc/on_creation(mob/living/new_owner, ...)
 	testing("oncreation")
+	expires_at = duration
+	next_tick = tick_interval
 	if(new_owner)
 		owner = new_owner
 	if(owner)
@@ -64,7 +70,10 @@
 		if(!length(owner.status_effects_by_id))
 			owner.status_effects_by_id = alist()
 		LAZYADD(owner.status_effects, src)
+		var/datum/status_effect/displaced = owner.status_effects_by_id[id]
 		owner.status_effects_by_id[id] = src
+		if(!displaced)
+			owner.incapacity_count += incapacity_weight()
 
 	if(!owner)
 		qdel(src)
@@ -81,21 +90,75 @@
 		qdel(src)
 		return
 
-	if(duration != -1)
-		duration = world.time + duration
-	tick_interval = world.time + tick_interval
+	expires_at = (duration == -1) ? -1 : world.time + duration
+	next_tick = world.time + tick_interval
 	if(alert_type && owner && !QDELETED(owner) && !QDELING(owner))
 		var/atom/movable/screen/alert/status_effect/A = owner.throw_alert(id, alert_type)
 		A?.attached_effect = src //so the alert can reference us, if it needs to
 		linked_alert = A //so we can reference the alert, if we need to
 
-	if(needs_processing)
-		START_PROCESSING(SSfastprocess, src)
+	schedule()
 	return TRUE
 
+/datum/status_effect/proc/incapacity_weight()
+	var/static/list/incapacitating_ids
+	if(!incapacitating_ids)
+		var/datum/status_effect/stun = STATUS_EFFECT_STUN
+		var/datum/status_effect/unconscious = STATUS_EFFECT_UNCONSCIOUS
+		var/datum/status_effect/paralyzed = STATUS_EFFECT_PARALYZED
+		incapacitating_ids = list()
+		incapacitating_ids[initial(stun.id)] = TRUE
+		incapacitating_ids[initial(unconscious.id)] = TRUE
+		incapacitating_ids[initial(paralyzed.id)] = TRUE
+	return incapacitating_ids[id] ? 1 : 0
+
+/datum/status_effect/proc/schedule()
+	if(!needs_processing)
+		return
+	if(expiry_timer)
+		deltimer(expiry_timer)
+		expiry_timer = null
+	if(tick_interval != STATUS_EFFECT_NO_TICK)
+		START_PROCESSING(SSstatuseffects, src)
+		return
+	if(expires_at == -1)
+		STOP_PROCESSING(SSstatuseffects, src)
+		return
+	var/remaining = expires_at - world.time
+	var/wake_delay = max(remaining + 1, 1)
+	if(owner.client && linked_alert && !QDELETED(linked_alert))
+		var/stable_above = linked_alert.countdown_stable_above(remaining)
+		if(!stable_above)
+			START_PROCESSING(SSstatuseffects, src)
+			return
+		linked_alert.update_countdown(remaining)
+		wake_delay = max(remaining - stable_above + world.tick_lag, world.tick_lag)
+	STOP_PROCESSING(SSstatuseffects, src)
+	expiry_timer = addtimer(CALLBACK(src, PROC_REF(expire)), wake_delay, TIMER_STOPPABLE)
+
+/datum/status_effect/proc/expire()
+	expiry_timer = null
+	if(expires_at != -1 && expires_at < world.time)
+		qdel(src)
+		return
+	schedule()
+
+/datum/status_effect/proc/remaining()
+	if(expires_at == -1)
+		return -1
+	return expires_at - world.time
+
+/datum/status_effect/proc/set_expires_at(new_expires_at)
+	expires_at = new_expires_at
+	if(QDELETED(src) || !owner)
+		return
+	schedule()
+
 /datum/status_effect/Destroy()
-	if(needs_processing)
-		STOP_PROCESSING(SSfastprocess, src)
+	STOP_PROCESSING(SSstatuseffects, src)
+	if(expiry_timer)
+		deltimer(expiry_timer)
+		expiry_timer = null
 	if(owner)
 		linked_alert = null
 		owner.clear_alert(id)
@@ -104,6 +167,7 @@
 		LAZYREMOVE(owner.status_effects, src)
 		if(owner.status_effects_by_id && owner.status_effects_by_id[id] == src)
 			owner.status_effects_by_id -= id
+			owner.incapacity_count -= incapacity_weight()
 
 		on_remove()
 		owner = null
@@ -116,14 +180,21 @@
 	if(QDELETED(owner))
 		qdel(src)
 		return
-	if(tick_interval < world.time)
+	if(tick_interval != STATUS_EFFECT_NO_TICK && next_tick < world.time)
 		tick(wait)
-		tick_interval = world.time + initial(tick_interval)
-	if(duration != -1 && duration < world.time)
+		next_tick = world.time + initial(tick_interval)
+	if(expires_at != -1 && expires_at < world.time)
 		qdel(src)
 		return
-	if(linked_alert && duration != -1)
-		linked_alert.update_countdown(max(duration - world.time, 0))
+	if(owner.client && linked_alert && expires_at != -1)
+		linked_alert.update_countdown(max(expires_at - world.time, 0))
+
+/datum/status_effect/proc/refresh_countdown()
+	if(!linked_alert || QDELETED(linked_alert) || expires_at == -1)
+		return
+	linked_alert.update_countdown(max(expires_at - world.time, 0))
+	if(tick_interval == STATUS_EFFECT_NO_TICK)
+		schedule()
 
 /datum/status_effect/proc/on_apply() //Called whenever the buff is applied; returning FALSE will cause it to autoremove itself.
 	for(var/S in effectedstats)
@@ -156,6 +227,7 @@
 		LAZYREMOVE(owner.status_effects, src)
 		if(owner.status_effects_by_id && owner.status_effects_by_id[id] == src)
 			owner.status_effects_by_id -= id
+			owner.incapacity_count -= incapacity_weight()
 		owner = null
 
 	qdel(src)
@@ -164,7 +236,7 @@
 	var/original_duration = initial(duration)
 	if(original_duration == -1)
 		return
-	duration = world.time + original_duration
+	set_expires_at(world.time + original_duration)
 
 //clickdelay/nextmove modifiers!
 /datum/status_effect/proc/nextmove_modifier()
@@ -195,8 +267,8 @@
 			var/newnum = attached_effect.effectedstats[S] * -1
 			inspec += "<br><span class='danger'>[S]</span> \Roman [newnum]"
 
-	if(attached_effect && attached_effect.duration != -1 && attached_effect.duration > world.time)
-		var/remaining = attached_effect.duration - world.time
+	if(attached_effect && attached_effect.expires_at != -1 && attached_effect.expires_at > world.time)
+		var/remaining = attached_effect.expires_at - world.time
 		var/total_secs = round(remaining / (1 SECONDS))
 		var/timestring
 		if(total_secs >= 60)
@@ -353,7 +425,7 @@
 			threshold_crossed = FALSE //resets threshold effect if we fall below threshold so threshold effect can trigger again
 			on_threshold_drop()
 		if(stacks_added > 0)
-			tick_interval += delay_before_decay //refreshes time until decay
+			next_tick += delay_before_decay //refreshes time until decay
 		stacks = min(stacks, max_stacks)
 		status_overlay.icon_state = "[overlay_state][stacks]"
 		status_underlay.icon_state = "[underlay_state][stacks]"

@@ -322,6 +322,7 @@
 	icon_state = "astrata_pyre"
 
 /datum/status_effect/buff/pyre
+	tick_interval = 1 SECONDS
 	id = "astratan_pyre"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/healing/pyre
 	examine_text = "SUBJECTPRONOUN is basking in Her light."

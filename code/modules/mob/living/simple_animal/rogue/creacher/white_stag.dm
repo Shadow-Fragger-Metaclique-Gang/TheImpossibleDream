@@ -327,6 +327,7 @@
 #define MOVESPEED_ID_WHITE_RUSH "White Rush"
 
 /datum/status_effect/buff/white_rush
+	tick_interval = 1 SECONDS
 	id = "white_rush"
 	duration = 6 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/buff/white_rush

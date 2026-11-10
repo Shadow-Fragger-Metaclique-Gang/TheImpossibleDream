@@ -24,7 +24,7 @@
 		qdel(src)
 		return
 	// tick_interval has been mutated to an absolute world.time by base status_effect, so use initial()
-	var/ticks_remaining = max(1, round((duration - world.time) / initial(tick_interval)))
+	var/ticks_remaining = max(1, round((expires_at - world.time) / initial(tick_interval)))
 	var/refund = pool / ticks_remaining
 	pool -= refund
 	owner.energy_add(refund)

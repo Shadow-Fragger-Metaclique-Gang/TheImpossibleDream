@@ -52,13 +52,35 @@
 		return id_name
 	if(HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS) && !show_descriptors)
 		return "Unknown"
-	var/list/d_list = get_mob_descriptors()
-	var/trait_desc = "[capitalize(build_coalesce_description_nofluff(d_list, src, list(MOB_DESCRIPTOR_SLOT_TRAIT), "%DESC1%"))]"
-	var/stature_desc = "[capitalize(build_coalesce_description_nofluff(d_list, src, list(MOB_DESCRIPTOR_SLOT_STATURE), "%DESC1%"))]"
-	var/descriptor_name = "[trait_desc] [stature_desc]"
+	var/descriptor_name = get_descriptor_name()
 	if(descriptor_name != " ")
 		return descriptor_name
 	return "Unknown"
+
+/mob/living/carbon/human/proc/build_descriptor_name()
+	var/list/d_list = get_mob_descriptors()
+	var/trait_desc = "[capitalize(build_coalesce_description_nofluff(d_list, src, list(MOB_DESCRIPTOR_SLOT_TRAIT), "%DESC1%"))]"
+	var/stature_desc = "[capitalize(build_coalesce_description_nofluff(d_list, src, list(MOB_DESCRIPTOR_SLOT_STATURE), "%DESC1%"))]"
+	return "[trait_desc] [stature_desc]"
+
+/mob/living/carbon/human/proc/first_describable_descriptor(list/descriptor_types, descriptor_slot)
+	for(var/descriptor_type in descriptor_types)
+		var/datum/mob_descriptor/descriptor = MOB_DESCRIPTOR(descriptor_type)
+		if(descriptor.slot != descriptor_slot)
+			continue
+		if(!descriptor.can_describe(src) || !descriptor.can_user_see(src, null))
+			continue
+		return descriptor
+
+/mob/living/carbon/human/proc/get_descriptor_name()
+	var/list/base = get_base_descriptors()
+	var/datum/mob_descriptor/trait_descriptor = first_describable_descriptor(base, MOB_DESCRIPTOR_SLOT_TRAIT)
+	var/datum/mob_descriptor/stature_descriptor = first_describable_descriptor(base, MOB_DESCRIPTOR_SLOT_STATURE)
+	var/key = "[trait_descriptor?.type]|[trait_descriptor?.get_description(src)]|[stature_descriptor?.type]|[stature_descriptor?.get_description(src)]|[gender]|[pronouns]"
+	if(key != descriptor_name_key)
+		descriptor_name_key = key
+		descriptor_name_cache = build_descriptor_name()
+	return descriptor_name_cache
 
 //Returns "Unknown" if facially disfigured and real_name if not. Useful for setting name when Fluacided or when updating a human's name variable
 /mob/living/carbon/human/proc/get_face_name(if_no_face="Unknown")

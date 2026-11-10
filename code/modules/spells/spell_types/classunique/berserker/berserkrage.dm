@@ -74,6 +74,7 @@
 	icon_state = "buff"
 
 /datum/status_effect/buff/rage_stamina
+	tick_interval = 1 SECONDS
 	id = "rage stamina"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/rage_stamina
 	duration = 15 SECONDS

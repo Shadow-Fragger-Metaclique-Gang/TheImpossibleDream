@@ -5,6 +5,7 @@
 	icon_state = "buff"
 
 /datum/status_effect/buff/ashen_aril
+	tick_interval = 1 SECONDS
 	id = "ashen"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/ashen_aril
 	duration = 6 MINUTES
@@ -128,6 +129,7 @@
 #undef ASHEN_FILTER
 
 /datum/status_effect/buff/eoran_balm_effect
+	tick_interval = 1 SECONDS
 	id = "eoran_balm"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/healing
 	duration = -1
@@ -198,6 +200,7 @@
 #define POM_FILTER "pom_aura"
 
 /datum/status_effect/debuff/pomegranate_aura
+	tick_interval = 1 SECONDS
 	id = "pomegranate_aura"
 	duration = -1
 	alert_type = /atom/movable/screen/alert/status_effect/pomegranate_aura
@@ -290,6 +293,7 @@
 //
 
 /datum/status_effect/debuff/pomegranate_beauty
+	tick_interval = 1 SECONDS
 	id = "pomegranate_beauty"
 	duration = -1
 	alert_type = /atom/movable/screen/alert/status_effect/pomegranate_aura
@@ -342,6 +346,7 @@
 	icon_state = "pom_death"
 
 /datum/status_effect/debuff/eoran_wilting
+	tick_interval = 1 SECONDS
 	id = "wilting"
 	duration = 10 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/eoran_wilting

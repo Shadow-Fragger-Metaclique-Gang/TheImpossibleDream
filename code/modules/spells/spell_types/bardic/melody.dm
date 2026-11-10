@@ -88,6 +88,7 @@
 
 
 /datum/status_effect/buff/playing_melody
+	tick_interval = 1 SECONDS
 	id = "play_melody"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/playing_melody
 	var/effect_color

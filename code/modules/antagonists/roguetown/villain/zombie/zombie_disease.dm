@@ -1,4 +1,5 @@
 /datum/status_effect/zombie_infection
+	tick_interval = 1 SECONDS
 	id = "zombie_infection"
 	alert_type = /atom/movable/screen/alert/status_effect/zombie_infection
 	/// Time until transformation completes

@@ -1,6 +1,7 @@
 //Largely beneficial effects go here, even if they have drawbacks. An example is provided in Shadow Mend.
 
 /datum/status_effect/shadow_mend
+	tick_interval = 1 SECONDS
 	id = "shadow_mend"
 	duration = 30
 	alert_type = /atom/movable/screen/alert/status_effect/shadow_mend
@@ -255,6 +256,7 @@
 //Heals 10 brute and oxygen damage every second, and 5 fire
 //Being on fire will suppress this healing
 /datum/status_effect/fleshmend
+	tick_interval = 1 SECONDS
 	id = "fleshmend"
 	duration = 100
 	alert_type = /atom/movable/screen/alert/status_effect/fleshmend
@@ -275,13 +277,14 @@
 	icon_state = "fleshmend"
 
 /datum/status_effect/exercised
+	tick_interval = 1 SECONDS
 	id = "Exercised"
 	duration = 1200
 	alert_type = null
 
 /datum/status_effect/exercised/on_creation(mob/living/new_owner, ...)
 	. = ..()
-	STOP_PROCESSING(SSfastprocess, src)
+	STOP_PROCESSING(SSstatuseffects, src)
 	START_PROCESSING(SSprocessing, src) //this lasts 20 minutes, so SSfastprocess isn't needed.
 
 /datum/status_effect/exercised/Destroy()

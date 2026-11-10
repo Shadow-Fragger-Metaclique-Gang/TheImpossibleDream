@@ -464,7 +464,11 @@ GLOBAL_VAR_INIT(farm_animals, FALSE)
 			return
 	if(footstep_type)
 		if(!QDELING(src))
-			AddComponent(/datum/component/footstep, footstep_type)
+			var/datum/component/footstep/footsteps = GetComponent(/datum/component/footstep)
+			if(footsteps && footsteps.footstep_type == footstep_type && footsteps.volume == 0.5 && footsteps.e_range == -1)
+				footsteps.reset_steps()
+			else
+				AddComponent(/datum/component/footstep, footstep_type)
 
 /mob/living/simple_animal/handle_status_effects()
 	..()

@@ -94,7 +94,8 @@
 
 
 /obj/structure/wild_plant/random/New(loc, datum/plant_def/incoming_type, spread_chance)
-	incoming_type = pick(subtypesof(/datum/plant_def))
+	var/static/list/plant_defs = subtypesof(/datum/plant_def)
+	incoming_type = pick(plant_defs)
 	spread_chance = rand(25, 100)
 	. = ..()
 

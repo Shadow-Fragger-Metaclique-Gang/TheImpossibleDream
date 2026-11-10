@@ -49,8 +49,8 @@
 /datum/status_effect/buff/divine_rebirth_healing/tick()
 	if(HAS_TRAIT(owner, TRAIT_IRONMAN))
 		return
-	var/time_progress = (duration - time_left) / duration
-	time_left -= tick_interval
+	var/time_progress = (expires_at - time_left) / expires_at
+	time_left -= next_tick
 	// This shouldn't ever dip below 5, but let's use MAX for safety anyways
 	healing_strength = max(5, healing_strength - (time_progress * (healing_strength - 5)))
 	var/obj/effect/temp_visual/heal/H = new /obj/effect/temp_visual/heal_rogue(get_turf(owner))

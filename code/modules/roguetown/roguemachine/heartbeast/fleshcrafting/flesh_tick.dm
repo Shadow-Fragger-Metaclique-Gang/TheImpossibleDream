@@ -252,6 +252,7 @@
 	desc = "You hear faint whispers that don't belong to you. Your mind feels maladjusted and unsettled."
 
 /datum/status_effect/debuff/leech_schizophrenia
+	tick_interval = 1 SECONDS
 	id = "leech_schizophrenia"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/leech_schizophrenia
 	duration = 10 SECONDS
@@ -271,7 +272,7 @@
 /datum/status_effect/debuff/leech_schizophrenia/on_creation(mob/living/new_owner, ...)
 	. = ..()
 
-	duration = rand(14 MINUTES, 28 MINUTES)
+	set_expires_at(world.time + rand(14 MINUTES, 28 MINUTES))
 	current_cooldown = world.time + message_cooldown
 	return .
 

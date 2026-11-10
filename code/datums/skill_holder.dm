@@ -280,7 +280,8 @@
 /datum/skill_holder/proc/get_skill_level(skill)
 	var/datum/skill/S = GetSkillRef(skill)
 	var/modifier = 0
-	if(S?.abstract_type in list(/datum/skill/labor, /datum/skill/craft))
+	var/static/list/inspired_skill_types = list(/datum/skill/labor, /datum/skill/craft)
+	if(S?.abstract_type in inspired_skill_types)
 		modifier = current?.get_inspirational_bonus()
 	if(!(S in known_skills))
 		return SKILL_LEVEL_NONE

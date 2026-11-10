@@ -66,6 +66,21 @@
 	..()
 	update_icon()
 
+/obj/machinery/light/rogue
+	var/attachment_overlay_source
+	var/attachment_overlay
+	var/attachment_overlay_layer
+
+/obj/machinery/light/rogue/proc/attachment_overlay_current(obj/item/shown_item)
+	if(!shown_item)
+		return !length(overlays) && !attachment_overlay
+	return length(overlays) == 1 && attachment_overlay && overlays[1] == attachment_overlay && shown_item.appearance == attachment_overlay_source && attachment_overlay_layer == layer
+
+/obj/machinery/light/rogue/proc/remember_attachment_overlay(obj/item/shown_item)
+	attachment_overlay_source = shown_item?.appearance
+	attachment_overlay = (shown_item && length(overlays)) ? overlays[1] : null
+	attachment_overlay_layer = layer
+
 /obj/machinery/light/rogue/update_icon()
 	if(on)
 		icon_state = "[base_state]1"

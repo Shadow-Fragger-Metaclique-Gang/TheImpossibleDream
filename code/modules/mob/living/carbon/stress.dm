@@ -191,6 +191,10 @@ GLOBAL_LIST_INIT(stress_messages, world.file2list("strings/rt/stress_messages.tx
 	oldstress = new_stress
 	update_stress_visual(new_stress)
 
+/mob/living/carbon
+	var/client/stress_visual_client
+	var/stress_visual_fade
+
 /mob/living/carbon/proc/update_stress_visual(new_stress)
 	if(!client)
 		return
@@ -199,11 +203,14 @@ GLOBAL_LIST_INIT(stress_messages, world.file2list("strings/rt/stress_messages.tx
 	//grain_obj.alpha = 55 + (new_stress * 1.5)
 
 	var/fade_progress = 0
-	if(new_stress < 5)
-		fade_progress = 0
-		remove_client_colour(/datum/client_colour/stress_fade)
-	else
+	if(new_stress >= 5)
 		fade_progress = clamp(((new_stress - 5) / 50), 0, 0.6)
+	if(stress_visual_client == client && stress_visual_fade == fade_progress && get_client_color(/datum/client_colour/stress_fade))
+		return
+	stress_visual_client = client
+	stress_visual_fade = fade_progress
+	if(new_stress < 5)
+		remove_client_colour(/datum/client_colour/stress_fade)
 
 	/// Update screen black/white
 	var/datum/client_colour/stress_fade/fade_color = add_client_colour(/datum/client_colour/stress_fade)
@@ -298,8 +305,6 @@ GLOBAL_LIST_INIT(stress_messages, world.file2list("strings/rt/stress_messages.tx
 	for(var/stressor_type in stressors)
 		var/datum/stressevent/event = stressors[stressor_type]
 		var/stress_amt = event.get_stress(src)
-		if(stress_amt > 0 && HAS_TRAIT(src, TRAIT_BAD_MOOD))
-			stress_amt *= 2
 		if(stress_amt > 0 && HAS_TRAIT(src, TRAIT_EORAN_SERENE))
 			stress_amt = (stress_amt * -1)	//We make the bad things feel good.
 		if((stress_amt >= 0) && (wpmodifier > 0))

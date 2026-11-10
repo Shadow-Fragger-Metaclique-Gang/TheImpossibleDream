@@ -450,6 +450,7 @@
 	return FALSE
 
 /datum/status_effect/buff/infestation
+	tick_interval = 1 SECONDS
 	id = "infestation"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/infestation
 	duration = 10 SECONDS
@@ -486,7 +487,7 @@
 	var/mob/living/target = owner
 	var/mob/living/carbon/C = target
 	if(!extended_duration && !target.mind) // 30 seconds on npc so we don't need to worry too much about upkeep and can focus on healing friends
-		duration += 20 SECONDS
+		set_expires_at(expires_at + 20 SECONDS)
 		extended_duration = TRUE
 	if(!target.mind) // technically speaking we're just turning the brain rot into actual body rot, rotception
 		target.adjustToxLoss(3)

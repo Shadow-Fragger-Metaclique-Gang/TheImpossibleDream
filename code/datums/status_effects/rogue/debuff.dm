@@ -1014,6 +1014,7 @@
 	icon_state = "acid"
 
 /datum/status_effect/debuff/joybringer_druqks
+	tick_interval = 1 SECONDS
 	id = "joybringer_druqks"
 	effectedstats = list(STATKEY_LCK = -2)
 	duration = 15 SECONDS
@@ -1076,6 +1077,7 @@
 
 
 /datum/status_effect/debuff/necrandeathdoorwilloss
+	tick_interval = 1 SECONDS
 	id = "Necran Deathly Calm"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/necranwilloss
 	effectedstats = list(STATKEY_WIL = -4)
@@ -1122,6 +1124,7 @@
 	color ="#af9f9f"
 
 /datum/status_effect/debuff/deathdoorwilloss
+	tick_interval = 1 SECONDS
 	id = "Deathly Calm"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/deathdoorwilloss
 	effectedstats = list(STATKEY_WIL = -8)
@@ -1266,6 +1269,7 @@
 	icon_state = "weapon_bind_debuff"
 
 /datum/status_effect/debuff/knockout
+	tick_interval = 1 SECONDS
 	id = "knockout"
 	effectedstats = null
 	alert_type = null

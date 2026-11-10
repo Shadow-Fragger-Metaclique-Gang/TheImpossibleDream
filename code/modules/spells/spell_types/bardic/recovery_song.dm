@@ -16,6 +16,7 @@
 	icon_state = "buff"
 
 /datum/status_effect/buff/song/recovery
+	tick_interval = 1 SECONDS
 	id = "recovery_song"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/song/recovery
 	duration = 15 SECONDS

@@ -134,7 +134,7 @@
 	return ..()
 
 /datum/status_effect/light_buff/refresh(mob/living/owner, light_power)
-	duration += initial(duration) // stack this up as much as we can be bothered to cast it
+	set_expires_at(expires_at + initial(duration)) // stack this up as much as we can be bothered to cast it
 	if(holy_light_power > mob_light_obj.light_power)
 		mob_light_obj.light_power = holy_light_power
 

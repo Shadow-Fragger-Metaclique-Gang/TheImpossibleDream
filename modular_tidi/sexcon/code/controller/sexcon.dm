@@ -546,7 +546,7 @@
 	if(existing)
 		existing.orifice |= orifice
 		to_chat(target, span_love("I feel another warmth beginning to leak out of me."))
-		existing.duration = world.time + initial(existing.duration) // refresh timer
+		existing.set_expires_at(world.time + initial(existing.duration)) // refresh timer
 		return
 	if(use_long)
 		target.apply_status_effect(/datum/status_effect/creampie_leak/long, orifice)
@@ -586,13 +586,13 @@
 
 	user.visible_message(span_love("[user] laps up the fluids leaking from [source]!"), span_love("I lap up the fluids leaking from [source]!"))
 
-	if(drip.duration <= world.time + 6 SECONDS)
+	if(drip.expires_at <= world.time + 6 SECONDS)
 		if(istype(drip, /datum/status_effect/creampie_leak/long))
 			source.remove_status_effect(/datum/status_effect/creampie_leak/long)
 		else
 			source.remove_status_effect(/datum/status_effect/creampie_leak)
 	else
-		drip.duration -= 6 SECONDS
+		drip.set_expires_at(drip.expires_at - 6 SECONDS)
 	return TRUE
 
 /datum/status_effect/facial
@@ -646,7 +646,7 @@
 
 /datum/status_effect/facial/proc/refresh_cum()
 	has_dried_up = FALSE
-	tick_interval = world.time + initial(tick_interval)
+	next_tick = world.time + initial(tick_interval)
 
 ///Callback to remove pearl necklace
 /datum/status_effect/facial/proc/clean_up(datum/source, strength)

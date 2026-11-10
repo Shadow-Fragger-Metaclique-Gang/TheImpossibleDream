@@ -720,3 +720,5 @@
 #else
 #define AI_WORLD_THINK(pawn, message)
 #endif
+
+#define LIFEWORK_WOUNDS (1<<0)

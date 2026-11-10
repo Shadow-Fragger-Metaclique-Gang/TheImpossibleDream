@@ -595,6 +595,9 @@
 			rogue_sneaking = FALSE
 		return
 
+	if(!reset && !rogue_sneaking && m_intent != MOVE_INTENT_SNEAK && alpha == initial(alpha))
+		return
+
 	var/turf/T = get_turf(src)
 	if(!T) //if the turf they're headed to is invalid
 		return

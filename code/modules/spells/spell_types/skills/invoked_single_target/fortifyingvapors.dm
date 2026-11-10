@@ -54,6 +54,7 @@
 	icon_state = "vigorized"
 
 /datum/status_effect/buff/fortifyingvapors
+	tick_interval = 1 SECONDS
 	id = "fortifyingvapors"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/fortifyingvapors
 	duration = 20 SECONDS

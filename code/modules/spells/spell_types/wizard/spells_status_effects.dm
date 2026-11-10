@@ -1,5 +1,6 @@
 // Folder for any status effects that is shared between more than one spell. For now, just Frostbite
 /datum/status_effect/buff/frost
+	tick_interval = 1 SECONDS
 	id = "frost"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/frost
 	duration = 25 SECONDS
@@ -22,6 +23,7 @@
 	target.stamina_add(25)
 
 /datum/status_effect/buff/frostbite
+	tick_interval = 1 SECONDS
 	id = "frostbite"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/frostbite
 	duration = 6 SECONDS

@@ -62,6 +62,7 @@
 		new /obj/effect/temp_visual/acidsplash(T)
 
 /datum/status_effect/buff/acidsplash
+	tick_interval = 1 SECONDS
 	id = "acid splash"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/acidsplash
 	duration = 10 SECONDS

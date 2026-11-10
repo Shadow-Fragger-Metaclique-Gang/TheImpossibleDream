@@ -1326,21 +1326,37 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 		if (isnull(icon_state))
 			icon_state = ""
 
-	icon2collapse = icon(icon2collapse, icon_state, dir, frame, moving)
+	var/static/list/dmi_asset_keys = list()
+	var/memo_key
+	if(icon_path && !isnull(icon_state) && isicon(icon2collapse) && isfile(icon2collapse))
+		memo_key = "[icon_path]|[icon_state]|[dir]|[frame]|[moving]"
+		key = dmi_asset_keys[memo_key]
+		if(key && !SSassets.cache[key])
+			key = null
 
-	var/list/name_and_ref = generate_and_hash_rsc_file(icon2collapse, icon_path)//pretend that tuples exist
+	if(!key)
+		icon2collapse = icon(icon2collapse, icon_state, dir, frame, moving)
 
-	var/rsc_ref = name_and_ref[1] //weird object that's not even readable to the debugger, represents a reference to the icons rsc entry
-	var/file_hash = name_and_ref[2]
-	key = "[name_and_ref[3]].png"
+		var/list/name_and_ref = generate_and_hash_rsc_file(icon2collapse, icon_path)//pretend that tuples exist
 
-	if(!SSassets.cache[key])
-		SSassets.transport.register_asset(key, rsc_ref, file_hash, icon_path)
+		var/rsc_ref = name_and_ref[1] //weird object that's not even readable to the debugger, represents a reference to the icons rsc entry
+		var/file_hash = name_and_ref[2]
+		key = "[name_and_ref[3]].png"
+
+		if(!SSassets.cache[key])
+			SSassets.transport.register_asset(key, rsc_ref, file_hash, icon_path)
+		if(memo_key)
+			dmi_asset_keys[memo_key] = key
 	for (var/client_target in targets)
 		SSassets.transport.send_assets(client_target, key)
 	if(sourceonly)
 		return SSassets.transport.get_asset_url(key)
 	return "<img class='[extra_classes] icon icon-[icon_state]' src='[SSassets.transport.get_asset_url(key)]'>"
+
+/proc/icon2html_for_path(path, client/target)
+	var/atom/thing = new path
+	. = icon2html(thing, target)
+	qdel(thing)
 
 /proc/icon2base64html(target)
 	if (!target)

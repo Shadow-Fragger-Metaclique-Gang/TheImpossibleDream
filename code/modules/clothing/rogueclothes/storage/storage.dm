@@ -418,7 +418,7 @@
 				break
 
 /obj/item/storage/belt/rogue/leather/knifebelt/proc/eatknife(obj/A)
-	if(A.type in typesof(/obj/item/rogueweapon/huntingknife/throwingknife))
+	if(istype(A, /obj/item/rogueweapon/huntingknife/throwingknife))
 		if(knives.len < max_storage)
 			A.forceMove(src)
 			knives += A
@@ -428,7 +428,7 @@
 			return FALSE
 
 /obj/item/storage/belt/rogue/leather/knifebelt/attackby(obj/A, loc, params)
-	if(A.type in typesof(/obj/item/rogueweapon/huntingknife/throwingknife))
+	if(istype(A, /obj/item/rogueweapon/huntingknife/throwingknife))
 		if(knives.len < max_storage)
 			if(ismob(loc))
 				var/mob/M = loc

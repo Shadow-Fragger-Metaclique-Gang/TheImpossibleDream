@@ -6,6 +6,11 @@
 /mob/living/carbon/IsParalyzed()
 	return ..() || stam_paralyzed
 
+/mob/living/carbon/incapacitated(ignore_restraints = FALSE, ignore_grab = TRUE, check_immobilized = FALSE, ignore_stasis = FALSE)
+	if(stam_paralyzed)
+		return TRUE
+	return ..()
+
 /mob/living/carbon/proc/enter_stamcrit()
 	if(!(status_flags & CANKNOCKDOWN) || HAS_TRAIT(src, TRAIT_STUNIMMUNE))
 		return

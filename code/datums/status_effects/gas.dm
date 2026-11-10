@@ -1,4 +1,5 @@
 /datum/status_effect/freon
+	tick_interval = 1 SECONDS
 	id = "frozen"
 	duration = 100
 	status_type = STATUS_EFFECT_UNIQUE

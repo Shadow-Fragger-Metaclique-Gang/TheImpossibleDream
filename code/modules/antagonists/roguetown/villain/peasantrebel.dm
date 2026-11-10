@@ -771,6 +771,7 @@
 
 // These work only in town
 /datum/status_effect/buff/rebel_town_gated
+	tick_interval = 1 SECONDS
 	duration = -1
 	/// Optional flavor on gaining the buff and on losing it to distance.
 	var/active_msg

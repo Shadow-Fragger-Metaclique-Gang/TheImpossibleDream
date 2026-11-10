@@ -39,7 +39,7 @@
 	var/datum/status_effect/S = target.has_status_effect(effect_type)
 	if(!S)
 		return FALSE
-	S.duration -= amount
-	if(S.duration <= world.time)
+	S.set_expires_at(S.expires_at - amount)
+	if(S.expires_at <= world.time)
 		target.remove_status_effect(effect_type)
 	return TRUE

@@ -179,6 +179,14 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 		if(is_role)
 			. += M
 
+/proc/get_minds_by_role()
+	. = list()
+	for(var/datum/mind/M in SSticker.minds)
+		if(!isnull(M.special_role))
+			LAZYADD(.[M.special_role], M)
+		if(!isnull(M.assigned_role) && M.assigned_role != M.special_role)
+			LAZYADD(.[M.assigned_role], M)
+
 /datum/mind/proc/i_know_person(person) //they are added to ours
 	if(!person)
 		return

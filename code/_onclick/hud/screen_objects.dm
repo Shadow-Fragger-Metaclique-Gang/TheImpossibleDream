@@ -1614,6 +1614,7 @@
 	icon_state = "blood100"
 	screen_loc = rogueui_blood
 	icon = 'icons/mob/rogueheat.dmi'
+	var/shown_overlay_key
 
 /atom/movable/screen/healths/blood/Click(location, control, params)
 	var/list/modifiers = params2list(params)

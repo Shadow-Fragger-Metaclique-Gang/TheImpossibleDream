@@ -37,6 +37,7 @@
 //ENDROGUE
 
 /datum/status_effect/sigil_mark //allows the affected target to always trigger sigils while mindless
+	tick_interval = 1 SECONDS
 	id = "sigil_mark"
 	duration = -1
 	alert_type = null
@@ -59,6 +60,7 @@
 	icon_state = "in_love"
 
 /datum/status_effect/in_love
+	tick_interval = 1 SECONDS
 	id = "in_love"
 	duration = -1
 	status_type = STATUS_EFFECT_UNIQUE
@@ -77,6 +79,7 @@
 
 
 /datum/status_effect/bounty
+	tick_interval = 1 SECONDS
 	id = "bounty"
 	status_type = STATUS_EFFECT_UNIQUE
 	var/mob/living/rewarded

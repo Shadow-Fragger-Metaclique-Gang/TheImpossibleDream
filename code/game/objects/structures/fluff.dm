@@ -922,7 +922,8 @@
 	if(HAS_TRAIT(with, TRAIT_NODROP)) // lol. lmao.
 		to_chat(user, span_warning("I can't get [with] onto the table for processing!"))
 		return
-	for(var/obj/item/alch/catalyst/path as anything in typesof(/obj/item/alch/catalyst))
+	var/static/list/catalyst_types = typesof(/obj/item/alch/catalyst)
+	for(var/obj/item/alch/catalyst/path as anything in catalyst_types)
 		if(path::seed_item && ispath(with.type, path::seed_item))
 			current_recipe=path
 			seed_item = with
@@ -1291,7 +1292,7 @@
 			var/needed_amount = R.input_items[A]
 			for(var/B in contents)
 				if(ispath(B, A))
-					if(!R.subtype_reqs && (B in subtypesof(A)))
+					if(!R.subtype_reqs && B != A)
 						continue
 					if(contents[B] >= R.input_items[A])
 						continue main_loop

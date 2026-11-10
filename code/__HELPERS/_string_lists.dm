@@ -11,7 +11,7 @@ GLOBAL_VAR(string_filename_current_key)
 
 	if((filename in GLOB.string_cache) && (key in GLOB.string_cache[filename]))
 		var/response = pick(GLOB.string_cache[filename][key])
-		var/regex/r = regex("@pick\\((\\D+?)\\)", "g")
+		var/regex/r = cached_regex("@pick\\((\\D+?)\\)", "g")
 		response = r.Replace(response, GLOBAL_PROC_REF(strings_subkey_lookup))
 		return response
 	else

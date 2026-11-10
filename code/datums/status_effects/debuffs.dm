@@ -242,6 +242,7 @@
 	playsound(T, "desceration", 100, TRUE, -1)
 
 /datum/status_effect/neck_slice
+	tick_interval = 1 SECONDS
 	id = "neck_slice"
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = null
@@ -310,6 +311,7 @@
 	qdel(src)
 
 /datum/status_effect/spasms
+	tick_interval = 1 SECONDS
 	id = "spasms"
 	status_type = STATUS_EFFECT_MULTIPLE
 	alert_type = null
@@ -481,6 +483,7 @@
 	icon_state = "mind_control"
 
 /datum/status_effect/debuff/mishap_feeblemind
+	tick_interval = 1 SECONDS
 	id = "feeblemind"
 	duration = 7 MINUTES // This effect is really nasty but is deliberately one of the worst mishap effects, so it has a fairly long duration.
 	status_type = STATUS_EFFECT_REFRESH
@@ -537,6 +540,7 @@
 	icon_state = "high"
 
 /datum/status_effect/debuff/mishap_arcane_high
+	tick_interval = 1 SECONDS
 	id = "arcane_high"
 	duration = 5 MINUTES
 	status_type = STATUS_EFFECT_REFRESH
@@ -572,6 +576,7 @@
 	icon_state = "drunk"
 
 /datum/status_effect/debuff/mishap_arcane_drunkenness
+	tick_interval = 1 SECONDS
 	id = "arcane_drunk"
 	duration = 10 MINUTES // Drunkenness we add is forcibly removed on expiry
 	status_type = STATUS_EFFECT_REFRESH
@@ -657,6 +662,7 @@
 	icon_state = "blind"
 
 /datum/status_effect/debuff/mishap_blindness
+	tick_interval = 1 SECONDS
 	id = "arcane_blindness"
 	duration = 2 MINUTES // Another nasty effect - victim will need to be led around until it expires.
 	status_type = STATUS_EFFECT_REFRESH
@@ -683,6 +689,7 @@
 	icon_state = "hypnosis"
 
 /datum/status_effect/debuff/mishap_sleepy
+	tick_interval = 1 SECONDS
 	id = "arcane_sleep"
 	duration = 15 SECONDS // Sleep amount is 60 seconds, so effectively ~75 seconds. User is completely incapacitated so this shouldn't be too long.
 	status_type = STATUS_EFFECT_REFRESH
@@ -708,6 +715,7 @@
 	icon_state = "mind_control"
 
 /datum/status_effect/debuff/mishap_confused
+	tick_interval = 1 SECONDS
 	id = "arcane_confusion"
 	duration = 5 MINUTES
 	status_type = STATUS_EFFECT_REFRESH
@@ -838,7 +846,7 @@
 	lock_dur = min(lock_dur, EXPOSED_CAST_LOCKOUT)
 	var/datum/status_effect/debuff/cast_disrupted/existing = owner.has_status_effect(/datum/status_effect/debuff/cast_disrupted)
 	if(existing)
-		existing.duration = max(existing.duration, world.time + lock_dur)
+		existing.set_expires_at(max(existing.expires_at, world.time + lock_dur))
 		return
 	owner.apply_status_effect(/datum/status_effect/debuff/cast_disrupted, lock_dur)
 

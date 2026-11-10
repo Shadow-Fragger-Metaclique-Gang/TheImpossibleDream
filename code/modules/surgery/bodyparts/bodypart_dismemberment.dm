@@ -476,6 +476,7 @@
 	moveToNullspace()
 	owner = C
 	C.bodyparts += src
+	C.life_work |= LIFEWORK_WOUNDS
 	if(held_index)
 		if(held_index > C.hand_bodyparts.len)
 			C.hand_bodyparts.len = held_index

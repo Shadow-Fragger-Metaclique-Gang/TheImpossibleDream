@@ -19,8 +19,11 @@
 	if(hud_used?.stressies)
 		hud_used.stressies.update_icon()
 
-	handle_wounds()
-	handle_embedded_objects()
+	if(life_work & LIFEWORK_WOUNDS)
+		handle_wounds()
+		handle_embedded_objects()
+		if(life_wounds_settled())
+			life_work &= ~LIFEWORK_WOUNDS
 	handle_blood()
 	handle_roguebreath()
 
@@ -41,6 +44,14 @@
 
 	if(stat != DEAD)
 		return 1
+
+/mob/living/carbon/proc/life_wounds_settled()
+	if(length(simple_wounds))
+		return FALSE
+	for(var/obj/item/bodypart/BP as anything in bodyparts)
+		if(LAZYLEN(BP.wounds) || LAZYLEN(BP.embedded_objects))
+			return FALSE
+	return TRUE
 
 /mob/living/carbon/DeadLife()
 	set invisibility = 0

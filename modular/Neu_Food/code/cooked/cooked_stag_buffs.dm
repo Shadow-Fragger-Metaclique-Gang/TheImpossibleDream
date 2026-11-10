@@ -34,6 +34,7 @@
 #define MOVESPEED_ID_FOREST_RUSH "forest_rush"
 
 /datum/status_effect/buff/forest_rush
+	tick_interval = 1 SECONDS
 	id = "forest_rush"
 	duration = 6 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/buff/white_rush // Reusing alert icon
