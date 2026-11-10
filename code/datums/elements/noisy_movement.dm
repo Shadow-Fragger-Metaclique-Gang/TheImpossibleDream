@@ -16,4 +16,5 @@
 
 /datum/element/noisy_movement/proc/play_sound(atom/movable/source, old_loc, movement_dir, forced)
 	SIGNAL_HANDLER
-	playsound(source, movement_sound, volume, TRUE)
+	if(!forced)
+		playsound(source, movement_sound, volume, TRUE)

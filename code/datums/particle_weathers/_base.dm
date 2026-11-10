@@ -281,6 +281,9 @@
 
 //weather effects for objects
 /datum/particle_weather/proc/weather_obj_act(obj/L)
+	if(!L || QDELETED(L))
+		return
+
 	if(can_weather_act_obj(L))
 		L.weather = TRUE
 		L.weather_act_on(target_trait, severity)
