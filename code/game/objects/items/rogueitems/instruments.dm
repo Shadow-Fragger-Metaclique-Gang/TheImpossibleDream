@@ -63,6 +63,12 @@
 
 /obj/item/rogue/instrument/attack_self(mob/living/user)
 	var/stressevent = /datum/stressevent/music
+//[SURREALIS-ADD] - Offhand music.
+	var/can_play_with_occupied_offhand = FALSE
+	if(ishuman(user))
+		var/mob/living/carbon/human/bard = user
+		can_play_with_occupied_offhand = bard.inspiration?.level >= BARD_T2
+//[/SURREALIS-ADD]
 	. = ..()
 	if(.)
 		return
@@ -116,8 +122,10 @@
 			var/choice = input(user, "Which song?", "Music", name) as null|anything in options
 			if(!choice || !user)
 				return
-
-			if(playing || !(src in user.held_items) || user.get_inactive_held_item())
+//[SURREALIS-EDIT] - Offhand music.
+//			if(playing || !(src in user.held_items) || user.get_inactive_held_item())
+			if(playing || !(src in user.held_items) || user.get_inactive_held_item() && !can_play_with_occupied_offhand)
+//[/SURREALIS-EDIT]
 				return
 
 			if(choice == "Upload New Song")
@@ -147,7 +155,11 @@
 			curfile = song_list[choice]
 			if(!user || playing || !(src in user.held_items))
 				return
-			if(user.get_inactive_held_item())
+//[SURREALIS-EDIT] - Offhand music.
+//			if(user.get_inactive_held_item())
+			if(user.get_inactive_held_item() && !can_play_with_occupied_offhand)
+//[/SURREALIS-EDIT]
+
 				playing = FALSE
 				soundloop.stop()
 				user.remove_status_effect(/datum/status_effect/buff/playing_music)
