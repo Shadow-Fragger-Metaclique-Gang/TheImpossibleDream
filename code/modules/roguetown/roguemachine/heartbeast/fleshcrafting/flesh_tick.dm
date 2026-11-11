@@ -178,7 +178,7 @@
 	var/mob/living/L = parent
 	if(prob(25))
 		to_chat(L, span_notice("The leech tick skitters across my body!"))
-	L.adjustBruteLoss(1, 0)
+	L.adjustBruteLoss(1, UPDATE_HEALTH_IF_DAMAGED)
 	current_zone = pick(possible_zones)
 	update_overlay()
 	zone_switch_timer = addtimer(CALLBACK(src, PROC_REF(switch_zone)), rand(10, 40), TIMER_STOPPABLE)

@@ -8,6 +8,11 @@
 #define STATKEY_SPD "speed"
 #define STATKEY_LCK "fortune"
 
+/// updating_health value: update health only if a carbon's limb actually took brute/burn damage; otherwise behaves as FALSE
+#define UPDATE_HEALTH_IF_DAMAGED 2
+/// TRUE when an updating_health argument asks for an unconditional health update
+#define SHOULD_UPDATE_HEALTH(flag) ((flag) && (flag) != UPDATE_HEALTH_IF_DAMAGED)
+
 //This was previously in vampirelord.dm and mob/living/stats.dm, the person defined it twice because vampirelord came in below that stats file, so now both of them can get it here.
 #define MOBSTATS list(STATKEY_STR, STATKEY_PER, STATKEY_INT, STATKEY_CON, STATKEY_WIL, STATKEY_SPD, STATKEY_LCK)
 

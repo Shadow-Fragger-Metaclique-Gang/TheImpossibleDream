@@ -317,7 +317,7 @@
 	if (method == TOUCH)
 		if (M.mob_biotypes & MOB_UNDEAD)
 			var/effective_volume = min(reac_volume, 30) // realistically the entire pot isn't going to be metabolized if you throw it at someone. also you could basically instakill with this so
-			M.adjustFireLoss(2*effective_volume, 0)
+			M.adjustFireLoss(2*effective_volume, UPDATE_HEALTH_IF_DAMAGED)
 			M.visible_message(span_warning("[M] erupts into angry fizzling and hissing!"), span_warning("DAMNATION, BLESSED WATER! IT BUUUURNS!"))
 			M.emote("scream")
 

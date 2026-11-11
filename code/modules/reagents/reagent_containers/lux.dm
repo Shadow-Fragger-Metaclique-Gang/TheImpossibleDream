@@ -20,7 +20,7 @@
 
 /datum/reagent/vitae/overdose_process(mob/living/M)
 	M.adjustOrganLoss(ORGAN_SLOT_HEART, 0.25	* REAGENTS_EFFECT_MULTIPLIER)
-	M.adjustFireLoss(0.25	* REAGENTS_EFFECT_MULTIPLIER, 0)
+	M.adjustFireLoss(0.25	* REAGENTS_EFFECT_MULTIPLIER, UPDATE_HEALTH_IF_DAMAGED)
 	..()
 	. = 1
 

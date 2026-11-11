@@ -267,7 +267,7 @@
 			to_chat(H, span_warning("The tree's beauty burns your eyes!"))
 			H.Dizzy(5)
 			H.blur_eyes(5)
-			H.adjustBruteLoss(10, 0)
+			H.adjustBruteLoss(10, UPDATE_HEALTH_IF_DAMAGED)
 
 		//Unsightly people have a lower chance to have their beauty temporarily returned.
 		else if(HAS_TRAIT(H, TRAIT_UNSEEMLY) && prob(1))

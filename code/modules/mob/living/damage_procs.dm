@@ -160,7 +160,7 @@
 	. -= bruteloss
 
 
-	if(updating_health)
+	if(SHOULD_UPDATE_HEALTH(updating_health))
 		updatehealth()
 	return amount
 
@@ -230,7 +230,7 @@
 	if (!.)
 		return FALSE
 
-	if(updating_health)
+	if(SHOULD_UPDATE_HEALTH(updating_health))
 		updatehealth()
 	return amount
 

@@ -335,13 +335,13 @@
 			if(4)
 				if(prob(75))
 					to_chat(M, span_danger("I scratch at an itch."))
-					M.adjustBruteLoss(2	* REAGENTS_EFFECT_MULTIPLIER, 0)
+					M.adjustBruteLoss(2	* REAGENTS_EFFECT_MULTIPLIER, UPDATE_HEALTH_IF_DAMAGED)
 					. = 1
 	..()
 
 /datum/reagent/toxin/histamine/overdose_process(mob/living/M)
 	M.adjustOxyLoss(2	* REAGENTS_EFFECT_MULTIPLIER, 0)
-	M.adjustBruteLoss(2	* REAGENTS_EFFECT_MULTIPLIER, FALSE, FALSE, BODYPART_ORGANIC)
+	M.adjustBruteLoss(2	* REAGENTS_EFFECT_MULTIPLIER, UPDATE_HEALTH_IF_DAMAGED, FALSE, BODYPART_ORGANIC)
 	M.adjustToxLoss(2	* REAGENTS_EFFECT_MULTIPLIER, 0)
 	..()
 	. = 1
@@ -437,15 +437,15 @@
 /datum/reagent/toxin/itching_powder/on_mob_life(mob/living/carbon/M)
 	if(prob(15))
 		to_chat(M, span_danger("I scratch at my head."))
-		M.adjustBruteLoss(0.2	* REAGENTS_EFFECT_MULTIPLIER, 0)
+		M.adjustBruteLoss(0.2	* REAGENTS_EFFECT_MULTIPLIER, UPDATE_HEALTH_IF_DAMAGED)
 		. = 1
 	if(prob(15))
 		to_chat(M, span_danger("I scratch at my leg."))
-		M.adjustBruteLoss(0.2	* REAGENTS_EFFECT_MULTIPLIER, 0)
+		M.adjustBruteLoss(0.2	* REAGENTS_EFFECT_MULTIPLIER, UPDATE_HEALTH_IF_DAMAGED)
 		. = 1
 	if(prob(15))
 		to_chat(M, span_danger("I scratch at my arm."))
-		M.adjustBruteLoss(0.2	* REAGENTS_EFFECT_MULTIPLIER, 0)
+		M.adjustBruteLoss(0.2	* REAGENTS_EFFECT_MULTIPLIER, UPDATE_HEALTH_IF_DAMAGED)
 		. = 1
 	if(prob(3))
 		M.reagents.add_reagent(/datum/reagent/toxin/histamine,rand(1,3))
@@ -629,7 +629,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.bleed_rate = min(H.bleed_rate + 2, 8)
-		H.adjustBruteLoss(1, 0) //Brute damage increases with the amount they're bleeding
+		H.adjustBruteLoss(1, UPDATE_HEALTH_IF_DAMAGED) //Brute damage increases with the amount they're bleeding
 		. = 1
 	return ..() || .
 
@@ -724,7 +724,7 @@
 	acidpwr = 42.0
 
 /datum/reagent/toxin/acid/fluacid/on_mob_life(mob/living/carbon/M)
-	M.adjustFireLoss(current_cycle/10, 0)
+	M.adjustFireLoss(current_cycle/10, UPDATE_HEALTH_IF_DAMAGED)
 	. = 1
 	..()
 
@@ -736,7 +736,7 @@
 	acidpwr = 5.0
 
 /datum/reagent/toxin/acid/nitracid/on_mob_life(mob/living/carbon/M)
-	M.adjustFireLoss(current_cycle/15, FALSE) //here you go nervar
+	M.adjustFireLoss(current_cycle/15, UPDATE_HEALTH_IF_DAMAGED) //here you go nervar
 	. = TRUE
 	..()
 

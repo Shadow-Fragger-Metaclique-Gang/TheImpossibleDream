@@ -30,5 +30,5 @@
 	self_consuming = TRUE
 
 /datum/reagent/rogueacid/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
-	M.adjustFireLoss(35, 0)
+	M.adjustFireLoss(35, UPDATE_HEALTH_IF_DAMAGED)
 	..()

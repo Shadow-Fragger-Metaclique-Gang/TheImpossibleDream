@@ -116,7 +116,7 @@
 /datum/reagent/drug/crank/overdose_process(mob/living/M)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 2	* REAGENTS_EFFECT_MULTIPLIER)
 	M.adjustToxLoss(2	* REAGENTS_EFFECT_MULTIPLIER, 0)
-	M.adjustBruteLoss(2	* REAGENTS_EFFECT_MULTIPLIER, FALSE, FALSE, BODYPART_ORGANIC)
+	M.adjustBruteLoss(2	* REAGENTS_EFFECT_MULTIPLIER, UPDATE_HEALTH_IF_DAMAGED, FALSE, BODYPART_ORGANIC)
 	..()
 	. = 1
 
@@ -130,14 +130,14 @@
 	. = 1
 
 /datum/reagent/drug/crank/addiction_act_stage3(mob/living/M)
-	M.adjustBruteLoss(5	* REAGENTS_EFFECT_MULTIPLIER, 0)
+	M.adjustBruteLoss(5	* REAGENTS_EFFECT_MULTIPLIER, UPDATE_HEALTH_IF_DAMAGED)
 	..()
 	. = 1
 
 /datum/reagent/drug/crank/addiction_act_stage4(mob/living/M)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3	* REAGENTS_EFFECT_MULTIPLIER)
 	M.adjustToxLoss(5	* REAGENTS_EFFECT_MULTIPLIER, 0)
-	M.adjustBruteLoss(5	* REAGENTS_EFFECT_MULTIPLIER, 0)
+	M.adjustBruteLoss(5	* REAGENTS_EFFECT_MULTIPLIER, UPDATE_HEALTH_IF_DAMAGED)
 	..()
 	. = 1
 

@@ -187,7 +187,7 @@
 	if(!parts.len)
 		return
 	var/obj/item/bodypart/picked = pick(parts)
-	if(picked.receive_damage(brute, burn, stamina,check_armor ? run_armor_check(picked, (brute ? "blunt" : burn ? "fire" : stamina ? "bullet" : null)) : FALSE))
+	if(picked.receive_damage(brute, burn, stamina,check_armor ? run_armor_check(picked, (brute ? "blunt" : burn ? "fire" : stamina ? "bullet" : null)) : FALSE, stamina > 0 ? TRUE : updating_health))
 		update_damage_overlays()
 
 //Heal MANY bodyparts, in random order
@@ -213,7 +213,7 @@
 		stamina = round(stamina - (stamina_was - picked.stamina_dam), DAMAGE_PRECISION)
 
 		parts -= picked
-	if(updating_health)
+	if(SHOULD_UPDATE_HEALTH(updating_health))
 		updatehealth()
 		update_stamina()
 	if(update)
@@ -249,14 +249,14 @@
 
 
 			update |= picked.receive_damage(brute_per_part, burn_per_part, stamina_per_part, 0, stamina_per_part > 0, required_status)
-			if(stamina_per_part <= 0 && (brute_per_part > 0 || burn_per_part > 0))
+			if(stamina_per_part <= 0 && (picked.brute_dam != brute_was || picked.burn_dam != burn_was))
 				damaged = TRUE
 
 			brute	= round(brute - (picked.brute_dam - brute_was), DAMAGE_PRECISION)
 			burn	= round(burn - (picked.burn_dam - burn_was), DAMAGE_PRECISION)
 			stamina = round(stamina - (picked.stamina_dam - stamina_was), DAMAGE_PRECISION)
 
-	if(updating_health || damaged)
+	if(updating_health == UPDATE_HEALTH_IF_DAMAGED ? damaged : updating_health)
 		updatehealth()
 	if(update)
 		update_damage_overlays()

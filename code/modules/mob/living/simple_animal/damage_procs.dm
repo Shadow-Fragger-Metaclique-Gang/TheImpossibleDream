@@ -3,7 +3,7 @@
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 	bruteloss = round(CLAMP(bruteloss + amount, 0, maxHealth),DAMAGE_PRECISION)
-	if(updating_health)
+	if(SHOULD_UPDATE_HEALTH(updating_health))
 		updatehealth()
 	return amount
 
