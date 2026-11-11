@@ -49,9 +49,6 @@
 		if("Consult Bounties")
 			consult_bounties(H)
 
-		if("Set Bounty")
-			set_bounty(H)
-
 		// [SURREALIS-REMOVE] - EXCIDIUM removes magical validhunting scrolls
 		/**
 		if("Print List of Bounties")
