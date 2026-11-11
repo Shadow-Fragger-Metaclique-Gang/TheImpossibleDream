@@ -226,6 +226,7 @@
 
 	var/list/obj/item/bodypart/parts = get_damageable_bodyparts(required_status)
 	var/update = 0
+	var/damaged = FALSE
 	var/remaining_brute = brute
 	var/remaining_burn = burn
 	if(brute > 0 || burn > 0 || stamina > 0)
@@ -247,13 +248,15 @@
 			var/stamina_was = picked.stamina_dam
 
 
-			update |= picked.receive_damage(brute_per_part, burn_per_part, stamina_per_part, FALSE, required_status)
+			update |= picked.receive_damage(brute_per_part, burn_per_part, stamina_per_part, 0, stamina_per_part > 0, required_status)
+			if(stamina_per_part <= 0 && (brute_per_part > 0 || burn_per_part > 0))
+				damaged = TRUE
 
 			brute	= round(brute - (picked.brute_dam - brute_was), DAMAGE_PRECISION)
 			burn	= round(burn - (picked.burn_dam - burn_was), DAMAGE_PRECISION)
 			stamina = round(stamina - (picked.stamina_dam - stamina_was), DAMAGE_PRECISION)
 
-	if(updating_health)
+	if(updating_health || damaged)
 		updatehealth()
 	if(update)
 		update_damage_overlays()
