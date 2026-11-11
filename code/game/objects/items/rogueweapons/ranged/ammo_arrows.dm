@@ -80,14 +80,13 @@
 	damage = 20
 	damage_type = BRUTE
 	armor_penetration = PEN_NONE
+	antibeast_factor = ANTIBEAST_DEFAULT
 	icon = 'icons/roguetown/weapons/ranged/arrow_proj.dmi'
 	icon_state = "arrow_proj"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow
 	range = 15
 	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
 	embedchance = 25
-	intdamfactor = 1.25 // Attempt to make it so that arrows do more damage to armor
-	// Without instantly killing people when armor breaks
 	woundclass = BCLASS_PIERCE
 	flag = "piercing"
 	speed = 0.4
@@ -129,7 +128,7 @@
 /obj/projectile/bullet/reusable/arrow/iron
 	name = "broadhead arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/iron
-	damage = 55
+	damage = 35
 	armor_penetration = PEN_LIGHT
 	flag = "piercing"
 	embedchance = 30
@@ -139,7 +138,7 @@
 	name = "decrepit broadhead arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/iron/aalloy
 	icon_state = "ancientarrow_proj"
-	damage = 55
+	damage = 35
 	armor_penetration = PEN_LIGHT
 	flag = "piercing"
 
@@ -149,7 +148,7 @@
 /obj/projectile/bullet/reusable/arrow/steel
 	name = "bodkin arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/steel
-	damage = 30
+	damage = 25
 	armor_penetration = PEN_HEAVY
 	embedchance = 80 // Easy embeds!
 
@@ -159,7 +158,7 @@
 	name = "ancient bodkin arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/steel/paalloy
 	icon_state = "ancientarrow_proj"
-	damage = 35
+	damage = 30
 	armor_penetration = PEN_HEAVY
 	embedchance = 60
 

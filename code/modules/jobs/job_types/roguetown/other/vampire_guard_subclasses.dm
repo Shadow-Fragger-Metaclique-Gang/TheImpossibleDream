@@ -347,7 +347,7 @@
 		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
 		/obj/item/rope/chain = 1,
 		/obj/item/flint = 1,
-		/obj/item/bomb = 2 //CHAOS REIGNS
+		/obj/item/explosive/fused/bottle = 2 //CHAOS REIGNS
 		)
 
 //A bunch of motherfuckin' draculas and they're all playin' flute. Buff-class lite duelist, doesn't perform as well as duelist in tradeoff for being able to buff up their teammates with music and perform vicious mockery.
@@ -374,7 +374,6 @@
 		/datum/skill/misc/reading = SKILL_LEVEL_MASTER, //Dead men tell no tales, fortunately undead ones tell many more.
 		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE, //Keeping captives, alive. We're not a lich's army, we have standards.
 		/datum/skill/misc/sneaking = SKILL_LEVEL_JOURNEYMAN,
-		/datum/skill/misc/stealing = SKILL_LEVEL_APPRENTICE, //Worse than adv, intended.
 		/datum/skill/misc/music = SKILL_LEVEL_LEGENDARY, //SOVL NUKE
 		/datum/skill/misc/lockpicking = SKILL_LEVEL_EXPERT, //Keeping it, unironically works perfectly here.
 	)
@@ -435,10 +434,10 @@
 // Despite decent wards, stabbing them w/silver should make them fall over to pain pretty fast or straight dust them on the spot after a few critical sunders. Expect them to lose a fair bit of blue w/ reliance on wards + spam casting.
 /datum/advclass/vampseigemage
 	name = "Vampiric Battlemage"
-	tutorial = "You were a magos of old, ever since the embrace you've never had more time to practice your pursuit of arcayne magicks, let alone revel in your taste for blood; now your master arises once more and your arcayne research shall see fruition. Your lord's will be done."
+	tutorial = "You were a magos of old, ever since the embrace you've never had more time to practice your persuit of arcayne magicks, let alone revel in your taste for blood; now your master arises once more and your arcayne research shall see fruition. Your lord's will be done."
 	outfit = /datum/outfit/job/roguetown/other/vampseigemage
 	traits_applied = list(TRAIT_STEELHEARTED, TRAIT_INTELLECTUAL, TRAIT_ALCHEMY_EXPERT, TRAIT_ARCYNE)
-	subclass_mage_aspects = list("mastery" = FALSE, "major" = 1, "minor" = 2, "utilities" = 6, "ward" = TRUE)
+	subclass_mage_aspects = list("mastery" = FALSE, "major" = 1, "minor" = 2, "utilities" = 8, "ward" = TRUE)
 	category_tags = list(CTAG_VAMPGUARD)
 	subclass_stats = list(
 		STATKEY_INT = 4, //You've had long to study, a lot to study as well

@@ -23,7 +23,7 @@
 		STATKEY_CON = 1,
 		STATKEY_WIL = 2, // With 2 Wil they should not be struggling
 	)
-	subclass_mage_aspects = list("mastery" = FALSE, "major" = 0, "minor" = 0, "utilities" = 6) // Mama Zizo said you get 2 more points on Utility!!!
+	subclass_mage_aspects = list("mastery" = FALSE, "major" = 0, "minor" = 0, "utilities" = 8) // Mama Zizo said you get 2 more points on Utility!!!
 	subclass_skills = list(
 		/datum/skill/combat/shields = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
@@ -78,10 +78,9 @@
 	var/datum/spellblade_chant/chant = GLOB.spellblade_chants[spellblade_chant_selected]
 	chant.apply_chant(H)
 
-	backr = /obj/item/rogueweapon/shield/heater
-
 	// used to handle skill assignment automatically
 	var/obj/item/rogueweapon/granted_weapon = null
+	backr = /obj/item/rogueweapon/shield/heater
 	switch(spellblade_chant_selected)
 		if("blade")
 			var/list/weapons = list("Kriegmesser", "Longsword", "Rapier", "Sabre", "Steel Arming Sword", "Steel Greatsword", "Steel Dagger")
@@ -182,7 +181,6 @@
 			var/helmchoice = input(H, "Choose your Helm.", "LIGHT SHINES THROUGH") as anything in helmets
 			if(helmchoice != "None")
 				head = helmets[helmchoice]
-
 	// Patron-specific bonuses
 	H.cmode_music = 'sound/music/combat_heretic.ogg'
 	switch(H.patron?.type)

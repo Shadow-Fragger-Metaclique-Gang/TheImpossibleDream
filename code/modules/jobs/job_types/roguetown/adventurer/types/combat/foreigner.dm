@@ -39,6 +39,8 @@
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(
 		/obj/item/flashlight/flare/torch/lantern,
+		/obj/item/rogueweapon/huntingknife = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
 		)
 	H.set_blindness(0)
 	if(H.mind)
@@ -95,7 +97,9 @@
 	backr = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(
 		/obj/item/flashlight/flare/torch = 1,
-		/obj/item/bomb/smoke = 3,
+		/obj/item/explosive/impact/smoke/bomb = 3,
+		/obj/item/rogueweapon/huntingknife = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
 		)
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/kazengun
@@ -214,6 +218,10 @@
 	head = /obj/item/clothing/head/roguetown/roguehood/shalal/hijab/black
 	beltr = /obj/item/flashlight/flare/torch/lantern
 	mask = /obj/item/clothing/mask/rogue/lordmask/tarnished
+	backpack_contents = list(
+		/obj/item/rogueweapon/huntingknife = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		)
 
 	var/paths = list("Refugee (Default)", "Seminary Dropout (Hierophant)", "Wandering Yogi (Vizier)")
 	var/path = input(H, "Choose your past.", "WHAT DID WAR TAKE FROM YOU?") as anything in paths
@@ -252,7 +260,7 @@
 			ADD_TRAIT(H, TRAIT_ALCHEMY_EXPERT, TRAIT_GENERIC)
 
 			if(H.mind)
-				H.mind.setup_mage_aspects(list("mastery" = FALSE, "major" = 1, "minor" = 2, "utilities" = 4))
+				H.mind.setup_mage_aspects(list("mastery" = FALSE, "major" = 1, "minor" = 2, "utilities" = 5))
 				H.mind.AddSpell(new /datum/action/cooldown/spell/ley_lines)
 
 		if("Wandering Yogi (Vizier)")
@@ -285,12 +293,12 @@
 
 			if(H.mind)
 				grant_poke_spell(H)
-				H.mind.AddSpell(new /datum/action/cooldown/spell/blink/shadowstep)
+				H.mind.AddSpell(new /datum/action/cooldown/spell/blink/shadowstep/vizier)
 				H.mind.AddSpell(new /datum/action/cooldown/spell/vizier/restoration/lesser)
 				H.mind.AddSpell(new /datum/action/cooldown/spell/vizier/acceleration)
 				H.mind.AddSpell(new /datum/action/cooldown/spell/bestow_ward)
 				H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
-				H.mind.setup_mage_aspects(list("ward" = TRUE, "mastery" = FALSE, "major" = 0, "minor" = 1, "utilities" = 6, "locked_aspects" = list(/datum/magic_aspect/lesser_augmentation)))
+				H.mind.setup_mage_aspects(list("ward" = TRUE, "mastery" = FALSE, "major" = 0, "minor" = 1, "utilities" = 8, "locked_aspects" = list(/datum/magic_aspect/augmentation)))
 
 /datum/advclass/foreigner/slaver
 	name = "Ranesheni Slaver"
@@ -457,6 +465,8 @@
 		/obj/item/flashlight/flare/torch = 1,
 		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
 		/obj/item/natural/bundle/cloth/bandage/full = 1,
+		/obj/item/rogueweapon/huntingknife = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
 		)
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/hierophant/civilian

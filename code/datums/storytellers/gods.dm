@@ -368,7 +368,7 @@
 	name = "Eora"
 	vote_desc = " Love reigns. Positive affairs occur more often, and She wills for none to be ill. No villains, no gnolls; only a small handful of wretches lurk at the fringe. Her favor shines upon romance."
 	desc = "Widespread events get a 1.5x weight bump, boons 1.2x. No antagonists, no raids. Divine intervention fires 2x more often, personal events 1.4x. Wretches hard-capped at 5 slots. Gnolls absent."
-	welcome_text = "\"Love is in the air? Nay; tis the smell of freshly-baked pies upon the windowsills!\""
+	welcome_text = "\"Love is in the air? Nay; 'tis the smell of freshly-baked pies upon the windowsills!\""
 	color_theme = "#9966CC"
 	preferred_gnoll_mode = GNOLL_SCALING_NONE
 	wretch_slot_cap = 5
@@ -650,9 +650,6 @@
 			STATS_INDEBTED = list("name"= "Number of indebted people:", "points" = 5, "capacity" = 25),
 		),
 		"Set 4" = list(
-			STATS_ITEMS_PICKPOCKETED = list("name" = "Items pickpocketed:", "points" = 4.5, "capacity" = 80),
-		),
-		"Set 5" = list(
 			STATS_LOCKS_PICKED = list("name" = "Locks picked:", "points" = 3.75, "capacity" = 80),
 		)
 	)
