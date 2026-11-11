@@ -418,7 +418,10 @@
 				break
 
 /obj/item/storage/belt/rogue/leather/knifebelt/proc/eatknife(obj/A)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(A.type in typesof(/obj/item/rogueweapon/huntingknife/throwingknife)) // SURREALIS-EDIT - ORIGINAL
 	if(istype(A, /obj/item/rogueweapon/huntingknife/throwingknife))
+	// [/SURREALIS-EDIT]
 		if(knives.len < max_storage)
 			A.forceMove(src)
 			knives += A
@@ -428,7 +431,10 @@
 			return FALSE
 
 /obj/item/storage/belt/rogue/leather/knifebelt/attackby(obj/A, loc, params)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(A.type in typesof(/obj/item/rogueweapon/huntingknife/throwingknife)) // SURREALIS-EDIT - ORIGINAL
 	if(istype(A, /obj/item/rogueweapon/huntingknife/throwingknife))
+	// [/SURREALIS-EDIT]
 		if(knives.len < max_storage)
 			if(ismob(loc))
 				var/mob/M = loc

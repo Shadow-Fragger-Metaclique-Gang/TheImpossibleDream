@@ -418,7 +418,9 @@
 
 
 /datum/status_effect/buff/champion
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	alert_type = /atom/movable/screen/alert/status_effect/buff/champion
 	var/mob/living/carbon/ward = null
 	effectedstats = list(STATKEY_CON = 1, STATKEY_WIL = 1)
@@ -451,7 +453,9 @@
 
 
 /datum/status_effect/buff/ward
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	alert_type = /atom/movable/screen/alert/status_effect/buff/ward
 	var/mob/living/carbon/champion = null
 	effectedstats = list(STATKEY_LCK = 1, STATKEY_WIL = 1)

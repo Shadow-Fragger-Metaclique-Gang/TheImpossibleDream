@@ -1,7 +1,9 @@
 /mob/living
 	/// Simple wound instances with no associated bodyparts
 	var/list/datum/wound/simple_wounds
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	var/life_work = LIFEWORK_WOUNDS
+	// [/SURREALIS-ADD]
 	/// Simple embedded objects with no associated bodyparts
 	var/list/obj/item/simple_embedded_objects
 	/// Cached value of simple wound bleeding

@@ -99,7 +99,10 @@ GLOBAL_LIST_EMPTY(prayers)
 		to_chat(follower, span_warning("Your prayer is too weak to be considered!"))
 		return FALSE
 	for(var/profanity in profane_words)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// var/regex/cussjar = regex("([profanity])", "im") // SURREALIS-EDIT - ORIGINAL
 		var/regex/cussjar = cached_regex("([profanity])", "im")
+		// [/SURREALIS-EDIT]
 		if(cussjar.Find(prayer))
 			punish_prayer(follower)
 			return FALSE

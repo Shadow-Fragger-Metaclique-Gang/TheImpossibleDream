@@ -39,7 +39,14 @@
 	var/datum/status_effect/S = target.has_status_effect(effect_type)
 	if(!S)
 		return FALSE
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	S.duration -= amount
+	if(S.duration <= world.time)
+	*/
 	S.set_expires_at(S.expires_at - amount)
 	if(S.expires_at <= world.time)
+	// [/SURREALIS-EDIT]
 		target.remove_status_effect(effect_type)
 	return TRUE

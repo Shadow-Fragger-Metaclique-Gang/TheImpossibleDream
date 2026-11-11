@@ -20,6 +20,14 @@
 /proc/get_player_curses(key)
 	if(!key)
 		return
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	var/json_file = file("data/player_saves/[copytext(key,1,2)]/[key]/curses.json")
+	if(!fexists(json_file))
+		WRITE_FILE(json_file, "{}")
+	var/list/json = json_decode(file2text(json_file))
+	*/
 	var/json_file = "data/player_saves/[copytext(key,1,2)]/[key]/curses.json"
 	if(!rustg_file_exists(json_file))
 		rustg_file_write("{}", json_file)
@@ -48,18 +56,29 @@
 		rustg_file_write("{}", json_file)
 		return list()
 
+	// [/SURREALIS-EDIT]
 	if(json)
 		return json
 
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	log_game("CURSE ERROR: JSON returned null for [key], recreating")
 	rustg_file_write("{}", json_file)
 	return list()
 
+	// [/SURREALIS-ADD]
 /proc/apply_player_curse(key, curse)
 	if(!key)
 		return
 	if(!curse)
 		return
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	var/json_file = file("data/player_saves/[copytext(key,1,2)]/[key]/curses.json")
+	if(!fexists(json_file))
+		WRITE_FILE(json_file, "{}")
+	var/list/json = json_decode(file2text(json_file))
+	*/
 	var/json_file = "data/player_saves/[copytext(key,1,2)]/[key]/curses.json"
 	if(!rustg_file_exists(json_file))
 		rustg_file_write("{}", json_file)
@@ -72,11 +91,19 @@
 		json = list()
 	if(!json)
 		json = list()
+	// [/SURREALIS-EDIT]
 
 	if(json[curse])
 		return
 	json[curse] = 1
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	fdel(json_file)
+	WRITE_FILE(json_file, json_encode(json))
+	*/
 	rustg_file_write(json_encode(json), json_file)
+	// [/SURREALIS-EDIT]
 	return TRUE
 
 /proc/remove_player_curse(key, curse)
@@ -84,6 +111,14 @@
 		return
 	if(!curse)
 		return
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	var/json_file = file("data/player_saves/[copytext(key,1,2)]/[key]/curses.json")
+	if(!fexists(json_file))
+		WRITE_FILE(json_file, "{}")
+	var/list/json = json_decode(file2text(json_file))
+	*/
 	var/json_file = "data/player_saves/[copytext(key,1,2)]/[key]/curses.json"
 	if(!rustg_file_exists(json_file))
 		rustg_file_write("{}", json_file)
@@ -96,9 +131,17 @@
 		json = list()
 	if(!json)
 		json = list()
+	// [/SURREALIS-EDIT]
 
 	if(!json[curse])
 		return
 	json[curse] = null
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	fdel(json_file)
+	WRITE_FILE(json_file, json_encode(json))
+	*/
 	rustg_file_write(json_encode(json), json_file)
+	// [/SURREALIS-EDIT]
 	return TRUE

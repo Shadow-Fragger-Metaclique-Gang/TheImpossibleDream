@@ -922,8 +922,11 @@
 	if(HAS_TRAIT(with, TRAIT_NODROP)) // lol. lmao.
 		to_chat(user, span_warning("I can't get [with] onto the table for processing!"))
 		return
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// for(var/obj/item/alch/catalyst/path as anything in typesof(/obj/item/alch/catalyst)) // SURREALIS-EDIT - ORIGINAL
 	var/static/list/catalyst_types = typesof(/obj/item/alch/catalyst)
 	for(var/obj/item/alch/catalyst/path as anything in catalyst_types)
+	// [/SURREALIS-EDIT]
 		if(path::seed_item && ispath(with.type, path::seed_item))
 			current_recipe=path
 			seed_item = with
@@ -1292,7 +1295,10 @@
 			var/needed_amount = R.input_items[A]
 			for(var/B in contents)
 				if(ispath(B, A))
+					// [SURREALIS-EDIT] - PLASMA_OPTS
+					// if(!R.subtype_reqs && (B in subtypesof(A))) // SURREALIS-EDIT - ORIGINAL
 					if(!R.subtype_reqs && B != A)
+					// [/SURREALIS-EDIT]
 						continue
 					if(contents[B] >= R.input_items[A])
 						continue main_loop

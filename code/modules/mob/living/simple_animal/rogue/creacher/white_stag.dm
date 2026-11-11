@@ -327,7 +327,9 @@
 #define MOVESPEED_ID_WHITE_RUSH "White Rush"
 
 /datum/status_effect/buff/white_rush
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "white_rush"
 	duration = 6 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/buff/white_rush

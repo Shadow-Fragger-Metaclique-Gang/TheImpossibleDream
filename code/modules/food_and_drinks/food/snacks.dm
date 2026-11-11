@@ -280,7 +280,10 @@ All foods are distributed among various categories. Use common sense.
 						eater.remove_status_effect(/datum/status_effect/buff/foodhealing)
 						eater.apply_status_effect(/datum/status_effect/buff/foodhealing, faretype, faretype)
 					else if(faretype == H.fare_power)
+						// [SURREALIS-EDIT] - PLASMA_OPTS
+						// H.duration += 2 SECONDS // SURREALIS-EDIT - ORIGINAL
 						H.set_expires_at(H.expires_at + 2 SECONDS)
+						// [/SURREALIS-EDIT]
 				else
 					eater.apply_status_effect(/datum/status_effect/buff/foodhealing, faretype, faretype)
 

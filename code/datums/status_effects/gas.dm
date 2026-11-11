@@ -1,5 +1,7 @@
 /datum/status_effect/freon
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "frozen"
 	duration = 100
 	status_type = STATUS_EFFECT_UNIQUE

@@ -30,5 +30,8 @@
 	self_consuming = TRUE
 
 /datum/reagent/rogueacid/reaction_mob(mob/living/M, method=TOUCH, reac_volume)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// M.adjustFireLoss(35, 0) // SURREALIS-EDIT - ORIGINAL
 	M.adjustFireLoss(35, UPDATE_HEALTH_IF_DAMAGED)
+	// [/SURREALIS-EDIT]
 	..()

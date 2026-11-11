@@ -531,7 +531,10 @@ GLOBAL_LIST_EMPTY(custom_fermentation_recipes)
 
 /obj/item/reagent_containers/glass/bottle/brewing_bottle/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(target.type in (typesof(/obj/item/reagent_containers/glass) - typesof(/obj/item/reagent_containers/glass/bottle))) // SURREALIS-EDIT - ORIGINAL
 	if(istype(target, /obj/item/reagent_containers/glass) && !istype(target, /obj/item/reagent_containers/glass/bottle))
+	// [/SURREALIS-EDIT]
 		if(glass_name)
 			target.name = glass_name
 		if(glass_desc)

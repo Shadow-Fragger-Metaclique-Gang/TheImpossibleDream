@@ -16,5 +16,8 @@
 
 /datum/element/noisy_movement/proc/play_sound(atom/movable/source, old_loc, movement_dir, forced)
 	SIGNAL_HANDLER
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// playsound(source, movement_sound, volume, TRUE) // SURREALIS-EDIT - ORIGINAL
 	if(!forced)
 		playsound(source, movement_sound, volume, TRUE)
+	// [/SURREALIS-EDIT]

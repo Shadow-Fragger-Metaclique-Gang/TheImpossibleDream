@@ -7,7 +7,10 @@
 	icon_state = "colossus"
 	icon_living = "colossus"
 	icon_dead = "vvd"
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// summon_primer = "You are an colossus, a massive elemental. Elementals such as yourself are immeasurably old. Now you've been pulled from your home into a new world, that is decidedly less peaceful then your carefully guarded plane. How you react to these events, only time can tell." // SURREALIS-EDIT - ORIGINAL
 	summon_primer = "You are a colossus, a massive elemental. Elementals such as yourself are immeasurably old. Now you've been pulled from your home into a new world, that is decidedly less peaceful than your carefully guarded plane. How you react to these events, only time can tell."
+	// [/SURREALIS-EDIT]
 	summon_tier = 4
 	gender = MALE
 	emote_hear = null

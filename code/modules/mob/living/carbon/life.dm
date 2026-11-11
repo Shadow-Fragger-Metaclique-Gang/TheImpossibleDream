@@ -19,11 +19,18 @@
 	if(hud_used?.stressies)
 		hud_used.stressies.update_icon()
 
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	handle_wounds()
+	handle_embedded_objects()
+	*/
 	if(life_work & LIFEWORK_WOUNDS)
 		handle_wounds()
 		handle_embedded_objects()
 		if(life_wounds_settled())
 			life_work &= ~LIFEWORK_WOUNDS
+	// [/SURREALIS-EDIT]
 	handle_blood()
 	handle_roguebreath()
 
@@ -45,6 +52,7 @@
 	if(stat != DEAD)
 		return 1
 
+// [SURREALIS-ADD] - PLASMA_OPTS
 /mob/living/carbon/proc/life_wounds_settled()
 	if(length(simple_wounds))
 		return FALSE
@@ -53,6 +61,7 @@
 			return FALSE
 	return TRUE
 
+// [/SURREALIS-ADD]
 /mob/living/carbon/DeadLife()
 	set invisibility = 0
 

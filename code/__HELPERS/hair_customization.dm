@@ -527,6 +527,13 @@ GLOBAL_LIST_INIT(hair_preview_dirs, list(SOUTH, WEST, NORTH, EAST))
 		return null
 	return "[customizer_type]|[hair_entry.accessory_type]|[sanitize_hexcolor(hair_entry.hair_color, 6, TRUE, "#FFFFFF")]|[hair_entry.natural_gradient]|[sanitize_hexcolor(hair_entry.natural_color, 6, TRUE, "#FFFFFF")]|[hair_entry.dye_gradient]|[sanitize_hexcolor(hair_entry.dye_color, 6, TRUE, "#FFFFFF")]"
 
+// [SURREALIS-EDIT] - PLASMA_OPTS
+// SURREALIS-EDIT - ORIGINAL
+/*
+/proc/hair_preview_icon(mob/living/carbon/human/human, preview_dir)
+	if(!human)
+		return null
+*/
 /proc/hair_preview_icon(mob/living/carbon/human/human, preview_dir, client/renderer)
 	if(!human)
 		return null
@@ -536,6 +543,7 @@ GLOBAL_LIST_INIT(hair_preview_dirs, list(SOUTH, WEST, NORTH, EAST))
 		var/rendered = renderer.RenderIcon(snapshot)
 		if(rendered)
 			return icon(rendered)
+// [/SURREALIS-EDIT]
 	return getFlatIcon(human, defdir = preview_dir, no_anim = TRUE)
 
 /proc/hair_band_layers(list/overlays, preview_dir)

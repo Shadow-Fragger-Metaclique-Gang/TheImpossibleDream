@@ -16,7 +16,9 @@
 	icon_state = "buff"
 
 /datum/status_effect/buff/song/recovery
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "recovery_song"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/song/recovery
 	duration = 15 SECONDS

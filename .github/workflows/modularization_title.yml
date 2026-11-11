@@ -1,0 +1,58 @@
+name: Modularization Title
+
+# Keeps the [SEMI-MODULAR] / [NON-MODULAR] prefix on PR titles correct, based
+# on which files the PR changes.
+#
+# This runs with pull_request_target (a write token, also on fork
+# PRs) so it NEVER checks out or runs PR code. It only reads the PR's file
+# list from the API and runs the base branch checker.
+
+on:
+  pull_request_target:
+    branches:
+      - main
+    types: [opened, edited, synchronize, reopened, labeled, unlabeled]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  title:
+    name: Set modularity in PR title
+    if: >-
+      !contains(github.event.pull_request.labels.*.name, 'Upstream Merge') &&
+      !contains(github.event.pull_request.title, '[UPSTREAM]') &&
+      !contains(github.event.pull_request.title, '[PARITY]')
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    steps:
+      - name: Checkout base branch tools
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: tools/modular_check
+
+      - name: Update title
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          if [ ! -f tools/modular_check/modular_check.py ]; then
+            echo "Checker not on the base branch yet; skipping."
+            exit 0
+          fi
+          gh api "repos/$REPO/pulls/$PR/files" --paginate --jq '.[].filename' > "$RUNNER_TEMP/files.txt"
+          NEW_TITLE=$(python3 tools/modular_check/modular_check.py classify --files-from "$RUNNER_TEMP/files.txt" --title="$TITLE")
+          if [ "$NEW_TITLE" != "$TITLE" ]; then
+            echo "Retitling: $NEW_TITLE"
+            gh api -X PATCH "repos/$REPO/pulls/$PR" -f title="$NEW_TITLE" --silent
+          else
+            echo "Title already correct."
+          fi

@@ -1,6 +1,8 @@
 // Folder for any status effects that is shared between more than one spell. For now, just Frostbite
 /datum/status_effect/buff/frost
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "frost"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/frost
 	duration = 25 SECONDS
@@ -23,7 +25,9 @@
 	target.stamina_add(25)
 
 /datum/status_effect/buff/frostbite
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "frostbite"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/frostbite
 	duration = 6 SECONDS

@@ -53,7 +53,10 @@
 			var/needed_amount = R.reqs[A]
 			for(var/B in contents)
 				if(ispath(B, A))
+					// [SURREALIS-EDIT] - PLASMA_OPTS
+					// if(!R.subtype_reqs && (B in subtypesof(A))) // SURREALIS-EDIT - ORIGINAL
 					if(!R.subtype_reqs && B != A)
+					// [/SURREALIS-EDIT]
 						continue
 					if (R.blacklist.Find(B))
 
@@ -425,7 +428,10 @@
 				if(!I.can_craft_with())
 					surroundings -= I
 			for(var/atom/movable/IS in surroundings)
+				// [SURREALIS-EDIT] - PLASMA_OPTS
+				// if(!R.subtype_reqs && (IS.type in subtypesof(A))) // SURREALIS-EDIT - ORIGINAL
 				if(!R.subtype_reqs && IS.type != A && ispath(IS.type, A))
+				// [/SURREALIS-EDIT]
 					surroundings.Remove(IS)
 			surroundings -= Deletion
 			if(ispath(A, /datum/reagent))
@@ -468,7 +474,10 @@
 					for(var/obj/item/natural/bundle/B in surroundings)
 						if(!B.stacktype || !ispath(B.stacktype, A))
 							continue
+						// [SURREALIS-EDIT] - PLASMA_OPTS
+						// if(!R.subtype_reqs && (B.stacktype in subtypesof(A))) // SURREALIS-EDIT - ORIGINAL
 						if(!R.subtype_reqs && B.stacktype != A)
+						// [/SURREALIS-EDIT]
 							continue
 						if(R.blacklist.Find(B.stacktype))
 							continue

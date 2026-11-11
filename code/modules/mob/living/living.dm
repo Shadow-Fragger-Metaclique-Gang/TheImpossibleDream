@@ -761,7 +761,10 @@
 	return FALSE
 
 /mob/living/incapacitated(ignore_restraints = FALSE, ignore_grab = TRUE, check_immobilized = FALSE, ignore_stasis = FALSE)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(stat || IsUnconscious() || IsStun() || IsParalyzed() || (!ignore_restraints && restrained(ignore_grab))) // SURREALIS-EDIT - ORIGINAL
 	if(stat || incapacity_count || (!ignore_restraints && restrained(ignore_grab)))
+	// [/SURREALIS-EDIT]
 		return TRUE
 
 /mob/living/canUseStorage()

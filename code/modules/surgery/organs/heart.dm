@@ -107,12 +107,21 @@
 	..()
 	if(owner.client && beating)
 		failed = FALSE
+		// [SURREALIS-REMOVE] - PLASMA_OPTS
+		/*
+		var/sound/slowbeat = sound('sound/health/slowbeat.ogg', repeat = TRUE)
+		var/sound/fastbeat = sound('sound/health/fastbeat.ogg', repeat = TRUE)
+		*/
+		// [/SURREALIS-REMOVE]
 		var/mob/living/carbon/H = owner
 
 
 		if(H.health <= H.crit_threshold && beat != BEAT_SLOW)
 			beat = BEAT_SLOW
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// H.playsound_local(get_turf(H), slowbeat,40,0, channel = CHANNEL_HEARTBEAT) // SURREALIS-EDIT - ORIGINAL
 			H.playsound_local(get_turf(H), sound('sound/health/slowbeat.ogg', repeat = TRUE),40,0, channel = CHANNEL_HEARTBEAT)
+			// [/SURREALIS-EDIT]
 //			to_chat(owner, span_notice("I feel my heart slow down..."))
 		if(beat == BEAT_SLOW && H.health > H.crit_threshold)
 			H.stop_sound_channel(CHANNEL_HEARTBEAT)
@@ -120,7 +129,10 @@
 
 		if(H.jitteriness)
 			if(H.health > HEALTH_THRESHOLD_FULLCRIT && (!beat || beat == BEAT_SLOW))
+				// [SURREALIS-EDIT] - PLASMA_OPTS
+				// H.playsound_local(get_turf(H),fastbeat,40,0, channel = CHANNEL_HEARTBEAT) // SURREALIS-EDIT - ORIGINAL
 				H.playsound_local(get_turf(H),sound('sound/health/fastbeat.ogg', repeat = TRUE),40,0, channel = CHANNEL_HEARTBEAT)
+				// [/SURREALIS-EDIT]
 				beat = BEAT_FAST
 		else if(beat == BEAT_FAST)
 			H.stop_sound_channel(CHANNEL_HEARTBEAT)

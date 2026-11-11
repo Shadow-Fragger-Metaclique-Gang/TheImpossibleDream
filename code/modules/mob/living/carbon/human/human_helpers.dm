@@ -52,11 +52,21 @@
 		return id_name
 	if(HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS) && !show_descriptors)
 		return "Unknown"
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	var/list/d_list = get_mob_descriptors()
+	var/trait_desc = "[capitalize(build_coalesce_description_nofluff(d_list, src, list(MOB_DESCRIPTOR_SLOT_TRAIT), "%DESC1%"))]"
+	var/stature_desc = "[capitalize(build_coalesce_description_nofluff(d_list, src, list(MOB_DESCRIPTOR_SLOT_STATURE), "%DESC1%"))]"
+	var/descriptor_name = "[trait_desc] [stature_desc]"
+	*/
 	var/descriptor_name = get_descriptor_name()
+	// [/SURREALIS-EDIT]
 	if(descriptor_name != " ")
 		return descriptor_name
 	return "Unknown"
 
+// [SURREALIS-ADD] - PLASMA_OPTS
 /mob/living/carbon/human/proc/build_descriptor_name()
 	var/list/d_list = get_mob_descriptors()
 	var/trait_desc = "[capitalize(build_coalesce_description_nofluff(d_list, src, list(MOB_DESCRIPTOR_SLOT_TRAIT), "%DESC1%"))]"
@@ -82,6 +92,7 @@
 		descriptor_name_cache = build_descriptor_name()
 	return descriptor_name_cache
 
+// [/SURREALIS-ADD]
 //Returns "Unknown" if facially disfigured and real_name if not. Useful for setting name when Fluacided or when updating a human's name variable
 /mob/living/carbon/human/proc/get_face_name(if_no_face="Unknown")
 	if( wear_mask && (wear_mask.flags_inv&HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible

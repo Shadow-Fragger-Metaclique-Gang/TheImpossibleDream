@@ -11,7 +11,10 @@ GLOBAL_VAR(string_filename_current_key)
 
 	if((filename in GLOB.string_cache) && (key in GLOB.string_cache[filename]))
 		var/response = pick(GLOB.string_cache[filename][key])
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// var/regex/r = regex("@pick\\((\\D+?)\\)", "g") // SURREALIS-EDIT - ORIGINAL
 		var/regex/r = cached_regex("@pick\\((\\D+?)\\)", "g")
+		// [/SURREALIS-EDIT]
 		response = r.Replace(response, GLOBAL_PROC_REF(strings_subkey_lookup))
 		return response
 	else

@@ -1,4 +1,11 @@
 /mob/dead/new_player/Login()
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	if(client && CONFIG_GET(flag/use_exp_tracking))
+		client.set_exp_from_db()
+		client.set_db_player_flags()
+	*/
 	if(!client)
 		return
 	if(CONFIG_GET(flag/use_exp_tracking))
@@ -8,6 +15,7 @@
 		client.set_db_player_flags()
 		if(!client)
 			return
+	// [/SURREALIS-EDIT]
 	if(!mind)
 		mind = new /datum/mind(key)
 		mind.active = 1

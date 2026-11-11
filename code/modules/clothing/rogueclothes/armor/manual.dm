@@ -230,7 +230,9 @@
 	for(var/repair_thing in repair_items)
 		var/obj/item/thing = new repair_thing
 		. += span_info("Repairable via [thing.name].")
+		// [SURREALIS-ADD] - PLASMA_OPTS
 		qdel(thing)
+		// [/SURREALIS-ADD]
 
 /obj/item/clothing/suit/roguetown/armor/manual/tool/attackby(obj/item/I, mob/user, params)
 	if(user != loc)

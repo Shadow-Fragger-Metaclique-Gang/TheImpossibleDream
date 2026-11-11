@@ -74,7 +74,9 @@
 	icon_state = "buff"
 
 /datum/status_effect/buff/rage_stamina
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "rage stamina"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/rage_stamina
 	duration = 15 SECONDS

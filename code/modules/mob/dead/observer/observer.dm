@@ -174,8 +174,10 @@ GLOBAL_VAR_CONST(observer_move_delay_multiplier, 0.5)
 				pixel_y = 0
 				invisibility = INVISIBILITY_OBSERVER
 				alpha = 100
+				// [SURREALIS-ADD] - PLASMA_OPTS
 				if(SSiconupdates.visuals_pending(body))
 					SSiconupdates.after_commit(body, CALLBACK(src, PROC_REF(refresh_body_overlays), body, MA.overlays.Copy()))
+				// [/SURREALIS-ADD]
 	update_icon()
 
 	if(!T)
@@ -339,12 +341,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return forceMove(step_turf)
 	return FALSE
 
+// [SURREALIS-ADD] - PLASMA_OPTS
 /mob/dead/observer/proc/refresh_body_overlays(mob/living/carbon/human/body, list/stale_overlays)
 	if(QDELETED(src) || QDELETED(body) || !draw_icon)
 		return
 	cut_overlay(stale_overlays)
 	add_overlay(body.overlays.Copy())
 
+// [/SURREALIS-ADD]
 /mob/dead/observer/proc/reenter_corpse()
 	set name = "Re-enter Corpse"
 	set hidden = 1

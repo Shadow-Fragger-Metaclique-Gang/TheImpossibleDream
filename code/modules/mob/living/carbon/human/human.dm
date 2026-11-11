@@ -525,7 +525,10 @@
 			if(bloodloss > 0)
 				usedloss = bloodloss
 
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// hud_used.bloods.cut_overlays() // SURREALIS-EDIT - ORIGINAL
 			var/list/blood_overlays = list()
+			// [/SURREALIS-EDIT]
 			if(usedloss <= 0)
 				hud_used.bloods.icon_state = "dam0"
 				if(toxloss > 0)
@@ -541,7 +544,10 @@
 							toxoverlay = "toxloss80"
 						if(100 to 999)
 							toxoverlay = "toxloss100"
+					// [SURREALIS-EDIT] - PLASMA_OPTS
+					// hud_used.bloods.add_overlay(toxoverlay) // SURREALIS-EDIT - ORIGINAL
 					blood_overlays += toxoverlay
+					// [/SURREALIS-EDIT]
 
 				if(oxyloss > 0)
 					var/oxyoverlay
@@ -556,7 +562,10 @@
 							oxyoverlay = "oxyloss80"
 						if(100 to 999)
 							oxyoverlay = "oxyloss100"
+					// [SURREALIS-EDIT] - PLASMA_OPTS
+					// hud_used.bloods.add_overlay(oxyoverlay) // SURREALIS-EDIT - ORIGINAL
 					blood_overlays += oxyoverlay
+					// [/SURREALIS-EDIT]
 			else
 				var/used = round(usedloss, 10)
 				if(used <= 80)
@@ -576,6 +585,8 @@
 						painoverlay = "painloss80"
 					if(100 to 999)
 						painoverlay = "painloss100"
+				// [SURREALIS-EDIT] - PLASMA_OPTS
+				// hud_used.bloods.add_overlay(painoverlay) // SURREALIS-EDIT - ORIGINAL
 				blood_overlays += painoverlay
 			var/atom/movable/screen/healths/blood/blood_hud = hud_used.bloods
 			var/overlay_key = jointext(blood_overlays, "|")
@@ -584,6 +595,7 @@
 				blood_hud.cut_overlays()
 				for(var/blood_overlay in blood_overlays)
 					blood_hud.add_overlay(blood_overlay)
+				// [/SURREALIS-EDIT]
 
 /*		if(hud_used.healthdoll)
 			hud_used.healthdoll.cut_overlays()

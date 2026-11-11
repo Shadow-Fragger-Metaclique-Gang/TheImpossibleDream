@@ -38,11 +38,13 @@
 			footstep_sounds = 'sound/blank.ogg'
 	RegisterSignal(parent, list(COMSIG_MOVABLE_MOVED), PROC_REF(play_simplestep)) //Note that this doesn't get called for humans.
 
+// [SURREALIS-ADD] - PLASMA_OPTS
 /datum/component/footstep/proc/reset_steps()
 	steps = 0
 	last_sound = null
 	clear_prints()
 
+// [/SURREALIS-ADD]
 /datum/component/footstep/Destroy(force, silent)
 	clear_prints()
 	return ..()

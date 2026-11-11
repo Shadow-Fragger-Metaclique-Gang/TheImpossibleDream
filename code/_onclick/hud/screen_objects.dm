@@ -1614,7 +1614,9 @@
 	icon_state = "blood100"
 	screen_loc = rogueui_blood
 	icon = 'icons/mob/rogueheat.dmi'
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	var/shown_overlay_key
+	// [/SURREALIS-ADD]
 
 /atom/movable/screen/healths/blood/Click(location, control, params)
 	var/list/modifiers = params2list(params)

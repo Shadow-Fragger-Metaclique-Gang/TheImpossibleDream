@@ -217,7 +217,9 @@
 #define MOVESPEED_ID_BLOOD_FRENZY "Blood Frenzy"
 
 /datum/status_effect/buff/blood_frenzy
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "blood_frenzy"
 	duration = 3 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/buff/blood_frenzy

@@ -94,8 +94,11 @@
 
 
 /obj/structure/wild_plant/random/New(loc, datum/plant_def/incoming_type, spread_chance)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// incoming_type = pick(subtypesof(/datum/plant_def)) // SURREALIS-EDIT - ORIGINAL
 	var/static/list/plant_defs = subtypesof(/datum/plant_def)
 	incoming_type = pick(plant_defs)
+	// [/SURREALIS-EDIT]
 	spread_chance = rand(25, 100)
 	. = ..()
 

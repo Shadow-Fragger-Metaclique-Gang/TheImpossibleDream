@@ -18,7 +18,9 @@ GLOBAL_LIST_INIT(vampire_clan_selection_i18n, build_vampire_clan_selection_i18n(
 	var/selected_clan_type
 	var/selected_is_custom = FALSE
 	var/pending_custom_name = ""
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	var/list/cached_clans
+	// [/SURREALIS-ADD]
 
 /datum/vampire_clan_selection_menu/New(datum/antagonist/vampire/source_antag, mob/living/carbon/human/source_user)
 	. = ..()
@@ -47,6 +49,35 @@ GLOBAL_LIST_INIT(vampire_clan_selection_i18n, build_vampire_clan_selection_i18n(
 
 /datum/vampire_clan_selection_menu/ui_data(mob/user)
 	var/list/data = list()
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	var/list/clans = list()
+
+	for(var/clan_type in subtypesof(/datum/clan))
+		var/datum/clan/C = new clan_type
+		if(C.selectable_by_vampires)
+			clans += list(clan_to_ui(clan_type, C))
+		qdel(C)
+
+	clans += list(list(
+			"id" = "custom",
+			"name" = "Customised Caitiff Clan",
+			"desc" = "Forge your own cursed bloodline outside the ancient houses. The elders will not claim you, but neither will their chains bind you.",
+			"curse" = "Unstable legacy.",
+			"downside" = "Have no ancient house to shelter your name. Your clan has no additional defining traits.",
+			"bloodPreference" = "You'll drink anything that moves almost.",
+			"tagline" = "Forge your own cursed lowborne bloodline",
+			"icon" = null,
+			"isCustom" = TRUE,
+			"covens" = list(),
+			"lordTitle" = "Caitiff Lord",
+			"lordForm" = null,
+			"lordTraits" = list(),
+			"clanTraits" = list(),
+			"vitaeBonus" = 0
+	))
+	*/
 	var/list/clans = cached_clans
 	if(!clans)
 		clans = list()
@@ -75,6 +106,7 @@ GLOBAL_LIST_INIT(vampire_clan_selection_i18n, build_vampire_clan_selection_i18n(
 				"vitaeBonus" = 0
 		))
 		cached_clans = clans
+	// [/SURREALIS-EDIT]
 
 	var/lang = user?.client?.preferred_ui_language || DEFAULT_PREFERRED_UI_LANGUAGE
 	data["clans"] = clans

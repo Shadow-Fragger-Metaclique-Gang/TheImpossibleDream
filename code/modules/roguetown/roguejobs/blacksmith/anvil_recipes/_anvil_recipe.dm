@@ -253,6 +253,23 @@
 	if(!istype(client))
 		client = user.client
 	user << browse_rsc('html/book.png')
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	var/html = {"
+		<!DOCTYPE html>
+		<html lang="en">
+		<meta charset='UTF-8'>
+		<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'/>
+		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+		<body>
+			<div>
+			<h1>[icon2html(new created_item, user)][name]</h1>
+			<h4>Description</h4>
+			<p>[initial(created_item.desc)]</p>
+			<div>
+		"}
+	*/
 	var/html = {"
 		<!DOCTYPE html>
 		<html lang="en">
@@ -266,6 +283,7 @@
 			<p>[initial(created_item.desc)]</p>
 			<div>
 		"}
+	// [/SURREALIS-EDIT]
 	var/obj/item/clothing/suit/roguetown/armor/bookarmor = initial(new created_item)
 	var/obj/item/rogueweapon/bookweapon = initial(created_item)
 
@@ -349,10 +367,19 @@
 				<strong>Requirements</strong>
 				<br>"}
 
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	html += "[icon2html(new req_bar, user)] Start with [initial(req_bar.name)] on an anvil.<br>"
+	html += "Hammer the material.<br>"
+	for(var/atom/path as anything in additional_items)
+		html += "[icon2html(new path, user)] then add [initial(path.name)]<br>"
+	*/
 	html += "[icon2html_for_path(req_bar, user)] Start with [initial(req_bar.name)] on an anvil.<br>"
 	html += "Hammer the material.<br>"
 	for(var/atom/path as anything in additional_items)
 		html += "[icon2html_for_path(path, user)] then add [initial(path.name)]<br>"
+	// [/SURREALIS-EDIT]
 		html += "Hammer the material.<br>"
 
 	html += {"
@@ -361,9 +388,17 @@
 		"}
 
 	if(createditem_num > 1)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// SURREALIS-EDIT - ORIGINAL
+		/*
+		html += "<strong class=class='scroll'>and then you get</strong> <br> [createditem_num] [icon2html(new created_item, user)]	[initial(created_item.name)]<br>"
+	else
+		html += "<strong class=class='scroll'>and then you get</strong> <br> [icon2html(new created_item, user)]	[initial(created_item.name)]<br>"
+		*/
 		html += "<strong class=class='scroll'>and then you get</strong> <br> [createditem_num] [icon2html_for_path(created_item, user)]	[initial(created_item.name)]<br>"
 	else
 		html += "<strong class=class='scroll'>and then you get</strong> <br> [icon2html_for_path(created_item, user)]	[initial(created_item.name)]<br>"
+		// [/SURREALIS-EDIT]
 
 	if(created_item.sellprice)
 		html += "<strong class=class='scroll'>You can sell this for [created_item.sellprice] mammons at a normal quality</strong> <br>"

@@ -38,10 +38,17 @@
 	var/image/holder = M.hud_list[ANTAG_HUD]
 	var/datum/atom_hud/antag/specific_hud = hudindex ? GLOB.huds[hudindex] : null
 	if(holder)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// SURREALIS-EDIT - ORIGINAL
+		/*
+		holder.icon_state = new_icon_state
+		holder.color = specific_hud?.icon_color
+		*/
 		var/mutable_appearance/staged = new(holder)
 		staged.icon_state = new_icon_state
 		staged.color = specific_hud?.icon_color
 		holder.appearance = staged
+		// [/SURREALIS-EDIT]
 	if(M.mind || new_icon_state) //in mindless mobs, only null is acceptable, otherwise we're antagging a mindless mob, meaning we should runtime
 		M.mind.antag_hud_icon_state = new_icon_state
 

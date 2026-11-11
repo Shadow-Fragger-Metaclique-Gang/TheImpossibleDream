@@ -465,13 +465,17 @@
 	icon_state = "buff"
 
 /datum/status_effect/buff/wardenbuff
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "wardenbuff"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/wardenbuff
 	effectedstats = list(STATKEY_PER = 2, STATKEY_WIL = 1, STATKEY_SPD = 1)
 
 /datum/status_effect/buff/innkeeperbuff
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "innkeeperbuff"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/innkeeperbuff
 	effectedstats = list(STATKEY_CON = 1, STATKEY_WIL = 1, STATKEY_SPD = 1, STATKEY_STR = 3)
@@ -484,13 +488,17 @@
 		owner.remove_status_effect(/datum/status_effect/buff/innkeeperbuff)
 
 /datum/status_effect/buff/guardbuffone
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "guardbuffone"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/guardbuffone
 	effectedstats = list(STATKEY_CON = 1,STATKEY_WIL = 1, STATKEY_SPD = 1)
 
 /datum/status_effect/buff/anthraxbuff
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "anthraxbuff"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/anthraxbuff
 	effectedstats = list(STATKEY_SPD = 3,STATKEY_PER = 1)
@@ -525,7 +533,9 @@
 #define MIRACLE_HEALING_FILTER "miracle_heal_glow"
 
 /datum/status_effect/buff/healing
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "healing"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/healing
 	duration = 10 SECONDS
@@ -578,7 +588,9 @@
 #define REWIND_AURA "originhealing"
 
 /datum/status_effect/buff/originhealing // not affected by the heartbeast, since this is not really "healing", you're restoring someone in time. It will also only heal one limb at a time, to differ from other heals that are more uniform.
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "originhealing"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/healing
 	duration = 10 SECONDS
@@ -654,7 +666,9 @@
 #define CONSUME_AURA "consumehealing"
 
 /datum/status_effect/buff/foodhealing
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "consumehealing"
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/buff/healing
@@ -719,7 +733,9 @@
 #define CAMPFIRE_BASE_FILTER "campfire_stamina"
 
 /datum/status_effect/buff/campfire_stamina
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "stamina_campfire"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/campfire_stamina
 	duration = 5 SECONDS
@@ -746,7 +762,9 @@
 	owner.remove_filter(CAMPFIRE_BASE_FILTER)
 
 /datum/status_effect/buff/campfire
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "healing_campfire"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/healing/campfire
 	examine_text = null
@@ -794,7 +812,9 @@
 #define MIRACLE_BLOODHEAL_FILTER "miracle_bloodheal_glow"
 
 /datum/status_effect/buff/bloodheal
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "bloodheal"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/bloodheal
 	duration = BLOODHEAL_DUR_DEFAULT
@@ -884,7 +904,9 @@
 #define PSYDON_REVIVED_FILTER "psydon_revival_glow"
 
 /datum/status_effect/buff/psyhealing
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "psyhealing"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/psyhealing
 	duration = 15 SECONDS
@@ -920,7 +942,9 @@
 	owner.adjustCloneLoss(-healing_on_tick, 0)
 
 /datum/status_effect/buff/psyvived
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "psyvived"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/psyvived
 	duration = 30 SECONDS
@@ -962,7 +986,9 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/status_effect/buff/oremuncher // heals like old rockmunch
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "oremuncher"
 	duration = 10 SECONDS
 	var/healing_on_tick = 4
@@ -993,7 +1019,9 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/status_effect/buff/ingotmuncher // better than ore, worse than gem
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "ingotmuncher"
 	duration = 10 SECONDS
 	var/healing_on_tick = 4
@@ -1035,7 +1063,9 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/status_effect/buff/gemmuncher // heals all super well, also gives stamina back
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "gemmuncher"
 	duration = 10 SECONDS
 	var/healing_on_tick = 4
@@ -1342,7 +1372,9 @@
 	icon_state = "buff"
 
 /datum/status_effect/buff/flylordstriage
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "healing"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/healing
 	duration = 20 SECONDS
@@ -1431,7 +1463,9 @@
 	REMOVE_TRAIT(owner, TRAIT_NODEATH, id)
 
 /datum/status_effect/buff/undermaidenbargainheal
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "undermaidenbargainheal"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/undermaidenbargainheal
 	duration = 10 SECONDS
@@ -1584,7 +1618,9 @@
 
 
 /datum/status_effect/buff/clash
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "clash"
 	duration = 6 SECONDS
 	var/dur
@@ -2459,7 +2495,9 @@
 	. = ..()
 
 /datum/status_effect/buff/dagger_boost
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "dagger_boost"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/dagger_boost
 	effectedstats = list(STATKEY_SPD = 1)
@@ -2845,7 +2883,9 @@
 	icon_state = "buff"
 
 /datum/status_effect/buff/invigoration
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "invigoration"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/invigoration
 	duration = 10 SECONDS

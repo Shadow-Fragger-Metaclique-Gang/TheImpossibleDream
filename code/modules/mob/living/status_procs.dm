@@ -24,7 +24,10 @@
 /mob/living/proc/AmountStun() //How many deciseconds remain in our stun
 	var/datum/status_effect/incapacitating/stun/S = IsStun()
 	if(S)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// return S.duration - world.time // SURREALIS-EDIT - ORIGINAL
 		return S.expires_at - world.time
+		// [/SURREALIS-EDIT]
 	return 0
 
 /mob/living/proc/Stun(amount, updating = TRUE, ignore_canstun = FALSE) //Can't go below remaining duration
@@ -35,7 +38,10 @@
 			return
 		var/datum/status_effect/incapacitating/stun/S = IsStun()
 		if(S)
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// S.duration = max(world.time + amount, S.duration) // SURREALIS-EDIT - ORIGINAL
 			S.set_expires_at(max(world.time + amount, S.expires_at))
+			// [/SURREALIS-EDIT]
 		else if(amount > 0)
 			S = apply_status_effect(STATUS_EFFECT_STUN, amount, updating)
 		return S
@@ -52,7 +58,10 @@
 			if(absorb_stun(amount, ignore_canstun))
 				return
 			if(S)
+				// [SURREALIS-EDIT] - PLASMA_OPTS
+				// S.duration = world.time + amount // SURREALIS-EDIT - ORIGINAL
 				S.set_expires_at(world.time + amount)
+				// [/SURREALIS-EDIT]
 			else
 				S = apply_status_effect(STATUS_EFFECT_STUN, amount, updating)
 		return S
@@ -65,7 +74,10 @@
 			return
 		var/datum/status_effect/incapacitating/stun/S = IsStun()
 		if(S)
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// S.duration += amount // SURREALIS-EDIT - ORIGINAL
 			S.set_expires_at(S.expires_at + amount)
+			// [/SURREALIS-EDIT]
 		else if(amount > 0)
 			S = apply_status_effect(STATUS_EFFECT_STUN, amount, updating)
 		return S
@@ -78,7 +90,10 @@
 /mob/living/proc/AmountKnockdown() //How many deciseconds remain in our knockdown
 	var/datum/status_effect/incapacitating/knockdown/K = IsKnockdown()
 	if(K)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// return K.duration - world.time // SURREALIS-EDIT - ORIGINAL
 		return K.expires_at - world.time
+		// [/SURREALIS-EDIT]
 	return 0
 
 /mob/living/proc/Knockdown(amount, updating = TRUE, ignore_canstun = FALSE) //Can't go below remaining duration
@@ -89,7 +104,10 @@
 			return
 		var/datum/status_effect/incapacitating/knockdown/K = IsKnockdown()
 		if(K)
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// K.duration = max(world.time + amount, K.duration) // SURREALIS-EDIT - ORIGINAL
 			K.set_expires_at(max(world.time + amount, K.expires_at))
+			// [/SURREALIS-EDIT]
 		else if(amount > 0)
 			K = apply_status_effect(STATUS_EFFECT_KNOCKDOWN, amount, updating)
 		return K
@@ -106,7 +124,10 @@
 			if(absorb_stun(amount, ignore_canstun))
 				return
 			if(K)
+				// [SURREALIS-EDIT] - PLASMA_OPTS
+				// K.duration = world.time + amount // SURREALIS-EDIT - ORIGINAL
 				K.set_expires_at(world.time + amount)
+				// [/SURREALIS-EDIT]
 			else
 				K = apply_status_effect(STATUS_EFFECT_KNOCKDOWN, amount, updating)
 		return K
@@ -119,7 +140,10 @@
 			return
 		var/datum/status_effect/incapacitating/knockdown/K = IsKnockdown()
 		if(K)
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// K.duration += amount // SURREALIS-EDIT - ORIGINAL
 			K.set_expires_at(K.expires_at + amount)
+			// [/SURREALIS-EDIT]
 		else if(amount > 0)
 			K = apply_status_effect(STATUS_EFFECT_KNOCKDOWN, amount, updating)
 		return K
@@ -133,7 +157,10 @@
 /mob/living/proc/AmountImmobilized() //How many deciseconds remain in our Immobilized status effect
 	var/datum/status_effect/incapacitating/immobilized/I = IsImmobilized()
 	if(I)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// return I.duration - world.time // SURREALIS-EDIT - ORIGINAL
 		return I.expires_at - world.time
+		// [/SURREALIS-EDIT]
 	return 0
 
 /mob/living/proc/Immobilize(amount, updating = TRUE, ignore_canstun = FALSE) //Can't go below remaining duration
@@ -144,7 +171,10 @@
 			return
 		var/datum/status_effect/incapacitating/immobilized/I = IsImmobilized()
 		if(I)
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// I.duration = max(world.time + amount, I.duration) // SURREALIS-EDIT - ORIGINAL
 			I.set_expires_at(max(world.time + amount, I.expires_at))
+			// [/SURREALIS-EDIT]
 		else if(amount > 0)
 			I = apply_status_effect(STATUS_EFFECT_IMMOBILIZED, amount, updating)
 		return I
@@ -161,7 +191,10 @@
 			if(absorb_stun(amount, ignore_canstun))
 				return
 			if(I)
+				// [SURREALIS-EDIT] - PLASMA_OPTS
+				// I.duration = world.time + amount // SURREALIS-EDIT - ORIGINAL
 				I.set_expires_at(world.time + amount)
+				// [/SURREALIS-EDIT]
 			else
 				I = apply_status_effect(STATUS_EFFECT_IMMOBILIZED, amount, updating)
 		return I
@@ -174,7 +207,10 @@
 			return
 		var/datum/status_effect/incapacitating/immobilized/I = IsImmobilized()
 		if(I)
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// I.duration += amount // SURREALIS-EDIT - ORIGINAL
 			I.set_expires_at(I.expires_at + amount)
+			// [/SURREALIS-EDIT]
 		else if(amount > 0)
 			I = apply_status_effect(STATUS_EFFECT_IMMOBILIZED, amount, updating)
 		return I
@@ -186,7 +222,10 @@
 /mob/living/proc/AmountParalyzed() //How many deciseconds remain in our Paralyzed status effect
 	var/datum/status_effect/incapacitating/paralyzed/P = has_status_effect(STATUS_EFFECT_PARALYZED)
 	if(P)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// return P.duration - world.time // SURREALIS-EDIT - ORIGINAL
 		return P.expires_at - world.time
+		// [/SURREALIS-EDIT]
 	return 0
 
 /mob/living/proc/Paralyze(amount, updating = TRUE, ignore_canstun = FALSE) //Can't go below remaining duration
@@ -197,7 +236,10 @@
 			return
 		var/datum/status_effect/incapacitating/paralyzed/P = has_status_effect(STATUS_EFFECT_PARALYZED)
 		if(P)
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// P.duration = max(world.time + amount, P.duration) // SURREALIS-EDIT - ORIGINAL
 			P.set_expires_at(max(world.time + amount, P.expires_at))
+			// [/SURREALIS-EDIT]
 		else if(amount > 0)
 			P = apply_status_effect(STATUS_EFFECT_PARALYZED, amount, updating)
 		return P
@@ -214,7 +256,10 @@
 			if(absorb_stun(amount, ignore_canstun))
 				return
 			if(P)
+				// [SURREALIS-EDIT] - PLASMA_OPTS
+				// P.duration = world.time + amount // SURREALIS-EDIT - ORIGINAL
 				P.set_expires_at(world.time + amount)
+				// [/SURREALIS-EDIT]
 			else
 				P = apply_status_effect(STATUS_EFFECT_PARALYZED, amount, updating)
 		return P
@@ -227,7 +272,10 @@
 			return
 		var/datum/status_effect/incapacitating/paralyzed/P = has_status_effect(STATUS_EFFECT_PARALYZED)
 		if(P)
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// P.duration += amount // SURREALIS-EDIT - ORIGINAL
 			P.set_expires_at(P.expires_at + amount)
+			// [/SURREALIS-EDIT]
 		else if(amount > 0)
 			P = apply_status_effect(STATUS_EFFECT_PARALYZED, amount, updating)
 		return P
@@ -240,7 +288,10 @@
 /mob/living/proc/AmountOffBalanced() //How many deciseconds remain in our knockdown
 	var/datum/status_effect/incapacitating/off_balanced/O = IsOffBalanced()
 	if(O)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// return O.duration - world.time // SURREALIS-EDIT - ORIGINAL
 		return O.expires_at - world.time
+		// [/SURREALIS-EDIT]
 	return 0
 
 /mob/living/proc/OffBalance(amount, updating = TRUE) //Can't go below remaining duration
@@ -248,7 +299,10 @@
 		return
 	var/datum/status_effect/incapacitating/off_balanced/O = IsOffBalanced()
 	if(O)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// O.duration = max(world.time + amount, O.duration) // SURREALIS-EDIT - ORIGINAL
 		O.set_expires_at(max(world.time + amount, O.expires_at))
+		// [/SURREALIS-EDIT]
 	else if(amount > 0)
 		O = apply_status_effect(STATUS_EFFECT_OFFBALANCED, amount, updating)
 	return O
@@ -287,7 +341,10 @@
 /mob/living/proc/AmountUnconscious() //How many deciseconds remain in our unconsciousness
 	var/datum/status_effect/incapacitating/unconscious/U = IsUnconscious()
 	if(U)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// return U.duration - world.time // SURREALIS-EDIT - ORIGINAL
 		return U.expires_at - world.time
+		// [/SURREALIS-EDIT]
 	return 0
 
 /mob/living/proc/Unconscious(amount, updating = TRUE, ignore_canstun = FALSE) //Can't go below remaining duration
@@ -296,7 +353,10 @@
 	if(((status_flags & CANUNCONSCIOUS) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE))	|| ignore_canstun)
 		var/datum/status_effect/incapacitating/unconscious/U = IsUnconscious()
 		if(U)
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// U.duration = max(world.time + amount, U.duration) // SURREALIS-EDIT - ORIGINAL
 			U.set_expires_at(max(world.time + amount, U.expires_at))
+			// [/SURREALIS-EDIT]
 		else if(amount > 0)
 			U = apply_status_effect(STATUS_EFFECT_UNCONSCIOUS, amount, updating)
 		return U
@@ -310,7 +370,10 @@
 			if(U)
 				qdel(U)
 		else if(U)
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// U.duration = world.time + amount // SURREALIS-EDIT - ORIGINAL
 			U.set_expires_at(world.time + amount)
+			// [/SURREALIS-EDIT]
 		else
 			U = apply_status_effect(STATUS_EFFECT_UNCONSCIOUS, amount, updating)
 		return U
@@ -321,7 +384,10 @@
 	if(((status_flags & CANUNCONSCIOUS) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
 		var/datum/status_effect/incapacitating/unconscious/U = IsUnconscious()
 		if(U)
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// U.duration += amount // SURREALIS-EDIT - ORIGINAL
 			U.set_expires_at(U.expires_at + amount)
+			// [/SURREALIS-EDIT]
 		else if(amount > 0)
 			U = apply_status_effect(STATUS_EFFECT_UNCONSCIOUS, amount, updating)
 		return U
@@ -337,7 +403,10 @@
 /mob/living/proc/AmountSleeping() //How many deciseconds remain in our sleep
 	var/datum/status_effect/incapacitating/sleeping/S = IsSleeping()
 	if(S)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// return S.duration - world.time // SURREALIS-EDIT - ORIGINAL
 		return S.expires_at - world.time
+		// [/SURREALIS-EDIT]
 	return 0
 
 /mob/living/proc/Sleeping(amount, updating = TRUE, ignore_canstun = FALSE) //Can't go below remaining duration
@@ -346,7 +415,10 @@
 	if((!HAS_TRAIT(src, TRAIT_SLEEPIMMUNE)) || ignore_canstun)
 		var/datum/status_effect/incapacitating/sleeping/S = IsSleeping()
 		if(S)
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// S.duration = max(world.time + amount, S.duration) // SURREALIS-EDIT - ORIGINAL
 			S.set_expires_at(max(world.time + amount, S.expires_at))
+			// [/SURREALIS-EDIT]
 		else if(amount > 0)
 			S = apply_status_effect(STATUS_EFFECT_SLEEPING, amount, updating)
 		return S
@@ -360,7 +432,10 @@
 			if(S)
 				qdel(S)
 		else if(S)
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// S.duration = world.time + amount // SURREALIS-EDIT - ORIGINAL
 			S.set_expires_at(world.time + amount)
+			// [/SURREALIS-EDIT]
 		else
 			S = apply_status_effect(STATUS_EFFECT_SLEEPING, amount, updating)
 		return S
@@ -371,7 +446,10 @@
 	if((!HAS_TRAIT(src, TRAIT_SLEEPIMMUNE)) || ignore_canstun)
 		var/datum/status_effect/incapacitating/sleeping/S = IsSleeping()
 		if(S)
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// S.duration += amount // SURREALIS-EDIT - ORIGINAL
 			S.set_expires_at(S.expires_at + amount)
+			// [/SURREALIS-EDIT]
 		else if(amount > 0)
 			S = apply_status_effect(STATUS_EFFECT_SLEEPING, amount, updating)
 		return S
@@ -522,21 +600,36 @@
 		if(isnum(max_duration) && duration > 0)
 			// Check the duration remaining on the existing status effect
 			// If it's greater than / equal to our passed max duration, we don't need to do anything
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// var/remaining_duration = existing.duration - world.time // SURREALIS-EDIT - ORIGINAL
 			var/remaining_duration = existing.expires_at - world.time
+			// [/SURREALIS-EDIT]
 			if(remaining_duration >= max_duration)
 				return
 
 			// Otherwise, add duration up to the max (max_duration - remaining_duration),
 			// or just add duration if it doesn't exceed our max at all
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// SURREALIS-EDIT - ORIGINAL
+			/*
+			existing.duration += min(max_duration - remaining_duration, duration)
+
+		else
+			existing.duration += duration
+			*/
 			existing.set_expires_at(existing.expires_at + min(max_duration - remaining_duration, duration))
 
 		else
 			existing.set_expires_at(existing.expires_at + duration)
+			// [/SURREALIS-EDIT]
 
 		// If the duration was decreased and is now less 0 seconds,
 		// qdel it / clean up the status effect immediately
 		// (rather than waiting for the process tick to handle it)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// if(existing.duration <= world.time) // SURREALIS-EDIT - ORIGINAL
 		if(existing.expires_at <= world.time)
+		// [/SURREALIS-EDIT]
 			qdel(existing)
 
 	else if(duration > 0)
@@ -569,12 +662,18 @@
 		if(only_if_higher)
 			// If the existing status effect has a higher remaining duration
 			// than what we aim to set it to, don't downgrade it - do nothing (return)
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// var/remaining_duration = existing.duration - world.time // SURREALIS-EDIT - ORIGINAL
 			var/remaining_duration = existing.expires_at - world.time
+			// [/SURREALIS-EDIT]
 			if(remaining_duration >= duration)
 				return
 
 		// Set the duration accordingly
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// existing.duration = world.time + duration // SURREALIS-EDIT - ORIGINAL
 		existing.set_expires_at(world.time + duration)
+		// [/SURREALIS-EDIT]
 
 	else if(duration > 0)
 		apply_status_effect(effect, duration)
@@ -594,7 +693,16 @@
 		return 0
 	// Infinite duration status effects technically are not "timed status effects"
 	// by name or nature, but support is included just in case.
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	if(existing.duration == -1)
+		return INFINITY
+
+	return existing.duration - world.time
+	*/
 	if(existing.expires_at == -1)
 		return INFINITY
 
 	return existing.expires_at - world.time
+	// [/SURREALIS-EDIT]

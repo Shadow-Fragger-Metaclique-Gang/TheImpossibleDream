@@ -54,7 +54,10 @@
 /mob/living/proc/apply_overlay(cache_index)
 	if((. = overlays_standing[cache_index]))
 		add_overlay(.)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(client) // SURREALIS-EDIT - ORIGINAL
 	if(client && !VISUALS_BATCHED(src))
+	// [/SURREALIS-EDIT]
 		update_vision_cone()
 
 /mob/living/proc/remove_overlay(cache_index)
@@ -62,7 +65,10 @@
 	if(I)
 		cut_overlay(I)
 		overlays_standing[cache_index] = null
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(client) // SURREALIS-EDIT - ORIGINAL
 	if(client && !VISUALS_BATCHED(src))
+	// [/SURREALIS-EDIT]
 		update_vision_cone()
 
 /mob/living/carbon/regenerate_icons()
@@ -99,7 +105,9 @@
 		GLOB.dismembered_clothing_icons[index] = dismembered*/
 
 /mob/living/carbon/update_inv_hands(hide_experimental = FALSE)
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	QUEUE_ICON_UPDATE_ARG(PENDING_UPDATE_INV_HANDS, pending_hands_hide, hide_experimental)
+	// [/SURREALIS-ADD]
 	remove_overlay(HANDS_LAYER)
 	remove_overlay(HANDS_BEHIND_LAYER)
 	if (handcuffed)
@@ -258,7 +266,9 @@
 	apply_overlay(HALO_LAYER)
 
 /mob/living/carbon/update_damage_overlays()
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	QUEUE_ICON_UPDATE(PENDING_UPDATE_DAMAGE)
+	// [/SURREALIS-ADD]
 	remove_overlay(DAMAGE_LAYER)
 
 	var/mutable_appearance/damage_overlay = mutable_appearance('icons/mob/dam_mob.dmi', "blank", -DAMAGE_LAYER)
@@ -276,7 +286,9 @@
 
 
 /mob/living/carbon/update_inv_wear_mask()
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	QUEUE_ICON_UPDATE(PENDING_UPDATE_INV_MASK)
+	// [/SURREALIS-ADD]
 	remove_overlay(MASK_LAYER)
 
 	if(!get_bodypart(BODY_ZONE_HEAD)) //Decapitated
@@ -294,7 +306,9 @@
 	apply_overlay(MASK_LAYER)
 
 /mob/living/carbon/update_inv_neck()
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	QUEUE_ICON_UPDATE(PENDING_UPDATE_INV_NECK)
+	// [/SURREALIS-ADD]
 	remove_overlay(NECK_LAYER)
 
 	if(client && hud_used && hud_used.inv_slots[SLOT_NECK])
@@ -309,7 +323,9 @@
 	apply_overlay(NECK_LAYER)
 
 /mob/living/carbon/update_inv_back()
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	QUEUE_ICON_UPDATE(PENDING_UPDATE_INV_BACK)
+	// [/SURREALIS-ADD]
 	remove_overlay(BACK_LAYER)
 
 	if(client && hud_used && hud_used.inv_slots[SLOT_BACK])
@@ -323,7 +339,9 @@
 	apply_overlay(BACK_LAYER)
 
 /mob/living/carbon/update_inv_head(hide_nonstandard = FALSE)
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	QUEUE_ICON_UPDATE_ARG(PENDING_UPDATE_INV_HEAD, pending_head_hide, hide_nonstandard)
+	// [/SURREALIS-ADD]
 	remove_overlay(HEAD_LAYER)
 
 	if(!get_bodypart(BODY_ZONE_HEAD)) //Decapitated
@@ -436,7 +454,9 @@
 	update_body_parts()
 
 /mob/living/carbon/proc/update_body_parts()
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	QUEUE_ICON_UPDATE(PENDING_UPDATE_BODY)
+	// [/SURREALIS-ADD]
 	var/oldkey = icon_render_key
 	icon_render_key = generate_icon_render_key()
 	if(oldkey == icon_render_key)

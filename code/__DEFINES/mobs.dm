@@ -8,11 +8,13 @@
 #define STATKEY_SPD "speed"
 #define STATKEY_LCK "fortune"
 
+// [SURREALIS-ADD] - PLASMA_OPTS
 /// updating_health value: update health only if a carbon's limb actually took brute/burn damage; otherwise behaves as FALSE
 #define UPDATE_HEALTH_IF_DAMAGED 2
 /// TRUE when an updating_health argument asks for an unconditional health update
 #define SHOULD_UPDATE_HEALTH(flag) ((flag) && (flag) != UPDATE_HEALTH_IF_DAMAGED)
 
+// [/SURREALIS-ADD]
 //This was previously in vampirelord.dm and mob/living/stats.dm, the person defined it twice because vampirelord came in below that stats file, so now both of them can get it here.
 #define MOBSTATS list(STATKEY_STR, STATKEY_PER, STATKEY_INT, STATKEY_CON, STATKEY_WIL, STATKEY_SPD, STATKEY_LCK)
 
@@ -433,6 +435,7 @@
 // /obj/item/bodypart on_mob_life() retval flag
 #define BODYPART_LIFE_UPDATE_HEALTH (1<<0)
 
+// [SURREALIS-ADD] - PLASMA_OPTS
 #define PENDING_UPDATE_BODY			(1<<0)
 #define PENDING_UPDATE_BODY_REDRAW	(1<<1)
 #define PENDING_UPDATE_DAMAGE		(1<<2)
@@ -463,6 +466,7 @@
 #define LIVE_OVERLAYS(A) ((ismob(A) && A:overlay_slate && !A:immediate_visuals) ? A:overlay_slate:overlays : A.overlays)
 #define VISUALS_BATCHED(M) (!M.immediate_visuals && SSiconupdates.initialized)
 
+// [/SURREALIS-ADD]
 #define MAX_REVIVE_FIRE_DAMAGE 180
 #define MAX_REVIVE_BRUTE_DAMAGE 180
 
@@ -725,5 +729,7 @@
 #else
 #define AI_WORLD_THINK(pawn, message)
 #endif
+// [SURREALIS-ADD] - PLASMA_OPTS
 
 #define LIFEWORK_WOUNDS (1<<0)
+// [/SURREALIS-ADD]

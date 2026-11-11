@@ -379,7 +379,10 @@
 	if(!istype(M))
 		return
 	if(method == TOUCH)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// M.adjustFireLoss(2, 0) // burns // SURREALIS-EDIT - ORIGINAL
 		M.adjustFireLoss(2, UPDATE_HEALTH_IF_DAMAGED) // burns
+		// [/SURREALIS-EDIT]
 	..()
 
 /datum/reagent/fuel/unholywater		//if you somehow managed to extract this from someone, dont splash it on myself and have a smoke
@@ -396,9 +399,17 @@
 /datum/reagent/fuel/unholywater/on_mob_life(mob/living/carbon/M)
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
 	M.adjustToxLoss(2, 0)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	M.adjustFireLoss(2, 0)
+	M.adjustOxyLoss(2, 0)
+	M.adjustBruteLoss(2, 0)
+	*/
 	M.adjustFireLoss(2, UPDATE_HEALTH_IF_DAMAGED)
 	M.adjustOxyLoss(2, 0)
 	M.adjustBruteLoss(2, UPDATE_HEALTH_IF_DAMAGED)
+	// [/SURREALIS-EDIT]
 	holder.remove_reagent(type, 1)
 	return TRUE
 
@@ -411,7 +422,10 @@
 	M.adjust_fire_stacks(5)
 	M.ignite_mob()			//Only problem with igniting people is currently the commonly availible fire suits make you immune to being on fire
 	M.adjustToxLoss(1, 0)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// M.adjustFireLoss(1, 0)		//Hence the other damages... ain't I a bastard? // SURREALIS-EDIT - ORIGINAL
 	M.adjustFireLoss(1, UPDATE_HEALTH_IF_DAMAGED)		//Hence the other damages... ain't I a bastard?
+	// [/SURREALIS-EDIT]
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5, 150)
 	holder.remove_reagent(type, 1)
 
@@ -690,7 +704,10 @@
 	taste_description = "chlorine"
 
 /datum/reagent/chlorine/on_mob_life(mob/living/carbon/M)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// M.take_bodypart_damage(1	* REAGENTS_EFFECT_MULTIPLIER, 0, 0, 0) // SURREALIS-EDIT - ORIGINAL
 	M.take_bodypart_damage(1	* REAGENTS_EFFECT_MULTIPLIER, 0, 0, UPDATE_HEALTH_IF_DAMAGED)
+	// [/SURREALIS-EDIT]
 	. = 1
 	..()
 
@@ -1260,7 +1277,10 @@
 	if(!istype(M))
 		return
 	if(method == TOUCH)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// M.adjustFireLoss(2, FALSE) // burns, // SURREALIS-EDIT - ORIGINAL
 		M.adjustFireLoss(2, UPDATE_HEALTH_IF_DAMAGED) // burns,
+		// [/SURREALIS-EDIT]
 		M.adjust_fire_stacks((reac_volume / 10))
 	..()
 

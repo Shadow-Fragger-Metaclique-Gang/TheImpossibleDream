@@ -146,7 +146,9 @@
 	icon_state = "cranked"
 
 /datum/status_effect/buff/cranking_soulchurner
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "crankchurner"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/cranking_soulchurner
 	var/effect_color
@@ -298,7 +300,9 @@
 	icon_state = "buff"
 
 /datum/status_effect/buff/quelling_soulchurner
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "quellchurner"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/quelling_soulchurner
 	var/effect_color

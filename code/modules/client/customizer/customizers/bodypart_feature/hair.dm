@@ -448,8 +448,10 @@
 	var/mob/living/carbon/human/dummy/mannequin = generate_or_wait_for_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 	var/icon/cached_icon
 	if(mannequin)
+		// [SURREALIS-ADD] - PLASMA_OPTS
 		mannequin.flush_visuals()
 		mannequin.immediate_visuals = TRUE
+		// [/SURREALIS-ADD]
 		render_stash_colormasks = hair_entry.colormasks
 		render_stash_active = TRUE
 		hair_entry.colormasks = null
@@ -461,8 +463,11 @@
 		render_stash_colormasks = null
 		masks_dir = null
 		active_masks = null
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// cached_icon = hair_preview_icon(mannequin, preview_dir) // SURREALIS-EDIT - ORIGINAL
 		cached_icon = hair_preview_icon(mannequin, preview_dir, prefs.parent)
 		mannequin.immediate_visuals = FALSE
+		// [/SURREALIS-EDIT]
 		unset_busy_human_dummy(DUMMY_HUMAN_SLOT_PREFERENCES)
 	if(cached_icon)
 		base_icons[asset_key] = hair_asset(cached_icon)

@@ -5,18 +5,33 @@
 /mob/living
 	/// ass list [id] = /datum/status_effect. ATTENTION THE CODER IS A RETARD THIS IS NOT SUPPOSED TO BE HERE I REPEART!!!!!!
 	var/alist/status_effects_by_id
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	var/incapacity_count = 0
+	// [/SURREALIS-ADD]
 
 /datum/status_effect
 	/// The ID of the effect. ID is used in adding and removing effects to check for duplicates, among other things.
 	var/id = "effect"
 	/// When set initially / in on_creation, this is how long the status effect lasts in deciseconds.
+	// [SURREALIS-REMOVE] - PLASMA_OPTS
+	/*
+	/// While processing, this becomes the world.time when the status effect will expire.
+	*/
+	// [/SURREALIS-REMOVE]
 	/// -1 = infinite duration.
 	var/duration = -1
 	/// When set initially / in on_creation, this is how long between [proc/tick] calls in deciseconds.
 	/// Note that this cannot be faster than the processing subsystem you choose to fire the effect on. (See: [var/processing_speed])
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	/// While processing, this becomes the world.time when the next tick will occur.
+	/// -1 = will prevent ticks, and if duration is also unlimited (-1), stop processing wholesale.
+	var/tick_interval = 1 SECONDS
+	*/
 	/// STATUS_EFFECT_NO_TICK = will prevent ticks, and if duration is also unlimited (-1), stop processing wholesale.
 	var/tick_interval = STATUS_EFFECT_NO_TICK
+	// [/SURREALIS-EDIT]
 	/// The mob affected by the status effect.
 	var/mob/living/owner
 	/// How many of the effect can be on one mob, and/or what happens when you try to add a duplicate.
@@ -33,6 +48,12 @@
 	var/atom/movable/screen/alert/status_effect/linked_alert = null
 	/// Each entry defines a stat affected by the status effect during its duration.
 	var/list/effectedstats = list()
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	/// if TRUE, we will be entered into SSfastprocess for ticking. if the effect is cleared/managed by another source, this should be FALSE.
+	var/needs_processing = TRUE
+	*/
 	/// if TRUE, we will be entered into SSstatuseffects for ticking. if the effect is cleared/managed by another source, this should be FALSE.
 	var/needs_processing = TRUE
 	/// The world.time when the status effect will expire. -1 = never.
@@ -41,6 +62,7 @@
 	var/next_tick = 0
 	/// Bucket key in SSstatuseffects.wake_buckets while a wake is scheduled
 	var/wake_key
+	// [/SURREALIS-EDIT]
 
 	///Icon path for this effect's on-mob effect.
 	var/mob_effect_icon = 'icons/mob/mob_effects.dmi'
@@ -61,8 +83,10 @@
 // ON THE ON_CREATION!!!!!!
 /datum/status_effect/proc/on_creation(mob/living/new_owner, ...)
 	testing("oncreation")
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	expires_at = duration
 	next_tick = tick_interval
+	// [/SURREALIS-ADD]
 	if(new_owner)
 		owner = new_owner
 	if(owner)
@@ -71,10 +95,13 @@
 		if(!length(owner.status_effects_by_id))
 			owner.status_effects_by_id = alist()
 		LAZYADD(owner.status_effects, src)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// owner.status_effects_by_id[id] = src // SURREALIS-EDIT - ORIGINAL
 		var/datum/status_effect/displaced = owner.status_effects_by_id[id]
 		owner.status_effects_by_id[id] = src
 		if(!displaced)
 			owner.incapacity_count += incapacity_weight()
+		// [/SURREALIS-EDIT]
 
 	if(!owner)
 		qdel(src)
@@ -91,13 +118,32 @@
 		qdel(src)
 		return
 
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	if(duration != -1)
+		duration = world.time + duration
+	tick_interval = world.time + tick_interval
+	*/
 	expires_at = (duration == -1) ? -1 : world.time + duration
 	next_tick = world.time + tick_interval
+	// [/SURREALIS-EDIT]
 	if(alert_type && owner && !QDELETED(owner) && !QDELING(owner))
 		var/atom/movable/screen/alert/status_effect/A = owner.throw_alert(id, alert_type)
 		A?.attached_effect = src //so the alert can reference us, if it needs to
 		linked_alert = A //so we can reference the alert, if we need to
 
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	if(needs_processing)
+		START_PROCESSING(SSfastprocess, src)
+	return TRUE
+
+/datum/status_effect/Destroy()
+	if(needs_processing)
+		STOP_PROCESSING(SSfastprocess, src)
+	*/
 	schedule()
 	return TRUE
 
@@ -157,6 +203,7 @@
 	STOP_PROCESSING(SSstatuseffects, src)
 	if(wake_key)
 		SSstatuseffects.cancel_wake(src)
+	// [/SURREALIS-EDIT]
 	if(owner)
 		linked_alert = null
 		owner.clear_alert(id)
@@ -165,7 +212,9 @@
 		LAZYREMOVE(owner.status_effects, src)
 		if(owner.status_effects_by_id && owner.status_effects_by_id[id] == src)
 			owner.status_effects_by_id -= id
+			// [SURREALIS-ADD] - PLASMA_OPTS
 			owner.incapacity_count -= incapacity_weight()
+			// [/SURREALIS-ADD]
 
 		on_remove()
 		owner = null
@@ -178,6 +227,18 @@
 	if(QDELETED(owner))
 		qdel(src)
 		return
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	if(tick_interval < world.time)
+		tick(wait)
+		tick_interval = world.time + initial(tick_interval)
+	if(duration != -1 && duration < world.time)
+		qdel(src)
+		return
+	if(linked_alert && duration != -1)
+		linked_alert.update_countdown(max(duration - world.time, 0))
+	*/
 	if(tick_interval != STATUS_EFFECT_NO_TICK && next_tick < world.time)
 		tick(wait)
 		next_tick = world.time + initial(tick_interval)
@@ -193,6 +254,7 @@
 	linked_alert.update_countdown(max(expires_at - world.time, 0))
 	if(tick_interval == STATUS_EFFECT_NO_TICK)
 		schedule()
+	// [/SURREALIS-EDIT]
 
 /datum/status_effect/proc/on_apply() //Called whenever the buff is applied; returning FALSE will cause it to autoremove itself.
 	for(var/S in effectedstats)
@@ -225,7 +287,9 @@
 		LAZYREMOVE(owner.status_effects, src)
 		if(owner.status_effects_by_id && owner.status_effects_by_id[id] == src)
 			owner.status_effects_by_id -= id
+			// [SURREALIS-ADD] - PLASMA_OPTS
 			owner.incapacity_count -= incapacity_weight()
+			// [/SURREALIS-ADD]
 		owner = null
 
 	qdel(src)
@@ -234,7 +298,10 @@
 	var/original_duration = initial(duration)
 	if(original_duration == -1)
 		return
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// duration = world.time + original_duration // SURREALIS-EDIT - ORIGINAL
 	set_expires_at(world.time + original_duration)
+	// [/SURREALIS-EDIT]
 
 //clickdelay/nextmove modifiers!
 /datum/status_effect/proc/nextmove_modifier()
@@ -265,8 +332,15 @@
 			var/newnum = attached_effect.effectedstats[S] * -1
 			inspec += "<br><span class='danger'>[S]</span> \Roman [newnum]"
 
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	if(attached_effect && attached_effect.duration != -1 && attached_effect.duration > world.time)
+		var/remaining = attached_effect.duration - world.time
+	*/
 	if(attached_effect && attached_effect.expires_at != -1 && attached_effect.expires_at > world.time)
 		var/remaining = attached_effect.expires_at - world.time
+	// [/SURREALIS-EDIT]
 		var/total_secs = round(remaining / (1 SECONDS))
 		var/timestring
 		if(total_secs >= 60)
@@ -423,7 +497,10 @@
 			threshold_crossed = FALSE //resets threshold effect if we fall below threshold so threshold effect can trigger again
 			on_threshold_drop()
 		if(stacks_added > 0)
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// tick_interval += delay_before_decay //refreshes time until decay // SURREALIS-EDIT - ORIGINAL
 			next_tick += delay_before_decay //refreshes time until decay
+			// [/SURREALIS-EDIT]
 		stacks = min(stacks, max_stacks)
 		status_overlay.icon_state = "[overlay_state][stacks]"
 		status_underlay.icon_state = "[underlay_state][stacks]"

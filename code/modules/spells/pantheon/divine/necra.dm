@@ -140,7 +140,9 @@
 	icon_state = "stressvb"
 
 /datum/status_effect/churned
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "necra_churned"
 	alert_type = /atom/movable/screen/alert/status_effect/churned
 	duration = 30 SECONDS

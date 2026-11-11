@@ -3,7 +3,10 @@
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 	bruteloss = round(CLAMP(bruteloss + amount, 0, maxHealth),DAMAGE_PRECISION)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(updating_health) // SURREALIS-EDIT - ORIGINAL
 	if(SHOULD_UPDATE_HEALTH(updating_health))
+	// [/SURREALIS-EDIT]
 		updatehealth()
 	return amount
 

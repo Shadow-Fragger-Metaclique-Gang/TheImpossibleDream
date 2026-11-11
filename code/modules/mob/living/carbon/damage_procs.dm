@@ -187,7 +187,10 @@
 	if(!parts.len)
 		return
 	var/obj/item/bodypart/picked = pick(parts)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(picked.receive_damage(brute, burn, stamina,check_armor ? run_armor_check(picked, (brute ? "blunt" : burn ? "fire" : stamina ? "bullet" : null)) : FALSE)) // SURREALIS-EDIT - ORIGINAL
 	if(picked.receive_damage(brute, burn, stamina,check_armor ? run_armor_check(picked, (brute ? "blunt" : burn ? "fire" : stamina ? "bullet" : null)) : FALSE, stamina > 0 ? TRUE : updating_health))
+	// [/SURREALIS-EDIT]
 		update_damage_overlays()
 
 //Heal MANY bodyparts, in random order
@@ -213,7 +216,10 @@
 		stamina = round(stamina - (stamina_was - picked.stamina_dam), DAMAGE_PRECISION)
 
 		parts -= picked
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(updating_health) // SURREALIS-EDIT - ORIGINAL
 	if(SHOULD_UPDATE_HEALTH(updating_health))
+	// [/SURREALIS-EDIT]
 		updatehealth()
 		update_stamina()
 	if(update)
@@ -226,7 +232,9 @@
 
 	var/list/obj/item/bodypart/parts = get_damageable_bodyparts(required_status)
 	var/update = 0
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	var/damaged = FALSE
+	// [/SURREALIS-ADD]
 	var/remaining_brute = brute
 	var/remaining_burn = burn
 	if(brute > 0 || burn > 0 || stamina > 0)
@@ -248,15 +256,21 @@
 			var/stamina_was = picked.stamina_dam
 
 
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// update |= picked.receive_damage(brute_per_part, burn_per_part, stamina_per_part, FALSE, required_status) // SURREALIS-EDIT - ORIGINAL
 			update |= picked.receive_damage(brute_per_part, burn_per_part, stamina_per_part, 0, stamina_per_part > 0, required_status)
 			if(stamina_per_part <= 0 && (picked.brute_dam != brute_was || picked.burn_dam != burn_was))
 				damaged = TRUE
+			// [/SURREALIS-EDIT]
 
 			brute	= round(brute - (picked.brute_dam - brute_was), DAMAGE_PRECISION)
 			burn	= round(burn - (picked.burn_dam - burn_was), DAMAGE_PRECISION)
 			stamina = round(stamina - (picked.stamina_dam - stamina_was), DAMAGE_PRECISION)
 
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(updating_health) // SURREALIS-EDIT - ORIGINAL
 	if(updating_health == UPDATE_HEALTH_IF_DAMAGED ? damaged : updating_health)
+	// [/SURREALIS-EDIT]
 		updatehealth()
 	if(update)
 		update_damage_overlays()

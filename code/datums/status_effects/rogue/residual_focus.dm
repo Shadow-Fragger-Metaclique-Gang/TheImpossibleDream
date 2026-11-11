@@ -24,7 +24,10 @@
 		qdel(src)
 		return
 	// tick_interval has been mutated to an absolute world.time by base status_effect, so use initial()
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// var/ticks_remaining = max(1, round((duration - world.time) / initial(tick_interval))) // SURREALIS-EDIT - ORIGINAL
 	var/ticks_remaining = max(1, round((expires_at - world.time) / initial(tick_interval)))
+	// [/SURREALIS-EDIT]
 	var/refund = pool / ticks_remaining
 	pool -= refund
 	owner.energy_add(refund)

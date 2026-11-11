@@ -296,9 +296,17 @@
 				"}
 		for(var/atom/path as anything in tools)
 			if(subtype_reqs)
+				// [SURREALIS-EDIT] - PLASMA_OPTS
+				// SURREALIS-EDIT - ORIGINAL
+				/*
+				html += "[icon2html(new path, user)] any [initial(path.name)]<br>"
+			else
+				html += "[icon2html(new path, user)] [initial(path.name)]<br>"
+				*/
 				html += "[icon2html_for_path(path, user)] any [initial(path.name)]<br>"
 			else
 				html += "[icon2html_for_path(path, user)] [initial(path.name)]<br>"
+				// [/SURREALIS-EDIT]
 		html += {"
 			</div>
 		<div>
@@ -321,7 +329,10 @@
 
 	if(structurecraft)
 		var/obj/structure = structurecraft
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// html += "<br><strong>Start the process next to a:</strong><br>[icon2html(new structurecraft, user)] [initial(structure.name)]<br>" // SURREALIS-EDIT - ORIGINAL
 		html += "<br><strong>Start the process next to a:</strong><br>[icon2html_for_path(structurecraft, user)] [initial(structure.name)]<br>"
+		// [/SURREALIS-EDIT]
 	if(req_table)
 		html += "<br><strong>Start the process next to a table.</strong><br>"
 	if(wallcraft)

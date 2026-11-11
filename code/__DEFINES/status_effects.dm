@@ -9,8 +9,10 @@
 
 #define STATUS_EFFECT_REFRESH 3 // if it only allows one, and new instances just instead refresh the timer
 
+// [SURREALIS-ADD] - PLASMA_OPTS
 #define STATUS_EFFECT_NO_TICK -2
 
+// [/SURREALIS-ADD]
 ///////////
 // BUFFS //
 ///////////

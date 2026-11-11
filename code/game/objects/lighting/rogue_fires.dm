@@ -542,6 +542,18 @@
 //////////////////////////////////
 
 /obj/machinery/light/rogue/hearth/update_icon()
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	cut_overlays()
+	icon_state = "[base_state][on]"
+	if(attachment)
+		if(istype(attachment, /obj/item/cooking/pan) || istype(attachment, /obj/item/reagent_containers/glass/bucket/pot))
+			var/obj/item/I = attachment
+			I.pixel_x = 0
+			I.pixel_y = 0
+			add_overlay(new /mutable_appearance(I))
+	*/
 	icon_state = "[base_state][on]"
 	var/obj/item/shown_item
 	if(attachment)
@@ -555,6 +567,7 @@
 	if(shown_item)
 		add_overlay(new /mutable_appearance(shown_item))
 	remember_attachment_overlay(shown_item)
+	// [/SURREALIS-EDIT]
 
 /obj/machinery/light/rogue/hearth/MouseDrop(mob/over, src_location, over_location, src_control, over_control, params)
 	. = ..()
@@ -913,6 +926,15 @@
 
 /obj/machinery/light/rogue/campfire/update_icon()
 	. = ..()
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
+	cut_overlays()
+	if(attachment)
+		var/obj/item/I = attachment
+		I.pixel_x = 0
+		I.pixel_y = 0
+	*/
 	var/obj/item/I = attachment
 	if(I)
 		I.pixel_x = 0
@@ -921,12 +943,15 @@
 		return
 	cut_overlays()
 	if(I)
+	// [/SURREALIS-EDIT]
 		var/mutable_appearance/MA = new /mutable_appearance(I)
 		MA.transform *= 0.85
 		MA.pixel_y = -6
 		MA.layer = layer + 0.1
 		add_overlay(MA)
+	// [SURREALIS-ADD] - PLASMA_OPTS
 	remember_attachment_overlay(I)
+	// [/SURREALIS-ADD]
 
 /obj/machinery/light/rogue/campfire/onkick(mob/user)
 	if(isliving(user) && on)

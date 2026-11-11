@@ -693,7 +693,10 @@
 							to_chat(user, "<span class='notice'>You see something!</span>")
 							playsound(src.loc, 'sound/items/fishing_plouf.ogg', 100, TRUE)
 							if(!do_after(user,ow, target = target))
+								// [SURREALIS-EDIT] - PLASMA_OPTS
+								// if(A in subtypesof(/mob/living)) // SURREALIS-EDIT - ORIGINAL
 								if(A != /mob/living && ispath(A, /mob/living))
+								// [/SURREALIS-EDIT]
 									var/mob/M = A
 									new M(target)
 									if (!(M.type == /mob/living/simple_animal/hostile/retaliate/rogue/mudcrab))

@@ -66,6 +66,7 @@
 	..()
 	update_icon()
 
+// [SURREALIS-ADD] - PLASMA_OPTS
 /obj/machinery/light/rogue
 	var/attachment_overlay_source
 	var/attachment_overlay
@@ -81,6 +82,7 @@
 	attachment_overlay = (shown_item && length(overlays)) ? overlays[1] : null
 	attachment_overlay_layer = layer
 
+// [/SURREALIS-ADD]
 /obj/machinery/light/rogue/update_icon()
 	if(on)
 		icon_state = "[base_state]1"

@@ -160,7 +160,10 @@
 	. -= bruteloss
 
 
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(updating_health) // SURREALIS-EDIT - ORIGINAL
 	if(SHOULD_UPDATE_HEALTH(updating_health))
+	// [/SURREALIS-EDIT]
 		updatehealth()
 	return amount
 
@@ -230,7 +233,10 @@
 	if (!.)
 		return FALSE
 
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(updating_health) // SURREALIS-EDIT - ORIGINAL
 	if(SHOULD_UPDATE_HEALTH(updating_health))
+	// [/SURREALIS-EDIT]
 		updatehealth()
 	return amount
 

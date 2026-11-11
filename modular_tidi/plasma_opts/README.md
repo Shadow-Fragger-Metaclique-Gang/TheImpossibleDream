@@ -1,0 +1,153 @@
+# Plasma Opts
+
+**Tag:** `PLASMA_OPTS`
+
+**Created in:** <!-- link to the PR that created this module -->
+
+**Major changes:** <!-- links to later PRs that changed this module a lot -->
+
+## Description
+
+<!-- What does this module do? -->
+
+## Core files changed
+
+- `code/__DEFINES/flags.dm`: EDIT near `#define PROCESSING_STATUSEFFECTS`
+- `code/__DEFINES/mobs.dm`: ADD near `#define AI_WORLD_THINK`, ADD near `#define PENDING_UPDATE_BODY`, ADD near `#define STATKEY_LCK`
+- `code/__DEFINES/status_effects.dm`: ADD near `#define STATUS_EFFECT_NO_TICK`
+- `code/__DEFINES/subsystems.dm`: ADD near `#define FIRE_PRIORITY_ICON_UPDATES`, ADD near `#define INIT_ORDER_ICON_UPDATES`
+- `code/__HELPERS/_string_lists.dm`: EDIT near `/proc/strings_replacement`
+- `code/__HELPERS/hair_customization.dm`: EDIT near `/proc/hair_preview_icon`
+- `code/__HELPERS/icons.dm`: ADD near `/proc/get_flat_human_icon`, ADD near `/proc/icon2html_for_path`, EDIT near `/proc/icon2html`
+- `code/__HELPERS/text.dm`: ADD near `/proc/cached_regex`, EDIT near `/proc/parsemarkdown_basic_step1`, EDIT near `/proc/parsemarkdown_basic_step2`, EDIT near `/proc/parsemarkdown`
+- `code/__HELPERS/unsorted.dm`: EDIT near `/proc/is_blocked_turf`
+- `code/_globalvars/lists/client.dm`: EDIT near `GLOBAL_LIST_INIT`
+- `code/_globalvars/special_traits.dm`: ADD near `/mob/living/carbon/human/var/pending_post_equipment`, ADD near `/proc/apply_character_post_equipment`
+- `code/_onclick/hud/alert.dm`: ADD near `/atom/movable/screen/alert/proc/update_countdown`, EDIT near `#define ALERT_COUNTDOWN_TENTHS`, REMOVE near `/atom/movable/screen/alert/proc/update_countdown`
+- `code/_onclick/hud/screen_objects.dm`: ADD near `/atom/movable/screen/healths/blood`
+- `code/controllers/master.dm`: ADD near `/datum/controller/master/proc/Loop`
+- `code/controllers/subsystem/job.dm`: EDIT near `/datum/controller/subsystem/job/proc/EquipRank`
+- `code/controllers/subsystem/overlays.dm`: EDIT near `/atom/proc/copy_overlays`, EDIT near `/image/proc/copy_overlays`
+- `code/controllers/subsystem/rogue/cooking/cooking_recipes.dm`: EDIT near `/datum/food_recipe/proc/generate_html`, EDIT near `/datum/food_recipe/proc/render_step_li`
+- `code/controllers/subsystem/rogue/damoverlays.dm`: deleted
+- `code/controllers/subsystem/rogue/fog_event/fog_ward_effect.dm`: ADD near `/datum/status_effect/buff/fog_ward_caster`, ADD near `/datum/status_effect/buff/fog_ward`, EDIT near `/datum/status_effect/buff/fog_ward_caster/refresh`
+- `code/controllers/subsystem/rogue/role_class_handler/role_class_handler.dm`: ADD near `/datum/controller/subsystem/role_class_handler/proc/setup_class_handler`, ADD near `/mob/living/carbon/human/var/list/pending_class_setup`
+- `code/controllers/subsystem/weather.dm`: EDIT near `/turf/proc/trigger_weather`
+- `code/datums/brewing_recipes/_brewing_recipe_base.dm`: EDIT near `/datum/brewing_recipe/proc/generate_html`
+- `code/datums/components/anti_magic.dm`: EDIT near `/datum/component/anti_magic/Initialize`
+- `code/datums/components/crafting/crafting.dm`: EDIT near `/datum/component/personal_crafting/proc/check_contents`, EDIT near `/datum/component/personal_crafting/proc/del_reqs`
+- `code/datums/components/crafting/recipes.dm`: EDIT near `/datum/crafting_recipe/proc/generate_html`
+- `code/datums/components/footstep.dm`: ADD near `/datum/component/footstep/proc/reset_steps`
+- `code/datums/components/lockon_aiming.dm`: EDIT near `/datum/component/lockon_aiming/proc/clear_visuals`, EDIT near `/datum/component/lockon_aiming/proc/show_visuals`
+- `code/datums/datacore.dm`: EDIT near `/datum/datacore/proc/manifest`
+- `code/datums/elements/noisy_movement.dm`: EDIT near `/datum/element/noisy_movement/proc/play_sound`
+- `code/datums/gods/_patron.dm`: EDIT near `/datum/patron/proc/hear_prayer`
+- `code/datums/gods/patrons/inhumen/resurrect_inhumen.dm`: ADD near `/datum/status_effect/debuff/baotha_addiction`, EDIT near `/datum/status_effect/debuff/zizo_temp_undeath/tick`
+- `code/datums/hud.dm`: ADD near `/datum/atom_hud/proc/add_all_to_single_hud`, EDIT near `/datum/atom_hud/proc/add_hud_to`, EDIT near `/datum/atom_hud/proc/remove_hud_from`, EDIT near `/datum/atom_hud/proc/show_hud_images_after_cooldown`, EDIT near `/mob/proc/reload_huds`
+- `code/datums/mind.dm`: ADD near `/proc/get_minds_by_role`
+- `code/datums/particle_weathers/_base.dm`: ADD near `/datum/particle_weather/proc/weather_obj_act`
+- `code/datums/skill_holder.dm`: EDIT near `/datum/skill_holder/proc/get_skill_level`
+- `code/datums/status_effects/buffs.dm`: ADD near `/datum/status_effect/exercised`, ADD near `/datum/status_effect/fleshmend`, ADD near `/datum/status_effect/shadow_mend`, EDIT near `/datum/status_effect/exercised/on_creation`
+- `code/datums/status_effects/debuffs.dm`: ADD near `/datum/status_effect/debuff/mishap_arcane_drunkenness`, ADD near `/datum/status_effect/debuff/mishap_arcane_high`, ADD near `/datum/status_effect/debuff/mishap_blindness`, ADD near `/datum/status_effect/debuff/mishap_confused`, ADD near `/datum/status_effect/debuff/mishap_feeblemind`, ADD near `/datum/status_effect/debuff/mishap_sleepy`, ADD near `/datum/status_effect/neck_slice`, ADD near `/datum/status_effect/spasms`, EDIT near `/datum/status_effect/debuff/exposed/proc/lock_casting`
+- `code/datums/status_effects/gas.dm`: ADD near `/datum/status_effect/freon`
+- `code/datums/status_effects/neutral.dm`: ADD near `/datum/status_effect/bounty`, ADD near `/datum/status_effect/in_love`, ADD near `/datum/status_effect/sigil_mark`
+- `code/datums/status_effects/rogue/debuff.dm`: ADD near `/datum/status_effect/debuff/deathdoorwilloss`, ADD near `/datum/status_effect/debuff/joybringer_druqks`, ADD near `/datum/status_effect/debuff/knockout`, ADD near `/datum/status_effect/debuff/necrandeathdoorwilloss`
+- `code/datums/status_effects/rogue/residual_focus.dm`: EDIT near `/datum/status_effect/buff/residual_focus/tick`
+- `code/datums/status_effects/rogue/roguebuff.dm`: ADD near `/datum/status_effect/buff/anthraxbuff`, ADD near `/datum/status_effect/buff/bloodheal`, ADD near `/datum/status_effect/buff/campfire_stamina`, ADD near `/datum/status_effect/buff/campfire`, ADD near `/datum/status_effect/buff/clash`, ADD near `/datum/status_effect/buff/dagger_boost`, ADD near `/datum/status_effect/buff/flylordstriage`, ADD near `/datum/status_effect/buff/foodhealing`, ADD near `/datum/status_effect/buff/gemmuncher`, ADD near `/datum/status_effect/buff/guardbuffone`, ADD near `/datum/status_effect/buff/healing`, ADD near `/datum/status_effect/buff/ingotmuncher`, ADD near `/datum/status_effect/buff/innkeeperbuff`, ADD near `/datum/status_effect/buff/invigoration`, ADD near `/datum/status_effect/buff/oremuncher`, ADD near `/datum/status_effect/buff/originhealing`, ADD near `/datum/status_effect/buff/psyhealing`, ADD near `/datum/status_effect/buff/psyvived`, ADD near `/datum/status_effect/buff/undermaidenbargainheal`, ADD near `/datum/status_effect/buff/wardenbuff`
+- `code/datums/status_effects/status_effect.dm`: ADD near `/datum/status_effect/Destroy`, ADD near `/datum/status_effect/proc/be_replaced`, ADD near `/datum/status_effect/proc/on_creation`, ADD near `/mob/living`, EDIT near `/atom/movable/screen/alert/status_effect/examine_ui`, EDIT near `/datum/status_effect/proc/on_creation`, EDIT near `/datum/status_effect/proc/refresh`, EDIT near `/datum/status_effect/process`, EDIT near `/datum/status_effect/stacking/proc/add_stacks`, EDIT near `/datum/status_effect`, REMOVE near `/datum/status_effect`
+- `code/datums/weather/weather.dm`: EDIT near `/datum/weather/proc/can_weather_act`, EDIT near `/datum/weather/proc/telegraph`
+- `code/datums/wounds/_wound.dm`: ADD near `/datum/wound/proc/apply_to_bodypart`, ADD near `/datum/wound/proc/apply_to_mob`
+- `code/game/objects/effects/temporary_visuals/music.dm`: ADD near `/datum/status_effect/buff/playing_music`
+- `code/game/objects/effects/track.dm`: EDIT near `/obj/effect/track/structure/handle_creation`, EDIT near `/obj/effect/track/thievescant/handle_creation`
+- `code/game/objects/items/rogueitems/inquisitionrelics.dm`: ADD near `/datum/status_effect/buff/cranking_soulchurner`, ADD near `/datum/status_effect/buff/quelling_soulchurner`
+- `code/game/objects/items/rogueweapons/melee/polearms/polearms.dm`: EDIT near `/obj/item/rogueweapon/fishspear/afterattack`
+- `code/game/objects/lighting/_base_roguelight.dm`: ADD near `/obj/machinery/light/rogue`
+- `code/game/objects/lighting/rogue_fires.dm`: ADD near `/obj/machinery/light/rogue/campfire/update_icon`, EDIT near `/obj/machinery/light/rogue/campfire/update_icon`, EDIT near `/obj/machinery/light/rogue/hearth/update_icon`
+- `code/game/objects/structures/fluff.dm`: EDIT near `/obj/structure/fluff/alch/trans/attackby`, EDIT near `/obj/structure/fluff/alch/trans/proc/check_contents`
+- `code/game/rotational_objects/rotational_speed_data.dm`: ADD near `/obj/structure/proc/return_connected`, EDIT near `/obj/structure/MiddleClick`, EDIT near `/obj/structure/proc/rotation_break`
+- `code/modules/admin/player_curses.dm`: ADD near `/proc/get_player_curses`, EDIT near `/proc/apply_player_curse`, EDIT near `/proc/get_player_curses`, EDIT near `/proc/remove_player_curse`
+- `code/modules/antagonists/_common/antag_hud.dm`: EDIT near `/proc/set_antag_hud`
+- `code/modules/antagonists/roguetown/villain/peasantrebel.dm`: ADD near `/datum/status_effect/buff/rebel_town_gated`
+- `code/modules/antagonists/roguetown/villain/zombie/zombie_disease.dm`: ADD near `/datum/status_effect/zombie_infection`
+- `code/modules/balloon_alert/balloon_alert.dm`: ADD near `/atom/proc/balloon_alert_perform`, REMOVE near `/atom/proc/balloon_alert_perform`
+- `code/modules/client/character_setup/preview_view.dm`: EDIT near `/atom/movable/screen/map_view/char_preview/proc/update_body`
+- `code/modules/client/client_procs.dm`: ADD near `/client/proc/update_movement_keys`, EDIT near `/client/proc/change_view`
+- `code/modules/client/customizer/customizers/bodypart_feature/hair.dm`: ADD near `/datum/custom_hair_ui/proc/build_guide_icon`, EDIT near `/datum/custom_hair_ui/proc/build_guide_icon`
+- `code/modules/clothing/rogueclothes/armor/manual.dm`: ADD near `/obj/item/clothing/suit/roguetown/armor/manual/tool/get_mechanics_examine`
+- `code/modules/clothing/rogueclothes/storage/storage.dm`: EDIT near `/obj/item/storage/belt/rogue/leather/knifebelt/attackby`, EDIT near `/obj/item/storage/belt/rogue/leather/knifebelt/proc/eatknife`
+- `code/modules/farming/fermentation_keg.dm`: EDIT near `/obj/item/reagent_containers/glass/bottle/brewing_bottle/afterattack`
+- `code/modules/farming/wild_plant.dm`: EDIT near `/obj/structure/wild_plant/random/New`
+- `code/modules/food_and_drinks/food/snacks.dm`: EDIT near `/obj/item/reagent_containers/food/snacks/proc/On_Consume`
+- `code/modules/jobs/job_types/_job.dm`: EDIT near `/datum/job/proc/after_spawn`
+- `code/modules/jobs/job_types/roguetown/nobility/prince.dm`: ADD near `/datum/status_effect/buff/champion`, ADD near `/datum/status_effect/buff/ward`
+- `code/modules/mob/dead/new_player/login.dm`: EDIT near `/mob/dead/new_player/Login`
+- `code/modules/mob/dead/observer/observer.dm`: ADD near `/mob/dead/observer/Initialize`, ADD near `/mob/dead/observer/proc/refresh_body_overlays`
+- `code/modules/mob/living/carbon/damage_procs.dm`: ADD near `/mob/living/carbon/take_overall_damage`, EDIT near `/mob/living/carbon/heal_overall_damage`, EDIT near `/mob/living/carbon/take_bodypart_damage`, EDIT near `/mob/living/carbon/take_overall_damage`
+- `code/modules/mob/living/carbon/human/human.dm`: EDIT near `/mob/living/carbon/human/update_health_hud`
+- `code/modules/mob/living/carbon/human/human_defines.dm`: ADD near `/mob/living/carbon/human`
+- `code/modules/mob/living/carbon/human/human_helpers.dm`: ADD near `/mob/living/carbon/human/proc/build_descriptor_name`, EDIT near `/mob/living/carbon/human/get_visible_name`
+- `code/modules/mob/living/carbon/human/species_types/roguetown/roguetown_species.dm`: EDIT near `/proc/treat_message_accent_fullword`
+- `code/modules/mob/living/carbon/human/update_icons.dm`: ADD near `/mob/living/carbon/human/proc/generate_damage_overlay_key`, ADD near `/mob/living/carbon/human/proc/update_damage_overlays_real`, ADD near `/mob/living/carbon/human/regenerate_icons`, ADD near `/mob/living/carbon/human/update_body_parts`, ADD near `/mob/living/carbon/human/update_inv_armor`, ADD near `/mob/living/carbon/human/update_inv_back`, ADD near `/mob/living/carbon/human/update_inv_belt`, ADD near `/mob/living/carbon/human/update_inv_cloak`, ADD near `/mob/living/carbon/human/update_inv_ears`, ADD near `/mob/living/carbon/human/update_inv_glasses`, ADD near `/mob/living/carbon/human/update_inv_gloves`, ADD near `/mob/living/carbon/human/update_inv_head`, ADD near `/mob/living/carbon/human/update_inv_mouth`, ADD near `/mob/living/carbon/human/update_inv_neck`, ADD near `/mob/living/carbon/human/update_inv_pants`, ADD near `/mob/living/carbon/human/update_inv_pockets`, ADD near `/mob/living/carbon/human/update_inv_s_store`, ADD near `/mob/living/carbon/human/update_inv_shirt`, ADD near `/mob/living/carbon/human/update_inv_shoes`, ADD near `/mob/living/carbon/human/update_inv_w_uniform`, ADD near `/mob/living/carbon/human/update_inv_wear_id`, ADD near `/mob/living/carbon/human/update_inv_wear_mask`, ADD near `/mob/living/carbon/human/update_inv_wear_suit`, ADD near `/mob/living/carbon/human/update_inv_wrists`, EDIT near `/mob/living/carbon/human/proc/update_damage_overlays_real`, EDIT near `/mob/living/carbon/human/update_damage_overlays`
+- `code/modules/mob/living/carbon/life.dm`: ADD near `/mob/living/carbon/proc/life_wounds_settled`, EDIT near `/mob/living/carbon/Life`
+- `code/modules/mob/living/carbon/status_procs.dm`: ADD near `/mob/living/carbon/incapacitated`
+- `code/modules/mob/living/carbon/stress.dm`: ADD near `/mob/living/carbon`, EDIT near `/mob/living/carbon/proc/update_stress_visual`, REMOVE near `/mob/living/carbon/get_stress_amount`
+- `code/modules/mob/living/carbon/update_icons.dm`: ADD near `/mob/living/carbon/proc/update_body_parts`, ADD near `/mob/living/carbon/update_damage_overlays`, ADD near `/mob/living/carbon/update_inv_back`, ADD near `/mob/living/carbon/update_inv_hands`, ADD near `/mob/living/carbon/update_inv_head`, ADD near `/mob/living/carbon/update_inv_neck`, ADD near `/mob/living/carbon/update_inv_wear_mask`, EDIT near `/mob/living/proc/apply_overlay`, EDIT near `/mob/living/proc/remove_overlay`
+- `code/modules/mob/living/damage_procs.dm`: EDIT near `/mob/living/proc/adjustBruteLoss`, EDIT near `/mob/living/proc/adjustFireLoss`
+- `code/modules/mob/living/life.dm`: EDIT near `/mob/living/proc/Life`
+- `code/modules/mob/living/living.dm`: EDIT near `/mob/living/incapacitated`
+- `code/modules/mob/living/living_movement.dm`: EDIT near `/mob/living/proc/update_turf_movespeed`
+- `code/modules/mob/living/living_wounds.dm`: ADD near `/mob/living`
+- `code/modules/mob/living/login.dm`: ADD near `/mob/living/Login`
+- `code/modules/mob/living/simple_animal/damage_procs.dm`: EDIT near `/mob/living/simple_animal/proc/adjustHealth`
+- `code/modules/mob/living/simple_animal/hostile/hostile.dm`: REMOVE near `/mob/living/simple_animal/hostile/proc/ListTargets`
+- `code/modules/mob/living/simple_animal/hostile/retaliate/summons/elemental/behemoth.dm`: EDIT near `/mob/living/simple_animal/hostile/retaliate/rogue/elemental/behemoth`
+- `code/modules/mob/living/simple_animal/hostile/retaliate/summons/elemental/colossus.dm`: EDIT near `/mob/living/simple_animal/hostile/retaliate/rogue/elemental/colossus`
+- `code/modules/mob/living/simple_animal/hostile/retaliate/summons/elemental/crawler.dm`: EDIT near `/mob/living/simple_animal/hostile/retaliate/rogue/elemental/crawler`
+- `code/modules/mob/living/simple_animal/hostile/retaliate/summons/elemental/warden.dm`: EDIT near `/mob/living/simple_animal/hostile/retaliate/rogue/elemental/warden`
+- `code/modules/mob/living/simple_animal/hostile/retaliate/summons/infernal/fiend.dm`: EDIT near `/mob/living/simple_animal/hostile/retaliate/rogue/infernal/fiend`
+- `code/modules/mob/living/simple_animal/hostile/retaliate/summons/infernal/hellhound.dm`: EDIT near `/mob/living/simple_animal/hostile/retaliate/rogue/infernal/hellhound`
+- `code/modules/mob/living/simple_animal/rogue/creacher/deadites/undead_boar.dm`: ADD near `/datum/status_effect/buff/blood_frenzy`
+- `code/modules/mob/living/simple_animal/rogue/creacher/white_stag.dm`: ADD near `/datum/status_effect/buff/white_rush`
+- `code/modules/mob/living/simple_animal/simple_animal.dm`: EDIT near `/mob/living/simple_animal/update_stat`
+- `code/modules/mob/living/status_procs.dm`: EDIT near `/mob/living/proc/AdjustImmobilized`, EDIT near `/mob/living/proc/AdjustKnockdown`, EDIT near `/mob/living/proc/AdjustParalyzed`, EDIT near `/mob/living/proc/AdjustSleeping`, EDIT near `/mob/living/proc/AdjustStun`, EDIT near `/mob/living/proc/AdjustUnconscious`, EDIT near `/mob/living/proc/AmountImmobilized`, EDIT near `/mob/living/proc/AmountKnockdown`, EDIT near `/mob/living/proc/AmountOffBalanced`, EDIT near `/mob/living/proc/AmountParalyzed`, EDIT near `/mob/living/proc/AmountSleeping`, EDIT near `/mob/living/proc/AmountStun`, EDIT near `/mob/living/proc/AmountUnconscious`, EDIT near `/mob/living/proc/Immobilize`, EDIT near `/mob/living/proc/Knockdown`, EDIT near `/mob/living/proc/OffBalance`, EDIT near `/mob/living/proc/Paralyze`, EDIT near `/mob/living/proc/SetImmobilized`, EDIT near `/mob/living/proc/SetKnockdown`, EDIT near `/mob/living/proc/SetParalyzed`, EDIT near `/mob/living/proc/SetSleeping`, EDIT near `/mob/living/proc/SetStun`, EDIT near `/mob/living/proc/SetUnconscious`, EDIT near `/mob/living/proc/Sleeping`, EDIT near `/mob/living/proc/Stun`, EDIT near `/mob/living/proc/Unconscious`, EDIT near `/mob/living/proc/adjust_timed_status_effect`, EDIT near `/mob/living/proc/get_timed_status_effect_duration`, EDIT near `/mob/living/proc/set_timed_status_effect`
+- `code/modules/mob/mob_helpers.dm`: EDIT near `/proc/simplespeech`
+- `code/modules/mob/mob_movement.dm`: ADD near `/mob/living/update_sneak_invis`
+- `code/modules/mob/transform_procs.dm`: EDIT near `/mob/living/carbon/proc/humanize`
+- `code/modules/mob/vision_cone.dm`: EDIT near `/mob/living/update_cone`
+- `code/modules/reagents/chemistry/reagents/drug_reagents.dm`: EDIT near `/datum/reagent/drug/crank/addiction_act_stage3`, EDIT near `/datum/reagent/drug/crank/addiction_act_stage4`, EDIT near `/datum/reagent/drug/crank/overdose_process`
+- `code/modules/reagents/chemistry/reagents/medicine_reagents.dm`: EDIT near `/datum/reagent/medicine/salglu_solution/overdose_process`
+- `code/modules/reagents/chemistry/reagents/other_reagents.dm`: EDIT near `/datum/reagent/acetone_oxide/reaction_mob`, EDIT near `/datum/reagent/chlorine/on_mob_life`, EDIT near `/datum/reagent/fuel/unholywater/on_mob_life`, EDIT near `/datum/reagent/hellwater/on_mob_life`, EDIT near `/datum/reagent/hydrogen_peroxide/reaction_mob`
+- `code/modules/reagents/chemistry/reagents/roguetown.dm`: EDIT near `/datum/reagent/rogueacid/reaction_mob`
+- `code/modules/reagents/chemistry/reagents/toxin_reagents.dm`: EDIT near `/datum/reagent/toxin/acid/fluacid/on_mob_life`, EDIT near `/datum/reagent/toxin/acid/nitracid/on_mob_life`, EDIT near `/datum/reagent/toxin/heparin/on_mob_life`, EDIT near `/datum/reagent/toxin/histamine/on_mob_life`, EDIT near `/datum/reagent/toxin/histamine/overdose_process`, EDIT near `/datum/reagent/toxin/itching_powder/on_mob_life`
+- `code/modules/reagents/reagent_containers/lux.dm`: EDIT near `/datum/reagent/vitae/overdose_process`
+- `code/modules/roguetown/roguecrafting/alchemy/potionbuffs.dm`: EDIT near `/datum/status_effect/buff/alch/statbuff/proc/add_duration`
+- `code/modules/roguetown/roguecrafting/alchemy/reagents.dm`: EDIT near `/datum/reagent/toxin/fyritiusnectar/on_mob_life`
+- `code/modules/roguetown/roguejobs/blacksmith/anvil_recipes/_anvil_recipe.dm`: EDIT near `/datum/anvil_recipe/proc/generate_html`
+- `code/modules/roguetown/roguemachine/heartbeast/fleshcrafting/flesh_tick.dm`: ADD near `/datum/status_effect/debuff/leech_schizophrenia`, EDIT near `/datum/component/leechtick_attachment/proc/switch_zone`, EDIT near `/datum/status_effect/debuff/leech_schizophrenia/on_creation`
+- `code/modules/spells/orison.dm`: EDIT near `/datum/reagent/water/blessed/reaction_mob`, EDIT near `/datum/status_effect/light_buff/refresh`
+- `code/modules/spells/pantheon/divine/necra.dm`: ADD near `/datum/status_effect/churned`
+- `code/modules/spells/pantheon/divine/undivided.dm`: ADD near `/datum/status_effect/buff/recuperation`
+- `code/modules/spells/roguetown/acolyte/abyssor/paint_infusion.dm`: EDIT near `/datum/status_effect/infusion/tick`
+- `code/modules/spells/roguetown/acolyte/astrata.dm`: ADD near `/datum/status_effect/buff/pyre`
+- `code/modules/spells/roguetown/acolyte/eora/eora_status_effects.dm`: ADD near `/datum/status_effect/buff/ashen_aril`, ADD near `/datum/status_effect/buff/eoran_balm_effect`, ADD near `/datum/status_effect/debuff/eoran_wilting`, ADD near `/datum/status_effect/debuff/pomegranate_aura`, ADD near `/datum/status_effect/debuff/pomegranate_beauty`, EDIT near `/datum/status_effect/debuff/pomegranate_aura/tick`
+- `code/modules/spells/roguetown/acolyte/pestra.dm`: ADD near `/datum/status_effect/buff/infestation/on_apply`, ADD near `/datum/status_effect/buff/infestation`, EDIT near `/datum/status_effect/buff/infestation/on_remove`, EDIT near `/datum/status_effect/buff/infestation/tick`, EDIT near `/datum/status_effect/buff/infestation`
+- `code/modules/spells/roguetown/acolyte/pestra/pestra_bed.dm`: EDIT near `/datum/status_effect/buff/healing/bed_rest/pestra/tick`
+- `code/modules/spells/roguetown/acolyte/pestra/pestra_status_effects.dm`: EDIT near `/datum/status_effect/buff/divine_rebirth_healing/tick`
+- `code/modules/spells/spell_cooldown.dm`: EDIT near `/datum/action/cooldown/spell/proc/refresh_charge_intent`
+- `code/modules/spells/spell_types/bardic/melody.dm`: ADD near `/datum/status_effect/buff/playing_melody`
+- `code/modules/spells/spell_types/bardic/recovery_song.dm`: ADD near `/datum/status_effect/buff/song/recovery`
+- `code/modules/spells/spell_types/classunique/Luminary/selfbuff.dm`: ADD near `/datum/status_effect/buff/healingaura`
+- `code/modules/spells/spell_types/classunique/berserker/berserkrage.dm`: ADD near `/datum/status_effect/buff/rage_stamina`
+- `code/modules/spells/spell_types/classunique/desertrider/zeybek_momentum.dm`: EDIT near `/datum/status_effect/buff/zeybek_momentum/proc/grant_milestone_boost`
+- `code/modules/spells/spell_types/classunique/lamplighter/lampwicker.dm`: ADD near `/datum/status_effect/buff/sooth_the_soul`
+- `code/modules/spells/spell_types/skills/invoked_single_target/fortifyingvapors.dm`: ADD near `/datum/status_effect/buff/fortifyingvapors`
+- `code/modules/spells/spell_types/wizard/augmentation/precognition.dm`: EDIT near `/proc/reduce_intent_cooldown`
+- `code/modules/spells/spell_types/wizard/cryomancy/verglas.dm`: ADD near `/datum/status_effect/verglas_concentration/skate`
+- `code/modules/spells/spell_types/wizard/legacy_spells_unused/acid_splash.dm`: ADD near `/datum/status_effect/buff/acidsplash`
+- `code/modules/spells/spell_types/wizard/spells_status_effects.dm`: ADD near `/datum/status_effect/buff/frost`, ADD near `/datum/status_effect/buff/frostbite`
+- `code/modules/surgery/bodyparts/bodypart_dismemberment.dm`: ADD near `/obj/item/bodypart/proc/attach_limb`
+- `code/modules/surgery/bodyparts/bodypart_wounds.dm`: ADD near `/obj/item/bodypart/proc/add_embedded_object`, ADD near `/obj/item/bodypart/proc/get_bleed_rate`
+- `code/modules/surgery/organs/heart.dm`: EDIT near `/obj/item/organ/heart/on_life`, REMOVE near `/obj/item/organ/heart/on_life`
+- `code/modules/vampire_neu/clan/clan_selection_menu.dm`: ADD near `/datum/vampire_clan_selection_menu`, EDIT near `/datum/vampire_clan_selection_menu/ui_data`
+- `modular/Neu_Food/code/cooked/cooked_stag_buffs.dm`: ADD near `/datum/status_effect/buff/forest_rush`
+- `modular/code/modules/admin/bunker_bypass.dm`: ADD near `/proc/add_bunker_bypass`, EDIT near `/client/proc/bunker_bypass`
