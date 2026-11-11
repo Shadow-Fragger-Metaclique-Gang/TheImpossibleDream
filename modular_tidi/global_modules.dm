@@ -25,6 +25,7 @@
 #include "new_jobs\_new_jobs.dme"
 #include "nudist_approved\_nudist_approved.dme"
 #include "phrase_highlights\_phrase_highlights.dme"
+#include "plasma_opts\_plasma_opts.dme"
 #include "pq-remover\_pq-remover.dme"
 #include "quirks\_quirks.dme"
 #include "sexcon\_sexcon.dme"

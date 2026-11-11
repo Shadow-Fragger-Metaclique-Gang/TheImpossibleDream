@@ -21,6 +21,7 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Set, Tuple
 
@@ -171,8 +172,7 @@ HUNK_RE = re.compile(r"^@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@")
 def resolve_base(base: Optional[str], quiet: bool = False) -> str:
 	"""
 	Merge-base to diff against. Without --base, every candidate that exists is
-	tried and the closest one wins (fewest commits to HEAD), so a stale fork
-	main can't make upstream commits look like yours.
+	tried and the closest one wins (fewest commits to HEAD)
 	"""
 	candidates = [base] if base else list(DEFAULT_BASES)
 	best = None
@@ -193,7 +193,7 @@ def resolve_base(base: Optional[str], quiet: bool = False) -> str:
 
 
 def changed_files(mb: str) -> Tuple[Dict[str, str], Set[str]]:
-	"""path -> status letter (A/M/D/T) for everything changed since mb, worktree included."""
+	"""path -> status letter (A/M/D/T) for everything changed since mb"""
 	out = git("diff", "--name-status", "-z", "--no-renames", mb)
 	parts = [p for p in out.split("\0") if p]
 	files: Dict[str, str] = {}
@@ -201,7 +201,9 @@ def changed_files(mb: str) -> Tuple[Dict[str, str], Set[str]]:
 		files[parts[i + 1]] = parts[i][0]
 	untracked = set(p for p in git("ls-files", "--others", "--exclude-standard", "-z").split("\0") if p)
 	for p in untracked:
-		files[p] = "A"
+		# Untracked but present at the base means it was deleted and restored
+		# (e.g. to comment it out instead): a change to it, not a new file.
+		files[p] = "M" if subprocess.run(["git", "cat-file", "-e", "%s:%s" % (mb, p)], capture_output=True).returncode == 0 else "A"
 	return files, untracked
 
 
@@ -209,8 +211,26 @@ def all_hunks(mb: str, paths: List[str]) -> Dict[str, List[Hunk]]:
 	result: Dict[str, List[Hunk]] = {}
 	if not paths:
 		return result
-	wanted = set(paths)
-	out = git("diff", "-U0", "--no-color", "--no-ext-diff", "--no-renames", mb)
+	return parse_hunks(git("diff", "-U0", "--no-color", "--no-ext-diff", "--no-renames", mb), set(paths))
+
+
+def restored_hunks(mb: str, path: str) -> List[Hunk]:
+	"""Hunks for an untracked file that also exists at mb, diffed against that version."""
+	fd, tmp = tempfile.mkstemp(suffix=".dm")
+	try:
+		with os.fdopen(fd, "wb") as f:
+			f.write(subprocess.run(["git", "show", "%s:%s" % (mb, path)], capture_output=True, check=True).stdout)
+		out = subprocess.run(
+			["git", "diff", "--no-index", "-U0", "--no-color", "--no-ext-diff", tmp, path],
+			capture_output=True, text=True, encoding="utf-8", errors="replace",
+		).stdout
+	finally:
+		os.remove(tmp)
+	return parse_hunks(out, {path}).get(path, [])
+
+
+def parse_hunks(out: str, wanted: Set[str]) -> Dict[str, List[Hunk]]:
+	result: Dict[str, List[Hunk]] = {}
 	cur: Optional[List[Hunk]] = None
 	old_path = None
 	for line in out.split("\n"):
@@ -925,7 +945,7 @@ def analyze(base: Optional[str], fix: bool, tag: Optional[str], quiet: bool = Fa
 	hunks = all_hunks(mb, tracked_dm + [p for p in files if is_module_path(p) and p.endswith(".dm") and p not in untracked and files[p] != "D"])
 	for p in files:
 		if p in untracked and p.endswith(".dm"):
-			hunks[p] = untracked_hunks(p)
+			hunks[p] = restored_hunks(mb, p) if files[p] == "M" else untracked_hunks(p)
 
 	tag_files: Dict[str, Dict[str, Set[str]]] = {}
 	unmarked = False

@@ -23,9 +23,9 @@ Juke.chdir('../..', import.meta.url);
 const GlobalModulesFile = 'modular_tidi/global_modules.dm';
 
 function sortGlobalModules() {
-  let fileContents = fs.readFileSync(GlobalModulesFile, 'utf8');
-  let lines = fileContents.split('\n');
-  let includeLines = [];
+  const fileContents = fs.readFileSync(GlobalModulesFile, 'utf8');
+  const lines = fileContents.split('\n');
+  const includeLines = [];
 
   for (let i = 0; i < lines.length; i++) {
     if (lines[i].trim().startsWith('#include')) {
@@ -44,9 +44,9 @@ function sortGlobalModules() {
     }
   }
 
-  let newFileContents = lines.join('\n');
+  const newFileContents = lines.join('\n');
 
-  if (newFileContents != fileContents) {
+  if (newFileContents !== fileContents) {
     fs.writeFileSync(GlobalModulesFile, newFileContents);
   }
 }
@@ -127,11 +127,24 @@ const modularCheck = (mode: 'check' | 'fix', extra: string[] = []) => {
     throw new Juke.ExitCode(1);
   }
   const [cmd, ...args] = python;
+  // This is to fix a weird issue on Windows where the Python process would not get the
+  // keypresses and would hang forever. This is a workaround to make sure that the stdin is not in raw mode.
+  const stdin = process.stdin;
+  const wasRaw = stdin.isTTY && stdin.isRaw;
+  if (wasRaw) {
+    stdin.setRawMode(false);
+  }
+  stdin.pause();
   return Juke.exec(
     cmd,
     [...args, 'tools/modular_check/modular_check.py', mode, ...extra],
     { stdio: ['inherit', 'pipe', 'pipe'] },
-  );
+  ).finally(() => {
+    if (wasRaw) {
+      stdin.setRawMode(true);
+    }
+    stdin.resume();
+  });
 };
 
 /** Reports unmarked core changes, missing README entries, module layout problems, etc.*/
