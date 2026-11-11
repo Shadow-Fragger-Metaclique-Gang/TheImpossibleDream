@@ -17,6 +17,7 @@
 	smoked_type = null
 
 /obj/item/reagent_containers/food/snacks/rogue/meat/steak/smoked
+	dish_type = DISH_MEAT|DISH_POULTRY
 	eat_effect = null
 	slices_num = 0
 	name = "jerky bundle"
@@ -257,7 +258,7 @@
 	slices_num = 0
 	name = "fryfilet"
 	desc = "A slab of flaky fish, fried until falling apart."
-	icon = 'modular/Neu_Food/icons/cooked/cooked_meat.dmi'
+	icon = 'modular/Neu_Food/icons/cooked/cooked_seafood_meal.dmi'
 	icon_state = "cooked_filet"
 	bonus_reagents = list(/datum/reagent/consumable/nutriment = NUTRITION_THIRD_MEAL)
 	faretype = FARE_NEUTRAL

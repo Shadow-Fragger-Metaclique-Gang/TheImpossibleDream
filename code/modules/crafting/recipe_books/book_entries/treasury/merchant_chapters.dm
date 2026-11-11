@@ -124,12 +124,11 @@
 
 		<h3>How it relates to the Navigator</h3>
 		<ul>
-			<li>The Navigator is the right tool for anything you want to sell at the
-			prevailing market rate. It takes anything sellable.</li> <li>The Fulfillment
-			Crate is the right tool for goods the docked ships specifically want, paid at
-			the ship's offered (usually better) price.</li> <li>Favor toward docked
-			vessels accrues on bulk and victualling fulfillment alike. The Merchant's
-			reputation depends on sellers showing up at the crate.</li>
+			<li>Sell at the market rate through the Navigator. It takes anything
+			sellable.</li> <li>Sell what a docked ship asks for through the Crate, at the
+			ship's price, which is usually better.</li> <li>Bulk and victualling deliveries
+			both earn Favor with the ship. The Merchant's reputation depends on sellers
+			showing up at the crate.</li>
 		</ul>
 		</div>
 	"}
@@ -224,7 +223,7 @@
 			<li>Each realm wants specific categories. A docked ship raises demand on
 			those categories, and the Navigator pays above base for goods in them.</li>
 			<li>Capped at [MARKET_DEMAND_PAYOUT_MAX_MULT]x payout. Two ships wanting the
-			same category stack up to the cap and no further.</li> <li>Demand evaporates
+			same category stack up to the cap and no further.</li> <li>Demand ends
 			when the ship leaves. With no ship wanting it, a category pays
 			[MARKET_DEMAND_NO_SHIP_FLOOR]x (valuables, seafood, pottery and carved goods stay at 1.0x).</li>
 		</ul>
@@ -238,8 +237,8 @@
 			[MARKET_DEMAND_SHIP_SATURATION_DRAIN * 100]% of that category's capacity.
 			This opens room for more sales while it's in port.</li>
 			<li>Seafood, pottery and carved goods also clear [MARKET_POOL_PASSIVE_DRAIN * 100]% of their capacity every
-			[DisplayTimeText(MARKET_POOL_PASSIVE_DRAIN_INTERVAL)], ensuring towners can still make some profit even without ships.</li>
-			<li>A full warehouse refuses further intake. The Navigator sends the goods back with a \"market is choked\" message.</li>
+			[DisplayTimeText(MARKET_POOL_PASSIVE_DRAIN_INTERVAL)], so towners can still sell something when no ship is in port.</li>
+			<li>When a warehouse is full, the Navigator sends the goods back with a \"market is choked\" message.</li>
 			<li>The Black Market runs in parallel. It has [MARKET_BM_POOL_FRACTION * 100]% of the capacity, flat prices (no demand mechanic), and clears
 			[MARKET_BM_DAILY_SATURATION_REGEN * 100]% of its capacity each day.</li>
 		</ul>

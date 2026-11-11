@@ -90,7 +90,7 @@
 	var/list/standard_manoeuvres = list(
 		/datum/special_intent/polearm_backstep,
 		/datum/special_intent/axe_swing,
-		/datum/special_intent/greatsword_swing,
+		/datum/special_intent/wave_swing/greatsword,
 		/datum/special_intent/ground_smash,
 	)
 

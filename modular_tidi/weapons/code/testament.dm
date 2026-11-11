@@ -1,4 +1,4 @@
-/obj/item/rogueweapon/sword/rapier/psy/folding/relic // Yes, the path is rapier, but it's a sabre. Why, you ask me? Well, Getonmob was being weird and made cuts come from the side, and I am not educated enough on how to fix it.
+/obj/item/rogueweapon/sword/rapier/silver/psy/folding/relic // Yes, the path is rapier, but it's a sabre. Why, you ask me? Well, Getonmob was being weird and made cuts come from the side, and I am not educated enough on how to fix it.
 	name = "\"Testament\""
 	desc = "Commissioned by the Inquisition and wrought by the blacksmiths of Arkenfeit, this peculiar blade was made for those \
 	who could ill afford to announce their calling before the time came to draw steel. Its silvered edge folds neatly into \
@@ -17,14 +17,14 @@
 	icon_state = "psyfoldingblade_on"
 	possible_item_intents = list(/datum/intent/sword/cut/sabre, /datum/intent/sword/cut/sabre/heavy, /datum/intent/sword/thrust/sabre, /datum/intent/sword/strike)
 
-/obj/item/rogueweapon/sword/rapier/psy/folding/relic/ComponentInitialize()
+/obj/item/rogueweapon/sword/rapier/silver/psy/folding/relic/ComponentInitialize()
 	AddComponent(\
 		/datum/component/silverbless,\
 		pre_blessed = BLESSING_PSYDONIAN,\
 		silver_type = SILVER_PSYDONIAN\
 	)
 
-/obj/item/rogueweapon/sword/rapier/psy/folding/relic/attack_self(mob/user)
+/obj/item/rogueweapon/sword/rapier/silver/psy/folding/relic/attack_self(mob/user)
 	extended = !extended
 	playsound(src.loc, 'sound/blank.ogg', 50, TRUE)
 	if(extended)

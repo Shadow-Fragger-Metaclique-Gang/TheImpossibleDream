@@ -44,7 +44,7 @@
 	wdefense = 5
 	max_integrity = 300
 	anvilrepair = /datum/skill/craft/weaponsmithing
-	special = /datum/special_intent/greatsword_swing// put that blade to use
+	special = /datum/special_intent/wave_swing/greatsword// put that blade to use
 	bigboy = TRUE
 
 /obj/item/rogueweapon/flail/peasantwarflail/stalker/alt
@@ -229,7 +229,7 @@
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	sewrepair = FALSE
 	smeltresult = /obj/item/ingot/steel
-	special = /datum/special_intent/greatsword_swing
+	special = /datum/special_intent/wave_swing/greatsword
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/slurbow/stalker
 	name = "gilded drow crossbow"

@@ -148,7 +148,7 @@
 	if(istype(item, /obj/item/roguecoin/aalloy))
 		downgraded_result = /obj/item/roguecoin/copper
 	if(istype(item, /obj/item/rogue/painting))
-		downgraded_result = /obj/item/ash
+		downgraded_result = /obj/item/natural/ash
 
 	if(!downgraded_result)
 		return
