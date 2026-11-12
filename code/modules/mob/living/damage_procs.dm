@@ -162,7 +162,7 @@
 
 	// [SURREALIS-EDIT] - PLASMA_OPTS
 	// if(updating_health) // SURREALIS-EDIT - ORIGINAL
-	if(SHOULD_UPDATE_HEALTH(updating_health))
+	if(updating_health && .)
 	// [/SURREALIS-EDIT]
 		updatehealth()
 	return amount
@@ -184,15 +184,26 @@
 	oxyloss = CLAMP((oxyloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	. -= oxyloss
 
-	if(updating_health)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(updating_health) // SURREALIS-EDIT - ORIGINAL
+	if(updating_health && .)
+	// [/SURREALIS-EDIT]
 		updatehealth()
 	return amount
 
 /mob/living/proc/setOxyLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(status_flags & GODMODE)
 		return 0
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	oxyloss = amount
 	if(updating_health)
+	*/
+	var/old_oxyloss = oxyloss
+	oxyloss = amount
+	if(updating_health && oxyloss != old_oxyloss)
+	// [/SURREALIS-EDIT]
 		updatehealth()
 	return amount
 
@@ -207,15 +218,26 @@
 	toxloss = CLAMP((toxloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	. -= toxloss
 
-	if(updating_health)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(updating_health) // SURREALIS-EDIT - ORIGINAL
+	if(updating_health && .)
+	// [/SURREALIS-EDIT]
 		updatehealth()
 	return amount
 
 /mob/living/proc/setToxLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	toxloss = amount
 	if(updating_health)
+	*/
+	var/old_toxloss = toxloss
+	toxloss = amount
+	if(updating_health && toxloss != old_toxloss)
+	// [/SURREALIS-EDIT]
 		updatehealth()
 	return amount
 
@@ -235,7 +257,7 @@
 
 	// [SURREALIS-EDIT] - PLASMA_OPTS
 	// if(updating_health) // SURREALIS-EDIT - ORIGINAL
-	if(SHOULD_UPDATE_HEALTH(updating_health))
+	if(updating_health)
 	// [/SURREALIS-EDIT]
 		updatehealth()
 	return amount
@@ -251,16 +273,26 @@
 	cloneloss = CLAMP((cloneloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	. -= cloneloss
 
-
-	if(updating_health)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(updating_health) // SURREALIS-EDIT - ORIGINAL
+	if(updating_health && .)
+	// [/SURREALIS-EDIT]
 		updatehealth()
 	return amount
 
 /mob/living/proc/setCloneLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	cloneloss = amount
 	if(updating_health)
+	*/
+	var/old_cloneloss = cloneloss
+	cloneloss = amount
+	if(updating_health && cloneloss != old_cloneloss)
+	// [/SURREALIS-EDIT]
 		updatehealth()
 	return amount
 
@@ -284,45 +316,75 @@
 
 // heal ONE external organ, organ gets randomly selected from damaged ones.
 /mob/living/proc/heal_bodypart_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status)
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	var/old_damage = getBruteLoss() + getFireLoss() + getStaminaLoss()
+	// [/SURREALIS-ADD]
 	adjustBruteLoss(-brute, FALSE) //zero as argument for no instant health update
 	adjustFireLoss(-burn, FALSE)
 	adjustStaminaLoss(-stamina, FALSE)
-	if(updating_health)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(updating_health) // SURREALIS-EDIT - ORIGINAL
+	if(updating_health && old_damage != getBruteLoss() + getFireLoss() + getStaminaLoss())
+	// [/SURREALIS-EDIT]
 		updatehealth()
 
 // damage ONE external organ, organ gets randomly selected from damaged ones.
 /mob/living/proc/take_bodypart_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status, check_armor = FALSE)
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	var/old_damage = getBruteLoss() + getFireLoss() + getStaminaLoss()
+	// [/SURREALIS-ADD]
 	adjustBruteLoss(brute, FALSE) //zero as argument for no instant health update
 	adjustFireLoss(burn, FALSE)
 	adjustStaminaLoss(stamina, FALSE)
-	if(updating_health)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(updating_health) // SURREALIS-EDIT - ORIGINAL
+	if(updating_health && old_damage != getBruteLoss() + getFireLoss() + getStaminaLoss())
+	// [/SURREALIS-EDIT]
 		updatehealth()
 
 // heal MANY bodyparts, in random order, scaling from the damage. EXCLUSIVE FOR PSYDONITES.
 /mob/living/proc/heal_psydonite(brute = 0, burn = 0, stamina = 0, required_status, updating_health = TRUE)
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	var/old_damage = getBruteLoss() + getFireLoss() + getStaminaLoss()
+	// [/SURREALIS-ADD]
 	brute += getBruteLoss() * 0.015
 	burn += getFireLoss() * 0.015
 	stamina += getStaminaLoss() * 0.015
 	adjustBruteLoss(-brute, FALSE)
 	adjustFireLoss(-burn, FALSE)
 	adjustStaminaLoss(-stamina, FALSE)
-	if(updating_health)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(updating_health) // SURREALIS-EDIT - ORIGINAL
+	if(updating_health && old_damage != getBruteLoss() + getFireLoss() + getStaminaLoss())
+	// [/SURREALIS-EDIT]
 		updatehealth()
 
 // heal MANY bodyparts, in random order
 /mob/living/proc/heal_overall_damage(brute = 0, burn = 0, stamina = 0, required_status, updating_health = TRUE)
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	var/old_damage = getBruteLoss() + getFireLoss() + getStaminaLoss()
+	// [/SURREALIS-ADD]
 	adjustBruteLoss(-brute, FALSE) //zero as argument for no instant health update
 	adjustFireLoss(-burn, FALSE)
 	adjustStaminaLoss(-stamina, FALSE)
-	if(updating_health)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(updating_health) // SURREALIS-EDIT - ORIGINAL
+	if(updating_health && old_damage != getBruteLoss() + getFireLoss() + getStaminaLoss())
+	// [/SURREALIS-EDIT]
 		updatehealth()
 
 // damage MANY bodyparts, in random order
 /mob/living/proc/take_overall_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status = null)
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	var/old_damage = getBruteLoss() + getFireLoss() + getStaminaLoss()
+	// [/SURREALIS-ADD]
 	adjustBruteLoss(brute, FALSE) //zero as argument for no instant health update
 	adjustFireLoss(burn, FALSE)
 	adjustStaminaLoss(stamina, FALSE)
-	if(updating_health)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(updating_health) // SURREALIS-EDIT - ORIGINAL
+	if(updating_health && old_damage != getBruteLoss() + getFireLoss() + getStaminaLoss())
+	// [/SURREALIS-EDIT]
 		updatehealth()
 
 //heal up to amount damage, in a given order

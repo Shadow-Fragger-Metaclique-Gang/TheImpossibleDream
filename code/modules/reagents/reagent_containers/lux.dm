@@ -20,10 +20,7 @@
 
 /datum/reagent/vitae/overdose_process(mob/living/M)
 	M.adjustOrganLoss(ORGAN_SLOT_HEART, 0.25	* REAGENTS_EFFECT_MULTIPLIER)
-	// [SURREALIS-EDIT] - PLASMA_OPTS
-	// M.adjustFireLoss(0.25	* REAGENTS_EFFECT_MULTIPLIER, 0) // SURREALIS-EDIT - ORIGINAL
-	M.adjustFireLoss(0.25	* REAGENTS_EFFECT_MULTIPLIER, UPDATE_HEALTH_IF_DAMAGED)
-	// [/SURREALIS-EDIT]
+	M.adjustFireLoss(0.25	* REAGENTS_EFFECT_MULTIPLIER, 0)
 	..()
 	. = 1
 

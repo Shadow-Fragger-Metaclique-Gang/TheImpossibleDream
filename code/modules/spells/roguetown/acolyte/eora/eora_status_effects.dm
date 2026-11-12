@@ -275,7 +275,7 @@
 			H.blur_eyes(5)
 			// [SURREALIS-EDIT] - PLASMA_OPTS
 			// H.adjustBruteLoss(10, 0) // SURREALIS-EDIT - ORIGINAL
-			H.adjustBruteLoss(10, UPDATE_HEALTH_IF_DAMAGED)
+			H.adjustBruteLoss(10, TRUE)
 			// [/SURREALIS-EDIT]
 
 		//Unsightly people have a lower chance to have their beauty temporarily returned.

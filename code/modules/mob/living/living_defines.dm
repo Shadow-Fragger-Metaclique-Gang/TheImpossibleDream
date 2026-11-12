@@ -144,6 +144,10 @@
 	var/stamina = 0 // Stamina. In reality this is stamina damage and the higher it is the worse it is.
 
 	var/last_fatigued = 0
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	/// world.time up to which natural fatigue regen has already been applied
+	var/last_stamina_regen = 0
+	// [/SURREALIS-ADD]
 	var/last_ps = 0
 
 	var/ambushable = 0

@@ -48,14 +48,7 @@
 		holder.add_reagent(/datum/reagent/consumable/sugar, 1)
 		holder.remove_reagent(/datum/reagent/medicine/salglu_solution, 0.5)
 	if(prob(33))
-		// [SURREALIS-EDIT] - PLASMA_OPTS
-		// SURREALIS-EDIT - ORIGINAL
-		/*
 		M.adjustBruteLoss(0.5	* REAGENTS_EFFECT_MULTIPLIER, FALSE, FALSE, BODYPART_ORGANIC)
 		M.adjustFireLoss(0.5	* REAGENTS_EFFECT_MULTIPLIER, FALSE, FALSE, BODYPART_ORGANIC)
-		*/
-		M.adjustBruteLoss(0.5	* REAGENTS_EFFECT_MULTIPLIER, UPDATE_HEALTH_IF_DAMAGED, FALSE, BODYPART_ORGANIC)
-		M.adjustFireLoss(0.5	* REAGENTS_EFFECT_MULTIPLIER, UPDATE_HEALTH_IF_DAMAGED, FALSE, BODYPART_ORGANIC)
-		// [/SURREALIS-EDIT]
 		. = TRUE
 	..()

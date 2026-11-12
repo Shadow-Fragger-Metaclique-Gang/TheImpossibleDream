@@ -9,10 +9,8 @@
 #define STATKEY_LCK "fortune"
 
 // [SURREALIS-ADD] - PLASMA_OPTS
-/// updating_health value: update health only if a carbon's limb actually took brute/burn damage; otherwise behaves as FALSE
-#define UPDATE_HEALTH_IF_DAMAGED 2
-/// TRUE when an updating_health argument asks for an unconditional health update
-#define SHOULD_UPDATE_HEALTH(flag) ((flag) && (flag) != UPDATE_HEALTH_IF_DAMAGED)
+/// Most time natural fatigue regen will catch up on after a gap in Life(), e.g. stasis or a stalled subsystem
+#define STAMINA_REGEN_MAX_CATCHUP (10 SECONDS)
 
 // [/SURREALIS-ADD]
 //This was previously in vampirelord.dm and mob/living/stats.dm, the person defined it twice because vampirelord came in below that stats file, so now both of them can get it here.

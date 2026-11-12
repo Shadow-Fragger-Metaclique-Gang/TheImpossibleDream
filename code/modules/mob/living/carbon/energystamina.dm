@@ -1,4 +1,19 @@
-/mob/living/proc/update_stamina() //update hud and regen after last_fatigued delay on taking
+// [SURREALIS-EDIT] - PLASMA_OPTS
+// /mob/living/proc/update_stamina() //update hud and regen after last_fatigued delay on taking // SURREALIS-EDIT - ORIGINAL
+/// Refreshes max fatigue and the health HUD. Safe to call as often as you like: it never regenerates fatigue.
+/mob/living/proc/update_stamina()
+	calculate_stamina()
+	update_health_hud()
+
+/**
+ * Life-tick fatigue regen. Only Life() should call this.
+ *
+ * Fatigue starts recovering once `delay` has passed since the mob last got fatigued, then recovers
+ * one regen chunk per `delay`. The amount is scaled by the time actually elapsed, so the rate does not
+ * depend on when Life() happens to tick, on server lag, or on how often anything else refreshes the HUD.
+ */
+/mob/living/proc/handle_stamina_regen()
+// [/SURREALIS-EDIT]
 	calculate_stamina()
 	var/delay = 20
 	if(HAS_TRAIT(src, TRAIT_APRICITY))
@@ -8,6 +23,11 @@
 			if("night", "dusk")
 				delay = 16
 	if(world.time > last_fatigued + delay) //regen fatigue
+		// [SURREALIS-ADD] - PLASMA_OPTS
+		// Accrue from the last regen or the last exertion, whichever is later. Capped so a long gap in Life() can't bank a huge burst.
+		var/regen_from = max(last_stamina_regen, last_fatigued, world.time - STAMINA_REGEN_MAX_CATCHUP)
+		last_stamina_regen = world.time
+		// [/SURREALIS-ADD]
 		var/added = energy / max_energy
 		added = round(-10 + (added * - 40))
 		if(src.climbing) // no stam regen while climbing guh
@@ -16,8 +36,17 @@
 			added = round(added * 0.5, 1)
 		if(HAS_TRAIT(src, TRAIT_MONK_ROBE))
 			added = round(added * 1.25, 1)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		if(stamina >= 1)
 			stamina_add(added)
+		*/
+		added = round(added * (world.time - regen_from) / delay, DAMAGE_PRECISION)
+		if(stamina >= 1)
+			if(added)
+				stamina_add(added, natural_regen = TRUE)
+		// [/SURREALIS-EDIT]
 		else
 			stamina = 0
 
@@ -101,7 +130,11 @@
 
 	return nutrition_amount
 
-/mob/living/stamina_add(added as num, emote_override, force_emote = TRUE) //call update_stamina here and set last_fatigued, return false when not enough fatigue left
+// [SURREALIS-EDIT] - PLASMA_OPTS
+// /mob/living/stamina_add(added as num, emote_override, force_emote = TRUE) //call update_stamina here and set last_fatigued, return false when not enough fatigue left // SURREALIS-EDIT - ORIGINAL
+/// Changes fatigue. Returns FALSE when the mob runs out. `natural_regen` is only for handle_stamina_regen(): it doesn't count as getting fatigued, so it leaves last_fatigued alone.
+/mob/living/stamina_add(added as num, emote_override, force_emote = TRUE, natural_regen = FALSE)
+// [/SURREALIS-EDIT]
 	if(HAS_TRAIT(src, TRAIT_INFINITE_STAMINA))
 		return TRUE
 
@@ -194,7 +227,11 @@
 						C.heart_attack()
 		return FALSE
 	else
-		last_fatigued = world.time
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// last_fatigued = world.time // SURREALIS-EDIT - ORIGINAL
+		if(!natural_regen)
+			last_fatigued = world.time
+		// [/SURREALIS-EDIT]
 		update_health_hud()
 		return TRUE
 

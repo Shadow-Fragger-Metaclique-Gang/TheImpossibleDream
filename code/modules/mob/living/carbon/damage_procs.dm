@@ -176,7 +176,10 @@
 	if(!parts.len)
 		return
 	var/obj/item/bodypart/picked = pick(parts)
-	if(picked.heal_damage(brute, burn, stamina, required_status))
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// if(picked.heal_damage(brute, burn, stamina, required_status)) // SURREALIS-EDIT - ORIGINAL
+	if(picked.heal_damage(brute, burn, stamina, required_status, updating_health))
+	// [/SURREALIS-EDIT]
 		update_damage_overlays()
 
 //Damages ONE bodypart randomly selected from damagable ones.
@@ -189,7 +192,7 @@
 	var/obj/item/bodypart/picked = pick(parts)
 	// [SURREALIS-EDIT] - PLASMA_OPTS
 	// if(picked.receive_damage(brute, burn, stamina,check_armor ? run_armor_check(picked, (brute ? "blunt" : burn ? "fire" : stamina ? "bullet" : null)) : FALSE)) // SURREALIS-EDIT - ORIGINAL
-	if(picked.receive_damage(brute, burn, stamina,check_armor ? run_armor_check(picked, (brute ? "blunt" : burn ? "fire" : stamina ? "bullet" : null)) : FALSE, stamina > 0 ? TRUE : updating_health))
+	if(picked.receive_damage(brute, burn, stamina,check_armor ? run_armor_check(picked, (brute ? "blunt" : burn ? "fire" : stamina ? "bullet" : null)) : FALSE, updating_health))
 	// [/SURREALIS-EDIT]
 		update_damage_overlays()
 
@@ -202,6 +205,10 @@
 		stamina *= 1.3
 
 	var/update = NONE
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	var/health_changed = FALSE
+	var/stamina_changed = FALSE
+	// [/SURREALIS-ADD]
 	while(length(parts) && (brute > 0 || burn > 0 || stamina > 0))
 		var/obj/item/bodypart/picked = pick(parts)
 
@@ -210,6 +217,12 @@
 		var/stamina_was = picked.stamina_dam
 
 		update |= picked.heal_damage(brute, burn, stamina, required_status, FALSE)
+		// [SURREALIS-ADD] - PLASMA_OPTS
+		if(picked.brute_dam != brute_was || picked.burn_dam != burn_was)
+			health_changed = TRUE
+		if(picked.stamina_dam != stamina_was)
+			stamina_changed = TRUE
+		// [/SURREALIS-ADD]
 
 		brute = round(brute - (brute_was - picked.brute_dam), DAMAGE_PRECISION)
 		burn = round(burn - (burn_was - picked.burn_dam), DAMAGE_PRECISION)
@@ -218,10 +231,12 @@
 		parts -= picked
 	// [SURREALIS-EDIT] - PLASMA_OPTS
 	// if(updating_health) // SURREALIS-EDIT - ORIGINAL
-	if(SHOULD_UPDATE_HEALTH(updating_health))
+	if(updating_health)
+		if(health_changed)
+			updatehealth()
+		if(stamina_changed)
+			update_stamina()
 	// [/SURREALIS-EDIT]
-		updatehealth()
-		update_stamina()
 	if(update)
 		update_damage_overlays()
 
@@ -233,7 +248,8 @@
 	var/list/obj/item/bodypart/parts = get_damageable_bodyparts(required_status)
 	var/update = 0
 	// [SURREALIS-ADD] - PLASMA_OPTS
-	var/damaged = FALSE
+	var/health_changed = FALSE
+	var/stamina_changed = FALSE
 	// [/SURREALIS-ADD]
 	var/remaining_brute = brute
 	var/remaining_burn = burn
@@ -258,9 +274,11 @@
 
 			// [SURREALIS-EDIT] - PLASMA_OPTS
 			// update |= picked.receive_damage(brute_per_part, burn_per_part, stamina_per_part, FALSE, required_status) // SURREALIS-EDIT - ORIGINAL
-			update |= picked.receive_damage(brute_per_part, burn_per_part, stamina_per_part, 0, stamina_per_part > 0, required_status)
-			if(stamina_per_part <= 0 && (picked.brute_dam != brute_was || picked.burn_dam != burn_was))
-				damaged = TRUE
+			update |= picked.receive_damage(brute_per_part, burn_per_part, stamina_per_part, 0, FALSE, required_status)
+			if(picked.brute_dam != brute_was || picked.burn_dam != burn_was)
+				health_changed = TRUE
+			if(picked.stamina_dam != stamina_was)
+				stamina_changed = TRUE
 			// [/SURREALIS-EDIT]
 
 			brute	= round(brute - (picked.brute_dam - brute_was), DAMAGE_PRECISION)
@@ -269,9 +287,16 @@
 
 	// [SURREALIS-EDIT] - PLASMA_OPTS
 	// if(updating_health) // SURREALIS-EDIT - ORIGINAL
-	if(updating_health == UPDATE_HEALTH_IF_DAMAGED ? damaged : updating_health)
+	if(updating_health)
+		if(health_changed)
+			updatehealth()
+		if(stamina_changed)
+			update_stamina()
 	// [/SURREALIS-EDIT]
-		updatehealth()
 	if(update)
 		update_damage_overlays()
+	// [SURREALIS-REMOVE] - PLASMA_OPTS
+	/*
 	update_stamina()
+	*/
+	// [/SURREALIS-REMOVE]

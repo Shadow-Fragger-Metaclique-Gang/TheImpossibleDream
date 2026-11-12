@@ -36,7 +36,10 @@
 
 	var/bprv = handle_bodyparts()
 	if(bprv & BODYPART_LIFE_UPDATE_HEALTH)
-		update_stamina() //needs to go before updatehealth to remove stamcrit
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// update_stamina() //needs to go before updatehealth to remove stamcrit // SURREALIS-EDIT - ORIGINAL
+		handle_stamina_regen() //needs to go before updatehealth to remove stamcrit
+		// [/SURREALIS-EDIT]
 		updatehealth()
 	if(client)
 		update_damage_hud()

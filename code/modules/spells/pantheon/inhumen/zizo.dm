@@ -186,7 +186,7 @@
 		ash_turf = fallback_turf
 		ash_turf?.visible_message(span_purple("[src] crumbles into dust..."))
 	if(ash_turf)
-		new /obj/item/ash(ash_turf)
+		new /obj/item/natural/ash(ash_turf)
 		// [/SURREALIS-EDIT]
 	qdel(src)
 

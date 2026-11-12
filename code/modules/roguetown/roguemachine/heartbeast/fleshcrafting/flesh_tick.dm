@@ -164,7 +164,7 @@
 		to_chat(L, span_notice("The leech tick skitters across my body!"))
 	// [SURREALIS-EDIT] - PLASMA_OPTS
 	// L.adjustBruteLoss(1, 0) // SURREALIS-EDIT - ORIGINAL
-	L.adjustBruteLoss(1, UPDATE_HEALTH_IF_DAMAGED)
+	L.adjustBruteLoss(1, TRUE)
 	// [/SURREALIS-EDIT]
 	current_zone = pick(possible_zones)
 	update_overlay()

@@ -521,7 +521,7 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 		M.add_nausea(9)
 		// [SURREALIS-EDIT] - PLASMA_OPTS
 		// M.adjustFireLoss(2, 0) // SURREALIS-EDIT - ORIGINAL
-		M.adjustFireLoss(2, UPDATE_HEALTH_IF_DAMAGED)
+		M.adjustFireLoss(2, TRUE)
 		// [/SURREALIS-EDIT]
 		M.adjust_fire_stacks(1)
 		M.ignite_mob()

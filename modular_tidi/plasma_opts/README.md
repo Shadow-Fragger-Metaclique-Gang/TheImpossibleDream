@@ -158,3 +158,7 @@ Fixes a number of bugs and massively optimizes across the codebase.
 - `code/modules/mob/living/simple_animal/hostile/goose.dm`: EDIT near `/mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/goosement`
 - `code/modules/roguetown/roguemachine/heartbeast/heart_quirks/quirk_hoarder.dm`: EDIT near `/datum/component/hoarded_item/proc/find_culprit`, EDIT near `/datum/component/hoarded_item/proc/is_item_stolen`, EDIT near `/datum/component/hoarded_item/proc/on_moved`, EDIT near `/datum/component/hoarded_item/proc/on_pickup`
 - `code/modules/spells/pantheon/inhumen/zizo.dm`: EDIT near `/obj/item/bone/profane_splinter/Moved`
+- `code/modules/surgery/bodyparts/_bodyparts.dm`: ADD near `/obj/item/bodypart/proc/heal_damage`, ADD near `/obj/item/bodypart/proc/receive_damage`, EDIT near `/obj/item/bodypart/proc/heal_damage`, EDIT near `/obj/item/bodypart/proc/receive_damage`
+- `code/modules/mob/living/carbon/energystamina.dm`: EDIT near `file scope`
+- `code/modules/mob/living/carbon/human/life.dm`: EDIT near `/mob/living/carbon/human/Life`
+- `code/modules/mob/living/living_defines.dm`: ADD near `/mob/living`
