@@ -49,11 +49,6 @@
 	path = /obj/item/clothing/shoes/roguetown/simpleshoes/heels/donator_silver
 	sort_category = "Shoes"
 
-/datum/loadout_item/mortosasye_deepcutdress
-	name = "Deep Cut Dress"
-	path = /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/donator_mortosasye_deepcutdress
-	sort_category = "Shirts"
-
 /datum/loadout_item/eastdobodecorated
 	name = "Decorated Dōbō Robe"
 	path = /obj/item/clothing/suit/roguetown/armor/basiceast/crafteast/loadout

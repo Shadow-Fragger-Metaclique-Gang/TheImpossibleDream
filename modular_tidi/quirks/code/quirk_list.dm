@@ -33,7 +33,7 @@
 	name = "Annoying Face"
 	desc = "<span style='font-family: \"Comic Sans MS\", cursive, sans-serif;'>My voice and face are viewed as annoying.</span>"
 	point_cost = 0
-	added_traits = list(TRAIT_COMICSANS)
+	added_traits = list(TRAIT_ANNOYINGVOICE)
 
 /datum/quirk/assassintarget
 	name = "Marked for Death"

@@ -430,7 +430,6 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 				if(!(listener in listening))
 					listening[listener] = "v"
 	var/alist/admin_listeners = alist()
-	var/do_ghost_protection = has_ghost_protection(src)
 	if(Zs_all)
 		for(var/mob/potential_listener as anything in GLOB.player_list)
 			if(!potential_listener.client?.prefs)
@@ -439,10 +438,6 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 				continue
 			if(get_dist(potential_listener, src) > message_range) //they're out of range of normal hearing
 				continue // don't check ghostwhisper prefs here, those are for admins
-			if(do_ghost_protection && isobserver(potential_listener))
-				var/mob/dead/observer/potential_observer = potential_listener
-				if(!potential_observer.bypasses_ghost_protection(potential_listener))
-					continue
 			if(!is_in_zweb(src.z,potential_listener.z))
 				continue
 			listening |= potential_listener
@@ -460,11 +455,6 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			continue
 		listening |= observer
 		admin_listeners[observer] = TRUE
-	if(do_ghost_protection) // don't loop over the whole listening list unless we really have to
-		for(var/mob/dead/observer/ghost in listening) // a necessary evil so ghosts don't show up in the seen log
-			if(ghost.bypasses_ghost_protection())
-				continue
-			listening -= ghost
 	log_seen(src, null, listening, message, SEEN_LOG_SAY)
 
 	var/eavesdropping
@@ -513,13 +503,26 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			var/mob/living/carbon/human/target = AM
 			var/name_to_highlight = target.nickname
 			if(name_to_highlight && name_to_highlight != "" && name_to_highlight != "Please Change Me")	//We don't need to highlight an unset or blank one.
-				highlighted_message = replacetext_char(message, name_to_highlight, "<b><font color = #[target.highlight_color]>[name_to_highlight]</font></b>")
+				highlighted_message = replacetext_char(message, name_to_highlight, "<b><font color = [target.highlight_color]>[name_to_highlight]</font></b>")
 			var/datum/species/dullahan/target_species = target.dna?.species
 			if(istype(target_species) && target_species.headless)
 				tocheck = target_species.my_head
+
+			if(target != src && message_mode != MODE_WHISPER && target.has_flaw(/datum/charflaw/addiction/clamorous))
+				var/chance = 5
+				if(Zs_yell)
+					chance += 10
+				if(Zs_all)
+					chance += 20
+				if(prob(chance))
+					target.sate_addiction(/datum/charflaw/addiction/clamorous)
 		if(eavesdrop_range && get_dist(source, tocheck) > message_range+keenears && !(admin_listeners[AM]))
 			AM.Hear(eavesrendered, src, message_language, eavesdropping, null, spans, message_mode, original_message)
 			heard_message += AM
+			if(ishuman(AM))
+				var/mob/living/carbon/human/H = AM
+				if(H.has_flaw(/datum/charflaw/paranoid))
+					H.add_stress(/datum/stressevent/parawhisper)
 		else
 			AM.Hear(rendered, src, message_language, highlighted_message || message, null, spans, message_mode, original_message)
 			heard_message += AM
