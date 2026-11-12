@@ -394,7 +394,6 @@
 	var/health_changed = (brute_dam != brute_was || burn_dam != burn_was)
 	var/stamina_changed = (stamina_dam != stamina_was)
 	if(owner)
-		// Any stamina hit blocks regen, even one absorbed by an already-maxed limb.
 		if(stamina > DAMAGE_PRECISION)
 			owner.stam_regen_start_time = world.time + STAMINA_REGEN_BLOCK_TIME
 		if(updating_health)

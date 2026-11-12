@@ -9,7 +9,6 @@
 #define STATKEY_LCK "fortune"
 
 // [SURREALIS-ADD] - PLASMA_OPTS
-/// Most time natural fatigue regen will catch up on after a gap in Life(), e.g. stasis or a stalled subsystem
 #define STAMINA_REGEN_MAX_CATCHUP (10 SECONDS)
 
 // [/SURREALIS-ADD]
