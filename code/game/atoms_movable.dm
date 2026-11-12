@@ -593,6 +593,11 @@
 					continue
 				AM.Crossed(src, oldloc)
 
+		// [SURREALIS-REMOVE] - PLASMA_OPTS
+		/*
+		Moved(oldloc, NONE, TRUE)
+		*/
+		// [/SURREALIS-REMOVE]
 		. = TRUE
 
 	//If no destination, move the atom into nullspace (don't do this unless you know what you're doing)
@@ -603,6 +608,11 @@
 			oldloc.Exited(src, null)
 			if(old_area)
 				old_area.Exited(src, null)
+			// [SURREALIS-REMOVE] - PLASMA_OPTS
+			/*
+			Moved(oldloc, NONE, TRUE)
+			*/
+			// [/SURREALIS-REMOVE]
 		loc = null
 	RESOLVE_ACTIVE_MOVEMENT
 

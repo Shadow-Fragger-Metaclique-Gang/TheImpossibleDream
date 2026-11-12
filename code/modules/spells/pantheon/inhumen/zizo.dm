@@ -155,11 +155,25 @@
 	. = ..()
 	crumble()
 
+// [SURREALIS-EDIT] - PLASMA_OPTS
+// /obj/item/bone/profane_splinter/Moved() // SURREALIS-EDIT - ORIGINAL
 /obj/item/bone/profane_splinter/Moved(atom/OldLoc, Dir, Forced = FALSE)
+// [/SURREALIS-EDIT]
 	. = ..()
 	if(QDELETED(src))
 		return
 	if(!is_embedded)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// SURREALIS-EDIT - ORIGINAL
+		/*
+		crumble()
+
+/obj/item/bone/profane_splinter/proc/crumble()
+	if(QDELETED(src))
+		return
+	visible_message(span_purple("[src] crumbles into dust..."), span_purple("[src] crumbles into dust..."))
+	new /obj/item/natural/ash(get_turf(src))
+		*/
 		crumble(get_turf(OldLoc))
 
 /obj/item/bone/profane_splinter/proc/crumble(turf/fallback_turf)
@@ -173,6 +187,7 @@
 		ash_turf?.visible_message(span_purple("[src] crumbles into dust..."))
 	if(ash_turf)
 		new /obj/item/ash(ash_turf)
+		// [/SURREALIS-EDIT]
 	qdel(src)
 
 /obj/projectile/magic/profane

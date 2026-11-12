@@ -101,11 +101,17 @@
 
 
 
+// [SURREALIS-EDIT] - PLASMA_OPTS
+// /obj/shapeshift_holder/Moved() // SURREALIS-EDIT - ORIGINAL
 /obj/shapeshift_holder/Moved(atom/OldLoc, Dir, Forced = FALSE)
+// [/SURREALIS-EDIT]
 	if(restoring || QDELETED(src))
 		return
 	. = ..()
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// restore() // SURREALIS-EDIT - ORIGINAL
 	restore(fallback_turf = get_turf(OldLoc))
+	// [/SURREALIS-EDIT]
 
 
 
@@ -142,7 +148,10 @@
 
 
 
+// [SURREALIS-EDIT] - PLASMA_OPTS
+// /obj/shapeshift_holder/proc/restore(death = FALSE, knockout = 0) // SURREALIS-EDIT - ORIGINAL
 /obj/shapeshift_holder/proc/restore(death = FALSE, knockout = 0, turf/fallback_turf)
+// [/SURREALIS-EDIT]
 	if(restoring || QDELETED(src))
 		return
 
@@ -159,7 +168,10 @@
 	var/mob/living/temp = stored
 	stored = null
 
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// var/turf/original_turf = get_turf(src) // SURREALIS-EDIT - ORIGINAL
 	var/turf/original_turf = get_turf(src) || fallback_turf
+	// [/SURREALIS-EDIT]
 
 	if(original_turf)
 		temp.forceMove(original_turf)

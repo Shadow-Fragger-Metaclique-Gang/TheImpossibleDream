@@ -2,13 +2,13 @@
 
 **Tag:** `PLASMA_OPTS`
 
-**Created in:** <!-- link to the PR that created this module -->
+**Created in:** [<!-- link to the PR that created this module -->](https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/128)
 
 **Major changes:** <!-- links to later PRs that changed this module a lot -->
 
 ## Description
 
-<!-- What does this module do? -->
+Fixes a number of bugs and massively optimizes across the codebase.
 
 ## Core files changed
 
@@ -151,3 +151,10 @@
 - `code/modules/vampire_neu/clan/clan_selection_menu.dm`: ADD near `/datum/vampire_clan_selection_menu`, EDIT near `/datum/vampire_clan_selection_menu/ui_data`
 - `modular/Neu_Food/code/cooked/cooked_stag_buffs.dm`: ADD near `/datum/status_effect/buff/forest_rush`
 - `modular/code/modules/admin/bunker_bypass.dm`: ADD near `/proc/add_bunker_bypass`, EDIT near `/client/proc/bunker_bypass`
+- `code/__HELPERS/time.dm`: EDIT near `/proc/update_midnight_rollover`
+- `code/controllers/subsystem/time_track.dm`: EDIT near `/datum/controller/subsystem/time_track/fire`
+- `code/game/atoms_movable.dm`: REMOVE near `/atom/movable/proc/doMove`
+- `code/game/objects/shapeshift_holder.dm`: EDIT near `/obj/shapeshift_holder/Moved`, EDIT near `/obj/shapeshift_holder/proc/restore`
+- `code/modules/mob/living/simple_animal/hostile/goose.dm`: EDIT near `/mob/living/simple_animal/hostile/retaliate/goose/vomit/proc/goosement`
+- `code/modules/roguetown/roguemachine/heartbeast/heart_quirks/quirk_hoarder.dm`: EDIT near `/datum/component/hoarded_item/proc/find_culprit`, EDIT near `/datum/component/hoarded_item/proc/is_item_stolen`, EDIT near `/datum/component/hoarded_item/proc/on_moved`, EDIT near `/datum/component/hoarded_item/proc/on_pickup`
+- `code/modules/spells/pantheon/inhumen/zizo.dm`: EDIT near `/obj/item/bone/profane_splinter/Moved`

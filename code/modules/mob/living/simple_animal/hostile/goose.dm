@@ -163,9 +163,12 @@
 		vomit() // its supposed to keep vomiting if you move
 		return
 	var/turf/currentTurf = get_turf(src)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// while (currentTurf == get_turf(src)) // SURREALIS-EDIT - ORIGINAL
 	if(!currentTurf)
 		return
 	while (!QDELETED(src) && currentTurf == get_turf(src))
+	// [/SURREALIS-EDIT]
 		var/obj/item/reagent_containers/food/tasty = locate() in currentTurf
 		if (tasty)
 			feed(tasty)
