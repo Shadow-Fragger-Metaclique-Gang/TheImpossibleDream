@@ -44,10 +44,7 @@
 			"Mermaids are leaping out of the water for this cargo!",
 			"These items might just make Psydon return!",
 			"The Captain is most pleased.",
-			// [SURREALIS-EDIT] - LORE
-			// "'Tis was worth the trip to Azuria.", // SURREALIS-EDIT - ORIGINAL
-			"'Tis was worth the trip to this Scar.",
-			// [/SURREALIS-EDIT]
+			"'Twas worth the trip to Azuria.",
 			"The Company appreciates your efforts.",
 			"FACTOR! MORE OF THIS!",
 			"FACTOR! DOUBLE THIS ONE'S PAY!",

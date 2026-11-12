@@ -78,7 +78,7 @@
 		gloves = null
 		shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 		backpack_contents = list(
-							/obj/item/rogueweapon/huntingknife/idagger/silver = 1,
+							/obj/item/rogueweapon/huntingknife/idagger/steel/silver = 1,
 							/obj/item/storage/belt/rogue/pouch/coins/rich = 1,
 							/obj/item/flashlight/flare/torch = 1,
 							/obj/item/rogueweapon/scabbard/sheath = 1
@@ -171,6 +171,7 @@
 
 /obj/item/clothing/cloak/cape/crusader
 	name = "desert cape"
+	color = CLOTHING_ORANGE
 	desc = "Were we to've met in another lyfetime, do you suppose we would've been fonder friends?"
 	icon_state = "crusader_cloak"
 	icon = 'icons/roguetown/clothing/special/crusader.dmi'

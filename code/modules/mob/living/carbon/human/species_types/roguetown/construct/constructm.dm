@@ -18,8 +18,6 @@
 	use_skintones = TRUE
 	possible_ages = ALL_AGES_LIST
 	skinned_type = /obj/item/ingot/steel
-	disliked_food = NONE
-	liked_food = NONE
 	inherent_traits = list(
 		TRAIT_IRONMAN,
 		TRAIT_LIMBATTACHMENT, // this interacts with trait_ironman, making this take a while to reattach
@@ -136,6 +134,10 @@
 
 /proc/try_construct_consume(obj/item/I, mob/living/M, mob/user)
 	if(!HAS_TRAIT(M, TRAIT_IRONMAN))
+		if(M == user)
+			to_chat(user, span_warning("I cannot eat that!"))
+		else
+			to_chat(user, span_warning("[M] doesn't seem capable of eating that."))
 		return FALSE
 
 	if(M.stat == DEAD)
@@ -391,9 +393,9 @@
 		qdel(I)
 		new /obj/item/rogueore/coal/charcoal(get_turf(user))
 		if(prob(50))
-			new /obj/item/ash(get_turf(user))
+			new /obj/item/natural/ash(get_turf(user))
 		if(prob(50))
-			new /obj/item/ash(get_turf(user))
+			new /obj/item/natural/ash(get_turf(user))
 		return TRUE
 
 	// === LOG ===

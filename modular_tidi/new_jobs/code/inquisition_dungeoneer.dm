@@ -76,7 +76,7 @@
 	id 		= 	/obj/item/clothing/ring/signet/psy
 	shirt 	= 	/obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan/inq
 	gloves 	= 	/obj/item/clothing/gloves/roguetown/otavan/psygloves
-	belt 	= 	/obj/item/storage/belt/rogue/leather/knifebelt/black/psydon_blessed
+	belt 	= 	/obj/item/storage/belt/rogue/leather/knifebelt/black/silver/psy/preblessed
 	beltl 	= 	/obj/item/storage/belt/rogue/surgery_bag/full
 	pants 	= 	/obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
 	shoes 	= 	/obj/item/clothing/shoes/roguetown/boots/otavan
@@ -102,7 +102,7 @@
 	var/weapon_choice = input(H,"Choose your WEAPON.", "TAKE UP PSYDON'S ARMS.") as anything in weapons
 	switch(weapon_choice)
 		if("REPENTANCE (Psydonic Longsword)")
-			H.equip_to_appropriate_slot_or_hands(new /obj/item/rogueweapon/sword/long/psysword/preblessed(H))
+			H.equip_to_appropriate_slot_or_hands(new /obj/item/rogueweapon/sword/long/silver/psy/preblessed(H))
 			H.equip_to_slot_or_del(new /obj/item/rogueweapon/scabbard/sword/noble, SLOT_BELT_R, TRUE)
 		if("REFUTATION (Psydonic Executioner's Sword)")
-			H.equip_to_appropriate_slot_or_hands(new /obj/item/rogueweapon/sword/long/exe/psy/preblessed(H))
+			H.equip_to_appropriate_slot_or_hands(new /obj/item/rogueweapon/sword/long/exe/silver/psy/preblessed(H))

@@ -2,7 +2,7 @@
 /datum/action/cooldown/spell/undivided
 	background_icon = 'icons/mob/actions/undividedmiracles.dmi'
 	button_icon = 'icons/mob/actions/undividedmiracles.dmi'
-	spell_color = GLOW_COLOR_UNDIVIDED
+	spell_color = PATRON_COLOR_UNDIVIDED
 
 	ignore_armor_penalty = TRUE
 
@@ -32,7 +32,7 @@
 	background_icon = 'icons/mob/actions/undividedmiracles.dmi'
 	button_icon = 'icons/mob/actions/undividedmiracles.dmi'
 	button_icon_state = "enkindle"
-	spell_color = GLOW_COLOR_UNDIVIDED
+	spell_color = PATRON_COLOR_UNDIVIDED
 
 	primary_resource_cost = SPELLCOST_MIRACLE_MINOR + 5
 
@@ -85,7 +85,7 @@
 	var/mob/living/spelltarget = cast_on
 
 	if (!isliving(spelltarget))
-		show_visible_message(owner, "You can only cast this on living beings.")
+		to_chat(owner, span_warning("You can only cast this on living beings."))
 		return FALSE
 	if (spelltarget == H)
 		spelltarget.energy_add((energytoregen * (owner.get_skill_level(associated_skill))) / 2)//You only get half
@@ -130,25 +130,11 @@
 	if(!owner.cmode)
 		stamheal *= 2
 	owner.energy_add(stamheal)
-	owner.adjust_bodytemperature(8)
 
 /datum/status_effect/buff/recuperation/on_remove()
 	owner.remove_filter(RECUPERATION_BASE_FILTER)
 
 #undef RECUPERATION_BASE_FILTER
-/*
-///////////////////
-// T1 - Miracle	//
-///////////////////
-
-/datum/action/cooldown/spell/miracle/heal/undivided
-	name = "Greater Miracle"
-	desc = "Blesses the target with minor health regeneration. If casted in conjunction with the 'Fortify' blessing, its healing power is greatly \
-	increased. Most healing Miracles cannot affect devoted Psydonians."
-	fluff_desc = "Within Their realm disease and ailments hold no sway over the devout, even the deepest wound shall soon come apart in Their light."
-	background_icon = 'icons/mob/actions/undividedmiracles.dmi'
-	button_icon = 'icons/mob/actions/undividedmiracles.dmi'
-*/
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // T1 - Twinned Gaze - Removes vision cone for duration as well grants night vision on high enough level. //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -372,7 +358,7 @@
 	var/woundpain_modifier = (0.15 + (0.1 * (owner.get_skill_level(associated_skill))))
 
 	if (!isliving(spelltarget))
-		show_visible_message(owner, "You can only cast this on living beings.")
+		to_chat(owner, span_warning("You can only cast this on living beings."))
 		return FALSE
 	else
 		spelltarget.visible_message(span_undivided("Warmth radiates from [spelltarget] as their wounds seal over!"), span_undivided("The pain from my wounds fade as warmth radiates from my soul!"))
@@ -413,7 +399,7 @@
 	background_icon = 'icons/mob/actions/undividedmiracles.dmi'
 	button_icon = 'icons/mob/actions/undividedmiracles.dmi'
 	button_icon_state = "gallows"
-	spell_color = GLOW_COLOR_UNDIVIDED
+	spell_color = PATRON_COLOR_UNDIVIDED
 	glow_intensity = GLOW_INTENSITY_LOW
 
 	projectile_type = /obj/projectile/magic/gallows
@@ -591,5 +577,5 @@
 	fluff_desc = "The greatest feat any priest can manage is reversion of death, a true rebirth unlike the perversion Necromancers aspire to."
 	background_icon = 'icons/mob/actions/undividedmiracles.dmi'
 	button_icon = 'icons/mob/actions/undividedmiracles.dmi'
-	spell_color = GLOW_COLOR_UNDIVIDED
+	spell_color = PATRON_COLOR_UNDIVIDED
 	cooldown_time = 15 MINUTES
