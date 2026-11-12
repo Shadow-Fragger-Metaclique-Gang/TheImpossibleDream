@@ -163,7 +163,9 @@
 		vomit() // its supposed to keep vomiting if you move
 		return
 	var/turf/currentTurf = get_turf(src)
-	while (currentTurf == get_turf(src))
+	if(!currentTurf)
+		return
+	while (!QDELETED(src) && currentTurf == get_turf(src))
 		var/obj/item/reagent_containers/food/tasty = locate() in currentTurf
 		if (tasty)
 			feed(tasty)

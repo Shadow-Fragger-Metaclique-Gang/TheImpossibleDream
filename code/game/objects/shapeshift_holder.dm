@@ -101,11 +101,11 @@
 
 
 
-/obj/shapeshift_holder/Moved()
+/obj/shapeshift_holder/Moved(atom/OldLoc, Dir, Forced = FALSE)
 	if(restoring || QDELETED(src))
 		return
 	. = ..()
-	restore()
+	restore(fallback_turf = get_turf(OldLoc))
 
 
 
@@ -142,7 +142,7 @@
 
 
 
-/obj/shapeshift_holder/proc/restore(death = FALSE, knockout = 0)
+/obj/shapeshift_holder/proc/restore(death = FALSE, knockout = 0, turf/fallback_turf)
 	if(restoring || QDELETED(src))
 		return
 
@@ -159,7 +159,7 @@
 	var/mob/living/temp = stored
 	stored = null
 
-	var/turf/original_turf = get_turf(src)
+	var/turf/original_turf = get_turf(src) || fallback_turf
 
 	if(original_turf)
 		temp.forceMove(original_turf)
