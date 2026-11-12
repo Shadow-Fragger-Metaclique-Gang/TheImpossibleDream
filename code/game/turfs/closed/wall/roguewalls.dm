@@ -130,7 +130,7 @@
 
 /turf/closed/wall/mineral/rogue/wooddark/window
 	icon = MAP_SWITCH('icons/turf/smooth/walls/wood_dark.dmi', 'icons/turf/window.dmi')
-	icon_state = MAP_SWITCH("wood_dark","subwindow")
+	icon_state = MAP_SWITCH("wood_dark","wood")
 	name = "dark wood window"
 	opacity = FALSE
 	max_integrity = 800
@@ -449,14 +449,14 @@
 
 /turf/closed/wall/mineral/rogue/stone/window/blue_moss
 	icon = MAP_SWITCH('icons/turf/smooth/walls/stone_moss_blue.dmi', 'icons/turf/window.dmi')
+	icon_state = MAP_SWITCH("stone", 'stone_moss_blue')
+/turf/closed/wall/mineral/rogue/stone/blue_moss
+	icon = 'icons/turf/smooth/walls/stone_moss_blue.dmi'
 
-/turf/closed/wall/mineral/rogue/stone/red_moss
+
+/turf/closed/wall/mineral/rogue/stone/window/red_moss
 	icon = MAP_SWITCH('icons/turf/smooth/walls/stone_moss_red.dmi', 'icons/turf/window.dmi')
-
-
-/turf/closed/wall/mineral/rogue/stone/red_moss
-	icon = MAP_SWITCH('icons/turf/smooth/walls/stone_moss_red.dmi', 'icons/turf/window.dmi')
-
+	icon_state = MAP_SWITCH("stone", 'stone_moss_red')
 
 /turf/closed/wall/mineral/rogue/decostone/mossy
 	name = "decorated mossy stone wall"
