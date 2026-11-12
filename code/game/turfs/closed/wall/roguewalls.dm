@@ -446,7 +446,8 @@
 
 /turf/closed/wall/mineral/rogue/stone/blue_moss
 	icon = 'icons/turf/smooth/walls/stone_moss_blue.dmi'
-
+/turf/closed/wall/mineral/rogue/stone/red_moss
+	icon = 'icons/turf/smooth/walls/stone_moss_red.dmi'
 /turf/closed/wall/mineral/rogue/stone/window/blue_moss
 	icon = MAP_SWITCH('icons/turf/smooth/walls/stone_moss_blue.dmi', 'icons/turf/window.dmi')
 	icon_state = MAP_SWITCH("stone", 'stone_moss_blue')

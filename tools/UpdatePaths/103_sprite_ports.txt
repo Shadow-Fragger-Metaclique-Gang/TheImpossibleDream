@@ -32,8 +32,11 @@
 /turf/closed/wall/mineral/rogue/pipe/line : /turf/closed/wall/mineral/rogue/pipe
 /turf/closed/wall/mineral/rogue/pipe/line/four : /turf/closed/wall/mineral/rogue/pipe
 /obj/effect/decal/cobbleedge{icon_state = "borderfall"} : /obj/structure/fluff/railing/raisedtrim
+
+
 /obj/effect/decal/cobbleedge : @DELETE
 /turf/open/floor/rogue/ruinedwood/herringbone_clear : /turf/open/floor/rogue/ruinedwood/neglected
 /turf/open/floor/rogue/ruinedwood{icon_state = @ANY} : /turf/open/floor/rogue/ruinedwood
 /obj/effect/decal/mossy : @DELETE
 /turf/open/floor/rogue/cobblerock/no_smooth : /turf/open/floor/rogue/cobblerock
+/turf/closed/wall/mineral/rogue/stone/red_moss : /turf/closed/wall/mineral/rogue/stone/red_moss
