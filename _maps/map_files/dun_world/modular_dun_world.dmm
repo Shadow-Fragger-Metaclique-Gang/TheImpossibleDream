@@ -312,6 +312,21 @@
 	},
 /turf/open/floor/rogue/tile/masonic,
 /area/rogue/indoors/town/manor)
+"aaJ" = (
+/obj/machinery/light/rogue/candle/r,
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/wood,
+/area/rogue/indoors/town/tavern)
+"aaK" = (
+/obj/machinery/light/rogue/candle/l,
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/wood,
+/area/rogue/indoors/town/tavern)
+"aaL" = (
+/obj/structure/fluff/railing/corner/north_east,
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/wood,
+/area/rogue/indoors/town/tavern)
 "aaM" = (
 /obj/structure/table/wood/poor,
 /obj/item/reagent_containers/glass/cup/skull,
@@ -328,10 +343,25 @@
 /obj/machinery/light/rogue/candle/r,
 /turf/open/floor/rogue/ruinedwood/spiral,
 /area/rogue/under/town/basement/keep)
+"aaP" = (
+/obj/structure/fluff/clock,
+/obj/structure/fluff/railing/raisedtrim,
+/obj/structure/fluff/railing/raisedtrim,
+/obj/structure/fluff/railing/border/west,
+/turf/open/floor/rogue/wood,
+/area/rogue/indoors/town/tavern)
 "aaQ" = (
 /obj/item/restraints/legcuffs/beartrap/armed/camouflage,
 /turf/open/water/swamp,
 /area/rogue/under/cavewet/bogcaves/west)
+"aaR" = (
+/obj/machinery/light/rogue/candle,
+/obj/item/roguebin/water,
+/obj/structure/fluff/railing/raisedtrim,
+/obj/structure/fluff/railing/raisedtrim,
+/obj/structure/fluff/railing/border/east,
+/turf/open/floor/rogue/wood,
+/area/rogue/indoors/town/tavern)
 "aaT" = (
 /obj/structure/chair/wood/rogue{
 	dir = 1
@@ -16693,11 +16723,6 @@
 	},
 /turf/open/floor/rogue/tile,
 /area/rogue/under/town/sewer)
-"dcI" = (
-/obj/machinery/light/rogue/candle/l,
-/obj/structure/fluff/railing/raisedtrim,
-/turf/open/floor/rogue/wood,
-/area/rogue/indoors/town/tavern)
 "dcM" = (
 /obj/structure/spider/stickyweb,
 /turf/open/floor/rogue/dirt,
@@ -75466,12 +75491,6 @@
 	dir = 1
 	},
 /area/rogue/druidsgrove)
-"nXE" = (
-/obj/structure/fluff/clock,
-/obj/structure/fluff/railing/raisedtrim,
-/obj/structure/fluff/railing/raisedtrim,
-/turf/open/floor/rogue/wood,
-/area/rogue/indoors/town/tavern)
 "nXJ" = (
 /obj/structure/closet/crate/chest/old_crate,
 /obj/effect/spawner/lootdrop/general_loot_low/x3,
@@ -86007,13 +86026,6 @@
 	},
 /turf/open/floor/rogue/herringbone,
 /area/rogue/indoors/town/steward)
-"pVi" = (
-/obj/machinery/light/rogue/candle,
-/obj/item/roguebin/water,
-/obj/structure/fluff/railing/raisedtrim,
-/obj/structure/fluff/railing/raisedtrim,
-/turf/open/floor/rogue/wood,
-/area/rogue/indoors/town/tavern)
 "pVk" = (
 /obj/structure/table/wood/long_table/right,
 /obj/item/reagent_containers/glass/cup/wooden{
@@ -99780,11 +99792,6 @@
 /mob/living/carbon/human/species/human/northern/highwayman,
 /turf/open/floor/rogue/grass,
 /area/rogue/outdoors/mountains/decap)
-"sxE" = (
-/obj/machinery/light/rogue/candle/r,
-/obj/structure/fluff/railing/raisedtrim,
-/turf/open/floor/rogue/wood,
-/area/rogue/indoors/town/tavern)
 "sxO" = (
 /obj/structure/fluff/railing/corner/south_east,
 /obj/structure/fluff/railing/corner/north_east,
@@ -105705,11 +105712,6 @@
 /obj/structure/bed/rogue/shit,
 /turf/open/floor/rogue/hay,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
-"tFl" = (
-/obj/structure/fluff/railing/corner/north_east,
-/obj/structure/fluff/railing/raisedtrim,
-/turf/open/floor/rogue/wood,
-/area/rogue/indoors/town/tavern)
 "tFp" = (
 /obj/structure/mineral_door/bars{
 	locked = 1;
@@ -501867,8 +501869,8 @@ wTu
 mPC
 vSm
 naI
-tFl
-sxE
+aaL
+aaJ
 tlX
 eIn
 mPC
@@ -506831,16 +506833,16 @@ ndq
 vJE
 cLW
 mPC
-nXE
-liX
+aaP
+vDX
 bUU
-liX
-liX
-dcI
-liX
+vDX
+vDX
+aaK
+vDX
 gND
-liX
-dcI
+vDX
+aaK
 bxt
 eIn
 jSY
@@ -507735,18 +507737,18 @@ nmq
 nmq
 iUR
 mPC
-pVi
+aaR
 pgW
-liX
-liX
-liX
-sxE
-liX
-liX
-liX
+qsZ
+qsZ
+qsZ
+aaJ
+qsZ
+qsZ
+qsZ
 pgW
-liX
-sxE
+qsZ
+aaJ
 mPC
 gUS
 mLW
