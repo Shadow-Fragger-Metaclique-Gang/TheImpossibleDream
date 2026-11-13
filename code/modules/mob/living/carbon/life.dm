@@ -136,18 +136,22 @@
 
 /mob/living/proc/handle_inwater()
 	extinguish_mob()
-
-/mob/living/carbon/human/handle_inwater(turf/open/water/W, extinguish = TRUE, force_drown = FALSE)
+//[SURREALIS-EDIT] - VRQOL
+///mob/living/carbon/human/handle_inwater(turf/onturf, extinguish = TRUE, force_drown = FALSE)
+/mob/living/carbon/human/handle_inwater(turf/open/water/onturf, extinguish = TRUE, force_drown = FALSE)
+//[/SURREALIS-EDIT]
 	..()
-//[SURREALIS-ADD] - VRQOL //Only extinguish your whole body in certain circumstances. How the fuck did AP not merge this???????
+
+//[/SURREALIS-ADD] - VRQOL //Only extinguish your whole body in certain circumstances. How the fuck did AP not merge this???????
 	if(is_floor_hazard_immune())
 		return
-	if(lying || W.water_level == 3)
+	if(lying || onturf.water_level == 3)
 		SoakMob(FULL_BODY)
 	else
-		if(W.water_level == 2)
+		if(onturf.water_level == 2)
 			SoakMob(BELOW_CHEST)
 //[/SURREALIS-ADD]
+
 	if(!(mobility_flags & MOBILITY_STAND) || force_drown)
 		if (HAS_TRAIT(src, TRAIT_NOBREATH) || HAS_TRAIT(src, TRAIT_WATERBREATHING))
 			return TRUE
@@ -157,13 +161,13 @@
 		adjustOxyLoss(drown_damage)
 		emote("drown")
 
-	if(istype(W, /turf/open/water/sewer) && !HAS_TRAIT(src, TRAIT_HOLDBREATH))
+	if(istype(onturf, /turf/open/water/sewer) && !HAS_TRAIT(src, TRAIT_HOLDBREATH))
 		add_stress(/datum/stressevent/sewertouched)
 
-	if(istype(W, /turf/open/water/swamp) && HAS_TRAIT(src, TRAIT_NOBLE_UNLANDED))
+	if(istype(onturf, /turf/open/water/swamp) && HAS_TRAIT(src, TRAIT_NOBLE_UNLANDED))
 		add_stress(/datum/stressevent/sewertouched)
 
-	if(istype(W, /turf/open/water/bath) && !wear_armor && !wear_shirt && !wear_pants)
+	if(istype(onturf, /turf/open/water/bath) && !wear_armor && !wear_shirt && !wear_pants)
 		add_stress(/datum/stressevent/bathwater)
 
 	return TRUE
