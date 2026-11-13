@@ -25,7 +25,9 @@
 	layer = TURF_DECAL_LAYER
 	dir = NORTH
 	blocks_neighborlays = TRUE
-
+/obj/structure/fluff/railing/raisedtrim/getwlayer()
+	layer = TURF_DECAL_LAYER
+	return
 /obj/structure/fluff/pillow/red
 	color = CLOTHING_RED
 
