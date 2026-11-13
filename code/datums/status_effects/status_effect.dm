@@ -241,6 +241,8 @@
 	*/
 	if(tick_interval != STATUS_EFFECT_NO_TICK && next_tick < world.time)
 		tick(wait)
+		if(QDELETED(src))
+			return
 		next_tick = world.time + initial(tick_interval)
 	if(expires_at != -1 && expires_at < world.time)
 		qdel(src)

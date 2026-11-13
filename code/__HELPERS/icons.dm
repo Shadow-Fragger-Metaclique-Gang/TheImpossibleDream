@@ -1065,7 +1065,7 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 		body.update_inv_back(hide_experimental = TRUE)
 		body.update_inv_head(hide_nonstandard = TRUE)
 		// [SURREALIS-ADD] - PLASMA_OPTS
-		SSiconupdates.wait_for_commit(body)
+		body.flush_visuals()
 		// [/SURREALIS-ADD]
 
 		var/icon/out_icon = icon('icons/effects/effects.dmi', "nothing")

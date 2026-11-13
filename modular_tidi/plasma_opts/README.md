@@ -17,7 +17,6 @@ Fixes a number of bugs and massively optimizes across the codebase.
 - `code/__DEFINES/status_effects.dm`: ADD near `#define STATUS_EFFECT_NO_TICK`
 - `code/__DEFINES/subsystems.dm`: ADD near `#define FIRE_PRIORITY_ICON_UPDATES`, ADD near `#define INIT_ORDER_ICON_UPDATES`
 - `code/__HELPERS/_string_lists.dm`: EDIT near `/proc/strings_replacement`
-- `code/__HELPERS/hair_customization.dm`: EDIT near `/proc/hair_preview_icon`
 - `code/__HELPERS/icons.dm`: ADD near `/proc/get_flat_human_icon`, ADD near `/proc/icon2html_for_path`, EDIT near `/proc/icon2html`
 - `code/__HELPERS/text.dm`: ADD near `/proc/cached_regex`, EDIT near `/proc/parsemarkdown_basic_step1`, EDIT near `/proc/parsemarkdown_basic_step2`, EDIT near `/proc/parsemarkdown`
 - `code/__HELPERS/unsorted.dm`: EDIT near `/proc/is_blocked_turf`

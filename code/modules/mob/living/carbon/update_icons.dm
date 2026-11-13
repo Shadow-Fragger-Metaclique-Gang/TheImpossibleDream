@@ -110,6 +110,9 @@
 	// [/SURREALIS-ADD]
 	remove_overlay(HANDS_LAYER)
 	remove_overlay(HANDS_BEHIND_LAYER)
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	clear_stray_hand_overlays()
+	// [/SURREALIS-ADD]
 	if (handcuffed)
 		drop_all_held_items()
 		return
