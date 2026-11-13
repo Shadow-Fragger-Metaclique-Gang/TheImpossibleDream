@@ -20,7 +20,9 @@
 	component_type = /datum/component/storage/concrete/roguetown/keyring
 	dropshrink = 0.85
 	is_important = TRUE
-
+//[SURREALIS-ADD] - VRQOL
+	COOLDOWN_DECLARE(insert_sound)
+//[/SURREALIS-ADD]
 /obj/item/storage/keyring/get_mechanics_examine(mob/user)
 	. = ..()
 	. += span_info("Left-click a locked door to unlock it.")
@@ -30,6 +32,7 @@
 
 /obj/item/storage/keyring/Initialize(mapload)
 	. = ..()
+	COOLDOWN_START(src, insert_sound, 5 SECONDS)
 	for(var/X in keys)
 		var/obj/item/key/new_key = new X(loc)
 		if(!SEND_SIGNAL(src, COMSIG_TRY_STORAGE_INSERT, new_key, null, TRUE, TRUE))
@@ -70,7 +73,12 @@
 
 /obj/item/storage/keyring/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	playsound(src, "sound/items/gems (1).ogg", 100, FALSE)
+//[SURREALIS-EDIT] - VRQOL
+//    playsound(src, "sound/items/gems (1).ogg", 100, FALSE)
+	if(COOLDOWN_FINISHED(src, insert_sound)) // Prevents this shit from deafening you on init.
+		playsound(src, "sound/items/gems (1).ogg", 100, FALSE)
+		COOLDOWN_START(src, insert_sound, 5 SECONDS)
+//[/SURREALIS-EDIT]
 	update_desc()
 
 /obj/item/storage/keyring/Exited(atom/movable/gone, direction)
