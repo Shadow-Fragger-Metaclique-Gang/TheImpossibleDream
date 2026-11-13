@@ -17,6 +17,7 @@ Only the changes made since the merge-base with the base branch are looked at.
 from __future__ import annotations
 
 import argparse
+import difflib
 import os
 import re
 import subprocess
@@ -259,6 +260,120 @@ def parse_hunks(out: str, wanted: Set[str]) -> Dict[str, List[Hunk]]:
 		elif cur and line[:1] == "+":
 			cur[-1].new_lines.append(line[1:])
 	return result
+
+
+ORIGINAL_INLINE_RE = re.compile(r"^(\s*)//\s?(.*?)\s*//\s*" + PREFIX + r"-EDIT - ORIGINAL\s*$")
+ORIGINAL_HEADER_RE = re.compile(r"^\s*//\s*" + PREFIX + r"-EDIT - ORIGINAL\s*$")
+
+
+def uncomment_block(body: List[str]) -> List[str]:
+	content = [l for l in body if l.strip()]
+	if content and content[0].strip() == "/*" and content[-1].strip() == "*/":
+		first = body.index(content[0])
+		last = len(body) - 1 - body[::-1].index(content[-1])
+		return body[first + 1:last]
+	return [re.sub(r"^(\s*)//\s?", r"\1", l) for l in body]
+
+
+def edit_originals(body: List[str]) -> Optional[List[str]]:
+	out: List[str] = []
+	found = False
+	i = 0
+	while i < len(body):
+		line = body[i]
+		m = ORIGINAL_INLINE_RE.match(line)
+		if m:
+			found = True
+			out.append(m.group(1) + m.group(2))
+			i += 1
+			continue
+		if ORIGINAL_HEADER_RE.match(line):
+			found = True
+			i += 1
+			if i < len(body) and body[i].strip() == "/*":
+				j = i + 1
+				while j < len(body) and body[j].strip() != "*/":
+					j += 1
+				out.extend(body[i + 1:j])
+				i = j + 1
+			else:
+				j = i
+				while j < len(body) and body[j].lstrip().startswith("//") and not ORIGINAL_HEADER_RE.match(body[j]) and not ORIGINAL_INLINE_RE.match(body[j]):
+					j += 1
+				out.extend(uncomment_block(body[i:j]))
+				i = j
+			continue
+		i += 1
+	return out if found else None
+
+
+def upstream_view(lines: List[str]) -> Optional[List[str]]:
+	"""Markers record what upstream had, so the pre-module file can be rebuilt without fetching upstream."""
+	info = parse_markers(lines)
+	if info.errors:
+		return None
+	out: List[str] = []
+	i = 0
+	for r in sorted(info.regions, key=lambda r: r.open_idx):
+		out.extend(lines[i:r.open_idx])
+		body = lines[r.open_idx + 1:r.close_idx]
+		if r.kind == "EDIT":
+			original = edit_originals(body)
+			if original is None:
+				return None
+			out.extend(original)
+		elif r.kind == "REMOVE":
+			out.extend(uncomment_block(body))
+		i = r.close_idx + 1
+	out.extend(lines[i:])
+	return out
+
+
+def diff_hunks(old: List[str], new: List[str]) -> List[Hunk]:
+	"""Leading whitespace is ignored because single-line ORIGINAL comments drop the original indent."""
+	matcher = difflib.SequenceMatcher(None, [l.strip() for l in old], [l.strip() for l in new], autojunk=False)
+	hunks = []
+	for op, i1, i2, j1, j2 in matcher.get_opcodes():
+		if op == "equal":
+			continue
+		old_len, new_len = i2 - i1, j2 - j1
+		hunks.append(Hunk(i1 + 1 if old_len else i1, old_len, j1 + 1 if new_len else j1, new_len, old[i1:i2], new[j1:j2]))
+	return hunks
+
+
+def upstream_hunks(mb: str, path: str) -> Optional[List[Hunk]]:
+	"""Removing a module's own code restores upstream, so it must not count as a change."""
+	shown = subprocess.run(["git", "show", "%s:%s" % (mb, path)], capture_output=True)
+	if shown.returncode != 0:
+		return None
+	text = shown.stdout.decode("utf-8", "surrogateescape")
+	base = text.split("\n")
+	if text.endswith("\n"):
+		base.pop()
+	upstream = upstream_view(base)
+	if upstream is None:
+		return None
+	current, _ = read_lines(path)
+	return diff_hunks(upstream, current)
+
+
+def new_span(h: Hunk) -> Tuple[int, int]:
+	lo = h.new_start - 1 if h.new_len else h.new_start
+	return lo, lo + h.new_len
+
+
+def touched_by_branch(rebuilt: Hunk, branch: List[Hunk]) -> bool:
+	"""Other modules' untouched blocks would otherwise demand bookkeeping this branch never caused."""
+	lo, hi = new_span(rebuilt)
+	for h in branch:
+		blo, bhi = new_span(h)
+		if blo < hi and lo < bhi:
+			return True
+		if blo == bhi and lo <= blo <= hi:
+			return True
+		if lo == hi and blo <= lo <= bhi:
+			return True
+	return False
 
 
 def untracked_hunks(path: str) -> List[Hunk]:
@@ -649,7 +764,6 @@ def process_core_dm(path: str, hunks: List[Hunk], fix_tag: Optional[str], known_
 
 
 def touching_regions(c: Change, regions: List[Region]) -> List[Region]:
-	"""Marker blocks a change overlaps, or sits directly above or below with no line in between."""
 	found = []
 	for r in regions:
 		overlaps = c.new_hi > c.new_lo and r.open_idx < c.new_hi and r.close_idx >= c.new_lo
@@ -660,7 +774,6 @@ def touching_regions(c: Change, regions: List[Region]) -> List[Region]:
 
 
 def extension_target(c: Change, regions: List[Region]) -> Tuple[Optional[Region], str]:
-	"""The one block this change can be folded into, or None and the reason it can't."""
 	if not regions:
 		return None, "no adjacent block"
 	if len(regions) > 1:
@@ -683,7 +796,6 @@ def original_comment(old_text: List[str], ind: str) -> List[str]:
 
 
 def apply_extension(region: Region, absorbed: List[Change], lines: List[str], safe: List[bool], inserts: Dict[int, List[str]], drop: Set[int], replace: Dict[int, str]) -> str:
-	"""Grow an existing block over changes beside or across its edges. Returns a problem, or "" when done."""
 	new_open = min([region.open_idx] + [c.new_lo for c in absorbed])
 	new_end = max([region.close_idx + 1] + [c.new_hi for c in absorbed])
 	becomes_edit = region.kind == "ADD" and any(l.strip() for c in absorbed for l in c.old_text)
@@ -1048,6 +1160,11 @@ def analyze(base: Optional[str], fix: bool, tag: Optional[str], quiet: bool = Fa
 	for p in files:
 		if p in untracked and p.endswith(".dm"):
 			hunks[p] = restored_hunks(mb, p) if files[p] == "M" else untracked_hunks(p)
+	for p in core_dm:
+		if core[p] == "M":
+			rebuilt = upstream_hunks(mb, p)
+			if rebuilt is not None:
+				hunks[p] = [h for h in rebuilt if touched_by_branch(h, hunks.get(p, []))]
 
 	tag_files: Dict[str, Dict[str, Set[str]]] = {}
 	unmarked = False
