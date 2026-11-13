@@ -176,7 +176,7 @@
 	var/mob/user = ui.user
 	switch(params["customizer_task"])
 		if("custom_hair_editor")
-			prefs.open_hair_editor(user, customizer_type)
+			//prefs.open_hair_editor(user, customizer_type)
 			return TRUE
 		if("custom_hair_clear")
 			prefs.verbose_pref_log_notification(user, "warning", "Feature \"[name]\" custom hair reset")
