@@ -159,9 +159,21 @@
 
 /mob/living/proc/handle_inwater()
 	extinguish_mob()
-
-/mob/living/carbon/human/handle_inwater(turf/onturf, extinguish = TRUE, force_drown = FALSE)
+//[SURREALIS-EDIT] - VRQOL
+///mob/living/carbon/human/handle_inwater(turf/onturf, extinguish = TRUE, force_drown = FALSE)
+/mob/living/carbon/human/handle_inwater(turf/open/water/onturf, extinguish = TRUE, force_drown = FALSE)
+//[/SURREALIS-EDIT]
 	..()
+
+//[/SURREALIS-ADD] - VRQOL //Only extinguish your whole body in certain circumstances. How the fuck did AP not merge this???????
+	if(is_floor_hazard_immune())
+		return
+	if(lying || onturf.water_level == 3)
+		SoakMob(FULL_BODY)
+	else
+		if(onturf.water_level == 2)
+			SoakMob(BELOW_CHEST)
+//[/SURREALIS-ADD]
 
 	if(!(mobility_flags & MOBILITY_STAND) || force_drown)
 		if (HAS_TRAIT(src, TRAIT_NOBREATH) || HAS_TRAIT(src, TRAIT_WATERBREATHING))
