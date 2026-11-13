@@ -476,6 +476,9 @@
 	moveToNullspace()
 	owner = C
 	C.bodyparts += src
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	C.life_work |= LIFEWORK_WOUNDS
+	// [/SURREALIS-ADD]
 	if(held_index)
 		if(held_index > C.hand_bodyparts.len)
 			C.hand_bodyparts.len = held_index

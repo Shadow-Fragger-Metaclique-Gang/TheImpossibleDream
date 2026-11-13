@@ -242,6 +242,9 @@
 	playsound(T, "desceration", 100, TRUE, -1)
 
 /datum/status_effect/neck_slice
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "neck_slice"
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = null
@@ -310,6 +313,9 @@
 	qdel(src)
 
 /datum/status_effect/spasms
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "spasms"
 	status_type = STATUS_EFFECT_MULTIPLE
 	alert_type = null
@@ -481,6 +487,9 @@
 	icon_state = "mind_control"
 
 /datum/status_effect/debuff/mishap_feeblemind
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "feeblemind"
 	duration = 7 MINUTES // This effect is really nasty but is deliberately one of the worst mishap effects, so it has a fairly long duration.
 	status_type = STATUS_EFFECT_REFRESH
@@ -537,6 +546,9 @@
 	icon_state = "high"
 
 /datum/status_effect/debuff/mishap_arcane_high
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "arcane_high"
 	duration = 5 MINUTES
 	status_type = STATUS_EFFECT_REFRESH
@@ -572,6 +584,9 @@
 	icon_state = "drunk"
 
 /datum/status_effect/debuff/mishap_arcane_drunkenness
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "arcane_drunk"
 	duration = 10 MINUTES // Drunkenness we add is forcibly removed on expiry
 	status_type = STATUS_EFFECT_REFRESH
@@ -657,6 +672,9 @@
 	icon_state = "blind"
 
 /datum/status_effect/debuff/mishap_blindness
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "arcane_blindness"
 	duration = 2 MINUTES // Another nasty effect - victim will need to be led around until it expires.
 	status_type = STATUS_EFFECT_REFRESH
@@ -683,6 +701,9 @@
 	icon_state = "hypnosis"
 
 /datum/status_effect/debuff/mishap_sleepy
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "arcane_sleep"
 	duration = 15 SECONDS // Sleep amount is 60 seconds, so effectively ~75 seconds. User is completely incapacitated so this shouldn't be too long.
 	status_type = STATUS_EFFECT_REFRESH
@@ -708,6 +729,9 @@
 	icon_state = "mind_control"
 
 /datum/status_effect/debuff/mishap_confused
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "arcane_confusion"
 	duration = 5 MINUTES
 	status_type = STATUS_EFFECT_REFRESH

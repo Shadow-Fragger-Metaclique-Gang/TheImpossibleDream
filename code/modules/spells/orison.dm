@@ -134,7 +134,10 @@
 	return ..()
 
 /datum/status_effect/light_buff/refresh(mob/living/owner, light_power)
-	duration += initial(duration) // stack this up as much as we can be bothered to cast it
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// duration += initial(duration) // stack this up as much as we can be bothered to cast it // SURREALIS-EDIT - ORIGINAL
+	set_expires_at(expires_at + initial(duration)) // stack this up as much as we can be bothered to cast it
+	// [/SURREALIS-EDIT]
 	if(holy_light_power > mob_light_obj.light_power)
 		mob_light_obj.light_power = holy_light_power
 
@@ -317,7 +320,10 @@
 	if (method == TOUCH)
 		if (M.mob_biotypes & MOB_UNDEAD)
 			var/effective_volume = min(reac_volume, 30) // realistically the entire pot isn't going to be metabolized if you throw it at someone. also you could basically instakill with this so
-			M.adjustFireLoss(2*effective_volume, 0)
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// M.adjustFireLoss(2*effective_volume, 0) // SURREALIS-EDIT - ORIGINAL
+			M.adjustFireLoss(2*effective_volume, TRUE)
+			// [/SURREALIS-EDIT]
 			M.visible_message(span_warning("[M] erupts into angry fizzling and hissing!"), span_warning("DAMNATION, BLESSED WATER! IT BUUUURNS!"))
 			M.emote("scream")
 

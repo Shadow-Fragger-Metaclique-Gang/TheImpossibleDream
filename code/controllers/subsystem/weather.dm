@@ -113,5 +113,8 @@ SUBSYSTEM_DEF(weather)
 		var/area/AR = get_area(src)
 		if(AR)
 			for(var/datum/weather/X in SSweather.curweathers)
-				if(AR in X.impacted_areas)
+				// [SURREALIS-EDIT] - PLASMA_OPTS
+				// if(AR in X.impacted_areas) // SURREALIS-EDIT - ORIGINAL
+				if(X.impacted_areas[AR])
+				// [/SURREALIS-EDIT]
 					A.weather_trigger(X.type)

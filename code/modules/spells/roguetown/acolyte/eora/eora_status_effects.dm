@@ -5,6 +5,9 @@
 	icon_state = "buff"
 
 /datum/status_effect/buff/ashen_aril
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "ashen"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/ashen_aril
 	duration = 6 MINUTES
@@ -128,6 +131,9 @@
 #undef ASHEN_FILTER
 
 /datum/status_effect/buff/eoran_balm_effect
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "eoran_balm"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/healing
 	duration = -1
@@ -198,6 +204,9 @@
 #define POM_FILTER "pom_aura"
 
 /datum/status_effect/debuff/pomegranate_aura
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "pomegranate_aura"
 	duration = -1
 	alert_type = /atom/movable/screen/alert/status_effect/pomegranate_aura
@@ -264,7 +273,10 @@
 			to_chat(H, span_warning("The tree's beauty burns your eyes!"))
 			H.Dizzy(5)
 			H.blur_eyes(5)
-			H.adjustBruteLoss(10, 0)
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// H.adjustBruteLoss(10, 0) // SURREALIS-EDIT - ORIGINAL
+			H.adjustBruteLoss(10, TRUE)
+			// [/SURREALIS-EDIT]
 
 		//Unsightly people have a lower chance to have their beauty temporarily returned.
 		else if(HAS_TRAIT(H, TRAIT_UNSEEMLY) && prob(1))
@@ -290,6 +302,9 @@
 //
 
 /datum/status_effect/debuff/pomegranate_beauty
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "pomegranate_beauty"
 	duration = -1
 	alert_type = /atom/movable/screen/alert/status_effect/pomegranate_aura
@@ -342,6 +357,9 @@
 	icon_state = "pom_death"
 
 /datum/status_effect/debuff/eoran_wilting
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "wilting"
 	duration = 10 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/eoran_wilting

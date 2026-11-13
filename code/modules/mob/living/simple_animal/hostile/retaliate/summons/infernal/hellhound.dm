@@ -9,7 +9,10 @@
 	icon_state = "hellhound"
 	icon_living = "hellhound"
 	icon_dead = "vvd"
-	summon_primer = "You are a hellhound, a moderate sized canine made of heat and flame. You spend time in the infernal plane hunting and incinerating things to your hearts content. Now you've been pulled from your home into a new world, that is decidedly lacking in fire. How you react to these events, only time can tell."
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// summon_primer = "You are a hellhound, a moderate sized canine made of heat and flame. You spend time in the infernal plane hunting and incinerating things to your hearts content. Now you've been pulled from your home into a new world, that is decidedly lacking in fire. How you react to these events, only time can tell." // SURREALIS-EDIT - ORIGINAL
+	summon_primer = "You are a hellhound, a moderate sized canine made of heat and flame. You spend time in the infernal plane hunting and incinerating things to your heart's content. Now you've been pulled from your home into a new world, that is decidedly lacking in fire. How you react to these events, only time can tell."
+	// [/SURREALIS-EDIT]
 	summon_tier = 2
 	gender = MALE
 	emote_hear = null

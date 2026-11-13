@@ -59,7 +59,10 @@
 	//heart attack stuff
 	handle_heart()
 	update_energy()
-	update_stamina()
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// update_stamina() // SURREALIS-EDIT - ORIGINAL
+	handle_stamina_regen()
+	// [/SURREALIS-EDIT]
 	for(var/datum/charflaw/cf in charflaws)
 		if(!cf.ephemeral && mind)
 			cf.flaw_on_life(src)

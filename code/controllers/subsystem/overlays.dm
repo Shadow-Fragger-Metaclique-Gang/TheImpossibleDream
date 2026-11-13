@@ -94,7 +94,11 @@ SUBSYSTEM_DEF(overlays)
 		return
 
 	STAT_START_STOPWATCH
-	var/list/cached_other = other.overlays.Copy()
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// var/list/cached_other = other.overlays.Copy() // SURREALIS-EDIT - ORIGINAL
+	var/list/cached_other = LIVE_OVERLAYS(other)
+	cached_other = cached_other.Copy()
+	// [/SURREALIS-EDIT]
 	if(cut_old)
 		if(cached_other)
 			overlays = cached_other
@@ -125,7 +129,11 @@ SUBSYSTEM_DEF(overlays)
 			cut_overlays()
 		return
 
-	var/list/cached_other = other.overlays.Copy()
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// var/list/cached_other = other.overlays.Copy() // SURREALIS-EDIT - ORIGINAL
+	var/list/cached_other = LIVE_OVERLAYS(other)
+	cached_other = cached_other.Copy()
+	// [/SURREALIS-EDIT]
 	if(cached_other)
 		if(cut_old || !overlays.len)
 			overlays = cached_other

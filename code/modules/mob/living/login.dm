@@ -37,6 +37,19 @@
 
 	set_ssd_indicator(FALSE)
 
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	for(var/datum/status_effect/effect as anything in status_effects)
+		effect.refresh_countdown()
+
+	if(client && ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(H.pending_post_equipment)
+			apply_character_post_equipment(H, client)
+		var/list/pending = H.pending_class_setup
+		if(pending)
+			SSrole_class_handler.setup_class_handler(H, pending[1], pending[2])
+
+	// [/SURREALIS-ADD]
 /mob/living/proc/login_fade()
 	set waitfor = FALSE
 	if(!client)

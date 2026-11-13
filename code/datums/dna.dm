@@ -166,7 +166,10 @@
 			return
 		// Skip same species on species loss / on species gain when the target species match
 		// This reduce the amount of cascading update body call
-		if(dna.species.type == new_race_type)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// if(dna.species.type == new_race_type) // SURREALIS-EDIT - ORIGINAL
+		if(dna.species.type == new_race_type && dna.species.applied && (ispath(mrace) || mrace == dna.species))
+		// [/SURREALIS-EDIT]
 			if(pref_load)
 				dna.features = pref_load.features.Copy()
 				dna.body_markings = deepCopyList(pref_load.body_markings)

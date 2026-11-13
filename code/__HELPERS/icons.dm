@@ -1064,6 +1064,9 @@ GLOBAL_LIST_EMPTY(friendly_animal_types)
 		body.update_inv_belt(hide_experimental = TRUE)
 		body.update_inv_back(hide_experimental = TRUE)
 		body.update_inv_head(hide_nonstandard = TRUE)
+		// [SURREALIS-ADD] - PLASMA_OPTS
+		SSiconupdates.wait_for_commit(body)
+		// [/SURREALIS-ADD]
 
 		var/icon/out_icon = icon('icons/effects/effects.dmi', "nothing")
 		for(var/D in showDirs)
@@ -1325,6 +1328,9 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 		if (isnull(icon_state))
 			icon_state = ""
 
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	icon2collapse = icon(icon2collapse, icon_state, dir, frame, moving)
 
 	var/list/name_and_ref = generate_and_hash_rsc_file(icon2collapse, icon_path)//pretend that tuples exist
@@ -1335,12 +1341,42 @@ GLOBAL_LIST_INIT(freon_color_matrix, list("#2E5E69", "#60A2A8", "#A1AFB1", rgb(0
 
 	if(!SSassets.cache[key])
 		SSassets.transport.register_asset(key, rsc_ref, file_hash, icon_path)
+	*/
+	var/static/list/dmi_asset_keys = list()
+	var/memo_key
+	if(icon_path && !isnull(icon_state) && isicon(icon2collapse) && isfile(icon2collapse))
+		memo_key = "[icon_path]|[icon_state]|[dir]|[frame]|[moving]"
+		key = dmi_asset_keys[memo_key]
+		if(key && !SSassets.cache[key])
+			key = null
+
+	if(!key)
+		icon2collapse = icon(icon2collapse, icon_state, dir, frame, moving)
+
+		var/list/name_and_ref = generate_and_hash_rsc_file(icon2collapse, icon_path)//pretend that tuples exist
+
+		var/rsc_ref = name_and_ref[1] //weird object that's not even readable to the debugger, represents a reference to the icons rsc entry
+		var/file_hash = name_and_ref[2]
+		key = "[name_and_ref[3]].png"
+
+		if(!SSassets.cache[key])
+			SSassets.transport.register_asset(key, rsc_ref, file_hash, icon_path)
+		if(memo_key)
+			dmi_asset_keys[memo_key] = key
+	// [/SURREALIS-EDIT]
 	for (var/client_target in targets)
 		SSassets.transport.send_assets(client_target, key)
 	if(sourceonly)
 		return SSassets.transport.get_asset_url(key)
 	return "<img class='[extra_classes] icon icon-[icon_state]' src='[SSassets.transport.get_asset_url(key)]'>"
 
+// [SURREALIS-ADD] - PLASMA_OPTS
+/proc/icon2html_for_path(path, client/target)
+	var/atom/thing = new path
+	. = icon2html(thing, target)
+	qdel(thing)
+
+// [/SURREALIS-ADD]
 /proc/icon2base64html(target)
 	if (!target)
 		return

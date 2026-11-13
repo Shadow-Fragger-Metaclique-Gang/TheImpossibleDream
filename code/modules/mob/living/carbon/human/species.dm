@@ -65,6 +65,9 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 		.[build.id] = build
 
 /datum/species
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	var/applied = FALSE
+	// [/SURREALIS-ADD]
 	var/id	// if the game needs to manually check my race to do something not included in a proc here, it will use this
 	var/limbs_id		//this is used if you want to use a different species limb sprites. Mainly used for angels as they look like humans.
 	var/clothes_id //id for clothes
@@ -545,6 +548,9 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 
 
 /datum/species/proc/on_species_gain(mob/living/carbon/C, datum/species/old_species, datum/preferences/pref_load)
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	applied = TRUE
+	// [/SURREALIS-ADD]
 	// Drop the items the new species can't wear
 	if((AGENDER in species_traits))
 		C.gender = PLURAL
@@ -635,6 +641,9 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 
 
 /datum/species/proc/on_species_loss(mob/living/carbon/human/C, datum/species/new_species, pref_load)
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	applied = FALSE
+	// [/SURREALIS-ADD]
 	remove_verb(C, /mob/living/carbon/human/verb/choose_cosmetic_claws)
 	C.cosmetic_claw_intent = null
 	if(C.dna.species.exotic_bloodtype)

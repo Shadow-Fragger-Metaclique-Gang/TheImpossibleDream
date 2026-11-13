@@ -19,14 +19,27 @@
 	if(hud_used?.stressies)
 		hud_used.stressies.update_icon()
 
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	handle_wounds()
 	handle_embedded_objects()
+	*/
+	if(life_work & LIFEWORK_WOUNDS)
+		handle_wounds()
+		handle_embedded_objects()
+		if(life_wounds_settled())
+			life_work &= ~LIFEWORK_WOUNDS
+	// [/SURREALIS-EDIT]
 	handle_blood()
 	handle_roguebreath()
 
 	var/bprv = handle_bodyparts()
 	if(bprv & BODYPART_LIFE_UPDATE_HEALTH)
-		update_stamina() //needs to go before updatehealth to remove stamcrit
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// update_stamina() //needs to go before updatehealth to remove stamcrit // SURREALIS-EDIT - ORIGINAL
+		handle_stamina_regen() //needs to go before updatehealth to remove stamcrit
+		// [/SURREALIS-EDIT]
 		updatehealth()
 	if(client)
 		update_damage_hud()
@@ -42,6 +55,16 @@
 	if(stat != DEAD)
 		return 1
 
+// [SURREALIS-ADD] - PLASMA_OPTS
+/mob/living/carbon/proc/life_wounds_settled()
+	if(length(simple_wounds))
+		return FALSE
+	for(var/obj/item/bodypart/BP as anything in bodyparts)
+		if(LAZYLEN(BP.wounds) || LAZYLEN(BP.embedded_objects))
+			return FALSE
+	return TRUE
+
+// [/SURREALIS-ADD]
 /mob/living/carbon/DeadLife()
 	set invisibility = 0
 

@@ -114,6 +114,57 @@
 			},
 			"dependsOn": "dm: reparse",
 			"label": "Build All (unit tests)"
+		},
+		{
+			"type": "process",
+			"command": "tools/build/build.sh",
+			"args": ["--modular"],
+			"windows": {
+				"command": ".\\tools\\build\\build.bat",
+				"args": ["--modular"]
+			},
+			"options": {
+				"env": {
+					"DM_EXE": "${config:dreammaker.byondPath}"
+				}
+			},
+			"problemMatcher": ["$dreammaker", "$tsc", "$eslint-stylish"],
+			"group": {
+				"kind": "build"
+			},
+			"dependsOn": "dm: reparse",
+			"label": "Build All (with modularization check)"
+		},
+		{
+			"type": "process",
+			"command": "tools/build/build.sh",
+			"args": ["modular-check"],
+			"windows": {
+				"command": ".\\tools\\build\\build.bat",
+				"args": ["modular-check"]
+			},
+			"problemMatcher": [],
+			"group": "build",
+			"label": "Modularization: check"
+		},
+		{
+			"type": "process",
+			"command": "tools/build/build.sh",
+			"args": ["modular-fix", "--tag=${input:modularTag}"],
+			"windows": {
+				"command": ".\\tools\\build\\build.bat",
+				"args": ["modular-fix", "--tag=${input:modularTag}"]
+			},
+			"problemMatcher": [],
+			"group": "build",
+			"label": "Modularization: fix"
+		}
+	],
+	"inputs": [
+		{
+			"id": "modularTag",
+			"type": "promptString",
+			"description": "Module tag, e.g. NOCS_BULB (folder modular_tidi/nocs_bulb)"
 		}
 	]
 }

@@ -50,7 +50,10 @@
 	if(!istype(linker))
 		return
 
-	for(var/obj/item/rotation_contraption/item as anything in subtypesof(/obj/item/rotation_contraption))
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// for(var/obj/item/rotation_contraption/item as anything in subtypesof(/obj/item/rotation_contraption)) // SURREALIS-EDIT - ORIGINAL
+	for(var/obj/item/rotation_contraption/item as anything in rotation_contraption_types())
+	// [/SURREALIS-EDIT]
 		if(type == initial(item.placed_type))
 			start_deconstruct(user, item)
 			return
@@ -299,7 +302,10 @@
 /obj/structure/proc/rotation_break()
 	visible_message(span_warning("[src] breaks apart from the opposing directions!"))
 	playsound(src, 'sound/foley/cartdump.ogg', 75)
-	for(var/obj/item/rotation_contraption/item as anything in subtypesof(/obj/item/rotation_contraption))
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// for(var/obj/item/rotation_contraption/item as anything in subtypesof(/obj/item/rotation_contraption)) // SURREALIS-EDIT - ORIGINAL
+	for(var/obj/item/rotation_contraption/item as anything in rotation_contraption_types())
+	// [/SURREALIS-EDIT]
 		if(type == initial(item.placed_type))
 			new item(get_turf(src))
 			qdel(src)
@@ -346,3 +352,9 @@
 			continue
 		connected |= surrounding.return_connected(deleted, passed, network)
 	return connected
+// [SURREALIS-ADD] - PLASMA_OPTS
+
+/proc/rotation_contraption_types()
+	var/static/list/types = subtypesof(/obj/item/rotation_contraption)
+	return types
+// [/SURREALIS-ADD]

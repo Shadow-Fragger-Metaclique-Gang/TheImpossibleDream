@@ -87,13 +87,24 @@
 	if(islist(entry)) // any-of group
 		var/list/options = list()
 		for(var/atom/opt as anything in entry)
-			options += "[icon2html(new opt, user)] [initial(opt.name)]"
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// options += "[icon2html(new opt, user)] [initial(opt.name)]" // SURREALIS-EDIT - ORIGINAL
+			options += "[icon2html_for_path(opt, user)] [initial(opt.name)]"
+			// [/SURREALIS-EDIT]
 		return "<li>Add one of: [options.Join(", ")]</li>"
 	if(ingredients[entry] == COOKSTEP_TOOL) // non-consumed tool
 		var/atom/A = entry
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		return "<li>Apply [icon2html(new A, user)] [initial(A.name)]</li>"
 	var/atom/A = entry
 	return "<li>Add [icon2html(new A, user)] [initial(A.name)]</li>"
+		*/
+		return "<li>Apply [icon2html_for_path(A, user)] [initial(A.name)]</li>"
+	var/atom/A = entry
+	return "<li>Add [icon2html_for_path(A, user)] [initial(A.name)]</li>"
+		// [/SURREALIS-EDIT]
 
 /datum/food_recipe/proc/cook_step_li()
 	switch(cook_method)
@@ -161,13 +172,19 @@
 			var/datum/food_recipe/br = SScooking?.get_producing_recipe(b)
 			var/bname = initial(b.name)
 			var/blabel = (br && !br.hidden) ? "<a href='byond://?src=[REF(get_recipe_wiki())];view_recipe=[br.get_wiki_key()]'>[bname]</a>" : bname
-			base_names += "[icon2html(new b, user)] [blabel]"
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// base_names += "[icon2html(new b, user)] [blabel]" // SURREALIS-EDIT - ORIGINAL
+			base_names += "[icon2html_for_path(b, user)] [blabel]"
+			// [/SURREALIS-EDIT]
 		html += "<p><b>Start with any of:</b> [base_names.Join(", ")]</p>"
 	else if(base)
 		var/datum/food_recipe/br = SScooking?.get_producing_recipe(base)
 		var/bname = initial(base.name)
 		var/blabel = (br && !br.hidden) ? "<a href='byond://?src=[REF(get_recipe_wiki())];view_recipe=[br.get_wiki_key()]'>[bname]</a>" : bname
-		html += "<p><b>Start with:</b> [icon2html(new base, user)] [blabel]</p>"
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// html += "<p><b>Start with:</b> [icon2html(new base, user)] [blabel]</p>" // SURREALIS-EDIT - ORIGINAL
+		html += "<p><b>Start with:</b> [icon2html_for_path(base, user)] [blabel]</p>"
+		// [/SURREALIS-EDIT]
 
 	var/list/steps = journey["steps"]
 	var/cook_li = cook_step_li()
@@ -178,7 +195,10 @@
 
 	var/atom/result = result_type
 	if(result)
-		html += "<p><b>Produces:</b> [icon2html(new result, user)] [initial(result.name)]</p>"
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// html += "<p><b>Produces:</b> [icon2html(new result, user)] [initial(result.name)]</p>" // SURREALIS-EDIT - ORIGINAL
+		html += "<p><b>Produces:</b> [icon2html_for_path(result, user)] [initial(result.name)]</p>"
+		// [/SURREALIS-EDIT]
 		var/result_details = describe_food_result(result)
 		if(result_details)
 			html += result_details

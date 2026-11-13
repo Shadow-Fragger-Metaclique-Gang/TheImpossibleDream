@@ -7,6 +7,7 @@
  * https://github.com/stylemistake/juke-build
  */
 
+import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import Juke from './juke/index.js';
 import { bun, bunRoot, bunTgfont } from './lib/bun';
@@ -22,9 +23,9 @@ Juke.chdir('../..', import.meta.url);
 const GlobalModulesFile = 'modular_tidi/global_modules.dm';
 
 function sortGlobalModules() {
-  let fileContents = fs.readFileSync(GlobalModulesFile, 'utf8');
-  let lines = fileContents.split('\n');
-  let includeLines = [];
+  const fileContents = fs.readFileSync(GlobalModulesFile, 'utf8');
+  const lines = fileContents.split('\n');
+  const includeLines = [];
 
   for (let i = 0; i < lines.length; i++) {
     if (lines[i].trim().startsWith('#include')) {
@@ -43,9 +44,9 @@ function sortGlobalModules() {
     }
   }
 
-  let newFileContents = lines.join('\n');
+  const newFileContents = lines.join('\n');
 
-  if (newFileContents != fileContents) {
+  if (newFileContents !== fileContents) {
     fs.writeFileSync(GlobalModulesFile, newFileContents);
   }
 }
@@ -81,6 +82,99 @@ export const NoWarningParameter = new Juke.Parameter({
   alias: 'I',
 });
 
+// [SURREALIS-ADD] - Modularization checker (tools/modular_check)
+export const ModularParameter = new Juke.Parameter({
+  type: 'boolean',
+  name: 'modular',
+});
+
+export const ModularTagParameter = new Juke.Parameter({
+  type: 'string',
+  name: 'tag',
+});
+
+export const ModularBaseParameter = new Juke.Parameter({
+  type: 'string',
+  name: 'base',
+});
+
+export const MoveNewFilesParameter = new Juke.Parameter({
+  type: 'boolean',
+  name: 'move-new-files',
+});
+
+const findPython = (): string[] => {
+  const candidates = [['python3'], ['python'], ['py', '-3']];
+  for (const [cmd, ...args] of candidates) {
+    const probe = spawnSync(
+      cmd,
+      [...args, '-c', 'import sys; sys.exit(sys.version_info < (3, 8))'],
+      { stdio: 'ignore' },
+    );
+    if (probe.status === 0) {
+      return [cmd, ...args];
+    }
+  }
+  throw new Juke.ExitCode(1);
+};
+
+const modularCheck = (mode: 'check' | 'fix', extra: string[] = []) => {
+  let python: string[];
+  try {
+    python = findPython();
+  } catch {
+    Juke.logger.error('Python 3.8+ is needed for the modularization checker.');
+    throw new Juke.ExitCode(1);
+  }
+  const [cmd, ...args] = python;
+  // This is to fix a weird issue on Windows where the Python process would not get the
+  // keypresses and would hang forever. This is a workaround to make sure that the stdin is not in raw mode.
+  const stdin = process.stdin;
+  const wasRaw = stdin.isTTY && stdin.isRaw;
+  if (wasRaw) {
+    stdin.setRawMode(false);
+  }
+  stdin.pause();
+  return Juke.exec(
+    cmd,
+    [...args, 'tools/modular_check/modular_check.py', mode, ...extra],
+    { stdio: ['inherit', 'pipe', 'pipe'] },
+  ).finally(() => {
+    if (wasRaw) {
+      stdin.setRawMode(true);
+    }
+    stdin.resume();
+  });
+};
+
+/** Reports unmarked core changes, missing README entries, module layout problems, etc.*/
+export const ModularCheckTarget = new Juke.Target({
+  parameters: [ModularBaseParameter],
+  executes: ({ get }) => {
+    const base = get(ModularBaseParameter);
+    return modularCheck('check', base ? ['--base', base] : []);
+  },
+});
+
+/** Adds the SURREALIS markers, README entries and module includes */
+export const ModularFixTarget = new Juke.Target({
+  parameters: [
+    ModularTagParameter,
+    ModularBaseParameter,
+    MoveNewFilesParameter,
+  ],
+  executes: ({ get }) => {
+    const tag = get(ModularTagParameter);
+    const base = get(ModularBaseParameter);
+    return modularCheck('fix', [
+      ...(tag ? ['--tag', tag] : []),
+      ...(base ? ['--base', base] : []),
+      get(MoveNewFilesParameter) ? '--move-new-files' : '--ask',
+    ]);
+  },
+});
+// [/SURREALIS-ADD]
+
 export const DmMapsIncludeTarget = new Juke.Target({
   executes: async () => {
     const folders = [
@@ -101,9 +195,15 @@ export const DmTarget = new Juke.Target({
     DmVersionParameter,
     WarningParameter,
     NoWarningParameter,
+    // [SURREALIS-ADD] - Modularization checker
+    ModularParameter,
+    // [/SURREALIS-ADD]
   ],
   dependsOn: ({ get }) => [
     get(DefineParameter).includes('ALL_TEMPLATES') && DmMapsIncludeTarget,
+    // [SURREALIS-ADD] - Modularization checker: --modular checks before compiling
+    get(ModularParameter) && ModularCheckTarget,
+    // [/SURREALIS-ADD]
   ],
   inputs: [
     '_maps/**',

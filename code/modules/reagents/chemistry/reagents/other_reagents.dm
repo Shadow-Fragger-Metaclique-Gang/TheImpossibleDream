@@ -381,7 +381,10 @@
 	if(!istype(M))
 		return
 	if(method == TOUCH)
-		M.adjustFireLoss(2, 0) // burns
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// M.adjustFireLoss(2, 0) // burns // SURREALIS-EDIT - ORIGINAL
+		M.adjustFireLoss(2, TRUE) // burns
+		// [/SURREALIS-EDIT]
 	..()
 
 /datum/reagent/fuel/unholywater		//if you somehow managed to extract this from someone, dont splash it on myself and have a smoke
@@ -413,7 +416,10 @@
 	M.adjust_fire_stacks(5)
 	M.ignite_mob()			//Only problem with igniting people is currently the commonly availible fire suits make you immune to being on fire
 	M.adjustToxLoss(1, 0)
-	M.adjustFireLoss(1, 0)		//Hence the other damages... ain't I a bastard?
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// M.adjustFireLoss(1, 0)		//Hence the other damages... ain't I a bastard? // SURREALIS-EDIT - ORIGINAL
+	M.adjustFireLoss(1, TRUE)		//Hence the other damages... ain't I a bastard?
+	// [/SURREALIS-EDIT]
 	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5, 150)
 	holder.remove_reagent(type, 1)
 
@@ -1262,7 +1268,10 @@
 	if(!istype(M))
 		return
 	if(method == TOUCH)
-		M.adjustFireLoss(2, FALSE) // burns,
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// M.adjustFireLoss(2, FALSE) // burns, // SURREALIS-EDIT - ORIGINAL
+		M.adjustFireLoss(2, TRUE) // burns,
+		// [/SURREALIS-EDIT]
 		M.adjust_fire_stacks((reac_volume / 10))
 	..()
 

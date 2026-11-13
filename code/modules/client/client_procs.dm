@@ -1131,6 +1131,12 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 /client/proc/update_movement_keys()
 	if(!prefs?.key_bindings)
 		return
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	if(!length(prefs.key_bindings))
+		if(length(movement_keys))
+			log_game("WARNING: [ckey] has empty key_bindings, preserving existing movement_keys")
+		return
+	// [/SURREALIS-ADD]
 	movement_keys = list()
 	for(var/key in prefs.key_bindings)
 		for(var/kb_name in prefs.key_bindings[key])
@@ -1155,7 +1161,10 @@ GLOBAL_LIST_EMPTY(external_rsc_urls)
 		var/mob/living/M = mob
 		M.update_damage_hud()
 	if (prefs.auto_fit_viewport)
-		addtimer(CALLBACK(src, VERB_REF(fit_viewport), 1 SECONDS)) //Delayed to avoid wingets from Login calls.
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// addtimer(CALLBACK(src, VERB_REF(fit_viewport), 1 SECONDS)) //Delayed to avoid wingets from Login calls. // SURREALIS-EDIT - ORIGINAL
+		addtimer(CALLBACK(src, VERB_REF(fit_viewport)), 1 SECONDS) //Delayed to avoid wingets from Login calls.
+		// [/SURREALIS-EDIT]
 
 /client/proc/generate_clickcatcher()
 	if(!void)

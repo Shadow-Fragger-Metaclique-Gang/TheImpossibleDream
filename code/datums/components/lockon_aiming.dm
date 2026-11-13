@@ -67,8 +67,15 @@
 		var/image/I = new
 		I.appearance = lock_appearance
 		I.loc = A
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		M.client.images |= I
 		lock_images |= I
+		*/
+		lock_images |= I
+	M.client.images |= lock_images
+		// [/SURREALIS-EDIT]
 
 /datum/component/lockon_aiming/proc/clear_visuals()
 	var/mob/M = parent
@@ -76,8 +83,15 @@
 		return
 	if(!lock_images)
 		return
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	for(var/i in lock_images)
 		M.client.images -= i
+	*/
+	M.client.images -= lock_images
+	for(var/i in lock_images)
+	// [/SURREALIS-EDIT]
 		qdel(i)
 	lock_images.Cut()
 

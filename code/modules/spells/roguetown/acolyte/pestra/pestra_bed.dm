@@ -51,7 +51,10 @@
 
 		if(prob(15))
 			to_chat(owner, span_danger("You feel like your vitality is being sapped!"))
-		owner.adjustBruteLoss(2, 0)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// owner.adjustBruteLoss(2, 0) // SURREALIS-EDIT - ORIGINAL
+		owner.adjustBruteLoss(2, TRUE)
+		// [/SURREALIS-EDIT]
 		owner.adjustToxLoss(1, 0)
 		return
 

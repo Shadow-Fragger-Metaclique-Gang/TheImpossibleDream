@@ -503,6 +503,9 @@
 	desc = span_userdanger("Everything is loud and grey. Where is the dust?!")
 
 /datum/status_effect/debuff/baotha_addiction
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "baotha_addiction"
 	duration = 15 MINUTES
 	alert_type = /atom/movable/screen/alert/status_effect/baotha_addiction
@@ -682,7 +685,10 @@
 		return
 	var/very_hongry = pick("HUNGRY...", "Hungry...", "Hungry! Hungry!",	"I NEED TO EAT!", "I'm STARVING!!", "Need to eat... anything... I'll eat anything. I'm so hungry.")
 	if(H.nutrition >= NUTRITION_LEVEL_FED)
-		duration -= 5 MINUTES
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// duration -= 5 MINUTES // SURREALIS-EDIT - ORIGINAL
+		set_expires_at(expires_at - 5 MINUTES)
+		// [/SURREALIS-EDIT]
 		to_chat(owner, span_warning("You feel some of your Lux react to being full... your reserves drain rapidly and your stomach quickly empties."))
 		to_chat(owner, span_green("I am recovering faster..."))
 

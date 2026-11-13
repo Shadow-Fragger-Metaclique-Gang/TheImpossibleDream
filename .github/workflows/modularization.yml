@@ -1,0 +1,79 @@
+name: Modularization
+
+# Checks that core-code changes are wrapped in // [SURREALIS-...] markers and
+# documented in a module README (see tools/modular_check/README.md).
+# It uploads a patch that fixes everything it can if there are any failures.
+# The idea is that contributors can `git apply` it instead of doing all the markers by hand.
+#
+# Called from ci_suite.yml on pull requests only
+#
+# Skips PRs that have the "Upstream Merge" label or either [UPSTREAM] or [PARITY] in their title, since those are not expected to be modularized.
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  modular_check:
+    name: Modularization
+    if: >-
+      github.event_name == 'pull_request' &&
+      !contains(github.event.pull_request.labels.*.name, 'Upstream Merge') &&
+      !contains(github.event.pull_request.title, '[UPSTREAM]') &&
+      !contains(github.event.pull_request.title, '[PARITY]')
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Check out the PR head
+        run: git checkout --quiet --detach HEAD^2
+
+      - name: Get checker
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          git show "$BASE_SHA:tools/modular_check/modular_check.py" > "$RUNNER_TEMP/modular_check.py" 2>/dev/null \
+            || cp tools/modular_check/modular_check.py "$RUNNER_TEMP/modular_check.py"
+
+      - name: Check
+        id: check
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: python3 "$RUNNER_TEMP/modular_check.py" check --base "$BASE_SHA" --github
+
+      - name: Build fix patch
+        if: failure() && steps.check.outcome == 'failure'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          TAG=$(printf '%s' "$PR_BODY" | grep -oP '[Mm]odule [Tt]ag:?\**\s*`?\K[A-Z][A-Z0-9_]*' | head -n1 || true)
+          if [ -n "$TAG" ] && [ "$TAG" != "YOUR_TAG" ]; then
+            python3 "$RUNNER_TEMP/modular_check.py" fix --base "$BASE_SHA" --tag "$TAG" || true
+          else
+            python3 "$RUNNER_TEMP/modular_check.py" fix --base "$BASE_SHA" || true
+          fi
+          git add -A
+          git diff --cached --binary > modularize.patch
+          if [ -s modularize.patch ]; then
+            {
+              echo ""
+              echo "A patch with the automatic fixes is attached to this run as **modularize-patch**."
+              echo "Apply it from the repo root with \`git apply modularize.patch\`, review, and commit."
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload fix patch
+        if: failure() && steps.check.outcome == 'failure' && hashFiles('modularize.patch') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: modularize-patch
+          path: modularize.patch
+          if-no-files-found: ignore

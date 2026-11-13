@@ -162,7 +162,10 @@
 	var/mob/living/L = parent
 	if(prob(25))
 		to_chat(L, span_notice("The leech tick skitters across my body!"))
-	L.adjustBruteLoss(1, 0)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// L.adjustBruteLoss(1, 0) // SURREALIS-EDIT - ORIGINAL
+	L.adjustBruteLoss(1, TRUE)
+	// [/SURREALIS-EDIT]
 	current_zone = pick(possible_zones)
 	update_overlay()
 	zone_switch_timer = addtimer(CALLBACK(src, PROC_REF(switch_zone)), rand(10, 40), TIMER_STOPPABLE)
@@ -236,6 +239,9 @@
 	desc = "You hear faint whispers that don't belong to you. Your mind feels maladjusted and unsettled."
 
 /datum/status_effect/debuff/leech_schizophrenia
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "leech_schizophrenia"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/leech_schizophrenia
 	duration = 10 SECONDS
@@ -255,7 +261,10 @@
 /datum/status_effect/debuff/leech_schizophrenia/on_creation(mob/living/new_owner, ...)
 	. = ..()
 
-	duration = rand(14 MINUTES, 28 MINUTES)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// duration = rand(14 MINUTES, 28 MINUTES) // SURREALIS-EDIT - ORIGINAL
+	set_expires_at(world.time + rand(14 MINUTES, 28 MINUTES))
+	// [/SURREALIS-EDIT]
 	current_cooldown = world.time + message_cooldown
 	return .
 

@@ -132,6 +132,9 @@ GLOBAL_LIST_EMPTY(fake_ckeys)
 		return foundname
 
 /datum/datacore/proc/manifest()
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	for(var/i in GLOB.new_player_list)
 		var/mob/dead/new_player/N = i
 		if(N.new_character)
@@ -149,7 +152,30 @@ GLOBAL_LIST_EMPTY(fake_ckeys)
 			log_character("[N.ckey] ([fakekey]) - [N.new_character.real_name] - [N.new_character.mind.assigned_role]")
 //		add_roundplayed(N.ckey)
 		CHECK_TICK
+	*/
+	var/processed = 0
+	for(var/mob/dead/new_player/N as anything in GLOB.new_player_list)
+		var/mob/living/carbon/human/character = N.new_character
+		if(!ishuman(character) || !character.mind?.assigned_role)
+			continue
 
+		log_manifest(N.ckey, character.mind, character)
+
+		if(!character.real_name)
+			log_game("MANIFEST ERROR: Character has no real_name - [N.ckey]")
+			continue
+
+		var/fakekey = (N.ckey in GLOB.anonymize) ? get_fake_key(N.ckey) : N.ckey
+
+		GLOB.character_list[character.mobid] = "[fakekey] was [character.real_name] ([character.mind.assigned_role])<BR>"
+		GLOB.character_ckey_list[character.real_name] = N.ckey
+		log_character("[N.ckey] ([fakekey]) - [character.real_name] - [character.mind.assigned_role]")
+		processed++
+		CHECK_TICK
+
+	log_game("MANIFEST: Processed [processed] characters")
+
+	// [/SURREALIS-EDIT]
 /datum/datacore/proc/manifest_modify(name, assignment)
 	var/datum/data/record/foundrecord = find_record("name", name, GLOB.data_core.general)
 	if(foundrecord)

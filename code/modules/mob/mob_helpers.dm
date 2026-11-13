@@ -316,8 +316,15 @@
 
 			// Find all leading and trailing special characters - we'll re-add them to the word later.
 			// This should cover quotes, formatting, and just about any other characters.
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			var/first_letter = findtext(word, regex("\[a-zA-Z\]+"))
 			var/last_letter = findtext(word, regex("\[^a-zA-Z\]+"), first_letter) - 1
+			*/
+			var/first_letter = findtext(word, cached_regex("\[a-zA-Z\]+", null))
+			var/last_letter = findtext(word, cached_regex("\[^a-zA-Z\]+", null), first_letter) - 1
+			// [/SURREALIS-EDIT]
 
 			var/suffix = copytext(word, last_letter + 1)
 			var/prefix = copytext(word, 1, first_letter)

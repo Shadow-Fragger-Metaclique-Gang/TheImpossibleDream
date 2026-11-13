@@ -106,7 +106,11 @@
 	handle_traits() // eye, ear, brain damages
 	handle_status_effects() //all special effects, stun, knockdown, jitteryness, hallucination, sleeping, etc
 
-	update_sneak_invis()
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// update_sneak_invis() // SURREALIS-EDIT - ORIGINAL
+	if(rogue_sneaking || m_intent == MOVE_INTENT_SNEAK || world.time < mob_timers[MT_INVISIBILITY] || alpha != initial(alpha))
+		update_sneak_invis()
+	// [/SURREALIS-EDIT]
 
 	if(machine)
 		machine.check_eye(src)

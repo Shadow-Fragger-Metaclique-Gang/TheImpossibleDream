@@ -1,3 +1,6 @@
+// [SURREALIS-REMOVE] - PLASMA_OPTS
+// Replaced by the icon_updates subsystem (modular_tidi/plasma_opts).
+/*
 SUBSYSTEM_DEF(damoverlays)
 	name = "damoverlays"
 	wait = 20
@@ -27,3 +30,5 @@ SUBSYSTEM_DEF(damoverlays)
 		STOP_PROCESSING(SSdamoverlays, thing)
 		if(MC_TICK_CHECK)
 			return
+*/
+// [/SURREALIS-REMOVE]

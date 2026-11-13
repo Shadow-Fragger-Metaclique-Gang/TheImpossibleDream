@@ -172,7 +172,10 @@
 			duration_extension = 30 SECONDS
 
 	if(duration_extension)
-		duration += duration_extension
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// duration += duration_extension // SURREALIS-EDIT - ORIGINAL
+		set_expires_at(expires_at + duration_extension)
+		// [/SURREALIS-EDIT]
 
 /datum/status_effect/buff/zeybek_momentum/proc/reset_to_tier_start()
 	var/new_stacks = FLOOR(stacks / 5, 1) * 5

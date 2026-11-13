@@ -88,6 +88,12 @@
 		var/mob/dead/observer/observer = mob
 		observer.next_gmove = world.time + (world.tick_lag * GLOB.observer_move_delay_multiplier)
 		move_delay = world.time
+		// [SURREALIS-ADD] - PLASMA_OPTS
+		if(observer.updating_glide_size)
+			var/ghost_glide = MOVEMENT_ADJUSTED_GLIDE_SIZE(max(world.tick_lag * GLOB.observer_move_delay_multiplier, world.tick_lag), 1)
+			if(observer.glide_size != ghost_glide)
+				observer.set_glide_size(ghost_glide)
+		// [/SURREALIS-ADD]
 	else
 		move_delay = world.time + world.tick_lag //this is here because Move() can now be called mutiple times per tick
 	if(!mob || !mob.loc)
@@ -595,6 +601,11 @@
 			rogue_sneaking = FALSE
 		return
 
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	if(!reset && !rogue_sneaking && m_intent != MOVE_INTENT_SNEAK && alpha == initial(alpha))
+		return
+
+	// [/SURREALIS-ADD]
 	var/turf/T = get_turf(src)
 	if(!T) //if the turf they're headed to is invalid
 		return

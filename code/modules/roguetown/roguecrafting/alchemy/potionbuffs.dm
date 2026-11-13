@@ -20,9 +20,17 @@
 	add_duration(added_duration)
 
 /datum/status_effect/buff/alch/statbuff/proc/add_duration(amount)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	if(duration == -1)
 		return
 	duration = min(duration + amount, world.time + max_duration)
+	*/
+	if(expires_at == -1)
+		return
+	set_expires_at(min(expires_at + amount, world.time + max_duration))
+	// [/SURREALIS-EDIT]
 
 /datum/status_effect/buff/alch/statbuff/on_apply()
 	. = ..()

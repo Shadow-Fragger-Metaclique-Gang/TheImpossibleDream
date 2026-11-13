@@ -89,7 +89,10 @@
 				to_chat(owner, span_warning("You have wandered too far from the pylon! Your infusion begins decaying rapidly."))
 			update_pylon_outline(P, COLOR_RED)
 		effective_time_consumed = time_passed * decay_multiplier
-		duration -= time_passed * (decay_multiplier - 1)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// duration -= time_passed * (decay_multiplier - 1) // SURREALIS-EDIT - ORIGINAL
+		set_expires_at(expires_at - time_passed * (decay_multiplier - 1))
+		// [/SURREALIS-EDIT]
 
 	else if(out_of_range && !is_mismatched)
 		out_of_range = FALSE

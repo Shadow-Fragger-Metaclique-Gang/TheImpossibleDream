@@ -79,10 +79,7 @@
 	if(!HAS_TRAIT(src, TRAIT_SCARRED) || observer_privilege)
 		return used_name
 	// Use descriptor system like masked characters
-	var/list/d_list = get_mob_descriptors()
-	var/trait_desc = "[capitalize(build_coalesce_description_nofluff(d_list, src, list(MOB_DESCRIPTOR_SLOT_TRAIT), "%DESC1%"))]"
-	var/stature_desc = "[capitalize(build_coalesce_description_nofluff(d_list, src, list(MOB_DESCRIPTOR_SLOT_STATURE), "%DESC1%"))]"
-	var/descriptor_name = "[trait_desc] [stature_desc]"
+	var/descriptor_name = get_descriptor_name()
 	if(descriptor_name != " " && descriptor_name != "")
 		return descriptor_name
 	// Fallback to gender-based unknown name

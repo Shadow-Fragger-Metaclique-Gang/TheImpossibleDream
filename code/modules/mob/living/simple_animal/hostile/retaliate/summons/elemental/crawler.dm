@@ -4,7 +4,10 @@
 	name = "earthen crawler"
 	desc = "This is a relatively small elemental formed of dirt, rock, and clay. It \
 	clambers about with the use of too few limbs, but still reaches up to your knees."
-	summon_primer = "You are an crawler, a small elemental. Elementals such as yourself spend immeasurable time wandering about within your plane. Now you've been pulled from your home into a new world, that is decidedly less peaceful then your carefully guarded plane. How you react to these events, only time can tell."
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// summon_primer = "You are an crawler, a small elemental. Elementals such as yourself spend immeasurable time wandering about within your plane. Now you've been pulled from your home into a new world, that is decidedly less peaceful then your carefully guarded plane. How you react to these events, only time can tell." // SURREALIS-EDIT - ORIGINAL
+	summon_primer = "You are a crawler, a small elemental. Elementals such as yourself spend immeasurable time wandering about within your plane. Now you've been pulled from your home into a new world, that is decidedly less peaceful than your carefully guarded plane. How you react to these events, only time can tell."
+	// [/SURREALIS-EDIT]
 	summon_tier = 1
 	icon_state = "crawler"
 	icon_living = "crawler"

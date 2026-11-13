@@ -83,6 +83,7 @@
 	return TRUE
 
 /datum/status_effect/buff/mount_apple_healing
+	tick_interval = 1 SECONDS
 	id = "mount_apple_healing"
 	duration = 8 SECONDS
 	var/healing_on_tick = 1

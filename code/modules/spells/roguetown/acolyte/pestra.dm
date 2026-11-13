@@ -450,6 +450,9 @@
 	return FALSE
 
 /datum/status_effect/buff/infestation
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "infestation"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/infestation
 	duration = 10 SECONDS
@@ -458,21 +461,42 @@
 	var/extended_duration = FALSE
 	var/next_spread = 0 // see I learned my lesson! :>
 	var/death_burst_done = FALSE
-
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 /datum/status_effect/buff/infestation/on_apply()
 	. = ..()
 	var/mob/living/target = owner
 	if(owner.stat == DEAD) // infinite corpse miasma explosions are cool but not the scope here, soz!
 		qdel(src)
+	*/
+	/// TRUE while effectedstats and the rot overlay are applied to the owner
+	var/applied = FALSE
+	/// TRUE while the mindless speed penalty is applied to the owner
+	var/speed_penalty = FALSE
+
+/datum/status_effect/buff/infestation/on_apply()
+	if(owner.stat == DEAD) // infinite corpse miasma explosions are cool but not the scope here, soz!
+		return FALSE
+	. = ..()
+	applied = TRUE
+	var/mob/living/target = owner
+	// [/SURREALIS-EDIT]
 	to_chat(owner, span_danger("I am suddenly surrounded by a cloud of bugs!"))
 	target.Jitter(20)
 	target.add_overlay(rotten)
 	target.update_vision_cone()
 	if(!target.mind)
 		target.change_stat(STATKEY_SPD, -5) // rot take them
+		// [SURREALIS-ADD] - PLASMA_OPTS
+		speed_penalty = TRUE
+		// [/SURREALIS-ADD]
 	next_spread = world.time + 5 SECONDS
 
 /datum/status_effect/buff/infestation/on_remove()
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	var/mob/living/target = owner
 	if(owner.stat == DEAD)
 		return
@@ -481,11 +505,45 @@
 	if(!target.mind)
 		target.change_stat(STATKEY_SPD, 5) // rot take them
 	. = ..()
+	*/
+	if(!applied)
+		return
+	applied = FALSE
+	var/mob/living/target = owner
+	target.cut_overlay(rotten)
+	target.update_vision_cone()
+	if(speed_penalty)
+		target.change_stat(STATKEY_SPD, 5) // rot take them
+		speed_penalty = FALSE
+	. = ..()
 
+/datum/status_effect/buff/infestation/proc/death_burst()
+	if(death_burst_done)
+		return
+	death_burst_done = TRUE
+	var/mob/living/target = owner
+	target.visible_message(span_userdanger("[target]'s corpse ruptures into a horrific cloud of rotting miasma!"))
+	var/turf/open/DT = get_turf(target)
+	if(istype(DT))
+		DT.pollute_turf(/datum/pollutant/rot, 15)
+
+	for(var/mob/living/carbon/M in range(5, target))
+		if(M == target)
+			continue
+		if(M.has_status_effect(/datum/status_effect/buff/infestation))
+			continue
+		if(!HAS_TRAIT(M,TRAIT_NOBREATH) && !M.mind)
+			M.visible_message(span_necrosis("[M] is contaminated by [target]!"), span_danger("The plague-ridden miasma descends upon me!"))
+			M.apply_status_effect(/datum/status_effect/buff/infestation)
+
+	// [/SURREALIS-EDIT]
 /datum/status_effect/buff/infestation/tick()
 	var/mob/living/target = owner
 	var/mob/living/carbon/C = target
 	if(!extended_duration && !target.mind) // 30 seconds on npc so we don't need to worry too much about upkeep and can focus on healing friends
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		duration += 20 SECONDS
 		extended_duration = TRUE
 	if(!target.mind) // technically speaking we're just turning the brain rot into actual body rot, rotception
@@ -496,6 +554,23 @@
 			target.adjustBruteLoss(3)
 		if(!target.getOxyLoss())
 			target.adjustBruteLoss(2)
+		*/
+		set_expires_at(expires_at + 20 SECONDS)
+		extended_duration = TRUE
+	if(target.stat == DEAD)
+		if(!target.mind)
+			death_burst()
+		return
+	if(!target.mind) // technically speaking we're just turning the brain rot into actual body rot, rotception
+		target.adjustToxLoss(3, FALSE)
+		target.adjustBruteLoss(1, FALSE)
+		target.adjustOxyLoss(2, FALSE)
+		if(!target.toxloss)
+			target.adjustBruteLoss(3, FALSE)
+		if(!target.oxyloss)
+			target.adjustBruteLoss(2, FALSE)
+		target.updatehealth()
+		// [/SURREALIS-EDIT]
 
 		if(world.time >= next_spread && !(HAS_TRAIT(target,TRAIT_NOBREATH)))
 			next_spread = world.time + 5 SECONDS
@@ -509,10 +584,16 @@
 				for(var/mob/living/carbon/M in range(2, target))
 					if(M == target || M.has_status_effect(/datum/status_effect/buff/infestation) || M.mind)
 						continue
-					if(!HAS_TRAIT(target,TRAIT_NOBREATH) && !target.mind)
+					// [SURREALIS-EDIT] - PLASMA_OPTS
+					// if(!HAS_TRAIT(target,TRAIT_NOBREATH) && !target.mind) // SURREALIS-EDIT - ORIGINAL
+					if(!HAS_TRAIT(M, TRAIT_NOBREATH))
+					// [/SURREALIS-EDIT]
 						M.visible_message(span_necrosis("[M] is engulfed by a cloud of pestilence!"), span_danger("The infestation spreads to me!"))
 						M.apply_status_effect(/datum/status_effect/buff/infestation)
 
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		if(target.stat == DEAD && !death_burst_done)
 			death_burst_done = TRUE
 			target.visible_message(span_userdanger("[target]'s corpse ruptures into a horrific cloud of rotting miasma!"))
@@ -528,6 +609,11 @@
 				if(!HAS_TRAIT(M,TRAIT_NOBREATH) && !M.mind)
 					M.visible_message(span_necrosis("[target] is contaminated by [M]!"), span_danger("The plague-ridden miasma descends upon me!"))
 					M.apply_status_effect(/datum/status_effect/buff/infestation)
+		*/
+		if(target.stat == DEAD)
+			death_burst()
+			return
+		// [/SURREALIS-EDIT]
 	else // i mean at least we got pestilent blade or something idk
 		target.adjustBruteLoss(2)
 	var/prompt = pick(1,2,3)

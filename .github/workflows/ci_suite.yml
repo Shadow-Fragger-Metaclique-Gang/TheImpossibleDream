@@ -13,7 +13,7 @@ env:
   BYOND_MINOR: 1687
   SPACEMAN_DMM_VERSION: suite-1.11
 
-concurrency: 
+concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
@@ -25,11 +25,17 @@ jobs:
     steps:
       - name: Mandatory Empty Step
         run: exit 0
-    
+
   run_linters:
     name: Run Linters
     needs: start_gate
     uses: ./.github/workflows/run_linters.yml
+
+  run_modularization:
+    name: Modularization
+    needs: start_gate
+    if: github.event_name == 'pull_request'
+    uses: ./.github/workflows/modularization.yml
 
   collect_data:
     name: Collect data and setup caches for other tasks
@@ -61,10 +67,11 @@ jobs:
   completion_gate: # Serves as a non-moving target for branch rulesets
     if: always() && !cancelled()
     name: Completion Gate
-    needs: [compile_all_maps, run_all_tests, run_linters]
+    needs: [compile_all_maps, run_all_tests, run_linters, run_modularization]
     runs-on: ubuntu-latest
     steps:
       - name: Decide whether the needed jobs succeeded or failed
         uses: re-actors/alls-green@release/v1
         with:
           jobs: ${{ toJSON(needs) }}
+          allowed-skips: run_modularization

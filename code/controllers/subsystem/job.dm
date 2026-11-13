@@ -797,9 +797,18 @@ SUBSYSTEM_DEF(job)
 			else
 				M = H
 
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		SSpersistence.antag_rep_change[M.client.ckey] += job.GetAntagRep()
 
 		if(M.client.holder)
+		*/
+		if(M.client)
+			SSpersistence.antag_rep_change[M.client.ckey] += job.GetAntagRep()
+
+		if(M.client?.holder)
+		// [/SURREALIS-EDIT]
 			if(CONFIG_GET(flag/auto_deadmin_players) || (M.client.prefs?.toggles & DEADMIN_ALWAYS))
 				M.client.holder.auto_deadmin()
 			else

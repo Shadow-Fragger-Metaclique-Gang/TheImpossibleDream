@@ -260,8 +260,16 @@ GLOBAL_VAR_INIT(date_override_offset, 0)
 GLOBAL_VAR_INIT(midnight_rollovers, 0)
 GLOBAL_VAR_INIT(rollovercheck_last_timeofday, 0)
 /proc/update_midnight_rollover()
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	if (world.timeofday < GLOB.rollovercheck_last_timeofday) //TIME IS GOING BACKWARDS!
 		return GLOB.midnight_rollovers++
+	*/
+	if (world.timeofday < GLOB.rollovercheck_last_timeofday - (MIDNIGHT_ROLLOVER / 2)) //TIME IS GOING BACKWARDS!
+		GLOB.midnight_rollovers++
+	GLOB.rollovercheck_last_timeofday = world.timeofday
+	// [/SURREALIS-EDIT]
 	return GLOB.midnight_rollovers
 
 /proc/weekdayofthemonth()

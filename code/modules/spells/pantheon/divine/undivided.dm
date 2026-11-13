@@ -105,6 +105,9 @@
 #define RECUPERATION_BASE_FILTER "recuperation"
 
 /datum/status_effect/buff/recuperation
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "recuperation"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/recuperation
 	duration = 10 SECONDS

@@ -1328,8 +1328,15 @@
 			SW = living_owner.has_status_effect(/datum/status_effect/swingdelay/penalty)
 		if(SWINGDELAY_CANCEL, SWINGDELAY_CANCELSLOW)
 			SW = living_owner.has_status_effect(/datum/status_effect/swingdelay/disrupt)
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	if(SW && SW.duration != -1)
 		SW.duration = max(SW.duration, world.time + (charge_swingdelay_duration || 20))
+	*/
+	if(SW && SW.expires_at != -1)
+		SW.set_expires_at(max(SW.expires_at, world.time + (charge_swingdelay_duration || 20)))
+	// [/SURREALIS-EDIT]
 
 /// Bypass the straining / mouse hold mechanics for NPC
 /datum/action/cooldown/spell/proc/is_held_ready()

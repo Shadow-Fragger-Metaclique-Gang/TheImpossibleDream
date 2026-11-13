@@ -546,6 +546,13 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		current_ticklimit = TICK_LIMIT_RUNNING
 		if (processing * sleep_delta <= world.tick_lag)
 			current_ticklimit -= (TICK_LIMIT_RUNNING * 0.25) //reserve the tail 1/4 of the next tick for the mc if we plan on running next tick
+		// [SURREALIS-ADD] - PLASMA_OPTS
+		if(SSiconupdates?.initialized)
+			try
+				SSiconupdates.end_of_tick_flush()
+			catch(var/exception/flush_error)
+				log_world("MC: icon update flush failed: [flush_error.name]")
+		// [/SURREALIS-ADD]
 		check_and_perform_fast_update()
 		sleep(world.tick_lag * (processing * sleep_delta))
 

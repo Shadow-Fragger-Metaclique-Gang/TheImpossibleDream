@@ -13,7 +13,10 @@ GLOBAL_LIST_INIT(_kbMap, list(
 	"INSERT" = "Insert",
 	"HOME" = "Northwest",
 	"PAGEUP" = "Northeast",
-	"DEL" = "Delete",
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// "DEL" = "Delete", // SURREALIS-EDIT - ORIGINAL
+	"DELETE" = "Delete",
+	// [/SURREALIS-EDIT]
 	"END" = "Southwest",
 	"PAGEDOWN" = "Southeast",
 	" " = "Space",

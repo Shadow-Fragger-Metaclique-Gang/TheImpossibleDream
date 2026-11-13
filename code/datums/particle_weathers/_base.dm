@@ -281,6 +281,11 @@
 
 //weather effects for objects
 /datum/particle_weather/proc/weather_obj_act(obj/L)
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	if(!L || QDELETED(L))
+		return
+
+	// [/SURREALIS-ADD]
 	if(can_weather_act_obj(L))
 		L.weather = TRUE
 		L.weather_act_on(target_trait, severity)

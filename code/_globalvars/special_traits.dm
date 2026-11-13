@@ -31,9 +31,19 @@ GLOBAL_LIST_INIT(special_traits, build_special_traits())
 	// Apply the stuff if we have a job that has no adv classes
 	apply_character_post_equipment(character, player)
 
+// [SURREALIS-ADD] - PLASMA_OPTS
+/mob/living/carbon/human/var/pending_post_equipment = FALSE
+
+// [/SURREALIS-ADD]
 /proc/apply_character_post_equipment(mob/living/carbon/human/character, client/player)
 	if(!player)
 		player = character.client
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	if(!player)
+		character.pending_post_equipment = TRUE
+		return
+	character.pending_post_equipment = FALSE
+	// [/SURREALIS-ADD]
 	apply_charflaw_equipment(character, player)
 	apply_prefs_virtue(character, player)
 	apply_prefs_race_bonus(character, player)

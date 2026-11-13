@@ -54,6 +54,9 @@
 	icon_state = "vigorized"
 
 /datum/status_effect/buff/fortifyingvapors
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	tick_interval = 1 SECONDS
+	// [/SURREALIS-ADD]
 	id = "fortifyingvapors"
 	alert_type = /atom/movable/screen/alert/status_effect/buff/fortifyingvapors
 	duration = 20 SECONDS

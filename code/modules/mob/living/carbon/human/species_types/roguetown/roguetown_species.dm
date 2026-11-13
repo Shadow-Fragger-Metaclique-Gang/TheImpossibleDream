@@ -84,16 +84,27 @@
 	if(message[1] == "*")
 		return message
 	message = "[message]"
-	var/list/message_words = splittext_char(message, regex("\[^(&#39;|\\w)\]+"))
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// var/list/message_words = splittext_char(message, regex("\[^(&#39;|\\w)\]+")) // SURREALIS-EDIT - ORIGINAL
+	var/list/message_words = splittext_char(message, cached_regex("\[^(&#39;|\\w)\]+", null))
+	// [/SURREALIS-EDIT]
 	for (var/key in message_words)
 		var/value = get_value_from_accent(key, universal)
 		if (!value)
 			continue
 		if (islist(value))
 			value = pick(value)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		message = replacetextEx(message, regex("\\b[uppertext(key)]\\b|\\A[uppertext(key)]\\b|\\b[uppertext(key)]\\Z|\\A[uppertext(key)]\\Z", "(\\w+)/g"), uppertext(value))
 		message = replacetextEx(message, regex("\\b[capitalize(key)]\\b|\\A[capitalize(key)]\\b|\\b[capitalize(key)]\\Z|\\A[capitalize(key)]\\Z", "(\\w+)/g"), capitalize(value))
 		message = replacetextEx(message, regex("\\b[key]\\b|\\A[key]\\b|\\b[key]\\Z|\\A[key]\\Z", "(\\w+)/g"), value)
+		*/
+		message = replacetextEx(message, cached_regex("\\b[uppertext(key)]\\b|\\A[uppertext(key)]\\b|\\b[uppertext(key)]\\Z|\\A[uppertext(key)]\\Z", "(\\w+)/g"), uppertext(value))
+		message = replacetextEx(message, cached_regex("\\b[capitalize(key)]\\b|\\A[capitalize(key)]\\b|\\b[capitalize(key)]\\Z|\\A[capitalize(key)]\\Z", "(\\w+)/g"), capitalize(value))
+		message = replacetextEx(message, cached_regex("\\b[key]\\b|\\A[key]\\b|\\b[key]\\Z|\\A[key]\\Z", "(\\w+)/g"), value)
+		// [/SURREALIS-EDIT]
 	return message
 
 #undef REGEX_FULLWORD

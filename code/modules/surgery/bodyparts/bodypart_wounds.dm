@@ -119,6 +119,11 @@
 	for(var/datum/wound/wound in wounds)
 		if(istype(wound, /datum/wound))
 			bleed_rate += wound.bleed_rate*/
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	if(!bleed_rate && !length(embedded_objects))
+		grabbedby = SANITIZE_LIST(grabbedby)
+		return 0
+	// [/SURREALIS-ADD]
 	for(var/obj/item/embedded as anything in embedded_objects)
 		if(!embedded.embedding.embedded_bloodloss)
 			continue
@@ -627,6 +632,9 @@
 	if(istype(embedder, /obj/item/natural/worms/leech))
 		record_round_statistic(STATS_LEECHES_EMBEDDED)
 	LAZYADD(embedded_objects, embedder)
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	owner?.life_work |= LIFEWORK_WOUNDS
+	// [/SURREALIS-ADD]
 	embedder.is_embedded = TRUE
 	embedder.embedded_host = src
 	embedder.forceMove(src)

@@ -38,9 +38,20 @@ GLOBAL_LIST_INIT(huds, alist(
 		hudusers -= M
 		if(queued_to_see[M])
 			queued_to_see -= M
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		else
 			for(var/atom/A in hudatoms)
 				remove_from_single_hud(M, A)
+		*/
+		else if(M.client)
+			var/list/to_remove = list()
+			for(var/atom/A in hudatoms)
+				for(var/i in hud_icons)
+					to_remove += A.hud_list[i]
+			M.client.images -= to_remove
+		// [/SURREALIS-EDIT]
 
 /datum/atom_hud/proc/remove_from_hud(atom/A)
 	if(!A)
@@ -67,8 +78,14 @@ GLOBAL_LIST_INIT(huds, alist(
 				queued_to_see[M] = TRUE
 		else
 			next_time_allowed[M] = world.time + ADD_HUD_TO_COOLDOWN
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			for(var/atom/A in hudatoms)
 				add_to_single_hud(M, A)
+			*/
+			add_all_to_single_hud(M)
+			// [/SURREALIS-EDIT]
 	else
 		hudusers[M]++
 
@@ -89,8 +106,14 @@ GLOBAL_LIST_INIT(huds, alist(
 	if(queued_to_see[M])
 		queued_to_see -= M
 		next_time_allowed[M] = world.time + ADD_HUD_TO_COOLDOWN
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		for(var/atom/A in hudatoms)
 			add_to_single_hud(M, A)
+		*/
+		add_all_to_single_hud(M)
+		// [/SURREALIS-EDIT]
 
 /datum/atom_hud/proc/add_to_hud(atom/A)
 	if(!A)
@@ -101,6 +124,21 @@ GLOBAL_LIST_INIT(huds, alist(
 			add_to_single_hud(M, A)
 	return TRUE
 
+// [SURREALIS-ADD] - PLASMA_OPTS
+/datum/atom_hud/proc/add_all_to_single_hud(mob/M)
+	if(!M?.client)
+		return
+	var/list/exceptions = hud_exceptions[M]
+	var/list/to_add = list()
+	for(var/atom/A in hudatoms)
+		if(exceptions && (A in exceptions))
+			continue
+		for(var/i in hud_icons)
+			if(A.hud_list[i])
+				to_add += A.hud_list[i]
+	M.client.images |= to_add
+
+// [/SURREALIS-ADD]
 /datum/atom_hud/proc/add_to_single_hud(mob/M, atom/A) //unsafe, no sanity apart from client
 	if(!M || !M.client || !A)
 		return
@@ -112,8 +150,14 @@ GLOBAL_LIST_INIT(huds, alist(
 /mob/proc/reload_huds()
 	for(var/datum/atom_hud/hud in GLOB.all_huds)
 		if(hud && hud.hudusers[src])
+			// [SURREALIS-EDIT] - PLASMA_OPTS
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			for(var/atom/A in hud.hudatoms)
 				hud.add_to_single_hud(src, A)
+			*/
+			hud.add_all_to_single_hud(src)
+			// [/SURREALIS-EDIT]
 
 /mob/dead/new_player/reload_huds()
 	return

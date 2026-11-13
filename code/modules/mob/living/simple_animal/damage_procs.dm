@@ -2,8 +2,12 @@
 /mob/living/simple_animal/proc/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	var/old_bruteloss = bruteloss
 	bruteloss = round(CLAMP(bruteloss + amount, 0, maxHealth),DAMAGE_PRECISION)
-	if(updating_health)
+	// if(updating_health) // SURREALIS-EDIT - ORIGINAL
+	if(updating_health && bruteloss != old_bruteloss)
+	// [/SURREALIS-EDIT]
 		updatehealth()
 	return amount
 

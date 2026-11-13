@@ -527,7 +527,10 @@
 
 /obj/effect/track/structure/handle_creation(mob/living/track_source)
 	creator = track_source
-	RegisterSignal(track_source, COMSIG_PARENT_QDELETING, PROC_REF(clear_creator_reference))
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// RegisterSignal(track_source, COMSIG_PARENT_QDELETING, PROC_REF(clear_creator_reference)) // SURREALIS-EDIT - ORIGINAL
+	RegisterSignal(track_source, COMSIG_PARENT_QDELETING, PROC_REF(clear_creator_reference), override = TRUE)
+	// [/SURREALIS-EDIT]
 	creation_time = world.time
 	track_source.get_track_info(src)
 	real_image = image(icon, src, real_icon_state, ABOVE_OPEN_TURF_LAYER, track_source.dir)
@@ -591,7 +594,10 @@
 
 /obj/effect/track/thievescant/handle_creation(mob/living/track_source, thiefmessage)
 	creator = track_source
-	RegisterSignal(track_source, COMSIG_PARENT_QDELETING, PROC_REF(clear_creator_reference))
+	// [SURREALIS-EDIT] - PLASMA_OPTS
+	// RegisterSignal(track_source, COMSIG_PARENT_QDELETING, PROC_REF(clear_creator_reference)) // SURREALIS-EDIT - ORIGINAL
+	RegisterSignal(track_source, COMSIG_PARENT_QDELETING, PROC_REF(clear_creator_reference), override = TRUE)
+	// [/SURREALIS-EDIT]
 	creation_time = world.time
 	track_source.get_track_info(src)
 	real_image = image(icon, src, real_icon_state, BULLET_HOLE_LAYER, track_source.dir)

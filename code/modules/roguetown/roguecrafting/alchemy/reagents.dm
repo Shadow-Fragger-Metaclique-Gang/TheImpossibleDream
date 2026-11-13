@@ -519,7 +519,10 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 /datum/reagent/toxin/fyritiusnectar/on_mob_life(mob/living/carbon/M)
 	if(volume > 0.49)
 		M.add_nausea(9)
-		M.adjustFireLoss(2, 0)
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// M.adjustFireLoss(2, 0) // SURREALIS-EDIT - ORIGINAL
+		M.adjustFireLoss(2, TRUE)
+		// [/SURREALIS-EDIT]
 		M.adjust_fire_stacks(1)
 		M.ignite_mob()
 	return ..()

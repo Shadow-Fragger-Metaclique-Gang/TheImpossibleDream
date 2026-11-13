@@ -1,3 +1,7 @@
+**Module tag:** `YOUR_TAG`
+
+<!-- The modular_tidi module this PR belongs to, e.g. NOCS_BULB (its folder is modular_tidi/nocs_bulb). CI uses it to generate the SURREALIS markers for any core-code changes. You don't need to add [SEMI-MODULAR]/[NON-MODULAR] to the title; a bot does that. -->
+
 ## About The Pull Request
 
 <!-- Describe your pull request. Avoid text walls, use concise bullet points for easier readability. Document every change, or this can delay review and even discourage maintainers from merging your PR. -->

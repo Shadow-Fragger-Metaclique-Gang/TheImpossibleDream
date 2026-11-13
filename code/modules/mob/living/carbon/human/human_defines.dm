@@ -1,4 +1,8 @@
 /mob/living/carbon/human
+	// [SURREALIS-ADD] - PLASMA_OPTS
+	var/descriptor_name_key
+	var/descriptor_name_cache
+	// [/SURREALIS-ADD]
 	name = "Unknown"
 	real_name = "Unknown"
 	icon = 'icons/mob/human.dmi'

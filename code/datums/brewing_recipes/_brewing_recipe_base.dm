@@ -89,7 +89,10 @@
 	if(brewed_amount)
 		html += "Produces: [FLOOR((per_brew_amount * brewed_amount), 1)] [UNIT_FORM_STRING(FLOOR((per_brew_amount * brewed_amount), 1))] of [name]"
 	if(brewed_item)
-		html += "Produces:[icon2html(new brewed_item, user)] [(brewed_item_count)] [initial(brewed_item.name)]"
+		// [SURREALIS-EDIT] - PLASMA_OPTS
+		// html += "Produces:[icon2html(new brewed_item, user)] [(brewed_item_count)] [initial(brewed_item.name)]" // SURREALIS-EDIT - ORIGINAL
+		html += "Produces:[icon2html_for_path(brewed_item, user)] [(brewed_item_count)] [initial(brewed_item.name)]"
+		// [/SURREALIS-EDIT]
 	html += {"
 		</div>
 		<div>
