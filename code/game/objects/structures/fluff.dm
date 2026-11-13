@@ -301,7 +301,7 @@
 	icon_state = "woodrailing"
 	blade_dulling = DULLING_BASHCHOP
 	layer = ABOVE_MOB_LAYER
-
+	flags_1 = CHECK_RICOCHET_1
 /obj/structure/fluff/railing/wood/north
 	dir = 1
 

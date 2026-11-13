@@ -1091,6 +1091,16 @@
 	mouse_opacity = 0
 	blocks_neighborlays = TRUE
 
+/obj/effect/decal/edge_corner/Initialize() //split this into its component parts.
+	. = ..()
+	var/obj/effect/decal/edge/e1 = new(loc)
+	e1.dir = dir
+	var/obj/effect/decal/edge/e2 = new(loc)
+	e2.dir = turn(45, dir)
+	var/obj/effect/decal/edge/e3 = new(loc)
+	e3.dir = turn(90, dir)
+	return INITIALIZE_HINT_QDEL
+
 /turf/open/floor/rogue/cobblerock
 	icon_state = "cobblerock"
 	name = "cobbled rock path"
