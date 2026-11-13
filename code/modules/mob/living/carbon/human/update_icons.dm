@@ -381,6 +381,11 @@ There are several things that need to be remembered:
 				legdam_overlays += get_cached_damage_overlay(limb_icon, "legdam_[BP.aux_zone]_b", LEG_DAMAGE_LAYER, BP.bandage.color, offset_x, offset_y)
 				armdam_overlays += get_cached_damage_overlay(limb_icon, "armdam_[BP.aux_zone]_b", ARM_DAMAGE_LAYER, BP.bandage.color, offset_x, offset_y)
 
+		if(BP.body_zone == BODY_ZONE_CHEST)
+			var/datum/wound/gutwound = BP.has_wound(/datum/wound/slash/disembowel)
+			if(gutwound && !gutwound.is_sewn())
+				armdam_overlays += get_cached_damage_overlay('icons/effects/blood.dmi', "guts", ARM_DAMAGE_LAYER, null, offset_x, offset_y)
+
 		limb_overlaysa += damage_overlays
 		limb_overlaysb += legdam_overlays
 		limb_overlaysc += armdam_overlays

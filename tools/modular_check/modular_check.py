@@ -552,7 +552,9 @@ def process_core_dm(path: str, hunks: List[Hunk], fix_tag: Optional[str], known_
 
 	changes = hunks_to_changes(hunks)
 	uncovered: List[Change] = []
+	extensions: Dict[int, Tuple[Region, List[Change]]] = {}
 	for c in changes:
+		straddles = False
 		if c.new_hi > c.new_lo:
 			span = range(c.new_lo, c.new_hi)
 			covered = [in_region[k] for k in span]
@@ -561,9 +563,7 @@ def process_core_dm(path: str, hunks: List[Hunk], fix_tag: Optional[str], known_
 					res.tags.setdefault(region_at[k].tag, set()).add("%s near `%s`" % (region_at[k].kind, context_name(lines, region_at[k].open_idx)))
 			if all(covered):
 				continue
-			if any(covered):
-				res.issues.append(Issue("error", path, c.new_lo + 1, "change straddles the edge of a marker block; move the marker so the whole change is inside"))
-				continue
+			straddles = any(covered)
 		else:
 			p = c.new_lo
 			r = region_at[p - 1] if 0 < p <= len(lines) and region_at[p - 1] else None
@@ -571,12 +571,26 @@ def process_core_dm(path: str, hunks: List[Hunk], fix_tag: Optional[str], known_
 				if r.tag:
 					res.tags.setdefault(r.tag, set()).add("%s near `%s`" % (r.kind, context_name(lines, r.open_idx)))
 				continue
+		if c.is_trivial(lines) and not straddles:
+			uncovered.append(c)
+			continue
+		target, problem = extension_target(c, touching_regions(c, info.regions))
+		if target is not None and fix_tag is not None and target.tag == fix_tag and not struct_errors:
+			extensions.setdefault(target.open_idx, (target, []))[1].append(c)
+			continue
+		if straddles:
+			if target is not None:
+				res.needs_marking = True
+				res.issues.append(Issue("error", path, c.new_lo + 1, "change straddles the edge of the %s block on line %d; fix with --tag %s extends that block over it" % (target.tag, target.open_idx + 1, target.tag), fixable=not struct_errors))
+			else:
+				res.issues.append(Issue("error", path, c.new_lo + 1, "change straddles the edge of a marker block (%s); move the marker so the whole change is inside" % problem))
+			continue
 		uncovered.append(c)
 
-	if not uncovered:
+	if not uncovered and not extensions:
 		return res
 	real = [c for c in uncovered if not c.is_trivial(lines)]
-	if not real:
+	if not real and not extensions:
 		return res
 
 	if fix_tag is None or struct_errors:
@@ -616,13 +630,101 @@ def process_core_dm(path: str, hunks: List[Hunk], fix_tag: Optional[str], known_
 		inserts.setdefault(c.new_hi, []).extend(closer)
 		res.tags.setdefault(fix_tag, set()).add("%s near `%s`" % (kind, context_name(lines, c.new_lo)))
 
+	drop: Set[int] = set()
+	replace: Dict[int, str] = {}
+	for region, absorbed in extensions.values():
+		problem = apply_extension(region, absorbed, lines, safe, inserts, drop, replace)
+		if problem:
+			res.issues.append(Issue("error", path, region.open_idx + 1, "could not extend the %s block automatically: %s" % (region.tag, problem)))
+			return res
+		res.tags.setdefault(region.tag, set()).add("%s near `%s`" % ("EDIT" if region.open_idx in replace else region.kind, context_name(lines, region.open_idx)))
+
 	out: List[str] = []
 	for k in range(len(lines) + 1):
 		out.extend(inserts.get(k, []))
-		if k < len(lines):
-			out.append(lines[k])
+		if k < len(lines) and k not in drop:
+			out.append(replace.get(k, lines[k]))
 	write_lines(path, out, trailing or not lines)
 	return res
+
+
+def touching_regions(c: Change, regions: List[Region]) -> List[Region]:
+	"""Marker blocks a change overlaps, or sits directly above or below with no line in between."""
+	found = []
+	for r in regions:
+		overlaps = c.new_hi > c.new_lo and r.open_idx < c.new_hi and r.close_idx >= c.new_lo
+		touches = r.close_idx + 1 == c.new_lo or r.open_idx == c.new_hi
+		if overlaps or touches:
+			found.append(r)
+	return found
+
+
+def extension_target(c: Change, regions: List[Region]) -> Tuple[Optional[Region], str]:
+	"""The one block this change can be folded into, or None and the reason it can't."""
+	if not regions:
+		return None, "no adjacent block"
+	if len(regions) > 1:
+		return None, "it touches %d marker blocks" % len(regions)
+	r = regions[0]
+	if r.kind == "REMOVE":
+		return None, "a REMOVE block can't take new code"
+	if not r.tag:
+		return None, "the block has no tag"
+	return r, ""
+
+
+def original_comment(old_text: List[str], ind: str) -> List[str]:
+	old_nb = [l for l in old_text if l.strip()]
+	if not old_nb:
+		return []
+	if len(old_nb) == 1:
+		return ["%s// %s // %s-EDIT - ORIGINAL" % (ind, old_nb[0].strip(), PREFIX)]
+	return ["%s// %s-EDIT - ORIGINAL" % (ind, PREFIX)] + comment_out(old_text, ind)
+
+
+def apply_extension(region: Region, absorbed: List[Change], lines: List[str], safe: List[bool], inserts: Dict[int, List[str]], drop: Set[int], replace: Dict[int, str]) -> str:
+	"""Grow an existing block over changes beside or across its edges. Returns a problem, or "" when done."""
+	new_open = min([region.open_idx] + [c.new_lo for c in absorbed])
+	new_end = max([region.close_idx + 1] + [c.new_hi for c in absorbed])
+	becomes_edit = region.kind == "ADD" and any(l.strip() for c in absorbed for l in c.old_text)
+	opener = lines[region.open_idx]
+	closer = lines[region.close_idx]
+	if becomes_edit:
+		opener = opener.replace("[%s-ADD]" % PREFIX, "[%s-EDIT]" % PREFIX, 1)
+		closer = closer.replace("[/%s-ADD]" % PREFIX, "[/%s-EDIT]" % PREFIX, 1)
+	ind = indent_of(lines[region.open_idx])
+	if new_open < region.open_idx:
+		if not safe[new_open]:
+			return "line %d is inside a string or expression" % (new_open + 1)
+		drop.add(region.open_idx)
+		inserts.setdefault(new_open, []).insert(0, opener)
+		open_at = new_open
+	else:
+		replace[region.open_idx] = opener
+		open_at = region.open_idx + 1
+	if new_end > region.close_idx + 1:
+		if not safe[new_end]:
+			return "line %d is inside a string or expression" % (new_end + 1)
+		drop.add(region.close_idx)
+		inserts.setdefault(new_end, []).append(closer)
+	else:
+		replace[region.close_idx] = closer
+	for c in absorbed:
+		original = original_comment(c.old_text, ind)
+		if not original:
+			continue
+		at = c.new_lo
+		if c.new_hi == c.new_lo and at == region.close_idx + 1:
+			at = region.close_idx
+		if at <= region.open_idx:
+			at = open_at if new_open < region.open_idx else region.open_idx + 1
+			if new_open < region.open_idx:
+				inserts.setdefault(at, []).extend(original)
+				continue
+		if not safe[at]:
+			return "line %d is inside a string or expression" % (at + 1)
+		inserts.setdefault(at, []).extend(original)
+	return ""
 
 
 # ---------------------------------------------------------------------- modules

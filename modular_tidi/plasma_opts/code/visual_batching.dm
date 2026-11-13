@@ -91,15 +91,35 @@
 /mob/living/carbon
 	var/pending_icon_updates = NONE
 	var/icon_updates_ran = NONE
+	var/icon_updates_running = NONE
+	var/icon_updates_deferred = NONE
 	var/flushing_icon_updates = FALSE
 	var/pending_head_hide = FALSE
 	var/pending_belt_hide = FALSE
 	var/pending_back_hide = FALSE
 	var/pending_hands_hide = FALSE
 
+/mob/living/carbon/proc/clear_stray_hand_overlays()
+	var/list/strays
+	for(var/mutable_appearance/overlay as anything in LIVE_OVERLAYS(src))
+		if(overlay.layer == -HANDS_LAYER || overlay.layer == -HANDS_BEHIND_LAYER)
+			LAZYADD(strays, overlay)
+	if(strays)
+		cut_overlay(strays)
+
 /mob/living/carbon/proc/queue_icon_update(bit)
 	if(flushing_icon_updates)
+		var/step_family = (bit & (PENDING_UPDATE_BODY|PENDING_UPDATE_BODY_REDRAW)) ? (PENDING_UPDATE_BODY|PENDING_UPDATE_BODY_REDRAW) : bit
+		if(icon_updates_running & step_family)
+			var/callee/requester = caller
+			if(requester?.caller && requester.caller.name == requester.name)
+				return FALSE
+			if(!(icon_updates_deferred & bit))
+				icon_updates_deferred |= bit
+				pending_icon_updates |= bit
+			return TRUE
 		icon_updates_ran |= bit
+		icon_updates_running |= bit
 		return FALSE
 	if(!VISUALS_BATCHED(src) || QDELETED(src))
 		return FALSE
@@ -109,66 +129,98 @@
 	return TRUE
 
 /mob/living/carbon/proc/process_pending_icon_updates()
-	var/updates = pending_icon_updates
-	if(!updates)
+	if(flushing_icon_updates || !pending_icon_updates)
 		return
-	pending_icon_updates = NONE
-	icon_updates_ran = NONE
 	flushing_icon_updates = TRUE
-	if((updates & PENDING_UPDATE_INV_HANDS) && !(icon_updates_ran & PENDING_UPDATE_INV_HANDS))
-		update_inv_hands(pending_hands_hide)
-	if((updates & PENDING_UPDATE_INV_UNIFORM) && !(icon_updates_ran & PENDING_UPDATE_INV_UNIFORM))
-		update_inv_w_uniform()
-	if((updates & PENDING_UPDATE_INV_ID) && !(icon_updates_ran & PENDING_UPDATE_INV_ID))
-		update_inv_wear_id()
-	if((updates & PENDING_UPDATE_INV_GLOVES) && !(icon_updates_ran & PENDING_UPDATE_INV_GLOVES))
-		update_inv_gloves()
-	if((updates & PENDING_UPDATE_INV_WRISTS) && !(icon_updates_ran & PENDING_UPDATE_INV_WRISTS))
-		update_inv_wrists()
-	if((updates & PENDING_UPDATE_INV_GLASSES) && !(icon_updates_ran & PENDING_UPDATE_INV_GLASSES))
-		update_inv_glasses()
-	if((updates & PENDING_UPDATE_INV_EARS) && !(icon_updates_ran & PENDING_UPDATE_INV_EARS))
-		update_inv_ears()
-	if((updates & PENDING_UPDATE_INV_SHOES) && !(icon_updates_ran & PENDING_UPDATE_INV_SHOES))
-		update_inv_shoes()
-	if((updates & PENDING_UPDATE_INV_S_STORE) && !(icon_updates_ran & PENDING_UPDATE_INV_S_STORE))
-		update_inv_s_store()
-	if((updates & PENDING_UPDATE_INV_MASK) && !(icon_updates_ran & PENDING_UPDATE_INV_MASK))
-		update_inv_wear_mask()
-	if((updates & PENDING_UPDATE_INV_HEAD) && !(icon_updates_ran & PENDING_UPDATE_INV_HEAD))
-		update_inv_head(pending_head_hide)
-	if((updates & PENDING_UPDATE_INV_BELT) && !(icon_updates_ran & PENDING_UPDATE_INV_BELT))
-		update_inv_belt(pending_belt_hide)
-	if((updates & PENDING_UPDATE_INV_BACK) && !(icon_updates_ran & PENDING_UPDATE_INV_BACK))
-		update_inv_back(pending_back_hide)
-	if((updates & PENDING_UPDATE_INV_PANTS) && !(icon_updates_ran & PENDING_UPDATE_INV_PANTS))
-		update_inv_pants()
-	if((updates & PENDING_UPDATE_INV_SUIT) && !(icon_updates_ran & PENDING_UPDATE_INV_SUIT))
-		update_inv_wear_suit()
-	if((updates & PENDING_UPDATE_INV_ARMOR) && !(icon_updates_ran & PENDING_UPDATE_INV_ARMOR))
-		update_inv_armor()
-	if((updates & PENDING_UPDATE_INV_POCKETS) && !(icon_updates_ran & PENDING_UPDATE_INV_POCKETS))
-		update_inv_pockets()
-	if((updates & PENDING_UPDATE_INV_NECK) && !(icon_updates_ran & PENDING_UPDATE_INV_NECK))
-		update_inv_neck()
-	if((updates & PENDING_UPDATE_INV_CLOAK) && !(icon_updates_ran & PENDING_UPDATE_INV_CLOAK))
-		update_inv_cloak()
-	if((updates & PENDING_UPDATE_INV_SHIRT) && !(icon_updates_ran & PENDING_UPDATE_INV_SHIRT))
-		update_inv_shirt()
-	if((updates & PENDING_UPDATE_INV_MOUTH) && !(icon_updates_ran & PENDING_UPDATE_INV_MOUTH))
-		update_inv_mouth()
-	if((updates & PENDING_UPDATE_DAMAGE) && !(icon_updates_ran & PENDING_UPDATE_DAMAGE))
-		update_damage_overlays()
-	if((updates & PENDING_UPDATE_BODY_REDRAW) && !(icon_updates_ran & PENDING_UPDATE_BODY_REDRAW))
-		update_body_parts(TRUE)
-	else if((updates & PENDING_UPDATE_BODY) && !(icon_updates_ran & (PENDING_UPDATE_BODY|PENDING_UPDATE_BODY_REDRAW)))
-		update_body_parts()
+	icon_updates_deferred = NONE
+	for(var/pass in 1 to 3)
+		var/updates = pending_icon_updates
+		if(!updates)
+			break
+		pending_icon_updates = NONE
+		icon_updates_ran = NONE
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_HANDS) && !(icon_updates_ran & PENDING_UPDATE_INV_HANDS))
+			update_inv_hands(pending_hands_hide)
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_UNIFORM) && !(icon_updates_ran & PENDING_UPDATE_INV_UNIFORM))
+			update_inv_w_uniform()
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_ID) && !(icon_updates_ran & PENDING_UPDATE_INV_ID))
+			update_inv_wear_id()
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_GLOVES) && !(icon_updates_ran & PENDING_UPDATE_INV_GLOVES))
+			update_inv_gloves()
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_WRISTS) && !(icon_updates_ran & PENDING_UPDATE_INV_WRISTS))
+			update_inv_wrists()
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_GLASSES) && !(icon_updates_ran & PENDING_UPDATE_INV_GLASSES))
+			update_inv_glasses()
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_EARS) && !(icon_updates_ran & PENDING_UPDATE_INV_EARS))
+			update_inv_ears()
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_SHOES) && !(icon_updates_ran & PENDING_UPDATE_INV_SHOES))
+			update_inv_shoes()
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_S_STORE) && !(icon_updates_ran & PENDING_UPDATE_INV_S_STORE))
+			update_inv_s_store()
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_MASK) && !(icon_updates_ran & PENDING_UPDATE_INV_MASK))
+			update_inv_wear_mask()
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_HEAD) && !(icon_updates_ran & PENDING_UPDATE_INV_HEAD))
+			update_inv_head(pending_head_hide)
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_BELT) && !(icon_updates_ran & PENDING_UPDATE_INV_BELT))
+			update_inv_belt(pending_belt_hide)
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_BACK) && !(icon_updates_ran & PENDING_UPDATE_INV_BACK))
+			update_inv_back(pending_back_hide)
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_PANTS) && !(icon_updates_ran & PENDING_UPDATE_INV_PANTS))
+			update_inv_pants()
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_SUIT) && !(icon_updates_ran & PENDING_UPDATE_INV_SUIT))
+			update_inv_wear_suit()
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_ARMOR) && !(icon_updates_ran & PENDING_UPDATE_INV_ARMOR))
+			update_inv_armor()
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_POCKETS) && !(icon_updates_ran & PENDING_UPDATE_INV_POCKETS))
+			update_inv_pockets()
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_NECK) && !(icon_updates_ran & PENDING_UPDATE_INV_NECK))
+			update_inv_neck()
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_CLOAK) && !(icon_updates_ran & PENDING_UPDATE_INV_CLOAK))
+			update_inv_cloak()
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_SHIRT) && !(icon_updates_ran & PENDING_UPDATE_INV_SHIRT))
+			update_inv_shirt()
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_INV_MOUTH) && !(icon_updates_ran & PENDING_UPDATE_INV_MOUTH))
+			update_inv_mouth()
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_DAMAGE) && !(icon_updates_ran & PENDING_UPDATE_DAMAGE))
+			update_damage_overlays()
+		icon_updates_running = NONE
+		if((updates & PENDING_UPDATE_BODY_REDRAW) && !(icon_updates_ran & PENDING_UPDATE_BODY_REDRAW))
+			update_body_parts(TRUE)
+		else if((updates & PENDING_UPDATE_BODY) && !(icon_updates_ran & (PENDING_UPDATE_BODY|PENDING_UPDATE_BODY_REDRAW)))
+			update_body_parts()
+		icon_updates_running = NONE
 	flushing_icon_updates = FALSE
 	icon_updates_ran = NONE
+	icon_updates_running = NONE
+	icon_updates_deferred = NONE
 	pending_head_hide = FALSE
 	pending_belt_hide = FALSE
 	pending_back_hide = FALSE
 	pending_hands_hide = FALSE
+	if(pending_icon_updates)
+		SSiconupdates.queued_mobs |= src
 
 /mob/living/carbon/human
 	var/damage_overlay_cache_key

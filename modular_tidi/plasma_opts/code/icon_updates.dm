@@ -8,16 +8,14 @@ SUBSYSTEM_DEF(iconupdates)
 	var/list/dirty_slates = list()
 	var/list/queued_mobs = list()
 	var/list/currentrun = list()
-	var/list/commit_callbacks = list()
 
 /datum/controller/subsystem/iconupdates/Recover()
 	dirty_slates = SSiconupdates.dirty_slates
 	queued_mobs = SSiconupdates.queued_mobs
 	currentrun = SSiconupdates.currentrun
-	commit_callbacks = SSiconupdates.commit_callbacks
 
 /datum/controller/subsystem/iconupdates/stat_entry(msg)
-	msg = "S:[length(dirty_slates)]|Q:[length(queued_mobs) + length(currentrun)]|CB:[length(commit_callbacks)]"
+	msg = "S:[length(dirty_slates)]|Q:[length(queued_mobs) + length(currentrun)]"
 	return ..()
 
 /datum/controller/subsystem/iconupdates/fire(resumed = FALSE)
@@ -34,8 +32,6 @@ SUBSYSTEM_DEF(iconupdates)
 		process_mob(C)
 		if(MC_TICK_CHECK)
 			return
-
-	run_commit_callbacks()
 
 /datum/controller/subsystem/iconupdates/proc/process_mob(mob/living/carbon/C)
 	if(QDELETED(C))
@@ -56,7 +52,6 @@ SUBSYSTEM_DEF(iconupdates)
 		for(var/mob/living/carbon/C as anything in to_process)
 			process_mob(C)
 	commit_dirty_slates()
-	run_commit_callbacks()
 
 /datum/controller/subsystem/iconupdates/proc/commit_dirty_slates()
 	if(!length(dirty_slates))
@@ -71,41 +66,3 @@ SUBSYSTEM_DEF(iconupdates)
 		catch(var/exception/e)
 			M.overlay_slate_dirty = FALSE
 			stack_trace("Overlay commit failed for [M] ([M.type]): [e.name] at [e.file]:[e.line]")
-
-/datum/controller/subsystem/iconupdates/proc/run_commit_callbacks()
-	if(!length(commit_callbacks))
-		return
-	var/list/to_run = commit_callbacks
-	commit_callbacks = list()
-	for(var/atom/A as anything in to_run)
-		var/list/callbacks = to_run[A]
-		if(QDELETED(A))
-			continue
-		if(visuals_pending(A))
-			commit_callbacks[A] = callbacks
-			continue
-		for(var/datum/callback/cb as anything in callbacks)
-			cb.InvokeAsync()
-
-/datum/controller/subsystem/iconupdates/proc/visuals_pending(atom/A)
-	if(!ismob(A))
-		return FALSE
-	var/mob/M = A
-	if(M.overlay_slate_dirty)
-		return TRUE
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		if(C.pending_icon_updates)
-			return TRUE
-	return FALSE
-
-/datum/controller/subsystem/iconupdates/proc/after_commit(atom/A, datum/callback/cb)
-	if(!initialized || !visuals_pending(A))
-		cb.InvokeAsync()
-		return
-	LAZYADDASSOCLIST(commit_callbacks, A, cb)
-
-/datum/controller/subsystem/iconupdates/proc/wait_for_commit(atom/A)
-	if(!initialized)
-		return
-	UNTIL(QDELETED(A) || !visuals_pending(A))
