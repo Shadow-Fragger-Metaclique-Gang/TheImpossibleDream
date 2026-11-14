@@ -24,17 +24,19 @@
 	var/obj/effect/overlay/water/top/water_top_overlay
 	bullet_sizzle = TRUE
 	bullet_bounce_sound = null //needs a splashing sound one day.
-	smooth = SMOOTH_MORE
-	// cardinal_smooth()/roguesmooth() only ever reads cardinal adjacency bits - see the same note
+
+	// cardinal_smooth()/verdantsmooth() only ever reads cardinal adjacency bits - see the same note
 	// on /turf/open/floor/rogue.
-	smooth_diag = FALSE
-	canSmoothWith = list(/turf/closed/mineral,/turf/closed/wall/mineral/rogue, /turf/open/floor/rogue)
+	smoothing_flags = SMOOTH_EDGE
+	smoothing_groups = SMOOTH_GROUP_FLOOR_LIQUID
+	smoothing_list = SMOOTH_GROUP_FLOOR_LIQUID
+//	canSmoothWith = list(/turf/closed/mineral,/turf/closed/wall/mineral/rogue, /turf/open/floor/rogue)
 	footstep = null
 	barefootstep = null
 	clawfootstep = null
 	heavyfootstep = null
 	landsound = 'sound/foley/jumpland/waterland.wav'
-	neighborlay_override = "edge"
+	neighborlay_self = "edge"
 	var/water_color = "#6a9295"
 	var/water_reagent = /datum/reagent/water
 	var/water_reagent_purified = /datum/reagent/water // If put through a water filtration device, provides this reagent instead
@@ -140,7 +142,7 @@
 	if(water_top_overlay)
 		water_top_overlay.color = water_color
 		water_top_overlay.icon_state = "top[water_level]"
-
+//	verdantsmooth()
 /turf/open/water/Exited(atom/movable/AM, atom/newloc)
 	. = ..()
 	if(isliving(AM) && !AM.throwing)
@@ -237,19 +239,16 @@
 			O.extinguish()
 
 
-/turf/open/water/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
 
-/turf/open/water/roguesmooth(adjacencies)
-	var/list/Yeah = ..()
+
+/turf/open/water/set_neighborlays(new_junction, use_corner)
+	..()
 	if(water_overlay)
-		water_overlay.cut_overlays(TRUE)
-		if(Yeah)
-			water_overlay.add_overlay(Yeah)
+		water_overlay.cut_overlays()
+		water_overlay.add_overlay(neighborlay_list)
 	if(water_top_overlay)
-		water_top_overlay.cut_overlays(TRUE)
-		if(Yeah)
-			water_top_overlay.add_overlay(Yeah)
+		water_top_overlay.cut_overlays()
+		water_top_overlay.add_overlay(neighborlay_list)
 
 /turf/open/water/Entered(atom/movable/AM, atom/oldLoc)
 	. = ..()

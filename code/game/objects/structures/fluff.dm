@@ -17,7 +17,17 @@
 	icon = 'icons/roguetown/misc/structure.dmi'
 	icon_state = "pillow"
 	density = FALSE
-
+/obj/structure/fluff/railing/raisedtrim
+	name = "raised molding"
+	desc = "It was once said that the gods used these to separate high and low; now they only give the illusion of depth, since Psydonia has the real thing."
+	icon = 'icons/turf/roguefloor.dmi'
+	icon_state = "borderfall"
+	layer = TURF_DECAL_LAYER
+	dir = NORTH
+	blocks_neighborlays = TRUE
+/obj/structure/fluff/railing/raisedtrim/getwlayer()
+	layer = TURF_DECAL_LAYER
+	return
 /obj/structure/fluff/pillow/red
 	color = CLOTHING_RED
 
@@ -291,7 +301,7 @@
 	icon_state = "woodrailing"
 	blade_dulling = DULLING_BASHCHOP
 	layer = ABOVE_MOB_LAYER
-
+	flags_1 = CHECK_RICOCHET_1
 /obj/structure/fluff/railing/wood/north
 	dir = 1
 
@@ -311,6 +321,7 @@
 	desc = ""
 	icon_state = "border"
 	pass_crawl = FALSE
+	blocks_neighborlays = TRUE
 
 /obj/structure/fluff/railing/fence
 	name = "palisade"

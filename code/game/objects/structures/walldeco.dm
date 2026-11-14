@@ -340,6 +340,7 @@
 	icon_state = "churchslate"
 	mouse_opacity = 0
 	layer = BELOW_MOB_LAYER+0.1
+	blocks_neighborlays = TRUE
 
 /obj/structure/fluff/walldeco/maidensigil
 	name = "stone sigil"
