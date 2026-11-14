@@ -1091,7 +1091,7 @@
 	mouse_opacity = 0
 	blocks_neighborlays = TRUE
 
-/obj/effect/decal/edge_corner/Initialize() //split this into its component parts.
+/obj/effect/decal/edge_corner/Initialize(mapload) //split this into its component parts.
 	. = ..()
 	var/obj/effect/decal/edge/e1 = new(loc)
 	e1.dir = dir
