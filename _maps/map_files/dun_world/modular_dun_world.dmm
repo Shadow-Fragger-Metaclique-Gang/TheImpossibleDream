@@ -8,6 +8,30 @@
 /obj/machinery/light/rogue/torchholder/l,
 /turf/open/water/ocean,
 /area/rogue/outdoors/beach/central)
+"aac" = (
+/obj/structure/closet/crate/roguecloset/lord{
+	lockid = "nightman";
+	name = "Punishment"
+	},
+/obj/item/rogueweapon/huntingknife/cleaver,
+/obj/item/rogueweapon/huntingknife/idagger/navaja,
+/obj/item/clothing/head/roguetown/menacing{
+	pixel_x = 3;
+	pixel_y = 8
+	},
+/obj/item/clothing/mask/rogue/facemask,
+/obj/item/rope,
+/obj/item/rope,
+/obj/item/rogueweapon/whip,
+/obj/item/rogueweapon/mace/woodclub,
+/obj/item/rogueweapon/tongs{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/obj/item/natural/bundle/cloth/bandage/full,
+/obj/item/burial_shroud,
+/turf/open/floor/rogue/cobble/mossy,
+/area/rogue/indoors/town/bath)
 "aad" = (
 /obj/machinery/light/rogue/torchholder/r,
 /obj/structure/fluff/railing/border/north,
@@ -18,6 +42,10 @@
 /obj/effect/decal/remains/human,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
+"aaf" = (
+/obj/item/clothing/ring/lief_ring,
+/turf/open/floor/carpet/royalblack,
+/area/rogue/indoors/town/manor)
 "aaj" = (
 /obj/effect/decal/edge{
 	color = "#3f3f3f";
@@ -19249,29 +19277,6 @@
 "doE" = (
 /turf/open/floor/rogue/wood/nosmooth,
 /area/rogue/indoors/town/dwarfin)
-"doF" = (
-/obj/structure/closet/crate/roguecloset/lord{
-	lockid = "nightman";
-	name = "Punishment"
-	},
-/obj/item/rogueweapon/huntingknife/cleaver,
-/obj/item/rogueweapon/huntingknife/idagger/navaja,
-/obj/item/clothing/head/roguetown/menacing{
-	pixel_x = 3;
-	pixel_y = 8
-	},
-/obj/item/clothing/mask/rogue/facemask,
-/obj/item/rope,
-/obj/item/rope,
-/obj/item/rogueweapon/whip,
-/obj/item/rogueweapon/mace/woodclub,
-/obj/item/rogueweapon/tongs{
-	pixel_x = -7;
-	pixel_y = 4
-	},
-/obj/item/natural/bundle/cloth/bandage/full,
-/turf/open/floor/rogue/cobble/mossy,
-/area/rogue/indoors/town/bath)
 "doI" = (
 /obj/structure/chair/stool/rogue,
 /turf/open/floor/rogue/dirt,
@@ -169599,7 +169604,7 @@ cJs
 qDU
 ezG
 rFB
-doF
+aac
 dtT
 ioo
 ppK
@@ -545621,7 +545626,7 @@ nnH
 vRp
 dYW
 hNV
-hNV
+aaf
 awI
 nnH
 nnH
