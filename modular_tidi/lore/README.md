@@ -1,4 +1,5 @@
 # LORE
+
 **Related PRs:**
 https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/15
 https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/17
@@ -11,7 +12,7 @@ https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/54
 
 **Created in:**
 
-**Major changes:** 
+**Major changes:**
 
 ## Surrealis Lore
 
@@ -24,3 +25,5 @@ CODE IS SORTED INTO FOLDERS BASED ON WHAT IS CHANGED, AND THEN THE NAME OF THE .
 ## Core files changed
 
 WAY TOO MANY TO COUNT. TYPE `// [SURREALIS-EDIT] - LORE` INTO YOUR SEARCH AND LOOK.
+
+- `code/modules/jobs/jobs.dm`: ADD near `GLOBAL_LIST_INIT`, EDIT near `GLOBAL_LIST_INIT`

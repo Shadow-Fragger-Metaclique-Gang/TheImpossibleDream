@@ -123,11 +123,18 @@ GLOBAL_LIST_INIT(church_positions, list( //Church of the Ten
 	"Bishop",
 	"Martyr",
 	"Templar",
+	// [SURREALIS-EDIT] - LORE
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	"Keeper",
 	"Druid",
 	"Acolyte",
 	"Sexton",
 	"Painter",
+	*/
+	"Acolyte",
+	"Sexton",
+	// [/SURREALIS-EDIT]
 ))
 
 GLOBAL_LIST_INIT(burgher_positions, list( //Artisans, store owners what have you.
@@ -160,6 +167,9 @@ GLOBAL_LIST_INIT(producer_positions, list(
 	"Guildsman",
 	"Guildmaster",
 	"Apothecary",
+	// [SURREALIS-ADD] - LORE
+	"Keeper",
+	// [/SURREALIS-ADD]
 	"Head Physician",
 	"Magicians Associate",
 	"Court Magician",
