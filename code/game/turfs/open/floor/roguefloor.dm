@@ -1095,10 +1095,13 @@
 	. = ..()
 	var/obj/effect/decal/edge/e1 = new(loc)
 	e1.dir = dir
-	var/obj/effect/decal/edge/e2 = new(loc)
-	e2.dir = turn(45, dir)
+	e1.color = color
 	var/obj/effect/decal/edge/e3 = new(loc)
-	e3.dir = turn(90, dir)
+	e3.dir = turn(-90, dir)
+	e3.color = color
+	var/obj/effect/decal/edge/e2 = new(loc)
+	e2.dir = turn(-45, dir)
+	e2.color = color //need this order or else it goes on the bodttombottom.
 	return INITIALIZE_HINT_QDEL
 
 /turf/open/floor/rogue/cobblerock
