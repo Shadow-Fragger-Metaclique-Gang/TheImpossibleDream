@@ -222,6 +222,10 @@ GLOBAL_LIST_EMPTY(chosen_names)
 	COOLDOWN_DECLARE(bark_previewing)
 	var/mute_barks = FALSE
 
+	// [SURREALIS-ADD] - LOOC COOLDOWN TIMER
+	var/last_looc_time = 0
+	// [/SURREALIS-ADD]
+
 /datum/preferences/New(client/C)
 	parent = C
 	migrant = new /datum/migrant_pref(src)

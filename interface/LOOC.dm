@@ -41,6 +41,8 @@
 		to_chat(usr, span_danger("Speech is currently admin-disabled."))
 		return
 
+	// [SURREALIS-REMOVE] -  LOOC MUTE REMOVE - Ignore for SLOOC
+	/*
 	if(prefs.muted & MUTE_LOOC)
 		to_chat(src, span_danger("I cannot use LOOC (temp muted)."))
 		return
@@ -48,6 +50,8 @@
 	if(is_banned_from(ckey, "LOOC"))
 		to_chat(src, span_danger("I cannot use LOOC (perma muted)."))
 		return
+	*/
+	// [/SURREALIS-REMOVE]
 
 	if(isobserver(mob) && !holder)
 		to_chat(src, span_danger("I cannot use LOOC while dead."))
@@ -162,6 +166,13 @@
 		to_chat(src, span_danger("I cannot use LOOC (perma muted)."))
 		return
 	
+	// [SURREALIS-ADD] - LOOC COOLDOWN TIMER
+	if(world.time < prefs.last_looc_time)
+		to_chat(usr, span_danger("I've used LOOC too recently."))
+		return
+	prefs.last_looc_time = world.time + 5 MINUTES
+	// [/SURREALIS-ADD]
+
 	if(isobserver(mob) && !holder)
 		to_chat(src, span_danger("I cannot use LOOC while dead."))
 		return
