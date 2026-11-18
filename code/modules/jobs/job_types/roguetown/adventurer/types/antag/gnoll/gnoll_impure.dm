@@ -38,7 +38,12 @@
 		var/datum/antagonist/new_antag = new /datum/antagonist/gnoll()
 		H.mind.add_antag_datum(new_antag)
 		add_verb(H, /mob/living/carbon/human/proc/gnoll_inspect_skin)
+	// [SURREALIS-EDIT] - WW_SEXCON
+	// H.set_species(/datum/species/gnoll) // SURREALIS-EDIT - ORIGINAL
+	var/list/mygenitals = disgusting_gnoll_shim_proc(H, null)
 	H.set_species(/datum/species/gnoll)
+	disgusting_gnoll_shim_proc(H,mygenitals)
+	// [/SURREALIS-EDIT]
 	H.skin_armor = new vamp_armor_type(H)
 	H.AddComponent(/datum/component/vampiric_striker, shard_threshold, shard_repair_value, max_fury_stacks)
 	don_pelt(H)

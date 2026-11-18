@@ -36,4 +36,5 @@
 #include "verdant_retreat_qol\_verdant_retreat_qol.dme"
 #include "weapons\_weapons.dme"
 #include "weapons_modular\_weapons_modular.dme"
+#include "ww_sexcon\_ww_sexcon.dme"
 #include "ww_tweaks\_ww_tweaks.dme"

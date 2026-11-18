@@ -2,11 +2,11 @@
 	name = "Gnoll Knight"
 	tutorial = "You were forged in the fires of the volcano, burn marks have long since healed, but the armor hammered against your muscle isn't so fleeting."
 	allowed_sexes = list(MALE, FEMALE)
-	
+
 	outfit = /datum/outfit/job/roguetown/gnoll/knight
 	category_tags = list(CTAG_GNOLL)
 	traits_applied = list(TRAIT_HEAVYARMOR, TRAIT_UNCONVERTIBLE) // Flavoring
-	
+
 	cmode_music = 'sound/music/cmode/antag/combat_thewall.ogg'
 	reset_stats = TRUE
 	subclass_stats = list(
@@ -38,7 +38,12 @@
 
 /datum/outfit/job/roguetown/gnoll/knight/pre_equip(mob/living/carbon/human/H)
 	if(H.mind)
+		// [SURREALIS-EDIT] - WW_SEXCON
+		// H.set_species(/datum/species/gnoll) // SURREALIS-EDIT - ORIGINAL
+		var/list/mygenitals = disgusting_gnoll_shim_proc(H, null)
 		H.set_species(/datum/species/gnoll)
+		disgusting_gnoll_shim_proc(H,mygenitals)
+		// [/SURREALIS-EDIT]
 		H.skin_armor = new vamp_armor_type(H)
 		H.AddComponent(/datum/component/vampiric_striker, shard_threshold, shard_repair_value, max_fury_stacks)
 		neck = /obj/item/storage/belt/rogue/pouch/healing
