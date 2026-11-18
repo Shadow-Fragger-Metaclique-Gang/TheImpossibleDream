@@ -32,6 +32,7 @@
 #include "sound_changes\_sound_changes.dme"
 #include "species_changes\_species_changes.dme"
 #include "species_renames\_species_renames.dme"
+#include "dragon_form\dragon_form.dme"
 #include "static_intensity\_static_intensity.dme"
 #include "verdant_retreat_qol\_verdant_retreat_qol.dme"
 #include "weapons\_weapons.dme"
