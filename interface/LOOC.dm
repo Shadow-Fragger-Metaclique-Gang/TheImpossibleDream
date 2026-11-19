@@ -165,13 +165,6 @@
 	if(is_banned_from(ckey, "LOOC"))
 		to_chat(src, span_danger("I cannot use LOOC (perma muted)."))
 		return
-	
-	// [SURREALIS-ADD] - LOOC COOLDOWN TIMER
-	if(world.time < prefs.last_looc_time)
-		to_chat(usr, span_danger("I must wait longer before using LOOC. Subtle LOOC has no cooldown."))
-		return
-	prefs.last_looc_time = world.time + 5 MINUTES
-	// [/SURREALIS-ADD]
 
 	if(isobserver(mob) && !holder)
 		to_chat(src, span_danger("I cannot use LOOC while dead."))
@@ -196,6 +189,13 @@
 			slooc_msg = copytext(slooc_msg, 2)
 		do_subtlelooc(slooc_msg)
 		return
+
+	// [SURREALIS-ADD] - LOOC COOLDOWN TIMER
+	if(world.time < prefs.last_looc_time)
+		to_chat(usr, span_danger("I must wait longer before using LOOC. Subtle LOOC has no cooldown."))
+		return
+	prefs.last_looc_time = world.time + 5 MINUTES
+	// [/SURREALIS-ADD]
 
 	if(!holder)
 		if(findtext(msg, "byond://"))
