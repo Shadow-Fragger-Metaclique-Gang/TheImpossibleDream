@@ -168,7 +168,7 @@
 	
 	// [SURREALIS-ADD] - LOOC COOLDOWN TIMER
 	if(world.time < prefs.last_looc_time)
-		to_chat(usr, span_danger("I must wait longer before using LOOC."))
+		to_chat(usr, span_danger("I must wait longer before using LOOC. Subtle LOOC has no cooldown."))
 		return
 	prefs.last_looc_time = world.time + 5 MINUTES
 	// [/SURREALIS-ADD]
