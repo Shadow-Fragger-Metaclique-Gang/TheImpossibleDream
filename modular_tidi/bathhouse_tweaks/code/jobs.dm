@@ -5,3 +5,7 @@
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/appraise/secular/pileappraisal)
 
+/* /datum/outfit/job/roguetown/kissteller
+
+/datum/outfit/job/roguetown/inqspy
+ */
