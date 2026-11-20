@@ -42,10 +42,6 @@
 /obj/effect/decal/remains/human,
 /turf/open/floor/rogue/herringbone,
 /area/rogue/under/cave/dungeon1/gethsmane/inner)
-"aaf" = (
-/obj/item/clothing/ring/lief_ring,
-/turf/open/floor/carpet/royalblack,
-/area/rogue/indoors/town/manor)
 "aaj" = (
 /obj/effect/decal/edge{
 	color = "#3f3f3f";
@@ -545626,7 +545622,7 @@ nnH
 vRp
 dYW
 hNV
-aaf
+hNV
 awI
 nnH
 nnH
