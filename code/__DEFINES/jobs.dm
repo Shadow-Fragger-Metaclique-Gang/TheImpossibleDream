@@ -110,6 +110,8 @@
 #define ORTHODOXIST	(1<<2)
 // [SURREALIS-ADD] - NEW_JOBS
 #define DUNGEONEER	(1<<3)
+#define KISSTELL	(1<<4)
+#define SPOOK	(1<<5)
 // [/SURREALIS-ADD]
 #define ANTAGONIST			(1<<10)
 

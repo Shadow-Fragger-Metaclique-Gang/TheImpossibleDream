@@ -1,0 +1,11 @@
+/datum/outfit/job/roguetown/bathmaster/basic/pre_equip(mob/living/carbon/human/H)
+	..()
+	beltr = /obj/item/storage/keyring/bathmaster
+	wrists = null
+	if(H.mind)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/appraise/secular/pileappraisal)
+
+/* /datum/outfit/job/roguetown/kissteller
+
+/datum/outfit/job/roguetown/inqspy
+ */
