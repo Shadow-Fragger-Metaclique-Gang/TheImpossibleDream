@@ -14,6 +14,7 @@
 #include "inquisition_scom\_inquisition_scom.dme"
 #include "job_overrides\_job_overrides.dme"
 #include "job_weapon_overrides\_job_weapon_overrides.dme"
+#include "keybinds_modular\_keybinds_modular.dme"
 #include "listener_deploy\_listener_deploy.dme"
 #include "loadout\_loadout.dme"
 #include "lord_of_vanity\_lord_of_vanity.dme"
