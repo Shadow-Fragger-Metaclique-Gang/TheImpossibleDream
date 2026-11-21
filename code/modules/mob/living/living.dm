@@ -204,13 +204,8 @@
 			var/target_points = FLOOR((L.STACON + L.STASTR)/2, 1)
 
 			switch(sprint_distance)
-// [SURREALIS-EDIT] - MODULAR_KEYBINDS
 				// Point blank
-//				if(0 to 1)
-				if(0) //Solves my skill issue.
-					return
-				if(1)
-// [/SURREALIS-EDIT]
+				if(0 to 1)
 					self_points -= 99
 					instafail = TRUE
 					fail_reason = "no headstart"
