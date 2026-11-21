@@ -1,7 +1,11 @@
 //arrows ฅ^•ﻌ•^ฅ
 #define MIN_ARROW_RANGE		2
 #define MAX_ARROW_RANGE		14
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 #define DAM_FALLOFF_ARROW	0.5
+*/
+// [/SURREALIS-REMOVE]
 #define MIN_SPLINTER_RANGE	1
 #define MAX_SPLINTER_RANGE	5
 
@@ -79,7 +83,10 @@
 	name = "arrow"
 	damage = 20
 	damage_type = BRUTE
-	armor_penetration = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_NONE
+	// [/SURREALIS-EDIT]
 	antibeast_factor = ANTIBEAST_DEFAULT
 	icon = 'icons/roguetown/weapons/ranged/arrow_proj.dmi'
 	icon_state = "arrow_proj"
@@ -92,7 +99,11 @@
 	speed = 0.4
 	min_range = MIN_ARROW_RANGE
 	max_range = MAX_ARROW_RANGE
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	dam_falloff_factor = DAM_FALLOFF_ARROW
+	*/
+	// [/SURREALIS-REMOVE]
 	var/trains_ranged_skill = TRUE
 
 /obj/projectile/bullet/reusable/arrow/on_hit(atom/target)
@@ -114,7 +125,10 @@
 	name = "blunt arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/blunt
 	damage = 15
-	armor_penetration = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_NONE
+	// [/SURREALIS-EDIT]
 	embedchance = 0
 	woundclass = BCLASS_BLUNT
 
@@ -128,8 +142,14 @@
 /obj/projectile/bullet/reusable/arrow/iron
 	name = "broadhead arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/iron
-	damage = 35
-	armor_penetration = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// damage = 35 // SURREALIS-EDIT - ORIGINAL
+	damage = 45
+	// [/SURREALIS-EDIT]
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_LIGHT
+	// [/SURREALIS-EDIT]
 	flag = "piercing"
 	embedchance = 30
 
@@ -139,7 +159,10 @@
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/iron/aalloy
 	icon_state = "ancientarrow_proj"
 	damage = 35
-	armor_penetration = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_LIGHT
+	// [/SURREALIS-EDIT]
 	flag = "piercing"
 
 // Bodkins should penetrate essentially any armour in the game with decent perception, as
@@ -149,7 +172,10 @@
 	name = "bodkin arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/steel
 	damage = 25
-	armor_penetration = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_HEAVY
+	// [/SURREALIS-EDIT]
 	embedchance = 80 // Easy embeds!
 
 // Significantly worse armour-piercing, slightly more damage. Should still penetrate most things.
@@ -159,7 +185,10 @@
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/steel/paalloy
 	icon_state = "ancientarrow_proj"
 	damage = 30
-	armor_penetration = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_HEAVY
+	// [/SURREALIS-EDIT]
 	embedchance = 60
 
 // Non-existent AP, but strong damage, a high embed chance, and very fast projectiles.
@@ -169,7 +198,10 @@
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/bronze
 	icon_state = "bronzearrow_proj"
 	damage = 50
-	armor_penetration = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_NONE
+	// [/SURREALIS-EDIT]
 	embedchance = 70
 	speed = 0.15 // Faster!
 
@@ -218,7 +250,10 @@
 	name = "silver arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/silver
 	damage = 60 //The rarest, but most powerful arrow subtype. Intended to be incredibly scarce, in practice - a 'silver bullet', to the most literal extent.
-	armor_penetration = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_HEAVY
+	// [/SURREALIS-EDIT]
 	embedchance = 100
 	is_silver_proj = TRUE
 
@@ -249,7 +284,10 @@
 	name = "elemental arrow"
 	damage = 40
 	damage_type = BRUTE
-	armor_penetration = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_LIGHT
+	// [/SURREALIS-EDIT]
 	flag = "slash"
 	icon = 'icons/roguetown/weapons/ranged/arrow_proj.dmi'
 	icon_state = "arrowpyro_proj"
@@ -259,7 +297,11 @@
 	speed = 1.25
 	min_range = MIN_ARROW_RANGE
 	max_range = MAX_ARROW_RANGE
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	dam_falloff_factor = DAM_FALLOFF_ARROW
+	*/
+	// [/SURREALIS-REMOVE]
 
 // --- FIRE ---
 /obj/item/ammo_casing/caseless/rogue/arrow/elemental/fire
@@ -418,7 +460,10 @@
 	name = "blacksteel arrow"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/blacksteel
 	damage = 50
-	armor_penetration = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_HEAVY
+	// [/SURREALIS-EDIT]
 	icon_state = "blacksteelarrow_proj"
 	embedchance = 80
 
@@ -427,7 +472,10 @@
 	ammo_type = null
 	icon_state = "paint_arrow"
 	damage = 10
-	armor_penetration = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_LIGHT
+	// [/SURREALIS-EDIT]
 	flag = "piercing"
 	/// Track if this projectile was primed by the paint bow when shot
 	var/primed = FALSE
@@ -464,6 +512,10 @@
 
 #undef MIN_ARROW_RANGE
 #undef MAX_ARROW_RANGE
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 #undef DAM_FALLOFF_ARROW
+*/
+// [/SURREALIS-REMOVE]
 #undef MIN_SPLINTER_RANGE
 #undef MAX_SPLINTER_RANGE

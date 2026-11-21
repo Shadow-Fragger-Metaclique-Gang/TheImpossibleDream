@@ -34,7 +34,10 @@
 		return
 	adjust_skillrank_up_to(/datum/skill/combat/unarmed, level, TRUE)
 
-/mob/living/proc/register_part_damage(zone, damage, mob/living/user, obj/item/weapon, ranged = FALSE, bclass, penfactor = PEN_NONE, part_mult = 1)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/living/proc/register_part_damage(zone, damage, mob/living/user, obj/item/weapon, ranged = FALSE, bclass, penfactor = PEN_NONE, part_mult = 1) // SURREALIS-EDIT - ORIGINAL
+/mob/living/proc/register_part_damage(zone, damage, mob/living/user, obj/item/weapon, ranged = FALSE, bclass, penfactor = 0, part_mult = 1)
+// [/SURREALIS-EDIT]
 	return
 
 // For applying monster hunter trait. Does not care about clients, to keep PVP and PVE symmetrical. If you're a good monster hunter, you are a good monster hunter.
@@ -110,7 +113,10 @@
 		bonus += MONSTER_HUNTER_ACCURACY_BONUS
 	return bonus
 
-/mob/living/simple_animal/register_part_damage(zone, damage, mob/living/user, obj/item/weapon, ranged = FALSE, bclass, penfactor = PEN_NONE, part_mult = 1)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/living/simple_animal/register_part_damage(zone, damage, mob/living/user, obj/item/weapon, ranged = FALSE, bclass, penfactor = PEN_NONE, part_mult = 1) // SURREALIS-EDIT - ORIGINAL
+/mob/living/simple_animal/register_part_damage(zone, damage, mob/living/user, obj/item/weapon, ranged = FALSE, bclass, penfactor = 0, part_mult = 1)
+// [/SURREALIS-EDIT]
 	if(damage <= 0 || !HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
 		return
 	var/datum/anatomy/profile = get_anatomy()
@@ -213,7 +219,10 @@
 /mob/living/simple_animal/proc/sprite_drawn_prone()
 	return LAZYLEN(prone_icon_states) && (icon_state in prone_icon_states)
 
-/mob/living/simple_animal/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, forced = FALSE, spread_damage = FALSE)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/living/simple_animal/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, forced = FALSE, spread_damage = FALSE) // SURREALIS-EDIT - ORIGINAL
+/mob/living/simple_animal/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, forced = FALSE, spread_damage = FALSE, bclass = null, wounds_handled = FALSE)
+// [/SURREALIS-EDIT]
 	if(def_zone)
 		last_hit_part = def_zone
 	return ..()

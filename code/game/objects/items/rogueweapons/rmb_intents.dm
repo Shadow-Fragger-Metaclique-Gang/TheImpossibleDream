@@ -12,7 +12,11 @@
 /mob/living/carbon/human/on_cmode()
 	if(!cmode)	//We just toggled it off.
 		addtimer(CALLBACK(src, PROC_REF(purge_bait)), 30 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		// [SURREALIS-REMOVE] - VRCOMBAT
+		/*
 		addtimer(CALLBACK(src, PROC_REF(clear_tempo_all)), 30 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		*/
+		// [/SURREALIS-REMOVE]
 		addtimer(CALLBACK(src, PROC_REF(reset_dodgetime)), 20 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 	if(!HAS_TRAIT(src, TRAIT_DECEIVING_MEEKNESS))
 		filtered_balloon_alert(TRAIT_COMBAT_AWARE, (cmode ? ("<i><font color = '#831414'>Tense</font></i>") : ("<i><font color = '#c7c6c6'>Relaxed</font></i>")), y_offset = 32)
@@ -22,7 +26,10 @@
 
 /datum/rmb_intent/aimed
 	name = "aimed"
-	desc = "Your attacks are more precise but have a longer recovery time. Higher critrate with precise attacks.\n(RMB WHILE COMBAT MODE IS ACTIVE) Bait out your targeted limb to the enemy. If it matches where they're aiming, they will be thrown off balance."
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// desc = "Your attacks are more precise but have a longer recovery time. Higher critrate with precise attacks.\n(RMB WHILE COMBAT MODE IS ACTIVE) Bait out your targeted limb to the enemy. If it matches where they're aiming, they will be thrown off balance." // SURREALIS-EDIT - ORIGINAL
+	desc = "Your attacks are more precise but have a longer recovery time. Your precise attacks will critically hit more often, and your recovery is slightly faster depending on your perception.\n(SPECIAL) You can STAB through the gaps in heavy armor by aiming for a LIMB, the NECK, the GROIN or an EYE.\n(RMB WHILE COMBAT MODE IS ACTIVE) Bait out your targeted limb to the enemy. If it matches where they're aiming, they will be thrown off balance."
+	// [/SURREALIS-EDIT]
 	icon_state = "rmbaimed"
 
 /datum/rmb_intent/aimed/special_attack(mob/living/user, atom/target)
@@ -47,17 +54,23 @@
 	var/mob/living/carbon/human/HU = user
 	var/target_zone = HT.zone_selected
 	var/user_zone = HU.zone_selected
-	var/newcd = (BAIT_RCLICK_CD - HU.get_tempo_bonus(TEMPO_TAG_RCLICK_CD_BONUS))
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// var/newcd = (BAIT_RCLICK_CD - HU.get_tempo_bonus(TEMPO_TAG_RCLICK_CD_BONUS)) // SURREALIS-EDIT - ORIGINAL
+	var/newcd = BAIT_RCLICK_CD
+	// [/SURREALIS-EDIT]
 
 	if(HT.has_status_effect(/datum/status_effect/debuff/baited) || user.has_status_effect(/datum/status_effect/debuff/baitcd))
 		return	//We don't do anything if either of us is affected by bait statuses
 
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	if(!HT.can_see_cone(user) && HT.mind && HT.get_tempo_bonus(TEMPO_TAG_FEINTBAIT_FOV))
 		newcd = 5 SECONDS
 		to_chat(user, span_notice("[HT.p_they()] didn't see me! Nothing happened!"))
 		HU.apply_status_effect(/datum/status_effect/debuff/baitcd, newcd)
 		return
-
+	*/
+	// [/SURREALIS-REMOVE]
 	HU.visible_message(span_danger("[HU] baits an attack from [HT]!"))
 
 	HU.apply_status_effect(/datum/status_effect/debuff/baitcd, newcd)
@@ -133,7 +146,10 @@
 
 /datum/rmb_intent/strong
 	name = "strong"
-	desc = "Your attacks deal +15% damage. Your attacks will cost the enemy more sharpness and integrity to defend against. Higher critrate with brutal attacks. Intentionally fails surgery steps.\nCosts more stamina per hit."
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// desc = "Your attacks deal +15% damage. Your attacks will cost the enemy more sharpness and integrity to defend against. Higher critrate with brutal attacks. Intentionally fails surgery steps.\nCosts more stamina per hit." // SURREALIS-EDIT - ORIGINAL
+	desc = "Your attacks always deal maximum damage. Your attacks will cost the enemy more sharpness and integrity to defend against. Higher critrate with brutal attacks. Intentionally fails surgery steps.\nCosts more stamina and energy per hit, slightly less stamina depending on your strength."
+	// [/SURREALIS-EDIT]
 	icon_state = "rmbstrong"
 	adjacency = FALSE
 	prioritize_turfs = TRUE
@@ -147,7 +163,10 @@
 
 /datum/rmb_intent/swift
 	name = "swift"
-	desc = "Your attacks have less recovery time but are less accurate.\nDrains extra stamina from anyone dodging you, most of all while their dodge is fresh. Does not work with a HEAVY balanced weapon."
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// desc = "Your attacks have less recovery time but are less accurate.\nDrains extra stamina from anyone dodging you, most of all while their dodge is fresh. Does not work with a HEAVY balanced weapon." // SURREALIS-EDIT - ORIGINAL
+	desc = "Your attacks have less recovery time but are less accurate. Costs slightly less stamina depending on your speed.\nDrains extra stamina from anyone dodging you, most of all while their dodge is fresh. Does not work with a HEAVY balanced weapon."
+	// [/SURREALIS-EDIT]
 	icon_state = "rmbswift"
 
 /datum/rmb_intent/special
@@ -179,7 +198,11 @@
 
 	var/mob/living/L = target
 	user.visible_message(span_danger("[user] feints an attack at [target]!"))
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	var/perc = 50
+	*/
+	// [/SURREALIS-REMOVE]
 	var/obj/item/I = user.get_active_held_item()
 	var/ourskill = 0
 	var/theirskill = 0
@@ -188,6 +211,9 @@
 	if(L.mind)
 		I = L.get_active_held_item()
 		theirskill = L.get_wskill(I, /datum/skill/combat/unarmed)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	perc += (ourskill - theirskill)*15	//skill is of the essence
 	perc += (user.STAINT - L.STAINT)*10	//but it's also mostly a mindgame
 	skill_factor = (ourskill - theirskill)/2
@@ -200,10 +226,28 @@
 
 	if(L.has_status_effect(/datum/status_effect/buff/weapon_binded))
 		perc = 0
+	*/
+	skill_factor = (ourskill - theirskill)/2
+	var/user_roll = get_stat_roll(user.STAINT, ourskill)
+	var/target_roll = get_stat_roll(L.STAINT, theirskill)
+	var/autofail = FALSE
+
+	var/special_msg
+	var/newcd = FEINT_RCLICK_CD
+
+	if(L.has_status_effect(/datum/status_effect/debuff/exposed) || L.has_status_effect(/datum/status_effect/debuff/vulnerable))
+		autofail = TRUE
+
+	if(L.has_status_effect(/datum/status_effect/buff/weapon_binded))
+		autofail = TRUE
+	// [/SURREALIS-EDIT]
 		special_msg = span_warning("They had my tricks figured out and are too aware!")
 		newcd = 10 SECONDS
 
 	if(L.has_status_effect(/datum/status_effect/debuff/feinted))
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		perc = 0
 		special_msg = span_warning("Too soon! They were expecting it!")
 
@@ -214,10 +258,18 @@
 
 	if(perc)
 		perc = CLAMP(perc, 10, 90)
+		*/
+		autofail = TRUE
+		special_msg = span_warning("Too soon! They were expecting it!")
 
+	var/feint_success = !autofail && (user_roll >= target_roll)
+		// [/SURREALIS-EDIT]
 	if(L.has_status_effect(/datum/status_effect/buff/clash))
 		L.remove_status_effect(/datum/status_effect/buff/clash)
 		to_chat(user, span_notice("[L.p_their(TRUE)] Guard disrupted!"))
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		newcd = ((BASE_RCLICK_CD + 10 SECONDS) - user.get_tempo_bonus(TEMPO_TAG_RCLICK_CD_BONUS))
 		perc = 100
 
@@ -225,6 +277,15 @@
 		playsound(user, 'sound/combat/feint.ogg', 100, TRUE)
 		if(user.client?.prefs.showrolls)
 			to_chat(user, span_warning("[L.p_they(TRUE)] did not fall for my feint... [HAS_TRAIT(L, TRAIT_DECEIVING_MEEKNESS) ? "???" : perc]%"))
+		*/
+		newcd = (BASE_RCLICK_CD + 10 SECONDS)
+		feint_success = TRUE
+
+	if(!feint_success)
+		playsound(user, 'sound/combat/feint.ogg', 100, TRUE)
+		if(!autofail && user.client?.prefs.showrolls)
+			to_chat(user, span_warning("[L.p_they(TRUE)] did not fall for my feint... [user_roll] vs [HAS_TRAIT(L, TRAIT_DECEIVING_MEEKNESS) ? "???" : target_roll]"))
+		// [/SURREALIS-EDIT]
 		user.apply_status_effect(/datum/status_effect/debuff/feintcd, newcd)
 		if(special_msg)
 			to_chat(user, special_msg)
@@ -259,7 +320,10 @@
 
 /datum/rmb_intent/riposte
 	name = "defend"
-	desc = "No delay between dodge and parry rolls.\n(RMB WHILE NOT GRABBING ANYTHING AND HOLDING A WEAPON)\nEnter a defensive stance, guaranteeing the next hit is defended against.\nTwo people who hit each other with the Guard up will have their weapons Clash, potentially disarming them.\nLetting it expire or hitting someone with it who has no Guard up is tiresome."
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// desc = "No delay between dodge and parry rolls.\n(RMB WHILE NOT GRABBING ANYTHING AND HOLDING A WEAPON)\nEnter a defensive stance, guaranteeing the next hit is defended against.\nTwo people who hit each other with the Guard up will have their weapons Clash, potentially disarming them.\nLetting it expire or hitting someone with it who has no Guard up is tiresome." // SURREALIS-EDIT - ORIGINAL
+	desc = "Reduces the stamina cost of defensive maneuvers.\n(RMB WHILE NOT GRABBING ANYTHING AND HOLDING A WEAPON)\nEnter a defensive stance, guaranteeing the next hit is defended against.\nTwo people who hit each other with the Guard up will have their weapons Clash, potentially disarming them.\nLetting it expire or hitting someone with it who has no Guard up is tiresome."
+	// [/SURREALIS-EDIT]
 	icon_state = "rmbdef"
 	adjacency = FALSE
 	bypasses_click_cd = TRUE
@@ -278,5 +342,8 @@
 
 /datum/rmb_intent/weak
 	name = "weak"
-	desc = "Your attacks deal 20% damage and will never critically-hit. Useful for longer punishments, play-fighting, and bloodletting."
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// desc = "Your attacks deal 20% damage and will never critically-hit. Useful for longer punishments, play-fighting, and bloodletting." // SURREALIS-EDIT - ORIGINAL
+	desc = "Your attacks always deal minimum damage and will never critically-hit. Useful for longer punishments, play-fighting, and bloodletting."
+	// [/SURREALIS-EDIT]
 	icon_state = "rmbweak"

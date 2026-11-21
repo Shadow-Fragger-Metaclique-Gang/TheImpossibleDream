@@ -80,8 +80,15 @@
 	var/obj/item/R = new item_path(H.drop_location())
 
 	// Halve durability
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	R.max_integrity = round(R.max_integrity * 0.5)
 	R.obj_integrity = R.max_integrity
+	*/
+	R.set_max_integrity(round(R.max_integrity * 0.5))
+	R.set_integrity(R.max_integrity)
+	// [/SURREALIS-EDIT]
 
 	// Mark as conjured — no salvage, no smelting
 	R.smeltresult = null

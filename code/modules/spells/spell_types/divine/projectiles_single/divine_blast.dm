@@ -117,9 +117,17 @@
 	var/mob/living/carbon/human/caster = firer
 	if(istype(caster) && ishuman(L))
 		if(!L.mind)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			if(arcyne_strike(caster, L, null, damage_to_do, def_zone, BCLASS_BURN, PEN_MEDIUM, spell_name = "Divine Blast", damage_type = BURN, skip_animation = TRUE) == ARCYNE_STRIKE_WARDED)
 				return
 		if(arcyne_strike(caster, L, null, damage_to_do, def_zone, BCLASS_BURN, PEN_NONE, spell_name = "Divine Blast", damage_type = BURN, skip_animation = TRUE) == ARCYNE_STRIKE_WARDED)
+			*/
+			if(arcyne_strike(caster, L, null, damage_to_do, def_zone, BCLASS_BURN, AP_MEDIUM, spell_name = "Divine Blast", damage_type = BURN, skip_animation = TRUE) == ARCYNE_STRIKE_WARDED)
+				return
+		if(arcyne_strike(caster, L, null, damage_to_do, def_zone, BCLASS_BURN, AP_NONE, spell_name = "Divine Blast", damage_type = BURN, skip_animation = TRUE) == ARCYNE_STRIKE_WARDED)
+			// [/SURREALIS-EDIT]
 			return
 	else
 		L.apply_damage(damage_to_do, BURN)

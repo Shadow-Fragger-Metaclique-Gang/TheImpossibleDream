@@ -390,7 +390,10 @@
 	toxpwr = 0
 
 /datum/reagent/toxin/fentanyl/on_mob_life(mob/living/carbon/M)
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3	* REAGENTS_EFFECT_MULTIPLIER, 150)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3	* REAGENTS_EFFECT_MULTIPLIER, 150) // SURREALIS-EDIT - ORIGINAL
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3	* REAGENTS_EFFECT_MULTIPLIER, 90)
+	// [/SURREALIS-EDIT]
 	if(M.toxloss <= 60)
 		M.adjustToxLoss(1	* REAGENTS_EFFECT_MULTIPLIER, 0)
 	if(current_cycle >= 18)

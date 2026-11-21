@@ -156,15 +156,24 @@
 		return TRUE
 
 /mob/living/carbon/human/get_punch_dmg()
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	var/damage = UNARMED_DAMAGE_DEFAULT
 
 	if(HAS_TRAIT(src, TRAIT_CIVILIZEDBARBARIAN))
 		damage += UNARMED_DAMAGE_CIVILBARB
+	*/
+	var/damage = (STASTR > UNARMED_DAMAGE_DEFAULT || STASTR < 10) ? STASTR : UNARMED_DAMAGE_DEFAULT
+	// [/SURREALIS-EDIT]
 
 	var/used_str = STASTR
 	if(domhand)
 		used_str = get_str_arms(used_hand)
 
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	if(used_str >= 11)
 		var/strmod
 		if(used_str > STRENGTH_SOFTCAP && !HAS_TRAIT(src, TRAIT_STRENGTH_UNCAPPED))
@@ -174,6 +183,14 @@
 			strmod = ((used_str - 10) * STRENGTH_MULT)
 		damage = damage + (damage * strmod)
 	else if(used_str <= 9)
+	*/
+	var/expertise = HAS_TRAIT(src, TRAIT_CIVILIZEDBARBARIAN)
+	var/strmult = expertise ? 2 : 1
+	if(used_str >= 11)
+		var/strmod = (used_str > STRENGTH_SOFTCAP && !HAS_TRAIT(src, TRAIT_STRENGTH_UNCAPPED)) ? (((STRENGTH_SOFTCAP - 10) * STRENGTH_MULT * strmult) + ((used_str - STRENGTH_SOFTCAP) * STRENGTH_CAPPEDMULT * strmult)) : ((used_str - 10) * STRENGTH_MULT * strmult)
+		damage = max(damage + (damage * strmod), 1)
+	if(used_str <= 9 && !expertise)
+	// [/SURREALIS-EDIT]
 		damage = max(damage - (damage * ((10 - used_str) * 0.1)), 1)
 
 	var/obj/G = get_item_by_slot(SLOT_GLOVES)
@@ -186,6 +203,14 @@
 			return 50
 
 	damage += dna.species.punch_damage
+	// [SURREALIS-ADD] - VRCOMBAT
+	var/variance_center = (STALUC - 10) * 0.0125 + get_skill_level(/datum/skill/combat/unarmed) * 0.025
+	if(istype(rmb_intent, /datum/rmb_intent/strong))
+		variance_center = 1
+	if(istype(rmb_intent, /datum/rmb_intent/weak))
+		variance_center = -1
+	damage = max(round(damage * (1 + get_damage_variance(/datum/skill/combat/unarmed, variance_center, src) / 100), 1), 1)
+	// [/SURREALIS-ADD]
 	return damage
 
 /mob/living/carbon/human/is_floor_hazard_immune()

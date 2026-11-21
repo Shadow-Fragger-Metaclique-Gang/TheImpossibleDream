@@ -75,6 +75,9 @@
 
 	M.internal_organs |= src
 	M.internal_organs_slot[slot] = src
+	// [SURREALIS-ADD] - VRCOMBAT
+	SEND_SIGNAL(M, COMSIG_MOB_ORGAN_INSERTED, src, special)
+	// [/SURREALIS-ADD]
 	moveToNullspace()
 	for(var/X in actions)
 		var/datum/action/A = X
@@ -426,3 +429,36 @@
 /obj/item/organ/proc/enter_wardrobe()
 	accessory_type = initial(accessory_type)
 	STOP_PROCESSING(SSobj, src)
+// [SURREALIS-ADD] - VRCOMBAT
+
+/datum/status_effect/debuff/missing_organ
+	id = "missing_organ"
+	alert_type = null
+	tick_interval = STATUS_EFFECT_NO_TICK
+	status_type = STATUS_EFFECT_UNIQUE
+	var/organ_slot
+
+/datum/status_effect/debuff/missing_organ/on_apply()
+	if(!iscarbon(owner))
+		return FALSE
+	RegisterSignal(owner, COMSIG_LIVING_LIFE, PROC_REF(on_owner_life))
+	RegisterSignal(owner, COMSIG_MOB_ORGAN_INSERTED, PROC_REF(on_organ_inserted))
+	return ..()
+
+/datum/status_effect/debuff/missing_organ/on_remove()
+	var/static/list/tracked_signals = list(COMSIG_LIVING_LIFE, COMSIG_MOB_ORGAN_INSERTED)
+	UnregisterSignal(owner, tracked_signals)
+	return ..()
+
+/datum/status_effect/debuff/missing_organ/proc/on_owner_life(mob/living/carbon/source, seconds, times_fired)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(missing_organ_effects), source)
+
+/datum/status_effect/debuff/missing_organ/proc/on_organ_inserted(mob/living/carbon/source, obj/item/organ/inserted, special)
+	SIGNAL_HANDLER
+	if(inserted.slot == organ_slot)
+		qdel(src)
+
+/datum/status_effect/debuff/missing_organ/proc/missing_organ_effects(mob/living/carbon/C)
+	return
+// [/SURREALIS-ADD]

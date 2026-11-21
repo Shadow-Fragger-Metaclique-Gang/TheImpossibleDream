@@ -60,7 +60,10 @@
 	else
 		if(isliving(user))
 			var/mob/living/L = user
-			if(prob(L.STASPD * 2))
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// if(prob(L.STASPD * 2)) // SURREALIS-EDIT - ORIGINAL
+			if(get_stat_roll(L.STASPD) >= 17)
+			// [/SURREALIS-EDIT]
 				..()
 			else
 				if(isturf(loc))
@@ -100,7 +103,10 @@
 	if(!dead)
 		if(isliving(user) && isturf(loc))
 			var/mob/living/L = user
-			if(prob(L.STASPD * 2))
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// if(prob(L.STASPD * 2)) // SURREALIS-EDIT - ORIGINAL
+			if(get_stat_roll(L.STASPD) >= 17)
+			// [/SURREALIS-EDIT]
 				..()
 			else
 				to_chat(user, span_warning("[src] gets away!"))

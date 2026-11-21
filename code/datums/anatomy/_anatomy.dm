@@ -55,6 +55,9 @@ GLOBAL_LIST_INIT(anatomy_profiles, init_anatomy_profiles())
 	if(!penfactor || !bclass || !(bclass in PEN_PART_BCLASSES))
 		return 1
 	switch(penfactor)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		if(PEN_LIGHT)
 			return PEN_PART_MULT_LIGHT
 		if(PEN_MEDIUM)
@@ -62,6 +65,15 @@ GLOBAL_LIST_INIT(anatomy_profiles, init_anatomy_profiles())
 		if(PEN_HEAVY)
 			return PEN_PART_MULT_HEAVY
 		if(PEN_BSTEEL)
+		*/
+		if(1)
+			return PEN_PART_MULT_LIGHT
+		if(2)
+			return PEN_PART_MULT_MEDIUM
+		if(3)
+			return PEN_PART_MULT_HEAVY
+		if(4)
+		// [/SURREALIS-EDIT]
 			return PEN_PART_MULT_BSTEEL
 	return 1
 

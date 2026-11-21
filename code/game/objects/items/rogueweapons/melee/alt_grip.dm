@@ -122,7 +122,10 @@
 /obj/item/proc/format_altgrip_intent(intent_entry)
 	var/intent_name = "Unknown"
 	var/damfactor = 1
-	var/penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// var/penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	var/penfactor = 0
+	// [/SURREALIS-EDIT]
 	var/reach = 1
 	var/item_d_type = "blunt"
 	if(ispath(intent_entry, /datum/intent))
@@ -142,8 +145,11 @@
 	var/list/details = list("[intent_name]")
 	if(damfactor != 1)
 		details += "Damage x[damfactor]"
-	if(penfactor > PEN_NONE)
-		details += "AP [colorgrade_rating(uppertext(item_d_type), penfactor)]"
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(penfactor > PEN_NONE) // SURREALIS-EDIT - ORIGINAL
+	if(penfactor > 0)
+		details += "AP [uppertext(item_d_type)] [round(penfactor * INTENT_BASE_AP)] + [round(penfactor, 0.01)]x stat bonus"
+	// [/SURREALIS-EDIT]
 	else
 		details += "AP <font color='#808080'>NONE</font>"
 	if(reach != 1)

@@ -90,7 +90,10 @@
 		bleed_rate = FALSE
 	if(bleed_rate)
 		bleed(bleed_rate)
-	else if(blood_volume < BLOOD_VOLUME_NORMAL)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// else if(blood_volume < BLOOD_VOLUME_NORMAL) // SURREALIS-EDIT - ORIGINAL
+	else if(blood_volume < BLOOD_VOLUME_NORMAL && stat != DEAD)
+	// [/SURREALIS-EDIT]
 		blood_volume = min(blood_volume + 1, BLOOD_VOLUME_NORMAL)
 
 	// Non-vampiric bloodpool regen.
@@ -121,7 +124,10 @@
 			return
 
 	//Blood regeneration if there is some space
-	if(blood_volume < BLOOD_VOLUME_NORMAL && blood_volume)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(blood_volume < BLOOD_VOLUME_NORMAL && blood_volume) // SURREALIS-EDIT - ORIGINAL
+	if(blood_volume < BLOOD_VOLUME_NORMAL && blood_volume && stat != DEAD)
+	// [/SURREALIS-EDIT]
 		var/nutrition_ratio = 1
 //			switch(nutrition)
 //				if(0 to NUTRITION_LEVEL_STARVING)
@@ -187,16 +193,38 @@
 						remove_status_effect(/datum/status_effect/debuff/bleeding)
 						remove_status_effect(/datum/status_effect/debuff/bleedingworse)
 
-			if(blood_volume <= BLOOD_VOLUME_BAD)
+			// [SURREALIS-ADD] - VRCOMBAT
+			var/soft_crit_threshold = clamp(BLOOD_VOLUME_SURVIVE - ((STACON - 10) * 10), 40, 200)
+			// [/SURREALIS-ADD]
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// if(blood_volume <= BLOOD_VOLUME_BAD) // SURREALIS-EDIT - ORIGINAL
+			// Health is now maxHealth - max(tox, oxy), so blood-loss oxy damage is lethal; bloodloss-immune mobs must skip it entirely.
+			if(blood_volume <= BLOOD_VOLUME_BAD && !HAS_TRAIT(src, TRAIT_BLOODLOSS_IMMUNE))
+			// [/SURREALIS-EDIT]
 				if(mind && !has_status_effect(/datum/status_effect/debuff/critwounded)) //check if we have a mind and lack the status effect before we do our trait condition check. - So every NPC isn't running this.
+					// [SURREALIS-REMOVE] - VRCOMBAT
+					/*
 					if(!HAS_TRAIT(src, TRAIT_BLOODLOSS_IMMUNE)) //uniquely undeath rituos users/vampires don't care for bloodloss, they do on arteries though.
-						apply_status_effect(/datum/status_effect/debuff/critwounded) //apply critically wounded - more energy in cmode cost. Until fixed.
+					*/
+					// [/SURREALIS-REMOVE]
+					apply_status_effect(/datum/status_effect/debuff/critwounded) //apply critically wounded - more energy in cmode cost. Until fixed.
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// SURREALIS-EDIT - ORIGINAL
+				/*
 				var/oxy_amt = blood_volume <= BLOOD_VOLUME_SURVIVE ? 3 : 1
 				if(!mind)
 					oxy_amt *= 3
 					if(has_status_effect(/datum/status_effect/debuff/bloody_mess))
 						oxy_amt *= 6
 				adjustOxyLoss(oxy_amt)
+				*/
+				if(blood_volume <= 40)
+					adjustOxyLoss(2)
+				else if(blood_volume <= soft_crit_threshold)
+					adjustOxyLoss(0.4)
+				else
+					adjustOxyLoss(0.2)
+				// [/SURREALIS-EDIT]
 				if(world.time >= last_gasp)
 					last_gasp = world.time + rand(3 SECONDS, 9 SECONDS)
 					if(ishuman(src))
@@ -207,19 +235,33 @@
 							if(prob(50)) // mostly to halve the potential chatlog spam, we don't care if it never appears or always appear, on the former, tough luck, on the latter, drama queen
 								H.emote(pick("struggles to breathe, deathly pale!"))
 
-			else if((blood_volume > BLOOD_VOLUME_SURVIVE) || HAS_TRAIT(src, TRAIT_BLOODLOSS_IMMUNE))
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// else if((blood_volume > BLOOD_VOLUME_SURVIVE) || HAS_TRAIT(src, TRAIT_BLOODLOSS_IMMUNE)) // SURREALIS-EDIT - ORIGINAL
+			else if((blood_volume > soft_crit_threshold) || HAS_TRAIT(src, TRAIT_BLOODLOSS_IMMUNE))
+			// [/SURREALIS-EDIT]
 				if(getOxyLoss())
 					adjustOxyLoss(-1.6)
 
 	//Bleeding out
 	for(var/obj/item/bodypart/bodypart as anything in bodyparts)
 		if(bodypart.bandage && !HAS_BLOOD_DNA(bodypart.bandage))
-			bodypart.process_bandage(bodypart.bleeding)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// bodypart.process_bandage(bodypart.bleeding) // SURREALIS-EDIT - ORIGINAL
+			bodypart.process_bandage()
+			// [/SURREALIS-EDIT]
 	bleed_rate = get_bleed_rate() // expensive proc, but we zero it on bled-out mobs
 	if(HAS_TRAIT(src, TRAIT_ADRENALINE_RUSH))
 		bleed_rate = FALSE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(bleed_rate) // SURREALIS-EDIT - ORIGINAL
+	// 	bleed(bleed_rate) // SURREALIS-EDIT - ORIGINAL
 	if(bleed_rate)
-		bleed(bleed_rate)
+		var/hidden_part = min(hidden_bleed_rate, bleed_rate)
+		if(bleed_rate - hidden_part > 0)
+			bleed(bleed_rate - hidden_part)
+		if(hidden_part > 0)
+			bleed(hidden_part, internal = TRUE)
+	// [/SURREALIS-EDIT]
 
 	// Non-vampiric bloodpool regen.
 	// We assume that in non-vampires bloodpool represents "usable" blood that is regenerated slower than blood_volume
@@ -238,24 +280,142 @@
 	return bleed_rate
 
 /mob/living/carbon/get_bleed_rate()
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	var/bleed_rate = 0
+	*/
+	// [/SURREALIS-REMOVE]
 	if (!blood_volume) // if we have no blood, we can't rightly bleed, can we?
 		return 0
 	if(NOBLOOD in dna?.species?.species_traits)
 		return 0
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	for(var/obj/item/bodypart/bodypart as anything in bodyparts)
 		bleed_rate += bodypart.get_bleed_rate()
 	return bleed_rate
+	*/
+	if(bleed_cache_dirty)
+		recalculate_bleed_cache()
+	var/normal_bleed = cached_normal_bleed
+	var/critical_bleed = cached_critical_bleed
+	var/internal_bleed = cached_internal_bleed
+	var/hidden_bleed = cached_hidden_bleed
+	hidden_bleed_rate = 0
+	internal_bleed_rate = 0
+	if(cached_grab_suppression != 1)
+		normal_bleed *= cached_grab_suppression
+		critical_bleed *= cached_grab_suppression * 0.5
+		internal_bleed *= cached_grab_suppression * 0.5
+	var/external_bleed = normal_bleed + critical_bleed
+	var/inner_bleed = internal_bleed + hidden_bleed
+	if(external_bleed + inner_bleed <= 0)
+		return 0
+	var/inner_factor = 1
+	if(in_hypotensive_shock())
+		// Shock slows bleeding to a trickle.
+		external_bleed *= SHOCK_BLEED_FRACTION
+		inner_factor = SHOCK_INTERNAL_BLEED_FRACTION
+		if(critical_bleed + internal_bleed > 0)
+			external_bleed += SHOCK_BLEED_FLAT
+		else if(hidden_bleed > 0)
+			hidden_bleed += SHOCK_BLEED_FLAT / inner_factor
+	else if(blood_volume < BLOOD_VOLUME_NORMAL)
+		var/blood_pressure = blood_volume / BLOOD_VOLUME_NORMAL
+		external_bleed *= blood_pressure ** CONSCIOUS_BLEED_PRESSURE_EXPONENT
+		inner_factor = blood_pressure ** CONSCIOUS_INTERNAL_BLEED_PRESSURE_EXPONENT
+	var/total_bleed = external_bleed + (internal_bleed + hidden_bleed) * inner_factor
+	if(total_bleed <= 0.1)
+		return 0
+	hidden_bleed_rate = hidden_bleed * inner_factor
+	internal_bleed_rate = internal_bleed * inner_factor
+	return total_bleed
+
+/// Checks for hypotensive shock.
+/mob/living/carbon/proc/in_hypotensive_shock()
+	return (blood_volume <= BLOOD_VOLUME_SURVIVE) || HAS_TRAIT(src, TRAIT_BP_CRASH)
+
+/mob/living/carbon/proc/invalidate_bleed_cache()
+	bleed_cache_dirty = TRUE
+
+/mob/living/carbon/proc/recalculate_bleed_cache()
+	var/total_normal = 0
+	var/total_critical = 0
+	var/total_internal = 0
+	var/total_hidden = 0
+	var/total_grab_suppress = 1
+	for(var/obj/item/bodypart/bodypart as anything in bodyparts)
+		var/normal = 0
+		var/critical = 0
+		var/internal = 0
+		var/hidden = 0
+		var/max_bleed = 0
+		var/plug_amount = 0
+		for(var/obj/item/embedded as anything in bodypart.embedded_objects)
+			plug_amount += embedded.embed_bleed_contribution
+		for(var/datum/wound/wound as anything in bodypart.wounds)
+			var/wound_bleed = wound.bleed_rate
+			if(!wound_bleed)
+				continue
+			if(plug_amount && istype(wound, /datum/wound/dynamic/puncture))
+				wound_bleed = max(wound_bleed - plug_amount, 0)
+			max_bleed = max(max_bleed, wound_bleed)
+			if(wound.is_hidden_bleed())
+				hidden += wound_bleed
+			else if(wound.internal_bleeding)
+				internal += wound_bleed
+			else if(wound.severity >= WOUND_SEVERITY_CRITICAL)
+				critical += wound_bleed
+			else
+				normal += wound_bleed
+		if(bodypart.is_clamped())
+			hidden = min(hidden, 0.5)
+		total_hidden += hidden
+		if(bodypart.is_bandaged())
+			if(!bodypart.try_bandage_expire())
+				continue
+		var/list/grabs = SANITIZE_LIST(bodypart.grabbedby)
+		for(var/obj/item/grabbing/grab in grabs)
+			total_grab_suppress *= grab.bleed_suppressing
+		if(bodypart.is_clamped())
+			normal = min(normal, 0.5)
+			critical = min(critical, 0.5)
+			internal = min(internal, 0.5)
+		total_normal += max(normal, 0)
+		total_critical += critical
+		total_internal += internal
+	cached_normal_bleed = total_normal
+	cached_critical_bleed = total_critical
+	cached_internal_bleed = total_internal
+	cached_hidden_bleed = total_hidden
+	cached_grab_suppression = total_grab_suppress
+	bleed_cache_dirty = FALSE
+	// [/SURREALIS-EDIT]
 
 //Makes a blood drop, leaking amt units of blood from the mob
-/mob/living/proc/bleed(amt)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/living/proc/bleed(amt) // SURREALIS-EDIT - ORIGINAL
+/mob/living/proc/bleed(amt, internal = FALSE)
+// [/SURREALIS-EDIT]
 	if(!blood_volume)
 		return FALSE
 	if(!iscarbon(src) && !HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
 		return FALSE
 
 	amt *= get_bleed_mod()
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// blood_volume = max(blood_volume - amt, 0) // SURREALIS-EDIT - ORIGINAL
+	var/old_volume = blood_volume
 	blood_volume = max(blood_volume - amt, 0)
+	if(old_volume > 0 && !blood_volume && stat != DEAD && !HAS_TRAIT(src, TRAIT_BLOODLOSS_IMMUNE) && !HAS_TRAIT(src, TRAIT_NODEATH))
+		to_chat(src, span_userdanger("The last of my lyfeblood ebbs from my ravaged body and soaks the cold earth below..."))
+		death()
+	// [/SURREALIS-EDIT]
+	// [SURREALIS-ADD] - VRCOMBAT
+	if(internal)
+		return TRUE
+	// [/SURREALIS-ADD]
 	record_round_statistic(STATS_BLOOD_SPILT, amt)
 	if(isturf(src.loc)) //Blood loss still happens in locker, floor stays clean
 		add_drip_floor(src.loc, amt)
@@ -273,7 +433,10 @@
 
 	return TRUE
 
-/mob/living/carbon/human/bleed(amt)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/living/carbon/human/bleed(amt) // SURREALIS-EDIT - ORIGINAL
+/mob/living/carbon/human/bleed(amt, internal = FALSE)
+// [/SURREALIS-EDIT]
 	amt *= physiology.bleed_mod
 	if(!(NOBLOOD in dna.species.species_traits))
 		return ..()
@@ -281,6 +444,9 @@
 
 /mob/living/proc/get_bleed_mod()
 	. = 1
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	if(HAS_TRAIT(src, TRAIT_CRITICAL_RESISTANCE))
 		. *= CRIT_RESISTANCE_EFFECTIVE_BLEEDRATE
 	else if(HAS_TRAIT(src, TRAIT_BLOOD_RESISTANCE))
@@ -291,6 +457,12 @@
 			. *= 2
 		var/conbonus = STACON - 10
 		. -= . * (conbonus * CONSTITUTION_BLEEDRATE_MOD)
+	*/
+	if(HAS_TRAIT(src, TRAIT_BLOOD_RESISTANCE))
+		. *= BLOOD_RESISTANCE_EFFECTIVE_BLEEDRATE
+	if(STACON < CONSTITUTION_BLEEDRATE_CAP && STACON != 10)
+		. -= . * ((STACON - 10) * CONSTITUTION_BLEEDRATE_MOD)
+	// [/SURREALIS-EDIT]
 	if(surrendering)
 		. /= 4
 	if(istype(has_status_effect(/datum/status_effect/buff/adrenaline_rush), /datum/status_effect/buff/adrenaline_rush/psydon))

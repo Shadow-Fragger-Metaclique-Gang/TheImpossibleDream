@@ -56,7 +56,11 @@
 		/datum/skill/craft/carpentry = SKILL_LEVEL_APPRENTICE, //apprentice to do some basic repairs around the inn if need be
 		/datum/skill/misc/music = SKILL_LEVEL_APPRENTICE,
 	)
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	tempo_capable = FALSE
+	*/
+	// [/SURREALIS-REMOVE]
 
 /datum/outfit/job/roguetown/innkeeper/basic/pre_equip(mob/living/carbon/human/H)
 	..()

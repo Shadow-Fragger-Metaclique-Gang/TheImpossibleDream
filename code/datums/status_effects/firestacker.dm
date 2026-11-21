@@ -155,7 +155,10 @@
 		qdel(src)
 		return TRUE
 
-	if(!on_fire)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(!on_fire) // SURREALIS-EDIT - ORIGINAL
+	if(!on_fire && owner.stat != DEAD)
+	// [/SURREALIS-EDIT]
 		return TRUE
 
 	if(owner.surrendering)
@@ -177,7 +180,11 @@
 		qdel(src)
 		return TRUE
 
-	deal_damage(wait)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// deal_damage(wait) // SURREALIS-EDIT - ORIGINAL
+	if(on_fire)
+		deal_damage(wait)
+	// [/SURREALIS-EDIT]
 
 /datum/status_effect/fire_handler/fire_stacks/proc/update_particles()
 	pass()

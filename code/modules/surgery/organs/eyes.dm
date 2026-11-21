@@ -74,7 +74,10 @@
 			eye_color = HMN.eye_color
 		if(HAS_TRAIT(HMN, TRAIT_NIGHT_VISION) && !lighting_alpha)
 			lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
-	for(var/datum/wound/facial/eyes/eye_wound as anything in M.get_wounds())
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// for(var/datum/wound/facial/eyes/eye_wound as anything in M.get_wounds()) // SURREALIS-EDIT - ORIGINAL
+	for(var/datum/wound/facial/eyes/eye_wound in M.get_wounds())
+	// [/SURREALIS-EDIT]
 		qdel(eye_wound)
 	M.update_tint()
 	owner.update_sight()

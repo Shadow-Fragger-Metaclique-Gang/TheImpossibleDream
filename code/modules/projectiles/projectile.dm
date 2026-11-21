@@ -118,7 +118,10 @@
 	var/nodamage = FALSE //Determines if the projectile will skip any damage inflictions
 	var/flag = "piercing" //Defines what armor to use when it hits things. Setting this to "blunt" might result in unexpected behavior (i.e. knockout on hit, figure out the root causes and excise it)
 	///How much armor this projectile pierces.
-	var/armor_penetration = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// var/armor_penetration = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	var/armor_penetration = AP_NONE
+	// [/SURREALIS-EDIT]
 	/// Multiplier for integrity damage dealt to armor. 1 is default. Higher = harder on armor.
 	var/intdamfactor = 1
 	var/projectile_type = /obj/projectile
@@ -174,7 +177,11 @@
 	/// Max tile distance for full damage.
 	var/max_range = 0
 	/// Falloff factor for damage. Multiplicative.
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	var/dam_falloff_factor = 1
+	*/
+	// [/SURREALIS-REMOVE]
 	var/suppress_effects_past_range = FALSE
 
 /obj/projectile/proc/handle_drop()
@@ -206,8 +213,14 @@
 	if(max_range && distance > max_range)
 		return ACC_RANGED_FLOOR
 	var/aim = aim_peak + aim_mod
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	if(distance > ACC_RANGED_VISUAL_REACH)
 		aim -= (distance - ACC_RANGED_VISUAL_REACH) * ACC_RANGED_FARSIGHT_PENALTY
+	*/
+	aim -= accuracy_falloff(distance) + farsight_penalty(distance)
+	// [/SURREALIS-EDIT]
 	if(crossed_z)
 		aim -= ACC_RANGED_ZCROSS_PENALTY
 	return max(ACC_RANGED_FLOOR, aim)
@@ -456,9 +469,18 @@
 #define FORCE_QDEL 3		//Force deletion.
 
 /obj/projectile/proc/process_hit(turf/T, atom/target, qdel_self, hit_something = FALSE)	//probably needs to be reworked entirely when pixel movement is done.
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	if(check_range(T))
 		if(damage)
 			damage = round(damage * dam_falloff_factor)
+	*/
+	if(apply_damage_falloff(T))
+		handle_drop()
+		qdel(src)
+		return hit_something
+	// [/SURREALIS-EDIT]
 
 	if(QDELETED(src) || !T || !target)		//We're done, nothing's left.
 		if((qdel_self == FORCE_QDEL) || ((qdel_self == QDEL_SELF) && !temporary_unstoppable_movement && !CHECK_BITFIELD(movement_type, UNSTOPPABLE)))

@@ -35,7 +35,10 @@
 	if(issimple(L))
 		return
 	var/armor_block = L.run_armor_check(BODY_ZONE_HEAD, "blunt", blade_dulling=BCLASS_BLUNT)
-	if(L.apply_damage(rand(5, 10), UNARMED_ATTACK, BODY_ZONE_HEAD, armor_block))
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(L.apply_damage(rand(5, 10), UNARMED_ATTACK, BODY_ZONE_HEAD, armor_block)) // SURREALIS-EDIT - ORIGINAL
+	if(L.apply_damage(L.armor_reduced_damage(rand(5, 10), armor_block, null), UNARMED_ATTACK, BODY_ZONE_HEAD, 0))
+	// [/SURREALIS-EDIT]
 		if(prob(25))
 			to_chat(L, span_danger("You're being assailed by an onslaught of hail!"))
 	else

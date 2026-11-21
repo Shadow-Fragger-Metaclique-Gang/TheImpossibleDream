@@ -23,12 +23,16 @@
 	var/draw_per_str = 0
 	var/arc_draw_extra = RANGED_ARC_DRAW_EXTRA
 	var/arc_draw_floor_extra = RANGED_ARC_DRAW_FLOOR_EXTRA
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	var/per_scales_damage = FALSE
 	var/per_damage_baseline = RANGED_PER_DAMAGE_BASELINE
 	var/per_damage_softcap = RANGED_PER_DAMAGE_SOFTCAP
 	var/per_damage_mult = RANGED_PER_DAMAGE_MULT
 	var/per_damage_cappedmult = RANGED_PER_DAMAGE_CAPPEDMULT
 	var/per_damage_floor = RANGED_PER_DAMAGE_FLOOR
+	*/
+	// [/SURREALIS-REMOVE]
 	var/draw_str_baseline = RANGED_DRAW_STR_BASELINE
 	var/uncharged_spread = RANGED_UNCHARGED_SPREAD
 	var/npc_spread_baseline_per = ARCHER_NPC_SPREAD_BASELINE
@@ -90,11 +94,14 @@
 	if(cost)
 		user.stamina_add(cost)
 
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 /obj/item/gun/ballistic/revolver/grenadelauncher/proc/get_per_damage_scaling(mob/living/user)
 	if(!user || !per_scales_damage)
 		return 1
 	return max(per_damage_floor, 1 + ((min(user.STAPER, per_damage_softcap) - per_damage_baseline) * per_damage_mult) + (max(0, user.STAPER - per_damage_softcap) * per_damage_cappedmult))
-
+*/
+// [/SURREALIS-REMOVE]
 /obj/item/gun/ballistic/revolver/grenadelauncher/proc/get_ranged_spread(mob/living/user)
 	if(!user)
 		return 0

@@ -9,7 +9,10 @@
 	var/damage = 50
 	var/strike_damage_type = BRUTE
 	var/blade_class = BCLASS_CUT
-	var/strike_armor_pen = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// var/strike_armor_pen = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	var/strike_armor_pen = AP_NONE
+	// [/SURREALIS-EDIT]
 	var/strike_intdamage_mult = 1
 	var/detonate_sound = 'sound/combat/newstuck.ogg'
 	var/strike_sound = 'sound/magic/blade_burst.ogg'

@@ -31,14 +31,25 @@
 	associated_skill = /datum/skill/magic/arcane
 	spell_tier = 2
 	spell_impact_intensity = SPELL_IMPACT_MEDIUM
+	// [SURREALIS-ADD] - VRCOMBAT
+	damage_variance = SPELL_VARIANCE_MID
+	// [/SURREALIS-ADD]
 
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_HUMAN
 
 	var/current_mode = 1
 	var/list/modes = list(
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		list("name" = "Arcyne Bolt", "tag" = "BOLT", "proj" = /obj/projectile/magic/greater_arcyne_bolt, "arc" = FALSE, "icon" = "greater_arcyne_bolt", "cost" = SPELLCOST_MINOR_PROJECTILE, "cooldown" = 5.5 SECONDS, "charge" = CHARGETIME_POKE, "slowdown" = CHARGING_SLOWDOWN_SMALL, "sound" = 'sound/magic/vlightning.ogg', "invocation" = "Magicae Sagitta!"),
 		list("name" = "Arced Bolt", "tag" = "ARC", "proj" = /obj/projectile/magic/greater_arcyne_bolt, "arc" = TRUE, "icon" = "greater_arcyne_bolt", "cost" = SPELLCOST_MINOR_PROJECTILE, "cooldown" = 5.5 SECONDS, "charge" = CHARGETIME_POKE, "slowdown" = CHARGING_SLOWDOWN_SMALL, "sound" = 'sound/magic/vlightning.ogg', "invocation" = "Magicae Sagitta!"),
 		list("name" = "Soulshot", "tag" = "BEAM", "proj" = /obj/projectile/magic/soulshot, "arc" = FALSE, "icon" = "soulshot", "cost" = SPELLCOST_MAJOR_PROJECTILE, "cooldown" = 12 SECONDS, "charge" = CHARGETIME_MAJOR, "slowdown" = CHARGING_SLOWDOWN_SMALL, "sound" = 'sound/magic/soulshot.ogg', "invocation" = "Animus Ictus!"),
+		*/
+		list("name" = "Arcyne Bolt", "tag" = "BOLT", "proj" = /obj/projectile/magic/greater_arcyne_bolt, "arc" = FALSE, "icon" = "greater_arcyne_bolt", "cost" = SPELLCOST_MINOR_PROJECTILE, "cooldown" = 5.5 SECONDS, "charge" = CHARGETIME_POKE, "slowdown" = CHARGING_SLOWDOWN_SMALL, "sound" = 'sound/magic/vlightning.ogg', "invocation" = "Magicae Sagitta!", "variance" = SPELL_VARIANCE_MID),
+		list("name" = "Arced Bolt", "tag" = "ARC", "proj" = /obj/projectile/magic/greater_arcyne_bolt, "arc" = TRUE, "icon" = "greater_arcyne_bolt", "cost" = SPELLCOST_MINOR_PROJECTILE, "cooldown" = 5.5 SECONDS, "charge" = CHARGETIME_POKE, "slowdown" = CHARGING_SLOWDOWN_SMALL, "sound" = 'sound/magic/vlightning.ogg', "invocation" = "Magicae Sagitta!", "variance" = SPELL_VARIANCE_MID),
+		list("name" = "Soulshot", "tag" = "BEAM", "proj" = /obj/projectile/magic/soulshot, "arc" = FALSE, "icon" = "soulshot", "cost" = SPELLCOST_MAJOR_PROJECTILE, "cooldown" = 12 SECONDS, "charge" = CHARGETIME_MAJOR, "slowdown" = CHARGING_SLOWDOWN_SMALL, "sound" = 'sound/magic/soulshot.ogg', "invocation" = "Animus Ictus!", "variance" = 0),
+		// [/SURREALIS-EDIT]
 	)
 
 /datum/action/cooldown/spell/projectile/basic_offensive/Grant(mob/grant_to)
@@ -56,6 +67,9 @@
 	charge_slowdown = mode["slowdown"]
 	sound = mode["sound"]
 	invocations = list(mode["invocation"])
+	// [SURREALIS-ADD] - VRCOMBAT
+	damage_variance = mode["variance"]
+	// [/SURREALIS-ADD]
 	build_all_button_icons()
 	update_mode_maptext(mode["tag"])
 

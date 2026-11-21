@@ -41,15 +41,6 @@
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
 	item_d_type = "stab"
 
-/datum/intent/claw/lunge/iron
-	damfactor = 1.2
-	swingdelay = 8
-	clickcd = CLICK_CD_MELEE
-	penfactor = PEN_HEAVY
-
-/datum/intent/claw/lunge/steel
-	damfactor = 1.2
-	swingdelay = 12
 
 //New or overwritten intents
 
@@ -66,38 +57,39 @@
 	damfactor = 1.2
 	swingdelay = 8
 	clickcd = CLICK_CD_MELEE
-	penfactor = PEN_HEAVY
+	penfactor = INTENT_PEN_SOLID
 
 /datum/intent/claw/lunge/steel
 	damfactor = 1.2
 	swingdelay = 12
 	clickcd = CLICK_CD_HEAVY
-	penfactor = PEN_HEAVY
+	penfactor = INTENT_PEN_KEEN
 
 /datum/intent/claw/lunge/gronn
 	damfactor = 1.1
 	swingdelay = 5
 	clickcd = CLICK_CD_QUICK
-	penfactor = PEN_HEAVY
+	penfactor = INTENT_PEN_KEEN
 
 /datum/intent/claw/cut/iron
-	penfactor = PEN_MEDIUM
+	penfactor = INTENT_PEN_GLANCING
 	damfactor = 1.1
 	clickcd = CLICK_CD_HEAVY
 
 /datum/intent/claw/cut/steel
-	penfactor = PEN_MEDIUM
+	penfactor = INTENT_PEN_BASIC
 	swingdelay = 4
 	damfactor = 1.3
 	clickcd = CLICK_CD_HEAVY
 
 /datum/intent/claw/cut/gronn
-	penfactor = PEN_MEDIUM
+	penfactor = INTENT_PEN_BASIC
 	swingdelay = 0
 	damfactor = 1.1
 	clickcd = CLICK_CD_MELEE
 	intent_intdamage_factor = 1
 
 /datum/intent/claw/rend/steel
+	penfactor = INTENT_PEN_NONE
 	damfactor = 3
 

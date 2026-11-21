@@ -13,6 +13,9 @@
 		I.funny_attack_effects(src, user)
 		if(I.force_dynamic)
 			var/newforce = get_complex_damage(I, user)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			var/pen = user.used_intent.penfactor
 			if(user.used_intent.out_of_effective_range(src, user))
 				pen = PEN_NONE
@@ -24,6 +27,16 @@
 			if(armor > 0)
 				nodmg = TRUE
 				next_attack_msg += VISMSG_ARMOR_BLOCKED
+			*/
+			var/armor_pen = melee_armor_penetration(I, user)
+			if(user.used_intent.out_of_effective_range(src, user))
+				armor_pen = 0
+				newforce *= EFF_RANGE_MISS_DAMFACTOR
+			var/haha = user.used_intent.item_d_type
+			var/armor = run_armor_check(null, haha, armor_penetration = armor_pen, damage = newforce, used_weapon = I)
+			var/nodmg = FALSE
+			next_attack_msg.Cut()
+			// [/SURREALIS-EDIT]
 			// Exposed/vulnerable bonus damage against simple animals
 			if(has_status_effect(/datum/status_effect/debuff/exposed))
 				newforce *= EXPOSED_INTEG_MOD
@@ -37,13 +50,23 @@
 				remove_status_effect(/datum/status_effect/debuff/vulnerable)
 			newforce *= weakpoint_damage_mod(selzone)
 			newforce *= I.antibeast_factor
-			apply_damage(newforce, I.damtype, hitlim, armor)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// apply_damage(newforce, I.damtype, hitlim, armor) // SURREALIS-EDIT - ORIGINAL
+			var/reduced_force = armor_reduced_damage(newforce, armor, null)
+			if(!reduced_force)
+				nodmg = TRUE
+				next_attack_msg += VISMSG_ARMOR_BLOCKED
+			apply_damage(reduced_force, I.damtype, hitlim, 0)
+			// [/SURREALIS-EDIT]
 			I.remove_bintegrity(1)
 			if(I.damtype == BRUTE && !nodmg)
 				if(HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
 					if((I.is_silver || (I.is_even_lesser_silver && is_npc(src))) && HAS_TRAIT(src, TRAIT_SILVER_WEAK))
 						newforce *= SILVER_SIMPLEMOB_DAM_MULT
-					simple_woundcritroll(user.used_intent.blade_class, newforce, user, selzone, weapon = I, penfactor = pen, part_mult = user.used_intent.get_part_damage_factor())
+					// [SURREALIS-EDIT] - VRCOMBAT
+					// simple_woundcritroll(user.used_intent.blade_class, newforce, user, selzone, weapon = I, penfactor = pen, part_mult = user.used_intent.get_part_damage_factor()) // SURREALIS-EDIT - ORIGINAL
+					simple_woundcritroll(user.used_intent.blade_class, newforce, user, selzone, weapon = I, penfactor = AP_TO_PEN_TIER(armor_pen), part_mult = user.used_intent.get_part_damage_factor())
+					// [/SURREALIS-EDIT]
 				if(newforce > 5)
 					if(haha != BCLASS_BLUNT)
 						I.add_mob_blood(src)
@@ -137,7 +160,10 @@
 			attack_threshold_check(damage, hitlim, armorcheck = armor)
 			log_combat(M, src, "attacked")
 			updatehealth()
-			simple_woundcritroll(M.used_intent.blade_class, damage, M, selzone, penfactor = M.used_intent.penfactor, part_mult = M.used_intent.get_part_damage_factor())
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// simple_woundcritroll(M.used_intent.blade_class, damage, M, selzone, penfactor = M.used_intent.penfactor, part_mult = M.used_intent.get_part_damage_factor()) // SURREALIS-EDIT - ORIGINAL
+			simple_woundcritroll(M.used_intent.blade_class, damage, M, selzone, penfactor = AP_TO_PEN_TIER(M.used_intent.penfactor), part_mult = M.used_intent.get_part_damage_factor())
+			// [/SURREALIS-EDIT]
 			visible_message(span_danger("[M] [atk_verb] [src] in the [span_combatsecondarybp(hitlim)]![next_attack_msg.Join()]"),\
 							span_danger("[M] [atk_verb] me in the [span_userdanger(hitlim)]![next_attack_msg.Join()]"), null, COMBAT_MESSAGE_RANGE)
 			next_attack_msg.Cut()
@@ -162,7 +188,10 @@
 				var/mob/living/target_collateral_mob
 				var/obj/structure/table/target_table
 				var/shove_blocked = FALSE //Used to check if a shove is blocked so that if it is knockdown logic can be applied
-				if(prob(30 + generic_stat_comparison(user.STASTR, target.STACON) ))//check if we actually shove them
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// if(prob(30 + generic_stat_comparison(user.STASTR, target.STACON) ))//check if we actually shove them // SURREALIS-EDIT - ORIGINAL
+				if(get_stat_roll(user.STASTR) >= get_stat_roll(target.STACON) + 4)//check if we actually shove them
+				// [/SURREALIS-EDIT]
 					target_collateral_mob = locate(/mob/living) in target_shove_turf.contents
 					if(target_collateral_mob)
 						shove_blocked = TRUE
@@ -251,7 +280,10 @@
 			next_attack_msg += VISMSG_ARMOR_BLOCKED
 		damage *= weakpoint_damage_mod(selzone)
 		attack_threshold_check(damage, hitlim, M.melee_damage_type, armor)
-		simple_woundcritroll(M.a_intent.blade_class, damage, M, selzone, penfactor = M.a_intent.penfactor, part_mult = M.a_intent.get_part_damage_factor())
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// simple_woundcritroll(M.a_intent.blade_class, damage, M, selzone, penfactor = M.a_intent.penfactor, part_mult = M.a_intent.get_part_damage_factor()) // SURREALIS-EDIT - ORIGINAL
+		simple_woundcritroll(M.a_intent.blade_class, damage, M, selzone, penfactor = AP_TO_PEN_TIER(M.armor_penetration), part_mult = M.a_intent.get_part_damage_factor())
+		// [/SURREALIS-EDIT]
 		var/attack_verb = pick(M.a_intent.attack_verb)
 		visible_message(span_danger("\The [M] [attack_verb] [src] in the [span_combatsecondarybp(hitlim)]![next_attack_msg.Join()]"), \
 					span_danger("\The [M] [attack_verb] me in the [span_userdanger(hitlim)]![next_attack_msg.Join()]"), null, COMBAT_MESSAGE_RANGE)
@@ -300,7 +332,10 @@
 	var/armor = run_armor_check(null, "stab", armor_penetration = 0, damage = damage)
 	if(armor > 0)
 		user.next_attack_msg += VISMSG_ARMOR_BLOCKED
-	if(src.apply_damage(damage, BRUTE, hitlim, armor))
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(src.apply_damage(damage, BRUTE, hitlim, armor)) // SURREALIS-EDIT - ORIGINAL
+	if(src.apply_damage(src.armor_reduced_damage(damage, armor, null), BRUTE, hitlim, 0))
+	// [/SURREALIS-EDIT]
 		if(istype(user, /mob/living/carbon/human/species/werewolf))
 			visible_message(span_danger("The werewolf bites into [src] and thrashes!"))
 		else
@@ -358,7 +393,10 @@
 		visible_message(span_warning("[src] looks unharmed!"))
 		return FALSE
 	else
-		apply_damage(damage, damagetype, bodypart, armorcheck)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// apply_damage(damage, damagetype, bodypart, armorcheck) // SURREALIS-EDIT - ORIGINAL
+		apply_damage(armor_reduced_damage(damage, armorcheck, null), damagetype, bodypart, 0)
+		// [/SURREALIS-EDIT]
 		return TRUE
 
 /mob/living/simple_animal/ex_act(severity, target, epicenter, extreme_impact_range, heavy_impact_range, light_impact_range, flame_range)

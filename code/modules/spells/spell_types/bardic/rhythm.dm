@@ -195,8 +195,15 @@
 
 /datum/action/cooldown/spell/rhythm/resonating/apply_rhythm(mob/living/target, mob/living/user)
 	var/def_zone = user.zone_selected || BODY_ZONE_CHEST
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	var/armor_block = target.run_armor_check(def_zone, "slash", armor_penetration = PEN_NONE, damage = RHYTHM_RESONATING_DAMAGE)
 	target.apply_damage(RHYTHM_RESONATING_DAMAGE, BRUTE, def_zone, armor_block)
+	*/
+	var/armor_block = target.run_armor_check(def_zone, "slash", armor_penetration = AP_NONE, damage = RHYTHM_RESONATING_DAMAGE)
+	target.apply_damage(target.armor_reduced_damage(RHYTHM_RESONATING_DAMAGE, armor_block, null), BRUTE, def_zone, 0)
+	// [/SURREALIS-EDIT]
 	new /obj/effect/temp_visual/kinetic_blast(get_turf(target))
 	target.balloon_alert_to_viewers("resonant strike - [parse_zone(def_zone)]!")
 	..()

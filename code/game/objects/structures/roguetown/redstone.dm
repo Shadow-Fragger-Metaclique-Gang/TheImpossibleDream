@@ -193,7 +193,10 @@ GLOBAL_LIST_EMPTY(redstone_objs)
 		L.changeNext_move(CLICK_CD_MELEE)
 		user.visible_message("<span class='warning'>[user] kicks the lever!</span>")
 		playsound(src, 'sound/combat/hits/onwood/woodimpact (1).ogg', 100)
-		if(prob(L.STASTR * 4))
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// if(prob(L.STASTR * 4)) // SURREALIS-EDIT - ORIGINAL
+		if(get_stat_roll(L.STASTR) >= 13)
+		// [/SURREALIS-EDIT]
 			for(var/obj/structure/O in redstone_attached)
 				spawn(0) O.redstone_triggered()
 			toggled = !toggled

@@ -32,6 +32,9 @@
 
 	associated_skill = /datum/skill/magic/arcane
 	spell_impact_intensity = SPELL_IMPACT_MEDIUM
+	// [SURREALIS-ADD] - VRCOMBAT
+	damage_variance = SPELL_VARIANCE_MID
+	// [/SURREALIS-ADD]
 
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_HUMAN
 
@@ -49,9 +52,18 @@
 	intdamfactor = SPELL_INTDAM(1)
 	spell_damage_scaled = TRUE
 	damage_type = BURN
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	nodamage = FALSE
 	speed = 0.3
 	flag = "fire"
+	*/
+	woundclass = BCLASS_ELECTRICAL
+	nodamage = FALSE
+	speed = 0.3
+	flag = "electrical"
+	// [/SURREALIS-EDIT]
 	light_outer_range = 7
 
 /obj/projectile/magic/lightning/on_hit(target, blocked = FALSE)

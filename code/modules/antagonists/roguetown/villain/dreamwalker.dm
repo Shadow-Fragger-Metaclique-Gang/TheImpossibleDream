@@ -16,7 +16,11 @@
 		"HIS FORM IS MAGNICIFENT!",
 	)
 	rogue_enabled = TRUE
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	has_tempo = TRUE
+	*/
+	// [/SURREALIS-REMOVE]
 
 	var/traits_dreamwalker = list(
 		TRAIT_NOHUNGER,

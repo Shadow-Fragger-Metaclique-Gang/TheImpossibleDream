@@ -33,7 +33,11 @@
 		"Stashed Funds" = /obj/item/roguecoin/silver/pile/wretchpile,
 	)
 
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	tempo_capable = TRUE
+	*/
+	// [/SURREALIS-REMOVE]
 
 /datum/outfit/job/roguetown/wretch/profane_champion
 	has_loadout = TRUE

@@ -8,7 +8,10 @@
 	Returns
 	standard 0 if fail
 */
-/mob/living/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, forced = FALSE, spread_damage = FALSE)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/living/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, forced = FALSE, spread_damage = FALSE) // SURREALIS-EDIT - ORIGINAL
+/mob/living/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, forced = FALSE, spread_damage = FALSE, bclass = null, wounds_handled = FALSE)
+// [/SURREALIS-EDIT]
 	var/signal_result = SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone)
 	if(signal_result & COMPONENT_DAMAGE_HANDLED)
 		return 0
@@ -151,7 +154,10 @@
 /mob/living/proc/getBruteLoss()
 	return bruteloss
 
-/mob/living/proc/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/living/proc/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_status) // SURREALIS-EDIT - ORIGINAL
+/mob/living/proc/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_status, bclass = null)
+// [/SURREALIS-EDIT]
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 
@@ -183,6 +189,10 @@
 	. = oxyloss
 	oxyloss = CLAMP((oxyloss + (amount * CONFIG_GET(number/damage_multiplier))), 0, maxHealth * 2)
 	. -= oxyloss
+	// [SURREALIS-ADD] - VRCOMBAT
+	if(choke_oxyloss > oxyloss)
+		choke_oxyloss = oxyloss
+	// [/SURREALIS-ADD]
 
 	// [SURREALIS-EDIT] - PLASMA_OPTS
 	// if(updating_health) // SURREALIS-EDIT - ORIGINAL
@@ -202,11 +212,32 @@
 	*/
 	var/old_oxyloss = oxyloss
 	oxyloss = amount
+	if(choke_oxyloss > oxyloss)
+		choke_oxyloss = oxyloss
 	if(updating_health && oxyloss != old_oxyloss)
 	// [/SURREALIS-EDIT]
 		updatehealth()
 	return amount
 
+// [SURREALIS-ADD] - VRCOMBAT
+/mob/living/proc/adjustChokeOxyLoss(amount, updating_health = TRUE, forced = FALSE)
+	var/before = oxyloss
+	. = adjustOxyLoss(amount, updating_health, forced)
+	if(amount <= 0)
+		return
+	var/applied = oxyloss - before
+	if(applied > 0)
+		choke_oxyloss = min(choke_oxyloss + applied, oxyloss)
+		choke_oxy_active = TRUE
+
+/mob/living/proc/handle_choke_recovery()
+	if(choke_oxyloss > 0 && !choke_oxy_active)
+		var/heal = min(CHOKE_OXY_RECOVERY_PER_TICK, choke_oxyloss)
+		choke_oxyloss -= heal
+		adjustOxyLoss(-heal)
+	choke_oxy_active = FALSE
+
+// [/SURREALIS-ADD]
 /mob/living/proc/getToxLoss()
 	return toxloss
 
@@ -244,7 +275,10 @@
 /mob/living/proc/getFireLoss()
 	return fireloss
 
-/mob/living/proc/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/living/proc/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE) // SURREALIS-EDIT - ORIGINAL
+/mob/living/proc/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE, bclass = null)
+// [/SURREALIS-EDIT]
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 
@@ -329,7 +363,10 @@
 		updatehealth()
 
 // damage ONE external organ, organ gets randomly selected from damaged ones.
-/mob/living/proc/take_bodypart_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status, check_armor = FALSE)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/living/proc/take_bodypart_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status, check_armor = FALSE) // SURREALIS-EDIT - ORIGINAL
+/mob/living/proc/take_bodypart_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status, check_armor = FALSE, bclass = null)
+// [/SURREALIS-EDIT]
 	// [SURREALIS-ADD] - PLASMA_OPTS
 	var/old_damage = getBruteLoss() + getFireLoss() + getStaminaLoss()
 	// [/SURREALIS-ADD]
@@ -374,7 +411,10 @@
 		updatehealth()
 
 // damage MANY bodyparts, in random order
-/mob/living/proc/take_overall_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status = null)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/living/proc/take_overall_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status = null) // SURREALIS-EDIT - ORIGINAL
+/mob/living/proc/take_overall_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status = null, bclass = null)
+// [/SURREALIS-EDIT]
 	// [SURREALIS-ADD] - PLASMA_OPTS
 	var/old_damage = getBruteLoss() + getFireLoss() + getStaminaLoss()
 	// [/SURREALIS-ADD]

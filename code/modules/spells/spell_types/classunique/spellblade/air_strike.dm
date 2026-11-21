@@ -37,7 +37,10 @@
 
 	var/cut_damage = 30
 	var/stab_damage = 20
-	var/stab_ap = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// var/stab_ap = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	var/stab_ap = AP_LIGHT
+	// [/SURREALIS-EDIT]
 	var/blunt_damage = 45
 	var/empowered_mult = 2
 	var/momentum_cost = 3

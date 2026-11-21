@@ -104,6 +104,10 @@
 		var/obj/item/rogueweapon/best_implement = get_held_implement(user)
 		best_implement?.attune_implement(spell_color, attunement_school)
 
+	// [SURREALIS-ADD] - VRCOMBAT
+	to_fire.damage = get_varied_damage(to_fire.damage, user)
+
+	// [/SURREALIS-ADD]
 	to_fire.preparePixelProjectile(target, user)
 
 	// Register hit signal so the spell knows when the projectile connects
@@ -157,10 +161,23 @@
 	// Auto-display projectile damage
 	var/proj_damage = initial(projectile_type.damage)
 	if(proj_damage > 0)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		if(projectiles_per_fire > 1)
 			stats += span_info("Damage: [proj_damage] x[projectiles_per_fire]")
 		else
 			stats += span_info("Damage: [proj_damage]")
+		*/
+		var/list/bounds = get_damage_bounds(proj_damage, user)
+		var/damage_text = bounds[1] == bounds[2] ? "[bounds[1]]" : "[bounds[1]]-[bounds[2]]"
+		if(projectiles_per_fire > 1)
+			damage_text += " x[projectiles_per_fire]"
+		stats += span_info("Damage: [damage_text]")
+		var/element_line = spell_element_line(initial(projectile_type.flag))
+		if(element_line)
+			stats += element_line
+		// [/SURREALIS-EDIT]
 	if(projectile_type_arc)
 		stats += span_info("Arc Mode (toggle with Shift+G): lobs the shot across elevations - aim at a target a level above or below, or at an opening over them.")
 	return stats

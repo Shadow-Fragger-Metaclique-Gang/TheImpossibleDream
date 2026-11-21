@@ -212,7 +212,10 @@
 	animname = "cut"
 	blade_class = BCLASS_CHOP
 	hitsound = list('sound/mobs/abyssal/abyssal_attack.ogg','sound/mobs/abyssal/abyssal_attack2.ogg')
-	penfactor = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 
 // EVENT mobs and mappable mobs. (USE SPARINGLY)
 /mob/living/simple_animal/hostile/rogue/dreamfiend/unbound

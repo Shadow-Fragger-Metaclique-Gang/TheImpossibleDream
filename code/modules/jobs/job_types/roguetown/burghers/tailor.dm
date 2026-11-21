@@ -45,7 +45,11 @@
 		/datum/skill/labor/farming = SKILL_LEVEL_NOVICE,
 		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
 	)
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	tempo_capable = FALSE
+	*/
+	// [/SURREALIS-REMOVE]
 
 /datum/outfit/job/roguetown/tailor/basic/pre_equip(mob/living/carbon/human/H)
 	..()

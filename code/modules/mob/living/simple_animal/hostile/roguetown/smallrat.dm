@@ -92,7 +92,10 @@
 		if(isturf(loc))
 			if(isliving(user))
 				var/mob/living/L = user
-				if(prob(L.STASPD * 1.5))
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// if(prob(L.STASPD * 1.5)) // SURREALIS-EDIT - ORIGINAL
+				if(get_stat_roll(L.STASPD) >= 12)
+				// [/SURREALIS-EDIT]
 					..()
 				else
 					dir = pick(GLOB.cardinals)
@@ -139,7 +142,10 @@
 	if(!dead)
 		if(isliving(user))
 			var/mob/living/L = user
-			if(prob(L.STASPD * 2))
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// if(prob(L.STASPD * 2)) // SURREALIS-EDIT - ORIGINAL
+			if(get_stat_roll(L.STASPD) >= 10)
+			// [/SURREALIS-EDIT]
 				..()
 			else
 				if(isturf(loc))

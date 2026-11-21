@@ -72,9 +72,14 @@
 
 	var/datum/class_age_mod/age_mod = null
 
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	var/class_tempo_faction = null
 
 	var/tempo_capable = TRUE
+	*/
+
+	// [/SURREALIS-REMOVE]
 
 /datum/advclass/New()
 	if(ispath(age_mod) && !istype(age_mod))
@@ -229,8 +234,12 @@
 		SScrediticons.processing[H.ckey] = TRUE
 	if(cmode_music)
 		H.cmode_music = cmode_music
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	if(class_tempo_faction)
 		H.tempo_faction_flag = class_tempo_faction
+	*/
+	// [/SURREALIS-REMOVE]
 
 /*
 	Whoa! we are checking requirements here!

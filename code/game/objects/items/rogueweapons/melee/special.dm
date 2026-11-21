@@ -6,7 +6,10 @@
 	animname = "cut"
 	blade_class = BCLASS_CUT
 	hitsound = list('sound/combat/hits/bladed/smallslash (1).ogg', 'sound/combat/hits/bladed/smallslash (2).ogg', 'sound/combat/hits/bladed/smallslash (3).ogg')
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]
 	chargetime = 0
 	swingdelay = 0
 	damfactor = 1.2
@@ -20,7 +23,10 @@
 	animname = "stab"
 	blade_class = BCLASS_STAB
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
-	penfactor = PEN_MEDIUM // This make them good vs other light armor users
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // This make them good vs other light armor users // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2 // This make them good vs other light armor users
+	// [/SURREALIS-EDIT]
 	// So they don't need extra bonus damage on top
 	chargetime = 0
 	clickcd = CLICK_CD_QUICK
@@ -35,7 +41,10 @@
 	clickcd = CLICK_CD_QUICK //Same speed as a katar, but with reduced penetration and half-damage. Main appeal's the chopper.
 
 /datum/intent/katar/thrust/arbelos
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]
 	damfactor = 0.8
 	clickcd = CLICK_CD_QUICK //Slower than a regular thrust, with slightly less penetration and damage. Inverse to the katar.
 
@@ -44,7 +53,10 @@
 	blade_class = BCLASS_BLUNT
 	icon_state = "inbash"
 	attack_verb = list("bashes", "strikes")
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	item_d_type = "blunt"
 	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
@@ -354,7 +366,10 @@
 	clickcd = CLICK_CD_FAST //Same speed as a katar, but with reduced penetration and half-damage. Main appeal's the chopper.
 
 /datum/intent/katar/thrust/arbelos
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]
 	damfactor = 0.8
 	clickcd = CLICK_CD_QUICK //Slower than a regular thrust, with slightly less penetration and damage. Inverse to the katar.
 
@@ -995,13 +1010,19 @@
 	blade_class = BCLASS_CHOP
 	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
 	item_d_type = "slash"
-	penfactor = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 	damfactor = 1.1
 	swingdelay = 10
 	clickcd = CLICK_CD_HEAVY
 
 /datum/intent/claw/chop/gronn
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	damfactor = 0.7
 	intent_intdamage_factor = 3
 	swingdelay = 11
@@ -1015,7 +1036,10 @@
 	blade_class = BCLASS_CUT
 	hitsound = list('sound/combat/hits/bladed/smallslash (1).ogg', 'sound/combat/hits/bladed/smallslash (2).ogg', 'sound/combat/hits/bladed/smallslash (3).ogg')
 	item_d_type = "slash"
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]
 	damfactor = 0.8
 	clickcd = CLICK_CD_MELEE
 
@@ -1031,7 +1055,10 @@
 	animname = "cut"
 	blade_class = BCLASS_CHOP
 	reach = 1
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	swingdelay = 20
 	damfactor = 2.5
 	clickcd = CLICK_CD_HEAVY
@@ -1049,7 +1076,10 @@
 	You will steal their form... assuming a mortal could easily assume their shape. " + span_info("Skinthiefing will not work on constructs, gnolls, or most NPCs.")
 	icon_state = "inpeculate"
 	attack_verb = list("steals", "peculates", "skinthiefs")
-	max_intent_damage = 0
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// max_intent_damage = 0 // SURREALIS-EDIT - ORIGINAL
+	damfactor = 0
+	// [/SURREALIS-EDIT]
 
 
 /datum/intent/peculate/examine(mob/user)

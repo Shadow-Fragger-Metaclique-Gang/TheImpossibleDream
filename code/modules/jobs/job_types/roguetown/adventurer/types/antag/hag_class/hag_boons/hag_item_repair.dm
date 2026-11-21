@@ -52,7 +52,10 @@
 		// 1% Repair & Sharpening
 		var/needs_update = FALSE
 		if(I.obj_integrity < I.max_integrity)
-			I.obj_integrity = min(I.obj_integrity + (I.max_integrity * 0.01), I.max_integrity)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// I.obj_integrity = min(I.obj_integrity + (I.max_integrity * 0.01), I.max_integrity) // SURREALIS-EDIT - ORIGINAL
+			I.adjust_integrity(I.max_integrity * 0.01)
+			// [/SURREALIS-EDIT]
 			needs_update = TRUE
 
 		if(I.blade_int < I.max_blade_int)
@@ -103,6 +106,9 @@
 
 	I.visible_message(span_notice("The roots within the [I] knit back together, drinking vitality from the ground."))
 	I.obj_fix()
-	I.obj_integrity = I.max_integrity * 0.25
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// I.obj_integrity = I.max_integrity * 0.25 // SURREALIS-EDIT - ORIGINAL
+	I.set_integrity_fraction(0.25)
+	// [/SURREALIS-EDIT]
 	I.update_icon()
 	reconstruction_timers -= I

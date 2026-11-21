@@ -130,7 +130,10 @@ It will also call down lightning strikes from the sky, and fling people with it'
 	animname = "cut"
 	blade_class = BCLASS_CHOP
 	hitsound = "genslash"
-	penfactor = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	penfactor = 3
+	// [/SURREALIS-EDIT]
 	damfactor = 40
 	candodge = TRUE
 	canparry = TRUE

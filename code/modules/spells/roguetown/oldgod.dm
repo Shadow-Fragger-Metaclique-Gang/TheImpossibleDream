@@ -1046,6 +1046,10 @@
 /proc/translate_wound_for_target(datum/wound/W, mob/living/carbon/human/recipient)
 	if(!W || !recipient)
 		return null
+	// [SURREALIS-ADD] - VRCOMBAT
+	if(istype(W, /datum/wound/slash/incision))
+		return null
+	// [/SURREALIS-ADD]
 	var/is_construct = HAS_TRAIT(recipient, TRAIT_IRONMAN)
 	switch(W.type)
 		if(/datum/wound/artery)

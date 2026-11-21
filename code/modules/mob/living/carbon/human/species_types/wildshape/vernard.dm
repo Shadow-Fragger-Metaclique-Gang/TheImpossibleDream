@@ -99,7 +99,10 @@
 	attack_verb = list("claws", "mauls", "eviscerates")
 	animname = "cut"
 	hitsound = "genslash"
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	candodge = TRUE
 	canparry = TRUE
 	miss_text = "slashes the air!"

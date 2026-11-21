@@ -244,7 +244,10 @@
 	blade_class = BCLASS_CUT
 	hitsound = 'sound/combat/hits/bladed/genchop (1).ogg'
 	chargetime = 15
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]
 	swingdelay = 3
 	candodge = TRUE
 	canparry = TRUE

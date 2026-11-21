@@ -2,7 +2,10 @@
 These mirror the species.dm melee attack flow (armor check -> apply_damage -> bodypart_attacked_by)
 without going through the click pipeline, so spells can deliver weapon-style strikes. */
 
-/proc/arcyne_strike(mob/living/user, mob/living/target, obj/item/weapon, damage, def_zone, blade_class_override, armor_penetration = 0, spell_name = "Arcyne Strike", skip_animation = FALSE, skip_message = FALSE, allow_shield_check = FALSE, damage_type = BRUTE, intdamage_factor, exact_zone = FALSE, intdamage_mult = 1)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /proc/arcyne_strike(mob/living/user, mob/living/target, obj/item/weapon, damage, def_zone, blade_class_override, armor_penetration = 0, spell_name = "Arcyne Strike", skip_animation = FALSE, skip_message = FALSE, allow_shield_check = FALSE, damage_type = BRUTE, intdamage_factor, exact_zone = FALSE, intdamage_mult = 1) // SURREALIS-EDIT - ORIGINAL
+/proc/arcyne_strike(mob/living/user, mob/living/target, obj/item/weapon, damage, def_zone, blade_class_override, armor_penetration = 0, spell_name = "Arcyne Strike", skip_animation = FALSE, skip_message = FALSE, allow_shield_check = FALSE, damage_type = BRUTE, intdamage_factor, exact_zone = FALSE, intdamage_mult = 1, full_crit = FALSE)
+// [/SURREALIS-EDIT]
 	if(!user || !target || QDELETED(user) || QDELETED(target))
 		return FALSE
 
@@ -19,7 +22,10 @@ without going through the click pipeline, so spells can deliver weapon-style str
 		if(BCLASS_BLUNT, BCLASS_SMASH)
 			blade_class = BCLASS_BLUNT
 			attack_flag = "blunt"
-			armor_penetration = PEN_NONE // Blunt uses DR, not penetration
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// armor_penetration = PEN_NONE // Blunt uses DR, not penetration // SURREALIS-EDIT - ORIGINAL
+			armor_penetration = AP_NONE // Blunt uses DR, not penetration
+			// [/SURREALIS-EDIT]
 		if(BCLASS_STAB, BCLASS_PICK)
 			blade_class = BCLASS_STAB
 			attack_flag = "stab"
@@ -28,6 +34,10 @@ without going through the click pipeline, so spells can deliver weapon-style str
 			attack_flag = "piercing"
 		if(BCLASS_BURN)
 			attack_flag = "fire"
+		// [SURREALIS-ADD] - VRCOMBAT
+		if(BCLASS_FROST, BCLASS_ELECTRICAL, BCLASS_ACID)
+			attack_flag = bclass_to_armor_type(blade_class)
+		// [/SURREALIS-ADD]
 		else
 			blade_class = BCLASS_CUT
 			attack_flag = "slash"
@@ -66,7 +76,10 @@ without going through the click pipeline, so spells can deliver weapon-style str
 			anim_type = ATTACK_ANIMATION_BONK
 		if(BCLASS_STAB)
 			anim_type = ATTACK_ANIMATION_THRUST
-		if(BCLASS_BURN)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// if(BCLASS_BURN) // SURREALIS-EDIT - ORIGINAL
+		if(BCLASS_BURN, BCLASS_FROST, BCLASS_ELECTRICAL, BCLASS_ACID)
+		// [/SURREALIS-EDIT]
 			visual_effect = ATTACK_EFFECT_MECHFIRE
 	if(!skip_animation)
 		user.do_attack_animation(target, visual_effect, weapon, item_animation_override = anim_type)
@@ -98,20 +111,37 @@ without going through the click pipeline, so spells can deliver weapon-style str
 	if(isanimal(target))
 		damage *= intdamage_mult
 	var/armor_block = target.run_armor_check(def_zone, attack_flag, blade_dulling = blade_class, armor_penetration = armor_penetration, damage = damage, intdamfactor = intdamage_factor, no_debuff = TRUE)
-	var/damage_dealt = target.apply_damage(damage, damage_type, def_zone, armor_block)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// var/damage_dealt = target.apply_damage(damage, damage_type, def_zone, armor_block) // SURREALIS-EDIT - ORIGINAL
+	var/reduced_damage = target.armor_reduced_damage(damage, armor_block, attack_flag)
+	var/damage_dealt = target.apply_damage(reduced_damage, damage_type, def_zone, 0, bclass = blade_class, wounds_handled = TRUE)
+	// [/SURREALIS-EDIT]
 	SEND_SIGNAL(target, COMSIG_ATOM_WAS_ATTACKED, user, damage)
 
 	// Match standard melee flow: only apply wounds if damage actually got through armor
 	if(damage_dealt)
-		var/wound_damage = max(0, damage - armor_block)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// var/wound_damage = max(0, damage - armor_block) // SURREALIS-EDIT - ORIGINAL
+		var/wound_damage = reduced_damage
+		// [/SURREALIS-EDIT]
 		if(wound_damage > 0)
 			if(iscarbon(target))
 				var/mob/living/carbon/C = target
 				var/obj/item/bodypart/affecting = C.get_bodypart(check_zone(def_zone))
 				if(affecting)
+					// [SURREALIS-ADD] - VRCOMBAT
+					affecting.spell_crit_halved = !full_crit && !!GLOB.spell_physical_damage_names[attack_flag]
+					// [/SURREALIS-ADD]
 					affecting.bodypart_attacked_by(blade_class, wound_damage, user, def_zone, crit_message = TRUE, weapon = weapon, no_debuff = TRUE)
+					// [SURREALIS-EDIT] - VRCOMBAT
+					affecting.spell_crit_halved = FALSE
+					// SURREALIS-EDIT - ORIGINAL
+					/*
 					var/dismember_chance = affecting.get_spell_dismemberment_chance(damage, blade_class, def_zone)
 					if(dismember_chance && prob(dismember_chance))
+					*/
+					if(affecting.should_dismember(blade_class, wound_damage, user, def_zone, 0, wound_damage, weapon))
+					// [/SURREALIS-EDIT]
 						affecting.dismember(damage_type, blade_class, user, def_zone)
 			else
 				target.simple_woundcritroll(blade_class, wound_damage, user, def_zone, crit_message = TRUE, ranged = TRUE)
@@ -131,6 +161,17 @@ without going through the click pipeline, so spells can deliver weapon-style str
 		if(BCLASS_BURN)
 			attack_verb = "scorches"
 			hit_sound = 'sound/items/firelight.ogg'
+		// [SURREALIS-ADD] - VRCOMBAT
+		if(BCLASS_FROST)
+			attack_verb = "freezes"
+			hit_sound = pick('sound/combat/fracture/fracturedry (1).ogg', 'sound/combat/fracture/fracturedry (2).ogg', 'sound/combat/fracture/fracturedry (3).ogg')
+		if(BCLASS_ELECTRICAL)
+			attack_verb = "shocks"
+			hit_sound = 'sound/items/firelight.ogg'
+		if(BCLASS_ACID)
+			attack_verb = "corrodes"
+			hit_sound = 'sound/misc/lava_death.ogg'
+		// [/SURREALIS-ADD]
 
 	playsound(get_turf(target), hit_sound, 100, TRUE)
 	if(!skip_message)
@@ -141,8 +182,14 @@ without going through the click pipeline, so spells can deliver weapon-style str
 			// Show armor integrity status (crumbling, cracking, etc.) matching normal melee
 			if(ishuman(target))
 				var/mob/living/carbon/human/H = target
-				var/obj/item/clothing/C = H.get_best_worn_armor(def_zone, attack_flag)
-				var/extra_msg = C?.get_armor_integ()
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// var/obj/item/clothing/C = H.get_best_worn_armor(def_zone, attack_flag) // SURREALIS-EDIT - ORIGINAL
+				var/obj/item/clothing/C = H.get_best_armor(def_zone, attack_flag)
+				// [/SURREALIS-EDIT]
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// var/extra_msg = C?.get_armor_integ() // SURREALIS-EDIT - ORIGINAL
+				var/extra_msg = C?.get_armor_integ(def_zone)
+				// [/SURREALIS-EDIT]
 				if(extra_msg)
 					armor_msg += extra_msg
 		target.visible_message(

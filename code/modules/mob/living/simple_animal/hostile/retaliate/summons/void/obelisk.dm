@@ -87,7 +87,10 @@
 	blade_class = BCLASS_BLUNT
 	hitsound = 'sound/combat/hits/onstone/wallhit.ogg'
 	chargetime = 0
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]
 	swingdelay = 0
 	candodge = TRUE
 	canparry = TRUE

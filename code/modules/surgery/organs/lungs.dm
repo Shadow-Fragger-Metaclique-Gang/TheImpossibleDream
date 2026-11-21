@@ -18,10 +18,41 @@
 
 /obj/item/organ/lungs/on_life()
 	..()
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	if((!failed) && ((organ_flags & ORGAN_FAILING)))
 		if(owner.stat == CONSCIOUS)
 			owner.visible_message("<span class='danger'>[owner] grabs [owner.p_their()] throat, struggling for breath!</span>", \
 								"<span class='danger'>I suddenly feel like you can't breathe!</span>")
+	*/
+	if(!istype(owner))
+		return
+
+	if(damage > 0 && damage < maxHealth && !HAS_TRAIT(owner, TRAIT_NOBREATH))
+		var/damage_ratio = damage / maxHealth
+		if(damage < low_threshold)
+			owner.adjustChokeOxyLoss(damage_ratio * 0.5)
+			if(prob(3))
+				owner.emote("cough")
+		else if(damage < high_threshold)
+			owner.adjustChokeOxyLoss(damage_ratio * 1.5)
+			if(prob(5))
+				owner.emote("cough")
+			if(prob(2) && !owner.stat)
+				to_chat(owner, span_warning("My chest hurts."))
+		else
+			owner.adjustChokeOxyLoss(damage_ratio * 3)
+			if(prob(8))
+				owner.emote("cough")
+			if(prob(5) && !owner.stat)
+				to_chat(owner, span_warning("I can barely breathe!"))
+
+	if((!failed) && ((organ_flags & ORGAN_FAILING)))
+		if(owner.stat == CONSCIOUS)
+			owner.visible_message(span_danger("[owner] clutches [owner.p_their()] throat, gasping!"), \
+								span_userdanger("I CAN'T BREATHE!"))
+	// [/SURREALIS-EDIT]
 		failed = TRUE
 	else if(!(organ_flags & ORGAN_FAILING))
 		failed = FALSE

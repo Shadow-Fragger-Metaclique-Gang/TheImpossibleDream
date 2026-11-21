@@ -70,7 +70,10 @@
 	intdamfactor = SPELL_INTDAM(1)
 	spell_damage_scaled = TRUE
 	woundclass = BCLASS_STAB
-	armor_penetration = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_LIGHT
+	// [/SURREALIS-EDIT]
 	speed = MAGE_PROJ_VERY_SLOW
 	flag = "stab"
 	hitsound = 'sound/combat/hits/bladed/genstab (1).ogg'

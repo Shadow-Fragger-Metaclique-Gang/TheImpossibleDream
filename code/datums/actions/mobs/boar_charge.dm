@@ -150,7 +150,10 @@
 	victim.Stun(2 SECONDS)
 	victim.apply_status_effect(/datum/status_effect/debuff/exposed, 10 SECONDS)
 	boar.Stun(3 SECONDS)
-	arcyne_strike(boar, victim, null, gore_damage, BODY_ZONE_CHEST, BCLASS_STAB, armor_penetration = PEN_HEAVY, spell_name = name, skip_animation = TRUE, exact_zone = TRUE)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// arcyne_strike(boar, victim, null, gore_damage, BODY_ZONE_CHEST, BCLASS_STAB, armor_penetration = PEN_HEAVY, spell_name = name, skip_animation = TRUE, exact_zone = TRUE) // SURREALIS-EDIT - ORIGINAL
+	arcyne_strike(boar, victim, null, gore_damage, BODY_ZONE_CHEST, BCLASS_STAB, armor_penetration = AP_HEAVY, spell_name = name, skip_animation = TRUE, exact_zone = TRUE)
+	// [/SURREALIS-EDIT]
 	playsound(victim, 'sound/combat/crit.ogg', 75, TRUE)
 	missed_once = FALSE
 
@@ -219,7 +222,10 @@
 	icon_state = "thorn"
 	damage = 60
 	embedchance = 0
-	armor_penetration = PEN_BSTEEL
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_BSTEEL // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_BSTEEL
+	// [/SURREALIS-EDIT]
 	woundclass = BCLASS_PIERCE
 	damage_type = BRUTE
 	speed = 1.3

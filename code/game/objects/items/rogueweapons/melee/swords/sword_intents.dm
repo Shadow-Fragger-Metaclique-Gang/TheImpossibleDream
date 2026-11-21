@@ -18,7 +18,10 @@
 	clickcd = CLICK_CD_QUICK // Versatile, this create 26 EDPS instead of 20. But still easily beaten by the Sabre
 
 /datum/intent/sword/cut/militia
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]
 	damfactor = 1.2
 	clickcd = CLICK_CD_CHARGED
 	no_early_release = TRUE
@@ -28,14 +31,20 @@
 	damfactor = 1
 
 /datum/intent/sword/chop/militia
-	penfactor = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 	clickcd = CLICK_CD_CHARGED
 	swingdelay = 0
 	damfactor = 1.0
 	no_early_release = TRUE
 
 /datum/intent/sword/chop/heavy
-	penfactor = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 	swingdelay = 6
 	damfactor = 1.3
 
@@ -46,7 +55,10 @@
 	animname = "stab"
 	blade_class = BCLASS_STAB
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]
 	chargetime = 0
 	swingdelay = 0
 	item_d_type = "stab"
@@ -54,34 +66,52 @@
 /datum/intent/sword/thrust/short
 	clickcd = CLICK_CD_FAST
 	damfactor = 1.1
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]
 
 /datum/intent/sword/thrust/arming
 	clickcd = CLICK_CD_QUICK // Less than rapier
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]
 
 /datum/intent/sword/thrust/heavy
 	name = "heavy thrust"
 	icon_state = "inlunge"
-	penfactor = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	penfactor = 3
+	// [/SURREALIS-EDIT]
 	damfactor = 1.3
 	swingdelay = 0.9 SECONDS
 	swingdelay_type = SWINGDELAY_PENALTY
 
 /datum/intent/sword/thrust/long
-	penfactor = PEN_LIGHT // Longsword thrust — same pen tier, higher base damage
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // Longsword thrust — same pen tier, higher base damage // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1 // Longsword thrust — same pen tier, higher base damage
+	// [/SURREALIS-EDIT]
 
 /datum/intent/sword/thrust/long/deep
 	name = "deep lunge"
 	icon_state = "inlunge"
-	penfactor = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 	damfactor = 1.2
 	swingdelay = 0.6 SECONDS
 
 /datum/intent/sword/thrust/long/deep/halfsword
 	name = "deep lunge"
 	icon_state = "inlunge"
-	penfactor = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 	damfactor = 0.8
 	swingdelay = 0.6 SECONDS
 
@@ -90,7 +120,10 @@
 	desc = "A precise thrust over the opponent's weapon aimed for the gaps in one's armor instead of damaging the armor. Leaves you exposed during the swing."
 	icon_state = "inlunge"
 	// Same as standard frei grip's deep lunge.
-	penfactor = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	penfactor = 3
+	// [/SURREALIS-EDIT]
 	swingdelay_type = SWINGDELAY_PENALTY
 	intent_intdamage_factor = 0.5
 
@@ -98,7 +131,10 @@
 	name = "halfsword thrust"
 	icon_state = "inimpale"
 	clickcd = CLICK_CD_CHARGED
-	penfactor = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	penfactor = 3
+	// [/SURREALIS-EDIT]
 	attack_verb = list("skewers", "impales")
 	damfactor = 1
 	swingdelay = 1 SECONDS
@@ -111,7 +147,10 @@
 	name = "jab"
 	icon_state = "instab"
 	attack_verb = list("jabs")
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]
 	damfactor = 0.8
 	clickcd = CLICK_CD_QUICK
 	swingdelay = 0
@@ -123,7 +162,10 @@
 	blade_class = BCLASS_BLUNT
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
 	attack_verb = list("prods", "pokes")
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	item_d_type = "blunt"
 	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 
@@ -135,7 +177,10 @@
 	blade_class = BCLASS_BLUNT
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
 	chargetime = 0
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	swingdelay = 0
 	damfactor = NONBLUNT_BLUNT_DAMFACTOR
 	item_d_type = "blunt"
@@ -207,7 +252,10 @@
 	// You do more damage to exposed areas than stabbing, but your damage to armor is slightly less effective than a normal longsword.
 	// This effectively means you do 1.2x damage to flesh, but 0.9x damage to armor.
 	damfactor = 1.2
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]
 	intent_intdamage_factor = 0.75
 
 /datum/intent/sword/thrust/long/master
@@ -217,7 +265,10 @@
 	attack_verb =  list("skillfully impales", "artfully punctures", "deftly stabs")
 	// Your stabs are more effective at breaking heavy armor, and penetrating light armor like a rapier. But do less damage.
 	// This effectively means you do 1.2x damage to armor, but 0.8x damage to flesh.
-	penfactor = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 	damfactor = 0.8
 	intent_intdamage_factor = 1.5
 
@@ -228,7 +279,10 @@
 	attack_verb = list("furiously chops", "powerfully cleaves", "fiercely hacks")
 	// This is almost x2 slower than a regular longsword's chop, giving the opponent more time to riposte you.
 	// This however will penetrate all Light AC armor except for brigandine parts. Also does x2 damage to shields.
-	penfactor = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 	demolition_mod = 2.0
 	swingdelay = 0.8 SECONDS
 	clickcd = CLICK_CD_CHARGED
@@ -240,7 +294,10 @@
 	attack_verb = list("carefully pierces", "precisely thrusts", "accurately impales")
 	// Stab someone directly. 50% damage to armor.
 	// Best used like an estoc.
-	penfactor = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	penfactor = 3
+	// [/SURREALIS-EDIT]
 	swingdelay_type = SWINGDELAY_PENALTY
 	damfactor = 1.1
 	swingdelay = 0.6 SECONDS
@@ -269,7 +326,10 @@
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
 	// This does the exact same damage through steel armor as a normal longsword but can crit through armor.
 	// You're going to be disappointed if you use it on anything without armor. 0.8x damage to unarmored body parts.
-	penfactor = PEN_BSTEEL
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_BSTEEL // SURREALIS-EDIT - ORIGINAL
+	penfactor = 4
+	// [/SURREALIS-EDIT]
 	blade_class = BCLASS_PICK
 	damfactor = 0.8
 
@@ -309,7 +369,10 @@
 	animname = "chop"
 	blade_class = BCLASS_CHOP
 	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]
 	swingdelay = 8
 	damfactor = 1.0
 	item_d_type = "slash"
@@ -338,7 +401,10 @@
 
 // A heavier chop on slower speed
 /datum/intent/sword/chop/falx
-	penfactor = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 
 // A heavy cut different from sabre's by emphasis on demolition mod
 // But not as good as that of axe
@@ -347,7 +413,10 @@
 	icon_state = "inhack"
 	blade_class = BCLASS_CHOP
 	damfactor = 1.4
-	penfactor = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	penfactor = 3
+	// [/SURREALIS-EDIT]
 	demolition_mod = 3
 	swingdelay = 1.2 SECONDS
 	clickcd = 1.3 SECONDS
@@ -361,7 +430,10 @@
 
 /datum/intent/sword/chop/sabre
 	damfactor = 1.15
-	penfactor = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 
 /datum/intent/rend/krieg
 	intent_intdamage_factor = 0.2
@@ -375,7 +447,10 @@
 	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
 	reach = 1
 	swingdelay = 15
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	damfactor = 2.5
 	clickcd = CLICK_CD_CHARGED
 	no_early_release = TRUE
@@ -430,7 +505,10 @@
 
 /datum/intent/sword/chop/cleave/super
 	name = "unstoppable cleave"
-	penfactor = PEN_BSTEEL
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_BSTEEL // SURREALIS-EDIT - ORIGINAL
+	penfactor = 4
+	// [/SURREALIS-EDIT]
 
 // GREATSWORDS
 /datum/intent/sword/cut/zwei
@@ -462,7 +540,10 @@
 /datum/intent/sword/cut/zhanmadao
 	reach = 2
 	damfactor = 1.2 // For all purpose, this is basically the Naginata cut but on a sword
-	penfactor = PEN_LIGHT // Good vs NPC with 1 pip slash??
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // Good vs NPC with 1 pip slash?? // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1 // Good vs NPC with 1 pip slash??
+	// [/SURREALIS-EDIT]
 
 /datum/intent/sword/cut/zhanmadao/sweep
 	name = "sweeping cut"
@@ -476,14 +557,20 @@
 
 /datum/intent/sword/thrust/zhanmadao
 	reach = 2
-	penfactor = PEN_LIGHT // It is called ZHANMADAO not PENMANDAO for a reason
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // It is called ZHANMADAO not PENMANDAO for a reason // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1 // It is called ZHANMADAO not PENMANDAO for a reason
+	// [/SURREALIS-EDIT]
 	damfactor = 0.8
 
 // ESTOC
 
 /datum/intent/sword/thrust/estoc
 	name = "thrust"
-	penfactor = PEN_HEAVY	// Penetrates mail/plate at same-tier 20%. Estoc's purpose — point blank, telegraphed.
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_HEAVY	// Penetrates mail/plate at same-tier 20%. Estoc's purpose — point blank, telegraphed. // SURREALIS-EDIT - ORIGINAL
+	penfactor = 3	// Penetrates mail/plate at same-tier 20%. Estoc's purpose — point blank, telegraphed.
+	// [/SURREALIS-EDIT]
 	damfactor = 1.2
 	swingdelay = 0.5 SECONDS
 
@@ -491,7 +578,10 @@
 	name = "lunge"
 	icon_state = "inlance"
 	attack_verb = list("lunges")
-	penfactor = PEN_LIGHT	// Fast attrition thrust — light pen, no swingdelay, quick clickcd.
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT	// Fast attrition thrust — light pen, no swingdelay, quick clickcd. // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1	// Fast attrition thrust — light pen, no swingdelay, quick clickcd.
+	// [/SURREALIS-EDIT]
 	damfactor = 1.1
 	swingdelay = 0
 	clickcd = CLICK_CD_QUICK
@@ -515,9 +605,15 @@
 	attack_verb = list("power-strikes")
 	chargetime = 7
 	swingdelay = 9
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	min_intent_damage = 30
 	max_intent_damage = 32
 	penfactor = PEN_MEDIUM
+	*/
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 	chargedrain = 1.2
 
 /datum/intent/sword/cut/short/banded
@@ -525,5 +621,9 @@
 	desc = "Swing your sword wildly without much purpose to deal a static amount of damage."
 	clickcd = 6		//Faster than a sabre
 	damfactor = 2.17	//Base damage of 15
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	max_intent_damage = 16 //Never better than ANY real sword
 	min_intent_damage = 7.5	//I've decided after testing that even with the big sharpness buff you'll still get cucked out of your damage pretty fast. This is a stopgap that leaves you at ~50% minimum damage.
+	*/
+	// [/SURREALIS-REMOVE]

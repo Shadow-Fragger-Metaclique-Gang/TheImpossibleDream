@@ -55,7 +55,10 @@
 	damage = 100
 	damage_type = BRUTE
 	woundclass = BCLASS_BLUNT
-	armor_penetration = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_NONE
+	// [/SURREALIS-EDIT]
 	nodamage = FALSE
 	flag = "blunt"
 	speed = 6
@@ -81,7 +84,10 @@
 			continue
 		if(isliving(firer) && L.faction_check_mob(firer))
 			continue
-		L.apply_damage(splinter_damage, BRUTE, BODY_ZONE_CHEST, L.run_armor_check(BODY_ZONE_CHEST, "blunt", damage = splinter_damage))
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// L.apply_damage(splinter_damage, BRUTE, BODY_ZONE_CHEST, L.run_armor_check(BODY_ZONE_CHEST, "blunt", damage = splinter_damage)) // SURREALIS-EDIT - ORIGINAL
+		L.apply_damage(L.armor_reduced_damage(splinter_damage, L.run_armor_check(BODY_ZONE_CHEST, "blunt", damage = splinter_damage), "blunt"), BRUTE, BODY_ZONE_CHEST, 0)
+		// [/SURREALIS-EDIT]
 		plant_victim(L)
 
 /obj/projectile/thrown_log/proc/plant_victim(mob/living/L)

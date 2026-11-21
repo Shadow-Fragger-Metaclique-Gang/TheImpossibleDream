@@ -4,8 +4,14 @@
 	icon = 'icons/roguetown/items/surgery.dmi'
 	icon_state = "bandageroll"
 	bundletype = /obj/item/natural/bundle/cloth/bandage
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	bandage_effectiveness = 0.5
 	bandage_health = 300 //High HP so it can last some time on more serious wounds like arteries, total of 225 blood soaked
+	*/
+	bandage_effectiveness = 1.5
+	// [/SURREALIS-EDIT]
 	bandage_speed = 4 SECONDS
 
 /obj/item/natural/cloth/bandage/attack_right(mob/user)

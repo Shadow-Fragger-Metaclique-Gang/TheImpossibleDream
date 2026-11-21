@@ -298,7 +298,10 @@
 
 		var/armors = list(
 			"Cuirass"			= /obj/item/clothing/suit/roguetown/armor/plate/cuirass,
-			"Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine,
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// "Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine, // SURREALIS-EDIT - ORIGINAL
+			"Lightweight Brigandine"	= /obj/item/clothing/suit/roguetown/armor/brigandine/light,
+			// [/SURREALIS-EDIT]
 			"Scalemail"			= /obj/item/clothing/suit/roguetown/armor/plate/scale,
 		)
 		var/armorchoice = input(H, "Choose your armor.", "TAKE UP ARMOR") as anything in armors

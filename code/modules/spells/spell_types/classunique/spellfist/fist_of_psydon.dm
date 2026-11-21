@@ -74,8 +74,13 @@
 	playsound(T, pick('sound/combat/ground_smash1.ogg', 'sound/combat/ground_smash2.ogg', 'sound/combat/ground_smash3.ogg'), 60, TRUE)
 	H.emote("attackgrunt", forced = TRUE)
 
-	sleep(telegraph_delay)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// sleep(telegraph_delay) // SURREALIS-EDIT - ORIGINAL
+	addtimer(CALLBACK(src, PROC_REF(resolve_strike), H, T, damage, def_zone, empowered), telegraph_delay)
+	return TRUE
 
+/datum/action/cooldown/spell/fist_of_psydon/proc/resolve_strike(mob/living/carbon/human/H, turf/T, damage, def_zone, empowered)
+	// [/SURREALIS-EDIT]
 	if(QDELETED(H) || H.stat == DEAD)
 		return
 
@@ -103,4 +108,8 @@
 		H.visible_message(span_notice("[H] slams [H.p_their()] fist down, sending a shockwave into empty ground!"))
 
 	log_combat(H, null, "used Fist of Psydon[empowered ? " (empowered)" : ""]")
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	return TRUE
+	*/
+	// [/SURREALIS-REMOVE]

@@ -1,3 +1,6 @@
+// [SURREALIS-EDIT] - VRCOMBAT
+// SURREALIS-EDIT - ORIGINAL
+/*
 /mob/living/carbon/proc/get_armor_class(def_zone, d_type)
 	if(!ishuman(src))
 		return ARMOR_CLASS_NONE
@@ -73,10 +76,29 @@
 				var/dullness_ratio = I.blade_int / I.max_blade_int
 				if(dullness_ratio <= SHARPNESS_TIER2_THRESHOLD && armor_tier)	//Our weapon is CHUNKED. What are we PENNING WITH.
 					blocked = block_damage * 10
-
+*/
+/mob/living/proc/run_armor_check(def_zone = null, attack_flag = "blunt", absorb_text = null, soften_text = null, armor_penetration = 0, penetrated_text, damage, blade_dulling, intdamfactor, bypass_item = null, obj/item/used_weapon, mob/living/attacker, no_debuff = FALSE)
+	var/static/list/unchunkable_flags = list("blunt", "fire")
+	if(isitem(used_weapon) && used_weapon.sharpness && used_weapon.max_blade_int && !(attack_flag in unchunkable_flags) && (used_weapon.blade_int / used_weapon.max_blade_int) <= SHARPNESS_TIER2_THRESHOLD)
+		armor_penetration = 0
+	var/armor = getarmor(def_zone, attack_flag, damage, armor_penetration, blade_dulling, intdamfactor, bypass_item, used_weapon, attacker, no_debuff)
+	if(armor > 0 && armor_penetration)
+		armor = max(0, armor - armor_penetration)
+		if(penetrated_text)
+			to_chat(src, span_danger("[penetrated_text]"))
+	else if(armor >= 100)
+		if(absorb_text)
+			to_chat(src, span_notice("[absorb_text]"))
+	else if(armor > 0)
+		if(soften_text)
+			to_chat(src, span_warning("[soften_text]"))
+// [/SURREALIS-EDIT]
 	if(mob_timers[MT_INVISIBILITY] > world.time)
 		mob_timers[MT_INVISIBILITY] = world.time
 		update_sneak_invis(reset = TRUE)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	return blocked
 
 
@@ -137,6 +159,12 @@
 	return pen_total
 
 /mob/living/proc/getarmor(def_zone, type, damage, armor_penetration, blade_dulling, intdamfactor, used_weapon)
+	*/
+	return armor
+
+
+/mob/living/proc/getarmor(def_zone, type, damage, armor_penetration, blade_dulling, intdamfactor, bypass_item = null, obj/item/used_weapon, mob/living/attacker, no_debuff = FALSE)
+	// [/SURREALIS-EDIT]
 	return 0
 
 //this returns the mob's protection against eye damage (number between -1 and 2) from bright lights
@@ -250,11 +278,21 @@
 	var/aimed_zone = def_zone
 	var/list/roll_out = list()
 	def_zone = bullet_hit_accuracy_check(P.get_aim_from(src), def_zone, roll_out, P)
-	var/armor = run_armor_check(def_zone, P.flag, "", "",armor_penetration = P.armor_penetration, damage = P.damage, intdamfactor = P.intdamfactor, used_weapon = P)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// var/armor = run_armor_check(def_zone, P.flag, "", "",armor_penetration = P.armor_penetration, damage = P.damage, intdamfactor = P.intdamfactor, used_weapon = P) // SURREALIS-EDIT - ORIGINAL
+	var/ap = (P.flag == "blunt") ? 0 : P.armor_penetration
+	if(ishuman(P.firer))
+		var/mob/living/carbon/human/shooter = P.firer
+		ap += max((shooter.STAPER - 10) * PER_PEN_FACTOR, (shooter.STASTR - 10) * STR_PEN_FACTOR, 0)
+	var/armor = run_armor_check(def_zone, P.flag, "", "", armor_penetration = ap, damage = P.damage, intdamfactor = P.intdamfactor, used_weapon = P)
+	// [/SURREALIS-EDIT]
 
 	next_attack_msg.Cut()
 
 	var/on_hit_state = P.on_hit(src, armor)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	var/actual_damage = P.damage
 	if(istype(src, /mob/living/simple_animal))
 		var/mob/living/simple_animal/weakpoint_target = src
@@ -267,6 +305,32 @@
 		if(!apply_damage(actual_damage, P.damage_type, def_zone, armor))
 			nodmg = TRUE
 			next_attack_msg += VISMSG_ARMOR_BLOCKED
+	*/
+	var/raw_damage = P.damage
+	if(istype(src, /mob/living/simple_animal))
+		var/mob/living/simple_animal/weakpoint_target = src
+		raw_damage *= weakpoint_target.weakpoint_damage_mod(def_zone)
+		raw_damage *= P.antibeast_factor
+		if(P.spell_damage_scaled)
+			raw_damage /= SPELL_DAMAGE_GENERAL_MODIFIER
+	var/actual_damage = ishuman(src) ? armor_actual_damage(raw_damage, armor, P.flag) : max(raw_damage - armor, 0)
+	var/nodmg = FALSE
+	if(!P.nodamage && on_hit_state != BULLET_ACT_BLOCK)
+		var/wound_class = P.woundclass
+		var/was_blunted = ishuman(src) && armor_blunts_attack(actual_damage, armor, wound_class)
+		if(was_blunted)
+			wound_class = BCLASS_BLUNT
+			actual_damage = ceil(actual_damage * 0.5)
+		last_attack_was_blunted = was_blunted
+		if(!apply_damage(actual_damage, P.damage_type, def_zone, 0, bclass = P.woundclass, wounds_handled = !!P.woundclass))
+			nodmg = TRUE
+			next_attack_msg += " <span class='warning'>Armor stops the damage.</span>"
+		else
+			if(armor > 0 && actual_damage > 0)
+				next_attack_msg += " <span class='warning'>Armor softens the blow.</span>"
+			if(was_blunted)
+				next_attack_msg += " <span class='warning'>The attack was blunted by armor.</span>"
+	// [/SURREALIS-EDIT]
 		changeNext_inCombat(IN_COMBAT_DELAY)
 		if(!P.out_of_effective_range())
 			apply_effects(stun = P.stun, knockdown = P.knockdown, unconscious = P.unconscious, slur = P.slur, stutter = P.stutter, eyeblur = P.eyeblur, drowsy = P.drowsy, blocked = armor, stamina = P.stamina, jitter = P.jitter, paralyze = P.paralyze, immobilize = P.immobilize)
@@ -274,8 +338,15 @@
 			if(!P.out_of_effective_range())
 				if(P.dismemberment || P.dismember_by_default)
 					check_projectile_dismemberment(P, def_zone,armor)
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// SURREALIS-EDIT - ORIGINAL
+				/*
 				if(P.woundclass)
 					check_projectile_wounding(P, def_zone, armor)
+				*/
+				if(wound_class)
+					check_projectile_wounding(P, def_zone, wound_class, actual_damage)
+				// [/SURREALIS-EDIT]
 
 				if(P.poisontype)// New proc for poisoning that respects if armor stopped damage from the projectile, by blocking or through reduction. Only called if poison type is defined.
 					if(!P.poisonamount)
@@ -286,7 +357,10 @@
 						if(P.poisonfeel)
 							M.show_message(span_danger("You feel an intense [P.poisonfeel] sensation spreading swiftly from the area!"))
 
-				if(P.embedchance && !check_projectile_embed(P, def_zone, armor))
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// if(P.embedchance && !check_projectile_embed(P, def_zone, armor)) // SURREALIS-EDIT - ORIGINAL
+				if(P.embedchance && !check_projectile_embed(P, def_zone, was_blunted, armor))
+				// [/SURREALIS-EDIT]
 					P.handle_drop()
 
 				P.do_special_projectile_effect(P.firer, get_bodypart(check_zone(def_zone)), src, def_zone)
@@ -294,6 +368,10 @@
 		else
 			P.handle_drop()
 
+	// [SURREALIS-ADD] - VRCOMBAT
+	if(P.flag == "acid")
+		next_attack_msg += acid_armor_message(def_zone)
+	// [/SURREALIS-ADD]
 	var/organ_hit_text = ""
 	var/limb_hit = hit_zone_name(def_zone)//to get the correct message info.
 	if(limb_hit)
@@ -301,8 +379,18 @@
 	if(P.hitsound && !nodmg)
 		var/volume = P.vol_by_damage()
 		playsound(loc, pick(P.hitsound), volume, TRUE, -1)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	visible_message(span_danger("[src] is hit by \a [P][organ_hit_text]![next_attack_msg.Join()]"), \
 			span_danger("I'm hit by \a [P][organ_hit_text]![next_attack_msg.Join()]"), null, COMBAT_MESSAGE_RANGE)
+	*/
+	var/hit_quality = P.variance_hit_quality()
+	var/bullseye = hit_quality > 0 ? "Bullseye! " : ""
+	var/hit_verb = hit_quality < 0 ? "grazed" : "hit"
+	visible_message(span_danger("[bullseye][src] is [hit_verb] by \a [P][organ_hit_text]![next_attack_msg.Join()]"), \
+			span_danger("[bullseye]I'm [hit_verb] by \a [P][organ_hit_text]![next_attack_msg.Join()]"), null, COMBAT_MESSAGE_RANGE)
+	// [/SURREALIS-EDIT]
 	next_attack_msg.Cut()
 	show_ranged_accuracy_fail(P.firer, aimed_zone, def_zone, roll_out)
 
@@ -312,12 +400,24 @@
 /mob/living/proc/check_projectile_dismemberment(obj/projectile/P, def_zone)
 	return 0
 
+// [SURREALIS-EDIT] - VRCOMBAT
+// SURREALIS-EDIT - ORIGINAL
+/*
 /mob/living/proc/check_projectile_wounding(obj/projectile/P, def_zone)
 	var/mob/living/shooter = P.firer
 	var/part_mult = (istype(shooter) && shooter.is_monster_hunting(src)) ? MONSTER_HUNTER_RANGED_PART_MULT : 1
 	return simple_woundcritroll(P.woundclass, P.damage * P.antibeast_factor, null, def_zone, crit_message = TRUE, ranged = TRUE, penfactor = P.armor_penetration, part_mult = part_mult)
 
 /mob/living/proc/check_projectile_embed(obj/projectile/P, def_zone)
+*/
+/mob/living/proc/check_projectile_wounding(obj/projectile/P, def_zone, wound_class = null, damage = null)
+	var/mob/living/shooter = P.firer
+	var/part_mult = (istype(shooter) && shooter.is_monster_hunting(src)) ? MONSTER_HUNTER_RANGED_PART_MULT : 1
+	var/ap = (P.flag == "blunt") ? 0 : P.armor_penetration
+	return simple_woundcritroll(wound_class || P.woundclass, isnull(damage) ? P.damage * P.antibeast_factor : damage, null, def_zone, crit_message = TRUE, ranged = TRUE, penfactor = AP_TO_PEN_TIER(ap), part_mult = part_mult)
+
+/mob/living/proc/check_projectile_embed(obj/projectile/P, def_zone, was_blunted = FALSE, blocked = 0)
+// [/SURREALIS-EDIT]
 	// Disable embeds on simples, allowing it to override on complex.
 	return FALSE
 
@@ -338,15 +438,36 @@
 		if(SEND_SIGNAL(src, COMSIG_LIVING_IMPACT_ZONE, I, zone) & COMPONENT_CANCEL_THROW)
 			return FALSE
 		if(!blocked)
-			var/armor = run_armor_check(zone, damage_flag, "", "", armor_penetration = I.armor_penetration, damage = I.throwforce, used_weapon = I)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// var/armor = run_armor_check(zone, damage_flag, "", "", armor_penetration = I.armor_penetration, damage = I.throwforce, used_weapon = I) // SURREALIS-EDIT - ORIGINAL
+			var/ap = (damage_flag == "blunt") ? 0 : I.armor_penetration
+			var/armor = run_armor_check(zone, damage_flag, "", "", armor_penetration = ap, damage = I.throwforce, used_weapon = I)
+			// [/SURREALIS-EDIT]
 			next_attack_msg.Cut()
 			var/nodmg = FALSE
 			var/throw_damage = I.throwforce
 			if(isanimal(src))
 				throw_damage *= I.antibeast_factor
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			if(!apply_damage(throw_damage, I.damtype, zone, armor))
 				nodmg = TRUE
 				next_attack_msg += VISMSG_ARMOR_BLOCKED
+			*/
+			var/actual_damage = ishuman(src) ? armor_actual_damage(throw_damage, armor, damage_flag) : max(throw_damage - armor, 0)
+			var/was_blunted = ishuman(src) && armor_blunts_attack(actual_damage, armor, I.thrown_bclass)
+			if(was_blunted)
+				actual_damage = ceil(actual_damage * 0.5)
+			if(!apply_damage(actual_damage, I.damtype, zone, 0))
+				nodmg = TRUE
+				next_attack_msg += " <span class='warning'>Armor stops the damage.</span>"
+			else
+				if(armor > 0 && actual_damage > 0)
+					next_attack_msg += " <span class='warning'>Armor softens the blow.</span>"
+				if(was_blunted)
+					next_attack_msg += " <span class='warning'>The attack was blunted by armor.</span>"
+			// [/SURREALIS-EDIT]
 			if(!nodmg)
 				changeNext_inCombat(IN_COMBAT_DELAY)
 				if(iscarbon(src))
@@ -355,10 +476,19 @@
 						var/throwee = null
 						if(throwingdatum)
 							throwee = isliving(throwingdatum.thrower) ? throwingdatum.thrower : null
+						// [SURREALIS-EDIT] - VRCOMBAT
+						// SURREALIS-EDIT - ORIGINAL
+						/*
 						affecting.bodypart_attacked_by(I.thrown_bclass, I.throwforce, throwee, affecting.body_zone, crit_message = TRUE, weapon = I)
 					I.do_special_attack_effect(I.thrownby, affecting, null, src, zone, thrown = TRUE)
 				else
 					simple_woundcritroll(I.thrown_bclass, I.throwforce, null, zone, crit_message = TRUE, ranged = TRUE, penfactor = I.armor_penetration)
+						*/
+						affecting.bodypart_attacked_by(was_blunted ? BCLASS_BLUNT : I.thrown_bclass, actual_damage, throwee, affecting.body_zone, crit_message = TRUE, was_blunted = was_blunted, raw_damage = throw_damage, armor_block = armor, weapon = I)
+					I.do_special_attack_effect(I.thrownby, affecting, null, src, zone, thrown = TRUE)
+				else
+					simple_woundcritroll(was_blunted ? BCLASS_BLUNT : I.thrown_bclass, actual_damage, null, zone, crit_message = TRUE, ranged = TRUE, penfactor = AP_TO_PEN_TIER(I.armor_penetration))
+						// [/SURREALIS-EDIT]
 					if(((throwingdatum ? throwingdatum.speed : I.throw_speed) >= EMBED_THROWSPEED_THRESHOLD) || I.embedding.embedded_ignore_throwspeed_threshold)
 						if(can_embed(I) && prob(I.embedding.embed_chance) && HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS) && !HAS_TRAIT(src, TRAIT_PIERCEIMMUNE))
 							simple_add_embedded_object(I, silent = FALSE, crit_message = TRUE)
@@ -638,7 +768,10 @@
 
 	if(!(flags & SHOCK_VISUAL_ONLY))
 		if(!(flags & SHOCK_ILLUSION))
-			adjustFireLoss(shock_damage)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// adjustFireLoss(shock_damage) // SURREALIS-EDIT - ORIGINAL
+			adjustFireLoss(shock_damage, bclass = BCLASS_ELECTRICAL)
+			// [/SURREALIS-EDIT]
 		else
 			adjustStaminaLoss(shock_damage)
 

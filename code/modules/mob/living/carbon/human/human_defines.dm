@@ -204,8 +204,12 @@
 	var/favorite_dish = NONE
 	var/favorite_drink = NONE
 
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	/// List of mobs that have attacked us. Only relevant to someone with TRAIT_TEMPO.
 	var/list/tempo_attackers = list()
+	*/
+	// [/SURREALIS-REMOVE]
 
 	var/next_tempo_cull
 

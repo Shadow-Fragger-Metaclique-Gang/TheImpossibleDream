@@ -1382,12 +1382,20 @@
 /atom/movable/screen/zone_sel/proc/_has_visible_bleed(obj/item/bodypart/BP)
 	if(!BP)
 		return FALSE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	var/bleed_rate = BP.bleeding
 	if(BP.bandage && !HAS_BLOOD_DNA(BP.bandage))
 		var/obj/item/natural/cloth/cloth = BP.bandage
 		if(istype(cloth))
 			bleed_rate *= cloth.bandage_effectiveness
 		return bleed_rate > 1
+	*/
+	if(BP.is_bandaged())
+		return FALSE
+	var/bleed_rate = BP.bleeding
+	// [/SURREALIS-EDIT]
 	for(var/obj/item/embedded as anything in BP.embedded_objects)
 		if(!embedded.embedding?.embedded_bloodloss)
 			continue

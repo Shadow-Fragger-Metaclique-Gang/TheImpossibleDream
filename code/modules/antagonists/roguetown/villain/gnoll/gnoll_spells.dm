@@ -505,7 +505,10 @@
 
 	var/heal_amount = round(skin_armor.max_integrity * (percent / 100))
 
-	skin_armor.obj_integrity = min(skin_armor.obj_integrity + heal_amount, skin_armor.max_integrity)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// skin_armor.obj_integrity = min(skin_armor.obj_integrity + heal_amount, skin_armor.max_integrity) // SURREALIS-EDIT - ORIGINAL
+	skin_armor.adjust_integrity(heal_amount)
+	// [/SURREALIS-EDIT]
 
 	if(skin_armor.obj_broken && skin_armor.obj_integrity > 0)
 		skin_armor.obj_fix(null, FALSE)

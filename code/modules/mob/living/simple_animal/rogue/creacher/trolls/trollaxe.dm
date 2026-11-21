@@ -27,5 +27,8 @@
 	hitsound = "genchop"
 	blade_class = BCLASS_CHOP
 	chargetime = 20
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	swingdelay = 3

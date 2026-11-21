@@ -1,6 +1,10 @@
 #define MIN_BOLT_RANGE		2
 #define MAX_BOLT_RANGE		9
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 #define DAM_FALLOFF_BOLT	0.75
+*/
+// [/SURREALIS-REMOVE]
 //bolts ฅ^•ﻌ•^ฅ
 
 /obj/item/ammo_casing/caseless/rogue/bolt
@@ -82,14 +86,21 @@
 	speed = 0.8
 	min_range = MIN_BOLT_RANGE - 1
 	max_range = MAX_BOLT_RANGE - 1
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	dam_falloff_factor = DAM_FALLOFF_BOLT
+	*/
+	// [/SURREALIS-REMOVE]
 
 /obj/projectile/bullet/reusable/bolt
 	name = "bolt"
 	damage = 70
 	damage_type = BRUTE
 	antibeast_factor = ANTIBEAST_GREATER
-	armor_penetration = PEN_HEAVY // Meant to punch through plate without issue
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_HEAVY // Meant to punch through plate without issue // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_HEAVY // Meant to punch through plate without issue
+	// [/SURREALIS-EDIT]
 	icon_state = "bolt_proj"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt
 	range = 15
@@ -100,7 +111,11 @@
 	speed = 0.4
 	min_range = MIN_BOLT_RANGE
 	max_range = MAX_BOLT_RANGE
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	dam_falloff_factor = DAM_FALLOFF_BOLT
+	*/
+	// [/SURREALIS-REMOVE]
 	var/trains_ranged_skill = TRUE
 
 
@@ -125,11 +140,18 @@
 	speed = 0.8
 	min_range = MIN_BOLT_RANGE - 1 // pointblank
 	max_range = MAX_BOLT_RANGE - 1
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	dam_falloff_factor = DAM_FALLOFF_BOLT
+	*/
+	// [/SURREALIS-REMOVE]
 
 /obj/projectile/bullet/reusable/bolt/aalloy
 	damage = 40
-	armor_penetration = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_MEDIUM
+	// [/SURREALIS-EDIT]
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt/aalloy
 	icon_state = "ancientbolt_proj"
 
@@ -140,7 +162,10 @@
 
 /obj/projectile/bullet/reusable/bolt/bronze
 	damage = 70
-	armor_penetration = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_MEDIUM
+	// [/SURREALIS-EDIT]
 	antibeast_factor = ANTIBEAST_SUPERIOR
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt/bronze
 	icon_state = "bronzebolt_proj"
@@ -159,7 +184,10 @@
 
 /obj/projectile/bullet/reusable/bolt/blunt
 	damage = 25
-	armor_penetration = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_NONE
+	// [/SURREALIS-EDIT]
 	embedchance = 0
 	woundclass = BCLASS_BLUNT
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt/blunt
@@ -190,7 +218,10 @@
 	name = "heavy bolt"
 	damage = 100 // +30 damage over the regular bolt.
 	damage_type = BRUTE
-	armor_penetration = PEN_BSTEEL
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_BSTEEL // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_BSTEEL
+	// [/SURREALIS-EDIT]
 	object_damage_multiplier = 14 //Determines the multiplier that's applied to the bolt's damage value, when striking a structure. By default, it can destroy any wooden defense - a door, barricade, wall - in one shot.
 	wall_impact_break_probability = 100 //Determines the chance that a bolt will destroy itself, when striking a structure. By default, it will always destroy itself after successfully impacting a wall.
 	damages_turf_walls = TRUE //Determines whether the bolt can damage turfs or not. By default, yes.
@@ -242,7 +273,10 @@
 
 /obj/projectile/bullet/reusable/heavy_bolt/blunt
 	name = "blunt heavy bolt"
-	armor_penetration = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_NONE
+	// [/SURREALIS-EDIT]
 	embedchance = 0 //'If you're reading this, duck!'
 	woundclass = BCLASS_BLUNT
 	flag = "blunt"
@@ -310,7 +344,10 @@
 	name = "silver bolt"
 	damage = 80 //One shot. Make it count. Pray your aim is true - and that whoever's on the other side isn't packing a shield or knows how to sidestep.
 	antibeast_factor = ANTIBEAST_SUPREME
-	armor_penetration = PEN_BSTEEL
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_BSTEEL // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_BSTEEL
+	// [/SURREALIS-EDIT]
 	icon_state = "silvbolt_proj"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt/silver
 	embedchance = 100
@@ -330,7 +367,10 @@
 /obj/projectile/bullet/reusable/heavy_bolt/silver
 	name = "heavy silver bolt"
 	damage = 110
-	armor_penetration = PEN_BSTEEL
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_BSTEEL // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_BSTEEL
+	// [/SURREALIS-EDIT]
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/heavy_bolt/silver
 	icon_state = "silvheavybolt_proj"
 	hitsound = 'sound/combat/hits/hi_bolt (3).ogg'
@@ -352,7 +392,10 @@
 /obj/projectile/bullet/reusable/heavy_bolt/stake
 	name = "siegestake"
 	damage = 67
-	armor_penetration = PEN_BSTEEL
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_BSTEEL // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_BSTEEL
+	// [/SURREALIS-EDIT]
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/heavy_bolt/stake
 	icon_state = "heavystake_proj"
 	hitsound = 'sound/combat/hits/hi_bolt (2).ogg'
@@ -376,7 +419,10 @@
 /obj/projectile/bullet/reusable/heavy_bolt/stake_silver
 	name = "silver-tipped siegestake"
 	damage = 78 // In essence, a lesser version of the traditional silver siegebolts.
-	armor_penetration = PEN_BSTEEL
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_BSTEEL // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_BSTEEL
+	// [/SURREALIS-EDIT]
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/heavy_bolt/stake_silver
 	icon_state = "silvheavystake_proj"
 	hitsound = 'sound/combat/hits/hi_bolt (2).ogg'
@@ -404,7 +450,10 @@
 	name = "shotstake"
 	damage = 25
 	damage_type = BRUTE
-	armor_penetration = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_HEAVY
+	// [/SURREALIS-EDIT]
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/stake
 	icon_state = "stake_proj"
 	hitsound = 'sound/combat/hits/hi_bolt (1).ogg'
@@ -415,7 +464,11 @@
 	speed = 0.4
 	min_range = MIN_BOLT_RANGE - 1
 	max_range = MAX_BOLT_RANGE
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	dam_falloff_factor = DAM_FALLOFF_BOLT
+	*/
+	// [/SURREALIS-REMOVE]
 	embedchance = 100
 	woundclass = BCLASS_PIERCE
 
@@ -515,7 +568,11 @@
 
 #undef MIN_BOLT_RANGE
 #undef MAX_BOLT_RANGE
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 #undef DAM_FALLOFF_BOLT
+*/
+// [/SURREALIS-REMOVE]
 
 /obj/item/ammo_casing/caseless/rogue/bolt/blacksteel
 	name = "blacksteel bolt"
@@ -528,7 +585,10 @@
 /obj/projectile/bullet/reusable/bolt/blacksteel
 	name = "blacksteel bolt"
 	damage = 70
-	armor_penetration = PEN_BSTEEL
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_BSTEEL // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_BSTEEL
+	// [/SURREALIS-EDIT]
 	antibeast_factor = ANTIBEAST_SUPREME
 	icon_state = "blacksteelbolt_proj"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/bolt/blacksteel

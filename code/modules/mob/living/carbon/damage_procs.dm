@@ -1,6 +1,9 @@
 
 
-/mob/living/carbon/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/living/carbon/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE) // SURREALIS-EDIT - ORIGINAL
+/mob/living/carbon/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, bclass = null, wounds_handled = FALSE)
+// [/SURREALIS-EDIT]
 	SEND_SIGNAL(src, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone)
 	var/hit_percent = 1
 	damage = max(damage-blocked,0)
@@ -23,6 +26,9 @@
 	switch(damagetype)
 		if(BRUTE)
 			if(BP)
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// SURREALIS-EDIT - ORIGINAL
+				/*
 				if(BP.receive_damage(damage_amount, 0))
 					update_damage_overlays()
 			else //no bodypart, we deal damage with a more general method.
@@ -33,6 +39,18 @@
 					update_damage_overlays()
 			else
 				adjustFireLoss(damage_amount, forced = forced)
+				*/
+				if(BP.receive_damage(damage_amount, 0, bclass = bclass, wounds_handled = wounds_handled))
+					update_damage_overlays()
+			else //no bodypart, we deal damage with a more general method.
+				adjustBruteLoss(damage_amount, forced = forced, bclass = bclass)
+		if(BURN)
+			if(BP)
+				if(BP.receive_damage(0, damage_amount, bclass = bclass, wounds_handled = wounds_handled))
+					update_damage_overlays()
+			else
+				adjustFireLoss(damage_amount, forced = forced, bclass = bclass)
+				// [/SURREALIS-EDIT]
 		if(TOX)
 			adjustToxLoss(damage_amount, forced = forced)
 		if(OXY)
@@ -62,20 +80,32 @@
 	for(var/obj/item/bodypart/BP as anything in bodyparts)
 		. += BP.burn_dam
 
-/mob/living/carbon/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/living/carbon/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_status) // SURREALIS-EDIT - ORIGINAL
+/mob/living/carbon/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_status, bclass = null)
+// [/SURREALIS-EDIT]
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 	if(amount > 0)
-		take_overall_damage(amount, 0, 0, updating_health, required_status)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// take_overall_damage(amount, 0, 0, updating_health, required_status) // SURREALIS-EDIT - ORIGINAL
+		take_overall_damage(amount, 0, 0, updating_health, required_status, bclass)
+		// [/SURREALIS-EDIT]
 	else
 		heal_overall_damage(abs(amount), 0, 0, required_status ? required_status : BODYPART_ORGANIC, updating_health)
 	return amount
 
-/mob/living/carbon/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE, required_status)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/living/carbon/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE, required_status) // SURREALIS-EDIT - ORIGINAL
+/mob/living/carbon/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE, required_status, bclass = null)
+// [/SURREALIS-EDIT]
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
 	if(amount > 0)
-		take_overall_damage(0, amount, 0, updating_health, required_status)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// take_overall_damage(0, amount, 0, updating_health, required_status) // SURREALIS-EDIT - ORIGINAL
+		take_overall_damage(0, amount, 0, updating_health, required_status, bclass)
+		// [/SURREALIS-EDIT]
 	else
 		heal_overall_damage(0, abs(amount), 0, required_status ? required_status : BODYPART_ORGANIC, updating_health)
 	return amount
@@ -185,14 +215,17 @@
 //Damages ONE bodypart randomly selected from damagable ones.
 //It automatically updates damage overlays if necessary
 //It automatically updates health status
-/mob/living/carbon/take_bodypart_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status, check_armor = FALSE)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/living/carbon/take_bodypart_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status, check_armor = FALSE) // SURREALIS-EDIT - ORIGINAL
+/mob/living/carbon/take_bodypart_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status, check_armor = FALSE, bclass = null)
+// [/SURREALIS-EDIT]
 	var/list/obj/item/bodypart/parts = get_damageable_bodyparts(required_status)
 	if(!parts.len)
 		return
 	var/obj/item/bodypart/picked = pick(parts)
 	// [SURREALIS-EDIT] - PLASMA_OPTS
 	// if(picked.receive_damage(brute, burn, stamina,check_armor ? run_armor_check(picked, (brute ? "blunt" : burn ? "fire" : stamina ? "bullet" : null)) : FALSE)) // SURREALIS-EDIT - ORIGINAL
-	if(picked.receive_damage(brute, burn, stamina,check_armor ? run_armor_check(picked, (brute ? "blunt" : burn ? "fire" : stamina ? "bullet" : null)) : FALSE, updating_health))
+	if(picked.receive_damage(brute, burn, stamina,check_armor ? run_armor_check(picked, (brute ? "blunt" : burn ? (bclass ? bclass_to_armor_type(bclass) : "fire") : stamina ? "bullet" : null)) : FALSE, updating_health, required_status, bclass))
 	// [/SURREALIS-EDIT]
 		update_damage_overlays()
 
@@ -241,7 +274,10 @@
 		update_damage_overlays()
 
 // damage MANY bodyparts, in random order
-/mob/living/carbon/take_overall_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/living/carbon/take_overall_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status) // SURREALIS-EDIT - ORIGINAL
+/mob/living/carbon/take_overall_damage(brute = 0, burn = 0, stamina = 0, updating_health = TRUE, required_status, bclass = null)
+// [/SURREALIS-EDIT]
 	if(status_flags & GODMODE)
 		return	//godmode
 
@@ -274,7 +310,7 @@
 
 			// [SURREALIS-EDIT] - PLASMA_OPTS
 			// update |= picked.receive_damage(brute_per_part, burn_per_part, stamina_per_part, FALSE, required_status) // SURREALIS-EDIT - ORIGINAL
-			update |= picked.receive_damage(brute_per_part, burn_per_part, stamina_per_part, 0, FALSE, required_status)
+			update |= picked.receive_damage(brute_per_part, burn_per_part, stamina_per_part, 0, FALSE, required_status, bclass)
 			if(picked.brute_dam != brute_was || picked.burn_dam != burn_was)
 				health_changed = TRUE
 			if(picked.stamina_dam != stamina_was)

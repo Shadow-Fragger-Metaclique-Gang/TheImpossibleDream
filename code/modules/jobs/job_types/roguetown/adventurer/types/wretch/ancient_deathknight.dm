@@ -34,7 +34,11 @@
 		/datum/skill/craft/masonry = SKILL_LEVEL_NOVICE,
 		/datum/skill/craft/sewing = SKILL_LEVEL_NOVICE,
 	)
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	tempo_capable = FALSE //already removed by being a skeleton, in case we add it to the UI in future.
+	*/
+	// [/SURREALIS-REMOVE]
 	adv_stat_ceiling = list(STAT_INTELLIGENCE = 8, STAT_SPEED = 9, STAT_CONSTITUTION = 10, STAT_WILLPOWER = 12) //infinite fatigue + decent skills vs vamp
 	extra_context = "This class is unable to be revived and all forms of death will gib you."
 

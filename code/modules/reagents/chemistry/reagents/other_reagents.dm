@@ -304,6 +304,11 @@
 		return
 	if(method == TOUCH)
 		M.adjust_fire_stacks(-(reac_volume / 10))
+		// [SURREALIS-ADD] - VRCOMBAT
+		if(reac_volume >= 15 && M.fire_stacks > 0 && !HAS_TRAIT(M, TRAIT_NO_EXTINGUISH))
+			M.set_fire_stacks(0)
+			M.extinguish_mob()
+		// [/SURREALIS-ADD]
 		M.SoakMob(FULL_BODY)
 //		for(var/obj/effect/decal/cleanable/blood/target in M)
 //			qdel(target)
@@ -399,7 +404,10 @@
 	return ..()
 
 /datum/reagent/fuel/unholywater/on_mob_life(mob/living/carbon/M)
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 150) // SURREALIS-EDIT - ORIGINAL
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 3, 90)
+	// [/SURREALIS-EDIT]
 	M.adjustToxLoss(2, 0)
 	M.adjustFireLoss(2, 0)
 	M.adjustOxyLoss(2, 0)
@@ -420,7 +428,10 @@
 	// M.adjustFireLoss(1, 0)		//Hence the other damages... ain't I a bastard? // SURREALIS-EDIT - ORIGINAL
 	M.adjustFireLoss(1, TRUE)		//Hence the other damages... ain't I a bastard?
 	// [/SURREALIS-EDIT]
-	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5, 150)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5, 150) // SURREALIS-EDIT - ORIGINAL
+	M.adjustOrganLoss(ORGAN_SLOT_BRAIN, 5, 90)
+	// [/SURREALIS-EDIT]
 	holder.remove_reagent(type, 1)
 
 /datum/reagent/medicine/omnizine/godblood

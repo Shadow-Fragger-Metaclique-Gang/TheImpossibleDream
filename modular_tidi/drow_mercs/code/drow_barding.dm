@@ -45,7 +45,7 @@
 	var/mob/living/simple_animal/hostile/retaliate/rogue/drider/animal = loc
 	if(!istype(animal) || QDELETED(animal) || animal.stat == DEAD || animal.bbarding != src)
 		return
-	obj_integrity = min(obj_integrity + 0.2 * max_integrity, max_integrity)
+	set_integrity(min(obj_integrity + 0.2 * max_integrity, max_integrity))
 	if(obj_broken)
 		obj_fix(full_repair = FALSE)
 	if(obj_integrity < max_integrity)

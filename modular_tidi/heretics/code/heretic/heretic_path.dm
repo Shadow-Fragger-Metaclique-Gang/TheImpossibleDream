@@ -139,7 +139,7 @@
 			return list("gifts" = list("+1 INT", "+1 PER", "Tier zero miracles", "Ritualism +1", "An inverted psycross"))
 		if(2)
 			return list(
-				"gifts" = list("Tier one miracles", "Ritualism +1", "Tempo", "Immunity to the church's curses and apostasy"),
+				"gifts" = list("Tier one miracles", "Ritualism +1", "Immunity to the church's curses and apostasy"),
 				"paths" = list(
 					HERETIC_PATH_AVANTYNE = list("+1 STR", "Medium armor training, unless I have critical resistance or am thick blooded"),
 					HERETIC_PATH_AMBITION = list("+1 SPD", "+1 PER", "A minor spell", "Four utility spells", "Arcana +2, up to Expert"),
@@ -174,7 +174,6 @@
 		if(2)
 			grant_miracle_tier(user, CLERIC_T1)
 			add_ritualism(user)
-			ADD_TRAIT(user, TRAIT_TEMPO, HERETIC_PATH_TRAIT)
 			ADD_TRAIT(user, TRAIT_HERESIARCH, HERETIC_PATH_TRAIT)
 			choose_path(user)
 			if(chosen_path == HERETIC_PATH_AVANTYNE)
@@ -225,7 +224,7 @@
 			return list("gifts" = list("Delayed potential...", "Tier zero miracles", "An amulet of Graggar"))
 		if(2)
 			return list(
-				"gifts" = list("Tier one miracles", "Ritualism +1", "Tempo", "Immunity to the church's curses and apostasy"),
+				"gifts" = list("Tier one miracles", "Ritualism +1", "Immunity to the church's curses and apostasy"),
 				"paths" = list(
 					HERETIC_PATH_MARAUDER = list("+1 STR", "Medium armor training, unless I have critical resistance or am thick blooded"),
 					HERETIC_PATH_ASSASSIN = list("+1 SPD", "Dodge expert, unless I have critical resistance or am thick blooded", "Light step", "Sneaking +3", "Climbing +2, up to Expert"),
@@ -255,7 +254,6 @@
 		if(2)
 			grant_miracle_tier(user, CLERIC_T1)
 			add_ritualism(user)
-			ADD_TRAIT(user, TRAIT_TEMPO, HERETIC_PATH_TRAIT)
 			ADD_TRAIT(user, TRAIT_HERESIARCH, HERETIC_PATH_TRAIT)
 			choose_path(user)
 			if(chosen_path == HERETIC_PATH_MARAUDER)
@@ -304,7 +302,7 @@
 			return list("gifts" = list("+1 SPD", "Tier zero miracles", "An amulet of Matthios", "Sneaking +2", "Lockpicking +2", "Pickpocketing +2"))
 		if(2)
 			return list(
-				"gifts" = list("Tier one miracles", "Ritualism +1", "Tempo", "Immunity to the church's curses and apostasy"),
+				"gifts" = list("Tier one miracles", "Ritualism +1", "Immunity to the church's curses and apostasy"),
 				"paths" = list(
 					HERETIC_PATH_DRAKE = list("+1 STR", "Expert in a weapon of my choice besides daggers, if I have none", "Medium armor training, unless I have critical resistance or am thick blooded"),
 					HERETIC_PATH_THIEF = list("+1 SPD", "+1 PER", "Dodge expert, unless I have critical resistance or am thick blooded", "Light step", "Sneaking +1", "Lockpicking +1", "Pickpocketing +1", "Climbing +2, up to Expert"),
@@ -340,7 +338,6 @@
 		if(2)
 			grant_miracle_tier(user, CLERIC_T1)
 			add_ritualism(user)
-			ADD_TRAIT(user, TRAIT_TEMPO, HERETIC_PATH_TRAIT)
 			ADD_TRAIT(user, TRAIT_HERESIARCH, HERETIC_PATH_TRAIT)
 			choose_path(user)
 			if(chosen_path == HERETIC_PATH_DRAKE)
@@ -393,7 +390,7 @@
 		if(1)
 			return list("gifts" = list("+1 SPD", "Tier one miracles"))
 		if(2)
-			return list("gifts" = list("+1 SPD", "+1 PER", "Tier two miracles", "Ritualism +1", "Dodge expert, unless I have critical resistance or am thick blooded", "Tempo", "Immunity to the church's curses and apostasy"))
+			return list("gifts" = list("+1 SPD", "+1 PER", "Tier two miracles", "Ritualism +1", "Dodge expert, unless I have critical resistance or am thick blooded", "Immunity to the church's curses and apostasy"))
 		if(3)
 			return list("gifts" = list("+2 CON", "Tier three miracles", "Ritualism +1", "Wrestling +1, up to Expert", "Athletics +1"))
 		if(4)
@@ -420,7 +417,6 @@
 			user.change_stat(STATKEY_SPD, 1)
 			user.change_stat(STATKEY_PER, 1)
 			add_training(user, TRAIT_DODGEEXPERT)
-			ADD_TRAIT(user, TRAIT_TEMPO, HERETIC_PATH_TRAIT)
 			ADD_TRAIT(user, TRAIT_HERESIARCH, HERETIC_PATH_TRAIT)
 		if(3)
 			grant_miracle_tier(user, CLERIC_T3)

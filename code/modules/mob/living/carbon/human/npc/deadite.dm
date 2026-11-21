@@ -160,6 +160,9 @@
  * We instead just transform at the end
  */
 /mob/living/carbon/human/proc/zombie_infect_attempt()
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	var/datum/antagonist/zombie/zombie_antag = zombie_check()
 	if(!zombie_antag)
 		return
@@ -174,6 +177,23 @@
 		return
 	if(!prob(ZOMBIE_INFECTION_PROBABILITY))	//Failed the probability of infection
 		return
+	*/
+	if(stat >= DEAD)
+		zombie_check()
+		return FALSE
+	if(HAS_TRAIT(src, TRAIT_ZOMBIE_IMMUNE))
+		return FALSE
+	var/datum/status_effect/zombie_infection/infection = has_status_effect(/datum/status_effect/zombie_infection)
+	if(infection)
+		var/time_remaining = infection.transformation_time - world.time
+		infection.transformation_time = world.time + (time_remaining * 0.8)
+		return
+	if(!prob(ZOMBIE_INFECTION_PROBABILITY))
+		return
+	var/datum/antagonist/zombie/zombie_antag = zombie_check()
+	if(!zombie_antag)
+		return
+	// [/SURREALIS-EDIT]
 	to_chat(src, span_danger("I feel horrible... REALLY horrible..."))
 	mob_timers["puke"] = world.time
 	vomit(1, blood = TRUE, stun = FALSE)

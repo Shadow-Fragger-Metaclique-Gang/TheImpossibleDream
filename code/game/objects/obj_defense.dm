@@ -13,7 +13,10 @@
 	if(damage_amount < DAMAGE_PRECISION)
 		return
 	. = damage_amount
-	if(obj_flags & CLAMP_BREAK)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(obj_flags & CLAMP_BREAK) // SURREALIS-EDIT - ORIGINAL
+	if((obj_flags & CLAMP_BREAK) && clamps_break_damage())
+	// [/SURREALIS-EDIT]
 		var/break_threshold = (integrity_failure * max_integrity)
 		if(obj_integrity > break_threshold)
 			if((obj_integrity - damage_amount) <= break_threshold)
@@ -21,7 +24,10 @@
 		if(obj_broken || (integrity_failure && obj_integrity == break_threshold))	// We're either broken or we will be broken
 			if(damage_type != BURN)
 				damage_amount = 1
-	obj_integrity = max(obj_integrity - damage_amount, 0)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// obj_integrity = max(obj_integrity - damage_amount, 0) // SURREALIS-EDIT - ORIGINAL
+	apply_integrity_damage(damage_amount)
+	// [/SURREALIS-EDIT]
 	if(animate_dmg)
 		var/oldx = pixel_x
 		animate(src, pixel_x = oldx+1, time = 0.5)
@@ -35,6 +41,14 @@
 
 		obj_destruction(damage_flag)
 
+// [SURREALIS-ADD] - VRCOMBAT
+/obj/proc/clamps_break_damage()
+	return TRUE
+
+/obj/proc/apply_integrity_damage(damage_amount)
+	obj_integrity = max(obj_integrity - damage_amount, 0)
+
+// [/SURREALIS-ADD]
 //forces the object to reach the integrity failure and break if it has one
 /obj/proc/force_obj_break(damage_flag = "")
 	if(!obj_broken && integrity_failure)
@@ -276,12 +290,25 @@ GLOBAL_DATUM_INIT(acid_overlay, /mutable_appearance, mutable_appearance('icons/e
 	var/current_integrity = obj_integrity
 	var/current_max = max_integrity
 
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	if(current_integrity != 0 && current_max != 0)
 		var/percentage = current_integrity / current_max
 		current_integrity = max(1, round(percentage * new_max))	//don't destroy it as a result
 		obj_integrity = current_integrity
 
 	max_integrity = new_max
+	*/
+	var/rescale = current_integrity != 0 && current_max != 0
+	if(rescale)
+		var/percentage = current_integrity / current_max
+		current_integrity = max(1, round(percentage * new_max))	//don't destroy it as a result
+
+	set_max_integrity(new_max)
+	if(rescale)
+		set_integrity(current_integrity)
+	// [/SURREALIS-EDIT]
 
 	if(can_break && integrity_failure && current_integrity <= integrity_failure * max_integrity)
 		obj_break(damage_type)

@@ -83,7 +83,11 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	subclass_stashed_items = list(
 		"The Verses and Acts of the Ten" = /obj/item/book/rogue/bibble,
 	)
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	tempo_capable = FALSE
+	*/
+	// [/SURREALIS-REMOVE]
 
 /datum/outfit/job/roguetown/priest
 	job_bitflag = BITFLAG_HOLY_WARRIOR

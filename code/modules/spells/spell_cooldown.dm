@@ -85,6 +85,9 @@
 	/// Damage value shown in spell examine. For non-projectile spells that want to display damage.
 	/// Projectile spells auto-display from the projectile type.
 	var/displayed_damage = 0
+	// [SURREALIS-ADD] - VRCOMBAT
+	var/damage_variance = 0
+	// [/SURREALIS-ADD]
 
 	/// The sound played on cast.
 	var/sound = 'sound/magic/whiteflame.ogg'

@@ -60,7 +60,10 @@
 	force = 15 // Copy pasted from real brick + 1 for neat number
 	throwforce = 20 // +2 from real brick for neat scaling
 	throw_speed = 4
-	armor_penetration = PEN_NONE // It is a BRICK
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_NONE // It is a BRICK // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_NONE // It is a BRICK
+	// [/SURREALIS-EDIT]
 	wdefense = 0
 	wbalance = WBALANCE_NORMAL
 	max_integrity = 50 // Don't parry with it lol

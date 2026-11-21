@@ -56,7 +56,10 @@
 		if(I.anvilrepair && repair_type == 0)
 			return
 		if(I.max_integrity)
-			if(I.obj_integrity == I.max_integrity)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// if(I.obj_integrity == I.max_integrity) // SURREALIS-EDIT - ORIGINAL
+			if(!I.integrity_needs_repair())
+			// [/SURREALIS-EDIT]
 				to_chat(user, span_warning("This is not broken."))
 				return
 			if(!I.ontable() && table_need == TRUE)
@@ -85,9 +88,17 @@
 						user.mind.add_sleep_experience(I.anvilrepair, user.STAINT * XP_ON_SUCCESS)
 					else
 						user.mind.add_sleep_experience(/datum/skill/craft/sewing, user.STAINT * XP_ON_SUCCESS)
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// SURREALIS-EDIT - ORIGINAL
+				/*
 				I.obj_integrity = min(I.obj_integrity + (max_integrity/10), I.max_integrity) //10%
 				src.obj_integrity = min(src.obj_integrity - 10, src.max_integrity) //can restore 700% for good cloth kits, and 300% for bad cloth, 400% for bad metal,	1000% for good metal kit.
 				if(I.obj_broken && I.obj_integrity >= I.max_integrity)
+				*/
+				I.adjust_integrity(I.max_integrity/10) //10%
+				src.obj_integrity = min(src.obj_integrity - 10, src.max_integrity) //can restore 700% for good cloth kits, and 300% for bad cloth, 400% for bad metal,	1000% for good metal kit.
+				if(I.obj_broken && !I.integrity_needs_repair())
+				// [/SURREALIS-EDIT]
 					var/obj/item/T = I
 					T.obj_fix()
 					return

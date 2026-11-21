@@ -19,6 +19,9 @@
 	target_mobtypes = list(/mob/living/carbon/human)
 	time = 8 SECONDS
 	surgery_flags = SURGERY_INCISED
+	// [SURREALIS-ADD] - VRCOMBAT
+	surgery_flags_blocked = SURGERY_CONSTRUCT
+	// [/SURREALIS-ADD]
 	skill_min = SKILL_LEVEL_APPRENTICE
 	preop_sound = 'sound/surgery/cautery1.ogg'
 	success_sound = 'sound/surgery/cautery2.ogg'
@@ -28,6 +31,9 @@
 	display_results(user, target, span_notice("I begin to burn the rot within [target]..."),
 		span_notice("[user] begins to burn the rot from [target]'s heart."),
 		span_notice("[user] begins to burn the rot from [target]'s heart."))
+	// [SURREALIS-ADD] - VRCOMBAT
+	warn_untreated_flesh(user, target)
+	// [/SURREALIS-ADD]
 	return TRUE
 
 // calls the remove_rot which is shared with the pestra prayer to remove rot
@@ -50,9 +56,17 @@
 				stinky = TRUE
 			REMOVE_TRAIT(target, TRAIT_IWASROTCURED, "temporarytrait")
 
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	if(remove_rot(target = target, user = user, method = "surgery", damage = burndam,
 		success_message = "You burn away the rot inside of [target].",
 		fail_message = "The surgery fails to remove the rot."))
+	*/
+	if(remove_rot(target = target, user = user, method = "surgery", damage = burndam,
+		success_message = "You burn away the rot inside of [target].",
+		fail_message = "The surgery fails to remove the rot.", cure_flesh = FALSE))
+	// [/SURREALIS-EDIT]
 		target.remove_status_effect(/datum/status_effect/debuff/rotted_zombie)	//Removes the rotted-zombie debuff if they have it. (It's perma for zombies, NEEDS to be removed on de-zombify)
 		if(stinky)
 			target.apply_status_effect(/datum/status_effect/debuff/rotted)			//Temp debuff, needs cure - adds this on surgery.

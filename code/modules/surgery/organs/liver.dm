@@ -42,11 +42,31 @@
 						if(provide_pain_message != HAS_PAINFUL_TOXIN)
 							provide_pain_message = T.silent_toxin ? HAS_SILENT_TOXIN : HAS_PAINFUL_TOXIN
 
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			//metabolize reagents
 			C.reagents.metabolize(C, can_overdose=TRUE)
 
 			if(provide_pain_message && damage > 10 && prob(damage/3))//the higher the damage the higher the probability
 				to_chat(C, span_warning("I feel a dull pain in my abdomen."))
+			*/
+			C.reagents.metabolize(C, can_overdose=TRUE)
+
+			if(damage >= high_threshold)
+				C.adjustToxLoss((damage / maxHealth) * 1.5)
+				if(prob(8) && !C.stat)
+					to_chat(C, span_warning("My insides burn!"))
+				if(prob(5))
+					C.vomit(1, stun = FALSE)
+			else if(damage >= low_threshold)
+				C.adjustToxLoss((damage / maxHealth) * 0.5)
+				if(prob(3) && !C.stat)
+					to_chat(C, span_warning("My guts hurt."))
+
+			if(provide_pain_message && damage > 10 && prob(damage/3))
+				to_chat(C, span_warning("My abdomen aches."))
+			// [/SURREALIS-EDIT]
 
 		else	//for when our liver's failing
 			C.liver_failure()

@@ -131,9 +131,15 @@
 		if(4)
 			affecting = get_bodypart(BODY_ZONE_HEAD)
 			chat_message = span_danger("I fall on my head!")
-	if(affecting && apply_damage(dam, BRUTE, affecting, run_armor_check(affecting, "blunt", damage = dam)))
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(affecting && apply_damage(dam, BRUTE, affecting, run_armor_check(affecting, "blunt", damage = dam))) // SURREALIS-EDIT - ORIGINAL
+	if(affecting && apply_damage(armor_reduced_damage(dam, run_armor_check(affecting, "blunt", damage = dam), "blunt"), BRUTE, affecting, 0))
+	// [/SURREALIS-EDIT]
 		update_damage_overlays()
-		if(levels >= 1)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// if(levels >= 1) // SURREALIS-EDIT - ORIGINAL
+		if(levels >= 1 && !affecting.crit_immune_to())
+		// [/SURREALIS-EDIT]
 			//absurd damage to guarantee a crit
 			affecting.try_crit(BCLASS_TWIST, 300)
 

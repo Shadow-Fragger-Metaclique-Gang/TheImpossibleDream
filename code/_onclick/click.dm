@@ -172,6 +172,11 @@
 				var/adf = used_intent.clickcd
 				if(istype(rmb_intent, /datum/rmb_intent/aimed))
 					adf = round(adf * CLICK_CD_MOD_AIMED)
+					// [SURREALIS-ADD] - VRCOMBAT
+					if(ishuman(src))
+						var/mob/living/carbon/human/aimer = src
+						adf = max(round(adf * clamp(1 - ((aimer.STAPER - 10) * 0.05), 0.5, 2.0)), CLICK_CD_INTENTCAP)
+					// [/SURREALIS-ADD]
 				else if(istype(rmb_intent, /datum/rmb_intent/swift))
 					adf = max(round(adf * CLICK_CD_MOD_SWIFT), CLICK_CD_INTENTCAP)
 				changeNext_move(adf,used_hand)

@@ -191,7 +191,10 @@
 				close_trap()
 				L.visible_message(span_danger("[L] triggers \the [src]."), \
 						span_danger("I trigger \the [src]!"))
-				if(L.apply_damage(trap_damage, BRUTE, def_zone, L.run_armor_check(def_zone, "stab", armor_penetration = PEN_NONE, damage = trap_damage)))
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// if(L.apply_damage(trap_damage, BRUTE, def_zone, L.run_armor_check(def_zone, "stab", armor_penetration = PEN_NONE, damage = trap_damage))) // SURREALIS-EDIT - ORIGINAL
+				if(L.apply_damage(L.armor_reduced_damage(trap_damage, L.run_armor_check(def_zone, "stab", armor_penetration = AP_NONE, damage = trap_damage), "stab"), BRUTE, def_zone, 0))
+				// [/SURREALIS-EDIT]
 					L.Stun(80)
 		if(isitem(AM))
 			var/obj/item/I = AM

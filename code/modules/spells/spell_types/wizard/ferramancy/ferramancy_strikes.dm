@@ -56,7 +56,10 @@
 	button_icon_state = "sorcerers_lance"
 	invocations = list("Hasta Perforans!")
 	blade_class = BCLASS_STAB
-	strike_armor_pen = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// strike_armor_pen = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	strike_armor_pen = AP_HEAVY
+	// [/SURREALIS-EDIT]
 	windup_time = 8
 	stop_at_dense = TRUE
 	damage = SPELL_DMG(35)

@@ -10,14 +10,20 @@
 	clickcd = CLICK_CD_CHARGED
 	warnie = "mobwarning"
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
-	penfactor = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	penfactor = 3
+	// [/SURREALIS-EDIT]
 	item_d_type = "stab"
 	effective_range = 2
 	effective_range_type = EFF_RANGE_EXACT
 
 /datum/intent/spear/thrust/bad
 	name = "weak thrust"
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]
 	damfactor = 1
 	desc = "A weak thrust from a polearm not designed for stabbing. Doesn't care about effective range,\ but also incapable of piercing all but the weakest cloth armor."
 	effective_range = null
@@ -25,7 +31,10 @@
 
 /datum/intent/spear/thrust/training
 	name = "blunted thrust"
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
 
@@ -34,7 +43,10 @@
 	reach = 1
 	swingdelay = 14
 	damfactor = 1.6
-	penfactor = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	penfactor = 3
+	// [/SURREALIS-EDIT]
 	clickcd = CLICK_CD_RESIST
 	effective_range = null
 	effective_range_type = EFF_RANGE_NONE
@@ -42,12 +54,18 @@
 
 /datum/intent/spear/thrust/oneh/training
 	name = "blunted one-handed thrust"
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	intent_intdamage_factor = BLUNT_DEFAULT_INT_DAMAGEFACTOR
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
 
 /datum/intent/spear/thrust/militia
-	penfactor = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 
 /datum/intent/spear/thrust/pike		//EXPERIMENTAL
 	name = "pike thrust"
@@ -64,8 +82,14 @@
 	clickcd = CLICK_CD_HEAVY + 4
 	swingdelay = 6
 	damfactor = 1.5
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	penfactor = PEN_MEDIUM
 	max_intent_damage = 54
+	*/
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 	reach = 2
 	effective_range = 2
 	icon_state = "inlance"
@@ -74,14 +98,20 @@
 /datum/intent/spear/thrust/short
 	reach = 1
 	damfactor = 0.9
-	penfactor = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 	effective_range = null
 	effective_range_type = EFF_RANGE_NONE
 
 /datum/intent/spear/bash
 	name = "bash"
 	blade_class = BCLASS_BLUNT
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	icon_state = "inbash"
 	attack_verb = list("bashes", "strikes")
 	damfactor = NONBLUNT_BLUNT_DAMFACTOR
@@ -177,7 +207,10 @@
 	reach = 1
 	swingdelay = 1 SECONDS
 	swingdelay_type = SWINGDELAY_PENALTY
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	damfactor = 2.5
 	clickcd = CLICK_CD_CHARGED
 	no_early_release = TRUE
@@ -192,7 +225,10 @@
 
 /datum/intent/rend/reach
 	name = "long rend"
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	misscost = 5
 	swingdelay = 15
 	clickcd = CLICK_CD_HEAVY
@@ -264,7 +300,10 @@
 	desc = "A quick, nimble two-handed thrust. Keeps reach but lacks the power to pierce armor."
 	reach = 2
 	clickcd = CLICK_CD_QUICK // Long range, quick poke, NO AP
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	damfactor = 1
 	effective_range = null
 	effective_range_type = EFF_RANGE_NONE
@@ -274,7 +313,10 @@
 	desc = "A rapid jab from one hand. Fast with long range, but unable to penetrate armor."
 	reach = 2
 	clickcd = CLICK_CD_QUICK // capture that nimble feel
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	damfactor = 1
 	effective_range = null
 	effective_range_type = EFF_RANGE_NONE
@@ -289,7 +331,10 @@
 	reach = 1
 	clickcd = 18
 	swingdelay = 14
-	penfactor = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	penfactor = 3
+	// [/SURREALIS-EDIT]
 	damfactor = 0.8
 	item_d_type = "stab"
 	effective_range = null
@@ -319,7 +364,10 @@
 	thrown_bclass = BCLASS_STAB
 	throwforce = 22
 	resistance_flags = FLAMMABLE
-	armor_penetration = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_NONE
+	// [/SURREALIS-EDIT]
 
 /obj/item/rogueweapon/spear/trainer
 	name = "sparring spear"
@@ -822,7 +870,10 @@
 	clickcd = 1.3 SECONDS
 	warnie = "mobwarning"
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
-	penfactor = PEN_LIGHT //Bad for anything but its intended purpose
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT //Bad for anything but its intended purpose // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1 //Bad for anything but its intended purpose
+	// [/SURREALIS-EDIT]
 	item_d_type = "stab"
 	effective_range = 2
 	effective_range_type = EFF_RANGE_EXACT
@@ -1127,7 +1178,10 @@
 	throwforce = 30
 	icon_state = "bronzespear"
 	smeltresult = /obj/item/ingot/bronze
-	armor_penetration = PEN_LIGHT //In-between a spear and javelin.
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_LIGHT //In-between a spear and javelin. // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_LIGHT //In-between a spear and javelin.
+	// [/SURREALIS-EDIT]
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 33, "embedded_fall_chance" = 2)
 	max_blade_int = 225
 	max_integrity = 155

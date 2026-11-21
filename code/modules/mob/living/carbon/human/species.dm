@@ -767,6 +767,10 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 				return FALSE
 			if(!H.get_bodypart(BODY_ZONE_HEAD))
 				return FALSE
+			// [SURREALIS-ADD] - VRCOMBAT
+			if(wearing_other_coif(I, H, disable_warning))
+				return FALSE
+			// [/SURREALIS-ADD]
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_MOUTH)
 			if(H.mouth)
@@ -781,6 +785,10 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 				return FALSE
 			if( !(I.slot_flags & ITEM_SLOT_NECK) )
 				return FALSE
+			// [SURREALIS-ADD] - VRCOMBAT
+			if(wearing_other_coif(I, H, disable_warning))
+				return FALSE
+			// [/SURREALIS-ADD]
 			return TRUE
 		if(SLOT_BACK)
 			if(H.backr && H.backl)
@@ -892,6 +900,10 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 				return FALSE
 			if(!H.get_bodypart(BODY_ZONE_HEAD))
 				return FALSE
+			// [SURREALIS-ADD] - VRCOMBAT
+			if(wearing_other_coif(I, H, disable_warning))
+				return FALSE
+			// [/SURREALIS-ADD]
 			return equip_delay_self_check(I, H, bypass_equip_delay_self)
 		if(SLOT_PANTS)
 			if(H.wear_pants)
@@ -1304,6 +1316,9 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 
 ///This proc handles punching damage. IMPORTANT: Our owner is the TARGET and not the USER in this proc. For whatever reason...
 /datum/species/proc/harm(mob/living/carbon/human/user, mob/living/carbon/human/target, datum/martial_art/attacker_style)
+	// [SURREALIS-ADD] - VRCOMBAT
+	set waitfor = FALSE
+	// [/SURREALIS-ADD]
 	if(HAS_TRAIT(user, TRAIT_PACIFISM))
 		to_chat(user, span_warning("I don't want to harm [target]!"))
 		return FALSE
@@ -1350,8 +1365,12 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 
 		var/damage = user.get_punch_dmg()
 
+		// [SURREALIS-REMOVE] - VRCOMBAT
+		/*
 		if(istype(user.rmb_intent, /datum/rmb_intent/strong))
 			damage += (damage * STRONG_STANCE_DMG_BONUS)
+		*/
+		// [/SURREALIS-REMOVE]
 
 		if(target.has_status_effect(/datum/status_effect/buff/clash) && ishuman(user))
 			var/obj/item/IM = target.get_active_held_item()
@@ -1409,7 +1428,13 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 		var/base_intdamfactor = user.used_intent?.intent_intdamage_factor
 		if(isnum(base_intdamfactor))
 			base_intdamfactor *= glove_intdamfactor_mult
-		var/armor_block = target.run_armor_check(selzone, "blunt", armor_penetration = PEN_NONE, blade_dulling = user.used_intent.blade_class, damage = damage, intdamfactor = base_intdamfactor)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// var/armor_block = target.run_armor_check(selzone, "blunt", armor_penetration = PEN_NONE, blade_dulling = user.used_intent.blade_class, damage = damage, intdamfactor = base_intdamfactor) // SURREALIS-EDIT - ORIGINAL
+		var/bonus_pen = HAS_TRAIT(user, TRAIT_CIVILIZEDBARBARIAN) ? user.STASTR + (user.STASTR - 10) * STR_PEN_FACTOR : 0
+		var/punch_d_type = user.used_intent?.item_d_type ? user.used_intent.item_d_type : "blunt"
+		var/armor_block = target.run_armor_check(selzone, punch_d_type, armor_penetration = bonus_pen + user.used_intent.penfactor, blade_dulling = user.used_intent.blade_class, damage = damage, intdamfactor = base_intdamfactor, attacker = user)
+		var/actual_damage = target.armor_reduced_damage(damage, armor_block, punch_d_type)
+		// [/SURREALIS-EDIT]
 
 		target.lastattacker = user.real_name
 		if(target.mind)
@@ -1417,16 +1442,29 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 		target.lastattackerckey = user.ckey
 		target.lastattacker_weakref = WEAKREF(user)
 		user.dna.species.spec_unarmedattacked(user, target)
+		// [SURREALIS-ADD] - VRCOMBAT
+		user.punch_recoil(target, affecting, damage, armor_block, actual_damage)
+		// [/SURREALIS-ADD]
 
 		target.next_attack_msg.Cut()
 
 		var/nodmg = FALSE
 
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		if(!target.apply_damage(damage, user.dna.species.attack_type, affecting, armor_block))
 			nodmg = TRUE
 			target.next_attack_msg += VISMSG_ARMOR_BLOCKED
 		else
 			affecting.bodypart_attacked_by(user.used_intent.blade_class, damage, user, selzone, crit_message = TRUE)
+		*/
+		if(!target.apply_damage(actual_damage, user.dna.species.attack_type, affecting, 0))
+			nodmg = TRUE
+			target.next_attack_msg += " <span class='warning'>Armor stops the damage.</span>"
+		else
+			affecting.bodypart_attacked_by(user.used_intent.blade_class, actual_damage, user, selzone, crit_message = TRUE)
+		// [/SURREALIS-EDIT]
 			SEND_SIGNAL(target, COMSIG_ATOM_ATTACK_HAND, user)
 			if(affecting.body_zone == BODY_ZONE_HEAD)
 				SEND_SIGNAL(user, COMSIG_HEAD_PUNCHED, target)
@@ -1537,7 +1575,10 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 //		var/obj/machinery/disposal/bin/target_disposal_bin
 		var/shove_blocked = FALSE //Used to check if a shove is blocked so that if it is knockdown logic can be applied
 
-		if(prob(30 + generic_stat_comparison(user.STASTR, target.STACON) ))//check if we actually shove them
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// if(prob(30 + generic_stat_comparison(user.STASTR, target.STACON) ))//check if we actually shove them // SURREALIS-EDIT - ORIGINAL
+		if(get_stat_roll(user.STASTR) >= get_stat_roll(target.STACON) + 4)//check if we actually shove them
+		// [/SURREALIS-EDIT]
 			//Thank you based whoneedsspace
 			target_collateral_mob = locate(/mob/living) in target_shove_turf.contents
 			if(target_collateral_mob)
@@ -1715,10 +1756,20 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 			var/selzone = user.zone_selected
 			var/obj/item/bodypart/affecting = target.get_bodypart(check_zone(selzone))
 			var/damage = user.get_punch_dmg() * 1.4
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			var/armor_block = target.run_armor_check(selzone, "blunt", blade_dulling = BCLASS_BLUNT, damage = damage)
 			target.next_attack_msg.Cut()
 			var/nodmg = FALSE
 			if(!target.apply_damage(damage, user.dna.species.attack_type, affecting, armor_block))
+			*/
+			var/armor_block = target.run_armor_check(selzone, "blunt", armor_penetration = (HAS_TRAIT(user, TRAIT_CIVILIZEDBARBARIAN) ? max(user.STASTR + (user.STASTR - 10) * STR_PEN_FACTOR, 0) : 0), blade_dulling = BCLASS_BLUNT, damage = damage)
+			target.next_attack_msg.Cut()
+			var/nodmg = FALSE
+			damage = target.armor_reduced_damage(damage, armor_block, null)
+			if(!target.apply_damage(damage, user.dna.species.attack_type, affecting, 0))
+			// [/SURREALIS-EDIT]
 				nodmg = TRUE
 				target.next_attack_msg += VISMSG_ARMOR_BLOCKED
 			else
@@ -1849,9 +1900,17 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 		var/obj/item/bodypart/affecting = target.get_bodypart(check_zone(selzone))
 		if(!affecting)
 			affecting = target.get_bodypart(BODY_ZONE_CHEST)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		var/armor_block = target.run_armor_check(selzone, "blunt", blade_dulling = BCLASS_BLUNT)
 		var/damage = user.get_punch_dmg()
 		if(!target.apply_damage(damage, user.dna.species.attack_type, affecting, armor_block))
+		*/
+		var/armor_block = target.run_armor_check(selzone, "blunt", armor_penetration = (HAS_TRAIT(user, TRAIT_CIVILIZEDBARBARIAN) ? max(user.STASTR + (user.STASTR - 10) * STR_PEN_FACTOR, 0) : 0), blade_dulling = BCLASS_BLUNT)
+		var/damage = target.armor_reduced_damage(user.get_punch_dmg(), armor_block, null)
+		if(!target.apply_damage(damage, user.dna.species.attack_type, affecting, 0))
+		// [/SURREALIS-EDIT]
 			target.next_attack_msg += VISMSG_ARMOR_BLOCKED
 		else
 			affecting.bodypart_attacked_by(BCLASS_BLUNT, damage, user, selzone)
@@ -1942,8 +2001,14 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 	hit_area = affecting.name
 	var/def_zone = affecting.body_zone
 
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	// Penetration tier from the intent (0-5). Blunt/fire/acid use DR instead, pen is irrelevant.
 	var/pen = user.used_intent?.penfactor ? user.used_intent.penfactor : PEN_NONE
+	*/
+	var/pen = melee_armor_penetration(I, user)
+	// [/SURREALIS-EDIT]
 
 //	var/armor_block = H.run_armor_check(affecting, "I.d_type", span_notice("My armor has protected my [hit_area]!"), span_warning("My armor has softened a hit to my [hit_area]!"),pen)
 
@@ -1954,7 +2019,10 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 	var/bladec = user.used_intent.blade_class
 
 	if(user.used_intent?.out_of_effective_range(H, user))
-		pen = PEN_NONE
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// pen = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+		pen = BLUNT_DEFAULT_PENFACTOR
+		// [/SURREALIS-EDIT]
 		Iforce *= EFF_RANGE_MISS_DAMFACTOR
 
 	if(H == user && bladec == BCLASS_DISARM)
@@ -1977,6 +2045,9 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 	if(H.client?.prefs.combat_toggles & HITZONE_TEXT)
 		H.balloon_alert(H, "[bodyzone2readablezone(selzone)]...")
 
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	var/pen_info_check = get_pen_info(H, user, H.get_best_worn_armor(def_zone, int.item_d_type), def_zone, int.item_d_type, int.penfactor, I)
 	var/armor_block = H.run_armor_check(selzone, I.d_type, "", "",pen, damage = Iforce, blade_dulling=bladec, intdamfactor = used_intfactor, used_weapon = I, pen_info = pen_info_check)
 
@@ -1996,9 +2067,39 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 			nodmg = TRUE
 			H.next_attack_msg += VISMSG_ARMOR_BLOCKED
 			var/obj/item/clothing/C = H.get_best_worn_armor(def_zone, I.d_type)	//this is kinda relying on the proc returnig the same as run_armor_check did. Clunky!
-			var/extra_msg = C?.get_armor_integ()
+	*/
+	var/list/bypassed_armors = H.try_precision_strike(I, user, selzone, bladec, pen)
+	var/armor_block = H.run_armor_check(selzone, I.d_type, "", "", pen, damage = Iforce, blade_dulling = bladec, intdamfactor = used_intfactor * user.used_intent.damfactor, bypass_item = length(bypassed_armors) ? bypassed_armors : null, used_weapon = I, attacker = user)
+
+	var/nodmg = FALSE
+	var/raw_damage = 0
+	var/actual_damage = 0
+	var/was_blunted = FALSE
+
+	if(Iforce)
+		var/weakness = H.check_weakness(I, user)
+		raw_damage = Iforce * ((weakness == 0) ? 1 : weakness)
+		H.next_attack_msg.Cut()
+		actual_damage = armor_actual_damage(raw_damage, armor_block, I.d_type)
+		was_blunted = armor_blunts_attack(actual_damage, armor_block, bladec)
+		if(was_blunted)
+			actual_damage = ceil(actual_damage * 0.5)
+		if(!apply_damage(actual_damage, I.damtype, def_zone, 0, H, wounds_handled = TRUE))
+			nodmg = TRUE
+			H.next_attack_msg += " <span class='warning'>Armor stops the damage.</span>"
+			var/obj/item/clothing/C = H.last_armor_hit?.resolve()
+	// [/SURREALIS-EDIT]
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// var/extra_msg = C?.get_armor_integ() // SURREALIS-EDIT - ORIGINAL
+			var/extra_msg = C?.get_armor_integ(def_zone)
+			// [/SURREALIS-EDIT]
 			if(extra_msg)
 				H.next_attack_msg += extra_msg
+			// [SURREALIS-ADD] - VRCOMBAT
+			var/stamina_drain = min(armor_block * 0.05, 5)
+			if(stamina_drain > 0)
+				H.stamina_add(stamina_drain)
+			// [/SURREALIS-ADD]
 			if(I)
 				I.remove_bintegrity(1)
 				I.take_damage(1, BRUTE, I.d_type)
@@ -2007,9 +2108,25 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 				user.changeNext_def(clamp(user.dodgetime - 1, 0, CLICK_CD_DODGE))
 				user.changeMaxDodge(1)
 		if(!nodmg)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			post_reduction_dmg = (post_weakness_dmg - armor_block)
 			var/has_vuln_or_exposed = (H.has_status_effect(/datum/status_effect/debuff/exposed) || H.has_status_effect(/datum/status_effect/debuff/vulnerable))
 			var/datum/wound/crit_wound = affecting.bodypart_attacked_by(user.used_intent.blade_class, post_reduction_dmg, user, selzone, crit_message = TRUE, weapon = I, pen_info = pen_info_check)
+			*/
+			var/wound_bclass = bladec
+			if(was_blunted)
+				wound_bclass = BCLASS_BLUNT
+			H.last_attack_was_blunted = was_blunted
+			if(armor_block > 0 && actual_damage > 0)
+				H.next_attack_msg += " <span class='warning'>Armor softens the blow.</span>"
+			if(was_blunted)
+				H.next_attack_msg += " <span class='warning'>The attack was blunted by armor.</span>"
+			H.next_attack_msg += variance_attack_message(user)
+			var/has_vuln_or_exposed = (H.has_status_effect(/datum/status_effect/debuff/exposed) || H.has_status_effect(/datum/status_effect/debuff/vulnerable))
+			var/datum/wound/crit_wound = affecting.bodypart_attacked_by(wound_bclass, actual_damage, user, selzone, crit_message = TRUE, was_blunted = was_blunted, raw_damage = raw_damage, armor_block = armor_block, weapon = I)
+			// [/SURREALIS-EDIT]
 			if(should_embed_weapon(crit_wound, I))
 				var/can_impale = TRUE
 				if(!affecting)
@@ -2036,6 +2153,9 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 				H.dodgetime = (clamp(H.dodgetime - 8, 0, CLICK_CD_DODGE))	//We reset the dodgetime after getting struck directly in the body.
 				if(!has_vuln_or_exposed)
 					H.changeMaxDodge(5, clamp = TRUE)
+		// [SURREALIS-ADD] - VRCOMBAT
+		H.smash_knockback(user, actual_damage)
+		// [/SURREALIS-ADD]
 
 //		if(H.used_intent.blade_class == BCLASS_BLUNT && I.force >= 15 && affecting.body_zone == "chest")
 //			var/turf/target_shove_turf = get_step(H.loc, get_dir(user.loc,H.loc))
@@ -2052,8 +2172,14 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 
 	//dismemberment
 	var/bloody = 0
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	var/probability = I.get_dismemberment_chance(affecting, user, selzone)
 	if(affecting.brute_dam && prob(probability) && affecting.dismember(I.damtype, user.used_intent?.blade_class, user, selzone, vorpal = I.vorpal))
+	*/
+	if(affecting.should_dismember(user.used_intent?.blade_class, actual_damage, user, selzone, armor_block, raw_damage, I) && affecting.dismember(I.damtype, user.used_intent?.blade_class, user, selzone, vorpal = I.vorpal))
+	// [/SURREALIS-EDIT]
 		bloody = 1
 		I.add_mob_blood(H)
 		user.update_inv_hands()
@@ -2143,7 +2269,10 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 				user.sate_addiction(/datum/charflaw/addiction/sadist)
 	return TRUE
 
-/datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE) // SURREALIS-EDIT - ORIGINAL
+/datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, bclass = null, wounds_handled = FALSE)
+// [/SURREALIS-EDIT]
 	SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone)
 	var/hit_percent = 1
 	damage = max(damage-blocked,0)
@@ -2194,13 +2323,25 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 						H.flash_fullscreen("redflash2")
 					else if(damage_amount >= 20)
 						H.flash_fullscreen("redflash3")
+			// [SURREALIS-ADD] - VRCOMBAT
+			H.interrupt_ranged_draw(damage_amount)
+			// [/SURREALIS-ADD]
 			if(BP)
 				if(zone_sel)
 					zone_sel.flash_limb(BP.body_zone, "#FF0000")
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// SURREALIS-EDIT - ORIGINAL
+				/*
 				if(BP.receive_damage(damage_amount, 0))
 					H.update_damage_overlays()
 			else//no bodypart, we deal damage with a more general method.
 				H.adjustBruteLoss(damage_amount)
+				*/
+				if(BP.receive_damage(damage_amount, 0, bclass = bclass, wounds_handled = wounds_handled))
+					H.update_damage_overlays()
+			else//no bodypart, we deal damage with a more general method.
+				H.adjustBruteLoss(damage_amount, bclass = bclass)
+				// [/SURREALIS-EDIT]
 		if(BURN)
 			H.damageoverlaytemp = 20
 			var/damage_amount = forced ? damage : damage * hit_percent * burnmod * H.physiology.burn_mod
@@ -2216,10 +2357,19 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 			if(BP)
 				if(zone_sel)
 					zone_sel.flash_limb(BP.body_zone, "#FF0000")
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// SURREALIS-EDIT - ORIGINAL
+				/*
 				if(BP.receive_damage(0, damage_amount))
 					H.update_damage_overlays()
 			else
 				H.adjustFireLoss(damage_amount)
+				*/
+				if(BP.receive_damage(0, damage_amount, bclass = bclass, wounds_handled = wounds_handled))
+					H.update_damage_overlays()
+			else
+				H.adjustFireLoss(damage_amount, bclass = bclass)
+				// [/SURREALIS-EDIT]
 		if(TOX)
 			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.tox_mod
 			H.adjustToxLoss(damage_amount)
@@ -2235,7 +2385,10 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 				if(BP.receive_damage(0, 0, damage_amount))
 					H.update_stamina()
 			else
-				H.adjustStaminaLoss(damage_amount)
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// H.adjustStaminaLoss(damage_amount) // SURREALIS-EDIT - ORIGINAL
+				H.stamina_add(damage_amount)
+				// [/SURREALIS-EDIT]
 		if(BRAIN)
 			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.brain_mod
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, damage_amount)
@@ -2272,8 +2425,14 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 // FIRE //
 //////////
 
+// [SURREALIS-EDIT] - VRCOMBAT
+// SURREALIS-EDIT - ORIGINAL
+/*
 #define FIRE_WOUND_BURN_BASE 4
 #define FIRE_WOUND_BURN_STACK_SCALE 6
+*/
+#define FIRE_WOUND_BURN_BASE 3
+// [/SURREALIS-EDIT]
 #define FIRE_WOUND_BURN_SUITED 2
 
 /datum/species/proc/handle_fire(mob/living/carbon/human/H, no_protection = FALSE)
@@ -2291,7 +2450,10 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 	if(thermal_protection >= FIRE_SUIT_MAX_TEMP_PROTECT && !no_protection)
 		burn_damage = FIRE_WOUND_BURN_SUITED
 	else
-		burn_damage = FIRE_WOUND_BURN_BASE + round(sqrt(H.fire_stacks) * FIRE_WOUND_BURN_STACK_SCALE)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// burn_damage = FIRE_WOUND_BURN_BASE + round(sqrt(H.fire_stacks) * FIRE_WOUND_BURN_STACK_SCALE) // SURREALIS-EDIT - ORIGINAL
+		burn_damage = FIRE_WOUND_BURN_BASE + H.fire_stacks
+		// [/SURREALIS-EDIT]
 	burn_damage = round(burn_damage * fire_resist_mult * heatmod * H.physiology.heat_mod)
 	if(burn_damage <= 0)
 		return
@@ -2308,10 +2470,17 @@ GLOBAL_LIST_INIT(body_builds, init_body_builds())
 	if(!BP)
 		return
 	BP.receive_damage(0, burn_damage)
+// [SURREALIS-EDIT] - VRCOMBAT
+// SURREALIS-EDIT - ORIGINAL
+/*
 	BP.bodypart_attacked_by(BCLASS_BURN, burn_damage, null, BP.body_zone)
 
 #undef FIRE_WOUND_BURN_BASE
 #undef FIRE_WOUND_BURN_STACK_SCALE
+*/
+
+#undef FIRE_WOUND_BURN_BASE
+// [/SURREALIS-EDIT]
 #undef FIRE_WOUND_BURN_SUITED
 
 /datum/species/proc/Canignite_mob(mob/living/carbon/human/H)

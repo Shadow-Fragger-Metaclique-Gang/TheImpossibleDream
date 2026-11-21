@@ -431,7 +431,10 @@
 
 			// If armored, simply deal a blunt hit to the armor piece that blocked us.
 			if(armor_tier > 0)
-				var/obj/item/clothing/armor_piece = C.get_best_worn_armor(chosen_zone, BCLASS_PICK)
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// var/obj/item/clothing/armor_piece = C.get_best_worn_armor(chosen_zone, BCLASS_PICK) // SURREALIS-EDIT - ORIGINAL
+				var/obj/item/clothing/armor_piece = C.get_best_armor(chosen_zone, BCLASS_PICK)
+				// [/SURREALIS-EDIT]
 				if(armor_piece)
 					armor_piece.take_damage(damage_to_deal, BRUTE, bclass_to_use, 0)
 

@@ -702,7 +702,10 @@
 				CL.take_damage(max(damage_to_deal, min_damage), BRUTE, "blunt", FALSE)
 
 			else if(!isnull(O.obj_integrity))
-				O.obj_integrity -= damage_to_deal
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// O.obj_integrity -= damage_to_deal // SURREALIS-EDIT - ORIGINAL
+				O.set_integrity(O.obj_integrity - damage_to_deal)
+				// [/SURREALIS-EDIT]
 
 				if(O.obj_integrity <= 0)
 					qdel(O)

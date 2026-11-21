@@ -27,6 +27,9 @@
 
 	/// Whether or not we have been turned
 	var/has_turned = FALSE
+	// [SURREALIS-ADD] - VRCOMBAT
+	var/rise_time = ZOMBIE_RISE_MIN_TIME
+	// [/SURREALIS-ADD]
 	/// Last time we bit someone - Zombies will try to bite after 10 seconds of not biting
 	var/last_bite
 	/// Traits applied to the owner mob when we turn into a zombie
@@ -86,6 +89,9 @@
 			qdel(src)
 			return
 	zombie_start = world.time
+	// [SURREALIS-ADD] - VRCOMBAT
+	rise_time = rand(ZOMBIE_RISE_MIN_TIME, ZOMBIE_RISE_MAX_TIME)
+	// [/SURREALIS-ADD]
 	was_i_undead = zombie.mob_biotypes & MOB_UNDEAD
 	special_role = zombie.mind?.special_role
 	ambushable = zombie.ambushable
@@ -153,7 +159,11 @@
 				to_chat(zombie, span_green("I no longer crave flesh..."))
 
 		for(var/obj/item/bodypart/zombie_part as anything in zombie.bodyparts) //Cure all limbs
-			zombie_part.rotted = FALSE
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// zombie_part.rotted = FALSE // SURREALIS-EDIT - ORIGINAL
+			if(!keep_flesh_rot)
+				zombie_part.cure_rot()
+			// [/SURREALIS-EDIT]
 			zombie_part.update_disabled()
 			zombie_part.update_limb()
 		zombie.update_body()
@@ -205,10 +215,19 @@
 	zombie.faction += "zombie"
 	zombie.faction -= "neutral"
 	add_verb(zombie, /mob/living/carbon/human/proc/zombie_seek)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	for(var/obj/item/bodypart/zombie_part as anything in zombie.bodyparts)
 		if(!zombie_part.rotted && !zombie_part.skeletonized)
 			zombie_part.rotted = TRUE
 		zombie_part.update_disabled()
+	*/
+	if(zombie.rot_type)
+		zombie.LoadComponent(zombie.rot_type)
+	for(var/obj/item/bodypart/zombie_part as anything in zombie.bodyparts)
+		zombie_part.update_disabled()
+	// [/SURREALIS-EDIT]
 
 	zombie.add_client_colour(/datum/client_colour/monochrome)
 	var/obj/item/organ/eyes/eyes = zombie.getorganslot(ORGAN_SLOT_EYES) //Add zombie eyes(nightvision)

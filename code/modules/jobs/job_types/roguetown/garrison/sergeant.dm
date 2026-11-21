@@ -138,7 +138,10 @@
 				beltr = /obj/item/rogueweapon/mace/cudgel
 
 		var/armors = list(
-			"Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine/retinue,
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// "Brigandine"		= /obj/item/clothing/suit/roguetown/armor/brigandine/retinue, // SURREALIS-EDIT - ORIGINAL
+			"Lightweight Brigandine"	= /obj/item/clothing/suit/roguetown/armor/brigandine/light/retinue,
+			// [/SURREALIS-EDIT]
 			"Steel Cuirass"		= /obj/item/clothing/suit/roguetown/armor/plate/cuirass,
 			"Scalemail"	= /obj/item/clothing/suit/roguetown/armor/plate/scale,
 		)

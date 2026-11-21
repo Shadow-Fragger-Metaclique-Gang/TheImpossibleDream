@@ -206,7 +206,10 @@
 			head_items[item_slot] = worn_item
 			worn_item.forceMove(src)
 
-/obj/item/bodypart/head/dullahan/drop_limb(special)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /obj/item/bodypart/head/dullahan/drop_limb(special) // SURREALIS-EDIT - ORIGINAL
+/obj/item/bodypart/head/dullahan/drop_limb(special, destroy = FALSE)
+// [/SURREALIS-EDIT]
 	var/mob/living/carbon/human/user = original_owner
 	var/datum/species/dullahan/user_species = user.dna.species
 
@@ -341,7 +344,10 @@
 
 // This sucks.
 // Removes neck injuries as a trade for easy decapitations.
-/obj/item/bodypart/head/dullahan/try_crit(bclass, dam, mob/living/user, zone_precise, silent = FALSE, crit_message = FALSE)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /obj/item/bodypart/head/dullahan/try_crit(bclass, dam, mob/living/user, zone_precise, silent = FALSE, crit_message = FALSE) // SURREALIS-EDIT - ORIGINAL
+/obj/item/bodypart/head/dullahan/try_crit(bclass, dam, mob/living/user, zone_precise, silent = FALSE, crit_message = FALSE, raw_damage = 0, armor_block = 0, armor_resistance = 0, was_blunted = FALSE, obj/item/weapon)
+// [/SURREALIS-EDIT]
 	var/static/list/eyestab_zones = list(BODY_ZONE_PRECISE_R_EYE, BODY_ZONE_PRECISE_L_EYE)
 	var/static/list/tonguestab_zones = list(BODY_ZONE_PRECISE_MOUTH)
 	var/static/list/nosestab_zones = list(BODY_ZONE_PRECISE_NOSE)
@@ -358,10 +364,17 @@
 	if(user && dam)
 		if(user.goodluck(2))
 			dam += 10
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 	if((bclass in GLOB.dislocation_bclasses) && (total_dam >= max_damage))
 		used = round(damage_dividend * 20 + (dam / 3))
+*/
+// [/SURREALIS-REMOVE]
 	if(bclass in GLOB.fracture_bclasses)
-		used = round(damage_dividend * 20 + (dam / 3))
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// used = round(damage_dividend * 20 + (dam / 3)) // SURREALIS-EDIT - ORIGINAL
+		used = calculate_crit_chance(damage_dividend, dam, resistance, armor_resistance = armor_resistance)
+		// [/SURREALIS-EDIT]
 		if(HAS_TRAIT(src, TRAIT_BRITTLE))
 			used += 20
 		if(user)
@@ -374,7 +387,11 @@
 			if(owner.client)
 				winset(owner.client, "outputwindow.output", "max-lines=1")
 				winset(owner.client, "outputwindow.output", "max-lines=100")
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 		var/dislocation_type
+*/
+// [/SURREALIS-REMOVE]
 		var/fracture_type = /datum/wound/fracture/head
 		var/necessary_damage = 0.9
 		if(resistance)
@@ -391,11 +408,18 @@
 			fracture_type = /datum/wound/fracture/mouth
 			necessary_damage = 0.7
 		if(prob(used) && (damage_dividend >= necessary_damage))
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 			if(dislocation_type)
 				attempted_wounds += dislocation_type
+*/
+// [/SURREALIS-REMOVE]
 			attempted_wounds += fracture_type
 	if(bclass in GLOB.artery_bclasses)
-		used = round(damage_dividend * 20 + (dam / 3))
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// used = round(damage_dividend * 20 + (dam / 3)) // SURREALIS-EDIT - ORIGINAL
+		used = calculate_crit_chance(damage_dividend, dam, resistance, armor_resistance = armor_resistance)
+		// [/SURREALIS-EDIT]
 		if(user)
 			if(bclass == BCLASS_CHOP)
 				if(istype(user.rmb_intent, /datum/rmb_intent/strong))

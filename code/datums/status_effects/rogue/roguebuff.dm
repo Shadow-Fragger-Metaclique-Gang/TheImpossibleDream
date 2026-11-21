@@ -1666,7 +1666,10 @@
 	guard_disrupted()
 
 /datum/status_effect/buff/clash/proc/apply_cooldown()
-	var/newcd = BASE_RCLICK_CD - owner.get_tempo_bonus(TEMPO_TAG_RCLICK_CD_BONUS)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// var/newcd = BASE_RCLICK_CD - owner.get_tempo_bonus(TEMPO_TAG_RCLICK_CD_BONUS) // SURREALIS-EDIT - ORIGINAL
+	var/newcd = BASE_RCLICK_CD
+	// [/SURREALIS-EDIT]
 	if(deflected_spell || HAS_TRAIT(owner, TRAIT_PACIFISM))
 		newcd *= 0.5
 	owner.apply_status_effect(/datum/status_effect/debuff/clashcd, newcd)
@@ -2302,7 +2305,10 @@
 	if(!HAS_TRAIT(target, TRAIT_OUTLAW) || (!(target.name in user.mind.known_people)))
 		return
 
-	var/armor_block = target.run_armor_check(user.zone_selected, item.d_type, armor_penetration = PEN_NONE, damage = 1)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// var/armor_block = target.run_armor_check(user.zone_selected, item.d_type, armor_penetration = PEN_NONE, damage = 1) // SURREALIS-EDIT - ORIGINAL
+	var/armor_block = target.run_armor_check(user.zone_selected, item.d_type, armor_penetration = AP_NONE, damage = 1)
+	// [/SURREALIS-EDIT]
 	if(armor_block > 0)
 		return
 

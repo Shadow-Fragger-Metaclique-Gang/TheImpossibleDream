@@ -32,6 +32,9 @@
 
 	associated_skill = /datum/skill/magic/arcane
 	spell_tier = 3
+	// [SURREALIS-ADD] - VRCOMBAT
+	damage_variance = SPELL_VARIANCE_MID
+	// [/SURREALIS-ADD]
 
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_HUMAN
 
@@ -81,8 +84,15 @@
 	icon_state = "u_laser"
 	damage = SPELL_DMG(90)
 	damage_type = BURN
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	woundclass = BCLASS_BURN
 	flag = "fire"
+	*/
+	woundclass = BCLASS_FROST
+	flag = "frost"
+	// [/SURREALIS-EDIT]
 	range = SPELL_RANGE_PROJECTILE
 	speed = MAGE_PROJ_MEDIUM
 	movement_type = UNSTOPPABLE
@@ -136,11 +146,17 @@
 	speed = MAGE_PROJ_VERY_SLOW
 	damage = SPELL_DMG(90)
 	damage_type = BURN
-	woundclass = BCLASS_BURN
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// woundclass = BCLASS_BURN // SURREALIS-EDIT - ORIGINAL
+	woundclass = BCLASS_FROST
+	// [/SURREALIS-EDIT]
 	nodamage = FALSE
 	intdamfactor = SPELL_INTDAM(1)
 	spell_damage_scaled = TRUE
-	flag = "fire"
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// flag = "fire" // SURREALIS-EDIT - ORIGINAL
+	flag = "frost"
+	// [/SURREALIS-EDIT]
 	arcshot = TRUE
 	hitsound = 'sound/blank.ogg'
 	/// Radius for AOE blast around impact point
@@ -187,10 +203,19 @@
 					continue
 				if(L.guard_deflect_spell("Ice Burst", TRUE, caster, punish_caster = FALSE))
 					continue
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// SURREALIS-EDIT - ORIGINAL
+				/*
 				if(arcyne_strike(caster, L, null, aoe_damage, BODY_ZONE_CHEST, \
 					BCLASS_BURN, spell_name = "Ice Burst (Shatter)", \
 					allow_shield_check = TRUE, damage_type = BURN, \
 					skip_animation = TRUE, SPELL_STRIKE_SCALING) == ARCYNE_STRIKE_WARDED)
+				*/
+				if(arcyne_strike(caster, L, null, aoe_damage, BODY_ZONE_CHEST, \
+					BCLASS_FROST, spell_name = "Ice Burst (Shatter)", \
+					allow_shield_check = TRUE, damage_type = BURN, \
+					skip_animation = TRUE, SPELL_STRIKE_SCALING) == ARCYNE_STRIKE_WARDED)
+				// [/SURREALIS-EDIT]
 					continue
 				apply_frost_stack(L, 1)
 				new /obj/effect/temp_visual/spell_impact(get_turf(L), GLOW_COLOR_ICE, SPELL_IMPACT_MEDIUM)

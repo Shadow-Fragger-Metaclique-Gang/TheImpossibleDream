@@ -2,6 +2,8 @@
 /obj/item/bodypart/proc/can_dismember(obj/item/I)
 	return dismemberable
 
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 /obj/item/bodypart/proc/get_spell_dismemberment_chance(force, bclass, zone_precise = src.body_zone)
 	if(!can_dismember())
 		return 0
@@ -35,7 +37,8 @@
 	else if(easy_dismember)
 		return probability * 1.5
 	return probability
-
+*/
+// [/SURREALIS-REMOVE]
 /obj/item/bodypart/proc/can_disable(obj/item/I)
 	return disableable
 
@@ -76,23 +79,32 @@
 				var/has_mind = TRUE	// DEBUG: Temporarily forced to TRUE for testing
 				var/not_buckled = !C.buckled
 
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// SURREALIS-EDIT - ORIGINAL
+				/*
 				// Check if currently standing OR within grace period after being knocked down
 				var/can_stand = (C.mobility_flags & MOBILITY_STAND)
 				if(!can_stand && C.mob_timers && C.mob_timers["last_standing"])
 					// Within 2 seconds of being knocked down? Still count as standing
 					if(world.time < C.mob_timers["last_standing"] + STANDING_DECAP_GRACE_PERIOD)
 						can_stand = TRUE
+				*/
+				var/can_stand = (C.mobility_flags & MOBILITY_STAND)
+				// [/SURREALIS-EDIT]
 
 				if(has_mind && can_stand && not_buckled) //Only allows upright decapitations if it's not a player. Unless they're buckled.
 					return FALSE
 
+		// [SURREALIS-REMOVE] - VRCOMBAT
+		/*
 		if(body_zone != BODY_ZONE_HEAD)
 			var/mob/living/carbon/human/victim = owner
 			var/d_type = "slash"
 			if(victim.run_armor_check(zone_precise, d_type, armor_penetration = PEN_NONE, damage = damage))
 				to_chat(victim, span_warning("My armour just saved me from losing my [C.get_bodypart(body_zone).name]!"))
 				return FALSE
-
+		*/
+		// [/SURREALIS-REMOVE]
 	if(C.status_flags & GODMODE)
 		return FALSE
 	if(HAS_TRAIT(C, TRAIT_NODISMEMBER))
@@ -104,11 +116,14 @@
 	if(SEND_SIGNAL(src, COMSIG_MOB_DISMEMBER, src) & COMPONENT_CANCEL_DISMEMBER)
 		return FALSE //signal handled the dropping
 
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	if(!skip_checks)
 		if(C.try_resist_critical())
 			C.visible_message(span_danger("Critical resistance! [C]'s [src.name] hangs on by a thread!</span>"))
 			return FALSE
-
+	*/
+	// [/SURREALIS-REMOVE]
 	var/obj/item/bodypart/affecting = C.get_bodypart(BODY_ZONE_CHEST)
 	if(affecting && dismember_wound && !isooze(C))
 		affecting.add_wound(dismember_wound)
@@ -146,6 +161,12 @@
 		else
 			// we're greviously wounded OR we don't give a shit about two-stage death (guillotines, npcs, etc)
 			C.visible_message(span_danger("<B>[C] is [pick("BRUTALLY","VIOLENTLY","BLOODILY","MESSILY")] DECAPITATED!</B>"))
+	// [SURREALIS-ADD] - VRCOMBAT
+	else if(bclass in GLOB.fracture_bclasses)
+		C.visible_message(span_danger("<B>[C]'s [src.name] EXPLODES into [pick("a shower of blood and bone", "a pile of gore", "chunks of minced meat")]!</B>"))
+	else if(bclass in GLOB.charring_bclasses)
+		C.visible_message(span_danger("<B>[C]'s [src.name] [pick("burns to ash", "disintegrates", "is vaporized")]!</B>"))
+	// [/SURREALIS-ADD]
 	else
 		C.visible_message(span_danger("<B>The [src.name] is [pick("torn off", "sundered", "severed", "separated", "unsewn")]!</B>"))
 
@@ -187,6 +208,16 @@
 		for(var/datum/wound/wound in wounds)
 			remove_wound(wound.type)
 
+	// [SURREALIS-ADD] - VRCOMBAT
+	var/static/list/crushing_classes = list(BCLASS_SMASH, BCLASS_BLUNT, BCLASS_PUNCH)
+	if(bclass in crushing_classes)
+		owner.spawn_limbgore()
+		var/turf/gore_location = C.loc
+		drop_limb(destroy = TRUE)
+		if(istype(gore_location))
+			C.add_splatter_floor(gore_location)
+		return TRUE
+	// [/SURREALIS-ADD]
 
 	drop_limb()
 	if(dam_type == BURN)
@@ -211,6 +242,10 @@
 	return TRUE
 
 /obj/item/bodypart/chest/dismember(dam_type = BRUTE, bclass = BCLASS_CUT, mob/living/user, zone_precise = src.body_zone, damage = 0, vorpal = FALSE, skip_checks = FALSE)
+	// [SURREALIS-ADD] - VRCOMBAT
+	if(!skip_checks && !(bclass in GLOB.disembowel_bclasses))
+		return FALSE
+	// [/SURREALIS-ADD]
 	if(!owner)
 		return FALSE
 	var/mob/living/carbon/C = owner
@@ -224,7 +259,10 @@
 	return TRUE
 
 //limb removal. The "special" argument is used for swapping a limb with a new one without the effects of losing a limb kicking in.
-/obj/item/bodypart/proc/drop_limb(special)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /obj/item/bodypart/proc/drop_limb(special) // SURREALIS-EDIT - ORIGINAL
+/obj/item/bodypart/proc/drop_limb(special, destroy = FALSE)
+// [/SURREALIS-EDIT]
 	if(!owner)
 		return FALSE
 
@@ -236,11 +274,18 @@
 		var/list/stored_wounds = list()
 		for(var/datum/wound/wound as anything in wounds)
 			if(wound)
+				// [SURREALIS-ADD] - VRCOMBAT
+				var/stored_bleed = wound.bleed_rate
+				// [/SURREALIS-ADD]
 				wound.remove_from_bodypart()
 				if(wound.qdel_on_droplimb)
 					qdel(wound)
 				else
 					stored_wounds += wound //store for later when the limb is reattached
+					// [SURREALIS-ADD] - VRCOMBAT
+					// Keeps the bleed for reattachment.
+					wound.bleed_rate = stored_bleed
+					// [/SURREALIS-ADD]
 		wounds = stored_wounds
 	//if we had an ongoing surgery on this limb, we stop it
 	for(var/body_zone in was_owner.surgeries)
@@ -282,7 +327,10 @@
 	was_owner.update_mobility()
 
 	// drop_location = null happens when a "dummy human" used for rendering icons on prefs screen gets its limbs replaced.
-	if(!drop_location)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(!drop_location) // SURREALIS-EDIT - ORIGINAL
+	if(!drop_location || destroy)
+	// [/SURREALIS-EDIT]
 		qdel(src)
 		return TRUE
 
@@ -338,12 +386,18 @@
 		LB.tongue = src
 	return ..()
 
-/obj/item/bodypart/chest/drop_limb(special)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /obj/item/bodypart/chest/drop_limb(special) // SURREALIS-EDIT - ORIGINAL
+/obj/item/bodypart/chest/drop_limb(special, destroy = FALSE)
+// [/SURREALIS-EDIT]
 	if(special)
 		return ..()
 	return FALSE
 
-/obj/item/bodypart/r_arm/drop_limb(special)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /obj/item/bodypart/r_arm/drop_limb(special) // SURREALIS-EDIT - ORIGINAL
+/obj/item/bodypart/r_arm/drop_limb(special, destroy = FALSE)
+// [/SURREALIS-EDIT]
 	var/mob/living/carbon/C = owner
 	. = ..()
 	if(isooze(C) && !is_prosthetic_limb())
@@ -364,7 +418,10 @@
 		C.update_inv_armor()
 
 
-/obj/item/bodypart/l_arm/drop_limb(special)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /obj/item/bodypart/l_arm/drop_limb(special) // SURREALIS-EDIT - ORIGINAL
+/obj/item/bodypart/l_arm/drop_limb(special, destroy = FALSE)
+// [/SURREALIS-EDIT]
 	var/mob/living/carbon/C = owner
 	. = ..()
 	if(isooze(C) && !is_prosthetic_limb())
@@ -384,7 +441,10 @@
 		C.update_inv_gloves() //to remove the bloody hands overlay
 		C.update_inv_armor()
 
-/obj/item/bodypart/r_leg/drop_limb(special)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /obj/item/bodypart/r_leg/drop_limb(special) // SURREALIS-EDIT - ORIGINAL
+/obj/item/bodypart/r_leg/drop_limb(special, destroy = FALSE)
+// [/SURREALIS-EDIT]
 	var/mob/living/carbon/C = owner
 	. = ..()
 	if(isooze(C) && !is_prosthetic_limb())
@@ -400,7 +460,10 @@
 		C.update_inv_shoes()
 		C.update_inv_pants()
 
-/obj/item/bodypart/l_leg/drop_limb(special) //copypasta
+// [SURREALIS-EDIT] - VRCOMBAT
+// /obj/item/bodypart/l_leg/drop_limb(special) //copypasta // SURREALIS-EDIT - ORIGINAL
+/obj/item/bodypart/l_leg/drop_limb(special, destroy = FALSE) //copypasta
+// [/SURREALIS-EDIT]
 	var/mob/living/carbon/C = owner
 	. = ..()
 	if(isooze(C) && !is_prosthetic_limb())
@@ -416,7 +479,10 @@
 		C.update_inv_shoes()
 		C.update_inv_pants()
 
-/obj/item/bodypart/taur/drop_limb(special) //copypasta
+// [SURREALIS-EDIT] - VRCOMBAT
+// /obj/item/bodypart/taur/drop_limb(special) //copypasta // SURREALIS-EDIT - ORIGINAL
+/obj/item/bodypart/taur/drop_limb(special, destroy = FALSE) //copypasta
+// [/SURREALIS-EDIT]
 	var/mob/living/carbon/C = owner
 	. = ..()
 	if(C && !special)
@@ -430,7 +496,10 @@
 		C.update_inv_shoes()
 		C.update_inv_pants()
 
-/obj/item/bodypart/head/drop_limb(special)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /obj/item/bodypart/head/drop_limb(special) // SURREALIS-EDIT - ORIGINAL
+/obj/item/bodypart/head/drop_limb(special, destroy = FALSE)
+// [/SURREALIS-EDIT]
 	if(!special)
 		//Drop all worn head items
 		var/list/worn_items = list(
@@ -620,25 +689,37 @@
 	sync_overclock_spell(H)
 
 //we check each prosthetic on limb removal rather than organic limbs
-/obj/item/bodypart/l_arm/prosthetic/drop_limb(special)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /obj/item/bodypart/l_arm/prosthetic/drop_limb(special) // SURREALIS-EDIT - ORIGINAL
+/obj/item/bodypart/l_arm/prosthetic/drop_limb(special, destroy = FALSE)
+// [/SURREALIS-EDIT]
 	var/mob/living/carbon/human/was_owner = owner
 	. = ..()
 	if(ishuman(was_owner))
 		sync_overclock_spell(was_owner)
 
-/obj/item/bodypart/r_arm/prosthetic/drop_limb(special)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /obj/item/bodypart/r_arm/prosthetic/drop_limb(special) // SURREALIS-EDIT - ORIGINAL
+/obj/item/bodypart/r_arm/prosthetic/drop_limb(special, destroy = FALSE)
+// [/SURREALIS-EDIT]
 	var/mob/living/carbon/human/was_owner = owner
 	. = ..()
 	if(ishuman(was_owner))
 		sync_overclock_spell(was_owner)
 
-/obj/item/bodypart/l_leg/prosthetic/drop_limb(special)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /obj/item/bodypart/l_leg/prosthetic/drop_limb(special) // SURREALIS-EDIT - ORIGINAL
+/obj/item/bodypart/l_leg/prosthetic/drop_limb(special, destroy = FALSE)
+// [/SURREALIS-EDIT]
 	var/mob/living/carbon/human/was_owner = owner
 	. = ..()
 	if(ishuman(was_owner))
 		sync_overclock_spell(was_owner)
 
-/obj/item/bodypart/r_leg/prosthetic/drop_limb(special)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /obj/item/bodypart/r_leg/prosthetic/drop_limb(special) // SURREALIS-EDIT - ORIGINAL
+/obj/item/bodypart/r_leg/prosthetic/drop_limb(special, destroy = FALSE)
+// [/SURREALIS-EDIT]
 	var/mob/living/carbon/human/was_owner = owner
 	. = ..()
 	if(ishuman(was_owner))

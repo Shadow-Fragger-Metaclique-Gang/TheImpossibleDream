@@ -31,10 +31,13 @@
 		return
 	return affected.getorganslot(ORGAN_SLOT_EARS)
 
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 /datum/wound/facial/ears/on_mob_gain(mob/living/affected)
 	. = ..()
 	affected.Stun(10)
-
+*/
+// [/SURREALIS-REMOVE]
 /datum/wound/facial/eyes
 	name = "eye evisceration"
 	check_name = span_warning("EYE")
@@ -152,7 +155,11 @@
 
 /datum/wound/facial/tongue/on_mob_gain(mob/living/affected)
 	. = ..()
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	affected.Stun(10)
+	*/
+	// [/SURREALIS-REMOVE]
 	var/obj/item/organ/tongue/tongue_up_my_asshole = affected.getorganslot(ORGAN_SLOT_TONGUE)
 	if(tongue_up_my_asshole)
 		tongue_up_my_asshole.Remove(affected)

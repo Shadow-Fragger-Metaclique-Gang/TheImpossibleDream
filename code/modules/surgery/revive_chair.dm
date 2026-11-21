@@ -292,6 +292,9 @@
 	// Check if occupant is valid
 	if(!occupant.check_revive(user))
 		return
+	// [SURREALIS-ADD] - VRCOMBAT
+	warn_untreated_flesh(H, occupant)
+	// [/SURREALIS-ADD]
 
 	// Prompt ghost
 	var/mob/dead/observer/underworld_spirit = occupant.get_spirit()
@@ -327,7 +330,10 @@
 		update_icon()
 
 		// Apply debuffs
-		occupant.mind.remove_antag_datum(/datum/antagonist/zombie)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// occupant.mind.remove_antag_datum(/datum/antagonist/zombie) // SURREALIS-EDIT - ORIGINAL
+		occupant.unzombify_keeping_rot()
+		// [/SURREALIS-EDIT]
 		addtimer(CALLBACK(src, GLOBAL_PROC_REF(deathmark), occupant), DEATHMARK_GRACE_PERIOD) //Performs a check after the listed time has elapsed, post-resurrection. If the target is still alive by then, it'll apply the 'DNR' trait.
 		return TRUE
 

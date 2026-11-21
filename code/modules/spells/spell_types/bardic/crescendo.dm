@@ -160,8 +160,15 @@
 				continue
 			if(spell_guard_check(L, TRUE))
 				continue
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			var/armor_block = L.run_armor_check(def_zone, "slash", armor_penetration = PEN_NONE, damage = CRESCENDO_RESONATING_DAMAGE)
 			L.apply_damage(CRESCENDO_RESONATING_DAMAGE, BRUTE, def_zone, armor_block)
+			*/
+			var/armor_block = L.run_armor_check(def_zone, "slash", armor_penetration = AP_NONE, damage = CRESCENDO_RESONATING_DAMAGE)
+			L.apply_damage(L.armor_reduced_damage(CRESCENDO_RESONATING_DAMAGE, armor_block, null), BRUTE, def_zone, 0)
+			// [/SURREALIS-EDIT]
 			var/zone_name = parse_zone(def_zone)
 			L.balloon_alert_to_viewers("resonant strike - [zone_name]!")
 			L.visible_message(span_danger("A wave of rhythmic force reverberates through [L]!"))
@@ -178,8 +185,15 @@
 				continue
 			if(L.anchored || L.move_resist >= MOVE_FORCE_STRONG)
 				continue
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			var/armor_block = L.run_armor_check(def_zone, "slash", armor_penetration = PEN_NONE, damage = CRESCENDO_CONCUSSIVE_DAMAGE)
 			L.apply_damage(CRESCENDO_CONCUSSIVE_DAMAGE, BRUTE, def_zone, armor_block)
+			*/
+			var/armor_block = L.run_armor_check(def_zone, "slash", armor_penetration = AP_NONE, damage = CRESCENDO_CONCUSSIVE_DAMAGE)
+			L.apply_damage(L.armor_reduced_damage(CRESCENDO_CONCUSSIVE_DAMAGE, armor_block, null), BRUTE, def_zone, 0)
+			// [/SURREALIS-EDIT]
 			var/push_dir = get_dir(user, L)
 			if(push_dir)
 				L.safe_throw_at(get_ranged_target_turf(L, push_dir, 3), 3, 2, user, force = MOVE_FORCE_STRONG)

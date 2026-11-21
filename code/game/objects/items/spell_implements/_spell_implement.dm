@@ -58,8 +58,15 @@
 	if(!new_template)
 		return
 	var/integrity_ratio = max_integrity ? obj_integrity / max_integrity : 1
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	max_integrity = initial(new_template.max_integrity)
 	obj_integrity = round(max_integrity * integrity_ratio)
+	*/
+	set_max_integrity(initial(new_template.max_integrity))
+	set_integrity(round(max_integrity * integrity_ratio))
+	// [/SURREALIS-EDIT]
 	force = initial(new_template.force)
 	force_wielded = initial(new_template.force_wielded)
 	update_force_dynamic()

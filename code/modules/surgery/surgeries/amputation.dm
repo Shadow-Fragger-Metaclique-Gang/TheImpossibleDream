@@ -34,12 +34,22 @@
 	target_mobtypes = list(/mob/living/carbon/human)
 	time = 6.4 SECONDS
 	surgery_flags = SURGERY_INCISED | SURGERY_BROKEN
+	// [SURREALIS-ADD] - VRCOMBAT
+	surgery_flags_blocked = SURGERY_CONSTRUCT
+	// [/SURREALIS-ADD]
 	requires_bodypart_type = NONE
 	skill_min = SKILL_LEVEL_APPRENTICE
 	skill_median = SKILL_LEVEL_JOURNEYMAN
 	preop_sound = 'sound/surgery/scalpel1.ogg'
 	success_sound = 'sound/surgery/organ2.ogg'
 
+// [SURREALIS-ADD] - VRCOMBAT
+/datum/surgery_step/amputate/validate_target(mob/user, mob/living/target, target_zone, datum/intent/intent)
+	. = ..()
+	if(. && HAS_TRAIT(target, TRAIT_NODISMEMBER))
+		return FALSE
+
+// [/SURREALIS-ADD]
 /datum/surgery_step/amputate/preop(mob/user, mob/living/target, target_zone, obj/item/tool, datum/intent/intent)
 	display_results(user, target, span_notice("I begin to sever [target]'s [parse_zone(target_zone)]..."),
 		span_notice("[user] begins to sever [target]'s [parse_zone(target_zone)]!"),

@@ -28,7 +28,10 @@
 	damage = 45
 	strike_damage_type = BURN
 	blade_class = BCLASS_BURN
-	strike_armor_pen = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// strike_armor_pen = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	strike_armor_pen = AP_NONE
+	// [/SURREALIS-EDIT]
 	damage_structures = TRUE
 	structure_damage = 45
 	strike_sound = null

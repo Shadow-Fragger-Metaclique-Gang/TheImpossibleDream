@@ -19,6 +19,9 @@
 	target_mobtypes = list(/mob/living/carbon/human)
 	time = 12 SECONDS
 	surgery_flags = SURGERY_INCISED
+	// [SURREALIS-ADD] - VRCOMBAT
+	surgery_flags_blocked = SURGERY_CONSTRUCT
+	// [/SURREALIS-ADD]
 	skill_min = SKILL_LEVEL_EXPERT
 	preop_sound = 'sound/surgery/scalpel1.ogg'
 	success_sound = 'sound/surgery/scalpel2.ogg'

@@ -438,7 +438,10 @@ GLOBAL_LIST_INIT(npc_weakpoint_zone_weights, list(
 			if(wound_visible)
 				wounded += zone
 
-			var/obj/item/clothing/worn = htarget.get_best_worn_armor(zone, armor_rating)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// var/obj/item/clothing/worn = htarget.get_best_worn_armor(zone, armor_rating) // SURREALIS-EDIT - ORIGINAL
+			var/obj/item/clothing/worn = htarget.get_best_armor(zone, armor_rating)
+			// [/SURREALIS-EDIT]
 			if(!worn)
 				exposed += zone
 				continue
@@ -463,7 +466,10 @@ GLOBAL_LIST_INIT(npc_weakpoint_zone_weights, list(
 			if(!part)
 				continue
 			for(var/zone in (GLOB.npc_weakpoint_subzones[part.body_zone] || list(part.body_zone)))
-				var/obj/item/clothing/fallback_armor = htarget.get_best_worn_armor(zone, armor_rating)
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// var/obj/item/clothing/fallback_armor = htarget.get_best_worn_armor(zone, armor_rating) // SURREALIS-EDIT - ORIGINAL
+				var/obj/item/clothing/fallback_armor = htarget.get_best_armor(zone, armor_rating)
+				// [/SURREALIS-EDIT]
 				if(!fallback_armor)
 					continue
 				var/rating = fallback_armor.armor.getRating(armor_rating)

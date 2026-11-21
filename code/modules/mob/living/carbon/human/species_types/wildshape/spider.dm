@@ -107,7 +107,10 @@
 	attack_verb = list("bites", "pierces", "impales")
 	animname = "stab"
 	hitsound = "genslash"
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]
 	candodge = TRUE
 	canparry = TRUE
 	miss_text = "bites the air!"

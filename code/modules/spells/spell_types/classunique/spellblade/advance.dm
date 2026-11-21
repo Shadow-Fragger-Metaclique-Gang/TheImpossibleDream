@@ -135,7 +135,10 @@
 		if(spell_guard_check(victim, FALSE, H, punish_caster = deflected ? FALSE : null))
 			deflected = TRUE
 			continue
-		arcyne_strike(H, victim, held_weapon, damage, def_zone, BCLASS_STAB, spell_name = "Advance!")
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// arcyne_strike(H, victim, held_weapon, damage, def_zone, BCLASS_STAB, spell_name = "Advance!") // SURREALIS-EDIT - ORIGINAL
+		arcyne_strike(H, victim, held_weapon, damage, def_zone, BCLASS_STAB, spell_name = "Advance!", full_crit = TRUE)
+		// [/SURREALIS-EDIT]
 		hit_count++
 
 	if(!hit_count)
@@ -147,7 +150,10 @@
 			if(spell_guard_check(victim, FALSE, H, punish_caster = deflected ? FALSE : null))
 				deflected = TRUE
 				continue
-			arcyne_strike(H, victim, held_weapon, damage, def_zone, BCLASS_STAB, spell_name = "Advance!")
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// arcyne_strike(H, victim, held_weapon, damage, def_zone, BCLASS_STAB, spell_name = "Advance!") // SURREALIS-EDIT - ORIGINAL
+			arcyne_strike(H, victim, held_weapon, damage, def_zone, BCLASS_STAB, spell_name = "Advance!", full_crit = TRUE)
+			// [/SURREALIS-EDIT]
 			hit_count++
 
 	if(!hit_count)

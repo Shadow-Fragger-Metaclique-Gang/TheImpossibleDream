@@ -45,7 +45,10 @@
 				to_chat(owner, span_warning("Not even magic can mend this item!"))
 			return FALSE
 
-		if(I.obj_integrity >= I.max_integrity && I.body_parts_covered_dynamic == I.body_parts_covered)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// if(I.obj_integrity >= I.max_integrity && I.body_parts_covered_dynamic == I.body_parts_covered) // SURREALIS-EDIT - ORIGINAL
+		if(!I.integrity_needs_repair() && I.body_parts_covered_dynamic == I.body_parts_covered)
+		// [/SURREALIS-EDIT]
 			if(owner)
 				to_chat(owner, span_info("[I] appears to be in perfect condition."))
 			return FALSE
@@ -106,12 +109,19 @@
 		repair_percent += int_bonus
 		repair_percent *= I.max_integrity
 
-		I.obj_integrity = min(I.obj_integrity + repair_percent, I.max_integrity)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// I.obj_integrity = min(I.obj_integrity + repair_percent, I.max_integrity) // SURREALIS-EDIT - ORIGINAL
+		I.adjust_integrity(repair_percent)
+		// [/SURREALIS-EDIT]
 
 		user.visible_message(span_info("[I] glows in a faint mending light."))
 		playsound(I, 'sound/magic/mending.ogg', 35, TRUE, -2)
 
-		if(I.obj_integrity >= I.max_integrity)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// if(I.obj_integrity >= I.max_integrity) // SURREALIS-EDIT - ORIGINAL
+		if(!I.integrity_needs_repair())
+			to_chat(user, span_info("The [I.name] has been fully repaired."))
+			// [/SURREALIS-EDIT]
 			if(I.obj_broken)
 				I.obj_fix()
 			if(I.body_parts_covered_dynamic != I.body_parts_covered)

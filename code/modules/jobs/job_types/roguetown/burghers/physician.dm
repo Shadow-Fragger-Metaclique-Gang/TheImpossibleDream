@@ -71,7 +71,11 @@
 		/datum/skill/craft/sewing = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/misc/medicine = SKILL_LEVEL_LEGENDARY,
 	)
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	tempo_capable = FALSE
+	*/
+	// [/SURREALIS-REMOVE]
 
 /datum/outfit/job/roguetown/physician
 	job_bitflag = BITFLAG_ROYALTY

@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 /datum/component/layeredarmor
 	/// Basic reference list for which armor types this component will use.
 	var/list/damtypes = list("blunt", "slash", "stab", "piercing")
@@ -279,3 +281,5 @@
 			LAZYADD(repairable_damtypes, type)
 			status = TRUE
 	return status
+*/
+// [/SURREALIS-REMOVE]

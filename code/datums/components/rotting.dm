@@ -72,10 +72,16 @@
 			qdel(src)
 			return
 
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	// Bodies that ever belonged to a player are exempt from auto-decay/dusting.
 	var/was_player = C.mind || C.last_mind || C.ckey
 	if(was_player && !is_zombie)
 		return
+	*/
+	var/was_player = C.mind || C.last_mind || C.ckey
+	// [/SURREALIS-EDIT]
 
 	var/area/A = get_area(C)
 	if (istype(A, /area/rogue/indoors/town))	//Stops rotting inside town buildings; will stop your zombification such as at church or appothocary.
@@ -87,13 +93,26 @@
 		qdel(src)
 		return
 
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	if(amount > DEAD_TO_ZOMBIE_TIME)
 		if(is_zombie)
 			var/datum/antagonist/zombie/Z = C.mind.has_antag_datum(/datum/antagonist/zombie)
 			if(Z && !Z.has_turned && !Z.revived && C.stat == DEAD)
 				C.infected = TRUE
 				wake_zombie(C, infected_wake = TRUE, converted = FALSE)
+	*/
+	if(is_zombie)
+		var/datum/antagonist/zombie/Z = C.mind.has_antag_datum(/datum/antagonist/zombie)
+		if(Z && !Z.has_turned && !Z.revived && C.stat == DEAD && amount > Z.rise_time)
+			C.infected = TRUE
+			wake_zombie(C, infected_wake = TRUE, converted = FALSE)
+	// [/SURREALIS-EDIT]
 
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	var/findonerotten = FALSE
 	var/shouldupdate = FALSE
 	var/dustme = FALSE
@@ -119,6 +138,13 @@
 			if(!is_zombie)
 				if(B.skeletonized)
 					dustme = TRUE
+	*/
+	var/shouldupdate = rot_flesh(C, C.stat == DEAD || is_zombie)
+	var/findonerotten = flesh_rotting
+	if(shouldupdate && necrotic)
+		C.apply_status_effect(/datum/status_effect/debuff/rotted_zombie)
+	var/dustme = !is_zombie && !was_player && ready_to_dust()
+	// [/SURREALIS-EDIT]
 
 	if(dustme)
 		qdel(src)

@@ -154,7 +154,10 @@
 				L.adjustFireLoss(30)
 				L.adjustOxyLoss(30)
 				L.fire_act(99, 99)
-				arcyne_strike(L, L, null, 70, def_zone_random, BCLASS_BURN, PEN_BSTEEL, "acid", TRUE, FALSE, FALSE, BURN, 0, 0, 10)
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// arcyne_strike(L, L, null, 70, def_zone_random, BCLASS_BURN, PEN_BSTEEL, "acid", TRUE, FALSE, FALSE, BURN, 0, 0, 10) // SURREALIS-EDIT - ORIGINAL
+				arcyne_strike(L, L, null, 70, def_zone_random, BCLASS_BURN, AP_BSTEEL, "acid", TRUE, FALSE, FALSE, BURN, 0, 0, 10)
+				// [/SURREALIS-EDIT]
 				to_chat(L, span_userdanger("THE LAVA BURNS!"))
 				if(prob(50))
 					L.emote("superagony")
@@ -250,7 +253,10 @@
 			L.adjustFireLoss(30)
 			L.adjustToxLoss(15)
 			L.adjustOxyLoss(15)
-			arcyne_strike(L, L, null, 70, def_zone_random, BCLASS_BURN, PEN_BSTEEL, "acid", TRUE, FALSE, FALSE, BURN, 0, 0, 10)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// arcyne_strike(L, L, null, 70, def_zone_random, BCLASS_BURN, PEN_BSTEEL, "acid", TRUE, FALSE, FALSE, BURN, 0, 0, 10) // SURREALIS-EDIT - ORIGINAL
+			arcyne_strike(L, L, null, 70, def_zone_random, BCLASS_BURN, AP_BSTEEL, "acid", TRUE, FALSE, FALSE, BURN, 0, 0, 10)
+			// [/SURREALIS-EDIT]
 			to_chat(L, span_userdanger("THE ACID BURNS!"))
 			if(prob(50))
 				L.emote("superagony")

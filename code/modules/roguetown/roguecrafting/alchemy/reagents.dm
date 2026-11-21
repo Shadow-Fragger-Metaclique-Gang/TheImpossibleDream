@@ -823,7 +823,10 @@ If you want to expand on poisons theres tons of fun effects TG chemistry has tha
 		if(isitem(O) && !isturf(O.loc))
 			O.visible_message(span_warning("The mending elixir spills off of [O]. It needs to be on a stable surface to mend!"))
 			break
-		O.obj_integrity = min(O.max_integrity, O.obj_integrity + REPAIR_ELIXIR_STRENGTH)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// O.obj_integrity = min(O.max_integrity, O.obj_integrity + REPAIR_ELIXIR_STRENGTH) // SURREALIS-EDIT - ORIGINAL
+		O.adjust_integrity(REPAIR_ELIXIR_STRENGTH)
+		// [/SURREALIS-EDIT]
 		if(O.obj_integrity == O.max_integrity)
 			if(O.obj_broken)
 				O.obj_fix()

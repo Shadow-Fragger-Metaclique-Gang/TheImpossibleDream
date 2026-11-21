@@ -7,7 +7,10 @@
 		/datum/surgery_step/cauterize,
 	)
 	target_mobtypes = list(/mob/living/carbon/human)
-	possible_locs = list(BODY_ZONE_CHEST)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// possible_locs = list(BODY_ZONE_CHEST) // SURREALIS-EDIT - ORIGINAL
+	possible_locs = list(BODY_ZONE_CHEST, BODY_ZONE_HEAD)
+	// [/SURREALIS-EDIT]
 
 /datum/surgery_step/heal
 	name = "Repair body"
@@ -24,6 +27,9 @@
 	repeating = TRUE
 	repeatingonfail = TRUE
 	surgery_flags = SURGERY_BLOODY | SURGERY_CLAMPED
+	// [SURREALIS-ADD] - VRCOMBAT
+	surgery_flags_blocked = SURGERY_CONSTRUCT
+	// [/SURREALIS-ADD]
 	skill_min = SKILL_LEVEL_APPRENTICE
 	skill_median = SKILL_LEVEL_APPRENTICE
 	success_sound = 'sound/surgery/retractor2.ogg'
@@ -48,7 +54,12 @@
 	if(!.)
 		return
 	if(!((brutehealing && target.getBruteLoss()) || (burnhealing && target.getFireLoss())))
-		return FALSE
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// return FALSE // SURREALIS-EDIT - ORIGINAL
+		var/obj/item/bodypart/affecting = iscarbon(target) ? target.get_bodypart(check_zone(target_zone)) : null
+		if(!affecting?.has_wound(/datum/wound/lethal))
+			return FALSE
+		// [/SURREALIS-EDIT]
 
 /datum/surgery_step/heal/preop(mob/user, mob/living/target, target_zone, obj/item/tool, datum/intent/intent)
 	var/woundtype
@@ -87,6 +98,16 @@
 		umsg += " as best as you can while they have clothing on"
 		tmsg += " as best as they can while [target] has clothing on"
 	target.heal_bodypart_damage(urhealedamt_brute,urhealedamt_burn)
+	// [SURREALIS-ADD] - VRCOMBAT
+	var/obj/item/bodypart/affecting = iscarbon(target) ? target.get_bodypart(check_zone(target_zone)) : null
+	var/treated_internal = FALSE
+	for(var/datum/wound/lethal/lethal_wound in affecting?.wounds?.Copy())
+		lethal_wound.heal_wound(lethal_wound.whp)
+		treated_internal = TRUE
+	if(treated_internal)
+		umsg += ", carefully treating the internal injuries"
+		tmsg += ", carefully treating the internal injuries"
+	// [/SURREALIS-ADD]
 	display_results(user, target, span_notice("[umsg]."),
 		"[tmsg].",
 		"[tmsg].")

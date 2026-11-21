@@ -7,7 +7,10 @@
 	attack_verb = list("cuts", "slashes")
 	hitsound = list('sound/combat/hits/bladed/smallslash (1).ogg', 'sound/combat/hits/bladed/smallslash (2).ogg', 'sound/combat/hits/bladed/smallslash (3).ogg')
 	animname = "cut"
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]
 	damfactor = 1.3
 	demolition_mod = 2.5
 	clickcd = CLICK_CD_CHARGED // Shield DPS: 10 / 1.4 = 8.9. Will out DPS sword no matter what.
@@ -21,7 +24,10 @@
 	attack_verb = list("chops", "hacks")
 	animname = "chop"
 	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
-	penfactor = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 	damfactor = 1.5
 	demolition_mod = 2.5
 	swingdelay = 0.8 SECONDS
@@ -34,7 +40,10 @@
 	animname = "stab"
 	icon_state = "instab"
 	warnie = "mobwarning"
-	penfactor = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 	clickcd = CLICK_CD_CHARGED
 	damfactor = 0.9
 	item_d_type = "stab"
@@ -53,7 +62,10 @@
 	recovery = 30
 	warnie = "mobwarning"
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
-	penfactor = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 	item_d_type = "stab"
 	desc = "A committed thrust with the poleaxe's spike. It only bites through armor at full extension, exactly two paces away, and leaves you vulnerable as you recover the swing."
 	swingdelay = 8
@@ -64,7 +76,10 @@
 /datum/intent/axe/chop/heavy
 	name = "hack"
 	icon_state = "inhack"
-	penfactor = PEN_BSTEEL
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_BSTEEL // SURREALIS-EDIT - ORIGINAL
+	penfactor = 4
+	// [/SURREALIS-EDIT]
 	damfactor = 1.5
 	swingdelay = 1.3 SECONDS
 	clickcd = 1.4 SECONDS
@@ -77,7 +92,10 @@
 	reach = 2
 
 /datum/intent/axe/chop/stone
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 
 /datum/intent/axe/chop/halberd
 	damfactor = 1.3
@@ -106,7 +124,10 @@
 	blade_class = BCLASS_BLUNT
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
 	chargetime = 0
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	swingdelay = 5
 	damfactor = NONBLUNT_BLUNT_DAMFACTOR //Not a real blunt weapon, so less damage.
 	item_d_type = "blunt"

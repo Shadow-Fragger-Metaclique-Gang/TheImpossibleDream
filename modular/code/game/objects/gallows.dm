@@ -80,7 +80,10 @@
 				if(locate(/obj/structure/chair) in get_turf(src)) // So you can kick down the chair and make them hang, and stuff.
 					return
 				if(!HAS_TRAIT(buckled_mob, TRAIT_NOBREATH))
-					buckled_mob.adjustOxyLoss(10)
+					// [SURREALIS-EDIT] - VRCOMBAT
+					// buckled_mob.adjustOxyLoss(10) // SURREALIS-EDIT - ORIGINAL
+					buckled_mob.adjustChokeOxyLoss(10)
+					// [/SURREALIS-EDIT]
 					if(prob(20))
 						buckled_mob.emote("gasp")
 				playsound(buckled_mob.loc, 'sound/foley/noose_idle.ogg', 30, 1, -3)

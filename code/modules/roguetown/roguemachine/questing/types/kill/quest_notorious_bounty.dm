@@ -226,7 +226,11 @@
 	// Prevent the mob from getting instaambushed
 	boss.ambushable = FALSE
 	REMOVE_TRAIT(boss, TRAIT_NPC_EXAMINE, list(TRAIT_GENERIC, INNATE_TRAIT))
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	ADD_TRAIT(boss, TRAIT_TEMPO, TRAIT_GENERIC)
+	*/
+	// [/SURREALIS-REMOVE]
 	boss.adjust_skillrank(/datum/skill/misc/tracking, 6, TRUE) //You should be able to hunt your hunters back!
 	boss.adjust_skillrank(/datum/skill/misc/climbing, 4, TRUE)
 	boss.adjust_skillrank(/datum/skill/misc/swimming, 4, TRUE)

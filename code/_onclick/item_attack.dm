@@ -94,6 +94,11 @@
 	var/adf = user.used_intent.clickcd
 	if(istype(user.rmb_intent, /datum/rmb_intent/aimed))
 		adf = round(adf * CLICK_CD_MOD_AIMED)
+		// [SURREALIS-ADD] - VRCOMBAT
+		if(ishuman(user))
+			var/per_mult = clamp(1 - ((user.STAPER - 10) * 0.05), 0.5, 2.0)
+			adf = max(round(adf * per_mult), CLICK_CD_INTENTCAP)
+		// [/SURREALIS-ADD]
 	if(istype(user.rmb_intent, /datum/rmb_intent/swift))
 		adf = max(round(adf * CLICK_CD_MOD_SWIFT), CLICK_CD_INTENTCAP)
 	user.changeNext_move(adf)
@@ -129,10 +134,14 @@
 	else if(_attacker_signal & COMPONENT_ITEM_NO_DEFENSE)
 		override_status = ATTACK_OVERRIDE_NODEFENSE
 
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	if(HAS_TRAIT(M, TRAIT_TEMPO))
 		if(ishuman(M) && ishuman(user) && user.mind)
 			var/mob/living/carbon/human/H = M
 			H.process_tempo_attack(user)
+	*/
+	// [/SURREALIS-REMOVE]
 
 
 	if(item_flags & NOBLUDGEON)
@@ -208,6 +217,9 @@
 
 	M.on_attacked_as_pacifist(user)
 
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	var/rmb_stam_penalty = 0
 	if(istype(user.rmb_intent, /datum/rmb_intent/strong))
 		rmb_stam_penalty = EXTRA_STAMDRAIN_SWIFSTRONG
@@ -217,6 +229,11 @@
 	// Release drain on attacks besides unarmed attacks/grabs is 1, so it'll just be whatever the penalty is + 1.
 	// Unarmed attacks are the only ones right now that have differing releasedrain, see unarmed attacks for their calc.
 	user.stamina_add(user.used_intent.releasedrain + rmb_stam_penalty)
+	*/
+	user.stamina_add(get_stamina_cost(src, user))
+	if(istype(user.rmb_intent, /datum/rmb_intent/strong))
+		user.energy_add(-max(23 - (user.STAWIL + user.get_skill_level(/datum/skill/misc/athletics)), 3))
+	// [/SURREALIS-EDIT]
 	if(user.mob_biotypes & MOB_UNDEAD)
 		if(M.has_status_effect(/datum/status_effect/buff/necras_vow))
 			if(isnull(user.mind))
@@ -257,11 +274,22 @@
 	if(M.attacked_by(src, user))
 		M.on_hit_as_pacifist(user)
 
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		var/tempsound = cached_intent?.hitsound
 		if(tempsound)
 			playsound(M.loc, tempsound, 100, FALSE, -1)
 		else
 			playsound(M.loc, "nodmg", 100, FALSE, -1)
+		*/
+		if(!M.armor_sounded_blunted_hit())
+			var/tempsound = cached_intent?.hitsound
+			if(tempsound)
+				playsound(M.loc, tempsound, 100, FALSE, -1)
+			else
+				playsound(M.loc, "nodmg", 100, FALSE, -1)
+		// [/SURREALIS-EDIT]
 
 		// [SURREALIS-EDIT] - SEXCON - (New proc in modular_tidi/sexcon/code/overrides/addictions.dm)
 		// SURREALIS-EDIT - ORIGINAL
@@ -364,6 +392,10 @@
 
 	if(!istype(user))
 		return newforce
+	// [SURREALIS-ADD] - VRCOMBAT
+	if(user.used_intent && !user.used_intent.damfactor)
+		return 0
+	// [/SURREALIS-ADD]
 
 	var/dullness_ratio
 	if(I.max_blade_int && I.sharpness != IS_BLUNT)
@@ -374,6 +406,10 @@
 		var/mob/living/carbon/C = user
 		if(C.domhand)
 			used_str = C.get_str_arms(C.used_hand)
+	// [SURREALIS-ADD] - VRCOMBAT
+	if(istype(user.rmb_intent, /datum/rmb_intent/weak))
+		used_str--
+	// [/SURREALIS-ADD]
 	if(used_str >= 11)
 		var/strmod
 		if(used_str > STRENGTH_SOFTCAP && !HAS_TRAIT(user, TRAIT_STRENGTH_UNCAPPED))
@@ -394,12 +430,26 @@
 
 	if(I.minstr)
 		var/effective = I.minstr
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		if(I.wielded)
 			effective = max(I.minstr / 2, 1)
+		*/
+		if((I.item_flags & GIANT_WEAPON) && !HAS_TRAIT(user, TRAIT_GIANT_WEAPON_WIELDER))
+			effective = I.minstr * 2
+		if(I.wielded)
+			effective = max(effective / 2, 1)
+		// [/SURREALIS-EDIT]
 		if(effective > user.STASTR)
 			newforce = max(newforce*0.3, 1)
 			if(prob(33))
-				if(I.wielded)
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// if(I.wielded) // SURREALIS-EDIT - ORIGINAL
+				if(I.item_flags & GIANT_WEAPON)
+					to_chat(user, span_warning(I.wielded ? "I struggle to control this massive weapon with both hands!" : "This weapon is far too heavy for me to wield properly!"))
+				else if(I.wielded)
+				// [/SURREALIS-EDIT]
 					to_chat(user, span_info("I am too weak to wield this weapon properly with both hands."))
 				else
 					to_chat(user, span_info("I am too weak to wield this weapon properly with one hand."))
@@ -502,7 +552,10 @@
 			newdam *= damflerp
 			newdam = round(newdam)	//floors it, making the scaling harsher
 	newforce = (newforce + newdam) * dullfactor
-	if(user.used_intent.get_chargetime() && user.client?.chargedprog < 100)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(user.used_intent.get_chargetime() && user.client?.chargedprog < 100) // SURREALIS-EDIT - ORIGINAL
+	if(user.used_intent.get_chargetime() && user.client && user.client.chargedprog < 100)
+	// [/SURREALIS-EDIT]
 		newforce = newforce * 0.5
 	if(!(user.mobility_flags & MOBILITY_STAND))
 		newforce *= 0.5
@@ -515,6 +568,9 @@
 				to_chat(user, span_info("The blade is dull..."))
 			newforce *= (lerpratio * 2)
 
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	if(istype(user.rmb_intent, /datum/rmb_intent/strong))
 		newforce += (I.force_dynamic * STRONG_STANCE_DMG_BONUS)
 
@@ -522,6 +578,20 @@
 		newforce = (newforce * WEAK_STANCE_DMG_MULT)
 
 	newforce = CLAMP(newforce, user.used_intent.min_intent_damage, user.used_intent.max_intent_damage)
+	*/
+	var/variance_center = 0
+	if(ishuman(user))
+		variance_center += (user.STALUC - 10) * 0.0125
+		if(I.associated_skill)
+			variance_center += user.get_skill_level(I.associated_skill) * 0.025
+	if(istype(user.rmb_intent, /datum/rmb_intent/strong))
+		variance_center = 1
+	if(istype(user.rmb_intent, /datum/rmb_intent/weak))
+		variance_center = -1
+	var/variance_roll = get_damage_variance(I.associated_skill, variance_center, user)
+	newforce = newforce * (1 + (variance_roll / 100))
+	newforce = max(round(newforce, 1), 1)
+	// [/SURREALIS-EDIT]
 
 	return newforce
 
@@ -561,9 +631,16 @@
 		return 0
 	log_combat(user, src, "attacked", I)
 	var/verbu = "hits"
-	verbu = pick(user.used_intent.attack_verb)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// verbu = pick(user.used_intent.attack_verb) // SURREALIS-EDIT - ORIGINAL
+	if(length(user.used_intent.attack_verb))
+		verbu = pick(user.used_intent.attack_verb)
+	// [/SURREALIS-EDIT]
 	if(newforce > 1)
-		if(user.stamina_add(5))
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// if(user.stamina_add(5)) // SURREALIS-EDIT - ORIGINAL
+		if(user.stamina_add(get_stamina_cost(I, user)))
+		// [/SURREALIS-EDIT]
 			user.visible_message(span_danger("[user] [verbu] [src] with [I]!"))
 		else
 			user.visible_message(span_warning("[user] [verbu] [src] with [I]!"))
@@ -617,9 +694,16 @@
 	user.changeNext_move(CLICK_CD_INTENTCAP)
 	log_combat(user, src, "attacked", I)
 	var/verbu = "hits"
-	verbu = pick(user.used_intent.attack_verb)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// verbu = pick(user.used_intent.attack_verb) // SURREALIS-EDIT - ORIGINAL
+	if(length(user.used_intent.attack_verb))
+		verbu = pick(user.used_intent.attack_verb)
+	// [/SURREALIS-EDIT]
 	if(newforce > 1)
-		if(user.stamina_add(5))
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// if(user.stamina_add(5)) // SURREALIS-EDIT - ORIGINAL
+		if(user.stamina_add(get_stamina_cost(I, user)))
+		// [/SURREALIS-EDIT]
 			user.visible_message(span_danger("[user] [verbu] [src] with [I]!"))
 		else
 			user.visible_message(span_warning("[user] [verbu] [src] with [I]!"))
@@ -713,10 +797,16 @@
 	I.funny_attack_effects(src, user)
 	if(I.force_dynamic)
 		var/newforce = get_complex_damage(I, user)
-		var/pen = user.used_intent.penfactor
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// var/pen = user.used_intent.penfactor // SURREALIS-EDIT - ORIGINAL
+		var/pen = AP_TO_PEN_TIER(melee_armor_penetration(I, user))
+		// [/SURREALIS-EDIT]
 		// No sweetspot penalty if they are prone
 		if(user.used_intent.out_of_effective_range(src, user))
-			pen = PEN_NONE
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// pen = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+			pen = 0
+			// [/SURREALIS-EDIT]
 			newforce *= EFF_RANGE_MISS_DAMFACTOR
 		apply_damage(newforce, I.damtype, def_zone = hitlim)
 		I.remove_bintegrity(1)

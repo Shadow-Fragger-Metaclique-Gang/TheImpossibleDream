@@ -330,7 +330,10 @@
 			if(user.is_holding(src))
 				user.dropItemToGround(src)
 				user.put_in_hands(P)
-			P.obj_integrity = src.obj_integrity
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// P.obj_integrity = src.obj_integrity // SURREALIS-EDIT - ORIGINAL
+			P.copy_integrity_from(src)
+			// [/SURREALIS-EDIT]
 			qdel(src)
 			qdel(I)
 		else
@@ -665,15 +668,29 @@
 		has_inlaid_spectacles = TRUE
 		// Integrity loss for having easily breakable spectacles
 		name = "bespectacled [name]"
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		max_integrity *= 0.75
 		obj_integrity = min(obj_integrity, max_integrity)
+		*/
+		set_max_integrity(max_integrity * 0.75)
+		set_integrity(min(obj_integrity, max_integrity))
+		// [/SURREALIS-EDIT]
 
 /obj/item/clothing/mask/rogue/lordmask/naledi/Initialize(mapload)
 	. = ..()
 	// If we have spectacles, we lose some integrity.
 	if(has_inlaid_spectacles)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		max_integrity *= 0.75
 		obj_integrity = max_integrity
+		*/
+		set_max_integrity(max_integrity * 0.75)
+		set_integrity(max_integrity)
+		// [/SURREALIS-EDIT]
 		name = "bespectacled [name]"
 
 /obj/item/clothing/mask/rogue/lordmask/naledi/examine(mob/user)

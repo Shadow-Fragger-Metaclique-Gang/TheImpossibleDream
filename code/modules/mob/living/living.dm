@@ -264,10 +264,19 @@
 				Knockdown(30)
 			Immobilize(5)
 			var/playsound = FALSE
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			if(L.apply_damage(15, BRUTE, "chest", L.run_armor_check("chest", "blunt", damage = 10)))
 				playsound = TRUE
 			if(instafail)
 				if(apply_damage(15, BRUTE, "head", run_armor_check("head", "blunt", damage = 20)))
+			*/
+			if(L.apply_damage(L.armor_reduced_damage(15, L.run_armor_check("chest", "blunt", damage = 10), "blunt"), BRUTE, "chest", 0))
+				playsound = TRUE
+			if(instafail)
+				if(apply_damage(armor_reduced_damage(15, run_armor_check("head", "blunt", damage = 20), "blunt"), BRUTE, "head", 0))
+			// [/SURREALIS-EDIT]
 					playsound = TRUE
 			if(playsound)
 				playsound(src, "genblunt", 100, TRUE)
@@ -300,6 +309,9 @@
 
 		//stat checking block
 		if(!(world.time % 5))
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			var/statchance = 50
 
 			if(STASTR > L.STASTR)
@@ -310,6 +322,9 @@
 			if(statchance < 10)
 				statchance = 10
 			if(prob(statchance))
+			*/
+			if(get_stat_roll(STASTR) >= get_stat_roll(L.STASTR))
+			// [/SURREALIS-EDIT]
 				visible_message(span_info("[src] pushes [M]."))
 			else
 				visible_message(span_warning("[src] pushes [M]."))
@@ -521,7 +536,10 @@
 			O.grabbed = C
 			O.grabbee = src
 			O.limb_grabbed = BP
-			LAZYADD(BP.grabbedby, O)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// LAZYADD(BP.grabbedby, O) // SURREALIS-EDIT - ORIGINAL
+			BP.add_grab(O)
+			// [/SURREALIS-EDIT]
 			if(item_override)
 				O.sublimb_grabbed = item_override
 			else
@@ -1414,6 +1432,11 @@
 	else
 		resist_chance += (STACON - (agg_grab ? L.STASTR : L.STAWIL)) * 5
 
+	// [SURREALIS-ADD] - VRCOMBAT
+	if(HAS_TRAIT(src, TRAIT_DODGEEXPERT))
+		resist_chance += (STASPD - 10) * 3
+
+	// [/SURREALIS-ADD]
 	if(HAS_TRAIT(src, TRAIT_PACIFISM)) // pacifists can't bait nor feint anymore, so this is necessary to make them not total pushovers
 		resist_chance = max(resist_chance, 25) // 25% base chance to slip free from grapples, number can be jakked freely based on how it feels
 
@@ -2039,10 +2062,14 @@
 			should_be_lying = buckled.buckle_lying
 
 	if(should_be_lying)
+		// [SURREALIS-REMOVE] - VRCOMBAT
+		/*
 		// Track when we transition from standing to prone for dismemberment grace period
 		if(mobility_flags & MOBILITY_STAND)
 			if(mob_timers)
 				mob_timers["last_standing"] = world.time
+		*/
+		// [/SURREALIS-REMOVE]
 		resting = TRUE
 		mobility_flags &= ~MOBILITY_STAND
 		if(buckled)

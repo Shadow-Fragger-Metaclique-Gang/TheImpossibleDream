@@ -378,6 +378,17 @@
 			msg += span_artery("[m1] a little pale.")
 
 	var/bleed_rate = get_bleed_rate()
+	// [SURREALIS-ADD] - VRCOMBAT
+	var/internal_rate = min(internal_bleed_rate, bleed_rate)
+	if(internal_rate && !is_stupid)
+		for(var/obj/item/bodypart/internal_bleeder as anything in bodyparts)
+			if(internal_bleeder.get_internal_bleed_rate() && (observer_privilege || get_location_accessible(src, internal_bleeder.body_zone)))
+				msg += span_danger("<b><i>[m1] gushing blood from an internal wound.</i></b>")
+				break
+		bleed_rate -= internal_rate
+		if(bleed_rate <= 0.1)
+			bleed_rate = 0
+	// [/SURREALIS-ADD]
 	if(bleed_rate)
 		if(!is_stupid)
 			bleed_rate *= get_bleed_mod() * physiology.bleed_mod
@@ -402,7 +413,10 @@
 			)
 			for(var/bleed_zone in bleed_zones)
 				var/obj/item/bodypart/bleeder = get_bodypart(bleed_zone)
-				if(!bleeder?.get_bleed_rate() || (!observer_privilege && !get_location_accessible(src, bleeder.body_zone)))
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// if(!bleeder?.get_bleed_rate() || (!observer_privilege && !get_location_accessible(src, bleeder.body_zone))) // SURREALIS-EDIT - ORIGINAL
+				if(!bleeder || bleeder.get_bleed_rate() - bleeder.get_internal_bleed_rate() <= 0 || (!observer_privilege && !get_location_accessible(src, bleeder.body_zone)))
+				// [/SURREALIS-EDIT]
 					continue
 				bleeding_limbs += parse_zone(bleeder.body_zone)
 			if(length(bleeding_limbs))
@@ -422,6 +436,12 @@
 					msg += span_bloody("[m1] shedding lyfe's blood, exposing weakness!")
 				else
 					msg += span_bloody("[m1] letting out the red stuff!")
+	// [SURREALIS-ADD] - VRCOMBAT
+
+	var/list/rot_lines = get_rot_examine(observer_privilege, capitalize(m2))
+	if(rot_lines)
+		msg += rot_lines
+	// [/SURREALIS-ADD]
 
 	var/missing_head = FALSE
 	var/list/missing_limbs = list()

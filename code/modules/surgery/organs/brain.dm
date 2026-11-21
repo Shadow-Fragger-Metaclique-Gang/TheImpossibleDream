@@ -1,3 +1,13 @@
+// [SURREALIS-ADD] - VRCOMBAT
+GLOBAL_LIST_INIT(allowed_traumas, list(
+	/datum/brain_trauma/mild/stuttering,
+	/datum/brain_trauma/mild/concussion,
+	/datum/brain_trauma/mild/muscle_weakness,
+	/datum/brain_trauma/mild/muscle_spasms,
+	/datum/brain_trauma/severe/paralysis,
+))
+
+// [/SURREALIS-ADD]
 /obj/item/organ/brain
 	name = "brain"
 	desc = ""
@@ -15,7 +25,10 @@
 
 	maxHealth	= BRAIN_DAMAGE_DEATH
 	low_threshold = 45
-	high_threshold = 120
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// high_threshold = 120 // SURREALIS-EDIT - ORIGINAL
+	high_threshold = 80
+	// [/SURREALIS-EDIT]
 
 	var/suicided = FALSE
 	var/mob/living/brain/brainmob = null
@@ -179,7 +192,10 @@
 
 /obj/item/organ/brain/on_life()
 	if(damage >= BRAIN_DAMAGE_DEATH) //rip
-		to_chat(owner, span_danger("The last spark of life in your brain fizzles out..."))
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// to_chat(owner, span_danger("The last spark of life in your brain fizzles out...")) // SURREALIS-EDIT - ORIGINAL
+		to_chat(owner, span_danger("The world turns black and silent as life slips away..."))
+		// [/SURREALIS-EDIT]
 		owner.death()
 		brain_death = TRUE
 
@@ -191,6 +207,9 @@
 	damage_delta = damage - prev_damage
 	if(damage > BRAIN_DAMAGE_MILD)
 		if(prob(damage_delta * (1 + max(0, (damage - BRAIN_DAMAGE_MILD)/100)))) //Base chance is the hit damage; for every point of damage past the threshold the chance is increased by 1% //learn how to do your bloody math properly goddamnit
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			gain_trauma_type(BRAIN_TRAUMA_MILD)
 	if(damage > BRAIN_DAMAGE_SEVERE)
 		if(prob(damage_delta * (1 + max(0, (damage - BRAIN_DAMAGE_SEVERE)/100)))) //Base chance is the hit damage; for every point of damage past the threshold the chance is increased by 1%
@@ -198,6 +217,12 @@
 				gain_trauma_type(BRAIN_TRAUMA_SPECIAL)
 			else
 				gain_trauma_type(BRAIN_TRAUMA_SEVERE)
+			*/
+			gain_allowed_trauma(BRAIN_TRAUMA_MILD)
+	if(damage > BRAIN_DAMAGE_SEVERE)
+		if(prob(damage_delta * (1 + max(0, (damage - BRAIN_DAMAGE_SEVERE)/100)))) //Base chance is the hit damage; for every point of damage past the threshold the chance is increased by 1%
+			gain_allowed_trauma(BRAIN_TRAUMA_SEVERE)
+			// [/SURREALIS-EDIT]
 
 	if (owner)
 		if(owner.stat < UNCONSCIOUS) //conscious or soft-crit
@@ -307,6 +332,16 @@
 	. = actual_trauma
 	SSblackbox.record_feedback("tally", "traumas", 1, actual_trauma.type)
 
+// [SURREALIS-ADD] - VRCOMBAT
+/obj/item/organ/brain/proc/gain_allowed_trauma(brain_trauma_type)
+	var/list/possible_traumas = list()
+	for(var/trauma_type in GLOB.allowed_traumas)
+		if(ispath(trauma_type, brain_trauma_type) && can_gain_trauma(trauma_type, TRAUMA_RESILIENCE_BASIC))
+			possible_traumas += trauma_type
+	if(length(possible_traumas))
+		gain_trauma(pick(possible_traumas), TRAUMA_RESILIENCE_BASIC)
+
+// [/SURREALIS-ADD]
 //Add a random trauma of a certain subtype
 /obj/item/organ/brain/proc/gain_trauma_type(brain_trauma_type = /datum/brain_trauma, resilience)
 	var/list/datum/brain_trauma/possible_traumas = list()

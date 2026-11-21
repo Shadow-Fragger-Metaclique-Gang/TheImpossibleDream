@@ -50,7 +50,10 @@
 	intdamfactor = SPELL_INTDAM(1)
 	spell_damage_scaled = TRUE
 	speed = MAGE_PROJ_MEDIUM
-	armor_penetration = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_LIGHT
+	// [/SURREALIS-EDIT]
 	movement_type = UNSTOPPABLE
 	range = SPELL_RANGE_PROJECTILE
 	flag = "stab"

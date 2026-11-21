@@ -32,7 +32,7 @@ GLOBAL_LIST_INIT(heretic_high_nobility, list("Grand Duke", "Consort", "Prince", 
 	var/job_title = mind?.assigned_role
 	return (job_title in GLOB.heretic_high_nobility) || job_title == "Bishop" || job_title == "Martyr" || (job_title in GLOB.inquisition_positions)
 
-/obj/item/bodypart/bodypart_attacked_by(bclass = BCLASS_BLUNT, dam, mob/living/user, zone_precise = src.body_zone, silent = FALSE, crit_message = FALSE, armor, obj/item/weapon, pen_info, no_crit = FALSE, no_debuff = FALSE)
+/obj/item/bodypart/bodypart_attacked_by(bclass = BCLASS_BLUNT, dam, mob/living/user, zone_precise = src.body_zone, silent = FALSE, crit_message = FALSE, armor, was_blunted = FALSE, raw_damage = 0, armor_block = 0, obj/item/weapon, no_crit = FALSE, no_debuff = FALSE)
 	var/old_bleeding = bleeding
 	. = ..()
 	if(user && owner && bleeding > old_bleeding)

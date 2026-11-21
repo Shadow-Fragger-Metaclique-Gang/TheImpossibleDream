@@ -30,6 +30,9 @@
 	target_mobtypes = list(/mob/living/carbon/human)
 	time = 5 SECONDS
 	surgery_flags = SURGERY_CLAMPED
+	// [SURREALIS-ADD] - VRCOMBAT
+	surgery_flags_blocked = SURGERY_CONSTRUCT
+	// [/SURREALIS-ADD]
 	skill_min = SKILL_LEVEL_JOURNEYMAN
 	skill_median = SKILL_LEVEL_EXPERT
 	preop_sound = 'sound/surgery/scalpel1.ogg'
@@ -64,6 +67,9 @@
 	target_mobtypes = list(/mob/living/carbon/human)
 	time = 6.4 SECONDS
 	surgery_flags = SURGERY_CUTVEIN
+	// [SURREALIS-ADD] - VRCOMBAT
+	surgery_flags_blocked = SURGERY_CONSTRUCT
+	// [/SURREALIS-ADD]
 	skill_min = SKILL_LEVEL_JOURNEYMAN
 	skill_median = SKILL_LEVEL_EXPERT
 	preop_sound = 'sound/surgery/organ1.ogg'

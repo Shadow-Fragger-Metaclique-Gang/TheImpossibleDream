@@ -19,16 +19,28 @@
 /obj/item/ammo_casing/proc/get_sweetspot_examine(subject = "This projectile")
 	var/sweet_min
 	var/sweet_max
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	var/falloff
+	*/
+	// [/SURREALIS-REMOVE]
 	if(BB)
 		sweet_min = BB.min_range
 		sweet_max = BB.max_range
+		// [SURREALIS-REMOVE] - VRCOMBAT
+		/*
 		falloff = BB.dam_falloff_factor
+		*/
+		// [/SURREALIS-REMOVE]
 	else if(projectile_type)
 		var/obj/projectile/proj = projectile_type
 		sweet_min = initial(proj.min_range)
 		sweet_max = initial(proj.max_range)
+		// [SURREALIS-REMOVE] - VRCOMBAT
+		/*
 		falloff = initial(proj.dam_falloff_factor)
+		*/
+		// [/SURREALIS-REMOVE]
 	. = list()
 	if(!sweet_min && !sweet_max)
 		return
@@ -38,8 +50,12 @@
 		. += span_info("[subject] has a sweetspot up to <b>[sweet_max]</b> tiles, where it delivers full force.")
 	else
 		. += span_info("[subject] has a sweetspot beyond <b>[sweet_min]</b> tiles, where it delivers full force.")
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	if(falloff != 1)
 		. += span_info("Outside the sweetspot, its damage is reduced to <b>[falloff * 100]%</b>.")
+	*/
+	// [/SURREALIS-REMOVE]
 
 /obj/item/ammo_casing/caseless/rogue/getonmobprop(tag)
 	. = ..()

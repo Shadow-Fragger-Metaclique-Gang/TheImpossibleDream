@@ -12,12 +12,18 @@
 		if(is_bite)	//They lunged in with their teeth -- rather than a hand or weapon, we give them an extra bonk to the head.
 			var/obj/item/bodypart/affecting = H.get_bodypart(BODY_ZONE_HEAD)
 			var/force = IM ? get_complex_damage(IM, src) : get_punch_dmg()
-			var/armor_block = H.run_armor_check(BODY_ZONE_PRECISE_MOUTH, "blunt", armor_penetration = PEN_NONE, damage = force)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// var/armor_block = H.run_armor_check(BODY_ZONE_PRECISE_MOUTH, "blunt", armor_penetration = PEN_NONE, damage = force) // SURREALIS-EDIT - ORIGINAL
+			var/armor_block = H.run_armor_check(BODY_ZONE_PRECISE_MOUTH, "blunt", armor_penetration = AP_NONE, damage = force)
+			// [/SURREALIS-EDIT]
 			if(IM)
 				visible_message(span_suicide("[src] catches [H]'s bite and bashes \the [IM] into [H.p_their()] mouth!"))
 			else
 				visible_message(span_suicide("[src] catches [H]'s bite and smashes [p_their()] fist into [H.p_their()] mouth!"))
-			if(affecting && H.apply_damage(force, BRUTE, affecting, armor_block))
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// if(affecting && H.apply_damage(force, BRUTE, affecting, armor_block)) // SURREALIS-EDIT - ORIGINAL
+			if(affecting && H.apply_damage(H.armor_reduced_damage(force, armor_block, null), BRUTE, affecting, 0))
+			// [/SURREALIS-EDIT]
 				affecting.bodypart_attacked_by(BCLASS_BLUNT, force, crit_message = TRUE, weapon = IM, zone_precise = BODY_ZONE_PRECISE_MOUTH)
 			H.apply_status_effect(/datum/status_effect/debuff/exposed, 3 SECONDS)
 			H.apply_status_effect(/datum/status_effect/debuff/clickcd, 3 SECONDS)
@@ -373,6 +379,8 @@
 			cached_hands_ac = C.armor_class
 	worn_ac_dirty = FALSE
 
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 /mob/living/carbon/human/proc/process_tempo_attack(mob/living/carbon/attacker)
 	if(iscarbon(attacker) && attacker != src && attacker.mind)
 		if(tempo_faction_flag && (tempo_faction_flag & attacker.tempo_faction_flag))
@@ -548,7 +556,8 @@
 				return FALSE
 			else
 				return TRUE
-
+*/
+// [/SURREALIS-REMOVE]
 
 /// A defensive boon from matching subzones.
 /mob/living/carbon/human/proc/try_bind(obj/item/used_weapon, mob/living/user, vuln_exception = FALSE)	//user is the attacker in this context
@@ -572,8 +581,14 @@
 			//user.apply_status_effect(/datum/status_effect/debuff/bindcd)
 
 			var/cd = BIND_CD
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			var/cd_mod = get_tempo_bonus(TEMPO_TAG_RCLICK_CD_BONUS)
 			cd = max((cd - cd_mod), 10.1 SECONDS)	// This is the duration of the bind itself + 1 tick, to prevent any screwiness.
+			*/
+			cd = max(cd, 10.1 SECONDS)	// This is the duration of the bind itself + 1 tick, to prevent any screwiness.
+			// [/SURREALIS-EDIT]
 			apply_status_effect(/datum/status_effect/debuff/bindcd, cd)
 
 			// Immob. Mostly for dramatic flair. ClickCD is to prevent instant follow-up attacks.
@@ -581,9 +596,16 @@
 			user.changeNext_move(CLICK_CD_CHARGED)
 			user.changeNext_def(user.parrydelay)
 
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			if(get_tempo_bonus(TEMPO_TAG_BINDABLE))
 				Immobilize(0.3 SECONDS)
 				changeNext_move(CLICK_CD_FAST)
+			*/
+			Immobilize(0.3 SECONDS)
+			changeNext_move(CLICK_CD_FAST)
+			// [/SURREALIS-EDIT]
 
 			var/obj/item/rogueweapon/RW = user.get_active_held_item()
 			if(RW)

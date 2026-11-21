@@ -11,7 +11,10 @@
 	icon_state = "ijavelin"
 	wlength = WLENGTH_NORMAL
 	w_class = WEIGHT_CLASS_BULKY
-	armor_penetration = PEN_MEDIUM			//Redfined because.. it's not a weapon, it's an 'arrow' basically.
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_MEDIUM			//Redfined because.. it's not a weapon, it's an 'arrow' basically. // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = 25			//Redfined because.. it's not a weapon, it's an 'arrow' basically.
+	// [/SURREALIS-EDIT]
 	max_integrity = 50						//Breaks semi-easy, stops constant re-use.
 	wdefense = 3							//Worse than a spear
 	thrown_bclass = BCLASS_STAB				//Knives are slash, lets try out stab and see if it's too strong in terms of wounding.
@@ -51,20 +54,29 @@
 	icon_state = "bjavelin"
 	force = 20
 	throwforce = 36	//Devastating against unarmored foes, but with nearly halved armor penetration.
-	armor_penetration = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = 20
+	// [/SURREALIS-EDIT]
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 80, "embedded_fall_chance" = 5)
 	thrown_bclass = BCLASS_PICK
 	smeltresult = null // 1 Ingot = 2 Javelins
 
 /obj/item/ammo_casing/caseless/rogue/javelin/steel
 	force = 16
-	armor_penetration = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = 35
+	// [/SURREALIS-EDIT]
 	name = "steel javelin"
 	desc = "A tool used for centuries, as early as recorded history. This one is tipped with a steel head; perfect for piercing armor!"
 	icon_state = "javelin"
 	max_integrity = 100						//In-line with other stabbing weapons.
 	throwforce = 28							//Equal to steel knife BUT this has peircing damage type so..
-	thrown_bclass = BCLASS_PICK				//Bypasses crit protection better than stabbing. Makes it better against heavy-targets.
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// thrown_bclass = BCLASS_PICK				//Bypasses crit protection better than stabbing. Makes it better against heavy-targets. // SURREALIS-EDIT - ORIGINAL
+	thrown_bclass = BCLASS_STAB
+	// [/SURREALIS-EDIT]
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 45, "embedded_fall_chance" = 10) //Better than steel throwing knife by 10%
 	smeltresult = null // 1 Ingot = 2 Javelins
 
@@ -80,8 +92,14 @@
 	icon_state = "sjavelin"
 	is_silver = TRUE
 	throwforce = 28
-	armor_penetration = PEN_HEAVY
-	thrown_bclass = BCLASS_PICK				//Bypasses crit protection better than stabbing. Makes it better against heavy-targets.
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = 40
+	// [/SURREALIS-EDIT]
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// thrown_bclass = BCLASS_PICK				//Bypasses crit protection better than stabbing. Makes it better against heavy-targets. // SURREALIS-EDIT - ORIGINAL
+	thrown_bclass = BCLASS_STAB
+	// [/SURREALIS-EDIT]
 	smeltresult = null
 	force = 16
 	max_integrity = 100
@@ -108,7 +126,10 @@
 	max_integrity = 100
 	force = 18
 	throwforce = 36
-	armor_penetration = PEN_BSTEEL //The main appeal.
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_BSTEEL //The main appeal. // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = 50 //The main appeal.
+	// [/SURREALIS-EDIT]
 	thrown_bclass = BCLASS_PICK
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 60, "embedded_fall_chance" = 10)
 	smeltresult = null

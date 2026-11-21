@@ -47,13 +47,26 @@
 				return FALSE
 		var/foundwound = FALSE
 		if(length(affecting.wounds))
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			for(var/datum/wound/wound in affecting.wounds)
 				if(!isnull(wound) && wound.can_cauterize)
-					wound.heal_wound(wound.whp)
+			*/
+			for(var/datum/wound/wound in affecting.wounds.Copy())
+				if(!isnull(wound) && wound.can_cauterize)
+					if(istype(wound, /datum/wound/infection))
+						wound.cauterize_wound()
+					else
+			// [/SURREALIS-EDIT]
+						wound.heal_wound(wound.whp)
 					foundwound = TRUE
 					owner.visible_message(("<font color = '#FF4500'>[capitalize(wound.name)] cauterizes from the heat of the lamp!</font>"))
 					affecting.add_wound(/datum/wound/lampcautery)
-					target.adjustFireLoss(10)
+					// [SURREALIS-EDIT] - VRCOMBAT
+					// target.adjustFireLoss(10) // SURREALIS-EDIT - ORIGINAL
+					affecting.cauterize_burn(10)
+					// [/SURREALIS-EDIT]
 			if(foundwound)
 				playsound(target, 'sound/surgery/cautery1.ogg', 100, TRUE)
 			return TRUE

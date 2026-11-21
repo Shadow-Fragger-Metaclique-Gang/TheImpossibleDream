@@ -168,7 +168,10 @@
 
 		var/needed = most_broken.max_integrity - most_broken.obj_integrity
 		var/applied = min(remaining_repair, needed)
-		most_broken.obj_integrity += applied
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// most_broken.obj_integrity += applied // SURREALIS-EDIT - ORIGINAL
+		most_broken.adjust_integrity(applied)
+		// [/SURREALIS-EDIT]
 
 		if(most_broken.max_blade_int && most_broken.blade_int < most_broken.max_blade_int)
 			most_broken.blade_int = most_broken.max_blade_int

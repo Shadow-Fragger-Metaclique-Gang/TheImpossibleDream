@@ -303,7 +303,10 @@
 	if(ward.obj_broken)
 		ward.obj_fix(H, full_repair = TRUE)
 	else
-		ward.obj_integrity = ward.max_integrity
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// ward.obj_integrity = ward.max_integrity // SURREALIS-EDIT - ORIGINAL
+		ward.set_integrity(ward.max_integrity)
+		// [/SURREALIS-EDIT]
 	ward.recalculate_coverage(force_full = TRUE)
 	return TRUE
 

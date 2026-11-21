@@ -326,10 +326,18 @@
 	src.dna.species.soundpack_f = GLOB.voice_packs[/datum/voicepack/zombie/f]
 
 	//now we make all of our limbs rot and decay like an actual zombie
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	for(var/obj/item/bodypart/part as anything in bodyparts)
 		if(!part.rotted && !part.skeletonized)
 			part.rotted = TRUE
 		part.update_disabled()
+	*/
+	rot_flesh_to(INFECTION_STAGE_NECROTIC)
+	for(var/obj/item/bodypart/part as anything in bodyparts)
+		part.update_disabled()
+	// [/SURREALIS-EDIT]
 
 	//give ourselves the final part of the disguise, the skin colors
 	var/obj/item/organ/ears/organ_ears = getorgan(/obj/item/organ/ears)
