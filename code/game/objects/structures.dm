@@ -22,10 +22,10 @@
 	if (!armor)
 		armor = ARMOR_STRUCTURE
 	. = ..()
-	if(smooth)
-		queue_smooth(src)
-		queue_smooth_neighbors(src)
-		icon_state = ""
+	if(smoothing_flags & (SMOOTH_BITMASK|SMOOTH_BITMASK_CARDINALS))
+		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
+
 	if(redstone_id)
 		GLOB.redstone_objs += src
 		. = INITIALIZE_HINT_LATELOAD

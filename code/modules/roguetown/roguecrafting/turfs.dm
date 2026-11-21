@@ -33,12 +33,12 @@
 	craftdiff = 2
 	category = "Floors"
 
-/datum/crafting_recipe/roguetown/turfs/wood/floorhl
+/* /datum/crafting_recipe/roguetown/turfs/wood/floorhl // I don't have an asset to replace this.
 	name = "floor (herringbone light)"
 	result = /turf/open/floor/rogue/ruinedwood/herringbone_clear
 	reqs = list(/obj/item/natural/wood/plank = 1)
 	craftdiff = 4
-	category = "Floors"
+	category = "Floors" */
 
 /datum/crafting_recipe/roguetown/turfs/wood/floorhw
 	name = "floor (herringbone weathered)"

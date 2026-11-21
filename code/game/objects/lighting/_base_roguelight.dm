@@ -14,7 +14,7 @@
 	var/can_damage = TRUE
 	var/roundstart_forbid = FALSE
 	var/refueling = FALSE
-
+	obj_flags = IGNORE_SINK
 /obj/machinery/light/rogue/Initialize(mapload)
 	if(soundloop)
 		soundloop = new soundloop(src, FALSE)

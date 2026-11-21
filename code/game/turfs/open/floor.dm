@@ -27,6 +27,7 @@
 	burn_power = 15
 
 	tiled_dirt = TRUE
+	smoothing_groups = SMOOTH_GROUP_OPEN_FLOOR
 
 /turf/open/floor/Initialize(mapload)
 

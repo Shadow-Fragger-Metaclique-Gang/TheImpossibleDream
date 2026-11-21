@@ -1,15 +1,10 @@
 ///////////// OVERLAY EFFECTS /////////////
 /obj/effect/overlay/water
 	icon = 'icons/turf/newwater.dmi'
-	icon_state = "bottom"
+	icon_state = "together"
 	density = 0
 	mouse_opacity = 0
-	layer = BELOW_MOB_LAYER
 	anchored = TRUE
-
-/obj/effect/overlay/water/top
-	icon_state = "top"
-	layer = BELOW_MOB_LAYER
 
 
 /turf/open/water
@@ -20,22 +15,21 @@
 	icon_state = "together"
 	baseturfs = /turf/open/water
 	slowdown = 5
-	var/obj/effect/overlay/water/water_overlay
-	var/obj/effect/overlay/water/top/water_top_overlay
+	var/image/water_overlay
 	bullet_sizzle = TRUE
 	bullet_bounce_sound = null //needs a splashing sound one day.
-	smooth = SMOOTH_MORE
-	// cardinal_smooth()/roguesmooth() only ever reads cardinal adjacency bits - see the same note
-	// on /turf/open/floor/rogue.
-	smooth_diag = FALSE
-	canSmoothWith = list(/turf/closed/mineral,/turf/closed/wall/mineral/rogue, /turf/open/floor/rogue)
+	smoothing_flags = SMOOTH_EDGE
+	smoothing_groups = SMOOTH_GROUP_FLOOR_LIQUID
+	smoothing_list = SMOOTH_GROUP_FLOOR_LIQUID + SMOOTH_GROUP_FLOOR_FROZEN
+//	canSmoothWith = list(/turf/closed/mineral,/turf/closed/wall/mineral/rogue, /turf/open/floor/rogue)
 	footstep = null
 	barefootstep = null
 	clawfootstep = null
 	heavyfootstep = null
 	landsound = 'sound/foley/jumpland/waterland.wav'
-	neighborlay_override = "edge"
+	neighborlay_self = "edge"
 	var/water_color = "#6a9295"
+	var/water_icon_state = "together"
 	var/water_reagent = /datum/reagent/water
 	var/water_reagent_purified = /datum/reagent/water // If put through a water filtration device, provides this reagent instead
 	var/mapped = TRUE // infinite source of water
@@ -55,11 +49,13 @@
 	var/datum/fish_source/fishing_datum = /datum/fish_source/water
 	var/fishable_in_town = FALSE
 
+	var/list/water_params = list( 2, -2, 100) //_y_offset = 0, _mask_y_offset = 0, _effect_alpha = 0
 /turf/open/water/Initialize(mapload)
-	.	= ..()
-	water_overlay = new(src)
-	water_top_overlay = new(src)
-	update_icon()
+
+	water_overlay = new
+	water_overlay.icon = 'icons/turf/newwater.dmi'
+	AddElement(/datum/element/mob_overlay_effect, water_params[1],water_params[2],water_params[3])
+	.= ..()
 	if(!isnull(fishing_datum) && is_fishable())
 		add_lazy_fishing(fishing_datum)
 	if(freeze_type)
@@ -68,7 +64,9 @@
 		// and re-freezing it on the spot would close the hole the moment it was made. Tracked
 		// only, so the next season change picks it up.
 		GLOB.seasonal_water_turfs |= src
-
+/turf/open/water/smooth()
+	update_icon()
+	..()
 /turf/open/water/examine(mob/user)
 	. = ..()
 	var/datum/fish_source/source = get_fish_source()
@@ -130,17 +128,19 @@
 	if(!istype(F))
 		return null
 	F.baseturfs = water_stack
+	RemoveElement(/datum/element/mob_overlay_effect)
 	F.seasonal_freeze = TRUE
 	return F
 
 /turf/open/water/update_icon()
 	if(water_overlay)
+		water_overlay.dir = dir
+		water_overlay.icon_state = water_icon_state
 		water_overlay.color = water_color
-		water_overlay.icon_state = "bottom[water_level]"
-	if(water_top_overlay)
-		water_top_overlay.color = water_color
-		water_top_overlay.icon_state = "top[water_level]"
-
+		water_overlay.alpha = 255
+		overlays.Insert(1, water_overlay)
+		overlays.Insert(1, water_overlay)
+	..()
 /turf/open/water/Exited(atom/movable/AM, atom/newloc)
 	. = ..()
 	if(isliving(AM) && !AM.throwing)
@@ -148,15 +148,6 @@
 		if(isliving(user) && !user.is_floor_hazard_immune())
 			if(platform_atom_count > 0)
 				return
-			if(water_overlay)
-				if((get_dir(src, newloc) == SOUTH))
-					water_overlay.layer = BELOW_MOB_LAYER
-					water_overlay.plane = GAME_PLANE
-				else
-					spawn(6)
-						if(!locate(/mob/living) in src)
-							water_overlay.layer = BELOW_MOB_LAYER
-							water_overlay.plane = GAME_PLANE
 			var/drained = get_stamina_drain(user, get_dir(src, newloc))
 			if(drained && !user.stamina_add(drained))
 				user.Immobilize(30)
@@ -237,19 +228,10 @@
 			O.extinguish()
 
 
-/turf/open/water/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
 
-/turf/open/water/roguesmooth(adjacencies)
-	var/list/Yeah = ..()
-	if(water_overlay)
-		water_overlay.cut_overlays(TRUE)
-		if(Yeah)
-			water_overlay.add_overlay(Yeah)
-	if(water_top_overlay)
-		water_top_overlay.cut_overlays(TRUE)
-		if(Yeah)
-			water_top_overlay.add_overlay(Yeah)
+
+/turf/open/water/set_neighborlays(new_junction, use_corner)
+	..()
 
 /turf/open/water/Entered(atom/movable/AM, atom/oldLoc)
 	. = ..()
@@ -276,14 +258,6 @@
 				playsound(AM, 'sound/foley/waterenter.ogg', 100, FALSE)
 			else
 				playsound(AM, pick('sound/foley/watermove (1).ogg','sound/foley/watermove (2).ogg'), 100, FALSE)
-			if(istype(oldLoc, type) && (get_dir(src, oldLoc) != SOUTH))
-				water_overlay.layer = ABOVE_MOB_LAYER
-				water_overlay.plane = GAME_PLANE_HIGHEST
-			else
-				spawn(6)
-					if(AM.loc == src)
-						water_overlay.layer = ABOVE_MOB_LAYER
-						water_overlay.plane = GAME_PLANE_HIGHEST
 		if(!istype(L, /mob/living/carbon/human/species/skeleton))
 			return
 		if(!istype(src, /turf/open/water/sewer))
@@ -410,8 +384,7 @@
 	. = ..()
 	if(water_overlay)
 		QDEL_NULL(water_overlay)
-	if(water_top_overlay)
-		QDEL_NULL(water_top_overlay)
+
 
 /turf/open/water/get_slowdown(mob/user)
 	var/returned = slowdown
@@ -653,8 +626,6 @@
 /turf/open/water/cleanshallow/deep/Initialize(mapload)
 	. = ..()
 	icon_state = "rock"
-	water_color = "#5d7e84"
-	update_icon()
 
 /turf/open/water/cleanshallow/deep/nofish
 	fishing_datum = null
@@ -664,6 +635,7 @@
 	desc = "A river of crystal clear water flows swiftly along the contours of the land."
 	icon = 'icons/turf/roguefloor.dmi'
 	icon_state = "rivermove"
+	water_icon_state = "rivermove"
 	water_level = 3
 	slowdown = 5
 	wash_in = TRUE
@@ -671,6 +643,7 @@
 	swimdir = TRUE
 	freeze_type = null // moving water; freezing it would also stall the SSrivers conveyor
 	fishing_datum = /datum/fish_source/river
+	water_params = list( 2, -8, 100) //_y_offset = 0, _mask_y_offset = 0, _effect_alpha = 0
 
 /turf/open/water/river/flow
 	icon_state = "rockwd2"
@@ -687,7 +660,6 @@
 /turf/open/water/river/flow/deep/Initialize(mapload)
 	. = ..()
 	icon_state = "rock"
-	update_icon()
 
 /turf/open/water/river/flow/deep/west
 	dir = 8
@@ -712,7 +684,6 @@
 /turf/open/water/river/flow/murk/Initialize(mapload)
 	. = ..()
 	icon_state = "rock"
-	update_icon()
 
 /turf/open/water/river/flow/murk/Entered(atom/movable/AM, atom/oldLoc)
 	. = ..()
@@ -765,14 +736,9 @@
 	dir = 1
 
 /turf/open/water/river/update_icon()
-	if(water_overlay)
-		water_overlay.color = water_color
-		water_overlay.icon_state = "riverbot"
-		water_overlay.dir = dir
-	if(water_top_overlay)
-		water_top_overlay.color = water_color
-		water_top_overlay.icon_state = "rivertop"
-		water_top_overlay.dir = dir
+	..()
+
+
 
 /turf/open/water/river/Initialize(mapload)
 	icon_state = "rock"
@@ -836,7 +802,7 @@
 	water_reagent = /datum/reagent/water/salty
 	freeze_type = null // salt water, and tidal - subtypes inherit the exemption
 	fishing_datum = /datum/fish_source/ocean
-
+	water_params = list( 2, -2, 100) //_y_offset = 0, _mask_y_offset = 0, _effect_alpha = 0
 /turf/open/water/ocean/nofish
 	fishing_datum = null
 
@@ -903,7 +869,6 @@
 /turf/open/water/river/flow/murk/deep/Initialize(mapload)
 	. = ..()
 	icon_state = "rock"
-	update_icon()
 
 /turf/open/water/river/flow/murk/west
 	dir = 8

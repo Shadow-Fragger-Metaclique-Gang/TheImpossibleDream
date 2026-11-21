@@ -18,23 +18,17 @@
 	barefootstep = FOOTSTEP_LAVA
 	clawfootstep = FOOTSTEP_LAVA
 	heavyfootstep = FOOTSTEP_LAVA
-	smooth = SMOOTH_TRUE
-	// cardinal_smooth()/roguesmooth() only ever reads cardinal adjacency bits - see the same note
-	// on /turf/open/floor/rogue.
-	smooth_diag = FALSE
-	canSmoothWith = list(/turf/closed, /turf/open/floor/rogue/volcanic, /turf/open/floor/rogue/dirt, /turf/open/floor/rogue/dirt/road,/turf/open/floor/rogue/naturalstone)
-	neighborlay_override = "lavedge"
+	smoothing_flags = SMOOTH_EDGE
+	smoothing_groups = SMOOTH_GROUP_FLOOR_LIQUID
+	smoothing_list = SMOOTH_GROUP_FLOOR_LIQUID
+	neighborlay_self = "lavedge"
 
-/turf/open/lava/nosmooth
-	smooth = SMOOTH_FALSE
+
 
 /turf/open/lava/Initialize(mapload)
 	. = ..()
 	dir = pick(GLOB.cardinals)
-
-/turf/open/lava/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
-
+	AddElement(/datum/element/mob_overlay_effect, 2, -2,100)
 /turf/open/lava/can_traverse_safely(atom/movable/traveler)
 	return FALSE
 
@@ -187,8 +181,8 @@
 	baseturfs = /turf/open/lava/smooth
 	icon = 'icons/turf/floors/lava.dmi'
 	icon_state = "unsmooth"
-	smooth = SMOOTH_MORE | SMOOTH_BORDER
-	canSmoothWith = list(/turf/open/lava/smooth)
+//	smooth = SMOOTH_MORE | SMOOTH_BORDER
+//	canSmoothWith = list(/turf/open/lava/smooth)
 
 /turf/open/lava/smooth/lava_land_surface
 

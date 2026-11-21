@@ -2,50 +2,12 @@
 "a" = (
 /turf/template_noop,
 /area/template_noop)
-"b" = (
-/obj/structure/fluff/railing/border{
-	icon_state = "border";
-	dir = 1
-	},
-/obj/structure/fluff/railing/border{
-	icon_state = "border";
-	dir = 8
-	},
-/obj/effect/decal/cobbleedge{
-	icon_state = "jagged"
-	},
-/obj/structure/fluff/railing/border{
-	icon_state = "border";
-	dir = 9
-	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "horzw"
-	},
-/area/template_noop)
-"c" = (
-/obj/structure/fluff/railing/border{
-	icon_state = "border";
-	dir = 1
-	},
-/obj/effect/decal/cobbleedge{
-	icon_state = "jagged"
-	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "horzw"
-	},
-/area/template_noop)
 "d" = (
 /obj/structure/fluff/railing/border{
 	icon_state = "border";
 	dir = 1
 	},
-/obj/effect/decal/cobbleedge{
-	icon_state = "jagged"
-	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "vertw";
-	dir = 1
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/template_noop)
 "e" = (
 /obj/structure/fluff/railing/border{
@@ -56,16 +18,11 @@
 	icon_state = "border";
 	dir = 4
 	},
-/obj/effect/decal/cobbleedge{
-	icon_state = "jagged"
-	},
 /obj/structure/fluff/railing/border{
 	icon_state = "border";
 	dir = 5
 	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "horzw"
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/template_noop)
 "f" = (
 /obj/structure/fluff/railing/border{
@@ -80,28 +37,14 @@
 	icon_state = "border";
 	dir = 9
 	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "horzw"
-	},
-/area/template_noop)
-"g" = (
-/obj/structure/fluff/railing/border{
-	icon_state = "border";
-	dir = 1
-	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "horzw"
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/template_noop)
 "h" = (
 /obj/structure/fluff/railing/border{
 	icon_state = "border";
 	dir = 9
 	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "vertw";
-	dir = 1
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/template_noop)
 "i" = (
 /turf/closed/wall/mineral/rogue/wooddark{
@@ -111,44 +54,12 @@
 "j" = (
 /turf/open/floor/rogue/ruinedwood,
 /area/template_noop)
-"k" = (
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "vertw";
-	dir = 1
-	},
-/area/template_noop)
 "l" = (
 /obj/structure/fluff/railing/border{
 	icon_state = "border";
 	dir = 5
 	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "vertw";
-	dir = 1
-	},
-/area/template_noop)
-"m" = (
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "weird1"
-	},
-/area/template_noop)
-"n" = (
-/obj/structure/fluff/railing/border{
-	icon_state = "border";
-	dir = 1
-	},
-/obj/structure/fluff/railing/border{
-	icon_state = "border";
-	dir = 4
-	},
-/obj/structure/fluff/railing/border{
-	icon_state = "border";
-	dir = 5
-	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "vertw";
-	dir = 1
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/template_noop)
 "o" = (
 /obj/structure/fluff/railing/border{
@@ -156,13 +67,7 @@
 	dir = 1
 	},
 /obj/structure/fluff/railing/border,
-/obj/effect/decal/cobbleedge{
-	icon_state = "jagged";
-	dir = 4
-	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "horzw"
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/template_noop)
 "p" = (
 /obj/machinery/light/rogue/torchholder{
@@ -176,10 +81,7 @@
 	icon_state = "border";
 	dir = 4
 	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "vertw";
-	dir = 1
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/template_noop)
 "s" = (
 /obj/structure/fluff/railing/border,
@@ -191,44 +93,31 @@
 	icon_state = "border";
 	dir = 10
 	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "horzw"
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/template_noop)
 "t" = (
 /obj/structure/fluff/railing/border,
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "horzw"
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/template_noop)
 "u" = (
 /obj/structure/fluff/railing/border{
 	icon_state = "border";
 	dir = 10
 	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "vertw";
-	dir = 1
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/template_noop)
 "v" = (
 /obj/structure/boatbell{
 	pixel_y = 20
 	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "vertw";
-	dir = 1
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/template_noop)
 "w" = (
 /obj/structure/fluff/railing/border{
 	icon_state = "border";
 	dir = 6
 	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "vertw";
-	dir = 1
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/template_noop)
 "x" = (
 /obj/structure/fluff/railing/border,
@@ -240,76 +129,14 @@
 	icon_state = "border";
 	dir = 6
 	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "vertw";
-	dir = 1
-	},
-/area/template_noop)
-"y" = (
-/obj/structure/fluff/railing/border,
-/obj/structure/fluff/railing/border{
-	icon_state = "border";
-	dir = 8
-	},
-/obj/effect/decal/cobbleedge{
-	icon_state = "jagged";
-	dir = 1
-	},
-/obj/structure/fluff/railing/border{
-	icon_state = "border";
-	dir = 10
-	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "horzw"
-	},
-/area/template_noop)
-"z" = (
-/obj/structure/fluff/railing/border,
-/obj/effect/decal/cobbleedge{
-	icon_state = "jagged";
-	dir = 1
-	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "horzw"
-	},
-/area/template_noop)
-"A" = (
-/obj/structure/fluff/railing/border,
-/obj/effect/decal/cobbleedge{
-	icon_state = "jagged";
-	dir = 1
-	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "vertw";
-	dir = 1
-	},
-/area/template_noop)
-"B" = (
-/obj/structure/fluff/railing/border,
-/obj/structure/fluff/railing/border{
-	icon_state = "border";
-	dir = 4
-	},
-/obj/effect/decal/cobbleedge{
-	icon_state = "jagged";
-	dir = 1
-	},
-/obj/structure/fluff/railing/border{
-	icon_state = "border";
-	dir = 6
-	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "horzw"
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/template_noop)
 "C" = (
 /obj/machinery/light/rogue/torchholder{
 	icon_state = "torchwall1";
 	dir = 4
 	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "weird1"
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/template_noop)
 "E" = (
 /obj/structure/fluff/sign,
@@ -332,105 +159,105 @@ a
 "}
 (3,1,1) = {"
 a
-g
+d
 o
 t
 a
 "}
 (4,1,1) = {"
 a
-g
+d
 o
 t
 a
 "}
 (5,1,1) = {"
-b
+f
 h
-k
+j
 u
-y
+s
 "}
 (6,1,1) = {"
 d
 j
 j
 j
-A
+t
 "}
 (7,1,1) = {"
 d
 j
 j
 j
-A
+t
 "}
 (8,1,1) = {"
 d
 E
 j
 j
-A
+t
 "}
 (9,1,1) = {"
-k
+j
 j
 p
 j
-k
+j
 "}
 (10,1,1) = {"
-k
-k
+j
+j
 i
 v
-k
+j
 "}
 (11,1,1) = {"
-k
-m
+j
+j
 C
-m
-k
+j
+j
 "}
 (12,1,1) = {"
 d
 E
-m
-m
-A
+j
+j
+t
 "}
 (13,1,1) = {"
 d
-m
-m
-m
-A
+j
+j
+j
+t
 "}
 (14,1,1) = {"
 d
-m
-m
-m
-A
+j
+j
+j
+t
 "}
 (15,1,1) = {"
-c
-k
-k
-k
-z
+d
+j
+j
+j
+t
 "}
 (16,1,1) = {"
 e
 l
-k
+j
 w
-B
+x
 "}
 (17,1,1) = {"
 a
-n
+e
 r
 x
 a
