@@ -42,7 +42,10 @@
 		remove_status_effect(mob_vice.debuff)
 
 /mob/living/carbon/human/proc/sate_voyeurs(datum/charflaw/addiction/mob_vice)
+	// [SURREALIS-EDIT] - SEXCON
+	// for(var/mob/living/carbon/human/L in get_hearers_in_view(2, src, RECURSIVE_CONTENTS_CLIENT_MOBS)) // SURREALIS-EDIT - ORIGINAL
 	for(var/mob/living/carbon/human/L in get_hearers_in_view(4, src, RECURSIVE_CONTENTS_CLIENT_MOBS))
+	// [/SURREALIS-EDIT]
 		if(src != L && !istype(mob_vice, /datum/charflaw/addiction/voyeur))	//Let's not have circular voyeur self-pleasing chains.
 			if(L.has_flaw(/datum/charflaw/addiction/voyeur))
 				for(var/datum/charflaw/cf in L.charflaws)
@@ -123,7 +126,10 @@
 /datum/status_effect/debuff/addiction/alcoholic
 	id = "addiction_alcoholic"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/addiction/alcoholic
-	effectedstats = list(STATKEY_STR = -4, STATKEY_INT = -4)
+	// [SURREALIS-EDIT] - SEXCON
+	// effectedstats = list(STATKEY_INT = -1, STATKEY_WIL = -1) // SURREALIS-EDIT - ORIGINAL
+	effectedstats = list(STATKEY_STR = -2, STATKEY_INT = -2)
+	// [/SURREALIS-EDIT]
 
 /atom/movable/screen/alert/status_effect/debuff/addiction/alcoholic
 	name = "Alcohol Withdrawal"
@@ -144,7 +150,10 @@
 /datum/status_effect/debuff/addiction/junkie
 	id = "addiction_junkie"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/addiction/junkie
-	effectedstats = list(STATKEY_STR = -4, STATKEY_CON = -4)
+	// [SURREALIS-EDIT] - SEXCON
+	// effectedstats = list(STATKEY_STR = -1, STATKEY_CON = -1) // SURREALIS-EDIT - ORIGINAL
+	effectedstats = list(STATKEY_STR = -3, STATKEY_CON = -3)
+	// [/SURREALIS-EDIT]
 
 /atom/movable/screen/alert/status_effect/debuff/addiction/junkie
 	name = "Drug Withdrawal"
@@ -157,7 +166,10 @@
 	name = "Smoker"
 	desc = "I need to smoke something to take the edge off."
 	ui_fa_icon = "smoking"
+	// [SURREALIS-EDIT] - SEXCON
+	// time = ADDICT_TIME_STANDARD // SURREALIS-EDIT - ORIGINAL
 	time = ADDICT_TIME_FREQUENT
+	// [/SURREALIS-EDIT]
 	needsate_text = "Time for a flavorful smoke."
 	voyeur_descriptor = "eager for a smoke"
 	debuff = /datum/status_effect/debuff/addiction/smoker
@@ -165,7 +177,10 @@
 /datum/status_effect/debuff/addiction/smoker
 	id = "addiction_smoker"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/addiction/smoker
-	effectedstats = list(STATKEY_PER = -4, STATKEY_CON = -4)
+	// [SURREALIS-EDIT] - SEXCON
+	// effectedstats = list(STATKEY_STR = -1, STATKEY_CON = -1) // SURREALIS-EDIT - ORIGINAL
+	effectedstats = list(STATKEY_PER = -3, STATKEY_CON = -3)
+	// [/SURREALIS-EDIT]
 
 /atom/movable/screen/alert/status_effect/debuff/addiction/smoker
 	name = "Blacklung"
@@ -186,7 +201,10 @@
 /datum/status_effect/debuff/addiction/caffiend
 	id = "addiction_caffiend"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/addiction/caffiend
-	effectedstats = list(STATKEY_SPD = -4, STATKEY_PER = -4)
+	// [SURREALIS-EDIT] - SEXCON
+	// effectedstats = list(STATKEY_WIL = -1, STATKEY_INT = -1) // SURREALIS-EDIT - ORIGINAL
+	effectedstats = list(STATKEY_SPD = -3, STATKEY_PER = -3)
+	// [/SURREALIS-EDIT]
 
 /atom/movable/screen/alert/status_effect/debuff/addiction/caffiend
 	name = "The Ticks"
@@ -207,7 +225,10 @@
 /datum/status_effect/debuff/addiction/godfearing
 	id = "addiction_godfearing"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/addiction/godfearing
-	effectedstats = list(STATKEY_WIL = -4, STATKEY_LCK = -4)
+	// [SURREALIS-EDIT] - SEXCON
+	// effectedstats = list(STATKEY_WIL = -2) // SURREALIS-EDIT - ORIGINAL
+	effectedstats = list(STATKEY_WIL = -3, STATKEY_LCK = -3)
+	// [/SURREALIS-EDIT]
 
 /atom/movable/screen/alert/status_effect/debuff/addiction/godfearing
 	name = "Godfearing"
@@ -228,7 +249,10 @@
 /datum/status_effect/debuff/addiction/sadist
 	id = "addiction_sadist"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/addiction/sadist
-	effectedstats = list(STATKEY_WIL = -4, STATKEY_LCK = -4)
+	// [SURREALIS-EDIT] - SEXCON
+	// effectedstats = list(STATKEY_WIL = -1, STATKEY_LCK = -1) // SURREALIS-EDIT - ORIGINAL
+	effectedstats = list(STATKEY_WIL = -3, STATKEY_LCK = -3)
+	// [/SURREALIS-EDIT]
 
 /atom/movable/screen/alert/status_effect/debuff/addiction/sadist
 	name = "Sadist"
@@ -250,7 +274,10 @@
 /datum/status_effect/debuff/addiction/masochist
 	id = "addiction_masochist"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/addiction/masochist
-	effectedstats = list(STATKEY_SPD = -4, STATKEY_PER= -4) //Poor focus.
+	// [SURREALIS-EDIT] - SEXCON
+	// effectedstats = list(STATKEY_CON = -1, STATKEY_WIL = -1) // SURREALIS-EDIT - ORIGINAL
+	effectedstats = list(STATKEY_SPD = -3, STATKEY_PER= -3) //Poor focus.
+	// [/SURREALIS-EDIT]
 
 /atom/movable/screen/alert/status_effect/debuff/addiction/masochist
 	name = "Masochist"
@@ -274,7 +301,10 @@
 /datum/status_effect/debuff/addiction/nympho
 	id = "addiction_nympho"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/addiction/nympho
-	effectedstats = list(STATKEY_WIL = -4, STATKEY_LCK = -4)
+	// [SURREALIS-EDIT] - SEXCON
+	// effectedstats = list(STATKEY_WIL = -1, STATKEY_LCK = -1) // SURREALIS-EDIT - ORIGINAL
+	effectedstats = list(STATKEY_WIL = -3, STATKEY_LCK = -3)
+	// [/SURREALIS-EDIT]
 
 // This bit is just an easter egg. Feel free to remove at your discretion.
 /datum/status_effect/debuff/addiction/nympho/on_creation(mob/living/new_owner, ...)
