@@ -36,6 +36,10 @@
 		if(ishuman(AM))
 			var/mob/living/carbon/human/H = AM
 			if(H.dir == get_dir(H,src) && H.m_intent == MOVE_INTENT_RUN && (H.mobility_flags & MOBILITY_STAND))
+// [SURREALIS-ADD] - MODULAR_KEYBINDS
+				if(H.sprinted_tiles == 0)
+					return
+// [/SURREALIS-ADD]
 				var/is_bigguy = FALSE
 				if(HAS_TRAIT(H,TRAIT_BIGGUY))
 					if(istype(src,/obj/structure/mineral_door))

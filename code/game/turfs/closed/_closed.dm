@@ -130,6 +130,11 @@
 	if(density)
 		if(ishuman(AM))
 			var/mob/living/carbon/human/H = AM
+// [SURREALIS-ADD] - MODULAR_KEYBINDS
+			if(H.sprinted_tiles == 0)
+				H.toggle_rogmove_intent(MOVE_INTENT_WALK, TRUE)
+				return
+// [/SURREALIS-ADD]
 			if(H.dir == get_dir(H,src) && H.m_intent == MOVE_INTENT_RUN && (H.mobility_flags & MOBILITY_STAND))
 				H.Immobilize(10)
 				// [SURREALIS-EDIT] - VRCOMBAT
