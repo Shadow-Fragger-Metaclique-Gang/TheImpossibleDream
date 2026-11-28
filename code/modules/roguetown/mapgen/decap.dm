@@ -40,7 +40,10 @@
 	allowed_areas = list(/area/rogue/outdoors/mountains/decap)
 	spawnableAtoms = list(/obj/structure/flora/roguegrass = 25,
 							/obj/structure/flora/roguegrass/herb/random = 2,
-							/obj/structure/flora/roguegrass/bush/westleach = 2,
+							// [SURREALIS-EDIT] - SEXCON
+							// /obj/structure/flora/roguegrass/bush/westleach = 2, // SURREALIS-EDIT - ORIGINAL
+							/obj/structure/flora/roguegrass/bush/westleach = 0.1,
+							// [/SURREALIS-EDIT]
 							/obj/item/natural/stone = 6,
 							/obj/item/natural/rock = 1,
 							/obj/item/grown/log/tree/stick = 3,

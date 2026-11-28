@@ -88,6 +88,11 @@ New TGUI files:
 - `tgui/packages/tgui/interfaces/PreferencesMenu/tabs/CharacterCreator/subtabs/Appearance/FeatureChoices/SurrealisFeatureChoicePenis.tsx`: feature choices.
 - `tgui/packages/tgui/interfaces/PreferencesMenu/tabs/CharacterCreator/subtabs/Appearance/FeatureChoices/SurrealisFeatureChoiceBreasts.tsx`: feature choices.
 - `tgui/packages/tgui/interfaces/PreferencesMenu/tabs/CharacterCreator/subtabs/Appearance/FeatureChoices/FeatureChoiceBodyHair.tsx`: feature chocies.
+- `code/datums/character_flaw/addiction.dm`: EDIT near `/datum/charflaw/addiction/smoker`, EDIT near `/datum/status_effect/debuff/addiction/alcoholic`, EDIT near `/datum/status_effect/debuff/addiction/caffiend`, EDIT near `/datum/status_effect/debuff/addiction/godfearing`, EDIT near `/datum/status_effect/debuff/addiction/junkie`, EDIT near `/datum/status_effect/debuff/addiction/masochist`, EDIT near `/datum/status_effect/debuff/addiction/nympho`, EDIT near `/datum/status_effect/debuff/addiction/sadist`, EDIT near `/datum/status_effect/debuff/addiction/smoker`, EDIT near `/mob/living/carbon/human/proc/sate_voyeurs`
+- `code/game/objects/structures/roguetown/rogueflora.dm`: EDIT near `/obj/structure/flora/roguegrass/bush/Initialize`, EDIT near `/obj/structure/flora/roguegrass/bush/wall/CanPass`, EDIT near `/obj/structure/flora/roguegrass/swampweed/Initialize`
+- `code/modules/roguetown/mapgen/bog.dm`: EDIT near `/datum/mapGeneratorModule/bog`
+- `code/modules/roguetown/mapgen/decap.dm`: EDIT near `/datum/mapGeneratorModule/decapgrass`
+- `code/modules/roguetown/mapgen/forest.dm`: EDIT near `/datum/mapGeneratorModule/forest`
 
 ## Changes from other modules
 
