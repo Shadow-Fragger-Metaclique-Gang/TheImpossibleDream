@@ -43,10 +43,16 @@
 	sewn_whp = 0
 	bleed_rate = 1
 	sewn_bleed_rate = 0.04
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	clotting_rate = 0.01
 	sewn_clotting_rate = 0.01
 	clotting_threshold = 0.15
 	sewn_clotting_threshold = 0.1
+	*/
+	clotting_rate = 0.075
+	// [/SURREALIS-EDIT]
 	sew_threshold = 20
 	mob_overlay = "cut"
 	can_sew = TRUE
@@ -58,7 +64,9 @@
 		"vicious" = 12,
 		"lethal" = 20,
 	)
-
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 //Puncture (Stab -- not Pick) Omniwounds
 //Vaguely: Not nearly as painful, higher bleed cap, easier to sew / heal.
 
@@ -85,14 +93,54 @@
 	sew_threshold += (dam * PUNC_UPG_SEWRATE)
 	woundpain += (dam * PUNC_UPG_PAINRATE)
 	armor_check(armor, PUNC_ARMORED_BLEED_CLAMP)
+	*/
+	var/base_woundpain = 0
+	var/jiggle_pain = 0
+
+/datum/wound/dynamic/puncture/on_life()
+	. = ..()
+	if(jiggle_pain > 0)
+		jiggle_pain = max(jiggle_pain - 2, 0)
+		woundpain = base_woundpain + jiggle_pain
+
+//Puncture (Stab -- not Pick) Omniwounds
+//Vaguely: Moderately painful, higher bleed cap, easier to sew / heal.
+
+#define PUNC_UPG_BLEEDRATE 0.5
+#define PUNC_UPG_WHPRATE 0.75
+#define PUNC_UPG_SEWRATE 0.65
+#define PUNC_UPG_PAINRATE 0.15
+#define PUNC_UPG_CLAMP 1.0
+
+/datum/wound/dynamic/puncture/upgrade(dam, armor)
+	var/bleed_increase = clamp((dam * PUNC_UPG_BLEEDRATE), 0.1, PUNC_UPG_CLAMP)
+	whp += (dam * PUNC_UPG_WHPRATE)
+	set_bleed_rate(bleed_rate + bleed_increase)
+	sew_threshold += (dam * PUNC_UPG_SEWRATE)
+	var/pain_increase = (dam * PUNC_UPG_PAINRATE)
+	base_woundpain += pain_increase
+	woundpain = base_woundpain + jiggle_pain
+	// [/SURREALIS-EDIT]
 	update_stage()
 	..()
 
+// [SURREALIS-ADD] - VRCOMBAT
+/datum/wound/dynamic/puncture/get_hypothetical_bleed_rate(damage)
+	return bleed_rate + clamp((damage * PUNC_UPG_BLEEDRATE), 0.1, PUNC_UPG_CLAMP)
+
+#undef PUNC_UPG_BLEEDRATE
+// [/SURREALIS-ADD]
 #undef PUNC_UPG_WHPRATE
 #undef PUNC_UPG_SEWRATE
 #undef PUNC_UPG_PAINRATE
+// [SURREALIS-EDIT] - VRCOMBAT
+// SURREALIS-EDIT - ORIGINAL
+/*
 #undef PUNC_UPG_CLAMP_RAW
 #undef PUNC_ARMORED_BLEED_CLAMP
+*/
+#undef PUNC_UPG_CLAMP
+// [/SURREALIS-EDIT]
 
 /datum/wound/dynamic/gouge
 	name = "gouge"
@@ -100,10 +148,16 @@
 	sewn_whp = 0
 	bleed_rate = 1
 	sewn_bleed_rate = 0.04
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	clotting_rate = 0.01
 	sewn_clotting_rate = 0.01
 	clotting_threshold = 0.2
 	sewn_clotting_threshold = 0.1
+	*/
+	clotting_rate = 0.075
+	// [/SURREALIS-EDIT]
 	sew_threshold = 20
 	mob_overlay = "cut"
 	can_sew = TRUE
@@ -120,6 +174,9 @@
 //Vaguely: Not very painful, not very bleedy, but you can't cauterize them. You're still better off using stab every time.
 //Addendum: This was made with the assumption that pick intent penetrates most armors (and being able to crit through them).
 
+// [SURREALIS-EDIT] - VRCOMBAT
+// SURREALIS-EDIT - ORIGINAL
+/*
 #define GOUGE_UPG_BLEEDRATE 0.01
 #define GOUGE_UPG_WHPRATE 1
 #define GOUGE_UPG_SEWRATE 0.3
@@ -137,16 +194,40 @@
 	sew_threshold += (dam * GOUGE_UPG_SEWRATE)
 	woundpain += (dam * GOUGE_UPG_PAINRATE)
 	armor_check(armor, GOUGE_ARMORED_BLEED_CLAMP)
+*/
+#define GOUGE_UPG_BLEEDRATE 0.1
+#define GOUGE_UPG_WHPRATE 1.5
+#define GOUGE_UPG_SEWRATE 0.3
+#define GOUGE_UPG_PAINRATE 0.15
+#define GOUGE_UPG_CLAMP 0.8
+
+/datum/wound/dynamic/gouge/upgrade(dam, armor)
+	whp += (dam * GOUGE_UPG_WHPRATE)
+	set_bleed_rate(bleed_rate + clamp((dam * GOUGE_UPG_BLEEDRATE), 0.1, GOUGE_UPG_CLAMP))
+	sew_threshold += (dam * GOUGE_UPG_SEWRATE)
+	woundpain += (dam * GOUGE_UPG_PAINRATE)
+// [/SURREALIS-EDIT]
 	update_stage()
 	..()
 
+// [SURREALIS-ADD] - VRCOMBAT
+/datum/wound/dynamic/gouge/get_hypothetical_bleed_rate(damage)
+	return bleed_rate + clamp((damage * GOUGE_UPG_BLEEDRATE), 0.1, GOUGE_UPG_CLAMP)
+
+// [/SURREALIS-ADD]
 #undef GOUGE_UPG_BLEEDRATE
 #undef GOUGE_UPG_WHPRATE
 #undef GOUGE_UPG_SEWRATE
 #undef GOUGE_UPG_PAINRATE
+// [SURREALIS-EDIT] - VRCOMBAT
+// SURREALIS-EDIT - ORIGINAL
+/*
 #undef GOUGE_UPG_CLAMP_ARMORED
 #undef GOUGE_UPG_CLAMP_RAW
 #undef GOUGE_ARMORED_BLEED_CLAMP
+*/
+#undef GOUGE_UPG_CLAMP
+// [/SURREALIS-EDIT]
 
 /datum/wound/puncture/drilling
 	name = "drilling"
@@ -166,6 +247,9 @@
 	qdel(src)
 	return TRUE
 
-/datum/wound/puncture/drilling/cauterize_wound()
+// [SURREALIS-EDIT] - VRCOMBAT
+// /datum/wound/puncture/drilling/cauterize_wound() // SURREALIS-EDIT - ORIGINAL
+/datum/wound/puncture/drilling/cauterize_wound(surgical = FALSE, mob/user)
+// [/SURREALIS-EDIT]
 	qdel(src)
 	return TRUE

@@ -430,7 +430,10 @@ GLOBAL_LIST_INIT(shove_disarming_types, typecacheof(list(
 
 //Weapon values
 #define NONBLUNT_BLUNT_DAMFACTOR 0.6 // Damage factor when a non blunt weapon is used with blunt intent. Meant to make it worse than a real one.
-#define BLUNT_DEFAULT_INT_DAMAGEFACTOR 1.6 // Universal blunt intent integrity damage factor. Replaces Roguepen
+// [SURREALIS-EDIT] - VRCOMBAT
+// #define BLUNT_DEFAULT_INT_DAMAGEFACTOR 1.6 // Universal blunt intent integrity damage factor. Replaces Roguepen // SURREALIS-EDIT - ORIGINAL
+#define BLUNT_DEFAULT_INT_DAMAGEFACTOR 1 // Universal blunt intent integrity damage factor. Neutral; armor-class degradation multipliers handle blunt vs armor.
+// [/SURREALIS-EDIT]
 #define SPELL_BLUNT_INT_DAMAGEFACTOR 1.3 // Blunt integrity damage factor for spell projectiles
 #define PUNCH_INT_DAMAGEFACTOR 1.2 // Reduced integrity damage for unarmed punches cuz they're really fast
 

@@ -22,6 +22,22 @@
 
 	werewolf_infection_probability = 100
 
+// [SURREALIS-ADD] - VRCOMBAT
+/datum/wound/artery/apply_to_bodypart(obj/item/bodypart/affected, silent = FALSE, crit_message = FALSE, damage)
+	// Picks the vessel on first application.
+	if(type == /datum/wound/artery && !created && !QDELETED(affected))
+		switch(affected.body_zone)
+			if(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
+				name = "torn femoral artery"
+				bleed_rate = FEMORAL_ARTERY_BLEEDRATE
+			if(BODY_ZONE_L_ARM, BODY_ZONE_R_ARM)
+				name = "torn brachial artery"
+				clotting_rate = 0.04
+				clotting_threshold = 0
+				clots_when_severe = TRUE
+	return ..()
+
+// [/SURREALIS-ADD]
 /datum/wound/artery/can_stack_with(datum/wound/other)
 	if(istype(other, /datum/wound/artery) && (type == other.type))
 		return FALSE
@@ -35,10 +51,13 @@
 	if(iscarbon(owner) && owner.mind)
 		affected.apply_status_effect(/datum/status_effect/debuff/critwounded) //apply critically wounded - more energy in cmode cost. Until fixed.
 
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 /datum/wound/artery/on_bodypart_gain(obj/item/bodypart/affected)
 	. = ..()
 	affected.temporary_crit_paralysis(10 SECONDS)
-
+*/
+// [/SURREALIS-REMOVE]
 /datum/wound/artery/neck
 	name = "torn carotid"
 	check_name = span_artery("<B>CAROTID</B>")
@@ -53,9 +72,31 @@
 	mob_overlay = "s1_throat"
 	mortal = TRUE
 
+// [SURREALIS-ADD] - VRCOMBAT
+/datum/wound/artery/neck
+	faint_delay = 16 SECONDS
+
+/// Knocks the owner out once the brain runs short of blood.
+/datum/wound/artery/neck/proc/faint_owner()
+	if(QDELETED(src) || !owner || !bodypart_owner || is_sewn() || owner.stat == DEAD)
+		return
+	var/mob/living/carbon/carbon_owner = owner
+	if(!istype(carbon_owner) || (NOBLOOD in carbon_owner.dna?.species?.species_traits))
+		return
+	carbon_owner.Unconscious(15 SECONDS)
+
+/datum/wound/artery/neck/on_bodypart_gain(obj/item/bodypart/affected)
+	. = ..()
+	affected.temporary_crit_paralysis(10 SECONDS)
+
+// [/SURREALIS-ADD]
 /datum/wound/artery/neck/on_mob_gain(mob/living/affected)
 	. = ..()
 	ADD_TRAIT(affected, TRAIT_GARGLE_SPEECH, "[type]")
+	// [SURREALIS-ADD] - VRCOMBAT
+	if(faint_delay)
+		addtimer(CALLBACK(src, PROC_REF(faint_owner)), faint_delay)
+	// [/SURREALIS-ADD]
 
 /datum/wound/artery/neck/on_mob_loss(mob/living/affected)
 	. = ..()
@@ -160,10 +201,13 @@
 				core_meltdown(carbon_owner)
 				carbon_owner.death()
 
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 /datum/wound/integrity/on_bodypart_gain(obj/item/bodypart/affected)
 	. = ..()
 	affected.temporary_crit_paralysis(10 SECONDS)
-
+*/
+// [/SURREALIS-REMOVE]
 /datum/wound/integrity/neck
 	name = "ruptured throat conduit"
 	check_name = span_artery("<B>VOCAL SIGIL</B>")
@@ -177,6 +221,12 @@
 	mortal = TRUE
 	var/zoppy = 0
 
+// [SURREALIS-ADD] - VRCOMBAT
+/datum/wound/integrity/neck/on_bodypart_gain(obj/item/bodypart/affected)
+	. = ..()
+	affected.temporary_crit_paralysis(10 SECONDS)
+
+// [/SURREALIS-ADD]
 /datum/wound/integrity/neck/on_mob_gain(mob/living/affected)
 	. = ..()
 	ADD_TRAIT(affected, TRAIT_GARGLE_SPEECH, "[type]")

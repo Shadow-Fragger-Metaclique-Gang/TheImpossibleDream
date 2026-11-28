@@ -103,7 +103,10 @@
 			ADD_TRAIT(H, TRAIT_DODGEEXPERT, TRAIT_GENERIC)
 		if("Medium Armor")
 			pants = /obj/item/clothing/under/roguetown/chainlegs
-			armor = /obj/item/clothing/suit/roguetown/armor/brigandine
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// armor = /obj/item/clothing/suit/roguetown/armor/brigandine // SURREALIS-EDIT - ORIGINAL
+			armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
+			// [/SURREALIS-EDIT]
 			ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 
 	H.cmode_music = 'sound/music/combat_heretic.ogg'

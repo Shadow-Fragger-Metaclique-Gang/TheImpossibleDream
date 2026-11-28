@@ -5,7 +5,8 @@
 **Created in:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/44
 
 **Major changes:**
-- Adds the "Lord of Vanity" duke advclass, a natural armor duke class with a 15% chance to be available in any given round, similar to how rare towner classes work (i.e., master miner, master smith, etc.)
+
+- Adds the "Lord of Vanity" duke advclass, a natural armor duke class with a 15% chance to be available in any given round, similar to how rare towner classes work (i.e., master miner, master smith, etc.) - EDIT, 11/22 - Decided to make it so that it can happen every round. It's more fun that way.
 - Nudist duke w/rage and very very low int. A play on the emperor's new clothes fable.
 - 3 new natural armor options for the duke, his/her new clothes. Repaired via meditating on how radiant you look in them.
 

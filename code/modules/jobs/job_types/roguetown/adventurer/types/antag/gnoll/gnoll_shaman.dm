@@ -41,7 +41,12 @@
 
 /datum/outfit/job/roguetown/gnoll/shaman/pre_equip(mob/living/carbon/human/H)
 	if(H.mind)
+		// [SURREALIS-EDIT] - SEXCON
+		// H.set_species(/datum/species/gnoll) // SURREALIS-EDIT - ORIGINAL
+		var/list/mygenitals = add_gnoll_sexcon(H, null)
 		H.set_species(/datum/species/gnoll)
+		add_gnoll_sexcon(H,mygenitals)
+		// [/SURREALIS-EDIT]
 		H.skin_armor = new vamp_armor_type(H)
 		H.AddComponent(/datum/component/vampiric_striker, shard_threshold, shard_repair_value, max_fury_stacks)
 		var/obj/item/ritechalk/chalk = new /obj/item/ritechalk(H.loc)

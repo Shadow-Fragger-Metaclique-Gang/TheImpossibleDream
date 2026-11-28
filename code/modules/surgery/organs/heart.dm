@@ -105,6 +105,25 @@
 
 /obj/item/organ/heart/on_life()
 	..()
+	// [SURREALIS-ADD] - VRCOMBAT
+	if(!istype(owner))
+		return
+
+	if(damage > 0 && damage < maxHealth)
+		var/damage_ratio = damage / maxHealth
+		if(damage >= high_threshold)
+			applyOrganDamage(damage_ratio * 0.3)
+			if(prob(5) && !owner.stat)
+				to_chat(owner, span_warning("My heart aches!"))
+		else
+			if(prob(2) && !owner.stat)
+				to_chat(owner, span_warning("My chest feels tight."))
+
+	if(!beating && ishuman(owner))
+		var/mob/living/carbon/human/heartless = owner
+		heartless.handle_heart()
+
+	// [/SURREALIS-ADD]
 	if(owner.client && beating)
 		failed = FALSE
 		// [SURREALIS-REMOVE] - PLASMA_OPTS
@@ -140,8 +159,15 @@
 
 	if(organ_flags & ORGAN_FAILING)	//heart broke, stopped beating, death imminent
 		if(owner.stat == CONSCIOUS)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			owner.visible_message(span_danger("[owner] clutches at [owner.p_their()] chest as if [owner.p_their()] heart is stopping!"), \
 				span_danger("I feel a terrible pain in my chest, as if my heart has stopped!"))
+			*/
+			owner.visible_message(span_danger("[owner] clutches [owner.p_their()] chest!"), \
+				span_userdanger("MY HEART!"))
+			// [/SURREALIS-EDIT]
 		owner.set_heartattack(TRUE)
 		failed = TRUE
 /obj/item/organ/heart/construct

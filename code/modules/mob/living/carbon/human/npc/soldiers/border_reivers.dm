@@ -117,7 +117,10 @@
 	clickcd = REIVER_LANCE_ATTACK_SPEED
 	chargetime = 1
 	animname = "stab"
-	penfactor = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 
 /datum/intent/simple/reiver_rider_sabre
 	name = "hack"
@@ -127,7 +130,10 @@
 	blade_class = BCLASS_CUT
 	hitsound = list("genchop", "genslash")
 	chargetime = 0
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	swingdelay = 2
 	candodge = TRUE
 	canparry = TRUE

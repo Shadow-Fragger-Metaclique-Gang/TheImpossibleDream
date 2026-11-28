@@ -142,7 +142,10 @@
 	attack_verb = list("gores", "rams", "skewers")
 	animname = "stab"
 	hitsound = 'sound/combat/rend_hit.ogg'
-	penfactor = PEN_BSTEEL
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_BSTEEL // SURREALIS-EDIT - ORIGINAL
+	penfactor = 4
+	// [/SURREALIS-EDIT]
 	candodge = TRUE
 	canparry = TRUE
 	miss_text = "thrusts its antlers wildly!"

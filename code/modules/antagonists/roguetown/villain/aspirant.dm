@@ -22,7 +22,11 @@
 		"Swordsmanship" = CHOICE_SWORDSMANSHIP,
 		"Deep Pockets (Extra Money)" = CHOICE_MONEY,
 	)
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	has_tempo = TRUE
+	*/
+	// [/SURREALIS-REMOVE]
 
 /datum/antagonist/aspirant/proc/give_equipment_prompt()
 	var/chosen = input(owner.current, "How shall I rise to power?", "YOUR ADVANTAGE") as anything in equipment_selection

@@ -33,6 +33,9 @@
 	var/max_range = 5
 	var/strike_damage = SPELL_DMG(60)
 	displayed_damage = SPELL_DMG(60)
+	// [SURREALIS-ADD] - VRCOMBAT
+	damage_variance = SPELL_VARIANCE_MID
+	// [/SURREALIS-ADD]
 
 /datum/action/cooldown/spell/levinstroke/cast(atom/cast_on)
 	. = ..()
@@ -113,13 +116,26 @@
 		if(spell_guard_check(victim, TRUE))
 			victim.visible_message(span_warning("[victim] weathers the strike!"))
 			continue
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		if(ishuman(victim))
 			if(arcyne_strike(user, victim, null, strike_damage, def_zone, BCLASS_BURN, \
 				spell_name = "Levinstroke", damage_type = BURN, \
 				skip_animation = TRUE, SPELL_STRIKE_SCALING) == ARCYNE_STRIKE_WARDED)
+		*/
+		var/actual_damage = get_varied_damage(strike_damage, user)
+		if(ishuman(victim))
+			if(arcyne_strike(user, victim, null, actual_damage, def_zone, BCLASS_ELECTRICAL, \
+				spell_name = "Levinstroke", damage_type = BURN, \
+				skip_animation = TRUE, SPELL_STRIKE_SCALING) == ARCYNE_STRIKE_WARDED)
+		// [/SURREALIS-EDIT]
 				continue
 		else
-			victim.electrocute_act(strike_damage, src, 1, SHOCK_NOSTUN)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// victim.electrocute_act(strike_damage, src, 1, SHOCK_NOSTUN) // SURREALIS-EDIT - ORIGINAL
+			victim.electrocute_act(actual_damage, src, 1, SHOCK_NOSTUN)
+			// [/SURREALIS-EDIT]
 		victim.electrocute_act(0, src, 1, SHOCK_NOSTUN|SHOCK_VISUAL_ONLY)
 		new /obj/effect/temp_visual/spell_impact(get_turf(victim), spell_color, spell_impact_intensity)
 

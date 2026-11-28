@@ -91,7 +91,10 @@
 		update_health_hud()
 		return TRUE
 
-/mob/proc/stamina_add(added as num)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/proc/stamina_add(added as num) // SURREALIS-EDIT - ORIGINAL
+/mob/proc/stamina_add(added as num, emote_override, force_emote = TRUE, natural_regen = FALSE, skill_used)
+// [/SURREALIS-EDIT]
 	return TRUE
 
 /mob/living/proc/stamina_nutrition_mod(amt)
@@ -99,7 +102,10 @@
 	var/nutrition_amount = amt * 0.075 // flat 1/2 of the old 0.15 rate
 
 	if (amt <= 2)
-		if (amt == 2 && prob(STACON * 5)) // only sprinting knocks off 2 stamina at a time, so test this vs our con to see if we drop it
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// if (amt == 2 && prob(STACON * 5)) // only sprinting knocks off 2 stamina at a time, so test this vs our con to see if we drop it // SURREALIS-EDIT - ORIGINAL
+		if (amt == 2 && get_stat_roll(STACON) >= 10) // only sprinting knocks off 2 stamina at a time, so test this vs our con to see if we drop it
+		// [/SURREALIS-EDIT]
 			return 0
 
 	var/tox_damage = getToxLoss()
@@ -123,7 +129,10 @@
 
 // [SURREALIS-EDIT] - PLASMA_OPTS
 // /mob/living/stamina_add(added as num, emote_override, force_emote = TRUE) //call update_stamina here and set last_fatigued, return false when not enough fatigue left // SURREALIS-EDIT - ORIGINAL
-/mob/living/stamina_add(added as num, emote_override, force_emote = TRUE, natural_regen = FALSE)
+// [/SURREALIS-EDIT]
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/living/stamina_add(added as num, emote_override, force_emote = TRUE, natural_regen = FALSE) // SURREALIS-EDIT - ORIGINAL
+/mob/living/stamina_add(added as num, emote_override, force_emote = TRUE, natural_regen = FALSE, skill_used)
 // [/SURREALIS-EDIT]
 	if(HAS_TRAIT(src, TRAIT_INFINITE_STAMINA))
 		return TRUE
@@ -145,7 +154,10 @@
 
 	stamina = CLAMP(stamina+added, 0, max_stamina)
 	if(added > 0)
-		energy_add(added * -1)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// energy_add(added * -1) // SURREALIS-EDIT - ORIGINAL
+		energy_add(added * -skill_fatigue_mult(skill_used))
+		// [/SURREALIS-EDIT]
 		adjust_nutrition(-stamina_nutrition_mod(added))
 	if(added >= 5)
 		if(energy <= 0)
@@ -183,6 +195,11 @@
 	if(stamina >= max_stamina)
 		stamina = max_stamina
 		update_health_hud()
+		// [SURREALIS-ADD] - VRCOMBAT
+		if(world.time < mob_timers["exhausted"])
+			return FALSE
+		mob_timers["exhausted"] = world.time + CLICK_CD_EXHAUSTED
+		// [/SURREALIS-ADD]
 		if(m_intent == MOVE_INTENT_RUN) //can't sprint at full fatigue
 			toggle_rogmove_intent(MOVE_INTENT_WALK, TRUE)
 		if(!emote_override)

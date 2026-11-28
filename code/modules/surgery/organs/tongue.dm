@@ -48,7 +48,10 @@
 	if (modifies_speech)
 		RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	M.UnregisterSignal(M, COMSIG_MOB_SAY)
-	for(var/datum/wound/facial/ears/tongue_wound as anything in M.get_wounds())
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// for(var/datum/wound/facial/ears/tongue_wound as anything in M.get_wounds()) // SURREALIS-EDIT - ORIGINAL
+	for(var/datum/wound/facial/tongue/tongue_wound in M.get_wounds())
+	// [/SURREALIS-EDIT]
 		qdel(tongue_wound)
 	if(length(emote_verbs))
 		add_verb(M, emote_verbs)

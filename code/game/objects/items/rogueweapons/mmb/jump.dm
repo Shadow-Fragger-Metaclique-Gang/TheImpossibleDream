@@ -122,7 +122,10 @@
 	var/prev_pixel_z = pixel_z
 	var/prev_transform = transform
 
-	if(stamina_add(min(jadded,100)))
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(stamina_add(min(jadded,100))) // SURREALIS-EDIT - ORIGINAL
+	if(stamina_add(min(jadded,100), skill_used = /datum/skill/misc/athletics))
+	// [/SURREALIS-EDIT]
 		if(do_a_flip)
 			do_flip_animation()
 		else

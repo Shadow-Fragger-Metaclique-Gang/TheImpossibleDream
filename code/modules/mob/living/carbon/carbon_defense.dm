@@ -42,9 +42,16 @@
 	if(!affecting || !affecting.dismemberable)
 		return
 	if(P.dismember_by_default && (P.woundclass == BCLASS_CUT || P.woundclass == BCLASS_CHOP))
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		var/dismember_chance = affecting.get_spell_dismemberment_chance(P.damage, P.woundclass, def_zone)
 		if(dismember_chance && prob(dismember_chance))
 			var/mob/living/shooter = isliving(P.firer) ? P.firer : null
+		*/
+		var/mob/living/shooter = isliving(P.firer) ? P.firer : null
+		if(affecting.should_dismember(P.woundclass, P.damage, shooter, def_zone, 0, P.damage))
+		// [/SURREALIS-EDIT]
 			affecting.dismember(P.damage_type, P.woundclass, shooter, def_zone)
 		return
 	if(P.dismemberment && (affecting.get_damage() >= (affecting.max_damage - P.dismemberment)))
@@ -77,6 +84,9 @@
 	..()
 
 
+// [SURREALIS-EDIT] - VRCOMBAT
+// SURREALIS-EDIT - ORIGINAL
+/*
 /mob/living/carbon/check_projectile_wounding(obj/projectile/P, def_zone, blocked)
 	var/obj/item/bodypart/BP = get_bodypart(check_zone(def_zone))
 	if(BP)
@@ -94,6 +104,36 @@
 	if(prob(P.embedchance) && P.dropped)
 		return BP.add_embedded_object(P.dropped, silent = FALSE, crit_message = TRUE, ranged = TRUE)
 	return FALSE
+*/
+/mob/living/carbon/check_projectile_wounding(obj/projectile/P, def_zone, wound_class = null, damage = null)
+	var/obj/item/bodypart/BP = get_bodypart(check_zone(def_zone))
+	if(BP)
+		var/datum/wound/dynamic/puncture/stab_wound = BP.has_wound(/datum/wound/dynamic/puncture)
+		var/bleed_before = stab_wound ? stab_wound.bleed_rate : 0
+		BP.spell_crit_halved = istype(P, /obj/projectile/magic) && !!GLOB.spell_physical_damage_names[P.flag]
+		BP.projectile_crit = TRUE
+		BP.bodypart_attacked_by(wound_class || P.woundclass, isnull(damage) ? P.damage : damage, zone_precise = def_zone, crit_message = TRUE, weapon = P, no_crit = P.no_crit)
+		BP.spell_crit_halved = FALSE
+		BP.projectile_crit = FALSE
+		stab_wound = BP.has_wound(/datum/wound/dynamic/puncture)
+		if(stab_wound)
+			BP.last_bleed_increase = max(stab_wound.bleed_rate - bleed_before, 0)
+		return TRUE
+
+/mob/living/carbon/check_projectile_embed(obj/projectile/P, def_zone, was_blunted = FALSE, blocked = 0)
+	var/obj/item/bodypart/BP = get_bodypart(check_zone(def_zone))
+	if(!BP || was_blunted)
+		return FALSE
+	if(P.damage * (100 - blocked) / 100 <= 8)
+		return FALSE
+	if(!prob(P.embedchance) || !P.dropped)
+		return FALSE
+	if(!BP.add_embedded_object(P.dropped, silent = FALSE, crit_message = TRUE, ranged = TRUE))
+		return FALSE
+	P.dropped.set_embed_bleed_contribution(BP.last_bleed_increase)
+	BP.last_bleed_increase = 0
+	return TRUE
+// [/SURREALIS-EDIT]
 
 /mob/living/carbon/send_pull_message(mob/living/target)
 	var/used_limb = parse_zone(BODY_ZONE_CHEST)
@@ -252,9 +292,15 @@
 
 	if(statforce)
 		I.remove_bintegrity(1)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		var/probability = I.get_dismemberment_chance(affecting, user, useder)
 
 		if(prob(probability) && affecting.dismember(I.damtype, user.used_intent?.blade_class, user, user.zone_selected, vorpal = I.vorpal))
+		*/
+		if(affecting.should_dismember(user.used_intent?.blade_class, statforce, user, useder, 0, statforce, I) && affecting.dismember(I.damtype, user.used_intent?.blade_class, user, user.zone_selected, vorpal = I.vorpal))
+		// [/SURREALIS-EDIT]
 			I.add_mob_blood(src)
 			playsound(get_turf(src), I.get_dismember_sound(), 80, TRUE)
 		return TRUE //successful attack

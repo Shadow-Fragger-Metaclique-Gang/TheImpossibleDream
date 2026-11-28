@@ -6,7 +6,10 @@
 	blade_class = BCLASS_BLUNT
 	hitsound = null
 	chargetime = 0
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	swingdelay = 3
 
 /datum/intent/simple/elementalt2_unarmed
@@ -17,5 +20,8 @@
 	blade_class = BCLASS_SMASH
 	hitsound = null
 	chargetime = 0
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	swingdelay = 3

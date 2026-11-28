@@ -232,7 +232,7 @@
 			else
 				viewing.show_message("<span class='warning'>[leash_break_message]</span>", 1)
 		leash_pet.apply_effect(20, EFFECT_KNOCKDOWN, 0)
-		leash_pet.adjustOxyLoss(5)
+		leash_pet.adjustChokeOxyLoss(5)
 		leash_pet.remove_status_effect(/datum/status_effect/leash_pet)
 //		leash_pet.remove_movespeed_modifier(/datum/movespeed_modifier/leash)
 
@@ -298,7 +298,7 @@
 				viewing.show_message("<span class='warning'>[leash_break_message]</span>", 1)
 
 		leash_pet.apply_effect(20, EFFECT_KNOCKDOWN, 0)
-		leash_pet.adjustOxyLoss(5)
+		leash_pet.adjustChokeOxyLoss(5)
 		leash_pet.remove_status_effect(/datum/status_effect/leash_pet)
 
 //The proc below in question is the one causing all the errors apparently

@@ -37,6 +37,9 @@
 	spell_tier = 2
 	point_cost = 3
 	spell_impact_intensity = SPELL_IMPACT_LOW
+	// [SURREALIS-ADD] - VRCOMBAT
+	damage_variance = SPELL_VARIANCE_MID
+	// [/SURREALIS-ADD]
 
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_HUMAN
 
@@ -54,8 +57,15 @@
 	icon_state = "ice_2"
 	damage = SPELL_DMG(35)
 	damage_type = BURN
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	woundclass = BCLASS_BURN
 	flag = "fire"
+	*/
+	woundclass = BCLASS_FROST
+	flag = "frost"
+	// [/SURREALIS-EDIT]
 	range = 7
 	max_range = 4
 	suppress_effects_past_range = TRUE

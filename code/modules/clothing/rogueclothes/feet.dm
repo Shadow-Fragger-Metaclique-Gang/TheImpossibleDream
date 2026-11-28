@@ -702,7 +702,10 @@
 		if(user.is_holding(src))
 			user.dropItemToGround(src)
 			user.put_in_hands(B)
-		B.obj_integrity = src.obj_integrity
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// B.obj_integrity = src.obj_integrity // SURREALIS-EDIT - ORIGINAL
+		B.copy_integrity_from(src)
+		// [/SURREALIS-EDIT]
 		user.visible_message(span_notice("[user] snaps off the heels of [src], turning them back into standard inquisitorial boots."))
 		qdel(src)
 	else

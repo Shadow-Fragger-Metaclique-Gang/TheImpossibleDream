@@ -198,7 +198,10 @@
 	damage_type = BRUTE
 	nodamage = FALSE
 	expose_caster_on_deflect = TRUE
-	armor_penetration = PEN_BSTEEL
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_BSTEEL // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_BSTEEL
+	// [/SURREALIS-EDIT]
 	range = SPELL_RANGE_PROJECTILE
 	speed = 1.5
 	var/embed_chance = 100

@@ -151,11 +151,22 @@
 	Pillar of Flame: Ground-target a delayed eruption dealing 88 damage across a 3x3 after a short warning, leaving a lingering curtain of flame across the whole area.\n\
 	Fire spells apply scorched effects - at 4 scorched, an armor piercing wound is applied to the head or chest: whichever you are aiming at, and randomly if aiming elsewhere."
 	charge_swingdelay_type = SWINGDELAY_PENALTY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	var/current_mode = 1
 	var/list/modes = list(
 		list("name" = "Fireball", "tag" = "BALL", "proj" = /obj/projectile/magic/aoe/fireball/rogue, "proj_arc" = /obj/projectile/magic/aoe/fireball/rogue/arc, "arc" = FALSE, "icon" = "fireball", "cost" = SPELLCOST_MAJOR_PROJECTILE, "cooldown" = 16 SECONDS, "charge" = CHARGETIME_MAJOR, "slowdown" = CHARGING_SLOWDOWN_MEDIUM, "sound" = 'sound/magic/fireball.ogg', "invocation" = "Sphaera Ignis!"),
 		list("name" = "Artillery Fireball", "tag" = "ARTY", "proj" = /obj/projectile/magic/aoe/fireball/rogue/artillery, "proj_arc" = /obj/projectile/magic/aoe/fireball/rogue/artillery/arc, "arc" = TRUE, "icon" = "fireball_artillery", "cost" = SPELLCOST_MAJOR_PROJECTILE, "cooldown" = 16 SECONDS, "charge" = CHARGETIME_HEAVY, "slowdown" = CHARGING_SLOWDOWN_HEAVY, "sound" = 'sound/magic/fireball.ogg', "invocation" = "Ignis Sphaera Bombardae!"),
 		list("name" = "Pillar of Flame", "tag" = "PILR", "proj" = /obj/projectile/magic/aoe/fireball/rogue, "proj_arc" = /obj/projectile/magic/aoe/fireball/rogue/arc, "arc" = FALSE, "ground" = TRUE, "icon" = "fireball_greater", "cost" = SPELLCOST_MAJOR_PROJECTILE, "cooldown" = 16 SECONDS, "charge" = CHARGETIME_HEAVY, "slowdown" = CHARGING_SLOWDOWN_HEAVY, "sound" = 'sound/magic/fireball.ogg', "invocation" = "Flamma Vorax!"),
+	*/
+	damage_variance = SPELL_VARIANCE_MID
+	var/current_mode = 1
+	var/list/modes = list(
+		list("name" = "Fireball", "tag" = "BALL", "proj" = /obj/projectile/magic/aoe/fireball/rogue, "proj_arc" = /obj/projectile/magic/aoe/fireball/rogue/arc, "arc" = FALSE, "icon" = "fireball", "cost" = SPELLCOST_MAJOR_PROJECTILE, "cooldown" = 16 SECONDS, "charge" = CHARGETIME_MAJOR, "slowdown" = CHARGING_SLOWDOWN_MEDIUM, "sound" = 'sound/magic/fireball.ogg', "invocation" = "Sphaera Ignis!", "variance" = SPELL_VARIANCE_MID),
+		list("name" = "Artillery Fireball", "tag" = "ARTY", "proj" = /obj/projectile/magic/aoe/fireball/rogue/artillery, "proj_arc" = /obj/projectile/magic/aoe/fireball/rogue/artillery/arc, "arc" = TRUE, "icon" = "fireball_artillery", "cost" = SPELLCOST_MAJOR_PROJECTILE, "cooldown" = 16 SECONDS, "charge" = CHARGETIME_HEAVY, "slowdown" = CHARGING_SLOWDOWN_HEAVY, "sound" = 'sound/magic/fireball.ogg', "invocation" = "Ignis Sphaera Bombardae!", "variance" = SPELL_VARIANCE_LOW),
+		list("name" = "Pillar of Flame", "tag" = "PILR", "proj" = /obj/projectile/magic/aoe/fireball/rogue, "proj_arc" = /obj/projectile/magic/aoe/fireball/rogue/arc, "arc" = FALSE, "ground" = TRUE, "icon" = "fireball_greater", "cost" = SPELLCOST_MAJOR_PROJECTILE, "cooldown" = 16 SECONDS, "charge" = CHARGETIME_HEAVY, "slowdown" = CHARGING_SLOWDOWN_HEAVY, "sound" = 'sound/magic/fireball.ogg', "invocation" = "Flamma Vorax!", "variance" = 0),
+	// [/SURREALIS-EDIT]
 	)
 	var/pillar_radius = 1
 	var/pillar_delay = 2 SECONDS
@@ -186,6 +197,9 @@
 	charge_slowdown = mode["slowdown"]
 	sound = mode["sound"]
 	invocations = list(mode["invocation"])
+	// [SURREALIS-ADD] - VRCOMBAT
+	damage_variance = mode["variance"]
+	// [/SURREALIS-ADD]
 	build_all_button_icons()
 	update_mode_maptext(mode["tag"])
 

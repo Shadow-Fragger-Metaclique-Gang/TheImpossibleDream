@@ -130,7 +130,10 @@
 			to_chat(user, span_warning("The needle has no thread left!"))
 			return
 		if(I.sewrepair && I.max_integrity)
-			if(I.obj_integrity == I.max_integrity)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// if(I.obj_integrity == I.max_integrity) // SURREALIS-EDIT - ORIGINAL
+			if(!I.integrity_needs_repair())
+			// [/SURREALIS-EDIT]
 				to_chat(user, span_warning("This is not broken."))
 				return
 			if(!I.ontable())
@@ -184,7 +187,10 @@
 				// We do DAMAGE_REDUCTION_PER_LEVEL less damage per level.
 				// You could write this as I.obj_integrity - BASE_SEW_DAMAGE + (skill * DAMAGE_REDUCTION_PER_LEVEL)
 				// but that's less obvious and makes it look like it could repair it if your skill was high enough (false).
-				I.obj_integrity = max(0, I.obj_integrity - (BASE_SEW_DAMAGE - (skill * DAMAGE_REDUCTION_PER_LEVEL)))
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// I.obj_integrity = max(0, I.obj_integrity - (BASE_SEW_DAMAGE - (skill * DAMAGE_REDUCTION_PER_LEVEL))) // SURREALIS-EDIT - ORIGINAL
+				I.adjust_integrity(-(BASE_SEW_DAMAGE - (skill * DAMAGE_REDUCTION_PER_LEVEL)))
+				// [/SURREALIS-EDIT]
 				user.visible_message(span_info("[user] damages [I] due to a lack of skill!"))
 				playsound(src, 'sound/foley/cloth_rip.ogg', 50, TRUE)
 				if(XP_ON_FAIL > 0)
@@ -200,8 +206,16 @@
 					I.repair_coverage()
 				if(XP_ON_SUCCESS > 0)
 					user.mind.add_sleep_experience(/datum/skill/craft/sewing, user.STAINT * XP_ON_SUCCESS)
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// SURREALIS-EDIT - ORIGINAL
+				/*
 				I.obj_integrity = min(I.obj_integrity + BASE_SEW_REPAIR + skill * SEW_REPAIR_PER_LEVEL, I.max_integrity)
 				if(I.obj_broken && istype(I, /obj/item) && I.obj_integrity >= I.max_integrity)
+				*/
+				// I.obj_integrity = min(I.obj_integrity + BASE_SEW_REPAIR + skill * SEW_REPAIR_PER_LEVEL, I.max_integrity) // SURREALIS-EDIT - ORIGINAL
+				I.adjust_integrity(BASE_SEW_REPAIR + skill * SEW_REPAIR_PER_LEVEL)
+				if(I.obj_broken && istype(I, /obj/item) && !I.integrity_needs_repair())
+				// [/SURREALIS-EDIT]
 					var/obj/item/cloth = I
 					cloth.obj_fix()
 					return
@@ -275,8 +289,12 @@
 			var/datum/wound/dynamic/dynwound = target_wound
 			if(dynwound.is_maxed)
 				dynwound.is_maxed = FALSE
+			// [SURREALIS-REMOVE] - VRCOMBAT
+			/*
 			if(dynwound.is_armor_maxed)
 				dynwound.is_armor_maxed = FALSE
+			*/
+			// [/SURREALIS-REMOVE]
 		if(target_wound.sew_progress < target_wound.sew_threshold)
 			if(doctor.mind)
 				doctor.mind.add_sleep_experience(/datum/skill/misc/medicine, doctor.STAINT * SEW_EXP_PER_STEP)

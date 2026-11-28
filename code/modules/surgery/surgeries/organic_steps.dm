@@ -10,7 +10,10 @@
 	target_mobtypes = list(/mob/living/carbon/human)
 	time = 1.6 SECONDS
 	surgery_flags = SURGERY_BLOODY
-	surgery_flags_blocked = SURGERY_INCISED
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// surgery_flags_blocked = SURGERY_INCISED // SURREALIS-EDIT - ORIGINAL
+	surgery_flags_blocked = SURGERY_INCISED | SURGERY_CONSTRUCT
+	// [/SURREALIS-EDIT]
 	skill_min = SKILL_LEVEL_NOVICE
 	skill_median = SKILL_LEVEL_APPRENTICE
 	preop_sound = 'sound/surgery/scalpel1.ogg'
@@ -42,7 +45,10 @@
 		TOOL_IMPROVISED_HEMOSTAT = 38,
 	)
 	time = 2.4 SECONDS
-	surgery_flags_blocked = SURGERY_CLAMPED
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// surgery_flags_blocked = SURGERY_CLAMPED // SURREALIS-EDIT - ORIGINAL
+	surgery_flags_blocked = SURGERY_CLAMPED | SURGERY_CONSTRUCT
+	// [/SURREALIS-EDIT]
 	skill_min = SKILL_LEVEL_APPRENTICE
 	skill_median = SKILL_LEVEL_JOURNEYMAN
 	preop_sound = 'sound/surgery/hemostat1.ogg'
@@ -72,7 +78,10 @@
 		TOOL_IMPROVISED_RETRACTOR = 38,
 	)
 	time = 2.4 SECONDS
-	surgery_flags_blocked = SURGERY_RETRACTED
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// surgery_flags_blocked = SURGERY_RETRACTED // SURREALIS-EDIT - ORIGINAL
+	surgery_flags_blocked = SURGERY_RETRACTED | SURGERY_CONSTRUCT
+	// [/SURREALIS-EDIT]
 	skill_min = SKILL_LEVEL_APPRENTICE
 	skill_median = SKILL_LEVEL_JOURNEYMAN
 	preop_sound = 'sound/surgery/retractor1.ogg'
@@ -102,6 +111,9 @@
 	)
 	time = 2.4 SECONDS
 	surgery_flags = SURGERY_BLOODY
+	// [SURREALIS-ADD] - VRCOMBAT
+	surgery_flags_blocked = SURGERY_CONSTRUCT
+	// [/SURREALIS-ADD]
 	skill_min = SKILL_LEVEL_NOVICE
 	skill_median = SKILL_LEVEL_APPRENTICE
 	preop_sound = 'sound/surgery/cautery1.ogg'
@@ -131,9 +143,17 @@
 		span_notice("[user] cauterizes the wounds on [target]'s [parse_zone(target_zone)]."))
 	var/obj/item/bodypart/bodypart = target.get_bodypart(check_zone(target_zone))
 	if(bodypart)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		for(var/datum/wound/bleeder in bodypart.wounds)
 			bleeder.cauterize_wound()
-		bodypart.receive_damage(burn = 25) //painful, but the wounds go away eh?
+		*/
+		for(var/datum/wound/bleeder as anything in bodypart.wounds?.Copy())
+			bleeder.cauterize_wound(surgical = (tool?.tool_behaviour == TOOL_CAUTERY), user = user)
+		// bodypart.receive_damage(burn = 25) //painful, but the wounds go away eh? // SURREALIS-EDIT - ORIGINAL
+		bodypart.cauterize_burn(25)
+		// [/SURREALIS-EDIT]
 	if (target.has_status_effect(/datum/status_effect/buff/ozium))
 		target.emote ("groan")
 	if (!target.has_status_effect(/datum/status_effect/buff/ozium))
@@ -165,7 +185,10 @@
 	)
 	time = 5 SECONDS
 	surgery_flags = SURGERY_INCISED | SURGERY_RETRACTED
-	surgery_flags_blocked = SURGERY_BROKEN
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// surgery_flags_blocked = SURGERY_BROKEN // SURREALIS-EDIT - ORIGINAL
+	surgery_flags_blocked = SURGERY_BROKEN | SURGERY_CONSTRUCT
+	// [/SURREALIS-EDIT]
 	skill_min = SKILL_LEVEL_JOURNEYMAN
 	skill_median = SKILL_LEVEL_EXPERT
 	preop_sound = 'sound/surgery/scalpel1.ogg'
@@ -208,7 +231,10 @@
 	)
 	time = 3 SECONDS
 	surgery_flags = SURGERY_BLOODY | SURGERY_INCISED | SURGERY_RETRACTED
-	surgery_flags_blocked = SURGERY_BROKEN
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// surgery_flags_blocked = SURGERY_BROKEN // SURREALIS-EDIT - ORIGINAL
+	surgery_flags_blocked = SURGERY_BROKEN | SURGERY_CONSTRUCT
+	// [/SURREALIS-EDIT]
 	skill_min = SKILL_LEVEL_JOURNEYMAN
 	skill_median = SKILL_LEVEL_EXPERT
 

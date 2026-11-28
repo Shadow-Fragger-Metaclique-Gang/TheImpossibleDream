@@ -11,13 +11,19 @@
 		updatehealth()
 	return amount
 
-/mob/living/simple_animal/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/living/simple_animal/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE) // SURREALIS-EDIT - ORIGINAL
+/mob/living/simple_animal/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE, required_status, bclass = null)
+// [/SURREALIS-EDIT]
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else if(damage_coeff[BRUTE])
 		. = adjustHealth(amount * damage_coeff[BRUTE] * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 
-/mob/living/simple_animal/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/living/simple_animal/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE) // SURREALIS-EDIT - ORIGINAL
+/mob/living/simple_animal/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE, bclass = null)
+// [/SURREALIS-EDIT]
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else if(damage_coeff[BURN])

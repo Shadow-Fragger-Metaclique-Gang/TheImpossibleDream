@@ -46,6 +46,9 @@
 				return
 			// Check if target is dead
 			if(human_target.check_revive(user))
+				// [SURREALIS-ADD] - VRCOMBAT
+				warn_untreated_flesh(user, human_target)
+				// [/SURREALIS-ADD]
 				// Prompt ghost
 				var/mob/dead/observer/underworld_spirit = human_target.get_spirit()
 				to_chat(underworld_spirit || human_target, span_ghostalert("You sense someone spinning your core, attempting to pull you back to your body!"))
@@ -86,7 +89,10 @@
 														span_userdanger("You awaken with a jolt as your core is spun!"))
 
 						// Apply debuffs
-						human_target.mind.remove_antag_datum(/datum/antagonist/zombie)
+						// [SURREALIS-EDIT] - VRCOMBAT
+						// human_target.mind.remove_antag_datum(/datum/antagonist/zombie) // SURREALIS-EDIT - ORIGINAL
+						human_target.unzombify_keeping_rot()
+						// [/SURREALIS-EDIT]
 						human_target.apply_status_effect(/datum/status_effect/debuff/revived)
 						if(HAS_TRAIT(human_target, TRAIT_IRONMAN))
 							human_target.apply_status_effect(/datum/status_effect/debuff/integrity_rig, 11 MINUTES)

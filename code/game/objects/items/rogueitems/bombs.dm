@@ -95,7 +95,10 @@
 		target.gib(TRUE, TRUE, FALSE, TRUE)
 		return
 	target.visible_message(span_crit("<b>Critical hit!</b> The explosive deals devastating damage!"))
-	target.apply_damage(PVE_damage, damtype, BODY_ZONE_CHEST, armor)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// target.apply_damage(PVE_damage, damtype, BODY_ZONE_CHEST, armor) // SURREALIS-EDIT - ORIGINAL
+	target.apply_damage(target.armor_reduced_damage(PVE_damage, armor, null), damtype, BODY_ZONE_CHEST, 0)
+	// [/SURREALIS-EDIT]
 
 /obj/item/explosive/ex_act()
 	if(!stowed())
@@ -244,7 +247,10 @@
 
 		var/scorched = get_scorch_stacks(target)
 		var/armor = target.run_armor_check(BODY_ZONE_CHEST, "fire", blade_dulling = BCLASS_BURN, damage = PVE_damage, no_debuff = TRUE)
-		target.apply_damage(PVE_damage, BURN, BODY_ZONE_CHEST, armor)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// target.apply_damage(PVE_damage, BURN, BODY_ZONE_CHEST, armor) // SURREALIS-EDIT - ORIGINAL
+		target.apply_damage(target.armor_reduced_damage(PVE_damage, armor, null), BURN, BODY_ZONE_CHEST, 0)
+		// [/SURREALIS-EDIT]
 		target.apply_status_effect(/datum/status_effect/debuff/staggered)
 
 		if(can_crit && !target.mind && ((target.stat != CONSCIOUS && target.can_be_gibbed()) || (scorched && prob(critbang))))
@@ -284,7 +290,10 @@
 			var/mob/living/L = A
 			var/dmg = PVE_damage * falloff
 			var/armor = L.run_armor_check(BODY_ZONE_CHEST, "blunt", blade_dulling = BCLASS_BLUNT, damage = dmg, no_debuff = TRUE)
-			L.apply_damage(dmg, BRUTE, BODY_ZONE_CHEST, armor)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// L.apply_damage(dmg, BRUTE, BODY_ZONE_CHEST, armor) // SURREALIS-EDIT - ORIGINAL
+			L.apply_damage(L.armor_reduced_damage(dmg, armor, null), BRUTE, BODY_ZONE_CHEST, 0)
+			// [/SURREALIS-EDIT]
 			L.apply_status_effect(/datum/status_effect/debuff/staggered)
 		else if(razes && isstructure(A))
 			var/obj/structure/S = A
@@ -428,7 +437,10 @@
 	var/mob/owner = payload.setter?.resolve()
 	if(owner && victim == owner && HAS_TRAIT(owner, TRAIT_BOMBER_EXPERT))
 		return
-	if(victim.STALUC >= 10 && prob((victim.STALUC - 10) * 10))
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(victim.STALUC >= 10 && prob((victim.STALUC - 10) * 10)) // SURREALIS-EDIT - ORIGINAL
+	if(get_stat_roll(victim.STALUC) >= 18)
+	// [/SURREALIS-EDIT]
 		to_chat(victim, span_warning("Your foot narrowly misses [src]. Be careful!"))
 		return
 	triggered = TRUE
@@ -480,7 +492,10 @@
 		target.mob_timers[MT_BOMB_HIT] = world.time
 
 		var/armor = target.run_armor_check(BODY_ZONE_CHEST, "blunt", blade_dulling = BCLASS_BLUNT, damage = PVE_damage, no_debuff = TRUE)
-		target.apply_damage(PVE_damage, BRUTE, BODY_ZONE_CHEST, armor)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// target.apply_damage(PVE_damage, BRUTE, BODY_ZONE_CHEST, armor) // SURREALIS-EDIT - ORIGINAL
+		target.apply_damage(target.armor_reduced_damage(PVE_damage, armor, null), BRUTE, BODY_ZONE_CHEST, 0)
+		// [/SURREALIS-EDIT]
 		target.apply_status_effect(/datum/status_effect/debuff/staggered)
 
 		if(can_crit && !target.mind && prob(critbang + (target.stat != CONSCIOUS ? 50 : 0)))

@@ -143,15 +143,26 @@
 /mob/living/carbon/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
 	var/hurt = TRUE
+	// [SURREALIS-ADD] - VRCOMBAT
+	var/was_jumping = is_jumping
+	var/knockback_impact = smash_knockback_impact(hit_atom, throwingdatum)
+	// [/SURREALIS-ADD]
 	if(hit_atom.density && isturf(hit_atom))
 		if(hurt)
-			take_bodypart_damage(10,check_armor = TRUE)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// take_bodypart_damage(10,check_armor = TRUE) // SURREALIS-EDIT - ORIGINAL
+			if(!knockback_impact)
+				take_bodypart_damage(10,check_armor = TRUE)
+			// [/SURREALIS-EDIT]
 			if(IsOffBalanced())
 				Paralyze(20)
 	if(iscarbon(hit_atom) && hit_atom != src)
 		var/mob/living/carbon/victim = hit_atom
 		if(victim.movement_type & FLYING)
 			return
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		if(cmode && m_intent == MOVE_INTENT_RUN)
 			if(ishuman(src))
 				var/mob/living/carbon/human/H = src
@@ -166,9 +177,29 @@
 							visible_message("<span class='danger'>[src] leaps onto [victim]!",\
 								"<span class='danger'>I leap onto [victim]!</span>")
 							return
+		*/
+		var/tackled = FALSE
+		if(ishuman(src) && cmode && m_intent == MOVE_INTENT_RUN && !get_active_held_item() && istype(a_intent, INTENT_GRAB) && was_jumping)
+			var/mob/living/carbon/human/H = src
+			tackled = TRUE
+			if(H.try_tackle(victim, throwingdatum))
+				hurt = FALSE
+		// [/SURREALIS-EDIT]
 		if(hurt)
-			victim.take_bodypart_damage(10,check_armor = TRUE)
-			take_bodypart_damage(10,check_armor = TRUE)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// victim.take_bodypart_damage(10,check_armor = TRUE) // SURREALIS-EDIT - ORIGINAL
+			if(!tackled)
+				victim.take_bodypart_damage(10,check_armor = TRUE)
+			// [/SURREALIS-EDIT]
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// take_bodypart_damage(10,check_armor = TRUE) // SURREALIS-EDIT - ORIGINAL
+			if(!knockback_impact)
+				take_bodypart_damage(10,check_armor = TRUE)
+			// [/SURREALIS-EDIT]
+			// [SURREALIS-ADD] - VRCOMBAT
+			if(victim.IsOffBalanced())
+				victim.Knockdown(30)
+			// [/SURREALIS-ADD]
 			visible_message("<span class='danger'>[src] crashes into [victim]!",\
 				"<span class='danger'>I violently crash into [victim]!</span>")
 			playsound(src,"genblunt",100,TRUE)
@@ -1074,7 +1105,10 @@
 			death()
 			cure_blind(UNCONSCIOUS_BLIND)
 			return
-		if(((blood_volume in -INFINITY to BLOOD_VOLUME_SURVIVE) && !HAS_TRAIT(src, TRAIT_BLOODLOSS_IMMUNE)) || IsUnconscious() || IsSleeping() || getOxyLoss() > 75 || (HAS_TRAIT(src, TRAIT_DEATHCOMA)) || (health <= HEALTH_THRESHOLD_FULLCRIT && !HAS_TRAIT(src, TRAIT_NOHARDCRIT)))
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// if(((blood_volume in -INFINITY to BLOOD_VOLUME_SURVIVE) && !HAS_TRAIT(src, TRAIT_BLOODLOSS_IMMUNE)) || IsUnconscious() || IsSleeping() || getOxyLoss() > 75 || (HAS_TRAIT(src, TRAIT_DEATHCOMA)) || (health <= HEALTH_THRESHOLD_FULLCRIT && !HAS_TRAIT(src, TRAIT_NOHARDCRIT))) // SURREALIS-EDIT - ORIGINAL
+		if(((blood_volume in -INFINITY to BLOOD_VOLUME_SURVIVE) && !HAS_TRAIT(src, TRAIT_BLOODLOSS_IMMUNE)) || HAS_TRAIT(src, TRAIT_BP_CRASH) || IsUnconscious() || IsSleeping() || getOxyLoss() > 75 || (HAS_TRAIT(src, TRAIT_DEATHCOMA)) || (health <= HEALTH_THRESHOLD_FULLCRIT && !HAS_TRAIT(src, TRAIT_NOHARDCRIT)))
+		// [/SURREALIS-EDIT]
 			if(stat != UNCONSCIOUS) // Transition into hardcrit — announce once
 				var/bled_out = (blood_volume in -INFINITY to BLOOD_VOLUME_SURVIVE) && !HAS_TRAIT(src, TRAIT_BLOODLOSS_IMMUNE)
 				var/suffocating = getOxyLoss() > 75
@@ -1095,6 +1129,10 @@
 					visible_message(span_danger("<b>[src] collapses, broken and bloodied!</b>"), \
 						span_userdanger("My bones are shattered... I cannot go on."))
 					balloon_alert_to_viewers("<font color='#bb2b2b'>beaten down!</font>")
+				// [SURREALIS-ADD] - VRCOMBAT
+				else if(HAS_TRAIT(src, TRAIT_BP_CRASH))
+					to_chat(src, span_danger("You suddenly feel extremely faint."))
+				// [/SURREALIS-ADD]
 			set_stat(UNCONSCIOUS)
 			if(ishuman(src))
 				var/mob/living/carbon/human/H = src
@@ -1145,8 +1183,14 @@
 		CR.amount = 0
 	if(admin_revive) //reset rot on admin revives
 		for(var/obj/item/bodypart/bodypart as anything in bodyparts)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			bodypart.rotted = FALSE
 			bodypart.skeletonized = FALSE
+			*/
+			bodypart.cure_rot()
+			// [/SURREALIS-EDIT]
 	if(admin_revive)
 		suiciding = FALSE
 		regenerate_limbs()

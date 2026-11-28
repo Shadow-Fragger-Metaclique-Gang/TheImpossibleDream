@@ -1,3 +1,5 @@
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 /mob/living/carbon/human/getarmor(def_zone, type, damage, armor_penetration = PEN_NONE, blade_dulling, intdamfactor, used_weapon, pen_info, no_debuff = FALSE)
 	var/armorval = 0
 	var/organnum = 0
@@ -157,7 +159,8 @@
 		return protection + 1
 
 	return protection
-
+*/
+// [/SURREALIS-REMOVE]
 /*
 /mob/proc/checkwornweight()
 	return 0
@@ -193,6 +196,10 @@
 				return martial_art_result
 
 	if(!(P.original == src && P.firer == src)) //can't block or reflect when shooting yourself
+		// [SURREALIS-ADD] - VRCOMBAT
+		if(try_parry_pointblank_ranged(P))
+			return BULLET_ACT_MISS
+		// [/SURREALIS-ADD]
 		if(P.reflectable & REFLECT_NORMAL)
 			if(check_reflect(def_zone)) // Checks if you've passed a reflection% check
 				visible_message(span_danger("The [P.name] gets reflected by [src]!"), \
@@ -357,6 +364,9 @@
 		var/obj/item/bodypart/affecting = get_bodypart(M.ckey ? ran_zone(dam_zone) : check_zone(dam_zone))
 		if(!affecting)
 			affecting = get_bodypart(BODY_ZONE_CHEST)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		var/armor = run_armor_check(affecting, M.d_type, armor_penetration = M.armor_penetration, damage = damage)
 		next_attack_msg.Cut()
 
@@ -367,6 +377,20 @@
 		else
 			SEND_SIGNAL(M, COMSIG_MOB_AFTERATTACK_SUCCESS, src, affecting)
 			affecting.bodypart_attacked_by(M.a_intent.blade_class, damage - armor, M, dam_zone, crit_message = TRUE)
+		*/
+		var/ap = (M.d_type == "blunt") ? 0 : M.armor_penetration
+		var/armor = run_armor_check(affecting, M.d_type, armor_penetration = ap, damage = damage)
+		next_attack_msg.Cut()
+
+		var/actual_damage = armor_actual_damage(damage, armor, M.d_type)
+		var/nodmg = FALSE
+		if(!apply_damage(actual_damage, M.melee_damage_type, affecting, 0))
+			nodmg = TRUE
+			next_attack_msg += " <span class='warning'>Armor stops the damage.</span>"
+		else
+			SEND_SIGNAL(M, COMSIG_MOB_AFTERATTACK_SUCCESS, src, affecting)
+			affecting.bodypart_attacked_by(M.a_intent.blade_class, actual_damage, M, dam_zone, crit_message = TRUE)
+		// [/SURREALIS-EDIT]
 		var/attack_verb = pick(M.a_intent.attack_verb)
 		var/hit_area = parse_zone(affecting.body_zone, affecting)
 		visible_message(span_danger("\The [M] [attack_verb] [src] in the [span_combatsecondarybp(hit_area)]![next_attack_msg.Join()]"), \
@@ -672,6 +696,11 @@
 	else
 		examination += span_dead("[m1] dead.")
 
+	// [SURREALIS-ADD] - VRCOMBAT
+	if(stat < DEAD && HAS_TRAIT(src, TRAIT_BP_CRASH))
+		examination += span_artery("<B>[user == src ? "My" : p_their(TRUE)] pulse is acutely weak.</B>")
+
+	// [/SURREALIS-ADD]
 	switch(blood_volume)
 		if(-INFINITY to BLOOD_VOLUME_SURVIVE)
 			examination += span_artery("<B>[m1] extremely anemic.</B>")
@@ -705,6 +734,22 @@
 			continue
 		examination += bodypart.check_for_injuries(user, deep_examination)
 
+	// [SURREALIS-ADD] - VRCOMBAT
+	for(var/obj/item/organ/organ as anything in internal_organs)
+		if(organ.damage <= organ.low_threshold)
+			continue
+		var/organ_status
+		if(organ.organ_flags & ORGAN_FAILING)
+			organ_status = span_dead("<B>destroyed</B>")
+		else if(organ.damage > organ.high_threshold)
+			organ_status = span_artery("<B>heavily damaged</B>")
+		else
+			organ_status = span_warning("damaged")
+		examination += span_info("☼ [capitalize(organ.name)] is [organ_status].")
+	for(var/missing_slot in missing_organ_slots())
+		examination += span_info("☼ [capitalize(missing_slot)] is [span_dead("<B>missing</B>")].")
+
+	// [/SURREALIS-ADD]
 	examination += "ø ------------ ø</span>"
 	if(has_status_effect(/datum/status_effect/zombie_infection) || infected)
 		examination += span_boldwarning("[m1] slowly rotting away.")
@@ -797,6 +842,9 @@
 			torn_items |= leg_clothes
 
 	for(var/obj/item/I as anything in torn_items)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		I.take_damage(damage_amount, damage_type, damage_flag, 0)
 
 /// Helper proc that returns the worn item ref that has the highest rating covering the def_zone (targeted zone) for the d_type (damage type)
@@ -861,6 +909,13 @@
 				if(val > 0 || ((d_type in ARMOR_DR_RESIST_TYPES) && C.max_integrity && C.has_armor_value()))
 					used_armor[C] = val
 	return used_armor
+		*/
+		var/obj/item/clothing/zoned_clothing = I
+		if(def_zone && istype(zoned_clothing) && zoned_clothing.has_zone_integrity(def_zone))
+			zoned_clothing.damage_zone(def_zone, damage_amount, damage_type, damage_flag, 0)
+		else
+			I.take_damage(damage_amount, damage_type, damage_flag, 0)
+		// [/SURREALIS-EDIT]
 
 /mob/living/carbon/human/on_fire_stack(seconds_per_tick, datum/status_effect/fire_handler/fire_stacks/fire_handler)
 	//SEND_SIGNAL(src, COMSIG_HUMAN_BURNING)

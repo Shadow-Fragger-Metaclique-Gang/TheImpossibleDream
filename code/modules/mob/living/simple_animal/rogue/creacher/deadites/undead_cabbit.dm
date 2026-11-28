@@ -44,7 +44,10 @@
 	clickcd = CABBIT_UNDEAD_ATTACK_SPEED
 	name = "razor claws"
 	attack_verb = list("slices", "dices", "filets")
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]
 	blade_class = BCLASS_CUT
 
 /mob/living/simple_animal/hostile/retaliate/rogue/mudcrab/cabbit/undead/attempt_dodge(datum/intent/attack_intent, mob/living/user)

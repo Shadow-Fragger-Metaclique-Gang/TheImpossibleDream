@@ -801,7 +801,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			record_round_statistic(STATS_PEOPLE_SMITTEN)
 			to_chat(target, span_danger("The gods have punished you for your sins!"))
 		if(ADMIN_PUNISHMENT_BRAINDAMAGE)
-			target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 199, 199)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 199, 199) // SURREALIS-EDIT - ORIGINAL
+			target.adjustOrganLoss(ORGAN_SLOT_BRAIN, 90, 90)
+			// [/SURREALIS-EDIT]
 		if(ADMIN_PUNISHMENT_PSYDON)
 			sleep(60)
 			target.psydo_nyte()
@@ -944,7 +947,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	punish_log(target, punishment)
 
 /obj/projectile/bullet/reusable/bolt/smite
-	armor_penetration = PEN_BSTEEL
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_BSTEEL // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_BSTEEL
+	// [/SURREALIS-EDIT]
 	pass_flags = PASSTABLE | PASSMOB
 	steady_aim = TRUE
 	aim_peak = 110 // offsets the -10 farsight penalty at 8 tiles

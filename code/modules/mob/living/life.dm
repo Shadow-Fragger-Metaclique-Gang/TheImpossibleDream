@@ -94,7 +94,10 @@
 			for(var/datum/wound/wound as anything in get_wounds())
 				wound.heal_wound(0.5)
 
-	if(blood_volume <= BLOOD_VOLUME_BAD && stat)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(blood_volume <= BLOOD_VOLUME_BAD && stat) // SURREALIS-EDIT - ORIGINAL
+	if(blood_volume <= BLOOD_VOLUME_BAD && stat && stat != DEAD && !bleed_rate)
+	// [/SURREALIS-EDIT]
 		handle_passive_blood()
 
 	if(QDELETED(src)) // diseases can qdel the mob via transformations
@@ -169,7 +172,10 @@
 		return TRUE
 	var/obj/item/organ/lungs/lung = getorganslot(ORGAN_SLOT_LUNGS)
 	if(!lung || (lung.organ_flags & ORGAN_FAILING))
-		adjustOxyLoss(5)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// adjustOxyLoss(5) // SURREALIS-EDIT - ORIGINAL
+		adjustChokeOxyLoss(5)
+		// [/SURREALIS-EDIT]
 		emote("choke")
 		return FALSE
 	return TRUE
@@ -215,10 +221,13 @@
 				adjust_fire_stacks(1, psyblessed?.is_blessed ? /datum/status_effect/fire_handler/fire_stacks/sunder/blessed : /datum/status_effect/fire_handler/fire_stacks/sunder)
 			to_chat(src, span_danger("[embedded] in me hurts!"))
 
+		// [SURREALIS-REMOVE] - VRCOMBAT
+		/*
 		if(prob(embedded.embedding.embedded_fall_chance))
 			simple_remove_embedded_object(embedded)
 			to_chat(src,span_danger("[embedded] falls out of me!"))
-
+		*/
+		// [/SURREALIS-REMOVE]
 //this updates all special effects: knockdown, druggy, stuttering, etc..
 /mob/living/proc/handle_status_effects()
 	if(confused)

@@ -68,7 +68,10 @@
 			user.visible_message(span_warning("[user] kicks [src]!"), \
 				span_warning("I kick [src]!"))
 			return
-		if(prob(L.STASTR * 8))
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// if(prob(L.STASTR * 8)) // SURREALIS-EDIT - ORIGINAL
+		if(get_stat_roll(L.STASTR) >= 5)
+		// [/SURREALIS-EDIT]
 			playsound(src, 'sound/combat/hits/onwood/woodimpact (1).ogg', 100)
 			user.visible_message(span_warning("[user] kicks over [src]!"), \
 				span_warning("I kick over [src]!"))
@@ -203,8 +206,15 @@
 					var/obj/item/editme = new crafteditem(used_turf)
 					editme.was_crafted = TRUE
 					R.apply_result_quality(editme)
+					// [SURREALIS-EDIT] - VRCOMBAT
+					// SURREALIS-EDIT - ORIGINAL
+					/*
 					editme.max_integrity = newmaxinteg
 					editme.obj_integrity = newinteg
+					*/
+					editme.set_max_integrity(newmaxinteg)
+					editme.set_integrity(newinteg)
+					// [/SURREALIS-EDIT]
 					if(istype(editme, /obj/item/rogueweapon))
 						editme.force = newforce
 						editme.throwforce = newthrow

@@ -118,7 +118,11 @@
 	draw_base = BOW_DRAW_BASE
 	draw_floor = BOW_DRAW_FLOOR
 	uses_draw_curve = TRUE
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	per_scales_damage = TRUE
+	*/
+	// [/SURREALIS-REMOVE]
 	early_release_acc_penalty = BOW_EARLY_RELEASE_ACC_PENALTY
 	early_release_embed_mult = BOW_EARLY_RELEASE_EMBED_MULT
 	steady_aim = TRUE
@@ -241,7 +245,14 @@
 		var/obj/projectile/BB = CB.BB
 		apply_ranged_accuracy(BB, user)
 		apply_early_release_penalty(BB, user)
-		BB.damage *= damfactor * get_per_damage_scaling(user)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// BB.damage *= damfactor * get_per_damage_scaling(user) // SURREALIS-EDIT - ORIGINAL
+		apply_ranged_variance(BB, user, /datum/skill/combat/bows, bow_bonus_stat(user, heavy_bow))
+		BB.damage *= damfactor
+		BB.falloff_damage_per_turf = 5
+		BB.falloff_ap_per_turf = 5
+		BB.falloff_start_distance = get_falloff_start_distance(user)
+		// [/SURREALIS-EDIT]
 	. = ..()
 	if(.)
 		pay_release_drain(user)

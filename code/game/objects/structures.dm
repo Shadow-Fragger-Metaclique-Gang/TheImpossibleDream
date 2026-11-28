@@ -22,10 +22,10 @@
 	if (!armor)
 		armor = ARMOR_STRUCTURE
 	. = ..()
-	if(smooth)
-		queue_smooth(src)
-		queue_smooth_neighbors(src)
-		icon_state = ""
+	if(smoothing_flags & (SMOOTH_BITMASK|SMOOTH_BITMASK_CARDINALS))
+		QUEUE_SMOOTH(src)
+		QUEUE_SMOOTH_NEIGHBORS(src)
+
 	if(redstone_id)
 		GLOB.redstone_objs += src
 		. = INITIALIZE_HINT_LATELOAD
@@ -56,17 +56,29 @@
 							take_damage(max_integrity / 3 + 1)
 					H.Immobilize(20)
 					//hurts you a little bit but doesn't immediately chestfrac	you lmao
-					H.apply_damage(20, BRUTE, "chest", H.run_armor_check("chest", "blunt", damage = 20))
+					// [SURREALIS-EDIT] - VRCOMBAT
+					// H.apply_damage(20, BRUTE, "chest", H.run_armor_check("chest", "blunt", damage = 20)) // SURREALIS-EDIT - ORIGINAL
+					H.apply_damage(H.armor_reduced_damage(20, H.run_armor_check("chest", "blunt", damage = 20), "blunt"), BRUTE, "chest", 0)
+					// [/SURREALIS-EDIT]
 					audible_message(span_warning("\The [src] shakes under the force of a great impact!"))
 					playsound(src, "meteor", 100, TRUE)
 					addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, Knockdown), 10), 10)
 				else if(is_bigguy && obj_integrity <= max_integrity / 3)	//This charge will wreck it
 					take_damage(max_integrity)
 					H.Immobilize(5)
+					// [SURREALIS-EDIT] - VRCOMBAT
+					// SURREALIS-EDIT - ORIGINAL
+					/*
 					H.apply_damage(8, BRUTE, "chest", H.run_armor_check("chest", "blunt", damage = 8))
 				else	//Normal charge
 					H.Immobilize(10)
 					H.apply_damage(15, BRUTE, "head", H.run_armor_check("head", "blunt", damage = 15))
+					*/
+					H.apply_damage(H.armor_reduced_damage(8, H.run_armor_check("chest", "blunt", damage = 8), "blunt"), BRUTE, "chest", 0)
+				else	//Normal charge
+					H.Immobilize(10)
+					H.apply_damage(H.armor_reduced_damage(15, H.run_armor_check("head", "blunt", damage = 15), "blunt"), BRUTE, "head", 0)
+					// [/SURREALIS-EDIT]
 					playsound(src, "genblunt", 100, TRUE)
 					addtimer(CALLBACK(H, TYPE_PROC_REF(/mob/living/carbon/human, Knockdown), 10), 10)
 				H.toggle_rogmove_intent(MOVE_INTENT_WALK, TRUE)

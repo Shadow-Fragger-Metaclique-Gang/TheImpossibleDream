@@ -32,6 +32,9 @@
 
 	associated_skill = /datum/skill/magic/arcane
 	spell_impact_intensity = SPELL_IMPACT_HIGH
+	// [SURREALIS-ADD] - VRCOMBAT
+	damage_variance = SPELL_VARIANCE_MID
+	// [/SURREALIS-ADD]
 
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_HUMAN | SPELL_REQUIRES_SAME_Z
 
@@ -143,14 +146,29 @@
 				continue
 			apply_frost_stack(L, 1)
 			var/actual_damage = SPELL_DMG(rand(5, tick_damage))
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			if(ishuman(L) && ishuman(caster))
 				if(arcyne_strike(caster, L, null, actual_damage, BODY_ZONE_CHEST, \
 					BCLASS_BURN, spell_name = "Frozen Mist", \
 					damage_type = BURN, \
 					skip_animation = TRUE, skip_message = TRUE, SPELL_STRIKE_SCALING) == ARCYNE_STRIKE_WARDED)
+			*/
+			if(source_spell)
+				actual_damage = source_spell.get_varied_damage(actual_damage, caster)
+			if(ishuman(L) && ishuman(caster))
+				if(arcyne_strike(caster, L, null, actual_damage, BODY_ZONE_CHEST, \
+					BCLASS_FROST, spell_name = "Frozen Mist", \
+					damage_type = BURN, \
+					skip_animation = TRUE, skip_message = TRUE, SPELL_STRIKE_SCALING) == ARCYNE_STRIKE_WARDED)
+			// [/SURREALIS-EDIT]
 					continue
 			else
-				L.adjustFireLoss(SPELL_DMG_VS(L, actual_damage))
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// L.adjustFireLoss(SPELL_DMG_VS(L, actual_damage)) // SURREALIS-EDIT - ORIGINAL
+				L.adjustFireLoss(SPELL_DMG_VS(L, actual_damage), bclass = BCLASS_FROST)
+				// [/SURREALIS-EDIT]
 			new /obj/effect/temp_visual/spell_impact(get_turf(L), GLOW_COLOR_ICE, SPELL_IMPACT_MEDIUM)
 
 /obj/effect/temp_visual/frozen_mist_tile

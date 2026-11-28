@@ -11,7 +11,6 @@
 	name = "Lord of Vanity"
 	tutorial = "Among your many patrician indulgences, none rivals your love of fine clothes. How fortunate, then, that two passing seamsters offered you the finest garments ever woven: invisible only to fools and dullards. You can see them, of course… can't you, Your Grace?"
 	outfit = /datum/outfit/job/roguetown/lord/newclothes
-	pickprob = 15//the seamsters dont visit the good duke every week
 	category_tags = list(CTAG_LORD)
 	traits_applied = list(
 		TRAIT_NOBLE,

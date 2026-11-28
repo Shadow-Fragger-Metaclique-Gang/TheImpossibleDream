@@ -51,3 +51,5 @@
 
 /// From /mob/proc/get_status_tab_items(): (list/items)
 #define COMSIG_MOB_GET_STATUS_TAB_ITEMS "mob_get_status_tab_items"
+
+#define COMSIG_LIVING_LYING_UPDATE "living_lying_update"

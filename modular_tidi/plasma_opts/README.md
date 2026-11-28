@@ -163,3 +163,4 @@ Fixes a number of bugs and massively optimizes across the codebase.
 - `code/modules/mob/living/living_defines.dm`: ADD near `/mob/living`
 - `code/datums/dna.dm`: EDIT near `/mob/living/carbon/set_species`
 - `code/modules/mob/living/carbon/human/species.dm`: ADD near `/datum/species/proc/on_species_gain`, ADD near `/datum/species/proc/on_species_loss`, ADD near `/datum/species`
+- `code/datums/elements/mob_overlay_effect.dm`: ADD near `/datum/element/mob_overlay_effect/proc/on_lying_update`

@@ -128,13 +128,19 @@
 	user.do_attack_animation_simple(src, ATTACK_EFFECT_BITE)
 	playsound(user, 'sound/gore/flesh_eat_01.ogg', vol = 50, vary = FALSE, extrarange = -2, ignore_walls = FALSE, quiet = TRUE)
 	var/nodmg = FALSE
-	var/dam2do = 10*(user.STASTR/20)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// var/dam2do = 10*(user.STASTR/20) // SURREALIS-EDIT - ORIGINAL
+	var/dam2do = user.get_punch_dmg()
+	// [/SURREALIS-EDIT]
 	if(HAS_TRAIT(user, TRAIT_STRONGBITE))
 		dam2do *= 2
 	if(!HAS_TRAIT(user, TRAIT_STRONGBITE))
 		if(!affecting.has_wound(/datum/wound/bite))
 			nodmg = TRUE
 	if(!nodmg)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		var/armor_block = run_armor_check(def_zone, "stab", armor_penetration = PEN_NONE, blade_dulling=BCLASS_BITE, damage = dam2do)
 
 		var/vamp = user.mind?.has_antag_datum(/datum/antagonist/vampire)
@@ -164,6 +170,11 @@
 			var/recoil = round(dam2do * recoil_mult)
 			user.apply_damage(recoil, BRUTE, BODY_ZONE_PRECISE_MOUTH)// cleaner, basically! this will recoil 25% damage to your mouth if you bite flesh, and 50% if you bite armor
 		if(!apply_damage(dam2do, BRUTE, def_zone, armor_block, user))
+		*/
+		var/armor_block = run_armor_check(def_zone, "stab", armor_penetration = HAS_TRAIT(user, TRAIT_STRONGBITE) ? user.STASTR : AP_NONE, blade_dulling=BCLASS_BITE, damage = dam2do)
+
+		if(!apply_damage(armor_reduced_damage(dam2do, armor_block, null), BRUTE, def_zone, 0, user))
+		// [/SURREALIS-EDIT]
 			nodmg = TRUE
 			next_attack_msg += VISMSG_ARMOR_BLOCKED
 		else if(!nodmg && (HAS_TRAIT(user, TRAIT_VAMPBITE)) && !(src.dna?.species?.species_traits && (NOSTOMACH in src.dna?.species?.species_traits)))
@@ -229,7 +240,10 @@
 	user.equip_to_slot_or_del(B, SLOT_MOUTH)
 	if(user.mouth == B)
 		B.name = "[src]'s [parse_zone(def_zone)]"
-		LAZYADD(affecting.grabbedby, B)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// LAZYADD(affecting.grabbedby, B) // SURREALIS-EDIT - ORIGINAL
+		affecting.add_grab(B)
+		// [/SURREALIS-EDIT]
 		B.grabbed = src
 		B.grabbee = user
 		B.limb_grabbed = affecting
@@ -334,6 +348,9 @@
 	var/damage = user.get_punch_dmg()
 	if(HAS_TRAIT(user, TRAIT_STRONGBITE))
 		damage = damage*2
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	var/armor_block = C.run_armor_check(sublimb_grabbed, d_type, armor_penetration = PEN_NONE, damage = damage)
 
 	var/vamp = user.mind?.has_antag_datum(/datum/antagonist/vampire)
@@ -362,10 +379,17 @@
 
 		var/recoil = round(damage * recoil_mult)
 		user.apply_damage(recoil, BRUTE, BODY_ZONE_PRECISE_MOUTH) // cleaner, basically! this will recoil 25% damage to your mouth if you bite flesh, and 50% if you bite armor
+	*/
+	var/armor_block = C.run_armor_check(sublimb_grabbed, d_type, armor_penetration = max(BLUNT_DEFAULT_PENFACTOR * (user.STASTR - 10), 0) + (HAS_TRAIT(user, TRAIT_STRONGBITE) ? user.STASTR : 0), damage = damage)
+
+	// [/SURREALIS-EDIT]
 
 	C.next_attack_msg.Cut()
 	user.do_attack_animation_simple(C, ATTACK_EFFECT_BITE)
-	if(C.apply_damage(damage, BRUTE, limb_grabbed, armor_block))
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(C.apply_damage(damage, BRUTE, limb_grabbed, armor_block)) // SURREALIS-EDIT - ORIGINAL
+	if(C.apply_damage(C.armor_reduced_damage(damage, armor_block, null), BRUTE, limb_grabbed, 0))
+	// [/SURREALIS-EDIT]
 		playsound(C.loc, "smallslash", vol = 50, vary = FALSE, extrarange = -1, ignore_walls = FALSE, quiet = TRUE)
 		var/datum/wound/caused_wound = limb_grabbed.bodypart_attacked_by(BCLASS_BITE, damage, user, sublimb_grabbed, crit_message = TRUE)
 		if(user.mind && caused_wound)

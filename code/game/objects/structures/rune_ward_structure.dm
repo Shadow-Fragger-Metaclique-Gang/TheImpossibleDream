@@ -123,9 +123,17 @@
 	L.Slowdown(4)
 	var/mob/living/carbon/human/owner = owner_ref?.resolve()
 	if(ishuman(owner) && ishuman(L))
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		arcyne_strike(owner, L, null, rune_damage, BODY_ZONE_CHEST, \
 			BCLASS_STAB, armor_penetration = PEN_HEAVY, spell_name = "Force Rune", \
 			damage_type = BRUTE, skip_animation = TRUE, SPELL_STRIKE_SCALING)
+		*/
+		arcyne_strike(owner, L, null, rune_damage, BODY_ZONE_CHEST, \
+			BCLASS_STAB, armor_penetration = AP_HEAVY, spell_name = "Force Rune", \
+			damage_type = BRUTE, skip_animation = TRUE, SPELL_STRIKE_SCALING)
+		// [/SURREALIS-EDIT]
 	else
 		L.adjustBruteLoss(SPELL_DMG_VS(L, rune_damage))
 

@@ -32,7 +32,11 @@
 	spells = list()
 
 /datum/advclass/guildsman
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	tempo_capable = FALSE
+	*/
+	// [/SURREALIS-REMOVE]
 
 /datum/advclass/guildsman/blacksmith
 	name = "Guild Blacksmith"

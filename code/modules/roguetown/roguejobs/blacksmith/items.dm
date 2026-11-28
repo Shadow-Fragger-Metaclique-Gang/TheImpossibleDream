@@ -233,9 +233,17 @@
 			force -= 2
 			force_wielded -= 3
 			update_force_dynamic()
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			max_integrity -= polish_bonus
 			polish_bonus = 0
 			obj_integrity = min(obj_integrity, max_integrity)
+			*/
+			set_max_integrity(max_integrity - polish_bonus)
+			polish_bonus = 0
+			set_integrity(min(obj_integrity, max_integrity))
+			// [/SURREALIS-EDIT]
 			var/datum/component/glint = GetComponent(/datum/component/metal_glint)
 			qdel(glint)
 		else if(polished >= 1 && polished <= 3)
@@ -247,8 +255,16 @@
 		return
 	polished = 4
 	polish_bonus = ceil(max_integrity * 0.10)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	max_integrity += polish_bonus
 	obj_integrity += polish_bonus
+	*/
+	var/polished_integrity = obj_integrity + polish_bonus
+	set_max_integrity(max_integrity + polish_bonus)
+	set_integrity(polished_integrity)
+	// [/SURREALIS-EDIT]
 	force += 2
 	force_wielded += 3
 	update_force_dynamic()

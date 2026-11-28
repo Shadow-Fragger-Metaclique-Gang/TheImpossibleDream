@@ -4,12 +4,19 @@
 	damage = 0
 	damage_type = OXY
 	nodamage = TRUE
-	armor_penetration = PEN_NONE // We shouldn't allow any projectile that forget to set to pen all
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_NONE // We shouldn't allow any projectile that forget to set to pen all // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_NONE // We shouldn't allow any projectile that forget to set to pen all
+	// [/SURREALIS-EDIT]
 	pass_flags = PASSTABLE | PASSGRILLE
 	flag = "fire"
 	reflectable = REFLECT_NORMAL
 	guard_deflectable = TRUE
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	dam_falloff_factor = 0.5
+	*/
+	// [/SURREALIS-REMOVE]
 	suppress_effects_past_range = TRUE
 	max_range = MAGE_LONG_PROJ_RANGE
 	dismember_by_default = TRUE
@@ -22,7 +29,11 @@
 
 /// Energy projectiles (divine and arcane bolts) are a separate base from /magic but share the same off-screen falloff.
 /obj/projectile/energy
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	dam_falloff_factor = 0.5
+	*/
+	// [/SURREALIS-REMOVE]
 	suppress_effects_past_range = TRUE
 	max_range = MAGE_LONG_PROJ_RANGE
 	dismember_by_default = TRUE
@@ -161,7 +172,10 @@
 	damage = 20
 	damage_type = BURN
 	nodamage = FALSE
-	armor_penetration = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_NONE
+	// [/SURREALIS-EDIT]
 	flag = "fire"
 	hitsound = 'sound/blank.ogg'
 

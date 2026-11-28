@@ -96,6 +96,9 @@
 	name = "03. Stats"
 
 /datum/book_entry/combat/stats/inner_book_html(mob/user)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	return {"
 		<div>
 		<p>Your character has different stats, based on your role, your race, and your chosen Statpack, if any.</p>
@@ -113,6 +116,25 @@
 		</ul>
 		</div>
 	"}
+	*/
+	return {"
+		<div>
+		<p>Your character has different stats, based on your role, your race, and your chosen Statpack, if any.</p>
+
+		<p>STR has a softcap on the damage it adds, at [STRENGTH_SOFTCAP], beyond which it scales less aggressively. The rest have no softcap and scale flat all the way up.</p>
+
+		<ul>
+			<li><b>STR</b>: Improves the damage you deal on your weapon, and the effectiveness of your penetrative attacks on strength scaling weapon. Softcaps at [STRENGTH_SOFTCAP] - every point up to it is worth [round(STRENGTH_MULT * 100)]% damage, every point past it only [round(STRENGTH_CAPPEDMULT * 100)]%.</li>
+			<li><b>PER</b>: Rolls your bow and sling damage higher and lets your arrows fly further before they lose force. It also raises your chance of hitting a precise bodypart in melee, and sets the accuracy of your spells outright.</li>
+			<li><b>INT</b>: Improves the chance of your FEINTING or not being FEINTED. Also useful for Mages in particular for improving their damage variance rolls and reducing the cooldown and stamina cost of their spells - [round(COOLDOWN_REDUCTION_PER_INT * 100)]% off the cooldown and [round(FATIGUE_REDUCTION_PER_INT * 100)]% off the cost per point above [SPELL_SCALING_THRESHOLD], no longer improving past [SPELL_POSITIVE_SCALING_THRESHOLD]. Below [SPELL_SCALING_THRESHOLD], it scales into the negative.</li>
+			<li><b>CON</b>: Increases the effective HP of your limbs and makes them harder to disable or score a critical wound on.</li>
+			<li><b>WIL</b>: Increases your Energy and Stamina pool, and also increases your pain tolerance. Every point above or below average widens or narrows those pools appreciably.</li>
+			<li><b>SPD</b>: Increases your Movement speed, and also makes SWIFT balance weapon more effective.</li>
+			<li><b>FOR</b>: Tips contested rolls your way - disarms, dodges, parries and the like - and helps you avoid mishaps outside of combat. Its upside is small, but below 10 it turns devastating, making you outright fumble a growing share of your attacks.</li>
+		</ul>
+		</div>
+	"}
+	// [/SURREALIS-EDIT]
 
 
 /datum/book_entry/combat/inventory
@@ -210,6 +232,9 @@
 	name = "07. Where to Aim"
 
 /datum/book_entry/combat/aiming/inner_book_html(mob/user)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	return {"
 		<div>
 		<h3>The Aiming Doll and the Zones</h3>
@@ -242,6 +267,40 @@
 		<p>Bows and crossbows aim at any part of the body as easily as the chest. Slings and spells are clumsier. A limb or the head costs them [-RANGED_PRECISE_HIT_PENALTY] and can never exceed [RANGED_MAX_PRECISE_HIT_CHANCE]%. Hands and feet cost them [-RANGED_ULTRA_PRECISE_HIT_PENALTY] and a face zone [-(RANGED_ULTRA_PRECISE_HIT_PENALTY + RANGED_PRECISE_HIT_PENALTY)]. As in melee, a shot aimed at the chest always lands there.</p>
 		</div>
 	"}
+	*/
+	return {"
+		<div>
+		<h3>The Aiming Doll and the Zones</h3>
+		<p>On the top left is a Gargoyle known as the aiming doll. The place highlighted by blue is the place your character is currently aiming at. It also determines what you visibly look at while looking at another character with Shift-Click.</p>
+
+		<p>Going in order from top to bottom:</p>
+		<ul>
+			<li><b>Head</b>: This is a zone that is covered generally by a helmet and is often an effective zone to be aiming at, though it runs you the risk of being baited - which will be explained in <i>Stances, Exposure & Vulnerability</i>. A head wound and fracture tends to be very effective in putting down and stunning an opponent, and is commonly known as a "Skullcrack" in community language. A skullcrack is split into two stages - the first stage knocks them out briefly, and a second hit shatters the skull and paralyzes them. The Head zone shares HP with its precise zone.</li>
+			<li><b>Eyes, Nose, Ears and Mouth</b>: These are special subzones of the head. The Nose and Eyes are useful to aim for in opponents whose faces are uncovered - making visor / mask a good idea.</li>
+			<li><b>Chest</b>: Attacking the chest makes you immune to being baited, and is a safe default option even if not stunningly effective.</li>
+			<li><b>Groin / Stomach</b>: These, especially the groin, are the most niche zones. The stomach is occasionally aimed for what is known as a "gutspill" wound with cutting weapons, which spills out the opponent's guts and makes it excessively hard to recover from in combat. It is an aiming zone of the last resort generally reserved for NPCs you do not care about, or players that you really need to put down.</li>
+			<li><b>Arms</b>: A disabled arm / hand tends to disable your opponents from using their weapons. Using a cutting / chopping weapon with sufficient force can also cut it off. Aiming for the hand is effectively the same as aiming for the arm, and contributes to the same pool, at risk of making your intent a bit more obvious and requiring more perception to back it up.</li>
+			<li><b>Legs</b>: A disabled leg / feet will slow down your opponent or knock them down, potentially setting them up to be slain at your leisure. Like arms, it can be cut off. Aiming for the feet is effectively the same as aiming for the legs, at risk of making your intent a bit more obvious and requiring more perception to back it up.</li>
+		</ul>
+
+		<h3>Accuracy</h3>
+		<p>Attacks aimed at the chest always hit the chest. Attacks aimed elsewhere must roll for accuracy. A Stab has the most accuracy, a Cut is slightly less reliable, and Blunt attacks do not benefit at all. Skill increases accuracy at +[ACC_SKILL_BONUS_PER_LEVEL] per level. Perception above 10 adds +[ACC_PER_BONUS_PER_POINT] a point up to +[ACC_PER_BONUS_CAP], while Perception below 10 costs [ACC_PER_PENALTY_PER_POINT] a point - deliberately harsher than the bonus.</p>
+
+		<p>The zone matters as much as the blow. Aiming for a whole limb, like a head or leg or arm, will always be easier to hit the subzone. Picking out parts of someone's face is the hardest target of all.</p>
+
+		<p>No matter how good or bad your aim is, the final chance is clamped between [ACC_MIN]% and [ACC_MAX]%.</p>
+
+		<p>A target you have Exposed, made Vulnerable, or held in an aggressive grab is far easier to strike precisely. Someone off their feet is easier to aim at, too. SHORT weapons also aim better, at +[ACC_SHORT_WEAPON_BONUS].</p>
+
+		<h3>Ranged and Spells</h3>
+		<p>Ranged accuracy is simpler than melee. Your weapon skill sets the ceiling, at [ACC_RANGED_BASE] plus [ACC_RANGED_PER_SKILL] per level. Spells read Perception in place of any skill, each point above [ACC_SPELL_PER_BASELINE] worth as much as a level of training - and each point below it costing the same. Some weapons multiply the result, and some ammunition, sling shot above all, takes a flat amount off it.</p>
+
+		<p>Shoot closer than a projectile's minimum range, or past its maximum, and the shot can only land on the chest. Past [ACC_RANGED_VISUAL_REACH] tiles, about as far as you can see, accuracy falls by [ACC_RANGED_FARSIGHT_PENALTY] for every further tile, [ACC_RANGED_FARSIGHT_SKILL_REDUCTION] less per level of your ranged skill (never below [ACC_RANGED_FARSIGHT_MIN]). Crossbow bolts and sling shot also lose a little accuracy for every tile past their weapon's effective distance. Loosing at a floor above or below costs another [ACC_RANGED_ZCROSS_PENALTY].</p>
+
+		<p>Bows and crossbows aim at any part of the body as easily as the chest. Slings and spells are clumsier. A limb or the head costs them [-RANGED_PRECISE_HIT_PENALTY] and can never exceed [RANGED_MAX_PRECISE_HIT_CHANCE]%. Hands and feet cost them [-RANGED_ULTRA_PRECISE_HIT_PENALTY] and a face zone [-(RANGED_ULTRA_PRECISE_HIT_PENALTY + RANGED_PRECISE_HIT_PENALTY)]. As in melee, a shot aimed at the chest always lands there.</p>
+		</div>
+	"}
+	// [/SURREALIS-EDIT]
 
 
 /datum/book_entry/combat/wounds
@@ -433,6 +492,9 @@
 	name = "12. Stances, Exposure & Vulnerability"
 
 /datum/book_entry/combat/stances/inner_book_html(mob/user)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	return {"
 		<div>
 		<h3>Exposure and Vulnerability</h3>
@@ -474,6 +536,49 @@
 		<p>It has a cooldown of [FEINT_RCLICK_CD / 10] seconds. Feinting someone who cannot see you does nothing at all and merely wastes five seconds. Someone you have already feinted cannot be feinted again while it lasts.</p>
 		</div>
 	"}
+	*/
+	return {"
+		<div>
+		<h3>Exposure and Vulnerability</h3>
+		<p>The Vulnerable status, represented by a grey shattered shield on top of someone, means they are unable to parry or dodge the next attack, and that attack lands somewhat harder than it otherwise would against whatever armor covers the zone.</p>
+
+		<p>The Exposed status, represented by a red shattered shield, means they are unable to parry or dodge the next attack. Exposure causes attack to land dramatically harder than Vulnerable.</p>
+
+		<p>Both multipliers land on armor integrity. Both also make you considerably easier to hit, and both last ten seconds if nobody spends them sooner. Certain sources will make them last less.</p>
+
+		<h3>Stances</h3>
+		<p>On the left of your UI is your character's STANCES. Feint is the default STANCES. You can examine and learn more about them by left clicking it, and then shift + right clicking every stance that pops up.</p>
+
+		<p>Most stances have an attached RMB mechanic.</p>
+		<ul>
+			<li><b>WEAK</b>: Your attack always rolls the bottom of its damage range, and will never dismember. Right Click in this stance will attempt to steal from a target. Also used for attempting surgery outside of Combat Mode.</li>
+			<li><b>DEFEND</b>: Removes the delay between parries. RMB when not grabbing anything and holding a weapon allows you to RIPOSTE, which has a chapter of its own.</li>
+			<li><b>SWIFT</b>: Makes your attack markedly faster, but also much less accurate, and each swing costs you extra stamina on top. In exchange it is the anti-dodge stance: It will drains a dodger's stamina hard, wheile their dodge is fresh, so long as you are not holding a HEAVY balanced weapon.</li>
+			<li><b>STRONG</b>: Makes your attack stronger and costs them considerably more sharpness and integrity to defend against on every parry they make, at the cost of the same extra stamina SWIFT demands. Your attack always rolls the top of its damage range and drains energy, and crits more readily with brutal attacks.</li>
+			<li><b>AIMED</b>: Makes your attack slower but improves the accuracy of your attacks significantly. Thrusts in combat mode try to find a gap in heavy armor on the limbs, neck, groin and eyes. RMB allows you to BAIT an opponent.</li>
+			<li><b>FEINT</b>: Allows you to feint your opponent, which calculates your intelligence and skills versus theirs, and potentially allows you to open them up for a single vulnerable / exposed attack.</li>
+		</ul>
+
+		<h3>Bait</h3>
+		<p>Bait is done by RMB on the AIMED stance. If your opponent happens to be aiming the same zone as you are at the same time, you will successfully bait them.</p>
+
+		<p>This will cost them a large slice of their stamina bar - the heavier the armor they are wearing, the more it takes out of them, and a man in plate suffers worst of all - and leave them EXPOSED to your attack. They are also slowed, briefly immobilized, and locked out of attacking for five seconds, and any spell they were channeling is interrupted.</p>
+
+		<p>If you bait someone successfully a second time before they shake it off, then you will render them Off Balance for two seconds, which allows you to kick them down into the ground, often giving you a decisive advantage in a fight. The count resets if you fail a bait, or if you land the second one. Otherwise they must stay out of combat mode for a full thirty seconds to shake it off - flicking Combat Mode off and straight back on will not do it, and each time they drop it the thirty seconds starts over.</p>
+
+		<p>Failing a bait is punished. If their aim does not match yours, or either of you is aiming at the chest, you groan, lose a good part of your own stamina bar, and reset any progress made on them.</p>
+
+		<p>Aiming for the head and baiting it will also count for any subzones on the head, like ears or eyes. This does not apply to any other limbs. Bait carries a [BAIT_RCLICK_CD / 10] second cooldown.</p>
+
+		<h3>Feint</h3>
+		<p>Feinting is done by RMB on the FEINT stance. It compares your weapon skills, intelligence versus your opponent and then if it is high enough, renders them VULNERABLE or EXPOSED to a followup hit. The odds are clamped between 10% and 90%.</p>
+
+		<p>As a result, high intelligence characters have a far easier time feinting and far harder time being FEINTED. Except when someone is riposting, in which case a FEINT is guaranteed - though breaking a guard that way costs you a much longer [(BASE_RCLICK_CD + 10 SECONDS) / 10] second cooldown rather than the usual one.</p>
+
+		<p>It has a cooldown of [FEINT_RCLICK_CD / 10] seconds. Feinting someone who cannot see you does nothing at all and merely wastes five seconds. Someone you have already feinted cannot be feinted again while it lasts.</p>
+		</div>
+	"}
+	// [/SURREALIS-EDIT]
 
 
 /datum/book_entry/combat/special
@@ -545,6 +650,9 @@
 	name = "15. Ranged Weapons"
 
 /datum/book_entry/combat/ranged/inner_book_html(mob/user)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	return {"
 		<div>
 		<p>Ranged Weapons are split into three main families. Both bows and slings lean on Perception, which raises their damage at [round(RANGED_PER_DAMAGE_MULT * 100)]% per point up to [RANGED_PER_DAMAGE_SOFTCAP], and [round(RANGED_PER_DAMAGE_CAPPEDMULT * 100)]% per point beyond it.</p>
@@ -579,6 +687,42 @@
 		<p>Slings are compact, and can be used one handed unlike a bow - they load straight from the pouch even with your offhand full. Their sling bullet pouch carries [QUIVER_CAPACITY_SLING] bullets as opposed to a quiver carrying [QUIVER_CAPACITY_SHEAF] arrows. Their ammo is generally cheaper to come by, too.</p>
 		</div>
 	"}
+	*/
+	return {"
+		<div>
+		<p>Ranged Weapons are split into three main families. Every shot rolls its damage within a range: your skill and the weapon's stat (Perception for bows and slings, Strength for heavy bows, Luck if it is higher) push the roll higher. Past a weapon's effective distance each tile costs damage and armor penetration, which skill reduces.</p>
+
+		<p>How precisely a shot lands on the body, and how range, floors and your skill or Perception change it, is covered in <i>Where to Aim</i>.</p>
+
+		<h3>Bow</h3>
+		<p>Bows are rapid-firing, exhausting weapons that deal PIERCING damage. Bows are split into:</p>
+		<ul>
+			<li><b>Yew Hunting Bow and Recurve Bow</b>, fast and the default bows.</li>
+			<li><b>Longbow</b>, slower to draw if your strength is below 10, each arrow dealing a significantly higher amount of damage in exchange for a lower ROF.</li>
+		</ul>
+
+		<p>The most common arrows are Broadhead Arrows, which deal a large amount of integrity and normal damage but cannot pierce most armor. Bodkin Arrows pierce through armor and can bleed an opponent out or inflict critical wounds through armor, but have a much lower base damage.</p>
+
+		<p>There are also special arrows available by crafting and using a Runic Flask.</p>
+
+		<p>Bows must be charged after nocking an arrow. You can nock an arrow quickly by left clicking a quiver. Charging for too long and not releasing will deplete your stamina rapidly.</p>
+
+		<h3>Crossbow</h3>
+		<p>Crossbows can be kept loaded on your back and then shot rapidly, and holding aim costs no stamina. However, reloading a crossbow immobilizes you. Crossbows do not scale their damage to perception, unlike the other two weapons.</p>
+
+		<p>Crossbow Bolts pierce nearly all armor by default.</p>
+
+		<p>Bolts are carried in bolt pouches, which hold [QUIVER_CAPACITY_BOLT].</p>
+
+		<p>Variants include Slurbows, which are underpowered Crossbows that can be reloaded on the move and with one hand, and Siegebows, which are devastating bows that are extremely awkward to load and use. Only certain classes start with one, but anyone can craft or buy them.</p>
+
+		<h3>Slings</h3>
+		<p>Slings are a fast, cheap alternative to bow. Their projectiles inflict blunt damage, making them great against metallic armor but not so great against light armor.</p>
+
+		<p>Slings are compact, and can be used one handed unlike a bow - they load straight from the pouch even with your offhand full. Their sling bullet pouch carries [QUIVER_CAPACITY_SLING] bullets as opposed to a quiver carrying [QUIVER_CAPACITY_SHEAF] arrows. Their ammo is generally cheaper to come by, too.</p>
+		</div>
+	"}
+	// [/SURREALIS-EDIT]
 
 
 /datum/book_entry/combat/archetypes
@@ -674,6 +818,9 @@
 
 /// [SURREALIS-EDITED] - LORE
 /datum/book_entry/combat/revival/inner_book_html(mob/user)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	return {"
 		<div>
 		<p>Whether you are PVEing or PVPing, dying is a common occurence and an expected part of the game.</p>
@@ -706,6 +853,40 @@
 		<p>For a brief period after revival, being slain again will results in you becoming permanently unrevivable for the round. You get [DEATHMARK_GRACE_PERIOD / 600] minutes of grace first, and only then does the penalty applies for [PERMADEATH_DURATION / 600] minutes.</p>
 		</div>
 	"}
+	*/
+	return {"
+		<div>
+		<p>Whether you are PVEing or PVPing, dying is a common occurence and an expected part of the game.</p>
+
+		<p>Sometimes, your friend or helpful strangers will retrieve you for revival at the town or other places, othertime, or even during a revival, you will turn into a deadite - this settings equivalence of zombie (Do not refer to them as zombie IC), largely thought to be brought about by the disaster caused by Zizo's ascension causing the dead to walk again.</p>
+
+		<h3>Deadite</h3>
+		<p>After dying and if you are not decapitated, a timer starts as your body rots, and after [ZOMBIE_RISE_MIN_TIME / 600] to [ZOMBIE_RISE_MAX_TIME / 600] minutes, your character will rise from the death as a deadite, effectively becoming a zombie you are in control of. This is a mechanic to allow you to return back to town or wherever you can be revived.</p>
+
+		<p>That timer does not tick at all while your body is indoors in town. Certain traits or races also make it impossible.</p>
+
+		<p>As a deadite, you are a mindless beast with a hunger for flesh, though as a deadite, you still must follows the escalation rules that is common to the server before initiating an attack. You can victimize strangers or challenge passing by adventurers - with the goal of putting up a proper fight before being promptly restrained and taken back to be revived.</p>
+
+		<p>In general, it is highly frowned upon if not outright disallowed to simply walk back to a revival place and then just lie down without a fight, putting up an earnest fight - which you do not need to put all your efforts into unless you want to, is a minimum requirement.</p>
+
+		<p>Becoming a deadite makes you unable to feint or use any special actions or weapons, but make you able to regenerate. You also suffer a crippling STAT debuff.</p>
+
+		<p>After you are restrained, a surgeon can then open your chest up to burn the rot from your body, thus removing the deadite status.</p>
+
+		<h3>Revival Methods</h3>
+		<p>Three primary revival methods exists in the game. Two of them will leave a revival penalty.</p>
+		<ul>
+			<li><b>Lux Tranfusion</b>: Lux extracted from someone and then purified can be transplanted into someone and then used to revive them.</li>
+			<li><b>FULMENOR Chair</b>: The Fulmenor Chair is exclusively accessed by the Clinic and some wretches, and can revive someone with lux with better efficiency and without any penalty.</li>
+			<li><b>Revival Rituals</b>: The Temple, with access to certain materials can also revive someone from the death, though they take a normal penalty.</li>
+		</ul>
+
+		<p>After non-chair revival, you gain Revival Sickness - [REVIVED_DEBUFF_DURATION / 600] minutes of -1 to every single stat you have. It stacks with the rot debuff if your body had begun to turn, so naturally rotting instead of becoming revived, followed by a ritual revival will hit you with a significant amount of debuff. You are encouraged to take it easy for a while and seek non combat roleplay after.</p>
+
+		<p>For a brief period after revival, being slain again will results in you becoming permanently unrevivable for the round. You get [DEATHMARK_GRACE_PERIOD / 600] minutes of grace first, and only then does the penalty applies for [PERMADEATH_DURATION / 600] minutes.</p>
+		</div>
+	"}
+	// [/SURREALIS-EDIT]
 
 
 /datum/book_entry/combat/misc

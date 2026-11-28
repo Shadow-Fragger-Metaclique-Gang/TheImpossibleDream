@@ -962,7 +962,10 @@
 		stamcost_final = stamcost / 2
 	else
 		stamcost_final = stamcost
-	climber.stamina_add(stamcost_final) // every tick interval this much stamina is deducted
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// climber.stamina_add(stamcost_final) // every tick interval this much stamina is deducted // SURREALIS-EDIT - ORIGINAL
+	climber.stamina_add(stamcost_final, skill_used = /datum/skill/misc/climbing) // every tick interval this much stamina is deducted
+	// [/SURREALIS-EDIT]
 	if(climber.stamina >= climber.max_stamina) // if we run out of green bar stamina, we fall
 		to_chat(climber, span_dead("I can't hold onto the ledge for any longer!"))
 		climber.remove_status_effect(/datum/status_effect/debuff/climbing_lfwb)
@@ -996,6 +999,8 @@
 	desc = span_warning("Their beauty is otherworldly..")
 	icon_state = "acid"
 
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 /datum/status_effect/debuff/liver_failure
 	id = "liver_failure"
 	alert_type = null
@@ -1017,6 +1022,8 @@
 	SIGNAL_HANDLER
 
 	INVOKE_ASYNC(carbon, TYPE_PROC_REF(/mob/living/carbon, liver_failure))
+*/
+// [/SURREALIS-REMOVE]
 
 /datum/status_effect/debuff/disgracedguardsman
 	id = "disgracedguardsman"

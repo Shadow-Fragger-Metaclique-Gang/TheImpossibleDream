@@ -44,7 +44,10 @@
 	hitsound = list('sound/combat/hits/blunt/flailhit.ogg')
 	chargetime = 0
 	recovery = 7
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]
 	reach = 3
 	icon_state = "inlash"
 	item_d_type = "slash"
@@ -66,7 +69,10 @@
 	chargetime = 0
 	recovery = 10
 	damfactor = 1.1
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]
 	reach = 2
 	icon_state = "incrack"
 	item_d_type = "slash"
@@ -76,7 +82,10 @@
 	name = "bludgeon"
 	desc = "Wind up and deliver a powerful strike with the reinforced tip of your whip, shortening your reach but increasing the power. </br>Strikes deliver powerful blunt damage, lacking any cutting power but increasing damage against integrity."
 	blade_class = BCLASS_BLUNT
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	recovery = 6
 	reach = 2			//Less range than a normal whip by 1 compared to crack.
 	icon_state = "instrike"
@@ -99,7 +108,10 @@
 	chargetime = 0
 	recovery = 5
 	damfactor = 1.2							//No range, gets bonus damage - using this even on weak SHOULD let you get perma-scars then.
-	penfactor = PEN_NONE		//No pen cus punishment intent.
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE		//No pen cus punishment intent. // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0		//No pen cus punishment intent.
+	// [/SURREALIS-EDIT]
 	reach = 1								//No range, cus not meant to be a flat-out combat intent.
 	icon_state = "inpunish"
 	item_d_type = "slash"

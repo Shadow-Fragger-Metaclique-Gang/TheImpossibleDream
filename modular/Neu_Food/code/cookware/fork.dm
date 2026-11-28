@@ -21,7 +21,10 @@
 
 /datum/intent/dagger/thrust/cutlery
 	name = "shallow thrust"
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]
 	icon_state = "ingouge"
 	attack_verb = list("thrusts","gouges")
 

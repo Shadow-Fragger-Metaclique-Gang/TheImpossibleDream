@@ -398,7 +398,11 @@
 		var/armors = list(
 			"Breastplate, Hauberk, & Kilt",
 			"Half-Plate, Gambeson, & Chausses",
-			"Banded Iron, Light Gambeson, & Pants"
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// "Banded Iron, Light Gambeson, & Pants" // SURREALIS-EDIT - ORIGINAL
+			"Banded Iron, Light Gambeson, & Pants",
+			"Brigandine, Gambeson, & Chausses"
+			// [/SURREALIS-EDIT]
 			)
 		var/armorchoice = input(H, "Choose your armor.", "TAKE UP ARMOR") as anything in armors
 		switch(armorchoice)
@@ -420,6 +424,14 @@
 				gloves = /obj/item/clothing/gloves/roguetown/plate/iron/banded
 				neck = /obj/item/clothing/neck/roguetown/gorget
 				pants = /obj/item/clothing/under/roguetown/tights/black
+			// [SURREALIS-ADD] - VRCOMBAT
+			if("Brigandine, Gambeson, & Chausses")
+				armor = /obj/item/clothing/suit/roguetown/armor/brigandine
+				shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+				gloves = /obj/item/clothing/gloves/roguetown/chain/iron
+				neck = /obj/item/clothing/neck/roguetown/bevor/iron
+				pants = /obj/item/clothing/under/roguetown/chainlegs/iron
+			// [/SURREALIS-ADD]
 
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/iron
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/iron

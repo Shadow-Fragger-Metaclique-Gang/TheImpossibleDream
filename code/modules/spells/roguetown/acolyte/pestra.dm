@@ -344,8 +344,14 @@
 	if(attached_count > 0)
 		if(!(human_target.mob_biotypes & MOB_UNDEAD))
 			for(var/obj/item/bodypart/limb in human_target.bodyparts)
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// SURREALIS-EDIT - ORIGINAL
+				/*
 				limb.rotted = FALSE
 				limb.skeletonized = FALSE
+				*/
+				limb.cure_rot()
+				// [/SURREALIS-EDIT]
 		human_target.update_body()
 	else
 		to_chat(user, span_warning("No body parts were attached."))
@@ -699,9 +705,12 @@
 				to_chat(user, span_warning("[target] is already infused with Pestra's black blessing."))
 				revert_cast()
 				return FALSE
-		if(!target.mind.has_spell(/datum/action/cooldown/spell/summon_bed/pestra) && target.patron?.type == /datum/patron/divine/pestra && target.get_skill_level(/datum/skill/magic/holy) >= 1 && SSchimeric_tech.get_node_status("BLACK_ROSE"))
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// if(!target.mind.has_spell(/datum/action/cooldown/spell/summon_bed/pestra) && target.patron?.type == /datum/patron/divine/pestra && target.get_skill_level(/datum/skill/magic/holy) >= 1 && SSchimeric_tech.get_node_status("BLACK_ROSE")) // SURREALIS-EDIT - ORIGINAL
+		if(target.mind && !target.mind.has_spell(/datum/action/cooldown/spell/summon_bed/pestra) && target.patron?.type == /datum/patron/divine/pestra && target.get_skill_level(/datum/skill/magic/holy) >= 1 && SSchimeric_tech.get_node_status("BLACK_ROSE"))
 			target.visible_message(span_green("[target]'s body seems to jitter for a moment, their eyes flash with black rot momentarily."), span_green("Thanks to your affinity to Pestra, you can now create black rose petal beds."))
 			target.mind.AddSpell(new /datum/action/cooldown/spell/summon_bed/pestra)
+		// [/SURREALIS-EDIT]
 
 		if(GLOB.tod == "night")
 			to_chat(user, span_warning("Let there be light."))

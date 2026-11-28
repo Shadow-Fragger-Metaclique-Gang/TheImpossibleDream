@@ -25,7 +25,7 @@
 		skill_diff += user.get_skill_level(weapon.associated_skill)
 	if(H.mind)
 		skill_diff -= H.get_skill_level(/datum/skill/combat/wrestling)
-	user.stamina_add(rand(3,8))
+	user.stamina_add(rand(3,8), skill_used = user.fatigue_skill_for(weapon))
 	var/probby = clamp((((3 + (((user.STASTR - H.STASTR)/4) + skill_diff)) * 10)), 5, 95)
 	if(!I)
 		to_chat(user, span_warning("They aren't holding anything on that hand!"))

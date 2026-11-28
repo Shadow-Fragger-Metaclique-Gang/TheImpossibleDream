@@ -1,11 +1,20 @@
+// [SURREALIS-EDIT] - VRCOMBAT
+// SURREALIS-EDIT - ORIGINAL
+/*
 // Unarmed base weapon defense equivalents — fed into the same (skill * 20) + (wdef * 10) formula as weapons
 
 /mob/living/proc/attempt_parry(datum/intent/attack_intent, mob/living/user)
 	var/prob2defend = 0
+*/
+/mob/living/proc/attempt_parry(datum/intent/attack_intent, mob/living/user)
+// [/SURREALIS-EDIT]
 	var/mob/living/defender = src
 	var/mob/living/attacker = user
 
 	if(!can_see_cone(user))
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		if(!defender.get_tempo_bonus(TEMPO_TAG_NOLOS_PARRY))
 			return FALSE
 		if(d_intent == INTENT_PARRY)
@@ -18,16 +27,37 @@
 
 	if(m_intent == MOVE_INTENT_RUN)
 		prob2defend = max(prob2defend-15,0)
-
+		*/
+		return FALSE
+		// [/SURREALIS-EDIT]
 	if(HAS_TRAIT(src, TRAIT_CHUNKYFINGERS))
 		return FALSE
 	if(pulledby || pulling)
 		return FALSE
 
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	var/paired_swing = user?.dualwield_processing
 	if(!paired_swing && world.time < (last_parry + parrydelay))
 		if(!istype(rmb_intent, /datum/rmb_intent/riposte))
 			return FALSE
+	*/
+	var/obj/item/mainhand = get_active_held_item()
+	var/obj/item/offhand = get_inactive_held_item()
+	var/skill_cooldown_reduction = 0
+	if(mainhand && mainhand.can_parry && mainhand.associated_skill)
+		skill_cooldown_reduction = max(skill_cooldown_reduction, defender.get_wskill(mainhand))
+	if(offhand && offhand.can_parry && offhand.associated_skill)
+		skill_cooldown_reduction = max(skill_cooldown_reduction, defender.get_wskill(offhand))
+	if(!mainhand || !mainhand.can_parry && !offhand)
+		skill_cooldown_reduction = defender.get_skill_level(/datum/skill/combat/unarmed)
+	var/actual_parry_cooldown = max(setparrytime - skill_cooldown_reduction, 0)
+
+	var/paired_swing = user?.dualwield_processing
+	if(!paired_swing && world.time < (last_parry + actual_parry_cooldown))
+		return FALSE
+	// [/SURREALIS-EDIT]
 	if(has_status_effect(/datum/status_effect/debuff/exposed) || has_status_effect(/datum/status_effect/debuff/vulnerable))
 		return FALSE
 	if(has_status_effect(/datum/status_effect/debuff/riposted))
@@ -41,25 +71,45 @@
 
 	if(!paired_swing)
 		last_parry = world.time
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		if(!istype(rmb_intent, /datum/rmb_intent/riposte))
 			var/parrytime = setparrytime
 			parrytime -= get_tempo_bonus(TEMPO_TAG_PARRYCD_BONUS)
 			changeNext_def(parrytime)
 
 	var/drained = BASE_PARRY_STAMINA_DRAIN
+		*/
+		changeNext_def(actual_parry_cooldown)
+
+	var/drained = BASE_PARRY_STAMINA_DRAIN
+	if(istype(rmb_intent, /datum/rmb_intent/riposte))
+		drained = drained * 0.5
+		// [/SURREALIS-EDIT]
 	var/weapon_parry = FALSE
 	var/offhand_defense = 0
 	var/mainhand_defense = 0
 	var/highest_defense = 0
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	var/obj/item/mainhand = get_active_held_item()
 	var/obj/item/offhand = get_inactive_held_item()
 	var/obj/item/used_weapon = mainhand
 	var/obj/item/rogueweapon/shield/buckler/offhand_buckler = get_inactive_held_item()	// buckler code
+	*/
+	var/obj/item/used_weapon = mainhand
+	var/obj/item/rogueweapon/shield/buckler/offhand_buckler = get_inactive_held_item()
+	// [/SURREALIS-EDIT]
 	var/obj/item/rogueweapon/shield/buckler/mainhand_buckler = get_active_held_item()
 
 	if(istype(offhand, /obj/item/rogueweapon/shield/buckler))
 		offhand_buckler.bucklerskill(defender)
 	if(istype(mainhand, /obj/item/rogueweapon/shield/buckler))
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		mainhand_buckler.bucklerskill(defender)	//buckler code end
 
 	if(mainhand)
@@ -70,6 +120,16 @@
 		if(offhand.can_parry)
 			offhand_defense += (defender.get_wskill(offhand) * PARRY_PER_SKILL_LEVEL)
 			offhand_defense += (offhand.wdefense_dynamic * PARRY_PER_WDEF_POINT)
+		*/
+		mainhand_buckler.bucklerskill(defender)
+
+	if(mainhand && mainhand.can_parry)
+		mainhand_defense += (defender.get_wskill(mainhand) * 4)
+		mainhand_defense += (mainhand.wdefense_dynamic * 2)
+	if(offhand && offhand.can_parry)
+		offhand_defense += (defender.get_wskill(offhand) * 4)
+		offhand_defense += (offhand.wdefense_dynamic * 2)
+		// [/SURREALIS-EDIT]
 
 	if(mainhand_defense >= offhand_defense)
 		highest_defense += mainhand_defense
@@ -82,7 +142,9 @@
 	var/obj/item/clothing/wrists/roguetown/bracers/unarmed_bracers
 	var/obj/item/clothing/gloves/roguetown/knuckles/unarmed_knuckles
 	var/obj/item/clothing/gloves/roguetown/bandages/unarmed_bandages
-
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	// Calculate unarmed parry value from bracers/knuckles/bandages
 	var/unarmed_skill = defender.get_skill_level(/datum/skill/combat/unarmed)
 	var/unarmed_defense = 0
@@ -261,7 +323,122 @@
 	// Failed parry cutoff here
 	if(!parry_status)
 		return FALSE
+	*/
+	var/unarmed_skill = defender.get_skill_level(/datum/skill/combat/unarmed)
+	var/obj/wrist_item = defender.get_item_by_slot(SLOT_WRISTS)
+	var/obj/hand_item = defender.get_item_by_slot(SLOT_GLOVES)
+	if(istype(wrist_item, /obj/item/clothing/wrists/roguetown/bracers))
+		unarmed_bracers = wrist_item
+	else if(istype(hand_item, /obj/item/clothing/gloves/roguetown/knuckles))
+		unarmed_knuckles = hand_item
+	else if(istype(hand_item, /obj/item/clothing/gloves/roguetown/bandages))
+		unarmed_bandages = hand_item
 
+	var/def_roll = rand(1, 20)
+	if(highest_defense <= (unarmed_skill * 4))
+		defender_skill = unarmed_skill
+		if(unarmed_bracers || unarmed_knuckles || unarmed_bandages)
+			def_roll += (unarmed_skill * 6)
+		else
+			def_roll += (unarmed_skill * 2)
+		weapon_parry = FALSE
+	else
+		defender_skill = used_weapon ? defender.get_wskill(used_weapon) : unarmed_skill
+		def_roll += highest_defense
+		weapon_parry = TRUE
+
+	if(used_weapon?.wbalance == WBALANCE_SWIFT && mainhand && !offhand && defender.check_dodge_skill(check_trait = FALSE))
+		def_roll += 2
+
+	var/obj/item/attacker_weapon = attack_intent.masteritem
+	var/atk_roll = rand(1, 20)
+	attacker_skill = attacker_weapon ? attacker.get_wskill(attacker_weapon) : attacker.get_skill_level(/datum/skill/combat/unarmed)
+	atk_roll += (attacker_skill * 4)
+	if(attacker.mind)
+		if(attacker_weapon)
+			if(attack_intent.sharpness_penalty)
+				attacker_weapon.remove_bintegrity(attack_intent.sharpness_penalty)
+			if((attacker_weapon.wbalance == WBALANCE_SWIFT) && (user.STASPD > src.STASPD) && !HAS_TRAIT(attacker, TRAIT_FREEBLADE))
+				var/spdmod = ((user.STASPD - src.STASPD) * 2)
+				var/permod = ((src.STAPER - user.STAPER) * 2)
+				var/intmod = floor((src.STAINT - user.STAINT) * 0.6)
+				if(mind)
+					if(permod > 0)
+						spdmod -= permod
+					if(intmod > 0)
+						spdmod -= intmod
+					spdmod = clamp(spdmod, 0, 6)
+				atk_roll += spdmod
+
+	if(has_status_effect(/datum/status_effect/buff/weapon_binded))
+		def_roll += 4
+	if(used_weapon && used_weapon.associated_skill != /datum/skill/combat/unarmed)
+		if(!has_status_effect(/datum/status_effect/buff/weapon_binded) && !has_status_effect(/datum/status_effect/debuff/weapon_binded))
+			if(ishuman(src) && mind)
+				var/mob/living/carbon/human/binding_defender = src
+				if(binding_defender.try_bind(used_weapon, user))
+					return TRUE
+
+	if(HAS_TRAIT(user, TRAIT_CURSE_RAVOX))
+		def_roll -= 8
+	if(HAS_TRAIT(src, TRAIT_CURSE_RAVOX))
+		def_roll -= 6
+	if(!defender.mind && defender.has_status_effect(/datum/status_effect/debuff/staggered))
+		def_roll = floor(def_roll * 0.5)
+	if(!defender.mind && defender.has_status_effect(/datum/status_effect/debuff/hamstring))
+		def_roll -= 4
+	if(!(mobility_flags & MOBILITY_STAND) && !has_status_effect(/datum/status_effect/buff/weapon_binded))
+		def_roll = floor(def_roll * 0.65)
+	if(HAS_TRAIT(defender, TRAIT_SENTINELOFWITS) && ishuman(defender))
+		var/mob/living/carbon/human/sentinel_defender = defender
+		def_roll += floor(sentinel_defender.calculate_sentinel_bonus() / 5)
+	if(HAS_TRAIT(attacker, TRAIT_ARMOUR_LIKED) && HAS_TRAIT(attacker, TRAIT_FENCERDEXTERITY))
+		def_roll -= 1
+	if(has_status_effect(/datum/status_effect/swingdelay/penalty))
+		def_roll -= 10
+	if(HAS_TRAIT(user, TRAIT_HARDSHELL) && defender.client)
+		def_roll = min(def_roll, 14)
+	var/untrained_armor = FALSE
+	if(!defender?.check_armor_skill())
+		def_roll = min(def_roll, 15)
+		drained = drained + 5
+		untrained_armor = TRUE
+	if(HAS_TRAIT(src, TRAIT_NODEF))
+		def_roll = -99
+
+	var/defender_dualw = HAS_TRAIT(src, TRAIT_DUALWIELDER) && src.can_dualwield(mainhand, offhand)
+	var/parry_status = (def_roll >= atk_roll)
+	if(parry_status && defender_dualw)
+		def_roll -= 4
+		parry_status = (def_roll >= atk_roll)
+
+	if(src.client?.prefs.showrolls)
+		var/text = "Parry Roll: [def_roll] Defense vs [HAS_TRAIT(user, TRAIT_DECEIVING_MEEKNESS) ? "???" : atk_roll] Attack"
+		if(defender_dualw)
+			text += " (Disadvantage -4)"
+		to_chat(src, span_info("[text]"))
+
+	if(!parry_status)
+		to_chat(src, span_warning("The enemy defeated my parry!"))
+		return FALSE
+
+	var/balance_diff = 0
+	if(attacker_weapon)
+		if(used_weapon && weapon_parry)
+			balance_diff = used_weapon.wbalance - attacker_weapon.wbalance
+		else
+			balance_diff = WBALANCE_NORMAL - attacker_weapon.wbalance
+		drained = drained - (balance_diff * 3)
+		if(user.STASTR > src.STASTR)
+			var/str_bonus = 3
+			switch(attacker_weapon.wbalance)
+				if(WBALANCE_SWIFT)
+					str_bonus = 1
+				if(WBALANCE_NORMAL)
+					str_bonus = 2
+			drained = drained + ((user.STASTR - src.STASTR) * str_bonus)
+
+	// [/SURREALIS-EDIT]
 
 	drained = max(drained, 5)
 
@@ -282,7 +459,19 @@
 		attacker_skilltype = /datum/skill/combat/unarmed
 
 	if(weapon_parry == TRUE)
-		if(do_parry(used_weapon, drained, user, untrained_armor)) //show message
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// if(do_parry(used_weapon, drained, user, untrained_armor)) //show message // SURREALIS-EDIT - ORIGINAL
+		var/parry_result = do_parry(used_weapon, istype(used_weapon, /obj/item/rogueweapon/shield) ? ceil(drained / 2) : drained, user, untrained_armor, balance_diff)
+		if(parry_result == PARRY_DISARM)
+			if(used_weapon)
+				var/disarm_msg = "<b>[src]</b> parries [user] with [used_weapon]! The [used_weapon.name] flies free from [src]'s grasp!"
+				dropItemToGround(used_weapon, TRUE)
+				playsound(get_turf(src), 'sound/combat/clash_disarm_us.ogg', 100, FALSE)
+				visible_message(span_combatsecondary(disarm_msg), span_boldwarning(disarm_msg), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = list(user))
+				to_chat(user, span_boldwarning(disarm_msg))
+			return TRUE
+		if(parry_result) //show message
+		// [/SURREALIS-EDIT]
 			var/defender_skilltype = get_wskill_type(used_weapon)
 			var/defender_factor = get_wskill_factor(used_weapon)
 			//only gain experience if attacker and defender aren't using non-combat skills for their weapons
@@ -336,10 +525,15 @@
 					if(istype(used_weapon, /obj/item/rogueweapon/shield) && attack_intent)
 						var/shield_mult = max(attack_intent.demolition_mod, attack_intent.intent_intdamage_factor)
 						intdam *= shield_mult
-
+						// [SURREALIS-EDIT] - VRCOMBAT
+						// SURREALIS-EDIT - ORIGINAL
+						/*
 					var/tempobonus = defender.get_tempo_bonus(TEMPO_TAG_DEF_INTEGFACTOR)
 					if(tempobonus)	//It is either null or 0.1 to 1, multiplication by null results in 0, so we check.
 						intdam *= tempobonus
+						*/
+						intdam *= shield_degradation_mult(used_weapon, attack_intent.blade_class)
+						// [/SURREALIS-EDIT]
 
 					if(!has_status_effect(/datum/status_effect/buff/weapon_binded))
 						used_weapon.take_damage(intdam, BRUTE, used_weapon.d_type)
@@ -355,6 +549,9 @@
 
 				if(istype(used_weapon, /obj/item/rogueweapon/shield) && attack_intent)
 					intdam *= attack_intent.intent_intdamage_factor
+					// [SURREALIS-ADD] - VRCOMBAT
+					intdam *= shield_degradation_mult(used_weapon, attack_intent.blade_class)
+					// [/SURREALIS-ADD]
 				used_weapon.take_damage(intdam, BRUTE, used_weapon.d_type)
 				used_weapon.remove_bintegrity(sharp_loss, defender)
 			if(mind)
@@ -392,12 +589,26 @@
 
 			return FALSE
 
+// [SURREALIS-EDIT] - VRCOMBAT
+// SURREALIS-EDIT - ORIGINAL
+/*
 /mob/proc/do_parry(obj/item/parry_weapon, parrydrain as num, mob/living/user, untrained_armor = FALSE)
 	if(ishuman(src))
 		var/mob/living/carbon/human/defender_human = src
 		//Tempo bonus
 		parrydrain -= defender_human.get_tempo_bonus(TEMPO_TAG_STAMLOSS_PARRY)
 		if(defender_human.stamina_add(parrydrain))
+*/
+/mob/proc/do_parry(obj/item/parry_weapon, parrydrain as num, mob/living/user, untrained_armor = FALSE, balance_diff = 0)
+	if(ishuman(src))
+		var/mob/living/carbon/human/defender_human = src
+		var/stamina_before = defender_human.stamina
+		var/stamina_held = defender_human.stamina_add(parrydrain, skill_used = defender_human.fatigue_skill_for(parry_weapon))
+		if(parry_weapon && stamina_before + parrydrain >= defender_human.max_stamina && ishuman(user))
+			if(get_stat_roll(user.STASTR) >= get_stat_roll(defender_human.STASTR) + (balance_diff * 3) + 10)
+				return PARRY_DISARM
+		if(stamina_held)
+// [/SURREALIS-EDIT]
 			if(parry_weapon)
 				playsound(get_turf(src), pick(parry_weapon.parrysound), 100, FALSE)
 			if(src.client)
@@ -417,6 +628,10 @@
 
 			visible_message(span_combatsecondary(def_msg), span_boldwarning(def_msg), COMBAT_MESSAGE_RANGE, list(user))
 			to_chat(user, span_boldwarning(def_msg))
+			// [SURREALIS-ADD] - VRCOMBAT
+			if(parry_weapon && ishuman(user) && defender_human.stamina + parrydrain >= defender_human.max_stamina)
+				to_chat(src, span_warning("I start to lose my grip on the [parry_weapon.name]!"))
+			// [/SURREALIS-ADD]
 
 			for(var/mob/living/hearer in get_hearers_in_view(4, src, RECURSIVE_CONTENTS_CLIENT_MOBS))
 				if(!hearer.has_flaw(/datum/charflaw/addiction/clamorous))
@@ -436,10 +651,16 @@
 /mob/proc/do_unarmed_parry(parrydrain as num, mob/living/user, untrained_armor = FALSE)
 	if(ishuman(src))
 		var/mob/living/carbon/human/defender_human = src
+		// [SURREALIS-REMOVE] - VRCOMBAT
+		/*
 		//Tempo bonus
 		parrydrain -= defender_human.get_tempo_bonus(TEMPO_TAG_STAMLOSS_PARRY)
-
-		if(defender_human.stamina_add(parrydrain))
+		*/
+		// [/SURREALIS-REMOVE]
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// if(defender_human.stamina_add(parrydrain)) // SURREALIS-EDIT - ORIGINAL
+		if(defender_human.stamina_add(parrydrain, skill_used = /datum/skill/combat/unarmed))
+		// [/SURREALIS-EDIT]
 			playsound(get_turf(src), pick(parry_sound), 100, FALSE)
 			var/parry_msg = "<b>[src]</b> parries [user]!"
 			if(untrained_armor)

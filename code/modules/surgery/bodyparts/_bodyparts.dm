@@ -333,7 +333,10 @@
 //Applies brute and burn damage to the organ. Returns 1 if the damage-icon states changed at all.
 //Damage will not exceed max_damage using this proc
 //Cannot apply negative damage
-/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null) // SURREALIS-EDIT - ORIGINAL
+/obj/item/bodypart/proc/receive_damage(brute = 0, burn = 0, stamina = 0, blocked = 0, updating_health = TRUE, required_status = null, bclass, wounds_handled = FALSE)
+// [/SURREALIS-EDIT]
 	update_HP()
 	var/hit_percent = (100-blocked)/100
 	if((!brute && !burn && !stamina) || hit_percent <= 0)
@@ -354,6 +357,9 @@
 
 	if(!brute && !burn && !stamina)
 		return FALSE
+	// [SURREALIS-ADD] - VRCOMBAT
+	var/was_max_burn = (burn_dam >= max_damage)
+	// [/SURREALIS-ADD]
 	// [SURREALIS-ADD] - PLASMA_OPTS
 	var/brute_was = brute_dam
 	var/burn_was = burn_dam
@@ -372,6 +378,14 @@
 	//We've dealt the physical damages, if there's room lets apply the stamina damage.
 	stamina_dam += round(CLAMP(stamina, 0, max_stamina_damage - stamina_dam), DAMAGE_PRECISION)
 
+	// [SURREALIS-ADD] - VRCOMBAT
+	if(burn > 0 && owner && !wounds_handled)
+		bclass = bclass || BCLASS_BURN
+		apply_burn_wound(burn, bclass)
+		if(!was_max_burn && owner && should_dismember(bclass, burn, null, body_zone, 0, burn, null))
+			dismember(BURN, bclass)
+
+	// [/SURREALIS-ADD]
 	if(owner)
 		if(owner.show_redflash())
 			if((brute + burn) < 10)
@@ -394,8 +408,6 @@
 	var/health_changed = (brute_dam != brute_was || burn_dam != burn_was)
 	var/stamina_changed = (stamina_dam != stamina_was)
 	if(owner)
-		if(stamina > DAMAGE_PRECISION)
-			owner.stam_regen_start_time = world.time + STAMINA_REGEN_BLOCK_TIME
 		if(updating_health)
 			if(health_changed)
 				owner.updatehealth()

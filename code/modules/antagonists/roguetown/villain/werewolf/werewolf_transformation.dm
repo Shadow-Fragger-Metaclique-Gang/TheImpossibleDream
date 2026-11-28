@@ -133,7 +133,22 @@
 	ADD_TRAIT(src, TRAIT_NOHUNGER, TRAIT_SOURCE_WEREWOLF)
 	ADD_TRAIT(src, TRAIT_NOMOOD, TRAIT_SOURCE_WEREWOLF)
 	ADD_TRAIT(src, TRAIT_PACIFISM, TRAIT_SOURCE_WEREWOLF)
-
+// [SURREALIS-ADD] - SEXCON
+	if(getorganslot(ORGAN_SLOT_PENIS))
+		var/obj/item/organ/penis/knotted/big/knot = new
+		knot.Insert(W, TRUE, TRUE)
+	if(getorganslot(ORGAN_SLOT_TESTICLES))
+		var/obj/item/organ/testicles/balls = new
+		balls.Insert(W, TRUE, TRUE)
+	if(getorganslot(ORGAN_SLOT_BREASTS))
+		var/obj/item/organ/breasts/boobs = new
+		boobs.Insert(W, TRUE, TRUE)
+	if(getorganslot(ORGAN_SLOT_VAGINA))
+		var/obj/item/organ/vagina/pussy = new
+		pussy.Insert(W, TRUE, TRUE)
+	regenerate_icons() //hate to call this twice but well shrug emoji
+	ADD_TRAIT(W, TRAIT_DEATHBYSNUSNU, TRAIT_GENERIC)
+// [/SURREALIS-ADD]
 	to_chat(W, span_userdanger("I transform into a horrible beast!"))
 	W.emote("rage")
 

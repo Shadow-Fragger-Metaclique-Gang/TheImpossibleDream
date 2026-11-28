@@ -56,8 +56,12 @@
 	else if(leprosy == 2)
 		if(client)
 			leprosy = 3
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	//heart attack stuff
 	handle_heart()
+	*/
+	// [/SURREALIS-REMOVE]
 	update_energy()
 	// [SURREALIS-EDIT] - PLASMA_OPTS
 	// update_stamina() // SURREALIS-EDIT - ORIGINAL
@@ -86,10 +90,13 @@
 
 	handle_gas_mask_sound()
 
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	if(world.time > next_tempo_cull)
 		cull_tempo_list()
 		next_tempo_cull = world.time + TEMPO_CULL_DELAY
-
+	*/
+	// [/SURREALIS-REMOVE]
 	if(stat != DEAD)
 		return 1
 

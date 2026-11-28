@@ -101,7 +101,10 @@
 	attack_verb = list("hits", "mauls", "bashes")
 	animname = "strike"
 	hitsound = "punch_hard"
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	candodge = TRUE
 	canparry = TRUE
 	miss_text = "kicks the air!"

@@ -103,7 +103,11 @@
 	grid_width = 32
 	grid_height = 64
 	ranged_skill = /datum/skill/combat/slings
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	per_scales_damage = TRUE
+	*/
+	// [/SURREALIS-REMOVE]
 	release_drain = SLING_RELEASEDRAIN
 	draw_base = SLING_DRAW_BASE
 	draw_floor = SLING_DRAW_FLOOR
@@ -199,9 +203,21 @@
 		var/obj/projectile/BB = CB.BB
 		BB.embedchance = 0.1 //for some reason, if the embedchance is 0, the reusable projectile will not drop after hitting a mob. so it's a 1/1000 chance now
 		apply_ranged_accuracy(BB, user)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		BB.damage *= damfactor
 		apply_early_release_penalty(BB, user)
 		BB.damage = BB.damage * get_per_damage_scaling(user) + bonus_stone_force
+		*/
+		apply_early_release_penalty(BB, user)
+		BB.damage = BB.damage * (((user.STAPER / 1.25) + (user.STASTR / 5)) / 10) * damfactor + bonus_stone_force
+		apply_ranged_variance(BB, user, /datum/skill/combat/slings, max(user.STAPER, user.STASTR))
+		BB.falloff_start_distance = 3 + max(0, floor((user.STASTR - 10) / 2))
+		BB.falloff_damage_per_turf = 5
+		BB.falloff_ap_per_turf = 5
+		BB.falloff_accuracy_per_turf = 3
+		// [/SURREALIS-EDIT]
 		if (temp_stone != null) //reseting after stone ammo use
 			bonus_stone_force = 0 //stone is thrown, so the bonus is lost
 			temp_stone = null //stone is gone, forever.

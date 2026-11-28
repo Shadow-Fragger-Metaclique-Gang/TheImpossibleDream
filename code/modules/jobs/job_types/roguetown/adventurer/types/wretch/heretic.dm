@@ -36,7 +36,11 @@
 	)
 
 	extra_context = "This subclass gains the Wound Heal miracle."
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	tempo_capable = FALSE
+	*/
+	// [/SURREALIS-REMOVE]
 
 /datum/advclass/wretch/heretic/get_vice_limits(mob/living/carbon/human/H)
 	. = ..()
@@ -367,7 +371,11 @@
 		"Stashed Funds" = /obj/item/roguecoin/silver/pile/wretchpile,
 	)
 	extra_context = "This subclass gain the Wound Heal miracle and the Convert Heretic spell."
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	tempo_capable = FALSE
+	*/
+	// [/SURREALIS-REMOVE]
 
 
 /datum/outfit/job/roguetown/wretch/hereticspy

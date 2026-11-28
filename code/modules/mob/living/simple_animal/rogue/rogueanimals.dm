@@ -56,7 +56,10 @@
 		return FALSE
 	..()
 
-/mob/living/simple_animal/hostile/retaliate/rogue/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/living/simple_animal/hostile/retaliate/rogue/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE) // SURREALIS-EDIT - ORIGINAL
+/mob/living/simple_animal/hostile/retaliate/rogue/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, bclass = null, wounds_handled = FALSE)
+// [/SURREALIS-EDIT]
 	. = ..()
 	if(damagetype == BRUTE)
 		if(damage > 5 && prob(damage * 3))

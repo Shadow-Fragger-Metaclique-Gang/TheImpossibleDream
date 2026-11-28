@@ -35,6 +35,9 @@
 
 	associated_skill = /datum/skill/magic/arcane
 	spell_impact_intensity = SPELL_IMPACT_LOW
+	// [SURREALIS-ADD] - VRCOMBAT
+	damage_variance = SPELL_VARIANCE_MID
+	// [/SURREALIS-ADD]
 
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_HUMAN
 
@@ -91,12 +94,18 @@
 	spell_damage_scaled = TRUE
 	max_range = MAGE_LONG_PROJ_RANGE
 	damage_type = BURN
-	woundclass = BCLASS_BURN
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// woundclass = BCLASS_BURN // SURREALIS-EDIT - ORIGINAL
+	woundclass = BCLASS_ELECTRICAL
+	// [/SURREALIS-EDIT]
 	nodamage = FALSE
 	guard_deflectable = TRUE
 	expose_caster_on_deflect = TRUE
 	speed = 0.3
-	flag = "fire"
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// flag = "fire" // SURREALIS-EDIT - ORIGINAL
+	flag = "electrical"
+	// [/SURREALIS-EDIT]
 	light_outer_range = 5
 	var/arcs = TRUE
 
@@ -177,9 +186,17 @@
 	if(L.guard_deflect_spell("Arc Bolt", TRUE, caster, punish_caster = FALSE))
 		return
 	if(istype(caster) && ishuman(L))
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		if(arcyne_strike(caster, L, null, actual_damage, def_zone, BCLASS_BURN, \
 			spell_name = "Arc Bolt", damage_type = BURN, \
 			skip_animation = TRUE, SPELL_STRIKE_SCALING) == ARCYNE_STRIKE_WARDED)
+		*/
+		if(arcyne_strike(caster, L, null, actual_damage, def_zone, BCLASS_ELECTRICAL, \
+			spell_name = "Arc Bolt", damage_type = BURN, \
+			skip_animation = TRUE, SPELL_STRIKE_SCALING) == ARCYNE_STRIKE_WARDED)
+		// [/SURREALIS-EDIT]
 			return
 	else
 		L.electrocute_act(actual_damage, src, 1, SHOCK_NOSTUN)

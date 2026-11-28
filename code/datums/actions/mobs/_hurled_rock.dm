@@ -2,7 +2,10 @@
 /datum/action/cooldown/spell/telegraphed_strike/mob_ability/ground/hurled_rock
 	abstract_type = /datum/action/cooldown/spell/telegraphed_strike/mob_ability/ground/hurled_rock
 	blade_class = BCLASS_BLUNT
-	strike_armor_pen = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// strike_armor_pen = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	strike_armor_pen = AP_NONE
+	// [/SURREALIS-EDIT]
 	impact_delay = 4
 	detonate_sound = null
 	vuln_on_hit = 6 SECONDS

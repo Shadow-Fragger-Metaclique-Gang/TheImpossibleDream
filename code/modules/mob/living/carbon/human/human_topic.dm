@@ -459,37 +459,35 @@ GLOBAL_VAR_INIT(year_integer, text2num(year)) // = 2013???
 
 	return ..() //end of this massive fucking chain. TODO: make the hud chain not spooky. - Yeah, great job doing that. - I made it worse sorry guys.
 
-/// Renders an armor tier as colored dots.
-/// label: display name (e.g. "SLASH", "BLUNT")
-/// tier: the DBLOCK or DR tier value (0-5)
-/// max_tier: maximum dots to show (4 for DBLOCK, 5 for DR)
-/proc/colorgrade_rating(label, tier, elaborate = FALSE, max_tier = 4)
-	if(isnull(tier))
-		tier = 0
-	var/color
-	switch(tier)
-		if(0)
-			color = "#808080"
-		if(1)
-			color = "#c0a739"
-		if(2)
-			color = "#e3e63c"
-		if(3)
-			color = "#1a9c00"
-		if(4)
-			color = "#339dff"
-		if(5)
-			color = "#c757af"
-		else
-			return "[label] (Invalid tier [tier]! Contact coders.)"
-	// Build dot display
-	var/dots = ""
-	for(var/i in 1 to max_tier)
-		if(i <= tier)
-			dots += "<font color='[color]'>&#9679;</font>"
-		else
-			dots += "<font color='#404040'>&#9675;</font>"
-	return "<font color='[color]'>[label]</font> [dots]"
+// [SURREALIS-EDIT] - VRCOMBAT
+/proc/colorgrade_rating(label, rating, elaborate = FALSE)
+	if(isnull(rating))
+		rating = 0
+	switch(rating)
+		if(0 to 9)
+			return "<font color = '#f81a1a'>[label] (F)</font>"
+		if(10 to 19)
+			return "<font color = '#680d0d'>[label] (D)</font>"
+		if(20 to 39)
+			return "<font color = '#753e11'>[label] (D+)</font>"
+		if(40 to 49)
+			return "<font color = '#c0a739'>[label] [elaborate ? "(C)" : "(C to C+)"]</font>"
+		if(50 to 59)
+			return "<font color = '#e3e63c'>[label] [elaborate ? "(C+)" : "(C to C+)"]</font>"
+		if(60 to 69)
+			return "<font color = '#425c33'>[label] [elaborate ? "(B)" : "(B to B+)"]</font>"
+		if(70 to 79)
+			return "<font color = '#1a9c00'>[label] [elaborate ? "(B+)" : "(B to B+)"]</font>"
+		if(80 to 89)
+			return "<font color = '#0fe021'>[label] [elaborate ? "(A)" : "(A to A+)"]</font>"
+		if(90 to 99)
+			return "<font color = '#ffffff'>[label] [elaborate ? "(A+)" : "(A to A+)"]</font>"
+		if(100)
+			return "<font color = '#339dff'>[label] (S)</font>"
+		if(101 to 200)
+			return "<font color = '#c757af'>[label] (S+)</font>"
+	return "[label] (Under 0 or above 200! Contact coders.)"
+// [/SURREALIS-EDIT]
 
 /proc/skilldiff_report(input)
 	input = clamp(round(input, 1), -SKILL_LEVEL_LEGENDARY, SKILL_LEVEL_LEGENDARY)

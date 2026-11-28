@@ -113,9 +113,15 @@
 					if(carbon_user.domhand)
 						used_str = carbon_user.get_str_arms(carbon_user.used_hand)
 					if(HAS_TRAIT(carbon_user, TRAIT_FORGEBLESSED) || HAS_TRAIT(carbon_user, TRAIT_TRAINED_SMITH))
-						carbon_user.stamina_add(max(21 - (used_str * 3), 0)*advance_multiplier)
+						// [SURREALIS-EDIT] - VRCOMBAT
+						// carbon_user.stamina_add(max(21 - (used_str * 3), 0)*advance_multiplier) // SURREALIS-EDIT - ORIGINAL
+						carbon_user.stamina_add(max(21 - (used_str * 3), 0)*advance_multiplier, skill_used = hingot.currecipe.appro_skill)
+						// [/SURREALIS-EDIT]
 					else
-						carbon_user.stamina_add(max(40 - (used_str * 3), 0)*advance_multiplier)
+						// [SURREALIS-EDIT] - VRCOMBAT
+						// carbon_user.stamina_add(max(40 - (used_str * 3), 0)*advance_multiplier) // SURREALIS-EDIT - ORIGINAL
+						carbon_user.stamina_add(max(40 - (used_str * 3), 0)*advance_multiplier, skill_used = hingot.currecipe.appro_skill)
+						// [/SURREALIS-EDIT]
 				var/total_chance = 7 * user.get_skill_level(hingot.currecipe.appro_skill) * user.STAPER/10 * hammer.quality
 				var/breakthrough = 0
 				if(prob((1 + total_chance)*advance_multiplier))

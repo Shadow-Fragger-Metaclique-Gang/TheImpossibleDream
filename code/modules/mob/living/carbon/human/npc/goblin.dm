@@ -352,6 +352,9 @@ GLOBAL_LIST_INIT(goblin_pyromancer_aggro, list(
 	if(C.stat != DEAD)
 		qdel(src)
 		return
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	var/should_update = FALSE
 	if(amount > 20 MINUTES)
 		for(var/obj/item/bodypart/B in C.bodyparts)
@@ -374,6 +377,17 @@ GLOBAL_LIST_INIT(goblin_pyromancer_aggro, list(
 			return
 		else if(amount > 12 MINUTES)
 			C.update_body()
+	*/
+	var/should_update = rot_flesh(C)
+	if(flesh_rotting)
+		var/turf/open/T = C.loc
+		if(istype(T))
+			T.pollute_turf(/datum/pollutant/rot, 1)
+	if(should_update)
+		C.update_body()
+	if(all_bone)
+		qdel(src)
+	// [/SURREALIS-EDIT]
 
 
 //////////////////	OUTFITS	//////////////////

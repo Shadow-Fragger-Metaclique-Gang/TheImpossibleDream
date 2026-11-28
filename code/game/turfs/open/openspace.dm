@@ -28,17 +28,13 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	var/can_cover_up = TRUE
 	var/can_build_on = TRUE
 	dynamic_lighting = 1
-	canSmoothWith = list(/turf/closed/mineral,/turf/closed/wall/mineral/rogue, /turf/open/floor/rogue)
-	smooth = SMOOTH_MORE
-	// cardinal_smooth()/roguesmooth() only ever reads cardinal adjacency bits - see the same note
+//	canSmoothWith = list(/turf/closed/mineral,/turf/closed/wall/mineral/rogue, /turf/open/floor/rogue)
 	// on /turf/open/floor/rogue.
-	smooth_diag = FALSE
 	neighborlay_override = "staticedge"
+	smoothing_groups = SMOOTH_GROUP_FLOOR_OPEN_SPACE
 
-/turf/open/transparent/openspace/cardinal_smooth(adjacencies)
-	roguesmooth(adjacencies)
 
-/turf/open/transparent/openspace/roguesmooth(adjacencies)
+/turf/open/transparent/openspace/verdantsmooth(adjacencies)
 	var/list/Yeah = ..()
 	for(var/O in Yeah)
 		var/mutable_appearance/M = mutable_appearance(icon, O)
@@ -152,7 +148,10 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 			var/hadflying = (user.movement_type & FLYING)
 			if((climber_armor_class <= ARMOR_CLASS_LIGHT) && !(ismob(pulling))) // if our armour is not light or none OR we are pulling someone OR we're a literal zombie we eat shit and die and can't climb vertically at all, except for 'vaulting' aka we got a sold turf we can walk on in front of us
 				user.movement_type |= FLYING
-			L.stamina_add(stamina_cost_final)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// L.stamina_add(stamina_cost_final) // SURREALIS-EDIT - ORIGINAL
+			L.stamina_add(stamina_cost_final, skill_used = /datum/skill/misc/climbing)
+			// [/SURREALIS-EDIT]
 			user.forceMove(target)
 			if(!hadflying)
 				user.movement_type &= ~FLYING
@@ -247,7 +246,10 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 					if((istype(climber.backr, /obj/item/clothing/climbing_gear)) || (istype(climber.backl, /obj/item/clothing/climbing_gear)))
 						climb_gear_bonus = 2
 					var/stamina_cost_final = round(((baseline_stamina_cost / climbing_skill) / climb_gear_bonus), 1)
-					climber.stamina_add(stamina_cost_final) // eat some of climber's stamina when we move onto the next tile
+					// [SURREALIS-EDIT] - VRCOMBAT
+					// climber.stamina_add(stamina_cost_final) // eat some of climber's stamina when we move onto the next tile // SURREALIS-EDIT - ORIGINAL
+					climber.stamina_add(stamina_cost_final, skill_used = /datum/skill/misc/climbing) // eat some of climber's stamina when we move onto the next tile
+					// [/SURREALIS-EDIT]
 					climber.apply_status_effect(/datum/status_effect/debuff/climbing_lfwb) // continious drain of STAMINA and checks to remove the status effect if we are on solid stuff or branches
 					climber.forceMove(climb_target) // while our MOVEMENT TYPE is FLYING, we move onto next tile and can't fall cos of the flying
 					climber.movement_type = GROUND // if we move and it's an empty space tile, we fall. otherwise we either just walk into a wall along which we climb and don't fall, or walk onto a solid turf, like... floor or water
@@ -341,7 +343,6 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	density = TRUE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	dynamic_lighting = 0
-	smooth = SMOOTH_FALSE
 
 /turf/closed/sky_void/Initialize(mapload)
 	. = ..()

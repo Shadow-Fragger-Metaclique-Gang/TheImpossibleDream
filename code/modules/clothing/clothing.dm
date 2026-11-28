@@ -242,7 +242,10 @@
 				return
 			if(!do_after(user, 20, target = user))
 				return
-			if(prob(L.STASTR * 8))
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// if(prob(L.STASTR * 8)) // SURREALIS-EDIT - ORIGINAL
+			if(get_stat_roll(L.STASTR) >= 5)
+			// [/SURREALIS-EDIT]
 				torn_sleeve_number += 1
 				r_sleeve_status = SLEEVE_TORN
 				user.visible_message(span_notice("[user] tears [src]."))
@@ -268,7 +271,10 @@
 				return
 			if(!do_after(user, 20, target = user))
 				return
-			if(prob(L.STASTR * 8))
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// if(prob(L.STASTR * 8)) // SURREALIS-EDIT - ORIGINAL
+			if(get_stat_roll(L.STASTR) >= 5)
+			// [/SURREALIS-EDIT]
 				torn_sleeve_number += 1
 				l_sleeve_status = SLEEVE_TORN
 				user.visible_message(span_notice("[user] tears [src]."))
@@ -446,8 +452,12 @@
 /obj/item/clothing/proc/get_flung_off()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
+		// [SURREALIS-REMOVE] - VRCOMBAT
+		/*
 		if(!H.get_tempo_bonus(TEMPO_TAG_EQUIPTOSS))
 			return
+		*/
+		// [/SURREALIS-REMOVE]
 		var/max_range = (H.mind ? 2 : 3)
 		var/throwprob = (H.mind ? 8 : 80) + ((10 - H.STALUC))	// More FOR we have the less likely it is to happen.
 		if(!prob(throwprob))
@@ -492,6 +502,10 @@
 
 /obj/item/clothing/obj_fix(mob/user, full_repair = TRUE)
 	..()
+	// [SURREALIS-ADD] - VRCOMBAT
+	if(full_repair)
+		restore_all_zones()
+	// [/SURREALIS-ADD]
 	armor = original_armor
 
 /*
@@ -692,11 +706,25 @@ BLIND		// can't see anything
 	return (picked_sound ? picked_sound : FALSE)
 
 /obj/item/clothing/take_damage(damage_amount, damage_type = BRUTE, damage_flag, sound_effect, attack_dir, armor_penetration)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	var/newdam = run_obj_armor(damage_amount, damage_type, damage_flag, attack_dir, armor_penetration)
 	var/eff_maxint = max_integrity - (max_integrity * integrity_failure)
 	var/eff_currint = max(obj_integrity - (max_integrity * integrity_failure), 0)
 	var/ratio =	(eff_currint / eff_maxint)
 	var/ratio_newinteg = (eff_currint - newdam) / eff_maxint
+	*/
+	var/watched_zone = zone_damage_target
+	var/ratio = integrity_display_ratio(watched_zone)
+	var/broken_before = uses_zone_integrity() ? length(broken_zones) : -1
+	. = ..()
+	if(QDELETED(src))
+		return
+	var/ratio_newinteg = integrity_display_ratio(watched_zone)
+	if(broken_before >= 0 && length(broken_zones) > broken_before)
+		announce_breaches(broken_before)
+	// [/SURREALIS-EDIT]
 	var/text
 	var/y_offset
 	var/chunkicon
@@ -716,6 +744,13 @@ BLIND		// can't see anything
 		sfx = pick_damage_sound(3)
 		chunkicon = "chunkfall3"
 		y_offset = 30
+	// [SURREALIS-ADD] - VRCOMBAT
+	if(ratio > 0 && ratio_newinteg <= 0)
+		text = "Armor <br><font color = '#8b2b2b'>breached</font>"
+		sfx = pick_damage_sound(3)
+		chunkicon = "chunkfall3"
+		y_offset = 30
+	// [/SURREALIS-ADD]
 	if(text)
 		if(isliving(loc))
 			var/mob/living/L = loc
@@ -724,7 +759,11 @@ BLIND		// can't see anything
 				L.last_integ_sound = world.time + INT_NOISE_DELAY
 			new /obj/effect/temp_visual/armor_chunk(get_turf(src), 0.7 SECONDS, chunkcolor, chunkicon)
 		filtered_balloon_alert(TRAIT_COMBAT_AWARE, text, -20, y_offset)
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	. = ..()
+	*/
+	// [/SURREALIS-REMOVE]
 
 
 /obj/proc/generate_tooltip(examine_text)
@@ -752,13 +791,25 @@ BLIND		// can't see anything
 			return examine_text
 
 	var/str
-	str += "<b>ABSORPTION:</b> [colorgrade_rating("🔨 BLUNT", armor.blunt, elaborate = TRUE, max_tier = 5)]<br>"
-	str += "<b>BLOCK:</b> "
+	// [SURREALIS-EDIT] - VRCOMBAT
+	str += "<b>PROTECTION:</b> [colorgrade_rating("🔨 BLUNT", armor.blunt, elaborate = TRUE)] | "
 	str += "[colorgrade_rating("🪓 SLASH", armor.slash, elaborate = TRUE)] | "
 	str += "[colorgrade_rating("🗡️ STAB", armor.stab, elaborate = TRUE)] | "
 	str += "[colorgrade_rating("🏹 PIERCE", armor.piercing, elaborate = TRUE)]"
+	var/list/resists = list()
 	if(armor.fire > NONE)
-		str += "<br><b>RESIST:</b> [colorgrade_rating("🔥 FIRE", armor.fire, elaborate = TRUE)]"
+		resists += colorgrade_rating("🔥 FIRE", armor.fire, elaborate = TRUE)
+	if(armor.acid > NONE)
+		resists += colorgrade_rating("🧪 ACID", armor.acid, elaborate = TRUE)
+	if(armor.frost > NONE)
+		resists += colorgrade_rating("❄️ FROST", armor.frost, elaborate = TRUE)
+	if(armor.electrical > NONE)
+		resists += colorgrade_rating("⚡ ELECTRICAL", armor.electrical, elaborate = TRUE)
+	if(armor.magic > NONE)
+		resists += colorgrade_rating("✨ MAGIC", armor.magic, elaborate = TRUE)
+	if(length(resists))
+		str += "<br><b>RESIST:</b> [jointext(resists, " | ")]"
+	// [/SURREALIS-EDIT]
 
 	if(examine_highlight_status)
 		var/heresy_desc = get_examine_highlight_description(examine_highlight_status)
@@ -772,10 +823,11 @@ BLIND		// can't see anything
 		examine_text = "<font color = '#808080'>[examine_text]</font>"
 	return SPAN_TOOLTIP_DANGEROUS_HTML(str, examine_text)
 
+// [SURREALIS-EDIT] - VRCOMBAT
+// SURREALIS-EDIT - ORIGINAL
+/*
 /obj/item/clothing/proc/get_armor_integ()
-	var/eff_maxint = max_integrity - (max_integrity * integrity_failure)
-	var/eff_currint = max(obj_integrity - (max_integrity * integrity_failure), 0)
-	var/ratio =	(eff_currint / eff_maxint)
+	var/ratio = get_integrity_fraction()
 	switch(ratio)
 		if(0.75 to 1)
 			return null
@@ -785,6 +837,17 @@ BLIND		// can't see anything
 			return VISMSG_ARMOR_INT_STAGETWO
 		if(0 to 0.24)
 			return VISMSG_ARMOR_INT_STAGETHREE
+*/
+/obj/item/clothing/proc/get_armor_integ(def_zone)
+	var/ratio = integrity_display_ratio(def_zone)
+	if(ratio >= 0.75)
+		return null
+	if(ratio >= 0.5)
+		return VISMSG_ARMOR_INT_STAGEONE
+	if(ratio >= 0.25)
+		return VISMSG_ARMOR_INT_STAGETWO
+	return VISMSG_ARMOR_INT_STAGETHREE
+// [/SURREALIS-EDIT]
 
 
 /// Pardon the goofy name, but this proc in essence turns the item into an aesthetic-only loadout variant.
@@ -794,8 +857,16 @@ BLIND		// can't see anything
 	if(armor)
 		qdel(armor)
 		armor = new /datum/armor()
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	max_integrity = ARMOR_INT_CHEST_CIVILIAN
 	obj_integrity = max_integrity
+	*/
+	set_max_integrity(ARMOR_INT_CHEST_CIVILIAN)
+	set_integrity(max_integrity)
+	restore_all_zones()
+	// [/SURREALIS-EDIT]
 	blocksound = null
 	if(slot_flags & (ITEM_SLOT_ARMOR | ITEM_SLOT_SHIRT | ITEM_SLOT_CLOAK))
 		slot_flags |= ITEM_SLOT_ARMOR | ITEM_SLOT_SHIRT | ITEM_SLOT_CLOAK

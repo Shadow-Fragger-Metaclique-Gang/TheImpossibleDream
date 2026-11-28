@@ -438,7 +438,11 @@
 	var/damage = bonus_damage
 	var/mammon_spent = round(bonus_damage / 3)
 	var/npc_mult = target.mind ? 1 : 2
-	var/apen = clamp(round(mammon_spent / 20), PEN_NONE, PEN_BSTEEL)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// var/apen = clamp(round(mammon_spent / 20), PEN_NONE, PEN_BSTEEL) // SURREALIS-EDIT - ORIGINAL
+	var/static/list/ap_by_tier = list(AP_NONE, AP_LIGHT, AP_MEDIUM, AP_HEAVY, AP_BSTEEL)
+	var/apen = ap_by_tier[clamp(round(mammon_spent / 20), 0, 4) + 1]
+	// [/SURREALIS-EDIT]
 	var/bclass = BCLASS_BLUNT
 	var/damtype = BRUTE
 	if(mammon_spent >= 80)

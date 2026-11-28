@@ -7,7 +7,7 @@
 	damfactor = 1.3
 	reach = 2
 	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
-	penfactor = PEN_MEDIUM
+	penfactor = 2
 	chargedloop = /datum/looping_sound/flailswing
 	keep_looping = TRUE
 	blade_class = BCLASS_CHOP
@@ -22,7 +22,7 @@
 	blade_class = BCLASS_BLUNT
 	hitsound = list('sound/combat/hits/punch/punch_hard (1).ogg', 'sound/combat/hits/punch/punch_hard (2).ogg', 'sound/combat/hits/punch/punch_hard (3).ogg')
 	damfactor = 0.8 //basically just bash, but flavored as a punch
-	penfactor = PEN_NONE
+	penfactor = 0
 	clickcd = 14
 	recovery = 10
 	item_d_type = "blunt"
@@ -65,7 +65,7 @@
 	attack_verb = list("chops", "hacks")
 	animname = "chop"
 	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
-	penfactor = PEN_MEDIUM
+	penfactor = 2
 	item_d_type = "slash"
 
 /obj/item/rogueweapon/halberd/bardiche/stalker
@@ -103,7 +103,7 @@
 /datum/intent/sword/cut/sabre/slow
 	clickcd = 12
 	damfactor = 1.25//Better than rapier (Base is 1.1 for swords)
-	penfactor = PEN_LIGHT//Very slight buff to pen on cut mode. Still weaker then sword-chop mode.
+	penfactor = 1//Very slight buff to pen on cut mode. Still weaker then sword-chop mode.
 
 /obj/item/rogueweapon/sword/long/rhomphaia/stalker
 	name = "drow aruval"
@@ -245,7 +245,7 @@
 	hasloadedsprite = TRUE
 	movingreload = TRUE
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_HIP
-	penfactor = PEN_LIGHT // One tier above the ordinary light-bolt slurbow in this fork's armor system.
+	penfactor = 1 // One tier above the ordinary light-bolt slurbow in this fork's armor system.
 
 /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/slurbow/stalker/lesser
 	name = "drow crossbow"
@@ -261,7 +261,7 @@
 	hasloadedsprite = TRUE
 	movingreload = TRUE
 	slot_flags = ITEM_SLOT_BACK | ITEM_SLOT_HIP
-	penfactor = PEN_NONE
+	penfactor = 0
 
 /datum/intent/spear/thrust/drow_glaive
 	damfactor = 1.1
@@ -273,7 +273,7 @@
 	attack_verb = list("lashes", "slices")
 	hitsound = list('sound/combat/hits/bladed/genslash (1).ogg', 'sound/combat/hits/bladed/genslash (2).ogg', 'sound/combat/hits/bladed/genslash (3).ogg')
 	chargetime = 0.5 SECONDS
-	penfactor = PEN_NONE
+	penfactor = 0
 	item_d_type = "slash"
 	no_early_release = TRUE
 
@@ -283,7 +283,7 @@
 	attack_verb = list("cracks", "slashes")
 	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
 	chargetime = 0.9 SECONDS
-	penfactor = PEN_LIGHT
+	penfactor = 1
 	item_d_type = "slash"
 	no_early_release = TRUE
 
@@ -298,7 +298,7 @@
 	clickcd = CLICK_CD_CHARGED
 	warnie = "mobwarning"
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
-	penfactor = PEN_MEDIUM
+	penfactor = 2
 	item_d_type = "stab"
 	effective_range = 3
 	effective_range_type = EFF_RANGE_EXACT

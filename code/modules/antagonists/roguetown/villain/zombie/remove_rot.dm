@@ -1,4 +1,7 @@
-/proc/remove_rot(mob/living/carbon/human/target, mob/living/user, method = "unknown", damage = 0, success_message = "The rot is removed.", fail_message = "The rot removal failed.", lethal = TRUE)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /proc/remove_rot(mob/living/carbon/human/target, mob/living/user, method = "unknown", damage = 0, success_message = "The rot is removed.", fail_message = "The rot removal failed.", lethal = TRUE) // SURREALIS-EDIT - ORIGINAL
+/proc/remove_rot(mob/living/carbon/human/target, mob/living/user, method = "unknown", damage = 0, success_message = "The rot is removed.", fail_message = "The rot removal failed.", lethal = TRUE, cure_flesh = TRUE)
+// [/SURREALIS-EDIT]
 	if (!istype(target, /mob/living/carbon/human) || QDELETED(target))
 		return FALSE
 
@@ -11,12 +14,21 @@
 	var/has_rot = FALSE
 	var/datum/antagonist/zombie/was_zombie = target.mind?.has_antag_datum(/datum/antagonist/zombie)
 
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	if (was_zombie)
 		has_rot = TRUE
 	else if (istype(target, /mob/living/carbon))
 		has_rot = check_bodyparts_for_rot(target)
 	else if (target.has_status_effect(/datum/status_effect/zombie_infection))
 		has_rot = TRUE
+	*/
+	if (was_zombie || target.has_status_effect(/datum/status_effect/zombie_infection))
+		has_rot = TRUE
+	else
+		has_rot = check_bodyparts_for_rot(target)
+	// [/SURREALIS-EDIT]
 
 	// Remove rot component
 	remove_rot_component(target)
@@ -26,13 +38,20 @@
 	target.remove_status_effect(/datum/status_effect/zombie_infection)
 
 	// Clean body parts
-	clean_body_parts(target)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// clean_body_parts(target) // SURREALIS-EDIT - ORIGINAL
+	clean_body_parts(target, cure_flesh)
+	// [/SURREALIS-EDIT]
 
 	// Handle failure case
 	if (!has_rot)
 		to_chat(user, span_warning(fail_message))
 		return FALSE
 
+	// [SURREALIS-ADD] - VRCOMBAT
+	if (was_zombie && !cure_flesh)
+		was_zombie.keep_flesh_rot = TRUE
+	// [/SURREALIS-ADD]
 	if (was_zombie)
 		remove_zombie_antag(target, user, method, lethal)
 
@@ -74,11 +93,21 @@
 		rot.soundloop.stop()
 
 ///Cure bodyparts
-/proc/clean_body_parts(mob/living/carbon/target)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /proc/clean_body_parts(mob/living/carbon/target) // SURREALIS-EDIT - ORIGINAL
+/proc/clean_body_parts(mob/living/carbon/target, cure_flesh = TRUE)
+// [/SURREALIS-EDIT]
 
 	for (var/obj/item/bodypart/bodypart in target.bodyparts)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		bodypart.rotted = FALSE
 		bodypart.skeletonized = FALSE
+		*/
+		if(cure_flesh)
+			bodypart.cure_rot()
+		// [/SURREALIS-EDIT]
 		bodypart.update_limb()
 		bodypart.update_disabled()
 

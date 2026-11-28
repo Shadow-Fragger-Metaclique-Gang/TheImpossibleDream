@@ -32,6 +32,9 @@
 		return FALSE
 
 	ADD_TRAIT(target, TRAIT_BIGGUY, MAGIC_TRAIT)
+	// [SURREALIS-ADD] - VRCOMBAT
+	ADD_TRAIT(target, TRAIT_GIANT_WEAPON_WIELDER, MAGIC_TRAIT)
+	// [/SURREALIS-ADD]
 	target.transform = target.transform.Scale(1.25, 1.25)
 	target.transform = target.transform.Translate(0, (0.25 * 16))
 	target.update_transform()
@@ -42,6 +45,9 @@
 
 /datum/action/cooldown/spell/augment_buff/enlarge/proc/remove_buff(mob/living/carbon/target)
 	REMOVE_TRAIT(target, TRAIT_BIGGUY, MAGIC_TRAIT)
+	// [SURREALIS-ADD] - VRCOMBAT
+	REMOVE_TRAIT(target, TRAIT_GIANT_WEAPON_WIELDER, MAGIC_TRAIT)
+	// [/SURREALIS-ADD]
 	target.transform = target.transform.Translate(0, -(0.25 * 16))
 	target.transform = target.transform.Scale(1/1.25, 1/1.25)
 	target.update_transform()

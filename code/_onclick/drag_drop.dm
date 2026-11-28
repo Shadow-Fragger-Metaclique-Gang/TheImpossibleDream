@@ -377,7 +377,10 @@
 					if(held_for >= held.get_hold_grace())
 						if(held.hold_ramp)
 							handle_charge_strain(L, held.get_hold_instability(held_for))
-						if(!L.stamina_add(held.get_chargedrain(held_for)))
+						// [SURREALIS-EDIT] - VRCOMBAT
+						// if(!L.stamina_add(held.get_chargedrain(held_for))) // SURREALIS-EDIT - ORIGINAL
+						if(!L.stamina_add(held.get_chargedrain(held_for), skill_used = L.fatigue_skill_for(L.get_active_held_item())))
+						// [/SURREALIS-EDIT]
 							L.stop_attack()
 		return TRUE
 	else

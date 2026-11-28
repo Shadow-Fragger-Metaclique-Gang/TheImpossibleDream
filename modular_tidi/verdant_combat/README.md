@@ -1,0 +1,381 @@
+# Verdant Combat Rework Port
+
+**Tag:** `VRCOMBAT`
+
+**Created in:** combat_health_armor_reworks
+
+**Major changes:**
+Port of Verdant Retreat's combat, armor and health reworks to Surrealis: percentage armor with per-zone integrity and layered wear, stat- and intent-based armor penetration, d20 stat rolls for parry/dodge/feints and other checks, damage variance for melee, ranged and spells, new health model with lethal organ wounds, elemental burns, infections, bleed cache with blood pressure and bandage thresholds, organ effects, centralized dismemberment, ranged falloff and cross-z-level shots, tackles, and ports of the giant weapon trait and construct surgery steps from Scarlet Reach.
+
+## Layout
+
+- `_verdant_combat.dme`: local includes.
+- `_verdant_combat_defines.dm`: defines added, overridden (`#undef`/`#define`) or removed (`#undef`). Included from `roguetown.dme` right after `code/__DEFINES` so the defines apply to core code; unlike `code/armor_tables.dm`, which is included late because the armor entries themselves are also overridden in the module.
+- `code/trait_descriptions.dm`: `GLOB.roguetraits` entries for giant weapon wielder and civilized barbarian, and removal of the tempo entry.
+- `code/stat_rolls.dm`: `get_stat_roll` d20 checks and `get_stamina_cost`.
+- `code/damage_variance.dm`: weapon damage variance.
+- `code/bclass_helpers.dm`: blade class to armor type.
+- `code/zone_integrity.dm`: per-zone armor integrity.
+- `code/armor_pipeline.dm`: armor effectiveness, best-piece selection, layered wear, blunting and damage calculation.
+- `code/precision_strikes.dm`: precision strikes and melee armor penetration scaling.
+- `code/hit_reactions.dm`: variance messages, knockback, point-blank ranged defense and punch recoil.
+- `code/tackle.dm`: tackle maneuver effects and definition.
+- `code/upstream_features.dm`: A few misc. things like the giant weapon trait definition and effects and eyepatch vision effects and also harakiri with certain weapons, all ported from Scarlet Reach.
+- `code/crit_model.dm`: new crit chance calculation and thresholds, crit armor, scarring, stamina loss on some hits.
+- `code/lethal_wounds.dm`, `code/elemental_burns.dm`, `code/infections.dm`: new wound types and infections.
+- `code/dismemberment.dm`: shared dismember probability and limb gore procs.
+- `code/burn_healing.dm`: burn treatments and recipes.
+- `code/construct_surgery.dm`: construct-only surgery steps ported from Scarlet Reach.
+- `code/ranged.dm`: ranged variance, falloff, far-sight penalty and z-level steps.
+- `code/spell_variance.dm`: spell damage variance.
+- `code/fatigue.dm`: handles skill-scaled energy cost of stamina use and battering (temporary stamina loss).
+- `code/fatigue_hud.dm`: handles an alpha mask for the stamina and energy bars. Displays battering as a red band rising from the bottom of the stamina bar.
+- `code/missing_organs.dm`: per-tick effects of missing organs moved here for the sake of decluttering.
+- `code/deadite_undeath.dm`: deadites only die when the brain is destroyed or the head comes off, and ignore wound, poison and blood loss debuffs.
+- `code/prevent_crits_values`: override values for armor crit protection types.
+- `code/retune_values`: override values for armor and weapons.
+
+## Core files changed
+
+- `roguetown.dme`: ADD include of `_verdant_combat_defines.dm` after `modular_tidi\quirks\_quirks_defines.dm`.
+- `code/_globalvars/lists/wounds.dm`: crush, weapon, disembowel and dismember class lists; elemental charring classes.
+- `code/_globalvars/misc.dm`: armor check and vital zone lists.
+- `code/datums/armor.dm`: acid, frost and electrical ratings.
+- `code/_globalvars/special_traits.dm`: REMOVE near `/proc/check_trait_incompatibilities`
+- `code/_globalvars/traits.dm`: REMOVE near `GLOBAL_LIST_INIT`
+- `code/_onclick/click.dm`: ADD near `/mob/proc/ClickOn`
+- `code/_onclick/hud/screen_objects.dm`: EDIT near `/atom/movable/screen/zone_sel/proc/_has_visible_bleed`
+- `code/_onclick/item_attack.dm`: ADD near `/mob/living/attackby`, ADD near `/proc/get_complex_damage`, EDIT near `/mob/living/attacked_by`, EDIT near `/obj/attacked_by`, EDIT near `/obj/item/proc/attack`, EDIT near `/proc/get_complex_damage`, EDIT near `/turf/proc/attacked_by`, REMOVE near `/obj/item/proc/attack`
+- `code/datums/actions/mobs/_hurled_rock.dm`: EDIT near `/datum/action/cooldown/spell/telegraphed_strike/mob_ability/ground/hurled_rock`
+- `code/datums/actions/mobs/boar_charge.dm`: EDIT near `/datum/action/cooldown/spell/telegraphed_strike/mob_ability/boar_charge/proc/gore`, EDIT near `/obj/projectile/bullet/thorn`
+- `code/datums/actions/mobs/elemental_abilities.dm`: EDIT near `/datum/action/cooldown/spell/telegraphed_strike/mob_ability/elemental_slam`, EDIT near `/datum/action/cooldown/spell/telegraphed_strike/mob_ability/ground/quake`
+- `code/datums/actions/mobs/fae_abilities.dm`: EDIT near `/obj/projectile/thrown_log/on_hit`, EDIT near `/obj/projectile/thrown_log`
+- `code/datums/actions/mobs/infernal_abilities.dm`: EDIT near `/datum/action/cooldown/spell/telegraphed_strike/mob_ability/ground/meteor_storm`
+- `code/datums/actions/mobs/minotaur_charge.dm`: EDIT near `/datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_charge/proc/gore`
+- `code/datums/actions/mobs/minotaur_sweep.dm`: EDIT near `/datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_sweep/slam`, EDIT near `/datum/action/cooldown/spell/telegraphed_strike/mob_ability/minotaur_sweep`
+- `code/datums/actions/mobs/primordial_abilities.dm`: EDIT near `/datum/action/cooldown/spell/telegraphed_strike/dragons_breath/mob_ability/primordial/deluge`, EDIT near `/datum/action/cooldown/spell/telegraphed_strike/dragons_breath/mob_ability/primordial/gale`
+- `code/datums/ai/controllers/abyssal.dm`: EDIT near `/datum/ai_behavior/kick/perform`
+- `code/datums/ai/subtrees/human_basic_attack.dm`: EDIT near `/datum/ai_behavior/basic_melee_attack/human_npc/proc/_scan_for_weakpoint`
+- `code/datums/anatomy/_anatomy.dm`: EDIT near `/datum/anatomy/proc/get_pen_part_mult`
+- `code/datums/components/layer_armor.dm`: whole file in a REMOVE block (layered armor re-hosted in armor_pipeline.dm)
+- `code/datums/explosion.dm`: EDIT near `/datum/explosion/New`
+- `code/datums/particle_weathers/datum_types/hail_storm.dm`: EDIT near `/datum/particle_weather/hail/weather_act`
+- `code/datums/status_effects/buffs.dm`: REMOVE near `/datum/status_effect/buff/weapon_binded`
+- `code/datums/status_effects/debuffs.dm`: REMOVE near `/datum/status_effect/debuff/yeetcd`
+- `code/datums/status_effects/firestacker.dm`: EDIT near `/datum/status_effect/fire_handler/fire_stacks/tick`
+- `code/datums/status_effects/rogue/roguebuff.dm`: EDIT near `/datum/status_effect/buff/clash/proc/apply_cooldown`, EDIT near `/datum/status_effect/buff/ravox_vow/proc/on_item_attack`
+- `code/datums/wounds/_wound.dm`: ADD near `/datum/wound/proc/apply_to_bodypart`, ADD near `/datum/wound/proc/bleed_rates_similar`, ADD near `/datum/wound/proc/remove_from_bodypart`, ADD near `/datum/wound/proc/set_bleed_rate`, ADD near `/datum/wound/proc/sew_wound`, ADD near `/datum/wound`, EDIT near `/datum/wound/dynamic/upgrade`, EDIT near `/datum/wound/dynamic`, EDIT near `/datum/wound/proc/apply_to_bodypart`, EDIT near `/datum/wound/proc/cauterize_wound`, EDIT near `/datum/wound/proc/heal_wound`, EDIT near `/datum/wound/proc/on_life`, EDIT near `/datum/wound/proc/on_mob_gain`, EDIT near `/datum/wound`, REMOVE near `/datum/wound/dynamic/sew_wound`
+- `code/datums/wounds/types/arteries.dm`: ADD near `/datum/wound/artery/neck/on_bodypart_gain`, ADD near `/datum/wound/integrity/neck/on_bodypart_gain`, REMOVE near `/datum/wound/artery/neck`, REMOVE near `/datum/wound/integrity/neck`
+- `code/datums/wounds/types/bites.dm`: ADD near `/datum/wound/dynamic/bite/get_hypothetical_bleed_rate`, EDIT near `#define BITE_UPG_WHPRATE`, EDIT near `/datum/wound/dynamic/bite/get_hypothetical_bleed_rate`, EDIT near `/datum/wound/dynamic/bite`
+- `code/datums/wounds/types/bruises.dm`: EDIT near `#define BRUISE_UPG_WHPRATE`, EDIT near `/datum/wound/bruise/large`, EDIT near `/datum/wound/bruise/small`, EDIT near `/datum/wound/bruise`, EDIT near `/datum/wound/dynamic/bruise`
+- `code/datums/wounds/types/burns.dm`: EDIT near `#define BURN_UPG_WHPRATE`, EDIT near `/datum/wound/dynamic/burn/upgrade`, EDIT near `/datum/wound/dynamic/burn`
+- `code/datums/wounds/types/fractures.dm`: ADD near `/datum/wound/fracture/on_mob_gain`, ADD near `/datum/wound/fracture`
+- `code/datums/wounds/types/punctures.dm`: ADD near `/datum/wound/dynamic/gouge/get_hypothetical_bleed_rate`, ADD near `/datum/wound/dynamic/puncture/get_hypothetical_bleed_rate`, EDIT near `#define GOUGE_UPG_BLEEDRATE`, EDIT near `/datum/wound/dynamic/gouge/get_hypothetical_bleed_rate`, EDIT near `/datum/wound/dynamic/gouge`, EDIT near `/datum/wound/dynamic/puncture/get_hypothetical_bleed_rate`, EDIT near `/datum/wound/dynamic/puncture`, EDIT near `/datum/wound/puncture/drilling/cauterize_wound`
+- `code/datums/wounds/types/slashes.dm`: ADD near `/datum/wound/dynamic/lashing/get_hypothetical_bleed_rate`, ADD near `/datum/wound/dynamic/punish/get_hypothetical_bleed_rate`, ADD near `/datum/wound/dynamic/slash/get_hypothetical_bleed_rate`, EDIT near `#define LASHING_UPG_CLAMP`, EDIT near `#define PUNISH_UPG_CLAMP`, EDIT near `#define SLASH_UPG_SEWRATE`, EDIT near `/datum/wound/dynamic/lashing/get_hypothetical_bleed_rate`, EDIT near `/datum/wound/dynamic/punish/get_hypothetical_bleed_rate`, EDIT near `/datum/wound/dynamic/punish/upgrade`, EDIT near `/datum/wound/dynamic/slash/get_hypothetical_bleed_rate`, EDIT near `/datum/wound/dynamic/slash`, EDIT near `/datum/wound/slash/incision/cauterize_wound`, REMOVE near `/datum/wound/dynamic/punish/upgrade`
+- `code/datums/wounds/types/special.dm`: REMOVE near `/datum/wound/facial/eyes`, REMOVE near `/datum/wound/facial/tongue/on_mob_gain`
+- `code/game/objects/examine.dm`: EDIT near `/obj/item/clothing/integrity_check`
+- `code/game/objects/items.dm`: EDIT near `/obj/item/Topic`, REMOVE near `/obj/item/MouseEntered`, REMOVE near `/obj/item/Topic`, REMOVE near `/obj/item/proc/get_dismember_sound`
+- `code/game/objects/items/beartraps.dm`: EDIT near `/obj/item/restraints/legcuffs/beartrap/Crossed`
+- `code/game/objects/items/rogueitems/bandage.dm`: EDIT near `/obj/item/natural/cloth/bandage`
+- `code/game/objects/items/rogueitems/bombs.dm`: EDIT near `/obj/item/explosive/fused/bottle/blast`, EDIT near `/obj/item/explosive/fused/powder/blast`, EDIT near `/obj/item/explosive/impact/shrapnel/blast`, EDIT near `/obj/item/explosive/proc/crit`, EDIT near `/obj/item/tripwire/Crossed`
+- `code/game/objects/items/rogueitems/inquisitionrelics.dm`: EDIT near `/obj/item/inqarticles/garrote/afterattack`
+- `code/game/objects/items/rogueitems/natural/clothfibersthorn.dm`: EDIT near `/obj/item/natural/cloth`, REMOVE near `/obj/item/natural/cloth/wash_act`
+- `code/game/objects/items/rogueitems/needle.dm`: EDIT near `/obj/item/needle/attack_obj`, REMOVE near `/obj/item/needle/proc/sew`
+- `code/game/objects/items/rogueitems/ropechainbola/chain.dm`: EDIT near `/datum/intent/whips`
+- `code/game/objects/items/rogueweapons/integrity.dm`: REMOVE near `/obj/item/proc/remove_bintegrity`
+- `code/game/objects/items/rogueweapons/intents.dm`: EDIT near `/datum/intent/drill`, EDIT near `/datum/intent/effect/daze`, EDIT near `/datum/intent/pick/bad`, EDIT near `/datum/intent/pick/good`, EDIT near `/datum/intent/pick/ranged`, EDIT near `/datum/intent/pick`, EDIT near `/datum/intent/proc/examine`, EDIT near `/datum/intent/simple/axe`, EDIT near `/datum/intent/simple/bite`, EDIT near `/datum/intent/simple/claw/simplewwnpc`, EDIT near `/datum/intent/simple/claw`, EDIT near `/datum/intent/simple/headbutt`, EDIT near `/datum/intent/simple/spear`, EDIT near `/datum/intent/stab/militia`, EDIT near `/datum/intent/unarmed/claw`, EDIT near `/datum/intent`, REMOVE near `/datum/intent/pick/bad`, REMOVE near `/datum/intent/pick/good`, REMOVE near `/datum/intent/pick/ranged`, REMOVE near `/datum/intent/pick`, REMOVE near `/datum/intent`
+- `code/game/objects/items/rogueweapons/melee/alt_grip.dm`: EDIT near `/obj/item/proc/format_altgrip_intent`
+- `code/game/objects/items/rogueweapons/melee/axe/axe_intents.dm`: EDIT near `/datum/intent/axe/bash`, EDIT near `/datum/intent/axe/chop/heavy`, EDIT near `/datum/intent/axe/chop/stone`, EDIT near `/datum/intent/axe/chop`, EDIT near `/datum/intent/axe/cut`, EDIT near `/datum/intent/axe/rangedthrust`, EDIT near `/datum/intent/axe/thrust`
+- `code/game/objects/items/rogueweapons/melee/axe/axes.dm`: EDIT near `/datum/intent/axe/cut/lunge`, EDIT near `/datum/intent/axe/sweep`, EDIT near `/obj/item/rogueweapon/stoneaxe/handaxe/copper`, EDIT near `/obj/item/rogueweapon/stoneaxe/handaxe`, EDIT near `/obj/item/rogueweapon/stoneaxe/hurlbat/blacksteel`, EDIT near `/obj/item/rogueweapon/stoneaxe/hurlbat`, EDIT near `/obj/item/rogueweapon/stoneaxe/woodcut/bronze`, EDIT near `/obj/item/rogueweapon/stoneaxe/woodcut/bronzebattleaxe`
+- `code/game/objects/items/rogueweapons/melee/blunt.dm`: EDIT near `/datum/intent/effect/hobble`, EDIT near `/datum/intent/mace/bash`, EDIT near `/datum/intent/mace/demolish`, EDIT near `/datum/intent/mace/lesserdemolish`, EDIT near `/datum/intent/mace/rangedthrust`, EDIT near `/datum/intent/mace/smash/wood`, EDIT near `/datum/intent/mace/smash`, EDIT near `/datum/intent/mace/strike/wood`, EDIT near `/datum/intent/mace/strike`, EDIT near `/datum/intent/mace/sweep`, EDIT near `/datum/intent/mace/warhammer/pick`, EDIT near `/datum/intent/mace/warhammer/stab/lesser`, EDIT near `/datum/intent/mace/warhammer/stab`
+- `code/game/objects/items/rogueweapons/melee/flail.dm`: EDIT near `/datum/intent/flail/bash`, EDIT near `/datum/intent/flail/strike`, EDIT near `/datum/intent/flail/strikerange`, EDIT near `/datum/intent/flail/sweep`
+- `code/game/objects/items/rogueweapons/melee/knives.dm`: EDIT near `/datum/intent/dagger/chop/bronze`, EDIT near `/datum/intent/dagger/chop/cleaver`, EDIT near `/datum/intent/dagger/chop/wood`, EDIT near `/datum/intent/dagger/chop`, EDIT near `/datum/intent/dagger/cut/blunt`, EDIT near `/datum/intent/dagger/cut/heavy`, EDIT near `/datum/intent/dagger/cut/rend`, EDIT near `/datum/intent/dagger/cut/wood`, EDIT near `/datum/intent/dagger/cut`, EDIT near `/datum/intent/dagger/sucker_punch`, EDIT near `/datum/intent/dagger/thrust/blunt`, EDIT near `/datum/intent/dagger/thrust/bronze`, EDIT near `/datum/intent/dagger/thrust/combat`, EDIT near `/datum/intent/dagger/thrust/pick`, EDIT near `/datum/intent/dagger/thrust/quick`, EDIT near `/datum/intent/dagger/thrust/weak`, EDIT near `/datum/intent/dagger/thrust/wood`, EDIT near `/datum/intent/dagger/thrust`, EDIT near `/obj/item/rogueweapon/huntingknife/idagger/steel/holysee`, EDIT near `/obj/item/rogueweapon/huntingknife/throwingknife/blacksteel`, EDIT near `/obj/item/rogueweapon/huntingknife/throwingknife/steel`, EDIT near `/obj/item/rogueweapon/huntingknife/throwingknife`
+- `code/game/objects/items/rogueweapons/melee/polearms/lance.dm`: EDIT near `/datum/intent/lance`
+- `code/game/objects/items/rogueweapons/melee/polearms/polearms.dm`: EDIT near `/datum/intent/rend/reach`, EDIT near `/datum/intent/rend`, EDIT near `/datum/intent/spear/bash`, EDIT near `/datum/intent/spear/dismount`, EDIT near `/datum/intent/spear/thrust/azurean/oneh`, EDIT near `/datum/intent/spear/thrust/azurean/pick`, EDIT near `/datum/intent/spear/thrust/azurean`, EDIT near `/datum/intent/spear/thrust/bad`, EDIT near `/datum/intent/spear/thrust/militia`, EDIT near `/datum/intent/spear/thrust/oneh/training`, EDIT near `/datum/intent/spear/thrust/oneh`, EDIT near `/datum/intent/spear/thrust/pike/skewer`, EDIT near `/datum/intent/spear/thrust/short`, EDIT near `/datum/intent/spear/thrust/training`, EDIT near `/datum/intent/spear/thrust`, EDIT near `/obj/item/rogueweapon/spear/bronze`, EDIT near `/obj/item/rogueweapon/spear/spellblade`
+- `code/game/objects/items/rogueweapons/melee/polearms/staff.dm`: EDIT near `/datum/intent/spear/thrust/quarterstaff`
+- `code/game/objects/items/rogueweapons/melee/special.dm`: EDIT near `/datum/intent/claw/chop/gronn`, EDIT near `/datum/intent/claw/chop`, EDIT near `/datum/intent/claw/cut`, EDIT near `/datum/intent/claw/rend`, EDIT near `/datum/intent/katar/cut`, EDIT near `/datum/intent/katar/thrust/arbelos`, EDIT near `/datum/intent/katar/thrust`, EDIT near `/datum/intent/lordbash`, EDIT near `/datum/intent/peculate`
+- `code/game/objects/items/rogueweapons/melee/swords.dm`: EDIT near `/datum/intent/sword/cut/sabre/heavy`, EDIT near `/datum/intent/sword/cut/sabre/master`, EDIT near `/datum/intent/sword/cut/sabre`, EDIT near `/datum/intent/sword/disarm`, EDIT near `/datum/intent/sword/thrust/exe`, EDIT near `/datum/intent/sword/thrust/rapier/lunge`, EDIT near `/datum/intent/sword/thrust/rapier`, EDIT near `/datum/intent/sword/thrust/sabre`
+- `code/game/objects/items/rogueweapons/melee/swords/sword_intents.dm`: EDIT near `/datum/intent/sword/chop/cleave/super`, EDIT near `/datum/intent/sword/chop/falx`, EDIT near `/datum/intent/sword/chop/heavy`, EDIT near `/datum/intent/sword/chop/long/master`, EDIT near `/datum/intent/sword/chop/militia`, EDIT near `/datum/intent/sword/chop/powerstrike`, EDIT near `/datum/intent/sword/chop/sabre`, EDIT near `/datum/intent/sword/chop`, EDIT near `/datum/intent/sword/cut/falx/heavy`, EDIT near `/datum/intent/sword/cut/master`, EDIT near `/datum/intent/sword/cut/militia`, EDIT near `/datum/intent/sword/cut/rend`, EDIT near `/datum/intent/sword/cut/zhanmadao`, EDIT near `/datum/intent/sword/strike`, EDIT near `/datum/intent/sword/thrust/arming`, EDIT near `/datum/intent/sword/thrust/blunt`, EDIT near `/datum/intent/sword/thrust/estoc/lunge`, EDIT near `/datum/intent/sword/thrust/estoc`, EDIT near `/datum/intent/sword/thrust/heavy`, EDIT near `/datum/intent/sword/thrust/long/deep/halfsword/frei`, EDIT near `/datum/intent/sword/thrust/long/deep/halfsword`, EDIT near `/datum/intent/sword/thrust/long/deep/master`, EDIT near `/datum/intent/sword/thrust/long/deep`, EDIT near `/datum/intent/sword/thrust/long/halfsword/frei`, EDIT near `/datum/intent/sword/thrust/long/halfsword/jab`, EDIT near `/datum/intent/sword/thrust/long/halfsword`, EDIT near `/datum/intent/sword/thrust/long/master`, EDIT near `/datum/intent/sword/thrust/long`, EDIT near `/datum/intent/sword/thrust/short`, EDIT near `/datum/intent/sword/thrust/zhanmadao`, EDIT near `/datum/intent/sword/thrust`, REMOVE near `/datum/intent/sword/cut/short/banded`
+- `code/game/objects/items/rogueweapons/melee/whip.dm`: EDIT near `/datum/intent/whip/crack/blunt`, EDIT near `/datum/intent/whip/crack`, EDIT near `/datum/intent/whip/lash`, EDIT near `/datum/intent/whip/punish`
+- `code/game/objects/items/rogueweapons/mmb/bite.dm`: ADD near `/mob/living/carbon/onbite`, EDIT near `/mob/living/carbon/onbite`, EDIT near `/obj/item/grabbing/bite/proc/bitelimb`
+- `code/game/objects/items/rogueweapons/ranged/_ammo.dm`: REMOVE near `/obj/item/ammo_casing/proc/get_sweetspot_examine`
+- `code/game/objects/items/rogueweapons/ranged/ammo_arrows.dm`: EDIT near `/obj/projectile/bullet/arrow/elemental`, EDIT near `/obj/projectile/bullet/reusable/arrow/blacksteel`, EDIT near `/obj/projectile/bullet/reusable/arrow/blunt`, EDIT near `/obj/projectile/bullet/reusable/arrow/bronze`, EDIT near `/obj/projectile/bullet/reusable/arrow/iron/aalloy`, EDIT near `/obj/projectile/bullet/reusable/arrow/iron/paint`, EDIT near `/obj/projectile/bullet/reusable/arrow/iron`, EDIT near `/obj/projectile/bullet/reusable/arrow/silver`, EDIT near `/obj/projectile/bullet/reusable/arrow/steel/paalloy`, EDIT near `/obj/projectile/bullet/reusable/arrow/steel`, EDIT near `/obj/projectile/bullet/reusable/arrow`, REMOVE near `#define MIN_SPLINTER_RANGE`, REMOVE near `/obj/projectile/bullet/arrow/elemental`, REMOVE near `/obj/projectile/bullet/reusable/arrow/iron/paint/on_hit`, REMOVE near `/obj/projectile/bullet/reusable/arrow`
+- `code/game/objects/items/rogueweapons/ranged/ammo_bolts.dm`: EDIT near `/obj/projectile/bullet/reusable/bolt/aalloy`, EDIT near `/obj/projectile/bullet/reusable/bolt/blacksteel`, EDIT near `/obj/projectile/bullet/reusable/bolt/blunt`, EDIT near `/obj/projectile/bullet/reusable/bolt/bronze`, EDIT near `/obj/projectile/bullet/reusable/bolt/silver`, EDIT near `/obj/projectile/bullet/reusable/bolt`, EDIT near `/obj/projectile/bullet/reusable/heavy_bolt/blunt`, EDIT near `/obj/projectile/bullet/reusable/heavy_bolt/silver`, EDIT near `/obj/projectile/bullet/reusable/heavy_bolt/stake_silver`, EDIT near `/obj/projectile/bullet/reusable/heavy_bolt/stake`, EDIT near `/obj/projectile/bullet/reusable/heavy_bolt`, EDIT near `/obj/projectile/bullet/reusable/stake`, REMOVE near `#define MAX_BOLT_RANGE`, REMOVE near `/obj/projectile/bullet/bolt/water/on_hit`, REMOVE near `/obj/projectile/bullet/reusable/bolt/light/holy`, REMOVE near `/obj/projectile/bullet/reusable/bolt/light`, REMOVE near `/obj/projectile/bullet/reusable/bolt`, REMOVE near `/obj/projectile/bullet/reusable/stake`
+- `code/game/objects/items/rogueweapons/ranged/ammo_bullets.dm`: EDIT near `/obj/projectile/bullet/reusable/arrow/ancient`, EDIT near `/obj/projectile/bullet/reusable/bullet`, EDIT near `/obj/projectile/bullet/reusable/deepone`, EDIT near `/obj/projectile/bullet/reusable/sling_bullet`, EDIT near `/obj/projectile/bullet/sling_bullet`, REMOVE near `#define HEAVY_AMMO_SPEED`, REMOVE near `/obj/projectile/bullet/reusable/sling_bullet`, REMOVE near `/obj/projectile/bullet/sling_bullet/bs_scattershot`, REMOVE near `/obj/projectile/bullet/sling_bullet/fire_pot`, REMOVE near `/obj/projectile/bullet/sling_bullet/scattershot`, REMOVE near `/obj/structure/spider/stickyweb/mirespider/CanPass`
+- `code/game/objects/items/rogueweapons/ranged/ammo_javelin.dm`: EDIT near `/obj/item/ammo_casing/caseless/rogue/javelin/blacksteel`, EDIT near `/obj/item/ammo_casing/caseless/rogue/javelin/bronze`, EDIT near `/obj/item/ammo_casing/caseless/rogue/javelin/silver`, EDIT near `/obj/item/ammo_casing/caseless/rogue/javelin/steel`, EDIT near `/obj/item/ammo_casing/caseless/rogue/javelin`
+- `code/game/objects/items/rogueweapons/ranged/bows.dm`: EDIT near `/obj/item/gun/ballistic/revolver/grenadelauncher/bow/process_fire`, REMOVE near `/obj/item/gun/ballistic/revolver/grenadelauncher/bow`
+- `code/game/objects/items/rogueweapons/ranged/crossbows.dm`: EDIT near `/datum/intent/buttstroke`, EDIT near `/obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/get_mechanics_examine`, EDIT near `/obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/process_fire`
+- `code/game/objects/items/rogueweapons/ranged/slings.dm`: EDIT near `/obj/item/gun/ballistic/revolver/grenadelauncher/sling/process_fire`, REMOVE near `/obj/item/gun/ballistic/revolver/grenadelauncher/sling`
+- `code/game/objects/items/rogueweapons/rmb_intents.dm`: EDIT near `/datum/rmb_intent/aimed/special_attack`, EDIT near `/datum/rmb_intent/feint/special_attack`, REMOVE near `/datum/rmb_intent/aimed/special_attack`, REMOVE near `/datum/rmb_intent/feint/special_attack`, REMOVE near `/mob/living/carbon/human/on_cmode`
+- `code/game/objects/items/rogueweapons/rogueweapon.dm`: EDIT near `/obj/item/rogueweapon`
+- `code/game/objects/items/rogueweapons/shields.dm`: EDIT near `/datum/intent/shield/bash`
+- `code/game/objects/lighting/rogue_fires.dm`: EDIT near `/obj/machinery/light/rogue/firebowl/standing/onkick`
+- `code/game/objects/obj_defense.dm`: ADD near `/obj/proc/clamps_break_damage`, EDIT near `/obj/proc/take_damage`
+- `code/game/objects/structures.dm`: EDIT near `/obj/structure/Bumped`
+- `code/game/objects/structures/maneater.dm`: EDIT near `/obj/structure/flora/roguegrass/maneater/real/proc/begin_eat`
+- `code/game/objects/structures/mineral_doors.dm`: EDIT near `/obj/structure/mineral_door/onkick`
+- `code/game/objects/structures/roguetown/redstone.dm`: EDIT near `/obj/structure/lever/onkick`
+- `code/game/objects/structures/rune_ward_structure.dm`: EDIT near `/obj/structure/rune_ward/damage/rune_effect`
+- `code/game/objects/structures/traps.dm`: EDIT near `/obj/projectile/magic/frostbolt/wall_projectile`, EDIT near `/obj/structure/trap/rock_fall/trap_effect`, EDIT near `/obj/structure/trap/saw_blades/trap_effect`
+- `code/game/turfs/closed/_closed.dm`: EDIT near `/turf/closed/Bumped`
+- `code/game/turfs/open/lava.dm`: EDIT near `/turf/open/lava/acid/burn_stuff`, EDIT near `/turf/open/lava/proc/burn_stuff`
+- `code/modules/admin/verbs/randomverbs.dm`: EDIT near `/client/proc/smite`, EDIT near `/obj/projectile/bullet/reusable/bolt/smite`
+- `code/modules/antagonists/_common/antag_datum.dm`: REMOVE near `/datum/antagonist/proc/on_gain`, REMOVE near `/datum/antagonist`
+- `code/modules/antagonists/roguetown/roleobjs/wretch.dm`: REMOVE near `/datum/antagonist/wretch`
+- `code/modules/antagonists/roguetown/villain/aspirant.dm`: REMOVE near `/datum/antagonist/aspirant`
+- `code/modules/antagonists/roguetown/villain/bandit.dm`: REMOVE near `/datum/antagonist/bandit`
+- `code/modules/antagonists/roguetown/villain/dreamwalker.dm`: REMOVE near `/datum/antagonist/dreamwalker`
+- `code/modules/antagonists/roguetown/villain/gnoll/gnoll.dm`: EDIT near `/datum/intent/mace/smash/werewolf/gnoll`, EDIT near `/datum/intent/simple/gnoll_cut`, EDIT near `/datum/intent/simple/werewolf/gnoll`
+- `code/modules/antagonists/roguetown/villain/gnoll/gnoll_spells.dm`: EDIT near `/datum/action/cooldown/spell/gnoll/consume/proc/restore_armor_integrity`
+- `code/modules/antagonists/roguetown/villain/peasantrebel.dm`: REMOVE near `/datum/antagonist/prebel`
+- `code/modules/antagonists/roguetown/villain/werewolf/werewolf.dm`: EDIT near `/datum/intent/mace/smash/werewolf`, EDIT near `/datum/intent/simple/werewolf`, REMOVE near `/datum/antagonist/werewolf`
+- `code/modules/clothing/clothing.dm`: ADD near `/obj/item/clothing/obj_fix`, ADD near `/obj/item/clothing/proc/loadoutize`, EDIT near `/obj/item/clothing/ShiftRightClick`, EDIT near `/obj/item/clothing/take_damage`, REMOVE near `/obj/item/clothing/proc/get_flung_off`, REMOVE near `/obj/item/clothing/take_damage`
+- `code/modules/clothing/rogueclothes/armor/manual.dm`: EDIT near `/obj/item/clothing/suit/roguetown/armor/manual/proc/armour_regen`
+- `code/modules/clothing/rogueclothes/armor/plate.dm`: EDIT near `/obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat/attackby`
+- `code/modules/clothing/rogueclothes/armor/regenerating.dm`: EDIT near `/obj/item/clothing/suit/roguetown/armor/regenerating/proc/armour_regen`
+- `code/modules/clothing/rogueclothes/armor/special/vampiric_comp.dm`: EDIT near `/datum/component/vampiric_striker/proc/repair_from_shard`
+- `code/modules/clothing/rogueclothes/feet.dm`: EDIT near `/obj/item/clothing/shoes/roguetown/boots/otavan/inqboots/heels/attack_self`
+- `code/modules/clothing/rogueclothes/headwear/helmet/blacksteel.dm`: EDIT near `/obj/item/clothing/head/roguetown/helmet/blacksteel/psythorns/attack_self`
+- `code/modules/clothing/rogueclothes/headwear/helmet/heavy_helmet.dm`: EDIT near `/obj/item/clothing/head/roguetown/helmet/heavy/ornate/ordinator/attackby`
+- `code/modules/clothing/rogueclothes/mask.dm`: EDIT near `/obj/item/clothing/mask/rogue/facemask/steel/confessor/attackby`
+- `code/modules/clothing/rogueclothes/wrists.dm`: EDIT near `/obj/item/clothing/wrists/roguetown/bracers/psythorns/attack_self`
+- `code/modules/crafting/recipe_books/book_entries/combat/combat_chapters.dm`: EDIT near `/datum/book_entry/combat/aiming/inner_book_html`, EDIT near `/datum/book_entry/combat/ranged/inner_book_html`, EDIT near `/datum/book_entry/combat/stances/inner_book_html`, EDIT near `/datum/book_entry/combat/stats/inner_book_html`
+- `code/modules/farming/bin.dm`: EDIT near `/obj/item/roguebin/onkick`
+- `code/modules/jobs/job_types/roguetown/Inquisition/inquisitor.dm`: REMOVE near `/datum/advclass/inquisitor/inspector`, REMOVE near `/datum/advclass/inquisitor/ordinator`
+- `code/modules/jobs/job_types/roguetown/adventurer/types/_advclass.dm`: REMOVE near `/datum/advclass/proc/post_equip`, REMOVE near `/datum/advclass`
+- `code/modules/jobs/job_types/roguetown/adventurer/types/antag/gnoll.dm`: REMOVE near `/datum/advclass/gnoll`
+- `code/modules/jobs/job_types/roguetown/adventurer/types/antag/hag_class/hag_boons/hag_item_repair.dm`: EDIT near `/datum/component/hag_artifact_repair/proc/finish_reconstruction`, EDIT near `/datum/component/hag_artifact_repair/process`
+- `code/modules/jobs/job_types/roguetown/adventurer/types/antag/hag_class/hag_spells/hag_wildshape.dm`: EDIT near `/datum/intent/simple/hag`
+- `code/modules/jobs/job_types/roguetown/adventurer/types/wretch/ancient_deathknight.dm`: REMOVE near `/datum/advclass/wretch/ancient_deathknight`
+- `code/modules/jobs/job_types/roguetown/adventurer/types/wretch/ancient_spellblade.dm`: REMOVE near `/datum/advclass/wretch/ancient_spellblade`
+- `code/modules/jobs/job_types/roguetown/adventurer/types/wretch/heretic.dm`: REMOVE near `/datum/advclass/wretch/heretic/spy`, REMOVE near `/datum/advclass/wretch/heretic`
+- `code/modules/jobs/job_types/roguetown/adventurer/types/wretch/profane_champion.dm`: REMOVE near `/datum/advclass/wretch/profane_champion`
+- `code/modules/jobs/job_types/roguetown/burghers/apothecary.dm`: REMOVE near `/datum/advclass/apothecary`
+- `code/modules/jobs/job_types/roguetown/burghers/bathmaster.dm`: REMOVE near `/datum/advclass/bathmaster`
+- `code/modules/jobs/job_types/roguetown/burghers/guildmaster.dm`: REMOVE near `/datum/advclass/guildmaster`
+- `code/modules/jobs/job_types/roguetown/burghers/guildsman.dm`: REMOVE near `/datum/advclass/guildsman`
+- `code/modules/jobs/job_types/roguetown/burghers/innkeep.dm`: REMOVE near `/datum/advclass/innkeeper`
+- `code/modules/jobs/job_types/roguetown/burghers/mage_apprentice.dm`: REMOVE near `/datum/advclass/wapprentice`
+- `code/modules/jobs/job_types/roguetown/burghers/merchant.dm`: REMOVE near `The`
+- `code/modules/jobs/job_types/roguetown/burghers/physician.dm`: REMOVE near `/datum/advclass/physician`
+- `code/modules/jobs/job_types/roguetown/burghers/tailor.dm`: REMOVE near `/datum/advclass/tailor`
+- `code/modules/jobs/job_types/roguetown/church/acolyte.dm`: REMOVE near `/datum/advclass/acolyte`
+- `code/modules/jobs/job_types/roguetown/church/martyr.dm`: EDIT near `/datum/component/martyrweapon`, EDIT near `/datum/job/roguetown/martyr`
+- `code/modules/jobs/job_types/roguetown/church/priest.dm`: REMOVE near `/datum/advclass/bishop`
+- `code/modules/jobs/job_types/roguetown/church/templar/templar_spellblade.dm`: REMOVE near `/datum/advclass/templar/noc_spellblade`
+- `code/modules/jobs/job_types/roguetown/courtier/jester.dm`: EDIT near `/datum/job/roguetown/jester`
+- `code/modules/jobs/job_types/roguetown/courtier/magician.dm`: REMOVE near `/datum/advclass/courtmage`
+- `code/modules/jobs/job_types/roguetown/nobility/prince.dm`: REMOVE near `/datum/advclass/heir`
+- `code/modules/jobs/job_types/roguetown/retinue/knight.dm`: REMOVE near `/datum/advclass/knight/knightchampion`
+- `code/modules/jobs/job_types/roguetown/sidefolk/mercenary/lirvan.dm`: EDIT near `/datum/intent/katar/lirvasbite`
+- `code/modules/mob/living/blood.dm`: ADD near `/mob/living/carbon/handle_blood`, EDIT near `/mob/living/carbon/get_bleed_rate`, EDIT near `/mob/living/carbon/handle_blood`, EDIT near `/mob/living/proc/bleed`, EDIT near `/mob/living/proc/get_bleed_mod`, REMOVE near `/mob/living/carbon/get_bleed_rate`
+- `code/modules/mob/living/carbon/carbon.dm`: ADD near `/mob/living/carbon/throw_impact`, EDIT near `/mob/living/carbon/throw_impact`
+- `code/modules/mob/living/carbon/carbon_defense.dm`: EDIT near `/mob/living/carbon/attacked_by`, EDIT near `/mob/living/carbon/check_projectile_dismemberment`, EDIT near `/mob/living/carbon/check_projectile_wounding`
+- `code/modules/mob/living/carbon/carbon_defines.dm`: ADD near `/mob/living/carbon`, REMOVE near `/mob/living/carbon`
+- `code/modules/mob/living/carbon/damage_procs.dm`: EDIT near `/mob/living/carbon/adjustBruteLoss`, EDIT near `/mob/living/carbon/adjustFireLoss`, EDIT near `/mob/living/carbon/apply_damage`, EDIT near `/mob/living/carbon/take_bodypart_damage`, EDIT near `/mob/living/carbon/take_overall_damage`
+- `code/modules/mob/living/carbon/energystamina.dm`: EDIT near `/mob/living/proc/stamina_nutrition_mod`
+- `code/modules/mob/living/carbon/human/damage_procs.dm`: EDIT near `/mob/living/carbon/human/apply_damage`
+- `code/modules/mob/living/carbon/human/human.dm`: EDIT near `/mob/living/carbon/human/ZImpactDamage`
+- `code/modules/mob/living/carbon/human/human_defense.dm`: ADD near `/mob/living/carbon/human/bullet_act`, ADD near `/mob/living/carbon/human/proc/check_for_injuries`, EDIT near `/mob/living/carbon/human/attack_animal`, EDIT near `/mob/living/carbon/human/damage_clothes`, REMOVE near `file scope`
+- `code/modules/mob/living/carbon/human/human_defines.dm`: REMOVE near `/mob/living/carbon/human`
+- `code/modules/mob/living/carbon/human/human_helpers.dm`: EDIT near `/mob/living/carbon/human/get_punch_dmg`
+- `code/modules/mob/living/carbon/human/life.dm`: REMOVE near `/mob/living/carbon/human/Life`
+- `code/modules/mob/living/carbon/human/npc/soldiers/border_reivers.dm`: EDIT near `/datum/intent/simple/reiver_rider_sabre`, EDIT near `/datum/intent/simple/spear/reiver_rider_lancer`
+- `code/modules/mob/living/carbon/human/species.dm`: ADD near `/datum/species/proc/apply_damage`, ADD near `/datum/species/proc/harm`, ADD near `/datum/species/proc/spec_attacked_by`, EDIT near `#define FIRE_WOUND_BURN_BASE`, EDIT near `/datum/species/proc/apply_damage`, EDIT near `/datum/species/proc/disarm`, EDIT near `/datum/species/proc/handle_fire`, EDIT near `/datum/species/proc/harm`, EDIT near `/datum/species/proc/kicked`, EDIT near `/datum/species/proc/spec_attacked_by`, REMOVE near `/datum/species/proc/harm`
+- `code/modules/mob/living/carbon/human/species_types/roguetown/dullahan/dullahan_head.dm`: EDIT near `/obj/item/bodypart/head/dullahan/drop_limb`
+- `code/modules/mob/living/carbon/human/species_types/wildshape/cabbit.dm`: EDIT near `/datum/intent/simple/cabbit`
+- `code/modules/mob/living/carbon/human/species_types/wildshape/cat.dm`: EDIT near `/datum/intent/simple/cat`
+- `code/modules/mob/living/carbon/human/species_types/wildshape/dendormole.dm`: EDIT near `/datum/intent/simple/mole/dig`, EDIT near `/datum/intent/simple/mole`
+- `code/modules/mob/living/carbon/human/species_types/wildshape/direbear.dm`: EDIT near `/datum/intent/simple/bear`
+- `code/modules/mob/living/carbon/human/species_types/wildshape/direvolf.dm`: EDIT near `/datum/intent/simple/direvolf`
+- `code/modules/mob/living/carbon/human/species_types/wildshape/mirecrawler.dm`: EDIT near `/datum/intent/simple/spider/mire`
+- `code/modules/mob/living/carbon/human/species_types/wildshape/saiga.dm`: EDIT near `/datum/intent/simple/saiga`
+- `code/modules/mob/living/carbon/human/species_types/wildshape/spider.dm`: EDIT near `/datum/intent/simple/spider`
+- `code/modules/mob/living/carbon/human/species_types/wildshape/vernard.dm`: EDIT near `/datum/intent/simple/fox`
+- `code/modules/mob/living/carbon/human/species_types/wildshape/volf.dm`: EDIT near `/datum/intent/simple/volf`
+- `code/modules/mob/living/carbon/life.dm`: ADD near `/mob/living/carbon/Life`, ADD near `/mob/living/carbon/human/get_complex_pain`, ADD near `/mob/living/carbon/proc/get_complex_pain`, EDIT near `/mob/living/carbon/handle_embedded_objects`, EDIT near `/mob/living/carbon/human/handle_inwater`, EDIT near `/mob/living/carbon/human/handle_roguebreath`, EDIT near `/mob/living/carbon/proc/liver_failure`
+- `code/modules/mob/living/combat/azure_combat.dm`: EDIT near `/mob/living/carbon/human/proc/process_clash`, EDIT near `/mob/living/carbon/human/proc/try_bind`, REMOVE near `/mob/living/carbon/human/proc/update_worn_ac_cache`
+- `code/modules/mob/living/combat/checkdefense.dm`: EDIT near `/mob/living/proc/checkdefense`
+- `code/modules/mob/living/combat/dodge.dm`: EDIT near `/mob/proc/do_dodge`, REMOVE near `/mob/proc/do_dodge`
+- `code/modules/mob/living/combat/parry.dm`: EDIT near `/mob/living/proc/attempt_parry`, EDIT near `/mob/proc/do_parry`, REMOVE near `/mob/proc/do_unarmed_parry`
+- `code/modules/mob/living/combat/special_intents.dm`: EDIT near `/datum/special_intent/proc/apply_generic_weapon_damage`
+- `code/modules/mob/living/damage_procs.dm`: ADD near `/mob/living/proc/adjustChokeOxyLoss`, ADD near `/mob/living/proc/adjustOxyLoss`, EDIT near `/mob/living/proc/adjustBruteLoss`, EDIT near `/mob/living/proc/adjustFireLoss`, EDIT near `/mob/living/proc/apply_damage`, EDIT near `/mob/living/proc/take_bodypart_damage`, EDIT near `/mob/living/proc/take_overall_damage`
+- `code/modules/mob/living/grabbing.dm`: ADD near `/obj/item/grabbing/Destroy`, ADD near `/obj/item/grabbing/attack`, ADD near `/obj/item/grabbing/proc/removeembeddeditem`, EDIT near `/obj/item/grabbing/attack`, EDIT near `/obj/item/grabbing/proc/headbutt`, EDIT near `/obj/item/grabbing/proc/smashlimb`, EDIT near `/obj/item/grabbing/proc/twistlimb`
+- `code/modules/mob/living/life.dm`: EDIT near `/mob/living/carbon/handle_breathing`, REMOVE near `/mob/living/proc/handle_embedded_objects`
+- `code/modules/mob/living/living.dm`: ADD near `/mob/living/resist_grab`, ADD near `/mob/living/start_pulling`, EDIT near `/mob/living/proc/MobBump`, REMOVE near `/mob/living/proc/update_mobility`
+- `code/modules/mob/living/living_defense.dm`: EDIT near `/mob/living/bullet_act`, EDIT near `/mob/living/hitby`, EDIT near `/mob/living/proc/check_projectile_wounding`, EDIT near `/mob/living/proc/run_armor_check`
+- `code/modules/mob/living/living_defines.dm`: ADD near `/mob/living`
+- `code/modules/mob/living/living_wounds.dm`: EDIT near `/mob/living/proc/simple_woundcritroll`
+- `code/modules/mob/living/simple_animal/animal_defense.dm`: EDIT near `/mob/living/simple_animal/attack_hand`, EDIT near `/mob/living/simple_animal/attacked_by`, EDIT near `/mob/living/simple_animal/onbite`, EDIT near `/mob/living/simple_animal/proc/attack_threshold_check`, EDIT near `/mob/living/simple_animal/attack_animal`
+- `code/modules/mob/living/simple_animal/damage_procs.dm`: EDIT near `/mob/living/simple_animal/adjustBruteLoss`, EDIT near `/mob/living/simple_animal/adjustFireLoss`
+- `code/modules/mob/living/simple_animal/hostile/bosses/baroness.dm`: EDIT near `/datum/intent/simple/baroness`
+- `code/modules/mob/living/simple_animal/hostile/bosses/lich_boss.dm`: EDIT near `/datum/intent/simple/lich`
+- `code/modules/mob/living/simple_animal/hostile/deepone.dm`: EDIT near `/datum/intent/simple/claw/deepone_boss`, EDIT near `/datum/intent/simple/claw/deepone_unarmed`
+- `code/modules/mob/living/simple_animal/hostile/retaliate/primordial.dm`: EDIT near `/datum/intent/simple/claw/primordial`
+- `code/modules/mob/living/simple_animal/hostile/retaliate/summons/summons_intents.dm`: EDIT near `/datum/intent/simple/elemental_unarmed`, EDIT near `/datum/intent/simple/elementalt2_unarmed`
+- `code/modules/mob/living/simple_animal/hostile/retaliate/summons/void/obelisk.dm`: EDIT near `/datum/intent/simple/slam`
+- `code/modules/mob/living/simple_animal/hostile/retaliate/summons/void/voiddragon.dm`: EDIT near `/datum/intent/unarmed/dragonclaw`
+- `code/modules/mob/living/simple_animal/hostile/roguetown/crow.dm`: EDIT near `/obj/item/reagent_containers/food/snacks/crow/attack_hand`, EDIT near `/obj/item/reagent_containers/food/snacks/crow/attackby`
+- `code/modules/mob/living/simple_animal/hostile/roguetown/haunt.dm`: EDIT near `/datum/intent/simple/slash`
+- `code/modules/mob/living/simple_animal/hostile/roguetown/smallrat.dm`: EDIT near `/obj/item/reagent_containers/food/snacks/smallrat/attack_hand`, EDIT near `/obj/item/reagent_containers/food/snacks/smallrat/attackby`
+- `code/modules/mob/living/simple_animal/hostile/simple_skeleton.dm`: EDIT near `/datum/intent/simple/claw/skeleton_unarmed`
+- `code/modules/mob/living/simple_animal/rogue/creacher/abyssal_monsters.dm`: EDIT near `/datum/intent/simple/dreamfiend_ancient`
+- `code/modules/mob/living/simple_animal/rogue/creacher/boar.dm`: EDIT near `/datum/intent/simple/claw/boar`
+- `code/modules/mob/living/simple_animal/rogue/creacher/deadites/undead_boar.dm`: EDIT near `/datum/intent/simple/terrorhog_trample`
+- `code/modules/mob/living/simple_animal/rogue/creacher/deadites/undead_cabbit.dm`: EDIT near `/datum/intent/simple/claw/cabbit_undead`
+- `code/modules/mob/living/simple_animal/rogue/creacher/dragger.dm`: EDIT near `/datum/intent/simple/dragger`
+- `code/modules/mob/living/simple_animal/rogue/creacher/minotaur.dm`: EDIT near `/datum/intent/simple/minotaur_axe`, EDIT near `/datum/intent/simple/minotaur_unarmed`
+- `code/modules/mob/living/simple_animal/rogue/creacher/trolls/troll.dm`: EDIT near `/datum/intent/unarmed/claw/troll`
+- `code/modules/mob/living/simple_animal/rogue/creacher/trolls/trollaxe.dm`: EDIT near `/datum/intent/simple/troll_axe`
+- `code/modules/mob/living/simple_animal/rogue/creacher/white_stag.dm`: EDIT near `/datum/intent/simple/stag_gore`
+- `code/modules/mob/living/simple_animal/rogue/farm/fogbeast.dm`: EDIT near `/datum/intent/simple/fogbeast`
+- `code/modules/mob/living/simple_animal/rogue/rogueanimals.dm`: EDIT near `/mob/living/simple_animal/hostile/retaliate/rogue/apply_damage`
+- `code/modules/mob/living/simple_animal/weakpoints.dm`: EDIT near `/mob/living/proc/register_part_damage`, EDIT near `/mob/living/simple_animal/apply_damage`, EDIT near `/mob/living/simple_animal/register_part_damage`
+- `code/modules/projectiles/guns/ballistic/launchers.dm`: REMOVE near `/obj/item/gun/ballistic/revolver/grenadelauncher//this`, REMOVE near `/obj/item/gun/ballistic/revolver/grenadelauncher/proc/get_ranged_spread`
+- `code/modules/projectiles/projectile.dm`: EDIT near `/obj/projectile/proc/get_aim_at`, EDIT near `/obj/projectile/proc/process_hit`, EDIT near `/obj/projectile`, REMOVE near `/obj/projectile`
+- `code/modules/projectiles/projectile/magic.dm`: EDIT near `/obj/projectile/magic/arcane_barrage`, EDIT near `/obj/projectile/magic`, REMOVE near `/obj/projectile/energy`, REMOVE near `/obj/projectile/magic`
+- `code/modules/reagents/chemistry/reagents/other_reagents.dm`: EDIT near `/datum/reagent/fuel/unholywater/on_mob_life`, EDIT near `/datum/reagent/hellwater/on_mob_life`
+- `code/modules/reagents/chemistry/reagents/toxin_reagents.dm`: EDIT near `/datum/reagent/toxin/fentanyl/on_mob_life`
+- `code/modules/roguetown/roguecrafting/alchemy/reagents.dm`: EDIT near `/datum/reagent/repairelixir/reaction_obj`
+- `code/modules/roguetown/roguejobs/blacksmith/tools.dm`: EDIT near `/obj/item/rogueweapon/hammer/proc/repair_item`
+- `code/modules/roguetown/roguemachine/questing/types/kill/quest_notorious_bounty.dm`: REMOVE near `/datum/quest/kill/notorious_bounty/proc/offer_boss_control`
+- `code/modules/spells/pantheon/inhumen/_inhumen_spell_utils.dm`: EDIT near `/datum/status_effect/buff/mammonite/proc/do_mammon_strike`
+- `code/modules/spells/pantheon/inhumen/zizo.dm`: EDIT near `/obj/projectile/magic/profane`
+- `code/modules/spells/roguetown/acolyte/abyssor/painteffects.dm`: EDIT near `/datum/status_effect/debuff/ink_spike/on_apply`
+- `code/modules/spells/roguetown/acolyte/astrata.dm`: ADD near `/datum/action/cooldown/spell/projectile/sacred_flame`
+- `code/modules/spells/spell_cooldown.dm`: ADD near `/datum/action/cooldown/spell`
+- `code/modules/spells/spell_cooldown_projectile.dm`: ADD near `/datum/action/cooldown/spell/projectile/proc/ready_projectile`
+- `code/modules/spells/spell_types/_telegraphed_strike.dm`: EDIT near `/datum/action/cooldown/spell/telegraphed_strike`
+- `code/modules/spells/spell_types/bardic/crescendo.dm`: EDIT near `/datum/action/cooldown/spell/crescendo/proc/crescendo_concussive`, EDIT near `/datum/action/cooldown/spell/crescendo/proc/crescendo_resonating`
+- `code/modules/spells/spell_types/bardic/rhythm.dm`: EDIT near `/datum/action/cooldown/spell/rhythm/resonating/apply_rhythm`
+- `code/modules/spells/spell_types/classunique/spellblade/air_strike.dm`: EDIT near `/datum/action/cooldown/spell/air_strike`
+- `code/modules/spells/spell_types/classunique/spellblade/anime_spells_helper.dm`: ADD near `/proc/arcyne_strike`, EDIT near `/proc/arcyne_strike`
+- `code/modules/spells/spell_types/classunique/spellblade/azurean_pilum.dm`: EDIT near `/datum/action/cooldown/spell/projectile/azurean_pilum/ready_projectile`
+- `code/modules/spells/spell_types/classunique/spellfist/fist_of_psydon.dm`: EDIT near `/datum/action/cooldown/spell/fist_of_psydon/cast`, REMOVE near `/datum/action/cooldown/spell/fist_of_psydon/proc/resolve_strike`
+- `code/modules/spells/spell_types/classunique/vizier/diminish.dm`: EDIT near `/obj/effect/proc_holder/spell/invoked/diminish/cast`, REMOVE near `/obj/effect/proc_holder/spell/invoked/diminish/proc/diminish_area`
+- `code/modules/spells/spell_types/divine/projectiles_single/divine_blast.dm`: EDIT near `/obj/projectile/energy/divineblast/proc/apply_divine_damage`
+- `code/modules/spells/spell_types/divine/projectiles_single/unholy_blast.dm`: EDIT near `/obj/projectile/energy/unholyblast/proc/apply_divine_damage`
+- `code/modules/spells/spell_types/skills/invoked_single_target/engineerwindup.dm`: ADD near `/obj/effect/proc_holder/spell/invoked/engineerwindup/cast`, EDIT near `/obj/effect/proc_holder/spell/invoked/engineerwindup/cast`
+- `code/modules/spells/spell_types/wizard/augmentation/enlarge.dm`: ADD near `/datum/action/cooldown/spell/augment_buff/enlarge/cast`, ADD near `/datum/action/cooldown/spell/augment_buff/enlarge/proc/remove_buff`
+- `code/modules/spells/spell_types/wizard/cryomancy/frost_bolt.dm`: ADD near `/datum/action/cooldown/spell/projectile/frostbolt`, EDIT near `/obj/projectile/magic/frostbolt`
+- `code/modules/spells/spell_types/wizard/cryomancy/frost_shards.dm`: ADD near `/datum/action/cooldown/spell/projectile/frost_shards`, EDIT near `/obj/projectile/magic/frost_shard`
+- `code/modules/spells/spell_types/wizard/cryomancy/frozen_mist.dm`: ADD near `/datum/action/cooldown/spell/frozen_mist`, EDIT near `/obj/effect/frozen_mist/process`
+- `code/modules/spells/spell_types/wizard/cryomancy/rimecast.dm`: ADD near `/datum/action/cooldown/spell/projectile/rimecast`, EDIT near `/obj/projectile/magic/ice_burst/on_hit`, EDIT near `/obj/projectile/magic/ice_burst`, EDIT near `/obj/projectile/magic/ice_lance`
+- `code/modules/spells/spell_types/wizard/ferramancy/arcyne_lance.dm`: EDIT near `/obj/projectile/magic/arcyne_lance`
+- `code/modules/spells/spell_types/wizard/ferramancy/ferramancy_strikes.dm`: EDIT near `/datum/action/cooldown/spell/ferramancy_strike/sorcerers_lance`
+- `code/modules/spells/spell_types/wizard/ferramancy/stygian_efflorescence.dm`: EDIT near `/obj/projectile/energy/stygian`
+- `code/modules/spells/spell_types/wizard/fulgurmancy/arc_bolt.dm`: ADD near `/datum/action/cooldown/spell/projectile/arc_bolt`, EDIT near `/obj/projectile/magic/arc_bolt/proc/zap_arc_target`, EDIT near `/obj/projectile/magic/arc_bolt`
+- `code/modules/spells/spell_types/wizard/fulgurmancy/bolt_of_lightning.dm`: ADD near `/datum/action/cooldown/spell/projectile/lightning_bolt`, EDIT near `/obj/projectile/magic/lightning`
+- `code/modules/spells/spell_types/wizard/fulgurmancy/fulmination.dm`: ADD near `/datum/action/cooldown/spell/fulmination/proc/apply_mode`, ADD near `/datum/action/cooldown/spell/fulmination`, EDIT near `/datum/action/cooldown/spell/fulmination/proc/cast_thunderstrike`, EDIT near `/datum/action/cooldown/spell/fulmination/proc/heavens_strike_damage`, EDIT near `/datum/action/cooldown/spell/fulmination`, EDIT near `/proc/thunderstrike_erupt`
+- `code/modules/spells/spell_types/wizard/fulgurmancy/greater_thunderstrike.dm`: ADD near `/datum/action/cooldown/spell/greater_thunderstrike`, EDIT near `/datum/action/cooldown/spell/greater_thunderstrike/cast`
+- `code/modules/spells/spell_types/wizard/fulgurmancy/levinstroke.dm`: ADD near `/datum/action/cooldown/spell/levinstroke`, EDIT near `/datum/action/cooldown/spell/levinstroke/proc/execute_path_strikes`
+- `code/modules/spells/spell_types/wizard/legacy_spells_unused/acid_splash.dm`: EDIT near `/datum/status_effect/buff/acidsplash/tick`, EDIT near `/obj/projectile/magic/acidsplash`
+- `code/modules/spells/spell_types/wizard/misc/magicians_brick.dm`: EDIT near `/obj/item/rogueweapon/magicbrick`
+- `code/modules/spells/spell_types/wizard/necromancy/bone_shard.dm`: EDIT near `/obj/projectile/magic/profane/bone_shard`
+- `code/modules/spells/spell_types/wizard/projectiles_single/basic_offensive.dm`: ADD near `/datum/action/cooldown/spell/projectile/basic_offensive/proc/apply_mode`, ADD near `/datum/action/cooldown/spell/projectile/basic_offensive`, EDIT near `/datum/action/cooldown/spell/projectile/basic_offensive`
+- `code/modules/spells/spell_types/wizard/projectiles_single/blood_lightning.dm`: ADD near `/datum/action/cooldown/spell/projectile/blood_bolt`, EDIT near `/obj/projectile/magic/bloodlightning`
+- `code/modules/spells/spell_types/wizard/projectiles_single/greater_arcyne_bolt.dm`: ADD near `/datum/action/cooldown/spell/projectile/greater_arcyne_bolt`
+- `code/modules/spells/spell_types/wizard/pyromancy/fire_curtain.dm`: EDIT near `/obj/effect/curtain_fire/proc/burn_occupant`
+- `code/modules/spells/spell_types/wizard/pyromancy/spitfire.dm`: ADD near `/datum/action/cooldown/spell/projectile/spitfire`
+- `code/modules/spells/spell_types/wizard/pyromancy/wyrmfire.dm`: ADD near `/datum/action/cooldown/spell/projectile/fireball/barrage/proc/apply_mode`, EDIT near `/datum/action/cooldown/spell/projectile/fireball/barrage`
+- `code/modules/spells/spell_types/wizard/utility/mending.dm`: EDIT near `/datum/action/cooldown/spell/mending/cast`
+- `code/modules/surgery/bodyparts/_bodyparts.dm`: ADD near `/obj/item/bodypart/proc/receive_damage`, EDIT near `/obj/item/bodypart/proc/receive_damage`
+- `code/modules/surgery/bodyparts/bodypart_dismemberment.dm`: ADD near `/obj/item/bodypart/chest/dismember`, ADD near `/obj/item/bodypart/proc/dismember`, EDIT near `/obj/item/bodypart/chest/drop_limb`, EDIT near `/obj/item/bodypart/head/drop_limb`, EDIT near `/obj/item/bodypart/l_arm/drop_limb`, EDIT near `/obj/item/bodypart/l_arm/prosthetic/drop_limb`, EDIT near `/obj/item/bodypart/l_leg/drop_limb`, EDIT near `/obj/item/bodypart/l_leg/prosthetic/drop_limb`, EDIT near `/obj/item/bodypart/proc/dismember`, EDIT near `/obj/item/bodypart/proc/drop_limb`, EDIT near `/obj/item/bodypart/r_arm/drop_limb`, EDIT near `/obj/item/bodypart/r_arm/prosthetic/drop_limb`, EDIT near `/obj/item/bodypart/r_leg/drop_limb`, EDIT near `/obj/item/bodypart/r_leg/prosthetic/drop_limb`, EDIT near `/obj/item/bodypart/taur/drop_limb`, REMOVE near `/obj/item/bodypart/proc/can_disable`, REMOVE near `/obj/item/bodypart/proc/dismember`
+- `code/modules/surgery/bodyparts/bodypart_wounds.dm`: ADD near `/obj/item/bodypart/proc/add_embedded_object`, ADD near `/obj/item/bodypart/proc/bandage_expire`, ADD near `/obj/item/bodypart/proc/get_surgery_flags`, ADD near `/obj/item/bodypart/proc/invalidate_owner_bleed_cache`, ADD near `/obj/item/bodypart/proc/remove_bandage`, ADD near `/obj/item/bodypart/proc/remove_embedded_object`, ADD near `/obj/item/bodypart/proc/try_bandage`, ADD near `/obj/item/bodypart`, EDIT near `/obj/item/bodypart/chest/try_crit`, EDIT near `/obj/item/bodypart/proc/add_wound`, EDIT near `/obj/item/bodypart/proc/bodypart_attacked_by`, EDIT near `/obj/item/bodypart/proc/get_bleed_rate`, EDIT near `/obj/item/bodypart/proc/get_surgery_flags`, EDIT near `/obj/item/bodypart/proc/manage_dynamic_wound`, EDIT near `/obj/item/bodypart/proc/process_bandage`, EDIT near `/obj/item/bodypart/proc/try_crit`
+- `code/modules/surgery/bodyparts/taur.dm`: EDIT near `/obj/item/bodypart/taur/spider/drider/drop_limb`
+- `code/modules/surgery/organs/brain.dm`: ADD near `/obj/item/organ/brain/proc/gain_allowed_trauma`, ADD near `GLOBAL_LIST_INIT`, EDIT near `/obj/item/organ/brain/check_damage_thresholds`, EDIT near `/obj/item/organ/brain/on_life`, EDIT near `/obj/item/organ/brain`
+- `code/modules/surgery/organs/heart.dm`: ADD near `/datum/client_colour/cursed_heart_blood`, ADD near `/obj/item/organ/heart/Remove`, ADD near `/obj/item/organ/heart/on_life`, EDIT near `/obj/item/organ/heart/on_life`
+- `code/modules/surgery/organs/liver.dm`: EDIT near `/obj/item/organ/liver/on_life`
+- `code/modules/surgery/organs/lungs.dm`: EDIT near `/obj/item/organ/lungs/on_life`
+- `code/modules/surgery/organs/organ_internal.dm`: ADD near `/obj/item/organ/proc/Insert`, ADD near `/obj/item/organ/proc/enter_wardrobe`
+- `code/modules/surgery/organs/stomach.dm`: ADD near `/obj/item/organ/stomach/Remove`, ADD near `/obj/item/organ/stomach/ethereal/proc/adjust_charge`, EDIT near `/obj/item/organ/stomach/on_life`
+- `code/modules/surgery/revive_chair.dm`: ADD near `/obj/structure/fluff/revive_chair`, EDIT near `/obj/structure/fluff/revive_chair`
+- `code/modules/surgery/surgeries/amputation.dm`: ADD near `/datum/surgery_step/amputate`
+- `code/modules/surgery/surgeries/bloodletting.dm`: ADD near `/datum/surgery_step/bloodlet`, ADD near `/datum/surgery_step/cutvein`
+- `code/modules/surgery/surgeries/dislocation.dm`: ADD near `/datum/surgery_step/relocate_bone`
+- `code/modules/surgery/surgeries/external_organs.dm`: ADD near `/datum/surgery_step/remove_external_organs`
+- `code/modules/surgery/surgeries/fracture.dm`: ADD near `/datum/surgery_step/set_bone`
+- `code/modules/surgery/surgeries/healing.dm`: ADD near `/datum/surgery_step/heal/success`, ADD near `/datum/surgery_step/heal`, EDIT near `/datum/surgery/healing`
+- `code/modules/surgery/surgeries/organ_manipulation.dm`: ADD near `/datum/surgery_step/make_organs`, ADD near `/datum/surgery_step/manipulate_organs`
+- `code/modules/surgery/surgeries/organic_steps.dm`: ADD near `/datum/surgery_step/cauterize`, EDIT near `/datum/surgery_step/cauterize/success`, EDIT near `/datum/surgery_step/clamp`, EDIT near `/datum/surgery_step/drill`, EDIT near `/datum/surgery_step/incise`, EDIT near `/datum/surgery_step/retract`, EDIT near `/datum/surgery_step/saw`
+- `code/modules/surgery/surgeries/plastic_surgery.dm`: ADD near `/datum/surgery_step/reshape_face`
+- `code/modules/surgery/surgeries/prosthetic_replacement.dm`: ADD near `/datum/surgery_step/add_prosthetic/validate_target`, ADD near `/datum/surgery_step/add_prosthetic`, ADD near `/datum/surgery_step/remove_prosthetic`
+- `code/modules/surgery/surgeries_hearth/cure_black_rot.dm`: ADD near `/datum/surgery_step/extract_black_rose_residue`
+- `code/modules/surgery/surgeries_hearth/cure_rot.dm`: ADD near `/datum/surgery_step/burn_rot`
+- `code/modules/surgery/surgeries_hearth/extract_lux.dm`: ADD near `/datum/surgery_step/extract_lux/validate_target`, ADD near `/datum/surgery_step/extract_lux`
+- `code/modules/surgery/surgeries_hearth/revival.dm`: ADD near `/datum/surgery_step/infuse_lux`
+- `code/modules/surgery/surgeries_hearth/revival_big_fat_tick.dm`: ADD near `/datum/surgery_step/infuse_tick`
+- `code/modules/vampire_neu/covens/coven_powers/demonic.dm`: EDIT near `/obj/item/rogueweapon/gangrel`
+- `code/modules/vampire_neu/covens/coven_powers/fae_trickery.dm`: EDIT near `/obj/item/clothing/mask/rogue/goblin_mask/attack_hand`, EDIT near `/obj/item/clothing/mask/rogue/goblin_mask/proc/eat_head`
+- `modular/Neu_Food/code/cookware/fork.dm`: EDIT near `/datum/intent/dagger/thrust/cutlery`
+- `modular/Neu_Food/code/raw/raw_fish.dm`: EDIT near `/datum/intent/mace/slap`, EDIT near `/obj/item/reagent_containers/food/snacks/fish/swordfish`
+- `modular/code/game/objects/gallows.dm`: EDIT near `/obj/structure/noose/process`
+- `code/modules/mob/living/carbon/human/species_types/roguetown/other/werewolf.dm`: EDIT near `/datum/species/werewolf`
+- `code/modules/spells/spell_types/classunique/lamplighter/lampwarden.dm`: EDIT near `/datum/action/cooldown/spell/lamplighter/cauterize/cast`
+- `code/__DEFINES/combat.dm`: EDIT near `#define BLUNT_DEFAULT_INT_DAMAGEFACTOR`
+- `code/datums/components/dejavu.dm`: EDIT near `/datum/component/dejavu/proc/rewind_obj`
+- `code/game/objects/items/rogueitems/repair_kits.dm`: EDIT near `/obj/item/repair_kit/attack_obj`
+- `code/game/objects/items/spell_implements/_spell_implement.dm`: EDIT near `/obj/item/rogueweapon/proc/apply_implement_tier`
+- `code/game/rotational_objects/autosmither.dm`: EDIT near `/obj/structure/autosmither/proc/create_current`
+- `code/modules/admin/verbs/inventory_panel.dm`: EDIT near `/datum/admins/proc/handle_inventory_panel_topic`
+- `code/modules/antagonists/roguetown/villain/dark_itinerant.dm`: EDIT near `/datum/outfit/job/dark_itinerant_squire/pre_equip`
+- `code/modules/antagonists/roguetown/villain/dreamwalker/dreamwalker_gear.dm`: EDIT near `/datum/component/dreamwalker_repair/proc/repair_from_shard`
+- `code/modules/jobs/job_types/roguetown/adventurer/types/antag/hedgeknight.dm`: EDIT near `/datum/outfit/job/roguetown/bandit/hedgeknight/pre_equip`
+- `code/modules/jobs/job_types/roguetown/adventurer/types/combat/warrior.dm`: ADD near `/datum/outfit/job/roguetown/adventurer/ironclad/pre_equip`, EDIT near `/datum/outfit/job/roguetown/adventurer/ironclad/pre_equip`
+- `code/modules/jobs/job_types/roguetown/adventurer/types/migrant/heartfelt/heartfeltlord.dm`: EDIT near `/datum/outfit/job/heartfelt/lord/chief/pre_equip`
+- `code/modules/jobs/job_types/roguetown/adventurer/types/migrant/heartfelt/retinue/heartfeltarmorer.dm`: EDIT near `/datum/outfit/job/roguetown/heartfelt/retinue/armorer/pre_equip`
+- `code/modules/jobs/job_types/roguetown/adventurer/types/migrant/heartfelt/retinue/heartfeltwarriors.dm`: EDIT near `/datum/outfit/job/roguetown/heartfelt/retinue/houseguard/pre_equip`, EDIT near `/datum/outfit/job/roguetown/heartfelt/retinue/squire/pre_equip`
+- `code/modules/jobs/job_types/roguetown/adventurer/types/wretch/deserter.dm`: EDIT near `/datum/outfit/job/roguetown/wretch/deserter/pre_equip`
+- `code/modules/jobs/job_types/roguetown/garrison/sergeant.dm`: EDIT near `/datum/outfit/job/roguetown/sergeant/sergeant/pre_equip`
+- `code/modules/jobs/job_types/roguetown/retinue/marshal.dm`: EDIT near `/datum/outfit/job/roguetown/marshal/classic/pre_equip`
+- `code/modules/jobs/job_types/roguetown/sidefolk/mercenary/etrusca.dm`: EDIT near `/datum/outfit/job/roguetown/mercenary/etrusca_condottiero/pre_equip`
+- `code/modules/jobs/job_types/roguetown/sidefolk/veteran.dm`: EDIT near `/datum/outfit/job/roguetown/vet/calvaryman/pre_equip`
+- `code/modules/mob/living/carbon/human/examine.dm`: ADD near `/mob/living/carbon/human/examine`, EDIT near `/mob/living/carbon/human/examine`
+- `code/modules/mob/living/carbon/human/human_topic.dm`: EDIT near `/mob/living/carbon/human/Topic`
+- `code/modules/mob/living/carbon/human/species_types/roguetown/construct/constructm.dm`: EDIT near `/atom/proc/ironman_mine`
+- `code/modules/roguetown/roguejobs/blacksmith/forge.dm`: EDIT near `/obj/machinery/light/rogue/forge/attackby`
+- `code/modules/roguetown/roguejobs/blacksmith/items.dm`: EDIT near `/obj/item/proc/apply_full_polish`, EDIT near `/obj/item/take_damage`
+- `code/modules/roguetown/roguejobs/engineer/grappler.dm`: EDIT near `/obj/item/grapplinghook/proc/destroy_eligible_objects`
+- `code/modules/spells/pantheon/inhumen/_inhumen_spell_items.dm`: EDIT near `/obj/item/alchserum/matthios_warsmith/attack_obj`
+- `code/modules/spells/roguetown/acolyte/malum.dm`: EDIT near `/datum/action/cooldown/spell/malum/reconstruction/cast`
+- `code/modules/spells/spell_types/classunique/spellblade/advance.dm`: EDIT near `/datum/action/cooldown/spell/advance/cast`
+- `code/modules/spells/spell_types/classunique/spellblade/azurean_phalanx.dm`: EDIT near `/datum/action/cooldown/spell/azurean_phalanx/proc/do_pierce`
+- `code/modules/spells/spell_types/classunique/spellblade/caedo.dm`: EDIT near `/datum/action/cooldown/spell/caedo/proc/execute_path_strikes`, EDIT near `/datum/action/cooldown/spell/caedo/proc/second_strike`
+- `code/modules/spells/spell_types/familiar_abilities.dm`: EDIT near `/datum/action/cooldown/spell/earthen_forge/cast`
+- `code/modules/spells/spell_types/skills/invoked_single_target/engineertuneup.dm`: EDIT near `/obj/effect/proc_holder/spell/invoked/engineertuneup/cast`
+- `code/modules/spells/spell_types/wizard/conjure/arcyne_forge.dm`: EDIT near `/datum/action/cooldown/spell/arcyne_forge/cast`
+- `code/modules/spells/spell_types/wizard/conjure/conjure_arcyne_ward.dm`: EDIT near `/datum/action/cooldown/spell/regenerate_arcyne_ward/cast`
+- `code/modules/spells/spell_types/wizard/ferramancy/blade_form_spells.dm`: EDIT near `/datum/action/cooldown/spell/form_blade/cast`
+- `code/modules/spells/spell_types/wizard/telomancy/arcyne_barrage.dm`: EDIT near `/datum/action/cooldown/spell/projectile/arcyne_barrage/get_spell_statistics`, EDIT near `/obj/projectile/magic/arcyne_barrage_bolt`
+- `code/__DEFINES/misc.dm`: REMOVE near `#define ZOMBIE_INFECTION_TIME`
+- `code/datums/components/rotting.dm`: EDIT near `/datum/component/rot/corpse/process`
+- `code/game/objects/effects/effect_system/effects_smoke.dm`: EDIT near `/obj/effect/particle_effect/smoke/healing_gas/smoke_mob`
+- `code/modules/antagonists/roguetown/villain/zombie/remove_rot.dm`: EDIT near `/proc/clean_body_parts`, EDIT near `/proc/remove_rot`
+- `code/modules/antagonists/roguetown/villain/zombie/zombie.dm`: ADD near `/datum/antagonist/zombie/on_gain`, ADD near `/datum/antagonist/zombie`, EDIT near `/datum/antagonist/zombie/on_removal`, EDIT near `/datum/antagonist/zombie/proc/transform_zombie`
+- `code/modules/mob/living/carbon/human/npc/deadite.dm`: EDIT near `/mob/living/carbon/human/proc/zombie_infect_attempt`
+- `code/modules/mob/living/carbon/human/npc/goblin.dm`: EDIT near `/datum/component/rot/corpse/goblin/process`
+- `code/modules/mob/living/carbon/human/npc/npc_procs.dm`: EDIT near `/mob/living/carbon/human/proc/make_deadite`
+- `code/modules/spells/roguetown/acolyte/pestra.dm`: EDIT near `/obj/effect/proc_holder/spell/invoked/attach_bodypart/cast`, EDIT near `/obj/effect/proc_holder/spell/invoked/cure_rot/cast`
+- `code/modules/spells/roguetown/oldgod.dm`: ADD near `/proc/translate_wound_for_target`
+- `code/modules/surgery/organs/ears.dm`: EDIT near `/obj/item/organ/ears/Insert`
+- `code/modules/surgery/organs/eyes.dm`: EDIT near `/obj/item/organ/eyes/Insert`
+- `code/modules/surgery/organs/tongue.dm`: EDIT near `/obj/item/organ/tongue/Insert`
+- `code/_onclick/other_mobs.dm`: EDIT near `/mob/living/carbon/UnarmedAttack`
+- `code/game/objects/items/rogueweapons/mmb/jump.dm`: EDIT near `/mob/living/proc/jump_action_resolve`
+- `code/game/turfs/closed/minerals.dm`: EDIT near `/turf/closed/mineral/attack_right`
+- `code/game/turfs/open/openspace.dm`: EDIT near `/turf/open/transparent/openspace/attack_hand`, EDIT near `/turf/open/transparent/openspace/proc/wallpress`
+- `code/game/turfs/open/water.dm`: EDIT near `/turf/open/water/Exited`
+- `code/modules/farming/helpers.dm`: EDIT near `/proc/apply_farming_fatigue`
+- `code/modules/mob/living/carbon/carbon_movement.dm`: EDIT near `/mob/living/carbon/Move`
+- `code/modules/roguetown/roguejobs/blacksmith/anvil.dm`: EDIT near `/obj/machinery/anvil/attackby`
+- `code/modules/spells/spell.dm`: EDIT near `/obj/effect/proc_holder/spell/proc/perform`
+- `combat_ci.dme`: changed
+- `icons/mob/rogueheat.dmi`: changed
+- `code/modules/spells/roguetown/acolyte/resurrect.dm`: ADD near `/proc/deathmark`
+- `code/datums/status_effects/rogue/debuff.dm`: REMOVE near `/atom/movable/screen/alert/status_effect/debuff/mesmerised`
+- `code/_onclick/drag_drop.dm`: EDIT near `/client/proc/update_to_mob`
+- `code/game/objects/structures/fluff.dm`: EDIT near `/obj/structure/fluff/statue/tdummy/proc/practice`
+- `code/modules/mob/living/carbon/human/emote.dm`: EDIT near `/mob/living/carbon/human/proc/game_armwrestle`
+- `code/modules/mob/living/carbon/human/exercise.dm`: EDIT near `/mob/living/carbon/human/proc/execute_pushups`
+- `code/modules/roguetown/roguejobs/gravedigger/hole.dm`: EDIT near `/obj/structure/closet/dirthole/attackby`
+- `code/game/objects/structures/stairs.dm`: ADD near `/proc/movable_travel_z_level`

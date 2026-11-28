@@ -75,6 +75,9 @@
 
 	M.internal_organs |= src
 	M.internal_organs_slot[slot] = src
+	// [SURREALIS-ADD] - VRCOMBAT
+	SEND_SIGNAL(M, COMSIG_MOB_ORGAN_INSERTED, src, special)
+	// [/SURREALIS-ADD]
 	moveToNullspace()
 	for(var/X in actions)
 		var/datum/action/A = X

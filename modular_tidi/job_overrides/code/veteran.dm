@@ -32,7 +32,7 @@
 				shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/lord
 				head = /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan/iron
 				neck = /obj/item/clothing/neck/roguetown/chaincoif
-				armor = /obj/item/clothing/suit/roguetown/armor/brigandine
+				armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
 				pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 				shoes = /obj/item/clothing/shoes/roguetown/boots/armor/iron
 				gloves = /obj/item/clothing/gloves/roguetown/plate/iron

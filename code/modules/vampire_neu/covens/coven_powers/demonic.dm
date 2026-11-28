@@ -176,7 +176,10 @@
 	max_integrity = 900
 	force = 11
 	wdefense = 9
-	armor_penetration = PEN_BSTEEL
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_BSTEEL // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_BSTEEL
+	// [/SURREALIS-EDIT]
 	block_chance = 20
 	associated_skill = /datum/skill/magic/blood
 	wlength = WLENGTH_NORMAL

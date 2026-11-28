@@ -5,10 +5,10 @@
 **Created in:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/23
 
 **RELATED PRS:** https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/38
-				 https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/66
-				 https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/89
-				 https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/104
-
+https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/66
+https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/89
+https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/104
+https://github.com/Shadow-Fragger-Metaclique-Gang/TheImpossibleDream/pull/134
 **Major changes:**
 
 ## Sexcon One
@@ -72,6 +72,13 @@ Hooks:
 - `code/modules/surgery/bodyparts/head.dm`: Horn breaking check for initial grab
 - `interface/stylesheet.dm` and `tgui/packages/tgui-panel/styles/tgchat/chat-dark.scss`: the `love_ludicrous` text class.
 - `roguetown.dme`: ticks `_sexcon_defines.dm`.
+- `code/modules/antagonists/roguetown/villain/werewolf/werewolf_transformation.dm`: ADD near `/mob/living/carbon/human/proc/werewolf_transform`
+- `code/modules/jobs/job_types/roguetown/adventurer/types/antag/gnoll/gnoll_berserker.dm`: EDIT near `/datum/outfit/job/roguetown/gnoll/berserker/pre_equip`
+- `code/modules/jobs/job_types/roguetown/adventurer/types/antag/gnoll/gnoll_impure.dm`: EDIT near `/datum/outfit/job/roguetown/gnoll_impure/pre_equip`
+- `code/modules/jobs/job_types/roguetown/adventurer/types/antag/gnoll/gnoll_knight.dm`: EDIT near `/datum/outfit/job/roguetown/gnoll/knight/pre_equip`
+- `code/modules/jobs/job_types/roguetown/adventurer/types/antag/gnoll/gnoll_shaman.dm`: EDIT near `/datum/outfit/job/roguetown/gnoll/shaman/pre_equip`
+- `code/modules/jobs/job_types/roguetown/adventurer/types/antag/gnoll/gnoll_templar.dm`: EDIT near `/datum/outfit/job/roguetown/gnoll/templar/pre_equip`
+- `code/modules/mob/living/carbon/human/species_types/roguetown/other/gnoll.dm`: EDIT near `/datum/species/gnoll/regenerate_icons`
 
 New TGUI files:
 

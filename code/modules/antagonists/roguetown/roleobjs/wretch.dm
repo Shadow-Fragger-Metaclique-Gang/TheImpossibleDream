@@ -3,7 +3,11 @@
 	roundend_category = "wretches"
 	antagpanel_category = "Wretches"
 	show_name_in_check_antagonists = FALSE
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	has_tempo = TRUE
+	*/
+	// [/SURREALIS-REMOVE]
 
 /datum/antagonist/wretch/get_antag_cap_weight()
 	return 0

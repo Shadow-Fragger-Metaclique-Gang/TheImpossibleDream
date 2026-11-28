@@ -119,7 +119,10 @@
 		if(user.is_holding(src))
 			user.dropItemToGround(src)
 			user.put_in_hands(P)
-		P.obj_integrity = src.obj_integrity
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// P.obj_integrity = src.obj_integrity // SURREALIS-EDIT - ORIGINAL
+		P.copy_integrity_from(src)
+		// [/SURREALIS-EDIT]
 		user.adjustBruteLoss(25)
 		qdel(src)
 	else

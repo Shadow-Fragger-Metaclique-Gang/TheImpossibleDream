@@ -20,7 +20,10 @@
 
 	damage = 60
 	blade_class = BCLASS_CUT
-	strike_armor_pen = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// strike_armor_pen = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	strike_armor_pen = AP_HEAVY
+	// [/SURREALIS-EDIT]
 	strike_sound = null
 	detonate_sound = null
 	hit_sound = list('sound/combat/sidesweep_hit.ogg')
@@ -85,7 +88,10 @@
 	button_icon_state = "ground_slam"
 	desc = "Smashes your feet forward into the ground, sending shockwave to damage everyone in the area."
 	blade_class = BCLASS_BLUNT
-	strike_armor_pen = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// strike_armor_pen = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	strike_armor_pen = AP_NONE
+	// [/SURREALIS-EDIT]
 	damage = 60
 	damage_structures = TRUE
 	structure_damage = 60

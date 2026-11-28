@@ -8,6 +8,7 @@
 	icon_state = "dinghy"
 	can_buckle = TRUE
 	layer = ABOVE_MOB_LAYER
+	obj_flags = CAN_BE_HIT | IGNORE_SINK
 	var/allowed_turf = /turf/open/water //includes all subtypes of water
 
 /obj/vehicle/ridden/dinghy/Initialize(mapload)
@@ -25,7 +26,7 @@
 	force = 15
 	wdefense = 10
 	smeltresult = null
-
+	obj_flags = CAN_BE_HIT | UNIQUE_RENAME | CLAMP_BREAK | IGNORE_SINK
 /datum/crafting_recipe/roguetown/survival/oar
 	name = "Oar"
 	result = /obj/item/rogueweapon/mace/oar

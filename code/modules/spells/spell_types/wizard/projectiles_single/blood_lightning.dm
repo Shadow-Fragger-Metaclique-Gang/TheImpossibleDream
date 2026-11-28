@@ -27,6 +27,9 @@
 
 	associated_skill = /datum/skill/magic/blood
 	spell_tier = 2
+	// [SURREALIS-ADD] - VRCOMBAT
+	damage_variance = SPELL_VARIANCE_LOW
+	// [/SURREALIS-ADD]
 	spell_impact_intensity = SPELL_IMPACT_MEDIUM
 
 	point_cost = 6
@@ -45,9 +48,18 @@
 	intdamfactor = SPELL_INTDAM(1)
 	spell_damage_scaled = TRUE
 	damage_type = BURN
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	nodamage = FALSE
 	speed = 0.3
 	flag = "fire"
+	*/
+	woundclass = BCLASS_ELECTRICAL
+	nodamage = FALSE
+	speed = 0.3
+	flag = "electrical"
+	// [/SURREALIS-EDIT]
 	light_color = "#802121"
 	light_outer_range = 7
 

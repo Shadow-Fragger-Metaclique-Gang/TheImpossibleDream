@@ -11,6 +11,18 @@
 	var/list/internal_organs_slot= list()
 	/// Organs that have visible overlays (eyes, ears, etc.) - tracked separately to avoid iterating all internal organs
 	var/list/visible_organs = list()
+	// [SURREALIS-ADD] - VRCOMBAT
+	var/cached_normal_bleed = 0
+	var/cached_critical_bleed = 0
+	var/cached_internal_bleed = 0
+	var/cached_hidden_bleed = 0
+	/// Part of the last bleed rate that stays inside the body.
+	var/hidden_bleed_rate = 0
+	/// Part of the last bleed rate that comes from internal wounds.
+	var/internal_bleed_rate = 0
+	var/cached_grab_suppression = 1
+	var/bleed_cache_dirty = TRUE
+	// [/SURREALIS-ADD]
 	///Can't talk. Value goes down every life proc. //NOTE TO FUTURE CODERS: DO NOT INITIALIZE NUMERICAL VARS AS NULL OR I WILL MURDER YOU.
 	var/silent = FALSE
 	///How many dream images we have left to send
@@ -98,4 +110,8 @@
 	var/nausea = 0
 	var/bleeding_tier = 0
 
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	var/tempo_faction_flag = null
+	*/
+	// [/SURREALIS-REMOVE]

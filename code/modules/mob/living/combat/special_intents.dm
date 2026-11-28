@@ -142,7 +142,10 @@ This allows the devs to draw whatever shape they want at the cost of it feeling 
 	if(L && stamcost)
 		//If <1 it's %-age based, if >=1 it's just a flat amount.
 		var/cost = (stamcost < 1) ? (L.max_stamina * stamcost) : stamcost
-		return L.stamina_add(cost)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// return L.stamina_add(cost) // SURREALIS-EDIT - ORIGINAL
+		return L.stamina_add(cost, skill_used = custom_skill || L.fatigue_skill_for(L.get_active_held_item()))
+		// [/SURREALIS-EDIT]
 	else
 		return TRUE
 
@@ -382,11 +385,22 @@ This allows the devs to draw whatever shape they want at the cost of it feeling 
 		var/obj/item/bodypart/affecting = HT.get_bodypart(zone)
 		if(!affecting)
 			affecting = HT.get_bodypart(BODY_ZONE_CHEST)//fallback for if we're targeting a missing limb
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		var/armor_block = HT.run_armor_check(zone, d_type, 0, damage = dam, used_weapon = W, armor_penetration = (no_pen ? PEN_NONE : 0))
 		if(full_pen)
 			armor_block = 0		//You block NOTHING, sir!
 		if(HT.apply_damage(dam, W.damtype, affecting, armor_block))
 			affecting.bodypart_attacked_by(bclass, dam, howner, armor = armor_block, crit_message = TRUE, weapon = W)
+		*/
+		var/armor_block = HT.run_armor_check(zone, d_type, 0, damage = dam, used_weapon = W, armor_penetration = (no_pen ? AP_NONE : 0))
+		if(full_pen)
+			armor_block = 0		//You block NOTHING, sir!
+		dam = HT.armor_reduced_damage(dam, armor_block, null)
+		if(HT.apply_damage(dam, W.damtype, affecting, 0))
+			affecting.bodypart_attacked_by(bclass, dam, howner, armor_block = armor_block, crit_message = TRUE, weapon = W)
+		// [/SURREALIS-EDIT]
 			msg += "<b> It pierces through to their flesh!</b>"
 			playsound(HT, pick(W.hitsound), 80, TRUE)
 	else

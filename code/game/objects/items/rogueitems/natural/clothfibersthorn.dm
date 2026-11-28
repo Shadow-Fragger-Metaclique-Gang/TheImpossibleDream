@@ -143,12 +143,19 @@
 	dropshrink = 0.9
 	detail_tag = "_soaked"
 	var/wet = 0
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	/// Effectiveness when used as a bandage, how much it'll lower the bloodloss, bloodloss will get multiplied by this.
 	var/bandage_effectiveness = 0.5
 	var/bandage_speed = 7 SECONDS
 	///How much you can bleed into the bandage until it needs to be changed
 	var/bandage_health = 150 //75 total blood stopped
 	//bandage_health * (1 - bandage_effectiveness) = total amount of blood saved from one bandage
+	*/
+	var/bandage_effectiveness = 0.9
+	var/bandage_speed = 7 SECONDS
+	// [/SURREALIS-EDIT]
 	/// If the bandage is soaked in some kind of medicine.
 	var/medicine_quality
 	var/medicine_amount = 0
@@ -235,7 +242,11 @@
 /obj/item/natural/cloth/wash_act()
 	. = ..()
 	wet = 10
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	bandage_health = initial(bandage_health)
+	*/
+	// [/SURREALIS-REMOVE]
 	medicine_amount = 0
 	medicine_quality = 0
 	detail_color = null

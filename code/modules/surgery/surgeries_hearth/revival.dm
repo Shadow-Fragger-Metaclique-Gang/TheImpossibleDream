@@ -18,6 +18,9 @@
 	target_mobtypes = list(/mob/living/carbon/human)
 	time = 10 SECONDS
 	surgery_flags = SURGERY_BLOODY | SURGERY_INCISED | SURGERY_CLAMPED | SURGERY_RETRACTED | SURGERY_BROKEN
+	// [SURREALIS-ADD] - VRCOMBAT
+	surgery_flags_blocked = SURGERY_CONSTRUCT
+	// [/SURREALIS-ADD]
 	skill_min = SKILL_LEVEL_EXPERT
 	preop_sound = 'sound/surgery/organ2.ogg'
 	success_sound = 'sound/surgery/organ1.ogg'
@@ -39,6 +42,9 @@
 	display_results(user, target, span_notice("I begin to revive [target]... will their heart respond?"),
 		span_notice("[user] begins to work lux into [target]'s heart."),
 		span_notice("[user] begins to work lux into [target]'s heart."))
+	// [SURREALIS-ADD] - VRCOMBAT
+	warn_untreated_flesh(user, target)
+	// [/SURREALIS-ADD]
 	return TRUE
 
 /datum/surgery_step/infuse_lux/success(mob/user, mob/living/target, target_zone, obj/item/tool, datum/intent/intent)
@@ -75,7 +81,10 @@
 		if(revive_pq && !HAS_TRAIT(target, TRAIT_IWASREVIVED) && user?.ckey)
 			adjust_playerquality(revive_pq, user.ckey)
 			ADD_TRAIT(target, TRAIT_IWASREVIVED, "[type]")
-	target.mind.remove_antag_datum(/datum/antagonist/zombie)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// target.mind.remove_antag_datum(/datum/antagonist/zombie) // SURREALIS-EDIT - ORIGINAL
+	target.unzombify_keeping_rot()
+	// [/SURREALIS-EDIT]
 	target.remove_status_effect(/datum/status_effect/debuff/rotted_zombie)	//Removes the rotted-zombie debuff if they have it - Failsafe for it.
 	target.apply_status_effect(/datum/status_effect/debuff/revived)	//Temp debuff on revive, your stats get hit temporarily. Doubly so if having rotted.
 	if(HAS_TRAIT(target, TRAIT_IRONMAN))

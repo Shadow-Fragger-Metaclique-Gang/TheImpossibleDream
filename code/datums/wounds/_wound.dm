@@ -31,6 +31,18 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 	/// Mob that owns this wound
 	var/mob/living/owner
 
+	// [SURREALIS-ADD] - VRCOMBAT
+	var/created = 0
+	/// Number of wounds merged into this one
+	var/amount = 1
+	/// Bleeds inside the body.
+	var/internal_bleeding = FALSE
+	/// Clots above the 12 bleed cap.
+	var/clots_when_severe = FALSE
+	/// Seconds after gain that this wound knocks the owner out.
+	var/faint_delay = 0
+
+	// [/SURREALIS-ADD]
 	/// How many "health points" this wound has, AKA how hard it is to heal
 	var/whp = 60
 	/// How many "health points" this wound gets after being sewn
@@ -44,7 +56,10 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 	/// Clotting rate when sewn
 	var/sewn_clotting_rate = 0.02
 	/// Clotting will not go below this amount of bleed_rate
-	var/clotting_threshold
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// var/clotting_threshold // SURREALIS-EDIT - ORIGINAL
+	var/clotting_threshold = 0
+	// [/SURREALIS-EDIT]
 	/// Clotting will not go below this amount of bleed_rate when sewn
 	var/sewn_clotting_threshold = 0
 	/// How much pain this wound causes while on a mob
@@ -175,7 +190,10 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 	return TRUE
 
 /// Adds this wound to a given bodypart
-/datum/wound/proc/apply_to_bodypart(obj/item/bodypart/affected, silent = FALSE, crit_message = FALSE)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /datum/wound/proc/apply_to_bodypart(obj/item/bodypart/affected, silent = FALSE, crit_message = FALSE) // SURREALIS-EDIT - ORIGINAL
+/datum/wound/proc/apply_to_bodypart(obj/item/bodypart/affected, silent = FALSE, crit_message = FALSE, damage)
+// [/SURREALIS-EDIT]
 	if(QDELETED(affected) || QDELETED(affected.owner))
 		return FALSE
 	if(bodypart_owner)
@@ -186,6 +204,9 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 	sortTim(affected.wounds, GLOBAL_PROC_REF(cmp_wound_severity_dsc))
 	bodypart_owner = affected
 	owner = bodypart_owner.owner
+	// [SURREALIS-ADD] - VRCOMBAT
+	created = world.time
+	// [/SURREALIS-ADD]
 	// [SURREALIS-ADD] - PLASMA_OPTS
 	affected.owner.life_work |= LIFEWORK_WOUNDS
 	// [/SURREALIS-ADD]
@@ -197,8 +218,18 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 	// catch them - so we need to check bodypart skeletonization instead as it's literally the only way to tell
 	if(initial_bleed && !bodypart_owner.skeletonized && !(ishuman(H) && (NOBLOOD in H.dna?.species?.species_traits)))
 		set_bleed_rate(initial_bleed)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	on_bodypart_gain(affected)
 	INVOKE_ASYNC(src, PROC_REF(on_mob_gain), affected.owner) //this is literally a fucking lint error like new species cannot possible spawn with wounds until after its ass
+	*/
+	if(iscarbon(owner))
+		var/mob/living/carbon/carbon_owner = owner
+		carbon_owner.invalidate_bleed_cache()
+	on_bodypart_gain(affected)
+	INVOKE_ASYNC(src, PROC_REF(on_mob_gain), affected.owner, damage) //this is literally a fucking lint error like new species cannot possible spawn with wounds until after its ass
+	// [/SURREALIS-EDIT]
 	if(crit_message)
 		var/message = get_crit_message(affected.owner, affected)
 		if(message)
@@ -212,7 +243,10 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 
 /// Effects when a wound is gained on a bodypart
 /datum/wound/proc/on_bodypart_gain(obj/item/bodypart/affected)
-	if(bleed_rate && affected.bandage)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(bleed_rate && affected.bandage) // SURREALIS-EDIT - ORIGINAL
+	if(bleed_rate && affected.bandage && !is_hidden_bleed())
+	// [/SURREALIS-EDIT]
 		affected.bandage_expire() //new bleeding wounds always expire bandages, fuck you
 	if(disabling)
 		affected.update_disabled()
@@ -227,6 +261,11 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 	LAZYREMOVE(bodypart_owner.wounds, src)
 	bodypart_owner = null
 	owner = null
+	// [SURREALIS-ADD] - VRCOMBAT
+	if(iscarbon(was_owner))
+		var/mob/living/carbon/carbon_owner = was_owner
+		carbon_owner.invalidate_bleed_cache()
+	// [/SURREALIS-ADD]
 	on_bodypart_loss(was_bodypart)
 	on_mob_loss(was_owner)
 	return TRUE
@@ -272,7 +311,10 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 	return TRUE
 
 /// Effects when this wound is applied to a given mob
-/datum/wound/proc/on_mob_gain(mob/living/affected)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /datum/wound/proc/on_mob_gain(mob/living/affected) // SURREALIS-EDIT - ORIGINAL
+/datum/wound/proc/on_mob_gain(mob/living/affected, damage)
+// [/SURREALIS-EDIT]
 	if(mob_overlay)
 		affected.update_damage_overlays()
 	if(werewolf_infection_timer)
@@ -313,8 +355,23 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 	if(!owner.loc)
 		return FALSE
 
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	if(!isnull(clotting_threshold) && clotting_rate && (bleed_rate > clotting_threshold))
 		set_bleed_rate(max(clotting_threshold, bleed_rate - clotting_rate))
+	*/
+	if(!isnull(clotting_threshold) && clotting_rate && (bleed_rate > clotting_threshold) && (bleed_rate < 12 || clots_when_severe))
+		var/severity_modifier = (bleed_rate >= 3) ? 0.5 : 1
+		var/grab_modifier = 1
+		if(bodypart_owner && length(bodypart_owner.grabbedby))
+			var/grab_suppression = 1
+			for(var/obj/item/grabbing/grab in bodypart_owner.grabbedby)
+				grab_suppression *= grab.bleed_suppressing
+			if(bodypart_owner.bleeding * grab_suppression <= 0)
+				grab_modifier = 2
+		set_bleed_rate(max(clotting_threshold, bleed_rate - (clotting_rate * (owner.STACON / 10) * severity_modifier * grab_modifier)))
+	// [/SURREALIS-EDIT]
 		if(!owner || QDELETED(owner) || QDELETED(src))
 			return FALSE
 
@@ -355,6 +412,11 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 			var/datum/hud/hud_used = bodypart_owner.owner.hud_used
 			if(hud_used?.zone_select)
 				hud_used.zone_select.update_limb(bodypart_owner.body_zone)
+	// [SURREALIS-ADD] - VRCOMBAT
+	if(iscarbon(owner))
+		var/mob/living/carbon/carbon_owner = owner
+		carbon_owner.invalidate_bleed_cache()
+	// [/SURREALIS-ADD]
 
 /// Heals this wound by the given amount, and deletes it if it's healed completely
 /datum/wound/proc/heal_wound(heal_amount)
@@ -368,15 +430,28 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 	if(whp <= 0)
 		if(!should_persist())
 			if(bodypart_owner)
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// SURREALIS-EDIT - ORIGINAL
+				/*
 				remove_from_bodypart(src)
 			else if(owner)
 				remove_from_mob(src)
+				*/
+				remove_from_bodypart()
+			else if(owner)
+				remove_from_mob()
+				// [/SURREALIS-EDIT]
 			else
 				qdel(src)
 	return amount_healed
 
 /// Sews the wound up, changing its properties to the sewn ones
 /datum/wound/proc/sew_wound()
+	// [SURREALIS-ADD] - VRCOMBAT
+	return standard_sewing_procedure()
+
+/datum/wound/proc/standard_sewing_procedure()
+	// [/SURREALIS-ADD]
 	if(!can_sew)
 		return FALSE
 	var/old_overlay = mob_overlay
@@ -406,7 +481,10 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 	return FALSE
 
 /// Cauterizes the wound
-/datum/wound/proc/cauterize_wound()
+// [SURREALIS-EDIT] - VRCOMBAT
+// /datum/wound/proc/cauterize_wound() // SURREALIS-EDIT - ORIGINAL
+/datum/wound/proc/cauterize_wound(surgical = FALSE, mob/user)
+// [/SURREALIS-EDIT]
 	if(!can_cauterize)
 		return FALSE
 	if(!isnull(clotting_threshold) && bleed_rate > clotting_threshold)
@@ -435,6 +513,42 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 	SHOULD_CALL_PARENT(TRUE)	//Don't skip this if you're making new dynamic wounds.
 	return
 
+// [SURREALIS-ADD] - VRCOMBAT
+/// Returns TRUE if this wound bleeds only inside the body.
+/datum/wound/proc/is_hidden_bleed()
+	return FALSE
+
+/datum/wound/proc/bleed_rates_similar(bleed1, bleed2)
+	if(isnull(bleed1) || isnull(bleed2))
+		return TRUE
+	return (max(bleed1, bleed2) / max(min(bleed1, bleed2), 0.1)) <= 3
+
+/datum/wound/proc/can_merge(datum/wound/other)
+	if(!other || QDELETED(other))
+		return FALSE
+	if(other.type != type)
+		return FALSE
+	if(!bleed_rates_similar(bleed_rate, other.bleed_rate))
+		return FALSE
+	if(is_sewn() != other.is_sewn())
+		return FALSE
+	return TRUE
+
+/datum/wound/proc/merge_wound(datum/wound/other)
+	if(!can_merge(other))
+		return FALSE
+	whp = round((whp + other.whp) * 0.9, DAMAGE_PRECISION)
+	set_bleed_rate(round(bleed_rate + (other.bleed_rate * 0.5), 0.1))
+	woundpain = round((woundpain + other.woundpain) * 0.85, DAMAGE_PRECISION)
+	sew_threshold = round((sew_threshold + other.sew_threshold) * 0.9, DAMAGE_PRECISION)
+	amount += other.amount
+	created = max(created, other.created)
+	other.remove_from_bodypart()
+	qdel(other)
+	update_stage()
+	return TRUE
+
+// [/SURREALIS-ADD]
 /datum/wound/proc/update_stage()
 	var/newname
 	var/oldname = name
@@ -460,19 +574,45 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 			severity = severityval
 
 	name = "[newname	? "[newname] " : ""][initial(name)]"	//[adjective] [name], aka, "gnarly slash" or "slash"
-	if(name != oldname)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(name != oldname) // SURREALIS-EDIT - ORIGINAL
+	if(name != oldname && !silent_progress)
+	// [/SURREALIS-EDIT]
 		owner.visible_message(span_red("The [oldname] on [owner]'s [LOWER_TEXT(bodyzone2readablezone(bodypart_to_zone(bodypart_owner)))] gets worse!"))
 
 // Blank because it'll be overridden by wound code.
 /datum/wound/dynamic
 	var/is_maxed = FALSE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	var/is_armor_maxed = FALSE
 	clotting_rate = 0.4
 	clotting_threshold = 0
+	*/
+	clotting_rate = 0.4
+	clotting_threshold = 0
+	// The maximum wound health a wound can have before new wounds must be created.
+	var/max_absorbable_damage = 150
+
+/datum/wound/dynamic/proc/can_worsen(damage)
+	if(amount > 1)
+		return FALSE
+	if(is_maxed)
+		return FALSE
+	if(whp >= max_absorbable_damage)
+		return FALSE
+	return bleed_rates_similar(bleed_rate, get_hypothetical_bleed_rate(damage))
+
+/datum/wound/dynamic/proc/get_hypothetical_bleed_rate(damage)
+	return bleed_rate + (damage * 0.1)
+	// [/SURREALIS-EDIT]
 
 /datum/wound/dynamic/sew_wound()
 	heal_wound(whp)
 
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 /datum/wound/dynamic/proc/armor_check(armor, cap)
 	if(armor)
 		if(!bodypart_owner.unlimited_bleeding)
@@ -482,7 +622,8 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 					playsound(owner, 'sound/combat/armored_wound.ogg', 100, TRUE)
 					owner.visible_message(span_crit("The wound tears open from [bodypart_owner.owner]'s <b>[bodyzone2readablezone(bodypart_to_zone(bodypart_owner))]</b>, the armor won't let it go any further!"))
 					is_armor_maxed = TRUE
-
+*/
+// [/SURREALIS-REMOVE]
 
 #define CLOT_THRESHOLD_INCREASE_PER_HIT 0.1	//This raises the MINIMUM bleed the wound can clot to.
 #define CLOT_DECREASE_PER_HIT 0.05	//This reduces the amount of clotting the wound has.
@@ -490,7 +631,10 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 #define CLOT_THRESHOLD_ARTERY 2
 
 /// Make sure this is called AFTER your child upgrade proc, unless you have a reason for the bleed rate to be above artery on a regular wound.
-/datum/wound/dynamic/upgrade(dam as num, armor, exposed = FALSE, pen_info)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /datum/wound/dynamic/upgrade(dam as num, armor, exposed = FALSE, pen_info) // SURREALIS-EDIT - ORIGINAL
+/datum/wound/dynamic/upgrade(dam as num, armor)
+// [/SURREALIS-EDIT]
 	if(!bodypart_owner.unlimited_bleeding)
 		if(bleed_rate >= ARTERY_LIMB_BLEEDRATE)
 			set_bleed_rate(ARTERY_LIMB_BLEEDRATE)
@@ -500,7 +644,10 @@ GLOBAL_LIST_INIT(primordial_wounds, init_primordial_wounds())
 				is_maxed = TRUE
 			clotting_rate = CLOT_RATE_ARTERY
 			clotting_threshold = CLOT_THRESHOLD_ARTERY
-	if(!is_maxed)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(!is_maxed) // SURREALIS-EDIT - ORIGINAL
+	if(!is_maxed && clotting_rate > 0)
+	// [/SURREALIS-EDIT]
 		clotting_rate = max(0.01, (clotting_rate - CLOT_DECREASE_PER_HIT))
 		clotting_threshold += CLOT_THRESHOLD_INCREASE_PER_HIT
 	..()

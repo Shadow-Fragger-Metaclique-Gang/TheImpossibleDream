@@ -120,7 +120,10 @@
 			repair_amount = 5
 		next_tick_time = repair_time
 
-	obj_integrity = min(obj_integrity + repair_amount, max_integrity)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// obj_integrity = min(obj_integrity + repair_amount, max_integrity) // SURREALIS-EDIT - ORIGINAL
+	adjust_integrity(repair_amount)
+	// [/SURREALIS-EDIT]
 
 	if(ishuman(loc))
 		var/mob/living/L = loc

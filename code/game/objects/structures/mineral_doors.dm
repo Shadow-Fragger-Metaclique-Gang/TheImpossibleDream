@@ -91,7 +91,10 @@
 				var/mob/living/L = user
 				if(L.STASTR >= initial(kickthresh))
 					kickthresh--
-				if((prob(L.STASTR * 0.5) || kickthresh == 0) && (L.STASTR >= initial(kickthresh)))
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// if((prob(L.STASTR * 0.5) || kickthresh == 0) && (L.STASTR >= initial(kickthresh))) // SURREALIS-EDIT - ORIGINAL
+				if((get_stat_roll(L.STASTR) >= 20 || kickthresh == 0) && (L.STASTR >= initial(kickthresh)))
+				// [/SURREALIS-EDIT]
 					playsound(src, 'sound/combat/hits/onwood/woodimpact (1).ogg', 100)
 					user.visible_message(span_warning("[user] kicks open [src]!"), \
 						span_notice("I kick open [src]!"))

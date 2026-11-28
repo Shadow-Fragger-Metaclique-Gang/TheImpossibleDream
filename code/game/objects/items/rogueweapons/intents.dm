@@ -54,15 +54,22 @@
 	/// Multiplied damage modifier.
 	var/damfactor = 1
 	/// Multiplied armour penetration modifier.
-	var/penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// var/penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	var/penfactor = 0
+	// [/SURREALIS-EDIT]
 	/// Whether the intent itself has integrity damage modifier. Used for rend.
 	var/intent_intdamage_factor = 1
 	/// Intent's demolition mod. Applied to structures / objects and shields.
 	var/demolition_mod = 1
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	/// Minimum damage from the intent.
 	var/min_intent_damage = 0
 	/// Maximum damage from the intent.
 	var/max_intent_damage = 200
+	*/
+	// [/SURREALIS-REMOVE]
 	/// Changes the item's attack type ("blunt" - area-pressure attack, "slash" - line-pressure attack, "stab" - point-pressure attack)
 	var/item_d_type = "blunt"
 	var/charging_slowdown = 0
@@ -162,7 +169,10 @@
 		inspec += "\n<b>Effective Range:</b> [suffix] [effective_range] paces"
 	if(damfactor != 1)
 		inspec += "\n<b>Damage:</b> [damfactor]"
-	inspec += "\n<b>Armor Penetration:</b> [penfactor > PEN_NONE ? colorgrade_rating(uppertext(item_d_type), penfactor) : "<font color='#808080'>NONE</font>"]"
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// inspec += "\n<b>Armor Penetration:</b> [penfactor > PEN_NONE ? colorgrade_rating(uppertext(item_d_type), penfactor) : "<font color='#808080'>NONE</font>"]" // SURREALIS-EDIT - ORIGINAL
+	inspec += "\n<b>Armor Penetration:</b> [penfactor > 0 ? "[uppertext(item_d_type)] [round(penfactor * INTENT_BASE_AP)] + [round(penfactor, 0.01)]x stat bonus" : "<font color='#808080'>NONE</font>"]"
+	// [/SURREALIS-EDIT]
 	if(masteritem)
 		inspec += " <span class='info'><a href='?src=[REF(masteritem)];explainpenfactor=1'>{?}</a></span>"
 	if(get_chargetime())
@@ -498,21 +508,31 @@
 
 /datum/intent/stab/militia
 	name = "militia stab"
-	penfactor = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 
 /datum/intent/pick //now like icepick intent, we really went in a circle huh
 	name = "pick"
 	icon_state = "inpick"
 	attack_verb = list("picks","impales")
 	hitsound = list('sound/combat/hits/pick/genpick (1).ogg', 'sound/combat/hits/pick/genpick (2).ogg')
-	penfactor = PEN_BSTEEL
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_BSTEEL // SURREALIS-EDIT - ORIGINAL
+	penfactor = 4
+	// [/SURREALIS-EDIT]
 	animname = "strike"
 	item_d_type = "stab"
 	blade_class = BCLASS_PICK
 	chargetime = 0
 	clickcd = 14 // Just like knife pick!
 	swingdelay = 12
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	max_intent_damage = 9999
+	*/
+	// [/SURREALIS-REMOVE]
 
 /datum/intent/pick/heavy //Slightly faster swing delay AKA easier to use.
 	name = "heavy pick"
@@ -524,7 +544,10 @@
 	icon_state = "inpick"
 	attack_verb = list("drills","augers")
 	hitsound = list('sound/combat/hits/pick/genpick (1).ogg', 'sound/combat/hits/pick/genpick (2).ogg')
-	penfactor = PEN_BSTEEL
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_BSTEEL // SURREALIS-EDIT - ORIGINAL
+	penfactor = 4
+	// [/SURREALIS-EDIT]
 	animname = "strike"
 	item_d_type = "stab"
 	blade_class = BCLASS_DRILL
@@ -538,14 +561,21 @@
 	icon_state = "inpick"
 	attack_verb = list("picks","impales")
 	hitsound = list('sound/combat/hits/pick/genpick (1).ogg', 'sound/combat/hits/pick/genpick (2).ogg')
-	penfactor = PEN_BSTEEL
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_BSTEEL // SURREALIS-EDIT - ORIGINAL
+	penfactor = 4
+	// [/SURREALIS-EDIT]
 	animname = "strike"
 	item_d_type = "stab"
 	blade_class = BCLASS_PICK
 	chargetime = 0
 	clickcd = 16 // Just like knife pick!
 	swingdelay = 16
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	max_intent_damage = 9999
+	*/
+	// [/SURREALIS-REMOVE]
 
 /datum/intent/pick/good //Blacksteel-exclusive. Mine a little better, a little faster, and a little harder.
 	name = "mastered pick"
@@ -553,28 +583,42 @@
 	icon_state = "inpick"
 	attack_verb = list("masterfully picks","deftly impales")
 	hitsound = list('sound/combat/hits/pick/genpick (1).ogg', 'sound/combat/hits/pick/genpick (2).ogg')
-	penfactor = PEN_BSTEEL
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_BSTEEL // SURREALIS-EDIT - ORIGINAL
+	penfactor = 4
+	// [/SURREALIS-EDIT]
 	animname = "strike"
 	item_d_type = "stab"
 	blade_class = BCLASS_PICK
 	chargetime = 0
 	clickcd = 12 // Just like knife pick.. but not!
 	swingdelay = 10
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	max_intent_damage = 9999
+	*/
+	// [/SURREALIS-REMOVE]
 
 /datum/intent/pick/ranged
 	name = "ranged pick"
 	icon_state = "inpick"
 	attack_verb = list("stabs", "impales")
 	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
-	penfactor = PEN_BSTEEL
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_BSTEEL // SURREALIS-EDIT - ORIGINAL
+	penfactor = 4
+	// [/SURREALIS-EDIT]
 	damfactor = 1.1
 	clickcd = CLICK_CD_CHARGED
 	releasedrain = 4
 	reach = 2
 	no_early_release = TRUE
 	blade_class = BCLASS_PICK
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	max_intent_damage = 9999
+	*/
+	// [/SURREALIS-REMOVE]
 
 /datum/intent/shoot //shooting crossbows or other guns, no parrydrain
 	name = "shoot"
@@ -769,7 +813,10 @@
 	misscost = 1
 	releasedrain = 1	//More than punch cus pen factor.
 	swingdelay = 0
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	rmb_ranged = TRUE //for taunt sovl
 	candodge = TRUE
 	canparry = TRUE
@@ -917,7 +964,10 @@
 	blade_class = BCLASS_BLUNT
 	hitsound = "punch_hard"
 	chargetime = 0
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	swingdelay = 0
 	candodge = TRUE
 	canparry = TRUE
@@ -933,7 +983,10 @@
 	blade_class = BCLASS_CUT
 	hitsound = "smallslash"
 	chargetime = 0
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	swingdelay = 3
 	candodge = TRUE
 	canparry = TRUE
@@ -942,7 +995,10 @@
 	item_d_type = "slash"
 
 /datum/intent/simple/claw/simplewwnpc
-	penfactor = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 	clickcd = WOLF_ATTACK_SPEED
 
 /datum/intent/simple/bite
@@ -953,7 +1009,10 @@
 	blade_class = BCLASS_CUT
 	hitsound = "smallslash"
 	chargetime = 0
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	swingdelay = 3
 	candodge = TRUE
 	canparry = TRUE
@@ -970,7 +1029,10 @@
 	blade_class = BCLASS_CUT
 	hitsound = list("genchop", "genslash")
 	chargetime = 0
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	swingdelay = 3
 	candodge = TRUE
 	canparry = TRUE
@@ -986,7 +1048,10 @@
 	blade_class = BCLASS_CUT
 	hitsound = list("genthrust", "genstab")
 	chargetime = 0
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	swingdelay = 3
 	candodge = TRUE
 	canparry = TRUE
@@ -1055,7 +1120,10 @@
 	attack_verb = list("dazes")
 	animname = "strike"
 	hitsound = list('sound/combat/hits/blunt/daze_hit.ogg')
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	swingdelay = 1 SECONDS
 	damfactor = 1
 	item_d_type = "blunt"

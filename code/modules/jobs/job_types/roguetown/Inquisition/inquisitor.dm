@@ -81,7 +81,11 @@
 		"The Book" = /obj/item/book/rogue/bibble/psy
 	)
 
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	tempo_capable = TRUE
+	*/
+	// [/SURREALIS-REMOVE]
 
 /datum/outfit/job/roguetown/inquisitor/inspector/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -219,7 +223,11 @@
 	subclass_stashed_items = list(
 		"The Book" = /obj/item/book/rogue/bibble/psy
 	)
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	tempo_capable = FALSE
+	*/
+	// [/SURREALIS-REMOVE]
 
 /datum/outfit/job/roguetown/inquisitor/ordinator/pre_equip(mob/living/carbon/human/H)
 	..()

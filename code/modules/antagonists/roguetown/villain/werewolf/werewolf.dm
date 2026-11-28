@@ -56,7 +56,11 @@
 	var/transforming
 	var/untransforming
 	var/wolfname = "Verewolf"
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	has_tempo = TRUE
+	*/
+	// [/SURREALIS-REMOVE]
 	var/static/list/dendor_cries = list('sound/effects/werewolf_sounds/wscream1.ogg',
 								'sound/effects/werewolf_sounds/wscream2.ogg',
 								'sound/effects/werewolf_sounds/wscream3.ogg',
@@ -247,7 +251,10 @@
 	attack_verb = list("claws", "mauls", "eviscerates")
 	animname = "chop"
 	hitsound = "genslash"
-	penfactor = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	penfactor = 3
+	// [/SURREALIS-EDIT]
 	candodge = TRUE
 	canparry = TRUE
 	miss_text = "slashes the air!"
@@ -260,7 +267,10 @@
 	icon_state = "insmash"
 	maxrange = 5
 	chargetime = 1
-	penfactor = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	penfactor = 3
+	// [/SURREALIS-EDIT]
 
 /obj/item/rogueweapon/werewolf_claw
 	name = "Verevolf Claw"

@@ -39,7 +39,11 @@
 	// inheritance issues with adept's stoplag-based chant selection.
 
 /datum/advclass/wapprentice
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	tempo_capable = FALSE
+	*/
+	// [/SURREALIS-REMOVE]
 
 /datum/advclass/wapprentice/associate
 	name = "Magician's Associate"

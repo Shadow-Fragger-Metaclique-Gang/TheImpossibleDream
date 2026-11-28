@@ -277,3 +277,4 @@
 #include "code\overrides\mirror_transform.dm"
 #include "code\controller\sex_stress.dm"
 #include "code\overrides\body_builds.dm"
+#include "code\overrides\werewolf+gnoll.dm"

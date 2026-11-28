@@ -1,5 +1,8 @@
 /datum/wound/dynamic/burn
 	name = "burn"
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	whp = 1 // 1 to 1 to puncture, as it is an AP type
 	sewn_whp = 0
 	bleed_rate = 0.2
@@ -12,6 +15,19 @@
 	can_sew = TRUE
 	can_cauterize = FALSE
 	passive_healing = 0.1
+	*/
+	whp = 10
+	bleed_rate = 0
+	clotting_rate = 0
+	clotting_threshold = null
+	sewn_clotting_threshold = 0
+	woundpain = 8
+	passive_healing = 0.3
+	sew_threshold = 10
+	can_sew = TRUE
+	can_cauterize = FALSE
+	sewn_bleed_rate = 0
+	// [/SURREALIS-EDIT]
 	bypass_bloody_wound_check = TRUE
 	severity_type = SEVERITY_TYPE_BURN // name off the limb's actual burnt fraction, not the whp heal-pool
 	sound_effect = list('sound/combat/hits/burn (1).ogg', 'sound/combat/hits/burn (2).ogg')
@@ -23,6 +39,9 @@
 		"cindered" = 80,
 	)
 
+// [SURREALIS-EDIT] - VRCOMBAT
+// SURREALIS-EDIT - ORIGINAL
+/*
 #define BURN_UPG_WHPRATE 1.2
 #define BURN_UPG_SEWRATE 0.65
 #define BURN_UPG_PAINRATE 0.25
@@ -55,10 +74,57 @@
 		clotting_threshold = 1
 		clotting_rate = 0.1
 		bodypart_owner?.update_disabled()
+*/
+#define BURN_UPG_WHPRATE 0.8
+#define BURN_UPG_PAINRATE 0.5
+#define BURN_UPG_HEALDECAY 0.01
+#define BURN_CRITICAL_WHP 70
+
+/datum/wound/dynamic/burn/can_stack_with(datum/wound/other)
+	return !istype(other, /datum/wound/dynamic/burn)
+
+/datum/wound/dynamic/burn/can_worsen(damage)
+	if(amount > 1)
+		return FALSE
+	if(is_maxed)
+		return FALSE
+	if(whp >= max_absorbable_damage)
+		return FALSE
+	var/hypothetical_whp = whp + (damage * BURN_UPG_WHPRATE)
+	return (max(whp, hypothetical_whp) / max(min(whp, hypothetical_whp), 1)) <= 3
+
+/datum/wound/dynamic/burn/can_merge(datum/wound/other)
+	if(!other || QDELETED(other))
+		return FALSE
+	if(other.type != type)
+		return FALSE
+	if((max(whp, other.whp) / max(min(whp, other.whp), 1)) > 3)
+		return FALSE
+	if(is_sewn() != other.is_sewn())
+		return FALSE
+	return TRUE
+
+/datum/wound/dynamic/burn/sew_wound()
+	return standard_sewing_procedure()
+
+/datum/wound/dynamic/burn/upgrade(dam, armor)
+	whp += (dam * BURN_UPG_WHPRATE)
+	woundpain += (dam * BURN_UPG_PAINRATE)
+	passive_healing = max(0.1, passive_healing - BURN_UPG_HEALDECAY)
+	if(!is_sewn())
+		if(whp >= BURN_CRITICAL_WHP && bodypart_owner?.can_bloody_wound() && !bodypart_owner.cauterizing)
+			set_bleed_rate(0.4)
+			bodypart_owner.check_wound_infection(src)
+		else
+			set_bleed_rate(0)
+// [/SURREALIS-EDIT]
 	update_stage()
 	..()
 
 #undef BURN_UPG_WHPRATE
+// [SURREALIS-EDIT] - VRCOMBAT
+// SURREALIS-EDIT - ORIGINAL
+/*
 #undef BURN_UPG_SEWRATE
 #undef BURN_UPG_PAINRATE
 #undef BURN_CHAR_THRESHOLD
@@ -135,6 +201,11 @@
 		"The head is engulfed in searing heat!",
 	)
 	mortal = TRUE
+*/
+#undef BURN_UPG_PAINRATE
+#undef BURN_UPG_HEALDECAY
+#undef BURN_CRITICAL_WHP
+// [/SURREALIS-EDIT]
 
 /datum/wound/lampcautery
 	name = "cauterized wound"

@@ -47,7 +47,11 @@
 	vice_restrictions = list(/datum/charflaw/hunted, /datum/charflaw/targeted, /datum/charflaw/forlorne)
 
 /datum/advclass/gnoll
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	tempo_capable = FALSE
+	*/
+	// [/SURREALIS-REMOVE]
 
 /datum/job/roguetown/gnoll/special_job_check(mob/dead/new_player/player)
 	// [SURREALIS-REMOVE] ANTAGAPI.DLL - unlocks adminbusing antag slots

@@ -218,7 +218,10 @@
 	var/obj/item/bodypart/affecting = target.get_bodypart(BODY_ZONE_CHEST)
 	var/armor_block = target.run_armor_check(BODY_ZONE_CHEST, "blunt", blade_dulling = BCLASS_BLUNT)
 	var/damage = 50
-	if(!target.apply_damage(damage, UNARMED_ATTACK, affecting, armor_block))
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(!target.apply_damage(damage, UNARMED_ATTACK, affecting, armor_block)) // SURREALIS-EDIT - ORIGINAL
+	if(!target.apply_damage(target.armor_reduced_damage(damage, armor_block, null), UNARMED_ATTACK, affecting, 0))
+	// [/SURREALIS-EDIT]
 		target.next_attack_msg += VISMSG_ARMOR_BLOCKED
 	else
 		affecting.bodypart_attacked_by(BCLASS_BLUNT, damage, user, BODY_ZONE_CHEST)

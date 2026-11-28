@@ -151,7 +151,10 @@
 	throwforce = 32 //You ever had an axe thrown at you?
 	throw_speed = 6 //Batarangs, baby.
 	max_integrity = 50 //Brittle design, hits hard, breaks quickly.
-	armor_penetration = PEN_MEDIUM //On-par with steel tossblades.
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_MEDIUM //On-par with steel tossblades. // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_MEDIUM //On-par with steel tossblades.
+	// [/SURREALIS-EDIT]
 	wdefense = 1
 	icon_state = "hurlbat"
 	embedding = list("embedded_pain_multiplier" = 6, "embed_chance" = 50, "embedded_fall_chance" = 30) //high chance at embed, high chance to fall out on its own.
@@ -174,7 +177,10 @@
 	desc = "A magnificent throwing axe of blacksteel, weighted to penetrate most cuirasses with a single well-aimed toss."
 	smeltresult = /obj/item/ingot/blacksteel
 	icon_state = "bs_hurlbat"
-	armor_penetration = PEN_HEAVY //+I PEN,
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_HEAVY //+I PEN, // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_HEAVY //+I PEN,
+	// [/SURREALIS-EDIT]
 	possible_item_intents = list(/datum/intent/axe/chop)
 	force = 24
 	throwforce = 40
@@ -225,7 +231,10 @@
 	smeltresult = /obj/item/ingot/copper
 	throwforce = 20 //You ever had an axe thrown at you?
 	throw_speed = 3
-	armor_penetration = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_LIGHT
+	// [/SURREALIS-EDIT]
 
 /obj/item/rogueweapon/stoneaxe/handaxe
 	name = "hatchet"
@@ -248,7 +257,10 @@
 	grid_height = 96 //Can be stowed in the belt as a larger - if slightly more intimidating - counterpart to the Hunting Knife.
 	grid_width = 32
 	throw_speed = 3
-	armor_penetration = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_LIGHT
+	// [/SURREALIS-EDIT]
 	is_tool = TRUE
 	anvilrepair = /datum/skill/craft/weaponsmithing
 	special = /datum/special_intent/hatchet_twirl
@@ -307,7 +319,10 @@
 	max_blade_int = 550
 	smeltresult = /obj/item/ingot/bronze
 	wdefense = 2
-	armor_penetration = PEN_LIGHT //In-between a hurblat and hatchet. Far harder to reproduce.
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_LIGHT //In-between a hurblat and hatchet. Far harder to reproduce. // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_LIGHT //In-between a hurblat and hatchet. Far harder to reproduce.
+	// [/SURREALIS-EDIT]
 	throwforce = 32
 	throw_speed = 6
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 33, "embedded_fall_chance" = 2)
@@ -325,7 +340,10 @@
 	smeltresult = /obj/item/ingot/bronze
 	minstr = 8
 	wdefense = 4
-	armor_penetration = PEN_LIGHT //In-between a hurblat and hatchet. Far harder to reproduce.
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_LIGHT //In-between a hurblat and hatchet. Far harder to reproduce. // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_LIGHT //In-between a hurblat and hatchet. Far harder to reproduce.
+	// [/SURREALIS-EDIT]
 	throwforce = 32
 	throw_speed = 6
 	embedding = list("embedded_pain_multiplier" = 4, "embed_chance" = 33, "embedded_fall_chance" = 2)
@@ -507,7 +525,10 @@
 	name = "ćiupaga lunge"
 	desc = "Grip your ćiupaga by the tail-end of the handle and swing in a circular motion to reach further ahead. It will deal extra damage if perfectly positioned, otherwise you'll just hit them with the handle."
 	damfactor = 1.75
-	penfactor = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	penfactor = 3
+	// [/SURREALIS-EDIT]
 	effective_range = 2
 	effective_range_type = EFF_RANGE_EXACT
 	sharpness_penalty = 2
@@ -529,7 +550,10 @@
 	attack_verb = list("sweeps through", "cuts across")
 	animname = "cut"
 	hitsound = list('sound/combat/hits/bladed/smallslash (1).ogg', 'sound/combat/hits/bladed/smallslash (2).ogg', 'sound/combat/hits/bladed/smallslash (3).ogg')
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	damfactor = 1.1
 	demolition_mod = 2
 	clickcd = CLICK_CD_MASSIVE

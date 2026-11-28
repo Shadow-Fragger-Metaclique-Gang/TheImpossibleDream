@@ -32,6 +32,9 @@
 	associated_skill = /datum/skill/magic/arcane
 	spell_tier = 3
 	spell_impact_intensity = SPELL_IMPACT_HIGH
+	// [SURREALIS-ADD] - VRCOMBAT
+	damage_variance = SPELL_VARIANCE_MID
+	// [/SURREALIS-ADD]
 
 	spell_requirements = SPELL_REQUIRES_NO_ANTIMAGIC | SPELL_REQUIRES_HUMAN
 
@@ -44,8 +47,15 @@
 
 	var/current_mode = 1
 	var/list/modes = list(
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		list("name" = "Heaven's Strike", "tag" = "SMITE", "icon" = "heavens_strike", "cost" = SPELLCOST_MAJOR_AOE, "cooldown" = 12 SECONDS, "charge" = CHARGETIME_MAJOR, "invocation" = "Caelum Feri!"),
 		list("name" = "Thunderstrike", "tag" = "STORM", "icon" = "thunderstrike", "cost" = SPELLCOST_MAJOR_AOE, "cooldown" = 20 SECONDS, "charge" = CHARGETIME_HEAVY, "invocation" = "Feri Fulmine Hostem!"),
+		*/
+		list("name" = "Heaven's Strike", "tag" = "SMITE", "icon" = "heavens_strike", "cost" = SPELLCOST_MAJOR_AOE, "cooldown" = 12 SECONDS, "charge" = CHARGETIME_MAJOR, "invocation" = "Caelum Feri!", "variance" = SPELL_VARIANCE_MID),
+		list("name" = "Thunderstrike", "tag" = "STORM", "icon" = "thunderstrike", "cost" = SPELLCOST_MAJOR_AOE, "cooldown" = 20 SECONDS, "charge" = CHARGETIME_HEAVY, "invocation" = "Feri Fulmine Hostem!", "variance" = SPELL_VARIANCE_LOW),
+		// [/SURREALIS-EDIT]
 	)
 
 /datum/action/cooldown/spell/fulmination/Grant(mob/grant_to)
@@ -59,6 +69,9 @@
 	cooldown_time = mode["cooldown"]
 	charge_time = mode["charge"]
 	invocations = list(mode["invocation"])
+	// [SURREALIS-ADD] - VRCOMBAT
+	damage_variance = mode["variance"]
+	// [/SURREALIS-ADD]
 	build_all_button_icons()
 	update_mode_maptext(mode["tag"])
 
@@ -134,12 +147,23 @@
 		if(spell_guard_check(L, TRUE))
 			L.visible_message(span_warning("[L] weathers the lightning strike!"))
 			continue
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		var/actual_damage = hs_damage
 		if(istype(caster) && ishuman(L))
 			if(arcyne_strike(caster, L, null, actual_damage, target_zone, \
 				BCLASS_BURN, spell_name = "Heaven's Strike", \
 				damage_type = BURN, \
 				skip_animation = TRUE, SPELL_STRIKE_SCALING) == ARCYNE_STRIKE_WARDED)
+		*/
+		var/actual_damage = get_varied_damage(hs_damage, caster)
+		if(istype(caster) && ishuman(L))
+			if(arcyne_strike(caster, L, null, actual_damage, target_zone, \
+				BCLASS_ELECTRICAL, spell_name = "Heaven's Strike", \
+				damage_type = BURN, \
+				skip_animation = TRUE, SPELL_STRIKE_SCALING) == ARCYNE_STRIKE_WARDED)
+		// [/SURREALIS-EDIT]
 				continue
 		else
 			L.electrocute_act(actual_damage, src, 1, SHOCK_NOSTUN)
@@ -152,9 +176,17 @@
 			continue
 		new /obj/effect/temp_visual/telegraph/pillar/fadein(T, ts_telegraph)
 	playsound(centerpoint, 'sound/magic/charging.ogg', 80, TRUE)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(thunderstrike_erupt), centerpoint, owner, ts_radius, ts_damage, src, "Thunderstrike", SPELL_DAMAGE_INTEGRITY_MODIFIER), ts_telegraph)
 
 /proc/thunderstrike_erupt(turf/centerpoint, mob/living/carbon/human/caster, radius = 2, damage = 50, datum/action/cooldown/spell/guard_source, spell_name = "Thunderstrike", intdamage_mult = 1)
+	*/
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(thunderstrike_erupt), centerpoint, owner, ts_radius, ts_damage, src, "Thunderstrike", SPELL_DAMAGE_INTEGRITY_MODIFIER, damage_variance), ts_telegraph)
+
+/proc/thunderstrike_erupt(turf/centerpoint, mob/living/carbon/human/caster, radius = 2, damage = 50, datum/action/cooldown/spell/guard_source, spell_name = "Thunderstrike", intdamage_mult = 1, variance_range = 0)
+	// [/SURREALIS-EDIT]
 	if(!centerpoint)
 		return
 	playsound(centerpoint, 'sound/magic/lightning.ogg', 100, TRUE, 8)
@@ -175,13 +207,27 @@
 			if(guard_source && !QDELETED(guard_source) && guard_source.spell_guard_check(L, TRUE))
 				L.visible_message(span_warning("[L] weathers the lightning strike!"))
 				continue
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			if(istype(caster) && !QDELETED(caster) && ishuman(L))
 				if(arcyne_strike(caster, L, null, damage, pick(random_zones), \
 					BCLASS_BURN, spell_name = spell_name, \
 					damage_type = BURN, \
 					skip_animation = TRUE, intdamage_mult = intdamage_mult) == ARCYNE_STRIKE_WARDED)
+			*/
+			var/actual_damage = caster_varied_spell_damage(damage, variance_range, caster)
+			if(istype(caster) && !QDELETED(caster) && ishuman(L))
+				if(arcyne_strike(caster, L, null, actual_damage, pick(random_zones), \
+					BCLASS_ELECTRICAL, spell_name = spell_name, \
+					damage_type = BURN, \
+					skip_animation = TRUE, intdamage_mult = intdamage_mult) == ARCYNE_STRIKE_WARDED)
+			// [/SURREALIS-EDIT]
 					continue
 			else
-				L.electrocute_act(damage, caster, 1, SHOCK_NOSTUN)
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// L.electrocute_act(damage, caster, 1, SHOCK_NOSTUN) // SURREALIS-EDIT - ORIGINAL
+				L.electrocute_act(actual_damage, caster, 1, SHOCK_NOSTUN)
+				// [/SURREALIS-EDIT]
 			L.electrocute_act(0, caster, 1, SHOCK_NOSTUN|SHOCK_VISUAL_ONLY)
 			new /obj/effect/temp_visual/spell_impact(get_turf(L), GLOW_COLOR_LIGHTNING, SPELL_IMPACT_HIGH)

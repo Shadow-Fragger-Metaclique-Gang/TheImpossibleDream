@@ -795,7 +795,10 @@
 
 /datum/intent/sword/thrust/exe
 	swingdelay = 4	//Slight delay to stab; big and heavy.
-	penfactor = PEN_NONE //Flat tip? I don't know, man. This intent is won't penetrate anything but it damages armor more.
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE //Flat tip? I don't know, man. This intent is won't penetrate anything but it damages armor more. // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0 //Flat tip? I don't know, man. This intent is won't penetrate anything but it damages armor more.
+	// [/SURREALIS-EDIT]
 	intent_intdamage_factor = 1.3 //This is basically like getting hit by a mace.
 
 /datum/intent/sword/cut/exe/cleave
@@ -1036,8 +1039,15 @@
 	if(!awakens || awakened)
 		return
 	awakened = TRUE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	max_integrity += 50
 	obj_integrity = max_integrity
+	*/
+	set_max_integrity(max_integrity + 50)
+	set_integrity(max_integrity)
+	// [/SURREALIS-EDIT]
 	restore_bintegrity()
 	awaken_edge()
 
@@ -1468,14 +1478,20 @@
 /datum/intent/sword/cut/sabre
 	clickcd = 8		//Faster than sword by 4
 	damfactor = 1.25	//Better than rapier (Base is 1.1 for swords)
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 
 /datum/intent/sword/cut/sabre/heavy
 	name = "precise swing"
 	icon_state = "inhack"
 	blade_class = BCLASS_CHOP
 	damfactor = 1.5
-	penfactor = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	penfactor = 3
+	// [/SURREALIS-EDIT]
 	swingdelay = 1.1 SECONDS
 	clickcd = 1.3 SECONDS
 	swingdelay_type = SWINGDELAY_CANCEL
@@ -1485,7 +1501,10 @@
 /datum/intent/sword/thrust/sabre
 	clickcd = 9			//Fast but still not as fast as rapier n' shittier.
 	damfactor = 0.9		//10% worse	than base
-	penfactor = PEN_LIGHT	//Curved blade — can poke through cloth but not mail.
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT	//Curved blade — can poke through cloth but not mail. // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1	//Curved blade — can poke through cloth but not mail.
+	// [/SURREALIS-EDIT]
 
 /obj/item/rogueweapon/sword/sabre/dec
 	icon_state = "decsabre"
@@ -1515,8 +1534,14 @@
 	attack_verb = list("masterfully cuts", "deftly slits", "quarts")
 	clickcd = 7
 	damfactor = 1.25
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	penfactor = PEN_MEDIUM
 	max_intent_damage = 25
+	*/
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 
 /datum/intent/effect/daze/freisabre
 	name = "uszkodzić"
@@ -1759,13 +1784,19 @@
 /datum/intent/sword/thrust/rapier
 	clickcd = 8
 	damfactor = 1.1
-	penfactor = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 
 /datum/intent/sword/thrust/rapier/lunge
 	name = "deep lunge"
 	icon_state = "inlunge"
 	damfactor = 1.3
-	penfactor = PEN_BSTEEL
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_BSTEEL // SURREALIS-EDIT - ORIGINAL
+	penfactor = 4
+	// [/SURREALIS-EDIT]
 
 	swingdelay_type = SWINGDELAY_CANCELSLOW
 	canparry = FALSE
@@ -2399,7 +2430,10 @@
 	icon_state = "intake"
 	animname = "strike"
 	hitsound = list('sound/combat/hits/blunt/metalblunt (1).ogg', 'sound/combat/hits/blunt/metalblunt (2).ogg', 'sound/combat/hits/blunt/metalblunt (3).ogg')
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	swingdelay = 2	//Small delay to hook
 	clickcd = 22	//Can't spam this; long delay.
 	attack_verb = list("hooks", "pries")

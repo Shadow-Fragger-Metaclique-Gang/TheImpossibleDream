@@ -37,7 +37,10 @@
 /obj/projectile/magic/profane/bone_shard
 	name = "bone shard"
 	damage = SPELL_DMG(54)
-	armor_penetration = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_NONE
+	// [/SURREALIS-EDIT]
 	flag = "piercing"
 	woundclass = BCLASS_STAB
 	intdamfactor = SPELL_INTDAM(1)

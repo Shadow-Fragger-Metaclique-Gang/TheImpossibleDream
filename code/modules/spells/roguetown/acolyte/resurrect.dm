@@ -145,6 +145,10 @@
 	return FALSE
 
 /proc/deathmark(mob/living/victim)
+	// [SURREALIS-ADD] - VRCOMBAT
+	if(QDELETED(victim))
+		return
+	// [/SURREALIS-ADD]
 	if(victim.stat != DEAD)
 		victim.apply_status_effect(HAS_TRAIT(victim, TRAIT_LASTLEGS) ? /datum/status_effect/debuff/permadeath/permanent : /datum/status_effect/debuff/permadeath) //The deathmark in question. This temporarily adds unrevivability to the target; die again while it's active, and your story'll be over.. for now.
 		victim.play_permadeath_indicator()

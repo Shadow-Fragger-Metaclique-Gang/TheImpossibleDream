@@ -21,7 +21,7 @@
 	attacked_sound = 'sound/combat/hits/onglass/glasshit.ogg'
 	break_sound = "glassbreak"
 	destroy_sound = 'sound/combat/hits/onwood/destroywalldoor.ogg'
-
+	flags_1 = CHECK_RICOCHET_1 | ON_BORDER_1
 /obj/structure/roguewindow/Initialize(mapload)
 	update_icon()
 	..()

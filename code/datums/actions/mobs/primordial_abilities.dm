@@ -36,7 +36,10 @@
 	damage = SPELL_DMG(25)
 	strike_damage_type = BRUTE
 	blade_class = BCLASS_BLUNT
-	strike_armor_pen = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// strike_armor_pen = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	strike_armor_pen = AP_NONE
+	// [/SURREALIS-EDIT]
 	cone_range = 3
 	push_dist = 0
 	scorch_stacks = 0
@@ -75,7 +78,10 @@
 	damage = SPELL_DMG(20)
 	strike_damage_type = BRUTE
 	blade_class = BCLASS_BLUNT
-	strike_armor_pen = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// strike_armor_pen = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	strike_armor_pen = AP_NONE
+	// [/SURREALIS-EDIT]
 	cone_range = 3
 	cone_half_width = 1
 	sweep_by_ring = TRUE

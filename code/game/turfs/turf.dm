@@ -97,8 +97,10 @@
 	assemble_baseturfs()
 
 	levelupdate()
-	if(smooth)
-		queue_smooth(src)
+	SETUP_SMOOTHING()
+
+	if(smoothing_flags & USES_SMOOTHING)
+		QUEUE_SMOOTH(src)
 
 	for(var/atom/movable/AM in src)
 		Entered(AM)
@@ -127,8 +129,7 @@
 	if (opacity)
 		opaque_atom_count = 1 // we count ourselves
 
-	if(smooth & USES_SMOOTHING)
-		QUEUE_SMOOTH(src)
+
 		QUEUE_SMOOTH_NEIGHBORS(src)
 
 	ComponentInitialize()
@@ -149,6 +150,8 @@
 	T = GET_TURF_BELOW(src)
 	if(T)
 		T.multiz_turf_del(src, UP)
+	if(neighborlay_list)
+		remove_neighborlays()
 	STOP_PROCESSING(SSweather,src)
 	if(force)
 		..()
@@ -732,8 +735,8 @@
 //Should return new turf
 /turf/proc/Melt()
 	return ScrapeAway(flags = CHANGETURF_INHERIT_AIR)
-
-/atom/proc/set_adj_in_dir(direction, direction_flag, list/smoothing_list, new_junction)
+//[SURREALIS-REMOVE] - ICON_SMOOTHING //They were right that this was ugly as fuck but this is NOT  where it goes, wtf.
+/* /atom/proc/set_adj_in_dir(direction, direction_flag, list/smoothing_list, new_junction)
 	. = new_junction
 	var/smooth_border = (smooth & SMOOTH_BORDER)
 	var/smooth_obj = (smooth & SMOOTH_OBJ)
@@ -892,8 +895,8 @@
 		cut_overlay(neighborlay_list[key])
 		qdel(neighborlay_list[key])
 		neighborlay_list[key] = null
-		LAZYREMOVE(neighborlay_list, key)
-
+		LAZYREMOVE(neighborlay_list, key) */
+//[/SURREALIS-REMOVE]
 /**
  * the following are some fishing-related optimizations to shave off as much
  * time we spend implementing the fishing as possible, even if that means

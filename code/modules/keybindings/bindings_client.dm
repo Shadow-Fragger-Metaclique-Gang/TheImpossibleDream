@@ -39,10 +39,15 @@
 	if(length(keys_held) > MAX_HELD_KEYS)
 		keys_held.Cut(1,2)
 	keys_held[_key] = TRUE
+	// Consume rotation actions while posing; the input loop repeats them.
+	if(mob?.shifting)
+		var/rotation_angle = pixel_rotation_key_angle(_key)
+		if(rotation_angle)
+			step_pixel_rotation(rotation_angle)
+			return
 	var/movement = movement_keys[_key]
 	if(!(next_move_dir_sub & movement) && !keys_held["Ctrl"])
 		next_move_dir_add |= movement
-
 	// Client-level keybindings are ones anyone should be able to do at any time
 	// Things like taking screenshots, hitting tab, and adminhelps.
 	var/AltMod = keys_held["Alt"] ? "Alt" : ""
@@ -80,7 +85,7 @@
 	if(next_keysend_reset <= world.time)
 		client_keysend_amount = 0
 		next_keysend_reset = world.time + (1 SECONDS)
-	
+
 	//The "tripped" system is to confirm that flooding is still happening after one spike
 	//not entirely sure how byond commands interact in relation to lag
 	//don't want to kick people if a lag spike results in a huge flood of commands being sent
@@ -104,7 +109,7 @@
 
 	keys_held -= _key
 	var/movement = movement_keys[_key]
-	if(!(next_move_dir_add & movement))
+	if(!(next_move_dir_add & movement) && !(mob?.shifting && pixel_rotation_key_angle(_key)))
 		next_move_dir_sub |= movement
 
 	// We don't do full key for release, because for mod keys you

@@ -30,7 +30,11 @@
 			L = loc
 
 	if(L)
+		// [SURREALIS-REMOVE] - VRCOMBAT
+		/*
 		amt -= L.get_tempo_bonus(TEMPO_TAG_DEF_SHARPNESSFACTOR)
+		*/
+		// [/SURREALIS-REMOVE]
 		amt = max(amt, 0)
 
 	if(L && max_blade_int)

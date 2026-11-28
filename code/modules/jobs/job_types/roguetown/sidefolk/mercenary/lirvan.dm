@@ -235,7 +235,10 @@ third; SUNSET, little neat ability. it may be buggy. don't quote me on that. it 
 	animname = "bite"
 	blade_class = BCLASS_BITE //i really hope this shit's going to work well
 	hitsound = list('sound/combat/hits/bladed/smallslash (1).ogg', 'sound/combat/hits/bladed/smallslash (2).ogg', 'sound/combat/hits/bladed/smallslash (3).ogg')
-	penfactor = PEN_MEDIUM
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_MEDIUM // SURREALIS-EDIT - ORIGINAL
+	penfactor = 2
+	// [/SURREALIS-EDIT]
 	swingdelay = 1 SECONDS
 	clickcd = 1.2 SECONDS
 	swingdelay_type = SWINGDELAY_CANCEL

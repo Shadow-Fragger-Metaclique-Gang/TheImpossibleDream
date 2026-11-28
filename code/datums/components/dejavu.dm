@@ -102,5 +102,8 @@
 
 /datum/component/dejavu/proc/rewind_obj()
 	var/obj/master = parent
-	master.obj_integrity = integrity
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// master.obj_integrity = integrity // SURREALIS-EDIT - ORIGINAL
+	master.set_integrity(integrity)
+	// [/SURREALIS-EDIT]
 	rewind()

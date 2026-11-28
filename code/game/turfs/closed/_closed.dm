@@ -137,8 +137,10 @@
 // [/SURREALIS-ADD]
 			if(H.dir == get_dir(H,src) && H.m_intent == MOVE_INTENT_RUN && (H.mobility_flags & MOBILITY_STAND))
 				H.Immobilize(10)
-				H.apply_damage(15, BRUTE, "head", H.run_armor_check("head", "blunt", damage = 15))
-
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// H.apply_damage(15, BRUTE, "head", H.run_armor_check("head", "blunt", damage = 15)) // SURREALIS-EDIT - ORIGINAL
+				H.apply_damage(H.armor_reduced_damage(15, H.run_armor_check("head", "blunt", damage = 15), "blunt"), BRUTE, "head", 0)
+				// [/SURREALIS-EDIT]
 				H.toggle_rogmove_intent(MOVE_INTENT_WALK, TRUE)
 				playsound(src, "genblunt", 100, TRUE)
 				H.visible_message(span_warning("[H] runs into [src]!"), span_warning("I run into [src]!"))
@@ -272,7 +274,10 @@
 				var/hadflying = (user.movement_type & FLYING)
 				if((climber_armor_class <= ARMOR_CLASS_LIGHT) && !(ismob(pulling))) // if our armour is not light or none OR we are pulling someone we eat shit and die and can't climb vertically at all, except for 'vaulting' aka we got a sold turf we can walk on in front of us
 					user.movement_type |= FLYING
-				L.stamina_add(stamina_cost_final)
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// L.stamina_add(stamina_cost_final) // SURREALIS-EDIT - ORIGINAL
+				L.stamina_add(stamina_cost_final, skill_used = /datum/skill/misc/climbing)
+				// [/SURREALIS-EDIT]
 				user.forceMove(target)
 				if(!hadflying)
 					user.movement_type &= ~FLYING
@@ -367,13 +372,6 @@
 	to_be_destroyed = FALSE
 	return src
 
-/turf/closed/indestructible/sandstone
-	name = "sandstone wall"
-	desc = ""
-	icon = 'icons/turf/walls/sandstone_wall.dmi'
-	icon_state = "sandstone"
-	baseturfs = /turf/closed/indestructible/sandstone
-	smooth = SMOOTH_TRUE
 
 /turf/closed/indestructible/oldshuttle/corner
 	icon_state = "corner"
@@ -401,7 +399,7 @@
 /turf/closed/indestructible/riveted
 	icon = 'icons/turf/walls/riveted.dmi'
 	icon_state = "riveted"
-	smooth = SMOOTH_TRUE
+
 
 /turf/closed/indestructible/abductor
 	icon_state = "alien1"
@@ -465,7 +463,7 @@
 	desc = ""
 	icon = 'icons/turf/walls/boss_wall.dmi'
 	icon_state = "wall"
-	canSmoothWith = list(/turf/closed/indestructible/riveted/boss, /turf/closed/indestructible/riveted/boss/see_through)
+//	canSmoothWith = list(/turf/closed/indestructible/riveted/boss, /turf/closed/indestructible/riveted/boss/see_through)
 	explosion_block = 50
 	baseturfs = /turf/closed/indestructible/riveted/boss
 

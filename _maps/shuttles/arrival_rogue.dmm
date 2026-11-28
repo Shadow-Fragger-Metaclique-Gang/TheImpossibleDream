@@ -11,10 +11,7 @@
 	icon_state = "border";
 	dir = 4
 	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "vertw";
-	dir = 1
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/shuttle/arrival)
 "c" = (
 /obj/structure/fluff/railing/border{
@@ -29,10 +26,7 @@
 	icon_state = "border";
 	dir = 9
 	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "vertw";
-	dir = 1
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/shuttle/arrival)
 "d" = (
 /obj/structure/fluff/railing/border{
@@ -43,10 +37,7 @@
 	icon_state = "border";
 	dir = 5
 	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "vertw";
-	dir = 1
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/shuttle/arrival)
 "e" = (
 /obj/structure/fluff/railing/border{
@@ -61,10 +52,7 @@
 	icon_state = "border";
 	dir = 5
 	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "vertw";
-	dir = 1
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/shuttle/arrival)
 "f" = (
 /obj/structure/fluff/railing/border{
@@ -75,10 +63,7 @@
 	icon_state = "torchwall1";
 	dir = 8
 	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "vertw";
-	dir = 1
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/shuttle/arrival)
 "g" = (
 /turf/closed/wall/mineral/rogue/wooddark,
@@ -92,31 +77,22 @@
 	icon_state = "torchwall1";
 	dir = 4
 	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "vertw";
-	dir = 1
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/shuttle/arrival)
 "i" = (
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "horzw"
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/shuttle/arrival)
 "j" = (
 /obj/structure/boatbell{
 	pixel_y = 20
 	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "horzw"
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/shuttle/arrival)
 "k" = (
 /obj/docking_port/mobile/arrivals{
 	dir = 1
 	},
-/turf/open/floor/rogue/ruinedwood{
-	icon_state = "horzw"
-	},
+/turf/open/floor/rogue/ruinedwood,
 /area/shuttle/arrival)
 "l" = (
 /obj/structure/fluff/railing/border{

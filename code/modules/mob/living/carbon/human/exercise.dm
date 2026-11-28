@@ -53,7 +53,10 @@ Exercise Verbs
 		pushups_in_a_row++
 		var/number_words = numberToWords(pushups_in_a_row)
 		balloon_alert_to_viewers(number_words, number_words, 7, y_offset = -12)
-		stamina_add(stamina_loss)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// stamina_add(stamina_loss) // SURREALIS-EDIT - ORIGINAL
+		stamina_add(stamina_loss, skill_used = /datum/skill/misc/athletics)
+		// [/SURREALIS-EDIT]
 
 		/// For healable skin armor. This is unideal, but I'm a mapper, sire, and I don't know how signals work.
 		if(pushups_in_a_row % 10 == 0 && !on_knees)

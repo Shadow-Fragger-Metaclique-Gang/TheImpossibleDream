@@ -35,7 +35,10 @@
 	attack_verb = list("slaps", "smacks", "wallops", "chastises")
 	hitsound = list('sound/foley/slap.ogg', 'modular/Neu_Food/sound/meatslap.ogg', 'sound/misc/mat/sex_clap/hard/SexSmack21.ogg', 'sound/misc/mat/sex_clap/hard/SexSmack24.ogg')
 	chargetime = 1
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	swingdelay = 0
 	icon_state = "fish"
 	item_d_type = "blunt"
@@ -893,7 +896,10 @@
 	fishing_difficulty_modifier = 25
 	fish_movement_type = /datum/fish_movement/accelerando
 	force = SWORDFISH_FORCE
-	armor_penetration = PEN_LIGHT // By the light of the ten, we should have a little bit of whimsy in our codebase. Just a lil
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_LIGHT // By the light of the ten, we should have a little bit of whimsy in our codebase. Just a lil // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_LIGHT // By the light of the ten, we should have a little bit of whimsy in our codebase. Just a lil
+	// [/SURREALIS-EDIT]
 	thrown_bclass = BCLASS_STAB
 	embedding = list("embedded_pain_multiplier" = 2, "embed_chance" = 25)
 	thrown_damage_flag = "piercing"

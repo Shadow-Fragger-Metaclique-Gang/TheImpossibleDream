@@ -47,8 +47,13 @@
 		new /obj/effect/temp_visual/telegraph/diminish(affected_turf)
 	playsound(T, pick('sound/magic/diminish1.ogg','sound/magic/diminish2.ogg','sound/magic/diminish3.ogg','sound/magic/diminish4.ogg'), 80, TRUE)
 
-	sleep(delay)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// sleep(delay) // SURREALIS-EDIT - ORIGINAL
+	addtimer(CALLBACK(src, PROC_REF(diminish_area), T, source_turf), delay)
+	return TRUE
 
+/obj/effect/proc_holder/spell/invoked/diminish/proc/diminish_area(turf/T, turf/source_turf)
+	// [/SURREALIS-EDIT]
 	for(var/turf/affected_turf in get_hear(area_of_effect, T))
 		if(!(affected_turf in get_hear(range, source_turf)))
 			continue
@@ -62,5 +67,8 @@
 				continue
 			L.visible_message(span_warning("Origin magick diminishes [L]'s instincts!"), span_warning("My instincts feel sluggish and predictable!"))
 			L.apply_status_effect(/datum/status_effect/debuff/diminish)
-
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	return TRUE
+	*/
+	// [/SURREALIS-REMOVE]

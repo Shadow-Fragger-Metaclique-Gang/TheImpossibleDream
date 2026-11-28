@@ -150,7 +150,10 @@
 	attack_verb = list("tramples", "slashes", "eviscerates")
 	animname = "chop"
 	hitsound = 'sound/combat/rend_hit.ogg'
-	penfactor = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	penfactor = 3
+	// [/SURREALIS-EDIT]
 	candodge = TRUE
 	canparry = TRUE
 	miss_text = "swings its massive head wildly!"

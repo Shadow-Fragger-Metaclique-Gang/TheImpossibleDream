@@ -129,7 +129,10 @@
 				user.Slowdown(2)
 			continue
 		var/total_damage = strike_damage
-		arcyne_strike(user, victim, weapon, total_damage, def_zone, spell_name = "Caedo", skip_animation = TRUE)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// arcyne_strike(user, victim, weapon, total_damage, def_zone, spell_name = "Caedo", skip_animation = TRUE) // SURREALIS-EDIT - ORIGINAL
+		arcyne_strike(user, victim, weapon, total_damage, def_zone, spell_name = "Caedo", skip_animation = TRUE, full_crit = TRUE)
+		// [/SURREALIS-EDIT]
 		hit_count++
 		var/turf/victim_turf = get_turf(victim)
 		if(victim_turf)
@@ -150,7 +153,10 @@
 	if(spell_guard_check(victim, FALSE, user))
 		return
 	var/total_damage = strike_damage
-	arcyne_strike(user, victim, weapon, total_damage, def_zone, spell_name = "Caedo", skip_animation = TRUE)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// arcyne_strike(user, victim, weapon, total_damage, def_zone, spell_name = "Caedo", skip_animation = TRUE) // SURREALIS-EDIT - ORIGINAL
+	arcyne_strike(user, victim, weapon, total_damage, def_zone, spell_name = "Caedo", skip_animation = TRUE, full_crit = TRUE)
+	// [/SURREALIS-EDIT]
 	var/turf/victim_turf = get_turf(victim)
 	if(victim_turf)
 		var/slash_dir = get_dir(user, victim)

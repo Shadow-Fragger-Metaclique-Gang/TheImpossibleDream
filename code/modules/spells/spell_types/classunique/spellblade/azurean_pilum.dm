@@ -68,8 +68,15 @@
 	. = ..()
 
 /datum/action/cooldown/spell/projectile/azurean_pilum/ready_projectile(obj/projectile/to_fire, atom/target, mob/user, iteration)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	..()
 	to_fire.damage = cached_damage
+	*/
+	to_fire.damage = cached_damage
+	..()
+	// [/SURREALIS-EDIT]
 
 /obj/projectile/magic/azurean_pilum
 	name = "Azurean Pilum"

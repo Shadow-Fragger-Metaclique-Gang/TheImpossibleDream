@@ -32,6 +32,9 @@
 
 	Nutri = locate(/datum/reagent/consumable/nutriment) in H.reagents.reagent_list
 
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	if(Nutri)
 		if(prob((damage/40) * Nutri.volume * Nutri.volume))
 			H.vomit(damage)
@@ -41,6 +44,20 @@
 		if(prob((damage/10) * Nutri.volume * Nutri.volume))
 			H.vomit(damage)
 			to_chat(H, span_warning("My stomach reels in pain as you're incapable of holding down all that food!"))
+	*/
+	if(damage >= high_threshold)
+		if(Nutri && prob((damage/10) * Nutri.volume * Nutri.volume))
+			H.vomit(damage)
+			to_chat(H, span_warning("MY STOMACH! I can't keep it down!"))
+		if(prob(5) && !H.stat)
+			to_chat(H, span_warning("My stomach burns!"))
+	else
+		if(Nutri && prob((damage/40) * Nutri.volume * Nutri.volume))
+			H.vomit(damage)
+			to_chat(H, span_warning("My stomach hurts!"))
+		if(prob(2) && !H.stat)
+			to_chat(H, span_warning("My stomach aches."))
+	// [/SURREALIS-EDIT]
 
 /obj/item/organ/stomach/proc/handle_disgust(mob/living/carbon/human/H)
 	if(H.disgust)

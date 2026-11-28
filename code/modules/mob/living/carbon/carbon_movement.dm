@@ -18,4 +18,7 @@
 				adjust_nutrition(-(0.1))
 				adjust_hydration(-(0.1))
 		if(m_intent == MOVE_INTENT_RUN && isnull(buckled)) //sprint fatigue add
-			stamina_add(2)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// stamina_add(2) // SURREALIS-EDIT - ORIGINAL
+			stamina_add(2, skill_used = /datum/skill/misc/athletics)
+			// [/SURREALIS-EDIT]

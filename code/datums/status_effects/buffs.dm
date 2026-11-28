@@ -351,6 +351,8 @@
 	REMOVE_TRAIT(owner, TRAIT_ANTIMAGIC, MAGIC_TRAIT)
 	owner.visible_message("<span class='warning'>[owner]'s dull aura fades away...</span>")
 
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 /atom/movable/screen/alert/status_effect/tempo_one
 	name = "Tempo One"
 	desc = "Three cowardly foes are attacking me. The need to focus has given me some light boons."
@@ -416,7 +418,8 @@
 	owner.remove_filter(TEMPO_MAX_FILTER)
 	REMOVE_TRAIT(owner, TRAIT_GRABIMMUNE,	TRAIT_STATUS_EFFECT)
 #undef TEMPO_MAX_FILTER
-
+*/
+// [/SURREALIS-REMOVE]
 /datum/status_effect/buff/weapon_binded
 	id = "wep_bind_buff"
 	duration = 10 SECONDS

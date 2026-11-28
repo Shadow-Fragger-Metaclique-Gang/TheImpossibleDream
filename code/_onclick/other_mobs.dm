@@ -37,7 +37,10 @@
 			playsound(get_turf(src), pick(GLOB.unarmed_swingmiss), 100, FALSE)
 //			src.emote("attackgrunt")
 		if(used_intent.releasedrain)
-			stamina_add(ceil(used_intent.releasedrain * rmb_stam_penalty))
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// stamina_add(ceil(used_intent.releasedrain * rmb_stam_penalty)) // SURREALIS-EDIT - ORIGINAL
+			stamina_add(ceil(used_intent.releasedrain * rmb_stam_penalty), skill_used = /datum/skill/combat/unarmed)
+			// [/SURREALIS-EDIT]
 		var/dualwield_armed = FALSE
 		if(HAS_TRAIT(src, TRAIT_DUALWIELDER) && !dualwield_processing && L != src && cmode)
 			var/datum/intent/dualwield_cached_intent = used_intent
@@ -76,18 +79,27 @@
 				item_skip = TRUE
 		if(!item_skip)
 			if(used_intent.releasedrain && !used_intent.type == INTENT_GRAB)
-				stamina_add(ceil(used_intent.releasedrain * rmb_stam_penalty))
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// stamina_add(ceil(used_intent.releasedrain * rmb_stam_penalty)) // SURREALIS-EDIT - ORIGINAL
+				stamina_add(ceil(used_intent.releasedrain * rmb_stam_penalty), skill_used = /datum/skill/combat/unarmed)
+				// [/SURREALIS-EDIT]
 			if(used_intent.type == INTENT_GRAB)
 				var/obj/AM = A
 				if(istype(AM) && !AM.anchored)
 					start_pulling(A) //add params to grab bodyparts based on loc
-					stamina_add(ceil(used_intent.releasedrain * rmb_stam_penalty))
+					// [SURREALIS-EDIT] - VRCOMBAT
+					// stamina_add(ceil(used_intent.releasedrain * rmb_stam_penalty)) // SURREALIS-EDIT - ORIGINAL
+					stamina_add(ceil(used_intent.releasedrain * rmb_stam_penalty), skill_used = /datum/skill/combat/wrestling)
+					// [/SURREALIS-EDIT]
 					return
 			if(used_intent.type == INTENT_DISARM)
 				var/obj/AM = A
 				if(istype(AM) && !AM.anchored)
 					var/jadded = max(100-(STASTR*10),5)
-					if(stamina_add(jadded))
+					// [SURREALIS-EDIT] - VRCOMBAT
+					// if(stamina_add(jadded)) // SURREALIS-EDIT - ORIGINAL
+					if(stamina_add(jadded, skill_used = /datum/skill/misc/athletics))
+					// [/SURREALIS-EDIT]
 						visible_message(span_info("[src] pushes [AM]."))
 						PushAM(AM, MOVE_FORCE_STRONG)
 					else
@@ -95,7 +107,10 @@
 					changeNext_move(CLICK_CD_MELEE)
 					return
 		if(cmode && used_intent.type == INTENT_HARM && isitem(A) && !ismob(A.loc))
-			if(stamina_add(8))
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// if(stamina_add(8)) // SURREALIS-EDIT - ORIGINAL
+			if(stamina_add(8, skill_used = /datum/skill/combat/unarmed))
+			// [/SURREALIS-EDIT]
 				var/dmg = get_punch_dmg()
 				var/obj/item/I = A
 				I.take_damage(dmg)
@@ -289,7 +304,10 @@
 			var/obj/structure/AM = A
 			if(istype(AM) && !AM.anchored)
 				var/jadded = max(100-(STASTR*10),5)
-				if(stamina_add(jadded))
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// if(stamina_add(jadded)) // SURREALIS-EDIT - ORIGINAL
+				if(stamina_add(jadded, skill_used = /datum/skill/misc/athletics))
+				// [/SURREALIS-EDIT]
 					visible_message(span_info("[src] pushes [AM]."))
 					PushAM(AM, MOVE_FORCE_STRONG)
 				else

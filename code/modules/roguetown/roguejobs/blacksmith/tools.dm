@@ -109,8 +109,15 @@
 	repair_busy = FALSE
 
 /obj/item/rogueweapon/hammer/proc/repair_item(obj/item/attacked_item, mob/living/user)
-	if(!attacked_item.anvilrepair || (attacked_item.obj_integrity >= attacked_item.max_integrity) || !isturf(attacked_item.loc))
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(!attacked_item.anvilrepair || !attacked_item.integrity_needs_repair() || !isturf(attacked_item.loc)) // SURREALIS-EDIT - ORIGINAL
+	if(!attacked_item.anvilrepair || !isturf(attacked_item.loc))
 		return
+	if(!attacked_item.integrity_needs_repair())
+		if(attacked_item.ontable())
+			to_chat(user, span_info("The [attacked_item.name] has been fully repaired."))
+		return
+	// [/SURREALIS-EDIT]
 
 	if(!attacked_item.ontable())
 		to_chat(user, span_warning("I should put this on a table or an anvil first."))
@@ -139,8 +146,11 @@
 		playsound(src,'sound/items/bsmithfail.ogg', 40, FALSE)
 		if(repair_percent)
 			repair_percent *= attacked_item.max_integrity
-			var/exp_gained = min(attacked_item.obj_integrity + repair_percent, attacked_item.max_integrity) - attacked_item.obj_integrity
-			attacked_item.obj_integrity = min(attacked_item.obj_integrity + repair_percent, attacked_item.max_integrity)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// var/exp_gained = min(attacked_item.obj_integrity + repair_percent, attacked_item.max_integrity) - attacked_item.obj_integrity // SURREALIS-EDIT - ORIGINAL
+			// attacked_item.obj_integrity = min(attacked_item.obj_integrity + repair_percent, attacked_item.max_integrity) // SURREALIS-EDIT - ORIGINAL
+			var/exp_gained = max(attacked_item.adjust_integrity(repair_percent), 0)
+			// [/SURREALIS-EDIT]
 			if(repair_percent == 0.01) // If an inexperienced repair attempt has been successful
 				to_chat(user, span_warning("You fumble your way into slightly repairing [attacked_item]."))
 			else
@@ -148,13 +158,20 @@
 				if(attacked_item.body_parts_covered != attacked_item.body_parts_covered_dynamic)
 					user.visible_message(span_info("[user] repairs [attacked_item]'s coverage!"))
 					attacked_item.repair_coverage()
-			if(attacked_item.obj_broken && attacked_item.obj_integrity == attacked_item.max_integrity)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// if(attacked_item.obj_broken && attacked_item.obj_integrity == attacked_item.max_integrity) // SURREALIS-EDIT - ORIGINAL
+			if(attacked_item.obj_broken && !attacked_item.integrity_needs_repair())
+			// [/SURREALIS-EDIT]
 				attacked_item.obj_fix()
 			user.mind.add_sleep_experience(attacked_item.anvilrepair, exp_gained/2) //We gain as much exp as we fix divided by 2
 		else
 			user.visible_message(span_warning("[user] fumbles trying to repair [attacked_item]!"))
 
-		if(attacked_item.obj_integrity >= attacked_item.max_integrity)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// if(attacked_item.obj_integrity >= attacked_item.max_integrity) // SURREALIS-EDIT - ORIGINAL
+		if(!attacked_item.integrity_needs_repair())
+			to_chat(user, span_info("The [attacked_item.name] has been fully repaired."))
+			// [/SURREALIS-EDIT]
 			break
 
 	while(do_after(user, CLICK_CD_QUICK, target = attacked_item))
@@ -461,6 +478,25 @@
 	icon_state = "hammer_s"
 	smeltresult = /obj/item/ingot/steel
 
+// [SURREALIS-EDIT] - VRCOMBAT
+// SURREALIS-EDIT - ORIGINAL
+// /*
+// /obj/item/rogueweapon/hammer/steel/attack_turf(turf/T, mob/living/user)
+// 	if(!user.cmode)
+// 		if(T.hammer_repair && T.max_integrity && !T.obj_broken)
+// 			var/repair_percent = 0.05
+// 			if(user.mind)
+// 				if(user.get_skill_level(I.hammer_repair) <= 0)
+// 					to_chat(user, span_warning("I don't know how to repair this.."))
+// 					return
+// 				repair_percent = max(user.get_skill_level(I.hammer_repair) * 0.05, 0.05)
+// 			repair_percent = repair_percent * I.max_integrity
+// 			I.obj_integrity = min(obj_integrity+repair_percent, I.max_integrity)
+// 			playsound(src,'sound/items/bsmithfail.ogg', 100, FALSE)
+// 			user.visible_message(span_info("[user] repairs [I]!"))
+// 			return
+// 	..()
+// */
 /*
 /obj/item/rogueweapon/hammer/steel/attack_turf(turf/T, mob/living/user)
 	if(!user.cmode)
@@ -472,12 +508,13 @@
 					return
 				repair_percent = max(user.get_skill_level(I.hammer_repair) * 0.05, 0.05)
 			repair_percent = repair_percent * I.max_integrity
-			I.obj_integrity = min(obj_integrity+repair_percent, I.max_integrity)
+			I.set_integrity(min(I.obj_integrity + repair_percent, I.max_integrity))
 			playsound(src,'sound/items/bsmithfail.ogg', 100, FALSE)
 			user.visible_message(span_info("[user] repairs [I]!"))
 			return
 	..()
 */
+// [/SURREALIS-EDIT]
 /obj/item/rogueweapon/hammer/blacksteel
 	name = "blacksteel hammer"
 	desc = "A hammer made of blacksteel, to drive even the hardest metals into submission."

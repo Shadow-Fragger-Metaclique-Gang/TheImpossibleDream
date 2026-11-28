@@ -144,4 +144,7 @@
 
 /datum/intent/unarmed/claw/troll
 	clickcd = TROLL_ATTACK_SPEED
-	penfactor = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	penfactor = 1
+	// [/SURREALIS-EDIT]

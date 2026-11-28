@@ -1,6 +1,10 @@
 #define MIN_BULLET_RANGE	2
 #define MAX_BULLET_RANGE	7
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 #define DAM_FALLOFF_BULLET	0.5
+*/
+// [/SURREALIS-REMOVE]
 #define HEAVY_AMMO_SPEED	3.5
 #define HEAVY_AMMO_CHARGE	1.5
 #define MIN_SCATTER_RANGE	1
@@ -140,7 +144,10 @@
 	desc = "If you're reading this: duck."
 	damage = 40
 	damage_type = BRUTE
-	armor_penetration = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_NONE
+	// [/SURREALIS-EDIT]
 	icon = 'icons/roguetown/weapons/ranged/sling_mob.dmi'
 	icon_state = "stone_sling_bullet"
 	range = 15
@@ -169,7 +176,10 @@
 	desc = "If you're reading this: duck."
 	damage = 40
 	damage_type = BRUTE
-	armor_penetration = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_NONE
+	// [/SURREALIS-EDIT]
 	icon = 'icons/roguetown/weapons/ranged/sling_proj.dmi'
 	icon_state = "slingbullet_proj"
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/sling_bullet
@@ -189,7 +199,11 @@
 	ricochet_decay_damage = 1 /// No bonus damage on bounce.
 	min_range = MIN_BULLET_RANGE
 	max_range = MAX_BULLET_RANGE
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	dam_falloff_factor = DAM_FALLOFF_BULLET
+	*/
+	// [/SURREALIS-REMOVE]
 
 /obj/projectile/bullet/reusable/sling_bullet/on_hit(atom/target)
 	. = ..()
@@ -253,7 +267,11 @@
 	ricochet_chance = 0
 	min_range = MIN_SCATTER_RANGE
 	max_range = 5
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	dam_falloff_factor = DAM_FALLOFF_BULLET
+	*/
+	// [/SURREALIS-REMOVE]
 
 /obj/item/ammo_casing/caseless/rogue/sling_bullet/bs_scattershot
 	name = "blacksteel scattershot"
@@ -273,7 +291,11 @@
 	ricochet_chance = 25
 	min_range = MIN_SCATTER_RANGE
 	max_range = 5
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	dam_falloff_factor = DAM_FALLOFF_BULLET
+	*/
+	// [/SURREALIS-REMOVE]
 
 /obj/item/ammo_casing/caseless/rogue/sling_bullet/blacksteel
 	name = "blacksteel sling bullet"
@@ -348,7 +370,11 @@
 	aim_mod = HEAVY_AIM
 	min_range = MIN_BULLET_RANGE
 	max_range = MAX_BULLET_RANGE
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	dam_falloff_factor = DAM_FALLOFF_BULLET
+	*/
+	// [/SURREALIS-REMOVE]
 
 /obj/projectile/bullet/sling_bullet/fire_pot/on_hit(atom/target)
 	. = ..()
@@ -368,7 +394,10 @@
 	embedchance = 100
 	woundclass = BCLASS_PIERCE
 	flag = "piercing"
-	armor_penetration = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_NONE
+	// [/SURREALIS-EDIT]
 	speed = 0.1
 
 /obj/item/ammo_casing/caseless/rogue/bullet
@@ -385,7 +414,10 @@
 //mob projectiles
 /obj/projectile/bullet/reusable/arrow/ancient
 	damage = 10
-	armor_penetration = PEN_LIGHT
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_LIGHT // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_LIGHT
+	// [/SURREALIS-EDIT]
 	ammo_type = /obj/item/ammo_casing/caseless/rogue/arrow/iron/aalloy
 	embedchance = 100
 	speed = 2 // I guess slower to be slightly more forgiving to players since they're otherwise aimbots
@@ -395,7 +427,10 @@
 	name = "stone"
 	damage = 25
 	damage_type = BRUTE
-	armor_penetration = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_NONE
+	// [/SURREALIS-EDIT]
 	icon = 'icons/roguetown/items/natural.dmi'
 	icon_state = "stone1"
 	ammo_type = /obj/item/natural/stone
@@ -482,7 +517,11 @@
 
 #undef MIN_BULLET_RANGE
 #undef MAX_BULLET_RANGE
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 #undef DAM_FALLOFF_BULLET
+*/
+// [/SURREALIS-REMOVE]
 #undef HEAVY_AMMO_SPEED
 #undef HEAVY_AMMO_CHARGE
 #undef MIN_SCATTER_RANGE

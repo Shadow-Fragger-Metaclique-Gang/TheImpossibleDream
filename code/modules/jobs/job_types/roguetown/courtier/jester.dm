@@ -15,7 +15,10 @@
 
 	allowed_ages = ALL_AGES_LIST
 	outfit = /datum/outfit/job/roguetown/jester
-	job_traits = list(TRAIT_ZJUMP, TRAIT_LEAPER, TRAIT_NUTCRACKER, TRAIT_TEMPO)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// job_traits = list(TRAIT_ZJUMP, TRAIT_LEAPER, TRAIT_NUTCRACKER, TRAIT_TEMPO) // SURREALIS-EDIT - ORIGINAL
+	job_traits = list(TRAIT_ZJUMP, TRAIT_LEAPER, TRAIT_NUTCRACKER)
+	// [/SURREALIS-EDIT]
 	display_order = JDO_JESTER
 	give_bank_account = TRUE
 	min_pq = -4 //silly jesters are funny so low PQ requirement

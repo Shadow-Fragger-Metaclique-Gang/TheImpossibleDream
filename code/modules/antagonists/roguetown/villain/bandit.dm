@@ -15,7 +15,11 @@
 		"I WILL NOT FOLLOW YOUR RULES!",
 	)
 	rogue_enabled = TRUE
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	has_tempo = TRUE
+	*/
+	// [/SURREALIS-REMOVE]
 	storyteller_antag_flags = STORYTELLER_ANTAG_VILLAIN | STORYTELLER_ANTAG_ROUNDSTART
 	override_candidatereq = TRUE
 	storyteller_min_players = CHARACTER_INJECTION_MIN_POP

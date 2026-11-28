@@ -40,7 +40,15 @@
 	cloak = /obj/item/clothing/cloak/tabard/black
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
-	armor = /obj/item/clothing/suit/roguetown/armor/plate
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor = /obj/item/clothing/suit/roguetown/armor/plate // SURREALIS-EDIT - ORIGINAL
+	var/armors = list(
+		"Half-Plate"	= /obj/item/clothing/suit/roguetown/armor/plate,
+		"Brigandine"	= /obj/item/clothing/suit/roguetown/armor/brigandine,
+	)
+	var/armorchoice = input(H, "Choose your armor.", "TAKE UP ARMOR") as anything in armors
+	armor = armors[armorchoice] || /obj/item/clothing/suit/roguetown/armor/plate
+	// [/SURREALIS-EDIT]
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
 	belt = /obj/item/storage/belt/rogue/leather/steel/tasset

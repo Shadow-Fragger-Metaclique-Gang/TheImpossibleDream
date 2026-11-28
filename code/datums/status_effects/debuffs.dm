@@ -921,6 +921,8 @@
 	desc = "I cannot take another action."
 	icon_state = "clickcd"
 
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 /datum/status_effect/debuff/crit_resistance_cd
 	id = "crit_resist_cd"
 	duration = CRIT_RESISTANCE_TIMER_CD
@@ -948,7 +950,8 @@
 	name = "Critical Resistance"
 	desc = "My body is temporarily resisting critical wounds."
 	icon_state = "debuff"
-
+*/
+// [/SURREALIS-REMOVE]
 /datum/status_effect/debuff/yeetcd
 	id = "yeetcd"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/yeetcd

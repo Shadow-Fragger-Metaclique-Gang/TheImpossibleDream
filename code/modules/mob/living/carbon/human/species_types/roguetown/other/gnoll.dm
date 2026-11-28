@@ -84,14 +84,16 @@
 	H.update_inv_armor_special()
 	return TRUE
 
-/datum/species/gnoll/on_species_gain(mob/living/carbon/C, datum/species/old_species)
+// [SURREALIS-EDIT] - SEXCON
+// /datum/species/gnoll/on_species_gain(mob/living/carbon/C, datum/species/old_species) // SURREALIS-EDIT - ORIGINAL
+/datum/species/gnoll/on_species_gain(mob/living/carbon/C, datum/species/old_species, datum/preferences/pref_load)
+// [/SURREALIS-EDIT]
 	. = ..()
 	C.icon_state = "firepelt"
 	C.base_pixel_x = -8
 	C.pixel_x = -8
 	C.base_pixel_y = -4
 	C.pixel_y = -4
-
 /datum/species/gnoll/update_damage_overlays(mob/living/carbon/human/H)
 	H.remove_overlay(DAMAGE_LAYER)
 	var/list/hands = list()

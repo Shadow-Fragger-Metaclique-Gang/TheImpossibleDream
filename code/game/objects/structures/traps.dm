@@ -301,7 +301,10 @@
 /obj/structure/trap/saw_blades/trap_effect(mob/living/L)
 	to_chat(L, span_danger("<B>A whirling blade erupts from beneath your feet!</B>"))
 	def_zone = pick(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-	L.apply_damage(trap_damage, BRUTE, def_zone, L.run_armor_check(def_zone, "stab", armor_penetration = PEN_NONE, damage = trap_damage))
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// L.apply_damage(trap_damage, BRUTE, def_zone, L.run_armor_check(def_zone, "stab", armor_penetration = PEN_NONE, damage = trap_damage)) // SURREALIS-EDIT - ORIGINAL
+	L.apply_damage(L.armor_reduced_damage(trap_damage, L.run_armor_check(def_zone, "stab", armor_penetration = AP_NONE, damage = trap_damage), "stab"), BRUTE, def_zone, 0)
+	// [/SURREALIS-EDIT]
 	playsound(src, 'sound/gore/flesh_eat_01.ogg', 70, TRUE)
 	var/obj/structure/sawblade_trap/saw = new(get_turf(src))
 	last_trigger = 0 // override to keep slicing you every time you step onto the trap
@@ -399,7 +402,10 @@
 /obj/projectile/magic/frostbolt/wall_projectile
 	speed = 6
 	damage = 20
-	armor_penetration = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor_penetration = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	armor_penetration = AP_NONE
+	// [/SURREALIS-EDIT]
 
 /obj/structure/trap/wall_projectile/acidsplash
 	name = "acid plate trap"
@@ -419,7 +425,10 @@
 /obj/structure/trap/rock_fall/trap_effect(mob/living/L)
 	to_chat(L, span_danger("<B>The ground above you shakes violently!</B>"))
 	def_zone = BODY_ZONE_HEAD
-	L.apply_damage(trap_damage, BRUTE, def_zone, L.run_armor_check(def_zone, "stab", armor_penetration = PEN_NONE, damage = trap_damage))
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// L.apply_damage(trap_damage, BRUTE, def_zone, L.run_armor_check(def_zone, "stab", armor_penetration = PEN_NONE, damage = trap_damage)) // SURREALIS-EDIT - ORIGINAL
+	L.apply_damage(L.armor_reduced_damage(trap_damage, L.run_armor_check(def_zone, "stab", armor_penetration = AP_NONE, damage = trap_damage), "stab"), BRUTE, def_zone, 0)
+	// [/SURREALIS-EDIT]
 	playsound(src, 'sound/foley/smash_rock.ogg', 70, TRUE)
 	L.set_blurriness(10)
 	var/obj/structure/flora/rock/giant_rock = new(get_turf(src))

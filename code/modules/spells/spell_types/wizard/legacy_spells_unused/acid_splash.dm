@@ -41,7 +41,11 @@
 	expose_caster_on_deflect = TRUE
 	damage = 10
 	damage_type = BURN
-	flag = "fire"
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// flag = "fire" // SURREALIS-EDIT - ORIGINAL
+	woundclass = BCLASS_ACID
+	flag = "acid"
+	// [/SURREALIS-EDIT]
 	range = 15
 	speed = 5 //higher is slower
 	var/aoe_range = 1
@@ -76,8 +80,18 @@
 	owner.emote("scream")
 
 /datum/status_effect/buff/acidsplash/tick()
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	var/mob/living/target = owner
 	target.adjustFireLoss(10)
+	*/
+	if(iscarbon(owner))
+		var/mob/living/carbon/carbon_owner = owner
+		carbon_owner.take_bodypart_damage(0, 10, check_armor = TRUE, bclass = BCLASS_ACID)
+	else
+		owner.adjustFireLoss(10, bclass = BCLASS_ACID)
+	// [/SURREALIS-EDIT]
 
 /atom/movable/screen/alert/status_effect/buff/acidsplash
 	name = "Acid Burn"

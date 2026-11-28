@@ -24,7 +24,7 @@
 	var/mob/living/L = target
 	user.visible_message(span_warning("[user] feints an attack at [L], but [L.p_they()] [L.p_are()] too stupid to fall for it!"), span_warning("<i>What the fuck was I thinking?</i>"))
 	L.emote("rage", forced = TRUE)
-	user.apply_status_effect(/datum/status_effect/debuff/feintcd, (FEINT_RCLICK_CD - user.get_tempo_bonus(TEMPO_TAG_RCLICK_CD_BONUS)))
+	user.apply_status_effect(/datum/status_effect/debuff/feintcd, FEINT_RCLICK_CD)
 
 /datum/status_effect/deadite_stats
 	id = "deadite_stats"

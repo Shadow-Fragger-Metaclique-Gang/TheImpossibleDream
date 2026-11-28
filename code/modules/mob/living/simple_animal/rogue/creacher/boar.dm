@@ -115,7 +115,10 @@
 	clickcd = BOAR_ATTACK_SPEED
 	name = "tusks"
 	attack_verb = list("gores", "impales", "eviscerates")
-	penfactor = PEN_HEAVY
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_HEAVY // SURREALIS-EDIT - ORIGINAL
+	penfactor = 3
+	// [/SURREALIS-EDIT]
 	blade_class = BCLASS_STAB
 
 /mob/living/simple_animal/hostile/retaliate/rogue/boar/death()

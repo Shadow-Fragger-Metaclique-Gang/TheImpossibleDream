@@ -50,7 +50,10 @@
 	mask = /obj/item/clothing/mask/rogue/facemask/steel
 	pants = /obj/item/clothing/under/roguetown/trou
 	cloak = /obj/item/clothing/cloak/apron/blacksmith
-	armor = /obj/item/clothing/suit/roguetown/armor/brigandine
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor = /obj/item/clothing/suit/roguetown/armor/brigandine // SURREALIS-EDIT - ORIGINAL
+	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
+	// [/SURREALIS-EDIT]
 	backl = /obj/item/storage/backpack/rogue/backpack
 	backpack_contents = list(
 						/obj/item/flint = 1,

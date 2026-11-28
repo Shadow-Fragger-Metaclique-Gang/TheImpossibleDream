@@ -122,7 +122,10 @@
 		qdel(wound)
 
 /// Simple version of crit rolling, attempts to do a critical hit on a mob that uses simple wounds - DO NOT CALL THIS ON CARBON MOBS, THEY HAVE BODYPARTS!
-/mob/living/proc/simple_woundcritroll(bclass = BCLASS_BLUNT, dam, mob/living/user, zone_precise = BODY_ZONE_CHEST, silent = FALSE, crit_message = FALSE, obj/item/weapon, ranged = FALSE, penfactor = PEN_NONE, part_mult = 1)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /mob/living/proc/simple_woundcritroll(bclass = BCLASS_BLUNT, dam, mob/living/user, zone_precise = BODY_ZONE_CHEST, silent = FALSE, crit_message = FALSE, obj/item/weapon, ranged = FALSE, penfactor = PEN_NONE, part_mult = 1) // SURREALIS-EDIT - ORIGINAL
+/mob/living/proc/simple_woundcritroll(bclass = BCLASS_BLUNT, dam, mob/living/user, zone_precise = BODY_ZONE_CHEST, silent = FALSE, crit_message = FALSE, obj/item/weapon, ranged = FALSE, penfactor = 0, part_mult = 1)
+// [/SURREALIS-EDIT]
 	if(!bclass || !dam || (status_flags & GODMODE) || !HAS_TRAIT(src, TRAIT_SIMPLE_WOUNDS))
 		return FALSE
 	register_part_damage(zone_precise, dam, user, weapon, ranged, bclass, penfactor, part_mult)

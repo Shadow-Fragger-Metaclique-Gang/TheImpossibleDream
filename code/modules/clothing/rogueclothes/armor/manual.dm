@@ -45,7 +45,10 @@
 	if(obj_integrity >= max_integrity)
 		to_chat(loc, span_notice(repairmsg_end))
 	to_chat(loc, span_notice(repairmsg_continue))
-	obj_integrity = min(obj_integrity + repair_amount, max_integrity)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// obj_integrity = min(obj_integrity + repair_amount, max_integrity) // SURREALIS-EDIT - ORIGINAL
+	adjust_integrity(repair_amount)
+	// [/SURREALIS-EDIT]
 	if(obj_broken)
 		obj_fix(full_repair = FALSE)
 

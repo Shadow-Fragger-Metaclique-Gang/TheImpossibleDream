@@ -10,6 +10,9 @@
 
 	//Reagent processing needs to come before breathing, to prevent edge cases.
 	handle_organs()
+	// [SURREALIS-ADD] - VRCOMBAT
+	handle_missing_organs()
+	// [/SURREALIS-ADD]
 
 	. = ..()
 
@@ -33,6 +36,9 @@
 	// [/SURREALIS-EDIT]
 	handle_blood()
 	handle_roguebreath()
+	// [SURREALIS-ADD] - VRCOMBAT
+	handle_choke_recovery()
+	// [/SURREALIS-ADD]
 
 	var/bprv = handle_bodyparts()
 	if(bprv & BODYPART_LIFE_UPDATE_HEALTH)
@@ -142,13 +148,24 @@
 	if(HAS_TRAIT(src, TRAIT_NOBREATH))
 		return TRUE
 	if(HAS_TRAIT(src, TRAIT_HOLDBREATH))
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		adjustOxyLoss(10)
 	if(istype(loc, /obj/structure/closet/dirthole))
 		adjustOxyLoss(5)
+		*/
+		adjustChokeOxyLoss(10)
+	if(istype(loc, /obj/structure/closet/dirthole))
+		adjustChokeOxyLoss(5)
+		// [/SURREALIS-EDIT]
 	if(istype(loc, /obj/structure/closet/burial_shroud))
 		var/obj/O = loc
 		if(istype(O.loc, /obj/structure/closet/dirthole))
-			adjustOxyLoss(10)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// adjustOxyLoss(10) // SURREALIS-EDIT - ORIGINAL
+			adjustChokeOxyLoss(10)
+			// [/SURREALIS-EDIT]
 	if(isopenturf(loc))
 		var/turf/open/T = loc
 		if(reagents && T.pollution)
@@ -181,7 +198,10 @@
 		if(stat == DEAD && client)
 			record_round_statistic(STATS_PEOPLE_DROWNED)
 		var/drown_damage = has_world_trait(/datum/world_trait/abyssor_rage) ? 10 : 5
-		adjustOxyLoss(drown_damage)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// adjustOxyLoss(drown_damage) // SURREALIS-EDIT - ORIGINAL
+		adjustChokeOxyLoss(drown_damage)
+		// [/SURREALIS-EDIT]
 		emote("drown")
 
 	if(istype(onturf, /turf/open/water/sewer) && !HAS_TRAIT(src, TRAIT_HOLDBREATH))
@@ -210,6 +230,9 @@
 		if(has_adrenaline)
 			bodypart_pain *= 0.5
 		. += bodypart_pain
+	// [SURREALIS-ADD] - VRCOMBAT
+	. = round(., 0.1)
+	// [/SURREALIS-ADD]
 
 #undef BURN_PAIN_WEIGHT
 
@@ -217,6 +240,9 @@
 	. = ..()
 	if(physiology)
 		. *= physiology.pain_mod
+	// [SURREALIS-ADD] - VRCOMBAT
+	. = round(., 0.1)
+	// [/SURREALIS-ADD]
 
 ///////////////
 // BREATHING //
@@ -251,6 +277,9 @@
 				continue
 
 			if(prob(embedded.embedding.embedded_pain_chance))
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// SURREALIS-EDIT - ORIGINAL
+				/*
 				bodypart.receive_damage(embedded.w_class*embedded.embedding.embedded_pain_multiplier)
 				to_chat(src, span_danger("[embedded] in my [bodypart.name] hurts!"))
 
@@ -258,7 +287,18 @@
 				bodypart.receive_damage(embedded.w_class*embedded.embedding.embedded_fall_pain_multiplier)
 				bodypart.remove_embedded_object(embedded)
 				to_chat(src,span_danger("[embedded] falls out of my [bodypart.name]!"))
+				*/
+				var/datum/wound/dynamic/puncture/stab_wound = bodypart.has_wound(/datum/wound/dynamic/puncture)
+				if(stab_wound)
+					stab_wound.jiggle_pain += embedded.w_class * 8
+					stab_wound.woundpain = stab_wound.base_woundpain + stab_wound.jiggle_pain
+				else
+					bodypart.receive_damage(embedded.w_class * embedded.embedding.embedded_pain_multiplier)
+					stab_wound = bodypart.has_wound(/datum/wound/dynamic/puncture)
+					stab_wound?.set_bleed_rate(0)
+				to_chat(src, span_danger("[embedded] in my [bodypart.name] hurts!"))
 
+				// [/SURREALIS-EDIT]
 /*
 Alcohol Poisoning Chart
 Note that all higher effects of alcohol poisoning will inherit effects for smaller amounts (i.e. light poisoning inherts from slight poisoning)
@@ -454,7 +494,10 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 	reagents.end_metabolization(src, keep_liverless = TRUE) // Stops trait-based effects on reagents, to prevent permanent buffs
 	reagents.metabolize(src, can_overdose = FALSE, liverless = TRUE)
 
-	if(HAS_TRAIT(src, TRAIT_STABLELIVER) || HAS_TRAIT(src, TRAIT_NOMETABOLISM))
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(HAS_TRAIT(src, TRAIT_STABLELIVER) || HAS_TRAIT(src, TRAIT_NOMETABOLISM)) // SURREALIS-EDIT - ORIGINAL
+	if(mind && (HAS_TRAIT(src, TRAIT_STABLELIVER) || HAS_TRAIT(src, TRAIT_NOMETABOLISM)))
+	// [/SURREALIS-EDIT]
 		return
 
 	adjustToxLoss(4, TRUE,	TRUE)

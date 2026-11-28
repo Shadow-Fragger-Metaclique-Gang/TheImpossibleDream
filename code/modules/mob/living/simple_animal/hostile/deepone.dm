@@ -116,7 +116,10 @@
 	animname = "cut"
 	hitsound = 'sound/combat/hits/bladed/smallslash (1).ogg'
 	clickcd = DEEPONE_ATTACK_SPEED
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	chargetime = 2
 /datum/intent/simple/claw/deepone_boss
 	attack_verb = list("smashes", "slams")
@@ -124,7 +127,10 @@
 	animname = "cut"
 	hitsound = 'sound/combat/hits/blunt/metalblunt (1).ogg'
 	clickcd = DEEPONE_ATTACK_SPEED
-	penfactor = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// penfactor = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	penfactor = 0
+	// [/SURREALIS-EDIT]
 	chargetime = 2
 
 /mob/living/simple_animal/hostile/rogue/deepone/hound

@@ -736,13 +736,20 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			var/obj/item/ammo_casing/caseless/rogue/rog_ammo = src
 			if(rog_ammo.BB.damage)
 				inspec += "\n<b>PROJECTILE DAMAGE:</b> [rog_ammo.BB.damage]"
-			inspec += "\n<b>Armor Penetration:</b> [rog_ammo.BB.armor_penetration > PEN_NONE ? colorgrade_rating(uppertext(rog_ammo.BB.flag), rog_ammo.BB.armor_penetration) : "<font color='#808080'>NONE</font>"]"
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// inspec += "\n<b>Armor Penetration:</b> [rog_ammo.BB.armor_penetration > PEN_NONE ? colorgrade_rating(uppertext(rog_ammo.BB.flag), rog_ammo.BB.armor_penetration) : "<font color='#808080'>NONE</font>"]" // SURREALIS-EDIT - ORIGINAL
+			inspec += "\n<b>Armor Penetration:</b> [rog_ammo.BB.armor_penetration > AP_NONE ? colorgrade_rating(uppertext(rog_ammo.BB.flag), rog_ammo.BB.armor_penetration) : "<font color='#808080'>NONE</font>"]"
+			// [/SURREALIS-EDIT]
 			if(rog_ammo.BB.min_range)
 				inspec += "\n<b>MINIMUM EFFECTIVE RANGE:</b> [rog_ammo.BB.min_range] tile(s)"
 			if(rog_ammo.BB.max_range)
 				inspec += "\n<b>MAXIMUM EFFECTIVE RANGE:</b> [rog_ammo.BB.max_range] tile(s)"
+			// [SURREALIS-REMOVE] - VRCOMBAT
+			/*
 			if(rog_ammo.BB.dam_falloff_factor)
 				inspec += "\n<b>DAMAGE FALLOFF:</b> [get_falloff_string(rog_ammo.BB.dam_falloff_factor)]"
+			*/
+			// [/SURREALIS-REMOVE]
 			if(rog_ammo.BB.antibeast_factor != 1)
 				inspec += "\n<b>ANTI-BEAST MODIFIER:</b> [rog_ammo.BB.antibeast_factor * 100]% <span class='info'><a href='?src=[REF(src)];explainantibeast=1'>{?}</a></span>"
 
@@ -770,13 +777,28 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 
 //**** General durability
 
-		if(max_integrity)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// if(max_integrity) // SURREALIS-EDIT - ORIGINAL
+		var/obj/item/clothing/zoned_clothing = src
+		if(max_integrity && istype(zoned_clothing) && zoned_clothing.uses_zone_integrity())
+			inspec += zoned_clothing.durability_inspect_text()
+			if(force >= 5)
+				inspec += " <span class='info'><a href='?src=[REF(src)];explaindurability=1'>{?}</a></span>"
+		else if(max_integrity)
+		// [/SURREALIS-EDIT]
 			inspec += "\n<b>DURABILITY:</b> "
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// SURREALIS-EDIT - ORIGINAL
+			/*
 			var/eff_maxint = max_integrity - (max_integrity * integrity_failure)
 			var/eff_currint = max(obj_integrity - (max_integrity * integrity_failure), 0)
 			var/ratio =	(eff_currint / eff_maxint)
 			var/percent = round((ratio * 100), 1)
 			inspec += "[percent]% ([floor(eff_currint)])"
+			*/
+			var/percent = round((get_integrity_fraction() * 100), 1)
+			inspec += "[percent]% ([floor(max(obj_integrity - (max_integrity * integrity_failure), 0))])"
+			// [/SURREALIS-EDIT]
 			if(force >= 5) // Durability is rather obvious for non-weapons
 				inspec += " <span class='info'><a href='?src=[REF(src)];explaindurability=1'>{?}</a></span>"
 		if(istype(src, /obj/item/clothing))	//awful
@@ -1281,6 +1303,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			max_sharp = max(max_sharp, IS_SHARP)
 	return max_sharp
 
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 /obj/item/proc/get_dismemberment_chance(obj/item/bodypart/affecting, mob/user, zone_sel)
 	if(!get_sharpness() || !affecting.can_dismember(src))
 		return 0
@@ -1311,7 +1335,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			return 0
 
 	return affecting.dismemberment_chance_from_force(nuforce, zone_sel)
-
+*/
+// [/SURREALIS-REMOVE]
 /obj/item/proc/get_dismember_sound()
 	if(damtype == BURN)
 		. = 'sound/blank.ogg'
@@ -1397,6 +1422,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 		else
 			return "Mighty"
 
+// [SURREALIS-REMOVE] - VRCOMBAT
+/*
 /obj/item/proc/get_falloff_string(falloff)
 	switch(falloff)
 		if(0 to 0.25)
@@ -1409,7 +1436,8 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			return "Marginal"
 		else
 			return "None"
-
+*/
+// [/SURREALIS-REMOVE]
 /obj/item/MouseEntered(location, control, params)
 	. = ..()
 
@@ -1719,14 +1747,18 @@ GLOBAL_VAR_INIT(rpg_loot_items, FALSE)
 			if(!def_armor.blunt && !def_armor.slash && !def_armor.stab && !def_armor.piercing)
 				str += "<b>NO ARMOR!</b>"
 			else
-				var/defense = "[SPAN_TOOLTIP("Each tier increases effective HP of the armor by 20%. Absorbed attacks never reach HP. The armor must be broken first.", "<u><b>ABSORB:</b></u>")] [colorgrade_rating("BLUNT", def_armor.blunt, elaborate = TRUE, max_tier = 5)]"
-				defense += "<br>"
-				defense += "[SPAN_TOOLTIP("Each tier reduces damage by 20% of base. Reduced damage still reaches HP. Armor absorbs what was blocked.", "<u><b>REDUCE:</b></u>")] [colorgrade_rating("BURN", def_armor.fire, elaborate = TRUE, max_tier = 5)]"
-				defense += "<br>"
-				defense += "[SPAN_TOOLTIP("Blocks attacks below this tier (Armor takes all damage). Same tier penetrates 20% (80% goes to armor). Exceeding tier penetrates fully.", "<u><b>BLOCK:</b></u>")] "
+				// [SURREALIS-EDIT] - VRCOMBAT
+				var/defense = "[SPAN_TOOLTIP("Weapon AP and armor wear effectively lower these ratings. Attacks dealing less than half the rating in damage are absorbed. Attacks dealing more than half the armor rating have their damage reduced by armor%. Edged attacks below the armor rating are blunted and their damage halved.", "<u><b>PROTECTION:</b></u>")] "
+				defense += "[colorgrade_rating("BLUNT", def_armor.blunt, elaborate = TRUE)] | "
 				defense += "[colorgrade_rating("SLASH", def_armor.slash, elaborate = TRUE)] | "
 				defense += "[colorgrade_rating("STAB", def_armor.stab, elaborate = TRUE)] | "
-				defense += "[colorgrade_rating("PIERCING", def_armor.piercing, elaborate = TRUE)]"
+				defense += "[colorgrade_rating("PIERCING", def_armor.piercing, elaborate = TRUE)] | "
+				defense += "[colorgrade_rating("FIRE", def_armor.fire, elaborate = TRUE)] | "
+				defense += "[colorgrade_rating("ACID", def_armor.acid, elaborate = TRUE)] | "
+				defense += "[colorgrade_rating("FROST", def_armor.frost, elaborate = TRUE)] | "
+				defense += "[colorgrade_rating("ELECTRICAL", def_armor.electrical, elaborate = TRUE)] | "
+				defense += "[colorgrade_rating("MAGIC", def_armor.magic, elaborate = TRUE)]"
+				// [/SURREALIS-EDIT]
 				str += "[defense]<br>"
 		else
 			str += "<b>NO ARMOR!</b>"

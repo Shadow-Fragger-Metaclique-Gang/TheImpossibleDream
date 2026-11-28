@@ -92,7 +92,10 @@ GLOBAL_LIST_INIT(taur_types, subtypesof(/obj/item/bodypart/taur))
 	max_stamina_damage = 150
 
 // Severed bodies can be implanted on players, so they lose the NPC toughness
-/obj/item/bodypart/taur/spider/drider/drop_limb(special)
+// [SURREALIS-EDIT] - VRCOMBAT
+// /obj/item/bodypart/taur/spider/drider/drop_limb(special) // SURREALIS-EDIT - ORIGINAL
+/obj/item/bodypart/taur/spider/drider/drop_limb(special, destroy = FALSE)
+// [/SURREALIS-EDIT]
 	. = ..()
 	var/obj/item/bodypart/taur/spider/plain = /obj/item/bodypart/taur/spider
 	max_damage = initial(plain.max_damage)

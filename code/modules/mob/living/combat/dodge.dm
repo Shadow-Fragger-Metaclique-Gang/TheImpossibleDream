@@ -175,16 +175,23 @@
 	var/prob2defend = attacker.defprob
 	var/ignore_DE_bonus = FALSE
 	var/is_in_cone = defender.can_see_cone(user)
+	// [SURREALIS-REMOVE] - VRCOMBAT
+	/*
 	if(!is_in_cone && defender_human)
 		is_in_cone = defender_human?.get_tempo_bonus(TEMPO_TAG_NOLOS_DODGE)
 	if(!is_in_cone)
 		defender.changeNext_def(CLAMP(dodgetime + 2, 0, CLICK_CD_DODGE))
 		defender.changeMaxDodge(-2)
+	*/
+	// [/SURREALIS-REMOVE]
 	var/defender_dodge_expert = defender_human?.check_dodge_skill()
 	if(defender.stamina >= defender.max_stamina)
 		return FALSE
 	if(src.client)
 		log_combat(src, user, "dodged against")
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	if(defender)
 		prob2defend = prob2defend + (defender.STASPD * 10)
 	if(attacker)
@@ -203,10 +210,23 @@
 		prob2defend = prob2defend - (attacker_human.get_wskill(attacker_weapon) * 10)
 	if(defender_human)
 		if(!defender_human?.check_armor_skill() || defender_human?.legcuffed)
+	*/
+	if(defender_human)
+		var/special_dodge = FALSE
+		if(!is_in_cone)
+			if(!HAS_TRAIT(defender_human, TRAIT_DODGEEXPERT))
+				return FALSE
+			special_dodge = TRUE
+			ignore_DE_bonus = TRUE
+		if(!defender_human.check_armor_skill() || defender_human.legcuffed)
+	// [/SURREALIS-EDIT]
 			defender_human.Knockdown(1)
 			defender_human.drop_all_held_items()
 			to_chat(defender_human, span_warning("I can't dodge in such unfitting armor! I'm knocked down!"))
 			return FALSE
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		if(attacker_weapon) //the enemy attacked us with a weapon
 			if(!attacker_weapon.has_wskill()) //the enemy weapon doesn't have a skill because its improvised, so penalty to attack
 				prob2defend = prob2defend + 10
@@ -277,9 +297,63 @@
 
 		if(dodgetime <= CLICK_CD_DODGE && !ignore_DE_bonus && defender_dodge_expert && defender_human.mind)
 			if(istype(defender_mainhand, /obj/item/rogueweapon/shield) || istype(defender_offhand, /obj/item/rogueweapon/shield))	//why do I have to pre-empt the worst of you
+		*/
+		var/chest_armored = istype(defender_human.wear_armor, /obj/item/clothing)
+		var/legs_armored = istype(defender_human.wear_pants, /obj/item/clothing)
+		var/armor_class = (chest_armored || legs_armored) ? defender_human.highest_ac_worn() : ARMOR_CLASS_NONE
+		var/obj/item/I = attacker_human?.used_intent?.masteritem
+		var/def_roll = get_stat_roll(defender.STASPD)
+		var/atk_roll = get_stat_roll(attacker.STASPD)
+		if(defender_dodge_expert)
+			def_roll += 2
+		if(I)
+			def_roll += dodge_weapon_modifier(attacker, defender_human, I, defender_dodge_expert)
+		else if(attacker_human?.used_intent?.unarmed)
+			def_roll -= (attacker_human.get_skill_level(/datum/skill/combat/unarmed) * 2)
+			def_roll += (defender_human.get_skill_level(/datum/skill/combat/unarmed) * 2)
+		if(!(defender.mobility_flags & MOBILITY_STAND))
+			def_roll -= 5
+			ignore_DE_bonus = TRUE
+		if(HAS_TRAIT(defender_human, TRAIT_SENTINELOFWITS))
+			def_roll += floor(defender_human.calculate_sentinel_bonus() / 5)
+		if(HAS_TRAIT(defender_human, TRAIT_CURSE_RAVOX))
+			def_roll -= 6
+		if(HAS_TRAIT(user, TRAIT_CURSE_RAVOX))
+			def_roll -= 8
+			ignore_DE_bonus = TRUE
+		if(!defender.mind && defender.has_status_effect(/datum/status_effect/debuff/staggered))
+			def_roll = floor(def_roll * 0.5)
+			ignore_DE_bonus = TRUE
+		if(defender.has_status_effect(/datum/status_effect/debuff/hamstring))
+			def_roll -= 4
+			ignore_DE_bonus = TRUE
+		if(attacker_human && HAS_TRAIT(attacker_human, TRAIT_ARMOUR_LIKED) && HAS_TRAIT(attacker_human, TRAIT_FENCERDEXTERITY))
+			def_roll -= 2
+			ignore_DE_bonus = TRUE
+		if(defender.has_status_effect(/datum/status_effect/swingdelay/penalty))
+			def_roll -= 10
+		if(defender.STASPD <= 9)
+			ignore_DE_bonus = TRUE
+		switch(armor_class)
+			if(ARMOR_CLASS_LIGHT, ARMOR_CLASS_NONE)
+				if(HAS_TRAIT(defender_human, TRAIT_DODGEEXPERT))
+					def_roll += max(1, 4 - floor(defender.STASPD - 10))
+				else
+					def_roll += 1
+			if(ARMOR_CLASS_HEAVY)
+				if(HAS_TRAIT(defender_human, TRAIT_HEAVYARMOR))
+					def_roll -= 1
+				else
+					def_roll -= 4
+		if(dodgetime <= CLICK_CD_DODGE && !ignore_DE_bonus && defender_dodge_expert && defender_human.mind)
+			if(istype(defender_mainhand, /obj/item/rogueweapon/shield) || istype(defender_offhand, /obj/item/rogueweapon/shield))
+		// [/SURREALIS-EDIT]
 				if(!istype(defender_mainhand, /obj/item/rogueweapon/shield/buckler) && !istype(defender_offhand, /obj/item/rogueweapon/shield/buckler))
 					max_dodge = MAX_DODGE_FLOOR
 					defender.changeNext_def(CLICK_CD_DODGE)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		prob2defend = clamp((prob2defend + max_dodge), 5, (90 + max_dodge))
 
 		// Dual wield drawback (-5%)
@@ -309,6 +383,50 @@
 		stamdrain -= defender_human.get_tempo_bonus(TEMPO_TAG_STAMLOSS_DODGE)
 
 		if(!defender_human.stamina_add(stamdrain))
+		*/
+		def_roll += floor(max_dodge / 5)
+		if(special_dodge)
+			def_roll = floor(def_roll / 2)
+		if(HAS_TRAIT(src, TRAIT_NODEF))
+			def_roll = -99
+		var/defender_dualw = HAS_TRAIT(src, TRAIT_DUALWIELDER) && defender_human.can_dualwield(defender_mainhand, defender_offhand)
+		var/obj/item/attacker_mainhand = attacker.get_active_held_item()
+		var/obj/item/attacker_offhand = attacker.get_inactive_held_item()
+		var/attacker_dualw = attacker_mainhand && attacker_offhand && HAS_TRAIT(attacker, TRAIT_DUALWIELDER) && istype(attacker_mainhand, attacker_offhand)
+		var/dodge_success = (def_roll >= atk_roll)
+		var/dualw_penalty = FALSE
+		if(defender_dualw && !attacker_dualw)
+			if(dodge_success)
+				def_roll -= 4
+				dualw_penalty = TRUE
+				dodge_success = (def_roll >= atk_roll)
+		else if(attacker_dualw && !defender_dualw)
+			def_roll -= 4
+			dualw_penalty = TRUE
+			dodge_success = (def_roll >= atk_roll)
+		if(src.client?.prefs.showrolls)
+			var/text = "Dodge Roll: [def_roll] vs [HAS_TRAIT(user, TRAIT_DECEIVING_MEEKNESS) ? "???" : atk_roll]"
+			if(dualw_penalty)
+				text += " (Disadvantage -4)"
+			to_chat(src, span_info(text))
+		if(!dodge_success)
+			return FALSE
+		drained = 10
+		if(chest_armored || legs_armored)
+			switch(armor_class)
+				if(ARMOR_CLASS_LIGHT)
+					drained *= 0.65
+				if(ARMOR_CLASS_HEAVY)
+					drained *= 1.5
+		else
+			drained *= 0.4
+		if(attacker_weapon && defender_mainhand && istype(attacker.rmb_intent, /datum/rmb_intent/swift) && attacker_weapon.wbalance != WBALANCE_HEAVY)
+			if(dodgetime <= CLICK_CD_FAST)
+				drained += (abs(round((CLICK_CD_HEAVY - dodgetime) / 2)))
+		if(!attacker_human?.mind)
+			drained = 5
+		if(!defender_human.stamina_add(max(drained, 5), skill_used = /datum/skill/misc/athletics))
+		// [/SURREALIS-EDIT]
 			to_chat(src, span_warning("I'm too tired to dodge!"))
 			return FALSE
 	else //we are a non human
@@ -367,11 +485,18 @@
 		var/max_mod = 0
 		max_mod = defender_skill - attacker_skill
 
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		var/tempo_result = defender.get_tempo_bonus(TEMPO_TAG_DODGE_LOSS)
 		//TEMPO_DODGE_LOSS_NONE results in this not being accessed at all, so no loss. We're in a 1v4 in that context, so, like, yeah.
 		if(tempo_result == TEMPO_DODGE_LOSS_NORMAL || (tempo_result == TEMPO_DODGE_LOSS_LESS && prob(33)))
 			defender.changeNext_def(clamp(dodgetime + 1, 0, CLICK_CD_DODGE))
 			defender.changeMaxDodge(-1 + ((max_mod < 0) ? max_mod : 0))
+		*/
+		defender.changeNext_def(clamp(dodgetime + 1, 0, CLICK_CD_DODGE))
+		defender.changeMaxDodge(-1 + ((max_mod < 0) ? max_mod : 0))
+		// [/SURREALIS-EDIT]
 //		if(defender_human)
 //			if(defender_human.IsOffBalanced())
 //				defender_human.Knockdown(1)

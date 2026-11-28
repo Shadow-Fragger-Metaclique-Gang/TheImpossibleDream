@@ -186,9 +186,15 @@
 	if(guarded)
 		return ""
 
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// SURREALIS-EDIT - ORIGINAL
+	/*
 	var/eff_maxint = max_integrity - (max_integrity * integrity_failure)
 	var/eff_currint = max(obj_integrity - (max_integrity * integrity_failure), 0)
 	var/ratio =	(eff_currint / eff_maxint)
+	*/
+	var/ratio = get_integrity_fraction()
+	// [/SURREALIS-EDIT]
 	var/percent = round((ratio * 100), 1)
 	var/result
 	if(percent < 100)

@@ -82,6 +82,9 @@
 	skill_min = SKILL_LEVEL_JOURNEYMAN
 	skill_median = SKILL_LEVEL_EXPERT
 	visible_required_skill = TRUE
+	// [SURREALIS-ADD] - VRCOMBAT
+	var/for_constructs = FALSE
+	// [/SURREALIS-ADD]
 
 /datum/surgery_step/add_prosthetic/tool_check(mob/user, obj/item/tool)
 	// Use Implant taur instead, which actually works correctly
@@ -89,6 +92,13 @@
 		return FALSE
 	. = ..()
 
+// [SURREALIS-ADD] - VRCOMBAT
+/datum/surgery_step/add_prosthetic/validate_target(mob/user, mob/living/target, target_zone, datum/intent/intent)
+	. = ..()
+	if(. && (isconstruct(target) != for_constructs))
+		return FALSE
+
+// [/SURREALIS-ADD]
 /datum/surgery_step/add_prosthetic/preop(mob/user, mob/living/target, target_zone, obj/item/tool, datum/intent/intent)
 	var/obj/item/bodypart/bodypart = tool
 	if(target_zone != bodypart.body_zone) //so we can't replace a leg with an arm, or a human arm with a monkey arm.
@@ -156,6 +166,9 @@
 	skill_min = SKILL_LEVEL_JOURNEYMAN
 	skill_median = SKILL_LEVEL_EXPERT
 	surgery_flags = NONE
+	// [SURREALIS-ADD] - VRCOMBAT
+	surgery_flags_blocked = SURGERY_CONSTRUCT
+	// [/SURREALIS-ADD]
 	preop_sound = 'sound/foley/sewflesh.ogg'
 	success_sound = 'sound/items/wood_sharpen.ogg'
 	visible_required_skill = TRUE

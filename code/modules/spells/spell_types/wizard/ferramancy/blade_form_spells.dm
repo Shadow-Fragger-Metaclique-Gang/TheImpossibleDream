@@ -59,8 +59,15 @@
 		invocations = list(f["say"])
 	var/obj/item/W = new weapon_type(H.drop_location())
 	if(W.max_integrity)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// SURREALIS-EDIT - ORIGINAL
+		/*
 		W.max_integrity = round(W.max_integrity * 0.5)
 		W.obj_integrity = W.max_integrity
+		*/
+		W.set_max_integrity(round(W.max_integrity * 0.5))
+		W.set_integrity(W.max_integrity)
+		// [/SURREALIS-EDIT]
 	W.AddComponent(/datum/component/conjured_item, "#5c7cff", FALSE, H, src)
 	H.put_in_hands(W)
 	conjured_weapon = W

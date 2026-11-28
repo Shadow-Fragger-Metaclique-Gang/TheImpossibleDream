@@ -60,7 +60,10 @@
 
 	if(has_status_effect(/datum/status_effect/debuff/vulnerable))
 		if(!has_status_effect(/datum/status_effect/buff/weapon_binded) && !has_status_effect(/datum/status_effect/debuff/weapon_binded))
-			if(ishuman(src) && user.get_tempo_bonus(TEMPO_TAG_BINDABLE) && mind && user?.mind)
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// if(ishuman(src) && user.get_tempo_bonus(TEMPO_TAG_BINDABLE) && mind && user?.mind) // SURREALIS-EDIT - ORIGINAL
+			if(ishuman(src) && mind && user?.mind)
+			// [/SURREALIS-EDIT]
 				var/held = get_active_held_item()
 				if(istype(held, /obj/item/rogueweapon))
 					if(check_bait_subzone(zone_selected) == check_bait_subzone(user.zone_selected) && zone_selected != BODY_ZONE_CHEST)

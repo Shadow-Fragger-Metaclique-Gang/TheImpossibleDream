@@ -23,6 +23,9 @@
 	var/can_set = TRUE
 	/// Emote we use when applied
 	var/gain_emote = "paincrit"
+	// [SURREALIS-ADD] - VRCOMBAT
+	var/death_probability = 0
+	// [/SURREALIS-ADD]
 
 	// Limbs bleed worse, but bleed for far shorter periods than slashes etc.
 	bleed_rate = 15				// Artery is 20, but doesn't stop.
@@ -83,6 +86,14 @@
 		affected.emote(gain_emote, TRUE)
 	affected.Slowdown(20)
 	shake_camera(affected, 2, 2)
+	// [SURREALIS-ADD] - VRCOMBAT
+	var/rolled_death = death_probability > 0 && prob(death_probability)
+	// Rolls only once.
+	death_probability = 0
+	if(rolled_death)
+		affected.death()
+		to_chat(affected, span_userdanger("Everything goes dark..."))
+	// [/SURREALIS-ADD]
 	if(iscarbon(owner) && owner.mind)
 		affected.apply_status_effect(/datum/status_effect/debuff/critwounded) //apply critically wounded - more energy in cmode cost. Until fixed.
 

@@ -14,7 +14,10 @@
 	abstract_type = /datum/action/cooldown/spell/telegraphed_strike/mob_ability/elemental_slam
 	blade_class = BCLASS_BLUNT
 	strike_damage_type = BRUTE
-	strike_armor_pen = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// strike_armor_pen = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	strike_armor_pen = AP_NONE
+	// [/SURREALIS-EDIT]
 	strike_sound = null
 	detonate_sound = null
 	damage_structures = TRUE
@@ -134,7 +137,10 @@
 	blast_radius = 1
 	damage = 35
 	blade_class = BCLASS_BLUNT
-	strike_armor_pen = PEN_NONE
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// strike_armor_pen = PEN_NONE // SURREALIS-EDIT - ORIGINAL
+	strike_armor_pen = AP_NONE
+	// [/SURREALIS-EDIT]
 	damage_structures = TRUE
 	structure_damage = 35
 	strike_sound = 'sound/combat/hits/onstone/wallhit.ogg'

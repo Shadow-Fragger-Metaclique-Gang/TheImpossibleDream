@@ -149,6 +149,8 @@
 	icon_state = "penis_knot"
 	penis_type = PENIS_TYPE_BARBED_KNOTTED
 	sheath_type = SHEATH_TYPE_NORMAL
+/obj/item/organ/penis/barbed_knotted/big
+	penis_size = MAX_PENIS_SIZE
 
 /obj/item/organ/penis/tentacle
 	name = "tentacle penis"

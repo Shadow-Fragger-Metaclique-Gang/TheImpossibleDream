@@ -391,8 +391,14 @@
 		var/damage_to_p2 = 10 + max(1, p1_str - p2_str)
 		var/damage_to_p1 = 10 + max(1, p2_str - p1_str)
 
-		player2.stamina_add(damage_to_p2)
-		player1.stamina_add(damage_to_p1)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// player2.stamina_add(damage_to_p2) // SURREALIS-EDIT - ORIGINAL
+		player2.stamina_add(damage_to_p2, skill_used = /datum/skill/misc/athletics)
+		// [/SURREALIS-EDIT]
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// player1.stamina_add(damage_to_p1) // SURREALIS-EDIT - ORIGINAL
+		player1.stamina_add(damage_to_p1, skill_used = /datum/skill/misc/athletics)
+		// [/SURREALIS-EDIT]
 		// If both players have the same amount of STR, then they'll deal around 11 stamina damage per loop.
 
 		var/p1_exhausted = player1.stamina >= player1.max_stamina	//var for when stamina damage goes above max stam

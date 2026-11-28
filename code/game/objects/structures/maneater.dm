@@ -138,10 +138,19 @@
 				if(limb.dismember(damage = 20))
 					seednutrition += 25
 			else
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// SURREALIS-EDIT - ORIGINAL
+				/*
 				victim.apply_damage(60, BRUTE, zone, victim.run_armor_check(zone, BCLASS_CUT, damage = maneater_armor_damage))
 		else
 			var/core_zone = pick(BODY_ZONE_CHEST, BODY_ZONE_HEAD)
 			victim.apply_damage(60, BRUTE, core_zone, victim.run_armor_check(core_zone, BCLASS_CUT, damage = maneater_armor_damage))
+				*/
+				victim.apply_damage(victim.armor_reduced_damage(60, victim.run_armor_check(zone, BCLASS_CUT, damage = maneater_armor_damage), BCLASS_CUT), BRUTE, zone, 0)
+		else
+			var/core_zone = pick(BODY_ZONE_CHEST, BODY_ZONE_HEAD)
+			victim.apply_damage(victim.armor_reduced_damage(60, victim.run_armor_check(core_zone, BCLASS_CUT, damage = maneater_armor_damage), BCLASS_CUT), BRUTE, core_zone, 0)
+				// [/SURREALIS-EDIT]
 
 	if(victim.stat == DEAD || victim.stat == UNCONSCIOUS)
 		if(!victim.mind)

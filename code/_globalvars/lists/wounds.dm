@@ -5,8 +5,37 @@ GLOBAL_LIST_INIT(fracture_bclasses, list(
 	BCLASS_PUNCH,
 ))
 
+// [SURREALIS-EDIT] - VRCOMBAT
+// SURREALIS-EDIT - ORIGINAL
+/*
 GLOBAL_LIST_INIT(charring_bclasses, list(
 	BCLASS_BURN,
+*/
+GLOBAL_LIST_INIT(crush_bclasses, list(
+	BCLASS_BLUNT,
+	BCLASS_SMASH,
+	BCLASS_PUNCH,
+))
+
+GLOBAL_LIST_INIT(wep_bclasses, list(
+	BCLASS_BLUNT,
+	BCLASS_SMASH,
+	BCLASS_CUT,
+	BCLASS_CHOP,
+	BCLASS_STAB,
+	BCLASS_PICK,
+	BCLASS_BITE,
+	BCLASS_PIERCE,
+	BCLASS_LASHING,
+	BCLASS_TWIST
+))
+
+GLOBAL_LIST_INIT(charring_bclasses, list(
+	BCLASS_BURN,
+	BCLASS_FROST,
+	BCLASS_ELECTRICAL,
+	BCLASS_ACID,
+// [/SURREALIS-EDIT]
 ))
 
 GLOBAL_LIST_INIT(artery_bclasses, list(
@@ -18,6 +47,19 @@ GLOBAL_LIST_INIT(artery_bclasses, list(
 	BCLASS_PIERCE,
 ))
 
+// [SURREALIS-ADD] - VRCOMBAT
+GLOBAL_LIST_INIT(disembowel_bclasses, list(
+	BCLASS_CUT,
+	BCLASS_CHOP,
+	BCLASS_BITE
+))
+
+GLOBAL_LIST_INIT(dismember_bclasses, list(
+	BCLASS_CUT,
+	BCLASS_CHOP
+))
+
+// [/SURREALIS-ADD]
 GLOBAL_LIST_INIT(artery_strong_bclasses, list(
 	BCLASS_CHOP,
 	BCLASS_PICK,

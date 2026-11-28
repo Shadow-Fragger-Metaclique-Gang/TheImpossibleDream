@@ -240,7 +240,10 @@ Reel teleports the attached atom to the grabbed turf.
 			if(istype(O,/obj/structure/roguewindow))
 				var/obj/structure/roguewindow/W = O
 				if(!W.climbable)
-					O.obj_integrity = 1	//Keeps it from being destroyed
+					// [SURREALIS-EDIT] - VRCOMBAT
+					// O.obj_integrity = 1	//Keeps it from being destroyed // SURREALIS-EDIT - ORIGINAL
+					O.set_integrity(1)	//Keeps it from being destroyed
+					// [/SURREALIS-EDIT]
 					O.obj_break()
 		LAZYCLEARLIST(obj_to_destroy)
 

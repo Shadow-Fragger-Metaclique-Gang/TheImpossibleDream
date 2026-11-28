@@ -33,6 +33,9 @@
 	)
 	target_mobtypes = list(/mob/living/carbon/human)
 	surgery_flags = SURGERY_DISLOCATED
+	// [SURREALIS-ADD] - VRCOMBAT
+	surgery_flags_blocked = SURGERY_CONSTRUCT
+	// [/SURREALIS-ADD]
 	ignore_clothes = TRUE
 	skill_min = SKILL_LEVEL_APPRENTICE
 	skill_median = SKILL_LEVEL_JOURNEYMAN

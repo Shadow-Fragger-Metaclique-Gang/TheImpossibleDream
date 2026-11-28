@@ -197,7 +197,10 @@
 	else
 		var/fallback_zone = check_zone(hit_zone)
 		var/armor_block = L.run_armor_check(fallback_zone, "fire", blade_dulling = BCLASS_BURN, damage = tick_damage, intdamfactor = SPELL_INTDAM(1), no_debuff = TRUE)
-		L.apply_damage(SPELL_DMG_VS(L, tick_damage), BURN, fallback_zone, armor_block)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// L.apply_damage(SPELL_DMG_VS(L, tick_damage), BURN, fallback_zone, armor_block) // SURREALIS-EDIT - ORIGINAL
+		L.apply_damage(L.armor_reduced_damage(SPELL_DMG_VS(L, tick_damage), armor_block, BCLASS_BURN), BURN, fallback_zone, 0)
+		// [/SURREALIS-EDIT]
 	if(scorch)
 		apply_scorch_stack(L, scorch, hit_zone)
 	L.emote("pain", forced = TRUE)

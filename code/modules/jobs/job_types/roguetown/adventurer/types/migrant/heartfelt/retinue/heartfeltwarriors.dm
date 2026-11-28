@@ -49,7 +49,10 @@
 	belt = /obj/item/storage/belt/rogue/leather/black
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
-	armor = /obj/item/clothing/suit/roguetown/armor/brigandine
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor = /obj/item/clothing/suit/roguetown/armor/brigandine // SURREALIS-EDIT - ORIGINAL
+	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
+	// [/SURREALIS-EDIT]
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 	neck = /obj/item/clothing/neck/roguetown/gorget/
 
@@ -255,7 +258,10 @@
 /datum/outfit/job/roguetown/heartfelt/retinue/squire/pre_equip(mob/living/carbon/human/H)
 	..()
 
-	armor = /obj/item/clothing/suit/roguetown/armor/brigandine
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// armor = /obj/item/clothing/suit/roguetown/armor/brigandine // SURREALIS-EDIT - ORIGINAL
+	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
+	// [/SURREALIS-EDIT]
 	gloves = /obj/item/clothing/gloves/roguetown/angle
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	pants = /obj/item/clothing/under/roguetown/chainlegs/iron

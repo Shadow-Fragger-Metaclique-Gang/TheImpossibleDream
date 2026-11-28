@@ -99,7 +99,10 @@
 			if(part)
 				var/held_index = part.held_index
 				var/body_zone = part.body_zone
-				LAZYREMOVE(part.grabbedby, src)
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// LAZYREMOVE(part.grabbedby, src) // SURREALIS-EDIT - ORIGINAL
+				part.remove_grab(src)
+				// [/SURREALIS-EDIT]
 				carbonmob.update_hud_hand_slot(held_index)
 				var/datum/hud/hud_used = carbonmob.hud_used
 				if(hud_used?.zone_select)
@@ -207,10 +210,16 @@
 			if(!(M.status_flags & CANPUSH) || HAS_TRAIT(M, TRAIT_PUSHIMMUNE))
 				to_chat(user, span_warning("Can't get a grip!"))
 				return FALSE
-			user.stamina_add(rand(7,15))
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// user.stamina_add(rand(7,15)) // SURREALIS-EDIT - ORIGINAL
+			user.stamina_add(rand(7,15), skill_used = /datum/skill/combat/wrestling)
+			// [/SURREALIS-EDIT]
 			M.grippedby(user)			//Aggro grip
 			if(grab_state >= GRAB_AGGRESSIVE)
-				bleed_suppressing = 0.25	//Better bleed suppression
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// bleed_suppressing = 0.25	//Better bleed suppression // SURREALIS-EDIT - ORIGINAL
+				set_bleed_suppressing(0.25)
+				// [/SURREALIS-EDIT]
 		if(/datum/intent/grab/choke)
 			if(HAS_TRAIT(user, TRAIT_PACIFISM))
 				to_chat(user, span_warning("Why would I do this! Am I insane?!"))
@@ -225,7 +234,10 @@
 			if(limb_grabbed && grab_state > 0) //this implies a carbon victim
 				if(iscarbon(M))
 					playsound(src.loc, 'sound/foley/struggle.ogg', 100, FALSE, -1)
-					user.stamina_add(7)
+					// [SURREALIS-EDIT] - VRCOMBAT
+					// user.stamina_add(7) // SURREALIS-EDIT - ORIGINAL
+					user.stamina_add(7, skill_used = /datum/skill/combat/wrestling)
+					// [/SURREALIS-EDIT]
 					var/mob/living/carbon/C = M
 					var/choke_damage
 					if(user.STASTR > STRENGTH_SOFTCAP)
@@ -236,15 +248,26 @@
 						choke_damage *= 1.2		//Slight bonus
 					if(C.pulling == user && C.grab_state >= GRAB_AGGRESSIVE)
 						choke_damage *= 0.95	//Slight malice
+					// [SURREALIS-EDIT] - VRCOMBAT
+					// SURREALIS-EDIT - ORIGINAL
+					/*
 					var/neck_tier = C.getarmor(BODY_ZONE_PRECISE_NECK, "slash")
 					if(neck_tier > 0)
 						choke_damage *= 1 / (1 + 0.2 * neck_tier)
+					*/
+					var/neck_armor = C.getarmor(BODY_ZONE_PRECISE_NECK, "slash")
+					if(neck_armor > 0)
+						choke_damage *= 1 / (1 + 0.01 * neck_armor)
+					// [/SURREALIS-EDIT]
 					if(!HAS_TRAIT(C, TRAIT_NOBREATH))
 						if(C.stamina < C.max_stamina)
 							C.stamina_add(choke_damage*1.5)
 						if(prob(25))
 							C.emote("choke")
-					C.adjustOxyLoss(choke_damage)
+					// [SURREALIS-EDIT] - VRCOMBAT
+					// C.adjustOxyLoss(choke_damage) // SURREALIS-EDIT - ORIGINAL
+					C.adjustChokeOxyLoss(choke_damage)
+					// [/SURREALIS-EDIT]
 					C.visible_message(span_danger("[user] [pick("chokes", "strangles")] [C][chokehold ? " with a chokehold" : ""]!"), \
 							span_userdanger("[user] [pick("chokes", "strangles")] me[chokehold ? " with a chokehold" : ""]!"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE, user)
 					to_chat(user, span_danger("I [pick("choke", "strangle")] [C][chokehold ? " with a chokehold" : ""]!"))
@@ -264,7 +287,7 @@
 			if(limb_grabbed && grab_state > GRAB_PASSIVE) //this implies a carbon victim
 				if(iscarbon(M))
 					playsound(src.loc, 'sound/foley/struggle.ogg', 100, FALSE, -1)
-					user.stamina_add(7)
+					user.stamina_add(7, skill_used = /datum/skill/combat/wrestling)
 					var/mob/living/carbon/C = M
 					if(!C?.client?.prefs?.horn_breaking)
 						if(user != M)
@@ -364,7 +387,10 @@
 				return FALSE
 			if(limb_grabbed && grab_state > 0) //this implies a carbon victim
 				if(iscarbon(M))
-					user.stamina_add(rand(3,8))
+					// [SURREALIS-EDIT] - VRCOMBAT
+					// user.stamina_add(rand(3,8)) // SURREALIS-EDIT - ORIGINAL
+					user.stamina_add(rand(3,8), skill_used = /datum/skill/combat/wrestling)
+					// [/SURREALIS-EDIT]
 					twistlimb(user)
 		if(/datum/intent/grab/twistitem)
 			if(HAS_TRAIT(user, TRAIT_PACIFISM))
@@ -379,7 +405,10 @@
 				return FALSE
 			if(limb_grabbed && grab_state > 0) //this implies a carbon victim
 				if(ismob(M))
-					user.stamina_add(rand(3,8))
+					// [SURREALIS-EDIT] - VRCOMBAT
+					// user.stamina_add(rand(3,8)) // SURREALIS-EDIT - ORIGINAL
+					user.stamina_add(rand(3,8), skill_used = /datum/skill/combat/wrestling)
+					// [/SURREALIS-EDIT]
 					twistitemlimb(user)
 		if(/datum/intent/grab/remove)
 			if(user.buckled)
@@ -389,7 +418,10 @@
 				badluckmessage(user)
 				user.stop_pulling(TRUE)
 				return FALSE
-			user.stamina_add(rand(3,13))
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// user.stamina_add(rand(3,13)) // SURREALIS-EDIT - ORIGINAL
+			user.stamina_add(rand(3,13), skill_used = /datum/skill/combat/wrestling)
+			// [/SURREALIS-EDIT]
 			if(isitem(sublimb_grabbed))
 				removeembeddeditem(user)
 			else
@@ -411,7 +443,10 @@
 					return
 				var/stun_dur = max(((65 + (skill_diff * 10) + (user.STASTR * 5) - (M.STASTR * 5)) * combat_modifier), 20)
 				var/pincount = 0
-				user.stamina_add(rand(1,3))
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// user.stamina_add(rand(1,3)) // SURREALIS-EDIT - ORIGINAL
+				user.stamina_add(rand(1,3), skill_used = /datum/skill/combat/wrestling)
+				// [/SURREALIS-EDIT]
 				while(M == grabbed && !(M.mobility_flags & MOBILITY_STAND) && (src in M.grabbedby))
 					if(M.IsStun())
 						if(!do_after(user, stun_dur + 1, needhand = 0, target = M))
@@ -424,13 +459,19 @@
 							break
 						M.Stun(stun_dur - pincount * 2)
 						M.Immobilize(stun_dur)	//Made immobile for the whole do_after duration, though
-						user.stamina_add(rand(1,3) + abs(skill_diff) + stun_dur / 1.5)
+						// [SURREALIS-EDIT] - VRCOMBAT
+						// user.stamina_add(rand(1,3) + abs(skill_diff) + stun_dur / 1.5) // SURREALIS-EDIT - ORIGINAL
+						user.stamina_add(rand(1,3) + abs(skill_diff) + stun_dur / 1.5, skill_used = /datum/skill/combat/wrestling)
+						// [/SURREALIS-EDIT]
 						M.visible_message(span_danger("[user] keeps [M] pinned to the ground!"))
 						pincount += 2
 					else if(src in M.grabbedby)
 						M.Stun(stun_dur - 10)
 						M.Immobilize(stun_dur)
-						user.stamina_add(rand(1,3) + abs(skill_diff) + stun_dur / 1.5)
+						// [SURREALIS-EDIT] - VRCOMBAT
+						// user.stamina_add(rand(1,3) + abs(skill_diff) + stun_dur / 1.5) // SURREALIS-EDIT - ORIGINAL
+						user.stamina_add(rand(1,3) + abs(skill_diff) + stun_dur / 1.5, skill_used = /datum/skill/combat/wrestling)
+						// [/SURREALIS-EDIT]
 						pincount += 2
 						M.visible_message(span_danger("[user] pins [M] to the ground!"), \
 							span_userdanger("[user] pins me to the ground!"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE)
@@ -439,8 +480,14 @@
 					badluckmessage(user)
 					user.stop_pulling(TRUE)
 					return FALSE
-				user.stamina_add(rand(5,15))
-				if(M.compliance || prob(clamp((((4 + (((user.STASTR - M.STASTR)/2) + skill_diff)) * 10 + rand(-5, 5)) * combat_modifier), 5, 95)))
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// user.stamina_add(rand(5,15)) // SURREALIS-EDIT - ORIGINAL
+				user.stamina_add(rand(5,15), skill_used = /datum/skill/combat/wrestling)
+				// [/SURREALIS-EDIT]
+				// [SURREALIS-EDIT] - VRCOMBAT
+				// if(M.compliance || prob(clamp((((4 + (((user.STASTR - M.STASTR)/2) + skill_diff)) * 10 + rand(-5, 5)) * combat_modifier), 5, 95))) // SURREALIS-EDIT - ORIGINAL
+				if(M.compliance || (get_stat_roll(user.STASTR) + skill_diff + round((combat_modifier-1)*10)) >= get_stat_roll(M.STASTR))
+				// [/SURREALIS-EDIT]
 					M.visible_message(span_danger("[user] shoves [M] to the ground!"), \
 									span_userdanger("[user] shoves me to the ground!"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE)
 					M.Knockdown(max(10 + (skill_diff * 2), 1))
@@ -460,7 +507,10 @@
 					I = M.get_active_held_item()
 				else
 					I = M.get_inactive_held_item()
-			user.stamina_add(rand(3,8))
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// user.stamina_add(rand(3,8)) // SURREALIS-EDIT - ORIGINAL
+			user.stamina_add(rand(3,8), skill_used = /datum/skill/combat/wrestling)
+			// [/SURREALIS-EDIT]
 			var/probby = clamp((((3 + (((user.STASTR - M.STASTR)/4) + skill_diff)) * 10) * combat_modifier), 5, 95)
 			if(I)
 				if(M.mind)
@@ -505,7 +555,10 @@
 		return
 	var/mob/living/carbon/C = grabbed
 	var/damage = user.get_punch_dmg()
-	var/armor_block = C.run_armor_check(limb_grabbed, "slash", armor_penetration = PEN_NONE, damage = damage)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// var/armor_block = C.run_armor_check(limb_grabbed, "slash", armor_penetration = PEN_NONE, damage = damage) // SURREALIS-EDIT - ORIGINAL
+	var/armor_block = C.run_armor_check(limb_grabbed, "slash", armor_penetration = AP_NONE, damage = damage)
+	// [/SURREALIS-EDIT]
 	if(grabbed == user && limb_grabbed.status == BODYPART_ROBOTIC)	//removing ones own prosthetic should not be violent, nor damaging
 		C.visible_message(span_notice("[user] starts twisting [limb_grabbed] of [C], twisting it out of its socket!"), span_notice("I start twisting [limb_grabbed] from [src]."))
 		playsound(user, 'sound/misc/blackbag2.ogg', 100)
@@ -515,7 +568,11 @@
 			return
 	playsound(C.loc, "genblunt", 100, FALSE, -1)
 	C.next_attack_msg.Cut()
-	C.apply_damage(damage, BRUTE, limb_grabbed, armor_block)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// C.apply_damage(damage, BRUTE, limb_grabbed, armor_block) // SURREALIS-EDIT - ORIGINAL
+	damage = C.armor_reduced_damage(damage, armor_block, null)
+	C.apply_damage(damage, BRUTE, limb_grabbed, 0)
+	// [/SURREALIS-EDIT]
 	limb_grabbed.bodypart_attacked_by(BCLASS_TWIST, damage, user, sublimb_grabbed, crit_message = TRUE)
 	C.visible_message(span_danger("[user] twists [C]'s [parse_zone(sublimb_grabbed)]![C.next_attack_msg.Join()]"), \
 					span_userdanger("[user] twists my [parse_zone(sublimb_grabbed)]![C.next_attack_msg.Join()]"), span_hear("I hear a sickening sound of pugilism!"), COMBAT_MESSAGE_RANGE, user)
@@ -571,7 +628,10 @@
 	var/damage = H.get_punch_dmg()
 	C.next_attack_msg.Cut()
 	playsound(C.loc, "genblunt", 100, FALSE, -1)
-	C.apply_damage(damage*1.5, , Chead, armor_block)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// C.apply_damage(damage*1.5, , Chead, armor_block) // SURREALIS-EDIT - ORIGINAL
+	C.apply_damage(C.armor_reduced_damage(damage*1.5, armor_block, null), , Chead, 0)
+	// [/SURREALIS-EDIT]
 	Chead.bodypart_attacked_by(BCLASS_SMASH, damage*1.5, H, crit_message=TRUE)
 	H.apply_damage(damage, BRUTE, Hhead, armor_block_user)
 	Hhead.bodypart_attacked_by(BCLASS_SMASH, damage/1.2, H, crit_message=TRUE)
@@ -612,6 +672,15 @@
 
 		if(!(HAS_TRAIT(M, TRAIT_LEECHRESIST) && istype(I, /obj/item/natural/worms/leech)))
 			L.receive_damage(I.embedding.embedded_unsafe_removal_pain_multiplier * I.w_class) //It hurts to rip it out, get surgery you dingus.
+		// [SURREALIS-ADD] - VRCOMBAT
+		var/datum/wound/dynamic/puncture/stab_wound = L.has_wound(/datum/wound/dynamic/puncture)
+		if(stab_wound)
+			stab_wound.jiggle_pain = max(stab_wound.jiggle_pain - (I.w_class * 8), 0)
+			stab_wound.woundpain = stab_wound.base_woundpain + stab_wound.jiggle_pain
+			if(I.embed_bleed_contribution)
+				stab_wound.set_bleed_rate(stab_wound.bleed_rate + I.embed_bleed_contribution + (I.w_class * 0.4))
+		I.set_embed_bleed_contribution(0)
+		// [/SURREALIS-ADD]
 		user.dropItemToGround(src) // this will unset vars like limb_grabbed
 		user.put_in_hands(I)
 		C.emote("paincrit", TRUE)
@@ -709,12 +778,19 @@
 		user.stop_pulling(TRUE)
 		return
 	var/mob/living/carbon/C = grabbed
-	var/armor_block = C.run_armor_check(limb_grabbed, d_type, armor_penetration = PEN_NONE)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// var/armor_block = C.run_armor_check(limb_grabbed, d_type, armor_penetration = PEN_NONE) // SURREALIS-EDIT - ORIGINAL
+	var/armor_block = C.run_armor_check(limb_grabbed, d_type, armor_penetration = limb_smash_penetration(user))
+	// [/SURREALIS-EDIT]
 	var/damage = user.get_punch_dmg()
 	var/unarmed_skill = user.get_skill_level(/datum/skill/combat/unarmed)
 	damage *= (1 + (unarmed_skill / 10))	//1.X multiplier where X is the unarmed skill.
 	C.next_attack_msg.Cut()
-	if(C.apply_damage(damage, BRUTE, limb_grabbed, armor_block))
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(C.apply_damage(damage, BRUTE, limb_grabbed, armor_block)) // SURREALIS-EDIT - ORIGINAL
+	damage = C.armor_reduced_damage(damage, armor_block, null)
+	if(C.apply_damage(damage, BRUTE, limb_grabbed, 0))
+	// [/SURREALIS-EDIT]
 		limb_grabbed.bodypart_attacked_by(BCLASS_BLUNT, damage, user, sublimb_grabbed, crit_message = TRUE)
 		playsound(C.loc, "smashlimb", 100, FALSE, -1)
 	else

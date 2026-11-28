@@ -38,6 +38,9 @@
 
 	var/aoe_range = 3
 	displayed_damage = SPELL_DMG(GTSTRIKE_DAMAGE)
+	// [SURREALIS-ADD] - VRCOMBAT
+	damage_variance = SPELL_VARIANCE_LOW
+	// [/SURREALIS-ADD]
 
 /datum/action/cooldown/spell/greater_thunderstrike/cast(atom/cast_on)
 	. = ..()
@@ -65,7 +68,10 @@
 
 	H.visible_message(span_boldwarning("[H] calls down a massive storm of lightning!"))
 	playsound(centerpoint, 'sound/magic/charging.ogg', 80, TRUE, 6)
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(thunderstrike_erupt), centerpoint, H, aoe_range, SPELL_DMG(GTSTRIKE_DAMAGE), src, "Greater Thunderstrike", SPELL_DAMAGE_INTEGRITY_MODIFIER), GTSTRIKE_TELEGRAPH)
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(thunderstrike_erupt), centerpoint, H, aoe_range, SPELL_DMG(GTSTRIKE_DAMAGE), src, "Greater Thunderstrike", SPELL_DAMAGE_INTEGRITY_MODIFIER), GTSTRIKE_TELEGRAPH) // SURREALIS-EDIT - ORIGINAL
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(thunderstrike_erupt), centerpoint, H, aoe_range, SPELL_DMG(GTSTRIKE_DAMAGE), src, "Greater Thunderstrike", SPELL_DAMAGE_INTEGRITY_MODIFIER, damage_variance), GTSTRIKE_TELEGRAPH)
+	// [/SURREALIS-EDIT]
 	return TRUE
 
 #undef GTSTRIKE_DAMAGE

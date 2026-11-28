@@ -263,7 +263,10 @@
 			var/mob/living/carbon/C = user
 			if(C.domhand)
 				used_str = C.get_str_arms(C.used_hand)
-			C.stamina_add(max(60 - (used_str * 5), 1))
+			// [SURREALIS-EDIT] - VRCOMBAT
+			// C.stamina_add(max(60 - (used_str * 5), 1)) // SURREALIS-EDIT - ORIGINAL
+			C.stamina_add(max(60 - (used_str * 5), 1), skill_used = /datum/skill/misc/athletics)
+			// [/SURREALIS-EDIT]
 		if(stage < 3)
 			if(faildirt < 2)
 				if(prob(used_str * 5))

@@ -226,7 +226,10 @@
 								else
 									I.current_charge -= 2
 									playsound(user, 'sound/misc/ratchet.ogg', 100, TRUE)
-									contraptionrepair.obj_integrity = contraptionrepair.max_integrity
+									// [SURREALIS-EDIT] - VRCOMBAT
+									// contraptionrepair.obj_integrity = contraptionrepair.max_integrity // SURREALIS-EDIT - ORIGINAL
+									contraptionrepair.set_integrity(contraptionrepair.max_integrity)
+									// [/SURREALIS-EDIT]
 									user.visible_message(span_notice("[user] repaired [contraptionrepair.name]."), \
 															span_notice("I repaired [contraptionrepair.name]."))
 									return

@@ -172,6 +172,11 @@
 				var/adf = used_intent.clickcd
 				if(istype(rmb_intent, /datum/rmb_intent/aimed))
 					adf = round(adf * CLICK_CD_MOD_AIMED)
+					// [SURREALIS-ADD] - VRCOMBAT
+					if(ishuman(src))
+						var/mob/living/carbon/human/aimer = src
+						adf = max(round(adf * clamp(1 - ((aimer.STAPER - 10) * 0.05), 0.5, 2.0)), CLICK_CD_INTENTCAP)
+					// [/SURREALIS-ADD]
 				else if(istype(rmb_intent, /datum/rmb_intent/swift))
 					adf = max(round(adf * CLICK_CD_MOD_SWIFT), CLICK_CD_INTENTCAP)
 				changeNext_move(adf,used_hand)
@@ -538,7 +543,10 @@
 
 	dualwield_processing = TRUE
 
-	if(stamina_add(3))
+	// [SURREALIS-EDIT] - VRCOMBAT
+	// if(stamina_add(3)) // SURREALIS-EDIT - ORIGINAL
+	if(stamina_add(3, skill_used = fatigue_skill_for(get_active_held_item())))
+	// [/SURREALIS-EDIT]
 		var/obj/item/paired_weapon = get_active_held_item()
 		if(paired_weapon)
 			balloon_alert_to_viewers("<font color='#bb2b2b'>Dual Hit!!</font>")
@@ -622,7 +630,10 @@
 /mob/proc/aftermiss()
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		H.stamina_add(used_intent.misscost)
+		// [SURREALIS-EDIT] - VRCOMBAT
+		// H.stamina_add(used_intent.misscost) // SURREALIS-EDIT - ORIGINAL
+		H.stamina_add(used_intent.misscost, skill_used = H.fatigue_skill_for(H.get_active_held_item()))
+		// [/SURREALIS-EDIT]
 
 //Is the atom obscured by a PREVENT_CLICK_UNDER_1 object above it
 /atom/proc/IsObscured()
