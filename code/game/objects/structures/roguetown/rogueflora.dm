@@ -490,9 +490,9 @@
 	var/bush_season_suffix = ""
 
 /obj/structure/flora/roguegrass/bush/Initialize(mapload)
-	if(prob(88) && isnull(bushtype))
-		bushtype = pickweight(list(/obj/item/reagent_containers/food/snacks/grown/berries/rogue=5,
-					/obj/item/reagent_containers/food/snacks/grown/berries/rogue/poison=3,
+	if(prob(10) && isnull(bushtype)) //Be grateful that this number isn't 0, because personally I think it ought to be.
+		bushtype = pickweight(list(/obj/item/reagent_containers/food/snacks/grown/berries/rogue=1,
+					/obj/item/reagent_containers/food/snacks/grown/berries/rogue/poison=8,
 					/obj/item/reagent_containers/food/snacks/grown/rogue/pipeweed=1))
 	loot_replenish()
 	pixel_x += rand(-3,3)
@@ -684,7 +684,7 @@
 	return !density
 
 /obj/structure/flora/roguegrass/bush/wall/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && (mover.pass_flags & PASSGRILLE))
+	if(istype(mover) && (mover.pass_flags & PASSGRILLE) || get_turf(mover) == get_turf(src))
 		return TRUE
 	return !density
 
@@ -907,7 +907,7 @@
 /obj/structure/flora/roguegrass/swampweed/Initialize(mapload)
 	. = ..()
 	icon_state = "swampweed[rand(1,3)]"
-	if(prob(88))
+	if(prob(50))
 		bushtype = pickweight(list(/obj/item/reagent_containers/food/snacks/grown/rogue/swampweed = 1))
 	loot_replenish3()
 	pixel_x += rand(-3,3)

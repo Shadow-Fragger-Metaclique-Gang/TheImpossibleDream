@@ -19,7 +19,7 @@
 							/obj/structure/flora/roguegrass/bush = 25,
 							/obj/structure/flora/roguegrass = 200,
 							/obj/structure/flora/roguegrass/herb/random = 7,
-							/obj/structure/flora/roguegrass/bush/westleach = 7,
+							/obj/structure/flora/roguegrass/bush/westleach = 1,
 							/obj/structure/flora/roguegrass/maneater = 13,
 							/obj/structure/flora/roguegrass/pyroclasticflowers = 3,
 							/obj/item/natural/stone = 23,

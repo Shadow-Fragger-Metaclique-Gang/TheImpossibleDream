@@ -29,8 +29,8 @@
 							/obj/structure/flora/roguetree/stump/log = 3,
 							/obj/structure/flora/roguetree/stump = 4,
 							/obj/structure/closet/dirthole/closed/loot = 3,
-							/obj/structure/flora/roguegrass/swampweed = 10,
-							/obj/structure/flora/roguegrass/bush/westleach = 10,
+							/obj/structure/flora/roguegrass/swampweed = 5,
+							/obj/structure/flora/roguegrass/bush/westleach = 5,
 							/obj/structure/flora/roguegrass/maneater/real = 3,
 							/obj/effect/hunting_track = 3)
 	spawnableTurfs = list(/turf/open/floor/rogue/dirt/road=2,

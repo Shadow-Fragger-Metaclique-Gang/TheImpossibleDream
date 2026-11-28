@@ -18,7 +18,7 @@
 
 /datum/sex_action/masturbate_container/on_start(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	user.visible_message(span_warning("[user] starts masturbating over [user.get_active_held_item()]..."))
-
+	user.apply_status_effect(/datum/status_effect/debuff/jorking_it)
 /datum/sex_action/masturbate_container/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	var/container_name = user.get_active_held_item()
 	if(!container_name)
@@ -35,7 +35,7 @@
 
 /datum/sex_action/masturbate_container/on_finish(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	user.visible_message(span_warning("[user] stops masturbating into the container."))
-
+	user.remove_status_effect(/datum/status_effect/debuff/jorking_it)
 /datum/sex_action/masturbate_container/is_finished(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user.sexcon.finished_check())
 		return TRUE

@@ -474,9 +474,9 @@
 		if(HAS_TRAIT(user, TRAIT_MALODOROUS) && !HAS_TRAIT(splashed_user, TRAIT_MALODOROUS))
 			user.malodorous_apply_contact_stink(splashed_user)
 		modular_record_collar_receive_event(splashed_user, user)
-	if(effective_target?.has_flaw(/datum/charflaw/addiction/lovefiend))
+	if(effective_target?.has_flaw(/datum/charflaw/addiction/lovefiend) || !effective_target.has_status_effect(/datum/status_effect/debuff/jorking_it)) //FUCK OTHER PEOPLE DUMMY
 		effective_target.sate_addiction(/datum/charflaw/addiction/lovefiend)
-	if(effective_target?.has_flaw(/datum/charflaw/addiction/baothamarked))
+	if(effective_target?.has_flaw(/datum/charflaw/addiction/baothamarked) || !effective_target.has_status_effect(/datum/status_effect/debuff/jorking_it))
 		effective_target.sate_addiction(/datum/charflaw/addiction/baothamarked)
 	after_ejaculation()
 
@@ -806,6 +806,7 @@
 
 /datum/sex_controller/proc/after_ejaculation(consume_charge = TRUE)
 	set_arousal(40)
+
 	if(consume_charge)
 		adjust_charge(-CHARGE_FOR_CLIMAX)
 		SEND_SIGNAL(user, COMSIG_MOB_EJACULATED)
@@ -813,6 +814,8 @@
 		to_chat(user, span_love("<i>Spurt!</i>"))
 	if(user.has_status_effect(/datum/status_effect/debuff/false_sensation))
 		to_chat(user, span_warning("Not enough..."))
+	else if(user.has_status_effect(/datum/status_effect/debuff/jorking_it))
+		to_chat(user, span_warning("It's no fun alone..."))
 	else
 		if(user.has_flaw(/datum/charflaw/addiction/lovefiend))
 			user.sate_addiction(/datum/charflaw/addiction/lovefiend)

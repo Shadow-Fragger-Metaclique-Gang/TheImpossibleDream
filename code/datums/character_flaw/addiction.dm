@@ -42,7 +42,7 @@
 		remove_status_effect(mob_vice.debuff)
 
 /mob/living/carbon/human/proc/sate_voyeurs(datum/charflaw/addiction/mob_vice)
-	for(var/mob/living/carbon/human/L in get_hearers_in_view(2, src, RECURSIVE_CONTENTS_CLIENT_MOBS))
+	for(var/mob/living/carbon/human/L in get_hearers_in_view(4, src, RECURSIVE_CONTENTS_CLIENT_MOBS))
 		if(src != L && !istype(mob_vice, /datum/charflaw/addiction/voyeur))	//Let's not have circular voyeur self-pleasing chains.
 			if(L.has_flaw(/datum/charflaw/addiction/voyeur))
 				for(var/datum/charflaw/cf in L.charflaws)
@@ -123,7 +123,7 @@
 /datum/status_effect/debuff/addiction/alcoholic
 	id = "addiction_alcoholic"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/addiction/alcoholic
-	effectedstats = list(STATKEY_INT = -1, STATKEY_WIL = -1)
+	effectedstats = list(STATKEY_STR = -4, STATKEY_INT = -4)
 
 /atom/movable/screen/alert/status_effect/debuff/addiction/alcoholic
 	name = "Alcohol Withdrawal"
@@ -144,7 +144,7 @@
 /datum/status_effect/debuff/addiction/junkie
 	id = "addiction_junkie"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/addiction/junkie
-	effectedstats = list(STATKEY_STR = -1, STATKEY_CON = -1)
+	effectedstats = list(STATKEY_STR = -4, STATKEY_CON = -4)
 
 /atom/movable/screen/alert/status_effect/debuff/addiction/junkie
 	name = "Drug Withdrawal"
@@ -157,7 +157,7 @@
 	name = "Smoker"
 	desc = "I need to smoke something to take the edge off."
 	ui_fa_icon = "smoking"
-	time = ADDICT_TIME_STANDARD
+	time = ADDICT_TIME_FREQUENT
 	needsate_text = "Time for a flavorful smoke."
 	voyeur_descriptor = "eager for a smoke"
 	debuff = /datum/status_effect/debuff/addiction/smoker
@@ -165,7 +165,7 @@
 /datum/status_effect/debuff/addiction/smoker
 	id = "addiction_smoker"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/addiction/smoker
-	effectedstats = list(STATKEY_STR = -1, STATKEY_CON = -1)
+	effectedstats = list(STATKEY_PER = -4, STATKEY_CON = -4)
 
 /atom/movable/screen/alert/status_effect/debuff/addiction/smoker
 	name = "Blacklung"
@@ -186,7 +186,7 @@
 /datum/status_effect/debuff/addiction/caffiend
 	id = "addiction_caffiend"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/addiction/caffiend
-	effectedstats = list(STATKEY_WIL = -1, STATKEY_INT = -1)
+	effectedstats = list(STATKEY_SPD = -4, STATKEY_PER = -4)
 
 /atom/movable/screen/alert/status_effect/debuff/addiction/caffiend
 	name = "The Ticks"
@@ -207,7 +207,7 @@
 /datum/status_effect/debuff/addiction/godfearing
 	id = "addiction_godfearing"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/addiction/godfearing
-	effectedstats = list(STATKEY_WIL = -2)
+	effectedstats = list(STATKEY_WIL = -4, STATKEY_LCK = -4)
 
 /atom/movable/screen/alert/status_effect/debuff/addiction/godfearing
 	name = "Godfearing"
@@ -228,7 +228,7 @@
 /datum/status_effect/debuff/addiction/sadist
 	id = "addiction_sadist"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/addiction/sadist
-	effectedstats = list(STATKEY_WIL = -1, STATKEY_LCK = -1)
+	effectedstats = list(STATKEY_WIL = -4, STATKEY_LCK = -4)
 
 /atom/movable/screen/alert/status_effect/debuff/addiction/sadist
 	name = "Sadist"
@@ -250,7 +250,7 @@
 /datum/status_effect/debuff/addiction/masochist
 	id = "addiction_masochist"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/addiction/masochist
-	effectedstats = list(STATKEY_CON = -1, STATKEY_WIL = -1)
+	effectedstats = list(STATKEY_SPD = -4, STATKEY_PER= -4) //Poor focus.
 
 /atom/movable/screen/alert/status_effect/debuff/addiction/masochist
 	name = "Masochist"
@@ -274,7 +274,7 @@
 /datum/status_effect/debuff/addiction/nympho
 	id = "addiction_nympho"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/addiction/nympho
-	effectedstats = list(STATKEY_WIL = -1, STATKEY_LCK = -1)
+	effectedstats = list(STATKEY_WIL = -4, STATKEY_LCK = -4)
 
 // This bit is just an easter egg. Feel free to remove at your discretion.
 /datum/status_effect/debuff/addiction/nympho/on_creation(mob/living/new_owner, ...)

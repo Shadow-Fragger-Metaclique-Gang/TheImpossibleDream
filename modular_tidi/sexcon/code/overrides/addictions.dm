@@ -22,7 +22,7 @@
 /datum/status_effect/debuff/addiction/baothamarked
 	id = "addiction_baothamark"
 	alert_type = /atom/movable/screen/alert/status_effect/debuff/addiction/baothamarked
-	effectedstats = list(STATKEY_CON = -1, STATKEY_WIL = -1)
+	effectedstats = list(STATKEY_CON = -4, STATKEY_WIL = -4)
 
 /atom/movable/screen/alert/status_effect/debuff/addiction/baothamarked
 	name = "Baothan Mania"
@@ -51,4 +51,12 @@
 	if(prob(1))
 		user.emote("groan", forced = TRUE)
 
+
+
+/datum/status_effect/debuff/jorking_it
+	id = "jorking_it"
+	alert_type = null
+	effectedstats = null
+	duration = -1
+	status_type = STATUS_EFFECT_REFRESH
 #undef THRILLSEEKER_THRESHOLD
