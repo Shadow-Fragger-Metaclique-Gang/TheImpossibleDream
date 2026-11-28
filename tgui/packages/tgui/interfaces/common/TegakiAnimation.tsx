@@ -9,15 +9,17 @@ import { Box, Stack } from 'tgui-core/components';
 
 const getFont = async () => {
   try {
-    const glyphData = await fetch('parisienne_data.json').then((r) => r.json());
+    const glyphData = await fetch('villainismserif_data.json').then((r) =>
+      r.json(),
+    );
 
     return createBundle({
-      family: 'Parisienne',
-      fontUrl: 'parisienne.ttf',
+      family: 'Villainism Serif',
+      fontUrl: 'villainismserif.otf',
       glyphData,
-      unitsPerEm: 2048,
-      ascender: 1875,
-      descender: -915,
+      unitsPerEm: 1000,
+      ascender: 750,
+      descender: -200,
     });
   } catch {
     return null;

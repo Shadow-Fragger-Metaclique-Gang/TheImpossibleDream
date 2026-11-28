@@ -91,10 +91,10 @@ const WelcomeAnimation = () => {
     <Box mt={1}>
       <TegakiAnimation
         height={4}
-        time={{ mode: 'uncontrolled', speed: 10, loop: false }}
-        style={{ fontSize: 30, textAlign: 'center' }}
+        time={{ mode: 'uncontrolled', speed: 2.5, loop: false }}
+        style={{ fontSize: 35, textAlign: 'center' }}
       >
-        Welcome To {toTitleCase(server_name)}
+        {toTitleCase(server_name)}
       </TegakiAnimation>
     </Box>
   );

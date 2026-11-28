@@ -33,5 +33,7 @@
 		"aavnic.ttf" = 'interface/fonts/languages/aavnic.ttf',
 		"parisienne.ttf" = 'interface/fonts/tegaki/parisienne.ttf',
 		"parisienne_data.json" = 'interface/fonts/tegaki/parisienne_data.json',
+		"villainismserif.otf" = 'interface/fonts/tegaki/villainismserif.otf',
+		"villainismserif_data.json" = 'interface/fonts/tegaki/villainismserif_data.json',
 		"notocoloremoji.ttf" = 'interface/fonts/noto/notocoloremoji.ttf',
 	)
