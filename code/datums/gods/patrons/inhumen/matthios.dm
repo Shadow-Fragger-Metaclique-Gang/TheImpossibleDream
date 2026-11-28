@@ -14,6 +14,9 @@
 					/datum/action/cooldown/spell/matthios/barter				= CLERIC_T2,
 					/datum/action/cooldown/spell/matthios/equalize				= CLERIC_T3,
 					/datum/action/cooldown/spell/matthios/anastasis				= CLERIC_T3,
+					//SRLS EDIT START DRAGON FORM
+					/obj/effect/proc_holder/spell/self/wingsoffreedom			= CLERIC_T4,
+					//SRLS EDIT STOP DRAGON FORM
 					/datum/action/cooldown/spell/matthios/churn					= CLERIC_T4
 	)
 	confess_lines = list(
